@@ -1,0 +1,44 @@
+﻿@page "/"
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+
+<ChartJS Chart="@blazorChartJS" Width="600" Height="300" />
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+
+@functions {
+
+    public ChartJSChart blazorChartJS { get; set; } = new ChartJSChart();
+
+    protected override void OnInit()
+    {
+        blazorChartJS = new ChartJSChart()
+        {
+            ChartType = "bar",
+            CanvasId = "myFirstChart",
+            Options = new ChartJsOptions()
+            {
+                Text = "Sample chart from Blazor",
+                BorderWidth = 1,
+                Display = true
+            },
+            Data = new ChartJsData()
+            {
+                Labels = new List<string>() { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
+                Datasets = new List<ChartJsDataset>()
+            {
+                new ChartJsDataset()
+                {
+                Label = "# of Votes from blazor",
+                Data = new List<int>(){ 19,12,5,3,3,2}
+                }
+            }
+            }
+        };
+    }
+
+}
