@@ -8,9 +8,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="0.2.0-preview1-10147" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.2.0-preview1-10147" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.2.0-preview1-10147" />
-    <!--<PackageReference Include="Microsoft.AspNetCore.Blazor.Razor.Extensions" Version="0.2.0-preview1-10147" />-->
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.0-preview2-30230" PrivateAssets="all" />
-    <!--<PackageReference Include="Microsoft.NET.Sdk.Razor" Version="2.1.0-preview2-30230" />-->
   </ItemGroup>
 
   <ItemGroup>
