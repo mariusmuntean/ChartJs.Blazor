@@ -14,4 +14,18 @@
   <ItemGroup>
     <BlazorGenerate Remove="ChartJs.cshtml" />
   </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Shared\ChartJsBarChart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Shared\ChartJsLineChart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="dist\barchart.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

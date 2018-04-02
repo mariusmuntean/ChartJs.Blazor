@@ -1,44 +1,48 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
+<h2>Chart JS charts using Blazor</h2>
 
-
-<ChartJS Chart="@blazorChartJS" Width="600" Height="300" />
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+<ChartJsBarChart Chart="@blazorBarChartJS" Width="600" Height="300" />
 
 
 @functions {
 
-    public ChartJSChart blazorChartJS { get; set; } = new ChartJSChart();
+    public ChartJSChart<ChartJsBarDataset> blazorBarChartJS { get; set; } = new ChartJSChart<ChartJsBarDataset>();
 
     protected override void OnInit()
     {
-        blazorChartJS = new ChartJSChart()
+        blazorBarChartJS = new ChartJSChart<ChartJsBarDataset>()
         {
             ChartType = "bar",
-            CanvasId = "myFirstChart",
+            CanvasId = "myFirstBarChart",
             Options = new ChartJsOptions()
             {
                 Text = "Sample chart from Blazor",
                 BorderWidth = 1,
                 Display = true
             },
-            Data = new ChartJsData()
+            Data = new ChartJsData<ChartJsBarDataset>()
             {
                 Labels = new List<string>() { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
-                Datasets = new List<ChartJsDataset>()
-            {
-                new ChartJsDataset()
+                Datasets = new List<ChartJsBarDataset>()
                 {
-                Label = "# of Votes from blazor",
-                Data = new List<int>(){ 19,12,5,3,3,2}
+                    new ChartJsBarDataset()
+                    {
+                        Label = "# of Votes from blazor",
+                        BackgroundColor = "#cc65fe",
+                        BorderColor = "#cc65fe",
+                        Data = new List<int>(){ 19,12,5,3,3,2}
+                    },
+                    new ChartJsBarDataset()
+                    {
+                        Label = "# of Likes from blazor",
+                        BackgroundColor = "#36a2eb",
+                        BorderColor = "#36a2eb",
+                        Data = new List<int>(){ 30,10,15,13,13,12}
+                    }
                 }
-            }
             }
         };
     }
-
 }

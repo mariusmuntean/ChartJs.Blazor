@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Blazor.Browser.Interop
+@using BlazorComponents.ChartJS
+
+
+<div class="row">
+    <div class="col-lg-2">
+        <button class="btn btn-large btn-success" @onclick(DisplayChart)>Display Chart</button>
+    </div>
+    <div class="col-lg-2">
+        <button class="btn btn-large btn-success" @onclick(UpdateChartJS)>Update Chart</button>
+    </div>
+</div>
+<div class="row">
+    <div class="container">
+        <canvas id="@Chart.CanvasId" width="@Width" height="@Height"></canvas>
+    </div>
+</div>
+
+@functions {
+
+    public ChartJSChart<ChartJsLineDataset> Chart { get; set; }
+    public Action<ChartJSChart<ChartJsLineDataset>> UpdateChart { get; set; }
+    public int Width { get; set; } = 400;
+    public int Height { get; set; } = 400;
+
+    protected void DisplayChart()
+    {
+        RegisteredFunction.Invoke<bool>("initializeLineChart", new[] { Chart });
+    }
+
+    protected void UpdateChartJS()
+    {
+        UpdateChart(Chart);
+        RegisteredFunction.Invoke<bool>("updateLineChart", new[] { Chart });
+    }
+}

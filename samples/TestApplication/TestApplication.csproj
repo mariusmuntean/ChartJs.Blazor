@@ -17,4 +17,16 @@
     <ProjectReference Include="..\..\src\BlazorComponents\BlazorComponents.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\LineChart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\LineChart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\LineChart.cshtml" />
+  </ItemGroup>
+
 </Project>

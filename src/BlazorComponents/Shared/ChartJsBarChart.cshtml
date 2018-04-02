@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Blazor.Browser.Interop
+@using BlazorComponents.ChartJS
+
+
+<div class="row">
+    <button @onclick(CallJS)>Display Chart</button>
+</div>
+<div class="row">
+    <div class="container">
+        <canvas id="@Chart.CanvasId" width="@Width" height="@Height"></canvas>
+    </div>
+</div>
+
+@functions {
+
+    public ChartJSChart<ChartJsBarDataset> Chart { get; set; }
+    public Action<ChartJsBarDataset> UpdateChart { get; set; }
+    public int Width { get; set; } = 400;
+    public int Height { get; set; } = 400;
+
+    protected void CallJS()
+    {
+        RegisteredFunction.Invoke<bool>("initializeBarChart", new[] { Chart });
+    }
+}
