@@ -1,13 +1,14 @@
-﻿@using Microsoft.AspNetCore.Blazor.Browser.Interop
-@using BlazorComponents.ChartJS
-
+﻿@using BlazorComponents.ChartJS
 
 <div class="row">
-    <div class="col-lg-2">
-        <button class="btn btn-large btn-success" @onclick(DisplayChart)>Display Chart</button>
+    Display button is currently necessary, while blazor <a href="https://github.com/aspnet/Blazor/issues/495">#495</a> gives us a way to initialize at RenderComplete.<br /><br />
+</div>
+<div class="row">
+    <div class="col-lg-3">
+        <button class="btn btn-large btn-success" onclick="@DisplayChart">Display Chart</button><br />
     </div>
-    <div class="col-lg-2">
-        <button class="btn btn-large btn-success" @onclick(UpdateChartJS)>Update Chart</button>
+    <div class="col-lg-3">
+        <button class="btn btn-large btn-success" onclick="@UpdateChartJS">Update Chart</button>
     </div>
 </div>
 <div class="row">
@@ -20,17 +21,18 @@
 
     public ChartJSChart<ChartJsLineDataset> Chart { get; set; }
     public Action<ChartJSChart<ChartJsLineDataset>> UpdateChart { get; set; }
-    public int Width { get; set; } = 400;
-    public int Height { get; set; } = 400;
+    public int Width { get; set; } = 200;
+    public int Height { get; set; } = 200;
+    private string ChartjsChart { get; set; } = "";
 
-    protected void DisplayChart()
+    void DisplayChart()
     {
-        RegisteredFunction.Invoke<bool>("initializeLineChart", new[] { Chart });
+        ChartJSInterop.InitializeLineChart(Chart);
     }
 
-    protected void UpdateChartJS()
+    void UpdateChartJS()
     {
         UpdateChart(Chart);
-        RegisteredFunction.Invoke<bool>("updateLineChart", new[] { Chart });
+        ChartJSInterop.UpdateLineChart(Chart);
     }
 }

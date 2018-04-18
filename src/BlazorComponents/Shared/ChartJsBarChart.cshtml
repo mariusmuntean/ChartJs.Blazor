@@ -1,9 +1,7 @@
-﻿@using Microsoft.AspNetCore.Blazor.Browser.Interop
-@using BlazorComponents.ChartJS
-
+﻿@using BlazorComponents.ChartJS
 
 <div class="row">
-    <button @onclick(CallJS)>Display Chart</button>
+    <button onclick="@CallJS">Display Chart</button>
 </div>
 <div class="row">
     <div class="container">
@@ -18,8 +16,8 @@
     public int Width { get; set; } = 400;
     public int Height { get; set; } = 400;
 
-    protected void CallJS()
+    void CallJS()
     {
-        RegisteredFunction.Invoke<bool>("initializeBarChart", new[] { Chart });
+        ChartJSInterop.InitializeBarChart(Chart);
     }
 }

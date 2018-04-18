@@ -1,14 +1,35 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PoorMansBuildNumber>$([System.DateTime]::Now.ToString(MMddHHmmss))</PoorMansBuildNumber>
+  </PropertyGroup>
+  
+  <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <VersionPrefix>0.0.1</VersionPrefix>
+    <VersionSuffix>alpha-$(PoorMansBuildNumber)</VersionSuffix>
+    <Title>BlazorComponents</Title>
+    <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+    <Company />
+    <Authors>Muqeet Khan</Authors>
+    <Description>Library of useful components to be used within Blazor. Starting off with a simple ChartJS port to Blazor.</Description>
+    <RepositoryUrl>https://github.com/muqeet-khan/BlazorComponents</RepositoryUrl>
+    <PackageTags>Blazor Components ChartJS</PackageTags>
+    <PackageReleaseNotes>This initial alpha release. The goal is to get the fundamentals of Blazor and associated JS interop working. 
+
+1. Support for Initializing Line Chart.
+2. Support for Initializing Bar Chart.
+3. Update Line Charts
+
+Known Isues:
+1. Currently you need buttons to initilize the charts. Dependent on resolution of #495 in Blazor.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="0.2.0-preview1-10147" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.2.0-preview1-10147" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.2.0-preview1-10147" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.0-preview2-30230" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="0.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.0-preview2-final" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,8 +45,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="dist\barchart.js">
+    <EmbeddedResource Include="dist\BlazorComponents.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
