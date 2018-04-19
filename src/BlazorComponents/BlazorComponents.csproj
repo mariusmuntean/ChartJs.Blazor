@@ -6,7 +6,7 @@
   
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <VersionPrefix>0.0.1</VersionPrefix>
+    <VersionPrefix>0.1</VersionPrefix>
     <VersionSuffix>alpha-$(PoorMansBuildNumber)</VersionSuffix>
     <Title>BlazorComponents</Title>
     <RequireLicenseAcceptance>false</RequireLicenseAcceptance>

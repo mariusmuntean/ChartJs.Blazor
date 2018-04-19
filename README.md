@@ -1,62 +1,120 @@
 ## Simple Components for Blazor Projects
 
-Don't know what Blazor is? Read [here](https://github.com/aspnet/Blazor)
+```
+Note: Just as Blazor, this repo is also experimental.
+```
+
+If you like the idea of this repo leave your feedback as an issue or star the repo or let me know on [@ma_khan](https://twitter.com/ma_khan)
 
 Currently, starting with a simple [ChartJS](https://github.com/chartjs/Chart.js) implementation. 
 
-Here's how you can use it:
 
-There are several steps at this point to get this to work.
+## Prerequisites
 
-1. You need to complete all Blazor dependencies.
-2. Grab a copy from Nuget [TODO] OR clone and build from source. 
-3. Samples contains a simple implementation. 
-4. If you want to do it within your project:
+Don't know what Blazor is? Read [here](https://github.com/aspnet/Blazor)
 
-In your cshtml file add this:
+Complete all Blazor dependencies.
+
+1. Latest VS Preview
+2. DotNetCore 2.1 Preview 2
+
+
+## Installation ![NuGet Pre Release](https://img.shields.io/nuget/vpre/BlazorComponents.svg)
+
+To Install 
+
+```
+Install-Package BlazorComponents
+```
+or 
+```
+dotnet add package BlazorComponents
+```
+
+## Usage
+
+1. In cshtml file add this:
 
 ```html
-<ChartJS Chart="@blazorChartJS" Width="600" Height="300" />
+<ChartJsLineChart Chart="@blazorLineChartJS" Width="600" Height="300" UpdateChart="@((chart) => { UpdateChart(chart); })" />
 ```
 
 ```csharp
 @functions {
 
-    public ChartJSChart blazorChartJS { get; set; } = new ChartJSChart();
+public ChartJSChart<ChartJsLineDataset> blazorLineChartJS { get; set; } = new ChartJSChart<ChartJsLineDataset>();
 
-    protected override void OnInit()
+protected override void OnInit()
+{
+    blazorLineChartJS = new ChartJSChart<ChartJsLineDataset>()
     {
-        blazorChartJS = new ChartJSChart()
+        ChartType = "line",
+        CanvasId = "myFirstLineChart",
+        Options = new ChartJsOptions()
         {
-            ChartType = "bar",
-            CanvasId = "myFirstChart",
-            Options = new ChartJsOptions()
+            Text = "Sample chart from Blazor",
+            Display = true
+        },
+        Data = new ChartJsData<ChartJsLineDataset>()
+        {
+            Labels = new List<string>() { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
+            Datasets = new List<ChartJsLineDataset>()
             {
-                Text = "Sample chart from Blazor",
-                BorderWidth = 1,
-                Display = true
-            },
-            Data = new ChartJsData()
-            {
-                Labels = new List<string>() { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
-                Datasets = new List<ChartJsDataset>()
-            {
-                new ChartJsDataset()
+                new ChartJsLineDataset()
                 {
-                Label = "# of Votes from blazor",
-                Data = new List<int>(){ 19,12,5,3,3,2}
-                }
+                    BackgroundColor = "#ff6384",
+                    BorderColor = "#ff6384",
+                    Label = "# of Votes from blazor",
+                    Data = new List<int>{ 19,12,5,3,3,2},
+                    Fill = true,
+                    BorderWidth = 2,
+                    PointRadius = 3,
+                    PointBorderWidth=1
+                }   
             }
-            }
-        };
-    }
+        }
+    };
+}
 
+
+public void UpdateChart(ChartJSChart<ChartJsLineDataset> chartItem)
+{
+    //Update existing dataset
+    chartItem.Data.Labels.Add($"New{DateTime.Now.Second}");
+    var firstDataSet = chartItem.Data.Datasets[0];
+    firstDataSet.Data.Add(DateTime.Now.Second);
+
+    //Add new dataset
+    //chartItem.Data.Datasets.Add(new ChartJsLineDataset()
+    //{
+    //    BackgroundColor = "#cc65fe",
+    //    BorderColor = "#cc65fe",
+    //    Label = "# of Votes from blazor 1",
+    //    Data = new List<int> {20,21,12,3,4,4},
+    //    Fill = true,
+    //    BorderWidth = 2,
+    //    PointRadius = 3,
+    //    PointBorderWidth = 1
+    //});
+}
 }
 ```
 
-Thats all.
+2. In index.html add:
 
-Run the project and you will need to click on the Display Chart button. 
+```html
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script type="blazor-boot">
+    </script>
+    <script src="BlazorComponents.js"></script>
+```
 
-![Result](result.png)
+
+## Sample Output
+
+Run the project and you will need to click on the Display Chart button. To know more about this limitation read [#495](https://github.com/aspnet/Blazor/issues/495) on the Blazor repo.
+
+![LineChart](line.png)
+
+![BarChart](bar.png)
 
