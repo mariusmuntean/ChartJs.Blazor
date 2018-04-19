@@ -117,7 +117,9 @@ public void UpdateChart(ChartJSChart<ChartJsLineDataset> chartItem)
 
 Run the project and you will need to click on the Display Chart button. To know more about this limitation read [#495](https://github.com/aspnet/Blazor/issues/495) on the Blazor repo.
 
+Line Chart Example:
 ![LineChart](line.png)
 
+Bar Chart Example:
 ![BarChart](bar.png)
 
