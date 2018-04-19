@@ -19,7 +19,10 @@ Complete all Blazor dependencies.
 2. DotNetCore 2.1 Preview 2
 
 
-## Installation ![NuGet Pre Release](https://img.shields.io/nuget/vpre/BlazorComponents.svg)
+## Installation 
+
+![NuGet](https://img.shields.io/nuget/v/BlazorComponents.svg) ![NuGet Pre Release](https://img.shields.io/nuget/vpre/BlazorComponents.svg)
+
 
 To Install 
 
