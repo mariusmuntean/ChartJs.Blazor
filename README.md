@@ -39,67 +39,74 @@ dotnet add package BlazorComponents
 1. In cshtml file add this:
 
 ```html
-<ChartJsLineChart Chart="@blazorLineChartJS" Width="600" Height="300" UpdateChart="@((chart) => { UpdateChart(chart); })" />
+<div class="row">
+    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+</div>
+<ChartJsLineChart ref="lineChartJs" Chart="@blazorLineChartJS" Width="600" Height="300" />
 ```
 
 ```csharp
-@functions {
+@functions{
 
-public ChartJSChart<ChartJsLineDataset> blazorLineChartJS { get; set; } = new ChartJSChart<ChartJsLineDataset>();
+    public ChartJSChart<ChartJsLineDataset> blazorLineChartJS { get; set; } = new ChartJSChart<ChartJsLineDataset>();
+    ChartJsLineChart lineChartJs;
 
-protected override void OnInit()
-{
-    blazorLineChartJS = new ChartJSChart<ChartJsLineDataset>()
+    protected override void OnInit()
     {
-        ChartType = "line",
-        CanvasId = "myFirstLineChart",
-        Options = new ChartJsOptions()
+
+        blazorLineChartJS = new ChartJSChart<ChartJsLineDataset>()
         {
-            Text = "Sample chart from Blazor",
-            Display = true
-        },
-        Data = new ChartJsData<ChartJsLineDataset>()
-        {
-            Labels = new List<string>() { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
-            Datasets = new List<ChartJsLineDataset>()
+            ChartType = "line",
+            CanvasId = "myFirstLineChart",
+            Options = new ChartJsOptions()
             {
-                new ChartJsLineDataset()
-                {
-                    BackgroundColor = "#ff6384",
-                    BorderColor = "#ff6384",
-                    Label = "# of Votes from blazor",
-                    Data = new List<int>{ 19,12,5,3,3,2},
-                    Fill = true,
-                    BorderWidth = 2,
-                    PointRadius = 3,
-                    PointBorderWidth=1
-                }   
+                Text = "Sample chart from Blazor",
+                Display = true,
+                Responsive = false
+            },
+            Data = new ChartJsData<ChartJsLineDataset>()
+            {
+                Labels = new List<string>() { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
+                Datasets = new List<ChartJsLineDataset>()
+                 {
+                        new ChartJsLineDataset()
+                        {
+                            BackgroundColor = "#ff6384",
+                            BorderColor = "#ff6384",
+                            Label = "# of Votes from blazor",
+                            Data = new List<int>{ 19,12,5,3,3,2},
+                            Fill = false,
+                            BorderWidth = 2,
+                            PointRadius = 3,
+                            PointBorderWidth=1
+                        }
+                 }
             }
-        }
-    };
-}
+        };
+    }
 
+    public void UpdateChart()
+    {
+        //Update existing dataset
+        blazorLineChartJS.Data.Labels.Add($"New{DateTime.Now.Second}");
+        var firstDataSet = blazorLineChartJS.Data.Datasets[0];
+        firstDataSet.Data.Add(DateTime.Now.Second);
 
-public void UpdateChart(ChartJSChart<ChartJsLineDataset> chartItem)
-{
-    //Update existing dataset
-    chartItem.Data.Labels.Add($"New{DateTime.Now.Second}");
-    var firstDataSet = chartItem.Data.Datasets[0];
-    firstDataSet.Data.Add(DateTime.Now.Second);
+        //Add new dataset
+        //blazorLineChartJS.Data.Datasets.Add(new ChartJsLineDataset()
+        //{
+        //    BackgroundColor = "#cc65fe",
+        //    BorderColor = "#cc65fe",
+        //    Label = "# of Votes from blazor 1",
+        //    Data = new List<int> {20,21,12,3,4,4},
+        //    Fill = true,
+        //    BorderWidth = 2,
+        //    PointRadius = 3,
+        //    PointBorderWidth = 1
+        //});
 
-    //Add new dataset
-    //chartItem.Data.Datasets.Add(new ChartJsLineDataset()
-    //{
-    //    BackgroundColor = "#cc65fe",
-    //    BorderColor = "#cc65fe",
-    //    Label = "# of Votes from blazor 1",
-    //    Data = new List<int> {20,21,12,3,4,4},
-    //    Fill = true,
-    //    BorderWidth = 2,
-    //    PointRadius = 3,
-    //    PointBorderWidth = 1
-    //});
-}
+        lineChartJs.UpdateChart(blazorLineChartJS);
+    }
 }
 ```
 
@@ -109,7 +116,6 @@ public void UpdateChart(ChartJSChart<ChartJsLineDataset> chartItem)
     <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <script type="blazor-boot">
     </script>
-    <script src="BlazorComponents.js"></script>
 ```
 
 
@@ -117,9 +123,7 @@ public void UpdateChart(ChartJSChart<ChartJsLineDataset> chartItem)
 
 Run the project and you will need to click on the Display Chart button. To know more about this limitation read [#495](https://github.com/aspnet/Blazor/issues/495) on the Blazor repo.
 
-Line Chart Example:
-![LineChart](linechart.png)
-
 Bar Chart Example:
-![BarChart](barchart.png)
+![Barchart](barchart.png)
+
 

@@ -1,8 +1,6 @@
 ﻿@using BlazorComponents.ChartJS
+@using Microsoft.AspNetCore.Blazor.Components
 
-<div class="row">
-    <button onclick="@CallJS">Display Chart</button>
-</div>
 <div class="row">
     <div class="container">
         <canvas id="@Chart.CanvasId" width="@Width" height="@Height"></canvas>
@@ -10,14 +8,20 @@
 </div>
 
 @functions {
+    [Parameter]
+    ChartJSChart<ChartJsBarDataset> Chart { get; set; }
+    [Parameter]
+    int Width { get; set; } = 400;
+    [Parameter]
+    int Height { get; set; } = 400;
 
-    public ChartJSChart<ChartJsBarDataset> Chart { get; set; }
-    public Action<ChartJsBarDataset> UpdateChart { get; set; }
-    public int Width { get; set; } = 400;
-    public int Height { get; set; } = 400;
-
-    void CallJS()
+    protected override void OnAfterRender()
     {
         ChartJSInterop.InitializeBarChart(Chart);
+    }
+
+    public void UpdateChart(ChartJSChart<ChartJsBarDataset> updatedChart)
+    {
+        ChartJSInterop.UpdateBarChart(updatedChart);
     }
 }

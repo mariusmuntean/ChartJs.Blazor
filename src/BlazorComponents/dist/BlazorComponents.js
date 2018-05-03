@@ -43,6 +43,53 @@ Blazor.registerFunction('BlazorComponents.ChartJSInterop.UpdateLineChart', (data
     return true;
 });
 
+Blazor.registerFunction('BlazorComponents.ChartJSInterop.UpdateBarChart', (data) => {
+
+    data = toCamel(data);
+
+    if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
+        throw `Could not find a chart with the given id. ${data.canvasId}`;
+
+    let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
+
+    let myChartIndex = BlazorCharts.findIndex(currentChart => currentChart.id === data.canvasId);
+
+    myChart.chart = {};
+    let newChart = initializeChartjsChart(data, 'bar');
+    myChart.chart = newChart;
+
+    return true;
+});
+
+Blazor.registerFunction('BlazorComponents.ChartJSInterop.InitializeRadarChart', (data) => {
+    data = toCamel(data);
+
+    let thisChart = initializeChartjsChart(data, 'radar');
+
+    if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
+        BlazorCharts.push({ id: data.canvasId, chart: thisChart });
+
+    return true;
+});
+
+Blazor.registerFunction('BlazorComponents.ChartJSInterop.UpdateRadarChart', (data) => {
+
+    data = toCamel(data);
+
+    if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
+        throw `Could not find a chart with the given id. ${data.canvasId}`;
+
+    let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
+
+    let myChartIndex = BlazorCharts.findIndex(currentChart => currentChart.id === data.canvasId);
+
+    myChart.chart = {};
+    let newChart = initializeChartjsChart(data, 'radar');
+    myChart.chart = newChart;
+
+    return true;
+});
+
 
 function initializeChartjsChart(data, type) {
     

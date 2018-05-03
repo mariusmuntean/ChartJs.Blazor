@@ -1,0 +1,72 @@
+﻿@page "/RadarChart"
+@using BlazorComponents.Shared
+
+
+<h2>Chart JS charts using Blazor</h2>
+<div class="row">
+    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+</div>
+<ChartJsRadarChart ref="radarChartJs" Chart="@blazorRadarChartJS" Width="600" Height="300"/>
+
+@functions {
+
+    public ChartJSChart<ChartJSRadarDataset> blazorRadarChartJS { get; set; } = new ChartJSChart<ChartJSRadarDataset>();
+    ChartJsRadarChart radarChartJs;
+
+    protected override void OnInit()
+    {
+
+        blazorRadarChartJS = new ChartJSChart<ChartJSRadarDataset>()
+        {
+            ChartType = "line",
+            CanvasId = "myFirstRadarChart",
+            Options = new ChartJsOptions()
+            {
+                Text = "Sample chart from Blazor",
+                Display = true
+            },
+            Data = new ChartJsData<ChartJSRadarDataset>()
+            {
+                Labels = new List<string>() { "Eating", "Drinking", "Social", "Coding", "Cycling", "Running" },
+                Datasets = new List<ChartJSRadarDataset>()
+            {
+                new ChartJSRadarDataset()
+                {
+                    BackgroundColor = "#ff6384",
+                    Label = "1st Dataset",
+                    Data = new List<int>{ 19,12,5,3,3,2},
+                    BorderWidth = 2,
+                    RadarChartPointStyle = RadarChartPointStyles.star,
+                    PointBackgroundColor = "#a4cef0",
+                    PointRadius = 5,
+                    PointBorderWidth=1
+                }
+            }
+            }
+        };
+    }
+
+
+    public void UpdateChart()
+    {
+        //Update existing dataset
+        blazorRadarChartJS.Data.Labels.Add($"New{DateTime.Now.Second}");
+        var firstDataSet = blazorRadarChartJS.Data.Datasets[0];
+        firstDataSet.Data.Add(DateTime.Now.Second);
+
+        //Add new dataset
+        blazorRadarChartJS.Data.Datasets.Add(new ChartJSRadarDataset()
+        {
+            BackgroundColor = "#cc65fe",
+            BorderColor = "#cc65fe",
+            Label = "2nd Dataset",
+            Data = new List<int> { 20, 21, 12, 3, 4, 4 },
+            BorderWidth = 2,
+            PointRadius = 3,
+            PointBorderWidth = 1
+        });
+
+        radarChartJs.UpdateChart(blazorRadarChartJS);
+    }
+
+}

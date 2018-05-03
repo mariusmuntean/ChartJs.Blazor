@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Blazor.Browser.Interop;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BlazorComponents.ChartJS
 {
@@ -20,6 +17,21 @@ namespace BlazorComponents.ChartJS
         public static bool UpdateLineChart(ChartJSChart<ChartJsLineDataset> lineChart)
         {
             return RegisteredFunction.Invoke<bool>("BlazorComponents.ChartJSInterop.UpdateLineChart", new[] { lineChart });
+        }
+
+        public static bool UpdateBarChart(ChartJSChart<ChartJsBarDataset> barChart)
+        {
+            return RegisteredFunction.Invoke<bool>("BlazorComponents.ChartJSInterop.UpdateBarChart", new[] { barChart });
+        }
+
+        public static bool InitializeRadarChart(ChartJSChart<ChartJSRadarDataset> radarChart)
+        {
+            return RegisteredFunction.Invoke<bool>("BlazorComponents.ChartJSInterop.InitializeRadarChart", new[] { radarChart });
+        }
+
+        public static bool UpdateRadarChart(ChartJSChart<ChartJSRadarDataset> radarChart)
+        {
+            return RegisteredFunction.Invoke<bool>("BlazorComponents.ChartJSInterop.UpdateRadarChart", new[] { radarChart });
         }
     }
 }

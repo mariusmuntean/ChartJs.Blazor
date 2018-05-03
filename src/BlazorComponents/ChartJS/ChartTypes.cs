@@ -4,6 +4,7 @@
     {
         Bar,
         Line,
-        Pie
+        Pie,
+        Radar
     }
 }
