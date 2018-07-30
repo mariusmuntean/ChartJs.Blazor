@@ -2,93 +2,75 @@
 var BlazorCharts = [];
 
 Blazor.BlazorCharts = BlazorCharts;
+window.BlazorComponents = window.BlazorComponents || {};
+window.BlazorComponents.ChartJSInterop = {
+    InitializeBarChart: function (data) {
+        let thisChart = initializeChartjsChart(data, 'bar');
 
-Blazor.registerFunction('BlazorComponents.ChartJSInterop.InitializeBarChart', (data) => {
-    data = toCamel(data);
+        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
+            BlazorCharts.push({ id: data.canvasId, chart: thisChart });
 
-    let thisChart = initializeChartjsChart(data, 'bar');
+        return true;
+    },
+    InitializeLineChart: function (data) {
+        let thisChart = initializeChartjsChart(data, 'line');
 
-    if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
-        BlazorCharts.push({ id: data.canvasId, chart: thisChart });
+        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
+            BlazorCharts.push({ id: data.canvasId, chart: thisChart });
 
-    return true;
-});
+        return true;
+    },
+    InitializeRadarChart: function (data) {
+        let thisChart = initializeChartjsChart(data, 'radar');
 
-Blazor.registerFunction('BlazorComponents.ChartJSInterop.InitializeLineChart', (data) => {
-    data = toCamel(data);
+        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
+            BlazorCharts.push({ id: data.canvasId, chart: thisChart });
 
-    let thisChart = initializeChartjsChart(data, 'line');
+        return true;
+    },
+    UpdateLineChart: function (data) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
+            throw `Could not find a chart with the given id. ${data.canvasId}`;
 
-    if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
-        BlazorCharts.push({ id: data.canvasId, chart: thisChart });
+        let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
 
-    return true;
-});
+        let myChartIndex = BlazorCharts.findIndex(currentChart => currentChart.id === data.canvasId);
 
-Blazor.registerFunction('BlazorComponents.ChartJSInterop.UpdateLineChart', (data) => {
+        myChart.chart = {};
+        let newChart = initializeChartjsChart(data, 'line');
+        myChart.chart = newChart;
 
-    data = toCamel(data);
-    
-    if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
-        throw `Could not find a chart with the given id. ${data.canvasId}`;
+        return true;
+    },
+    UpdateBarChart: function (data) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
+            throw `Could not find a chart with the given id. ${data.canvasId}`;
 
-    let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
+        let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
 
-    let myChartIndex = BlazorCharts.findIndex(currentChart => currentChart.id === data.canvasId);
+        let myChartIndex = BlazorCharts.findIndex(currentChart => currentChart.id === data.canvasId);
 
-    myChart.chart = {};
-    let newChart = initializeChartjsChart(data, 'line');
-    myChart.chart = newChart;
-    
-    return true;
-});
+        myChart.chart = {};
+        let newChart = initializeChartjsChart(data, 'bar');
+        myChart.chart = newChart;
 
-Blazor.registerFunction('BlazorComponents.ChartJSInterop.UpdateBarChart', (data) => {
+        return true;
+    },
+    UpdateRadarChart: function (data) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
+            throw `Could not find a chart with the given id. ${data.canvasId}`;
 
-    data = toCamel(data);
+        let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
 
-    if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
-        throw `Could not find a chart with the given id. ${data.canvasId}`;
+        let myChartIndex = BlazorCharts.findIndex(currentChart => currentChart.id === data.canvasId);
 
-    let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
+        myChart.chart = {};
+        let newChart = initializeChartjsChart(data, 'radar');
+        myChart.chart = newChart;
 
-    let myChartIndex = BlazorCharts.findIndex(currentChart => currentChart.id === data.canvasId);
-
-    myChart.chart = {};
-    let newChart = initializeChartjsChart(data, 'bar');
-    myChart.chart = newChart;
-
-    return true;
-});
-
-Blazor.registerFunction('BlazorComponents.ChartJSInterop.InitializeRadarChart', (data) => {
-    data = toCamel(data);
-
-    let thisChart = initializeChartjsChart(data, 'radar');
-
-    if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
-        BlazorCharts.push({ id: data.canvasId, chart: thisChart });
-
-    return true;
-});
-
-Blazor.registerFunction('BlazorComponents.ChartJSInterop.UpdateRadarChart', (data) => {
-
-    data = toCamel(data);
-
-    if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
-        throw `Could not find a chart with the given id. ${data.canvasId}`;
-
-    let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
-
-    let myChartIndex = BlazorCharts.findIndex(currentChart => currentChart.id === data.canvasId);
-
-    myChart.chart = {};
-    let newChart = initializeChartjsChart(data, 'radar');
-    myChart.chart = newChart;
-
-    return true;
-});
+        return true;
+    }
+};
 
 
 function initializeChartjsChart(data, type) {
@@ -101,32 +83,4 @@ function initializeChartjsChart(data, type) {
     });
 
     return myChart;
-}
-
-// current JSON utility within Blazor is bare-bone and does not camelCase the response JSON.
-// using the below snippet to perform camelCasing.
-// source: https://stackoverflow.com/questions/12931828/convert-returned-json-object-properties-to-lower-first-camelcase/12932771
-function toCamel(o) {
-    var newO, origKey, newKey, value;
-    if (o instanceof Array) {
-        return o.map(function (value) {
-            if (typeof value === "object") {
-                value = toCamel(value);
-            }
-            return value;
-        });
-    } else {
-        newO = {};
-        for (origKey in o) {
-            if (o.hasOwnProperty(origKey)) {
-                newKey = (origKey.charAt(0).toLowerCase() + origKey.slice(1) || origKey).toString();
-                value = o[origKey];
-                if (value instanceof Array || (value !== null && value.constructor === Object)) {
-                    value = toCamel(value);
-                }
-                newO[newKey] = value;
-            }
-        }
-    }
-    return newO;
 }

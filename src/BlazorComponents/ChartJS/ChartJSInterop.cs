@@ -1,37 +1,38 @@
-﻿using Microsoft.AspNetCore.Blazor.Browser.Interop;
+﻿using Microsoft.JSInterop;
+using System.Threading.Tasks;
 
 namespace BlazorComponents.ChartJS
 {
     public class ChartJSInterop
     {
-        public static bool InitializeLineChart(ChartJSChart<ChartJsLineDataset> lineChart)
+        public static Task<bool> InitializeLineChart(ChartJSChart<ChartJsLineDataset> lineChart)
         {
-            return RegisteredFunction.Invoke<bool>("BlazorComponents.ChartJSInterop.InitializeLineChart", new[] { lineChart });
+            return JSRuntime.Current.InvokeAsync<bool>("BlazorComponents.ChartJSInterop.InitializeLineChart", new[] { lineChart });
         }
 
-        public static bool InitializeBarChart(ChartJSChart<ChartJsBarDataset> barChart)
+        public static Task<bool> InitializeBarChart(ChartJSChart<ChartJsBarDataset> barChart)
         {
-            return RegisteredFunction.Invoke<bool>("BlazorComponents.ChartJSInterop.InitializeBarChart", new[] { barChart });
+            return JSRuntime.Current.InvokeAsync<bool>("BlazorComponents.ChartJSInterop.InitializeBarChart", new[] { barChart });
         }
 
-        public static bool UpdateLineChart(ChartJSChart<ChartJsLineDataset> lineChart)
+        public static Task<bool> UpdateLineChart(ChartJSChart<ChartJsLineDataset> lineChart)
         {
-            return RegisteredFunction.Invoke<bool>("BlazorComponents.ChartJSInterop.UpdateLineChart", new[] { lineChart });
+            return JSRuntime.Current.InvokeAsync<bool>("BlazorComponents.ChartJSInterop.UpdateLineChart", new[] { lineChart });
         }
 
-        public static bool UpdateBarChart(ChartJSChart<ChartJsBarDataset> barChart)
+        public static Task<bool> UpdateBarChart(ChartJSChart<ChartJsBarDataset> barChart)
         {
-            return RegisteredFunction.Invoke<bool>("BlazorComponents.ChartJSInterop.UpdateBarChart", new[] { barChart });
+            return JSRuntime.Current.InvokeAsync<bool>("BlazorComponents.ChartJSInterop.UpdateBarChart", new[] { barChart });
         }
 
-        public static bool InitializeRadarChart(ChartJSChart<ChartJSRadarDataset> radarChart)
+        public static Task<bool> InitializeRadarChart(ChartJSChart<ChartJSRadarDataset> radarChart)
         {
-            return RegisteredFunction.Invoke<bool>("BlazorComponents.ChartJSInterop.InitializeRadarChart", new[] { radarChart });
+            return JSRuntime.Current.InvokeAsync<bool>("BlazorComponents.ChartJSInterop.InitializeRadarChart", new[] { radarChart });
         }
 
-        public static bool UpdateRadarChart(ChartJSChart<ChartJSRadarDataset> radarChart)
+        public static Task<bool> UpdateRadarChart(ChartJSChart<ChartJSRadarDataset> radarChart)
         {
-            return RegisteredFunction.Invoke<bool>("BlazorComponents.ChartJSInterop.UpdateRadarChart", new[] { radarChart });
+            return JSRuntime.Current.InvokeAsync<bool>("BlazorComponents.ChartJSInterop.UpdateRadarChart", new[] { radarChart });
         }
     }
 }
