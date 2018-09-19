@@ -121,8 +121,6 @@ dotnet add package BlazorComponents
 
 ## Sample Output
 
-Run the project and you will need to click on the Display Chart button. To know more about this limitation read [#495](https://github.com/aspnet/Blazor/issues/495) on the Blazor repo.
-
 Bar Chart Example:
 ![Barchart](barchart.png)
 
