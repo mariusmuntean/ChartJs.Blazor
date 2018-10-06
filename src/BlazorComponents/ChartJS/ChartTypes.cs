@@ -2,9 +2,10 @@
 {
     public enum ChartTypes
     {
-        Bar,
-        Line,
-        Pie,
-        Radar
+        bar,
+        line,
+        pie,
+        radar,
+        bubble
     }
 }

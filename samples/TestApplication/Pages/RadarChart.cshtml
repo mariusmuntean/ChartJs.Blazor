@@ -17,7 +17,7 @@ protected override void OnInit()
 
     blazorRadarChartJS = new ChartJSChart<ChartJSRadarDataset>()
     {
-        ChartType = "line",
+        ChartType = ChartTypes.radar,
         CanvasId = "myFirstRadarChart",
         Options = new ChartJsOptions()
         {
