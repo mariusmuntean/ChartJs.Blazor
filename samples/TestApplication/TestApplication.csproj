@@ -17,4 +17,10 @@
     <ProjectReference Include="..\..\src\BlazorComponents\BlazorComponents.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Pages\BubbleChart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>

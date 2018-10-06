@@ -12,7 +12,7 @@ namespace BlazorComponents.ChartJS
         /// Actual data. This is an int array.
         /// TO-DO: Explore if it makes any sense to have this as decimal.
         /// </summary>
-        public List<int> Data { get; set; } = new List<int>();
+        public List<dynamic> Data { get; set; } = new List<dynamic>();
         /// <summary>
         /// The fill color under the line. 
         /// AS-IS: We only accept colors as string values. Normal colors and HTML Hex colors are ok to use.

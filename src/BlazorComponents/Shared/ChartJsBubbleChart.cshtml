@@ -1,0 +1,30 @@
+﻿@using BlazorComponents.ChartJS
+@using Microsoft.AspNetCore.Blazor.Components
+<div class="row">
+    <div class="container">
+        <canvas id="@Chart.CanvasId" width="@Width" height="@Height"></canvas>
+    </div>
+</div>
+
+@functions {
+
+    [Parameter]
+    ChartJSChart<ChartJsBubbleDataset> Chart { get; set; }
+
+    [Parameter]
+    int Width { get; set; } = 400;
+
+    [Parameter]
+    int Height { get; set; } = 400;
+
+    protected override void OnAfterRender()
+    {
+        ChartJSInterop.InitializeBubbleChart(Chart);
+    }
+
+    public void UpdateChart(ChartJSChart<ChartJsBubbleDataset> updatedChart)
+    {
+        ChartJSInterop.UpdateBubbleChart(updatedChart);
+    }
+
+}
