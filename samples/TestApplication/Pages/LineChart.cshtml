@@ -10,15 +10,15 @@
 
 @functions{
 
-    public ChartJSChart<ChartJsLineDataset> blazorLineChartJS { get; set; } = new ChartJSChart<ChartJsLineDataset>();
+    public ChartJSChart blazorLineChartJS { get; set; } = new ChartJSChart();
     ChartJsLineChart lineChartJs;
 
     protected override void OnInit()
     {
 
-        blazorLineChartJS = new ChartJSChart<ChartJsLineDataset>()
+        blazorLineChartJS = new ChartJSChart()
         {
-            ChartType = ChartTypes.line,
+            ChartType = ChartTypes.LINE.ToString(),
             CanvasId = "myFirstLineChart",
             Options = new ChartJsOptions()
             {
@@ -26,10 +26,10 @@
                 Display = true,
                 Responsive = false
             },
-            Data = new ChartJsData<ChartJsLineDataset>()
+            Data = new ChartJsData()
             {
                 Labels = new List<string>() { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
-                Datasets = new List<ChartJsLineDataset>()
+                Datasets = new List<ChartJsDataset>()
                  {
                         new ChartJsLineDataset()
                         {
@@ -52,7 +52,7 @@
         //Update existing dataset
         blazorLineChartJS.Data.Labels.Add($"New{DateTime.Now.Second}");
         var firstDataSet = blazorLineChartJS.Data.Datasets[0];
-        firstDataSet.Data.Add(DateTime.Now.Second);
+        (firstDataSet as ChartJsDataset).Data.Add(DateTime.Now.Second);
 
         //Add new dataset
         //blazorLineChartJS.Data.Datasets.Add(new ChartJsLineDataset()

@@ -8,8 +8,9 @@
 </div>
 
 @functions {
+
     [Parameter]
-    ChartJSChart<ChartJsBarDataset> Chart { get; set; }
+    ChartJSChart Chart { get; set; }
     [Parameter]
     int Width { get; set; } = 400;
     [Parameter]
@@ -20,7 +21,7 @@
         ChartJSInterop.InitializeBarChart(Chart);
     }
 
-    public void UpdateChart(ChartJSChart<ChartJsBarDataset> updatedChart)
+    public void UpdateChart(ChartJSChart updatedChart)
     {
         ChartJSInterop.UpdateBarChart(updatedChart);
     }

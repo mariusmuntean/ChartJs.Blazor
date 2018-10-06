@@ -20,6 +20,7 @@
         }
 
         public int Radius { get; set; } = 3;
+        public override string Type { get; } = ChartTypes.BUBBLE.ToString();
     }
 
     public class BubbleData

@@ -9,7 +9,7 @@
 @functions {
 
     [Parameter]
-    ChartJSChart<ChartJsBubbleDataset> Chart { get; set; }
+    ChartJSChart Chart { get; set; }
 
     [Parameter]
     int Width { get; set; } = 400;
@@ -22,7 +22,7 @@
         ChartJSInterop.InitializeBubbleChart(Chart);
     }
 
-    public void UpdateChart(ChartJSChart<ChartJsBubbleDataset> updatedChart)
+    public void UpdateChart(ChartJSChart updatedChart)
     {
         ChartJSInterop.UpdateBubbleChart(updatedChart);
     }

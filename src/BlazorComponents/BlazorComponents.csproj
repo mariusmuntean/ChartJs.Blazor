@@ -35,6 +35,12 @@
     <EmbeddedResource Include="dist\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Shared\ChartJsMixedChart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
   <!--<ItemGroup>
     <BlazorGenerate Remove="Shared\ChartJsRadarChart.cshtml" />
   </ItemGroup>-->

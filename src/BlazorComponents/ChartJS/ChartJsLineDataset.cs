@@ -71,5 +71,7 @@
         /// If the line is shown as a stepped line.
         /// </summary>
         public bool SteppedLine { get; set; }
+
+        public override string Type { get; } = ChartTypes.LINE.ToString();
     }
 }

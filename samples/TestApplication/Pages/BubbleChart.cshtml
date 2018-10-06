@@ -9,14 +9,14 @@
 
 @functions{
 
-    public ChartJSChart<ChartJsBubbleDataset> blazorBubbleChartJS { get; set; } = new ChartJSChart<ChartJsBubbleDataset>();
+    public ChartJSChart blazorBubbleChartJS { get; set; } = new ChartJSChart();
     ChartJsBubbleChart bubbleChartJs;
 
     protected override void OnInit()
     {
-        blazorBubbleChartJS = new ChartJSChart<ChartJsBubbleDataset>
+        blazorBubbleChartJS = new ChartJSChart
         {
-            ChartType = ChartTypes.bubble,
+            ChartType = ChartTypes.BUBBLE.ToString(),
             CanvasId = "myFirstBubbleChart",
             Options = new ChartJsOptions
             {
@@ -24,10 +24,10 @@
                 Display = true,
                 Responsive = true
             },
-            Data = new ChartJsData<ChartJsBubbleDataset>
+            Data = new ChartJsData
             {
                 Labels = new List<string> { "Red" },
-                Datasets = new List<ChartJsBubbleDataset>
+                Datasets = new List<ChartJsDataset>()
                 {
                 new ChartJsBubbleDataset
                 {

@@ -12,14 +12,14 @@
 
 @functions {
 
-    public ChartJSChart<ChartJsBarDataset> blazorBarChartJS { get; set; } = new ChartJSChart<ChartJsBarDataset>();
+    public ChartJSChart blazorBarChartJS { get; set; } = new ChartJSChart();
     ChartJsBarChart barChartJs;
 
     protected override void OnInit()
     {
-        blazorBarChartJS = new ChartJSChart<ChartJsBarDataset>()
+        blazorBarChartJS = new ChartJSChart()
         {
-            ChartType = ChartTypes.bar,
+            ChartType = ChartTypes.BAR.ToString(),
             CanvasId = "myFirstBarChart",
             Options = new ChartJsOptions()
             {
@@ -27,10 +27,10 @@
                 BorderWidth = 1,
                 Display = true
             },
-            Data = new ChartJsData<ChartJsBarDataset>()
+            Data = new ChartJsData()
             {
                 Labels = new List<string>() { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
-                Datasets = new List<ChartJsBarDataset>()
+                Datasets = new List<ChartJsDataset>()
                 {
                     new ChartJsBarDataset()
                     {
@@ -56,7 +56,7 @@
         //Update existing dataset
         blazorBarChartJS.Data.Labels.Add($"New{DateTime.Now.Second}");
         var firstDataSet = blazorBarChartJS.Data.Datasets[0];
-        firstDataSet.Data.Add(DateTime.Now.Second);
+        (firstDataSet as ChartJsDataset).Data.Add(DateTime.Now.Second);
 
         //Add new dataset
         //blazorLineChartJS.Data.Datasets.Add(new ChartJsLineDataset()

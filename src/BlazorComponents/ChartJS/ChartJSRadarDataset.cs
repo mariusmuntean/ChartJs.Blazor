@@ -8,10 +8,13 @@
         public int PointBorderWidth { get; set; } = 1;
         public int PointRadius { get; set; } = 1;
         public RadarChartPointStyles RadarChartPointStyle { get; set; } = RadarChartPointStyles.circle;
+
         public string PointStyle
         {
             get { return RadarChartPointStyle.ToString(); }
         }
+
+        public override string Type { get; } = ChartTypes.RADAR.ToString();
     }
 
     public enum RadarChartPointStyles

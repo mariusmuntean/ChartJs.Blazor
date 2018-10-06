@@ -10,7 +10,7 @@
 @functions {
 
     [Parameter]
-    ChartJSChart<ChartJsLineDataset> Chart { get; set; }
+    ChartJSChart Chart { get; set; }
     [Parameter]
     int Width { get; set; } = 200;
     [Parameter]
@@ -27,7 +27,7 @@
         ChartJSInterop.InitializeLineChart(Chart);
     }
 
-    public void UpdateChart(ChartJSChart<ChartJsLineDataset> updatedChart)
+    public void UpdateChart(ChartJSChart updatedChart)
     {
         ChartJSInterop.UpdateLineChart(updatedChart);
     }

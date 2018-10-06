@@ -11,20 +11,26 @@
 
     [Parameter]
     ChartJSChart Chart { get; set; }
-    [Parameter]
-    int Width { get; set; } = 200;
-    [Parameter]
-    int Height { get; set; } = 200;
 
-    private string ChartjsChart { get; set; } = "";
+    [Parameter]
+    int Width { get; set; } = 400;
 
-    protected override void OnAfterRender()
+    [Parameter]
+    int Height { get; set; } = 400;
+
+    protected override Task OnAfterRenderAsync()
     {
-        ChartJSInterop.InitializeRadarChart(Chart);
+        return ChartJSInterop.InitializeMixedChart(Chart);
+    }
+
+    void DisplayChart()
+    {
+        ChartJSInterop.InitializeMixedChart(Chart);
     }
 
     public void UpdateChart(ChartJSChart updatedChart)
     {
-        ChartJSInterop.UpdateRadarChart(updatedChart);
+        ChartJSInterop.UpdateMixedChart(updatedChart);
     }
+
 }
