@@ -1,0 +1,77 @@
+﻿@page "/PieChart"
+@using BlazorComponents.Shared
+
+<h2>Chart JS charts using Blazor</h2>
+<div class="row">
+    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+</div>
+<ChartJsPieChart ref="pieChartJs" Chart="@blazorPieChartJS" Width="600" Height="300"/>
+
+@functions{
+
+    public ChartJSChart blazorPieChartJS { get; set; } = new ChartJSChart();
+    ChartJsPieChart pieChartJs;
+
+    protected override void OnInit()
+    {
+        blazorPieChartJS = new ChartJSChart
+        {
+            ChartType = ChartTypes.PIE.ToString(),
+            CanvasId = "myFirstPieChart",
+            Options = new ChartJsOptions
+            {
+                Text = "Sample chart from Blazor",
+                Display = true,
+                Responsive = true
+            },
+            Data = new ChartJsData
+            {
+                Labels = new List<string> {"A", "B", "C", "D"},
+                Datasets = new List<ChartJsDataset>()
+                {
+                    new ChartJsPieDataset
+                    {
+                        BackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
+                        Label = "Light Red",
+                        Data = new List<dynamic>
+                        {
+                            1, 2, 3, 4
+                        },
+                        BorderWidth = 0,
+                        HoverBackgroundColor = new[] {"#f06384"},
+                        HoverBorderColor = new[] {"#f06384"},
+                        HoverBorderWidth = new[] {1}, BorderColor = "#ffffff"
+                    }
+                }
+            }
+        };
+    }
+
+    public void UpdateChart()
+    {
+        var rand = new Random();
+
+        blazorPieChartJS.Data.Datasets.Add(new ChartJsBubbleDataset
+        {
+            BackgroundColor = "#6363ff",
+            Label = "Light Blue",
+            Data = new List<dynamic>
+            {
+                new BubbleData {x = rand.NextDouble() * 5, y = rand.NextDouble() * 5, r = rand.NextDouble() * 8},
+                new BubbleData {x = rand.NextDouble() * 5, y = rand.NextDouble() * 5, r = rand.NextDouble() * 8},
+                new BubbleData {x = rand.NextDouble() * 5, y = rand.NextDouble() * 5, r = rand.NextDouble() * 8}
+            },
+            BorderWidth = 0,
+            HitRadius = 3,
+            Radius = 3,
+            HoverRadius = 5,
+            HoverBackgroundColor = "#f06384",
+            HoverBorderColor = "#f06384",
+            HoverBorderWidth = 1,
+            BorderColor = "#aabbcc"
+        });
+
+        pieChartJs.UpdateChart(blazorPieChartJS);
+    }
+
+}

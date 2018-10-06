@@ -32,14 +32,20 @@
                 <span class="oi oi-bar-chart" aria-hidden="true"></span> Mixed Chart
             </NavLink>
         </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/piechart">
+                <span class="oi oi-bar-chart" aria-hidden="true"></span> Pie Chart
+            </NavLink>
+        </li>
     </ul>
 </div>
 
 @functions {
-bool collapseNavMenu = true;
+    bool collapseNavMenu = true;
 
-void ToggleNavMenu()
-{
-    collapseNavMenu = !collapseNavMenu;
-}
+    void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
 }

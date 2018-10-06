@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Pages\PieChart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\BubbleChart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
