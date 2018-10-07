@@ -1,10 +1,6 @@
-## Simple Components for Blazor Projects
+## ChartJs interop with Blazor
 
-```
-Note: Just as Blazor, this repo is also experimental.
-```
 
-If you like the idea of this repo leave your feedback as an issue or star the repo or let me know on [@ma_khan](https://twitter.com/ma_khan)
 
 Currently, starting with a simple [ChartJS](https://github.com/chartjs/Chart.js) implementation. 
 
@@ -15,23 +11,20 @@ Don't know what Blazor is? Read [here](https://github.com/aspnet/Blazor)
 
 Complete all Blazor dependencies.
 
-1. Latest VS Preview
-2. DotNetCore 2.1 Preview 2
+1. Visual Studio 15.8 or later
+2. DotNetCore 2.1.402 or later
 
 
 ## Installation 
 
-![NuGet](https://img.shields.io/nuget/v/BlazorComponents.svg) ![NuGet Pre Release](https://img.shields.io/nuget/vpre/BlazorComponents.svg)
-
-
 To Install 
 
 ```
-Install-Package BlazorComponents
+Install-Package ChartJs.Blazor
 ```
 or 
 ```
-dotnet add package BlazorComponents
+dotnet add package ChartJs.Blazor
 ```
 
 ## Usage
@@ -122,6 +115,6 @@ dotnet add package BlazorComponents
 ## Sample Output
 
 Bar Chart Example:
-![Barchart](barchart.png)
+![Charts](samples/ChartJs.Blazor.gif)
 
 
