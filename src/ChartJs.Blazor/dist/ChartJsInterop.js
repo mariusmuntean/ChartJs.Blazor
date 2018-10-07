@@ -1,8 +1,7 @@
 ﻿var BlazorCharts = [];
 
 Blazor.BlazorCharts = BlazorCharts;
-window.BlazorComponents = window.BlazorComponents || {};
-window.BlazorComponents.ChartJSInterop = {
+window.ChartJSInterop = {
     InitializeBarChart: function(data) {
         if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId)) {
             let thisChart = initializeChartjsChart(data, 'bar');
