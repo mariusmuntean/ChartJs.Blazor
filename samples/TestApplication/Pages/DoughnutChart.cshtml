@@ -1,0 +1,83 @@
+﻿@page "/DoughnutChart"
+@using BlazorComponents.Shared
+
+<h2>Chart JS charts using Blazor</h2>
+<div class="row">
+    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+</div>
+<ChartJsDoughnutChart ref="_doughnutChartJs" Chart="@blazorDoughnutChartJS" Width="600" Height="300"/>
+
+@functions{
+
+    public ChartJSChart blazorDoughnutChartJS { get; set; }
+    ChartJsDoughnutChart _doughnutChartJs;
+
+    protected override void OnInit()
+    {
+        blazorDoughnutChartJS = blazorDoughnutChartJS ?? new ChartJSChart
+        {
+            ChartType = ChartTypes.DOUGHNUT.ToString(),
+            CanvasId = "myFirstDoughnutChart",
+            Options = new ChartJsOptions
+            {
+                Text = "Sample chart from Blazor",
+                Display = true,
+                Responsive = true
+            },
+            Data = new ChartJsData
+            {
+                Labels = new List<string> {"A", "B", "C", "D"},
+                Datasets = new List<ChartJsDataset>()
+                {
+                    new ChartJsDoughnutDataset()
+                    {
+                        BackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
+                        Label = "Light Red",
+                        Data = new List<dynamic>
+                        {
+                            1, 2, 3, 4
+                        },
+                        BorderWidth = 0,
+                        HoverBackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
+                        HoverBorderColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
+                        HoverBorderWidth = new[] {1, 1, 1, 1},
+                        BorderColor = new[] {"#ffffff", "#ffffff", "#ffffff", "#ffffff"}
+                    }
+                }
+            }
+        };
+    }
+
+    protected override void OnAfterRender()
+    {
+        Console.WriteLine("OnAfterRender");
+        _doughnutChartJs.UpdateChart(blazorDoughnutChartJS);
+    }
+
+    public void UpdateChart()
+    {
+        var rand = new Random();
+
+        var doughnutDataset = new ChartJsDoughnutDataset()
+        {
+            BackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
+            Label = "Light Red",
+            Data = new List<dynamic>
+            {
+                rand.Next(10),
+                rand.Next(10),
+                rand.Next(10),
+                rand.Next(10)
+            },
+            BorderWidth = 0,
+            HoverBackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
+            HoverBorderColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
+            HoverBorderWidth = new[] {1, 1, 1, 1},
+            BorderColor = new[] {"#ffffff", "#ffffff", "#ffffff", "#ffffff"}
+        };
+
+        blazorDoughnutChartJS.Data.Datasets.Add(doughnutDataset);
+        _doughnutChartJs.UpdateChart(blazorDoughnutChartJS);
+    }
+
+}

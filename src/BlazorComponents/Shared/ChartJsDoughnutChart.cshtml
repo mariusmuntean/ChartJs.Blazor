@@ -20,17 +20,17 @@
 
     protected override void OnAfterRender()
     {
-        ChartJSInterop.InitializeMixedChart(Chart);
+        ChartJSInterop.InitializeDoughnutChart(Chart);
     }
 
     void DisplayChart()
     {
-        ChartJSInterop.InitializeMixedChart(Chart);
+        ChartJSInterop.InitializeDoughnutChart(Chart);
     }
 
     public void UpdateChart(ChartJSChart updatedChart)
     {
-        ChartJSInterop.UpdateMixedChart(updatedChart);
+        ChartJSInterop.UpdateDoughnutChart(updatedChart);
     }
 
 }

@@ -1,8 +1,8 @@
 ﻿namespace BlazorComponents.ChartJS
 {
-    public class ChartJsPieDataset : ChartJsDataset
+    public class ChartJsDoughnutDataset : ChartJsDataset
     {
-        public override string Type { get; } = ChartTypes.PIE.ToString();
+        public override string Type { get; } = ChartTypes.DOUGHNUT.ToString();
 
         public int BorderWidth { get; set; }
         public string[] HoverBackgroundColor { get; set; }
@@ -21,6 +21,6 @@
         /// AS-IS: We only accept string colors.
         /// TODO: Accept some form of actual color information rather than strings.
         /// </summary>
-        public string BorderColor { get; set; }
+        public string[] BorderColor { get; set; }
     }
 }

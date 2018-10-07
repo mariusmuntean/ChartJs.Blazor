@@ -14,13 +14,6 @@ namespace BlazorComponents.ChartJS
         /// </summary>
         public List<dynamic> Data { get; set; } = new List<dynamic>();
 
-        /// <summary>
-        /// The color of the line
-        /// AS-IS: We only accept string colors.
-        /// TODO: Accept some form of actual color information rather than strings.
-        /// </summary>
-        public string BorderColor { get; set; }
-
         public abstract string Type { get; }
     }
 }

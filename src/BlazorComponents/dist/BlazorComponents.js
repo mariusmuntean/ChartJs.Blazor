@@ -3,132 +3,147 @@
 Blazor.BlazorCharts = BlazorCharts;
 window.BlazorComponents = window.BlazorComponents || {};
 window.BlazorComponents.ChartJSInterop = {
-    InitializeBarChart: function (data) {
-        let thisChart = initializeChartjsChart(data, 'bar');
-
-        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
+    InitializeBarChart: function(data) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId)) {
+            let thisChart = initializeChartjsChart(data, 'bar');
             BlazorCharts.push({ id: data.canvasId, chart: thisChart });
+        }
 
         return true;
     },
-    InitializeLineChart: function (data) {
-        let thisChart = initializeChartjsChart(data, 'line');
-
-        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
+    InitializeLineChart: function(data) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId)) {
+            let thisChart = initializeChartjsChart(data, 'line');
             BlazorCharts.push({ id: data.canvasId, chart: thisChart });
+        }
 
         return true;
     },
-    InitializePieChart: function (data) {
-        let thisChart = initializeChartjsChart(data, 'pie');
-
-        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
+    InitializePieChart: function(data) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId)) {
+            let thisChart = initializeChartjsChart(data, 'pie');
             BlazorCharts.push({ id: data.canvasId, chart: thisChart });
+        }
 
         return true;
     },
-    InitializeMixedChart: function (data) {
-        let thisChart = initializeChartjsChart(data, 'bar');
-
-        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
+    InitializeDoughnutChart: function(data) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId)) {
+            let thisChart = initializeChartjsChart(data, 'doughnut');
             BlazorCharts.push({ id: data.canvasId, chart: thisChart });
+        }
 
         return true;
     },
-    InitializeRadarChart: function (data) {
-        let thisChart = initializeChartjsChart(data, 'radar');
-
-        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
+    InitializeMixedChart: function(data) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId)) {
+            let thisChart = initializeChartjsChart(data, 'bar');
             BlazorCharts.push({ id: data.canvasId, chart: thisChart });
+        }
 
         return true;
     },
-    InitializeBubbleChart: function (data) {
-        let thisChart = initializeChartjsChart(data, 'bubble');
-
-        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
+    InitializeRadarChart: function(data) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId)) {
+            let thisChart = initializeChartjsChart(data, 'radar');
             BlazorCharts.push({ id: data.canvasId, chart: thisChart });
+        }
 
         return true;
     },
-    UpdateLineChart: function (data) {
+    InitializeBubbleChart: function(data) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId)) {
+            let thisChart = initializeChartjsChart(data, 'bubble');
+            BlazorCharts.push({ id: data.canvasId, chart: thisChart });
+        }
+
+        return true;
+    },
+    UpdateLineChart: function(data) {
         if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
             throw `Could not find a chart with the given id. ${data.canvasId}`;
 
         let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
 
-        let myChartIndex = BlazorCharts.findIndex(currentChart => currentChart.id === data.canvasId);
-
+        myChart.chart.destroy();
         myChart.chart = {};
         let newChart = initializeChartjsChart(data, 'line');
         myChart.chart = newChart;
 
         return true;
     },
-    UpdatePieChart: function (data) {
+    UpdatePieChart: function(data) {
         if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
             throw `Could not find a chart with the given id. ${data.canvasId}`;
 
         let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
 
-        let myChartIndex = BlazorCharts.findIndex(currentChart => currentChart.id === data.canvasId);
-
+        myChart.chart.destroy();
         myChart.chart = {};
         let newChart = initializeChartjsChart(data, 'pie');
         myChart.chart = newChart;
 
         return true;
     },
-    UpdateBarChart: function (data) {
+    UpdateDoughnutChart: function(data) {
         if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
             throw `Could not find a chart with the given id. ${data.canvasId}`;
 
         let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
 
-        let myChartIndex = BlazorCharts.findIndex(currentChart => currentChart.id === data.canvasId);
+        myChart.chart.destroy();
+        myChart.chart = {};
+        let newChart = initializeChartjsChart(data, 'doughnut');
+        myChart.chart = newChart;
 
+        return true;
+    },
+    UpdateBarChart: function(data) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
+            throw `Could not find a chart with the given id. ${data.canvasId}`;
+
+        let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
+
+        myChart.chart.destroy();
         myChart.chart = {};
         let newChart = initializeChartjsChart(data, 'bar');
         myChart.chart = newChart;
 
         return true;
     },
-    UpdateMixedChart: function (data) {
+    UpdateMixedChart: function(data) {
         if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
             throw `Could not find a chart with the given id. ${data.canvasId}`;
 
         let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
 
-        let myChartIndex = BlazorCharts.findIndex(currentChart => currentChart.id === data.canvasId);
-
+        myChart.chart.destroy();
         myChart.chart = {};
         let newChart = initializeChartjsChart(data, 'bar');
         myChart.chart = newChart;
 
         return true;
     },
-    UpdateRadarChart: function (data) {
+    UpdateRadarChart: function(data) {
         if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
             throw `Could not find a chart with the given id. ${data.canvasId}`;
 
         let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
 
-        let myChartIndex = BlazorCharts.findIndex(currentChart => currentChart.id === data.canvasId);
-
+        myChart.chart.destroy();
         myChart.chart = {};
         let newChart = initializeChartjsChart(data, 'radar');
         myChart.chart = newChart;
 
         return true;
     },
-    UpdateBubbleChart: function (data) {
+    UpdateBubbleChart: function(data) {
         if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
             throw `Could not find a chart with the given id. ${data.canvasId}`;
 
         let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
 
-        let myChartIndex = BlazorCharts.findIndex(currentChart => currentChart.id === data.canvasId);
-
+        myChart.chart.destroy();
         myChart.chart = {};
         let newChart = initializeChartjsChart(data, 'bubble');
         myChart.chart = newChart;
@@ -139,11 +154,12 @@ window.BlazorComponents.ChartJSInterop = {
 
 function initializeChartjsChart(data, type) {
     let ctx = document.getElementById(data.canvasId);
-    let myChart = new Chart(ctx, {
-        type: type,
-        data: data.data,
-        options: data.options
-    });
+    let myChart = new Chart(ctx,
+        {
+            type: type,
+            data: data.data,
+            options: data.options
+        });
 
     return myChart;
 }

@@ -9,12 +9,12 @@
 
 @functions{
 
-    public ChartJSChart blazorBubbleChartJS { get; set; } = new ChartJSChart();
+    public ChartJSChart blazorBubbleChartJS { get; set; }
     ChartJsBubbleChart bubbleChartJs;
 
     protected override void OnInit()
     {
-        blazorBubbleChartJS = new ChartJSChart
+        blazorBubbleChartJS = blazorBubbleChartJS ??  new ChartJSChart
         {
             ChartType = ChartTypes.BUBBLE.ToString(),
             CanvasId = "myFirstBubbleChart",
@@ -58,6 +58,12 @@
             }
             }
         };
+    }
+
+    protected override void OnAfterRender()
+    {
+        Console.WriteLine("OnAfterRender");
+        bubbleChartJs.UpdateChart(blazorBubbleChartJS);
     }
 
     public void UpdateChart()

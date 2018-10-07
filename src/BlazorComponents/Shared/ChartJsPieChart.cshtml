@@ -18,9 +18,9 @@
     [Parameter]
     int Height { get; set; } = 400;
 
-    protected override Task OnAfterRenderAsync()
+    protected override void OnAfterRender()
     {
-        return ChartJSInterop.InitializePieChart(Chart);
+        ChartJSInterop.InitializePieChart(Chart);
     }
 
     void DisplayChart()

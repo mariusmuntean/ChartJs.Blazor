@@ -36,6 +36,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Shared\ChartJsDoughnutChart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Shared\ChartJsPieChart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

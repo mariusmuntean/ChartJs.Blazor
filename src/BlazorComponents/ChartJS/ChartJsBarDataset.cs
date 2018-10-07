@@ -11,5 +11,12 @@
         /// TODO: Accept some form of actual color information rather than strings.
         /// </summary>
         public string BackgroundColor { get; set; }
+
+        /// <summary>
+        /// The color of the line
+        /// AS-IS: We only accept string colors.
+        /// TODO: Accept some form of actual color information rather than strings.
+        /// </summary>
+        public string BorderColor { get; set; }
     }
 }

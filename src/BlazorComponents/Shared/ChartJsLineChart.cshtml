@@ -11,15 +11,23 @@
 
     [Parameter]
     ChartJSChart Chart { get; set; }
+
     [Parameter]
     int Width { get; set; } = 200;
+
     [Parameter]
     int Height { get; set; } = 200;
+
     private string ChartjsChart { get; set; } = "";
 
     protected override void OnAfterRender()
     {
-        ChartJSInterop.InitializeLineChart(Chart);
+        ChartJSInterop.InitializeLineChart(Chart).ConfigureAwait(false);
+    }
+
+    protected override void OnInit()
+    {
+        ChartJSInterop.InitializeLineChart(Chart).ConfigureAwait(false);
     }
 
     void DisplayChart()
@@ -31,4 +39,5 @@
     {
         ChartJSInterop.UpdateLineChart(updatedChart);
     }
+
 }

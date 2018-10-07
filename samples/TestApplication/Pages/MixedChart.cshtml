@@ -9,12 +9,12 @@
 
 @functions {
 
-    public ChartJSChart blazorMixedChartJS { get; set; } = new ChartJSChart();
+    public ChartJSChart blazorMixedChartJS { get; set; }
     ChartJsMixedChart mixedChartJs;
 
     protected override void OnInit()
     {
-        blazorMixedChartJS = new ChartJSChart()
+        blazorMixedChartJS = blazorMixedChartJS ?? new ChartJSChart()
         {
             ChartType = ChartTypes.BAR.ToString(), // this is not a mistake, the type needs to be bar
             CanvasId = "myFirstMixedChart",
@@ -59,6 +59,12 @@
                 }
             }
         };
+    }
+
+    protected override void OnAfterRender()
+    {
+        Console.WriteLine("OnAfterRender");
+        mixedChartJs.UpdateChart(blazorMixedChartJS);
     }
 
     public void UpdateChart()

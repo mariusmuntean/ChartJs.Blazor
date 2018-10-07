@@ -9,12 +9,12 @@
 
 @functions{
 
-    public ChartJSChart blazorPieChartJS { get; set; } = new ChartJSChart();
+    public ChartJSChart blazorPieChartJS { get; set; }
     ChartJsPieChart pieChartJs;
 
     protected override void OnInit()
     {
-        blazorPieChartJS = new ChartJSChart
+        blazorPieChartJS = blazorPieChartJS ?? new ChartJSChart
         {
             ChartType = ChartTypes.PIE.ToString(),
             CanvasId = "myFirstPieChart",
@@ -47,29 +47,35 @@
         };
     }
 
+    protected override void OnAfterRender()
+    {
+        Console.WriteLine("OnAfterRender");
+        pieChartJs.UpdateChart(blazorPieChartJS);
+    }
+
     public void UpdateChart()
     {
         var rand = new Random();
-
-        blazorPieChartJS.Data.Datasets.Add(new ChartJsBubbleDataset
+        blazorPieChartJS.Data = new ChartJsData
         {
-            BackgroundColor = "#6363ff",
-            Label = "Light Blue",
-            Data = new List<dynamic>
+            Labels = new List<string> {"A", "B", "C", "D"},
+            Datasets = new List<ChartJsDataset>()
             {
-                new BubbleData {x = rand.NextDouble() * 5, y = rand.NextDouble() * 5, r = rand.NextDouble() * 8},
-                new BubbleData {x = rand.NextDouble() * 5, y = rand.NextDouble() * 5, r = rand.NextDouble() * 8},
-                new BubbleData {x = rand.NextDouble() * 5, y = rand.NextDouble() * 5, r = rand.NextDouble() * 8}
-            },
-            BorderWidth = 0,
-            HitRadius = 3,
-            Radius = 3,
-            HoverRadius = 5,
-            HoverBackgroundColor = "#f06384",
-            HoverBorderColor = "#f06384",
-            HoverBorderWidth = 1,
-            BorderColor = "#aabbcc"
-        });
+                new ChartJsPieDataset
+                {
+                    BackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
+                    Label = "Light Red",
+                    Data = new List<dynamic>
+                    {
+                        rand.Next(10), rand.Next(10), rand.Next(10), rand.Next(10)
+                    },
+                    BorderWidth = 0,
+                    HoverBackgroundColor = new[] {"#f06384"},
+                    HoverBorderColor = new[] {"#f06384"},
+                    HoverBorderWidth = new[] {1}, BorderColor = "#ffffff"
+                }
+            }
+        };
 
         pieChartJs.UpdateChart(blazorPieChartJS);
     }

@@ -13,6 +13,10 @@ namespace BlazorComponents.ChartJS
         {
             return JSRuntime.Current.InvokeAsync<bool>("BlazorComponents.ChartJSInterop.InitializePieChart", new[] { pieChart });
         }
+        public static Task<bool> InitializeDoughnutChart(ChartJSChart pieChart)
+        {
+            return JSRuntime.Current.InvokeAsync<bool>("BlazorComponents.ChartJSInterop.InitializeDoughnutChart", new[] { pieChart });
+        }
 
         public static Task<bool> InitializeBubbleChart(ChartJSChart bubbleChart)
         {
@@ -35,7 +39,11 @@ namespace BlazorComponents.ChartJS
         }
         public static Task<bool> UpdatePieChart(ChartJSChart pieChart)
         {
-            return JSRuntime.Current.InvokeAsync<bool>("BlazorComponents.ChartJSInterop.PieLineChart", new[] { pieChart });
+            return JSRuntime.Current.InvokeAsync<bool>("BlazorComponents.ChartJSInterop.UpdatePieChart", new[] { pieChart });
+        }
+        public static Task<bool> UpdateDoughnutChart(ChartJSChart pieChart)
+        {
+            return JSRuntime.Current.InvokeAsync<bool>("BlazorComponents.ChartJSInterop.UpdateDoughnutChart", new[] { pieChart });
         }
 
         public static Task<bool> UpdateBarChart(ChartJSChart barChart)

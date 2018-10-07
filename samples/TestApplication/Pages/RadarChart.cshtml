@@ -9,12 +9,12 @@
 
 @functions {
 
-    public ChartJSChart blazorRadarChartJS { get; set; } = new ChartJSChart();
+    public ChartJSChart blazorRadarChartJS { get; set; }
     ChartJsRadarChart radarChartJs;
 
     protected override void OnInit()
     {
-        blazorRadarChartJS = new ChartJSChart()
+        blazorRadarChartJS = blazorRadarChartJS ?? new ChartJSChart()
         {
             ChartType = ChartTypes.RADAR.ToString(),
             CanvasId = "myFirstRadarChart",
@@ -42,6 +42,12 @@
                 }
             }
         };
+    }
+
+    protected override void OnAfterRender()
+    {
+        Console.WriteLine("OnAfterRender");
+        radarChartJs.UpdateChart(blazorRadarChartJS);
     }
 
     public void UpdateChart()
