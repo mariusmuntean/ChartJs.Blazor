@@ -1,6 +1,6 @@
 ﻿@page "/LineChart"
 @using ChartJs.Blazor.ChartJS
-@using ChartJs.Blazor.Shared
+@using ChartJs.Blazor.Components
 
 
 <h2>Chart JS charts using Blazor</h2>
@@ -55,23 +55,24 @@
 
     public void UpdateChart()
     {
-    //Update existing dataset
+        //Update existing dataset
         blazorLineChartJS.Data.Labels.Add($"New{DateTime.Now.Second}");
         var firstDataSet = blazorLineChartJS.Data.Datasets[0];
-        (firstDataSet as ChartJsDataset).Data.Add(DateTime.Now.Second);
 
-    //Add new dataset
-    //blazorLineChartJS.Data.Datasets.Add(new ChartJsLineDataset()
-    //{
-    //    BackgroundColor = "#cc65fe",
-    //    BorderColor = "#cc65fe",
-    //    Label = "# of Votes from blazor 1",
-    //    Data = new List<int> {20,21,12,3,4,4},
-    //    Fill = true,
-    //    BorderWidth = 2,
-    //    PointRadius = 3,
-    //    PointBorderWidth = 1
-    //});
+        //firstDataSet.Data.Add(DateTime.Now.Second);
+
+        //Add new dataset
+        //blazorLineChartJS.Data.Datasets.Add(new ChartJsLineDataset()
+        //{
+        //    BackgroundColor = "#cc65fe",
+        //    BorderColor = "#cc65fe",
+        //    Label = "# of Votes from blazor 1",
+        //    Data = new List<int> {20,21,12,3,4,4},
+        //    Fill = true,
+        //    BorderWidth = 2,
+        //    PointRadius = 3,
+        //    PointBorderWidth = 1
+        //});
 
         lineChartJs.UpdateChart(blazorLineChartJS);
     }

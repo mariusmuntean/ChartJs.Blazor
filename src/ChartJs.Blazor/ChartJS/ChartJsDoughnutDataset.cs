@@ -1,4 +1,6 @@
-﻿namespace ChartJs.Blazor.ChartJS
+﻿using System.Collections.Generic;
+
+namespace ChartJs.Blazor.ChartJS
 {
     public class ChartJsDoughnutDataset : ChartJsDataset
     {
@@ -22,5 +24,7 @@
         /// TODO: Accept some form of actual color information rather than strings.
         /// </summary>
         public string[] BorderColor { get; set; }
+
+        public List<object> Data { get; set; }
     }
 }

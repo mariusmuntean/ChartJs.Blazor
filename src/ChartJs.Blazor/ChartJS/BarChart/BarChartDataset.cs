@@ -1,6 +1,8 @@
-﻿namespace ChartJs.Blazor.ChartJS
+﻿using System.Collections.Generic;
+
+namespace ChartJs.Blazor.ChartJS.BarChart
 {
-    public class ChartJsBarDataset : ChartJsDataset
+    public class BarChartDataset : ChartJsDataset
     {
         public int BorderWidth { get; set; } = 1;
         public override string Type { get; } = ChartTypes.BAR.ToString();
@@ -18,5 +20,7 @@
         /// TODO: Accept some form of actual color information rather than strings.
         /// </summary>
         public string BorderColor { get; set; }
+
+        public List<object> Data { get; set; }
     }
 }

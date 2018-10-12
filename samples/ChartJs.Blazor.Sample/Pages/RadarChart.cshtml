@@ -1,6 +1,6 @@
 ﻿@page "/RadarChart"
 @using ChartJs.Blazor.ChartJS
-@using ChartJs.Blazor.Shared
+@using ChartJs.Blazor.Components
 
 <h2>Chart JS charts using Blazor</h2>
 <div class="row">
@@ -33,7 +33,7 @@
                     {
                         BackgroundColor = "#ff6384",
                         Label = "1st Dataset",
-                        Data = new List<dynamic> {19, 12, 5, 3, 3, 2},
+                        //Data = new List<dynamic> {19, 12, 5, 3, 3, 2},
                         BorderWidth = 2,
                         RadarChartPointStyle = RadarChartPointStyles.star,
                         PointBackgroundColor = "#a4cef0",
@@ -53,18 +53,18 @@
 
     public void UpdateChart()
     {
-    //Update existing dataset
+        //Update existing dataset
         blazorRadarChartJS.Data.Labels.Add($"New{DateTime.Now.Second}");
         var firstDataSet = blazorRadarChartJS.Data.Datasets[0];
-        (firstDataSet as ChartJsDataset).Data.Add(DateTime.Now.Second);
+        //firstDataSet.Data.Add(DateTime.Now.Second);
 
-    //Add new dataset
+        //Add new dataset
         blazorRadarChartJS.Data.Datasets.Add(new ChartJSRadarDataset()
         {
             BackgroundColor = "#cc65fe",
             BorderColor = "#cc65fe",
             Label = "2nd Dataset",
-            Data = new List<dynamic> {20, 21, 12, 3, 4, 4},
+            //Data = new List<dynamic> {20, 21, 12, 3, 4, 4},
             BorderWidth = 2,
             PointRadius = 3,
             PointBorderWidth = 1

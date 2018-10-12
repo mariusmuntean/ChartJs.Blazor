@@ -40,13 +40,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Shared\ChartJsDoughnutChart.cshtml">
+    <Content Update="Components\ChartJsDoughnutChart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Shared\ChartJsPieChart.cshtml">
+    <Content Update="Components\ChartJsPieChart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Shared\ChartJsMixedChart.cshtml">
+    <Content Update="Components\ChartJsMixedChart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>

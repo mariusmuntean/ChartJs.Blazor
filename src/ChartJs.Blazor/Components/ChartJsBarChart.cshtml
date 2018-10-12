@@ -1,27 +1,31 @@
 ﻿@using ChartJs.Blazor.ChartJS
+@using ChartJs.Blazor.ChartJS.BarChart
 
 <div class="row">
     <div class="container">
-        <canvas id="@Chart.CanvasId" width="@Width" height="@Height"></canvas>
+        <canvas id="@Config.CanvasId" width="@Width" height="@Height"></canvas>
     </div>
 </div>
 
 @functions {
 
     [Parameter]
-    ChartJSChart Chart { get; set; }
+    BarChartConfig Config { get; set; }
+
     [Parameter]
     int Width { get; set; } = 400;
+
     [Parameter]
     int Height { get; set; } = 400;
 
     protected override void OnAfterRender()
     {
-        ChartJsInterop.InitializeBarChart(Chart);
+        ChartJsInterop.InitializeBarChart(Config);
     }
 
-    public void UpdateChart(ChartJSChart updatedChart)
+    public void Update()
     {
-        ChartJsInterop.UpdateBarChart(updatedChart);
+        ChartJsInterop.ReloadBarChart(Config);
     }
+
 }

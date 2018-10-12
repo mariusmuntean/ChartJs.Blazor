@@ -1,6 +1,6 @@
 ﻿@page "/PieChart"
 @using ChartJs.Blazor.ChartJS
-@using ChartJs.Blazor.Shared
+@using ChartJs.Blazor.Components
 
 <h2>Chart JS charts using Blazor</h2>
 <div class="row">
@@ -34,10 +34,11 @@
                     {
                         BackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
                         Label = "Light Red",
-                        Data = new List<dynamic>
-                        {
-                            1, 2, 3, 4
-                        },
+                        
+                        //Data = new List<dynamic>
+                        //{
+                        //    1, 2, 3, 4
+                        //},
                         BorderWidth = 0,
                         HoverBackgroundColor = new[] {"#f06384"},
                         HoverBorderColor = new[] {"#f06384"},
@@ -66,10 +67,10 @@
                 {
                     BackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
                     Label = "Light Red",
-                    Data = new List<dynamic>
-                    {
-                        rand.Next(10), rand.Next(10), rand.Next(10), rand.Next(10)
-                    },
+                    //Data = new List<dynamic>
+                    //{
+                    //    rand.Next(10), rand.Next(10), rand.Next(10), rand.Next(10)
+                    //},
                     BorderWidth = 0,
                     HoverBackgroundColor = new[] {"#f06384"},
                     HoverBorderColor = new[] {"#f06384"},

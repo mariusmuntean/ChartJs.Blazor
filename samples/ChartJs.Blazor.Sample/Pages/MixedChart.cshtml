@@ -1,6 +1,7 @@
 ﻿@page "/MixedChart"
 @using ChartJs.Blazor.ChartJS
-@using ChartJs.Blazor.Shared
+@using ChartJs.Blazor.ChartJS.BarChart
+@using ChartJs.Blazor.Components
 
 <h2>Chart JS charts using Blazor</h2>
 <div class="row">
@@ -31,7 +32,7 @@
                 Labels = new List<string>() {"Red", "Blue", "Yellow", "Green", "Purple", "Orange"},
                 Datasets = new List<ChartJsDataset>()
                 {
-                    new ChartJsBarDataset()
+                    new BarChartDataset()
                     {
                         Label = "# of Votes from blazor",
                         BackgroundColor = "#4465fe",
@@ -50,7 +51,7 @@
                         PointBorderWidth = 1
                     }
                     ,
-                    new ChartJsBarDataset()
+                    new BarChartDataset()
                     {
                         Label = "# of Votes from blazor",
                         BackgroundColor = "#cc65fe",
@@ -70,23 +71,24 @@
 
     public void UpdateChart()
     {
-    //Update existing dataset
+        //Update existing dataset
         blazorMixedChartJS.Data.Labels.Add($"New{DateTime.Now.Second}");
         var firstDataSet = blazorMixedChartJS.Data.Datasets[0];
-        (firstDataSet as ChartJsDataset).Data.Add(DateTime.Now.Second);
 
-    //Add new dataset
-    //blazorLineChartJS.Data.Datasets.Add(new ChartJsLineDataset()
-    //{
-    //    BackgroundColor = "#cc65fe",
-    //    BorderColor = "#cc65fe",
-    //    Label = "# of Votes from blazor 1",
-    //    Data = new List<int> {20,21,12,3,4,4},
-    //    Fill = true,
-    //    BorderWidth = 2,
-    //    PointRadius = 3,
-    //    PointBorderWidth = 1
-    //});
+        //firstDataSet.Data.Add(DateTime.Now.Second);
+
+        //Add new dataset
+        //blazorLineChartJS.Data.Datasets.Add(new ChartJsLineDataset()
+        //{
+        //    BackgroundColor = "#cc65fe",
+        //    BorderColor = "#cc65fe",
+        //    Label = "# of Votes from blazor 1",
+        //    Data = new List<int> {20,21,12,3,4,4},
+        //    Fill = true,
+        //    BorderWidth = 2,
+        //    PointRadius = 3,
+        //    PointBorderWidth = 1
+        //});
 
         mixedChartJs.UpdateChart(blazorMixedChartJS);
     }

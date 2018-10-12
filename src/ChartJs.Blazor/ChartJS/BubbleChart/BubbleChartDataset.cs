@@ -1,8 +1,10 @@
-﻿namespace ChartJs.Blazor.ChartJS
+﻿using System.Collections.Generic;
+
+namespace ChartJs.Blazor.ChartJS.BubbleChart
 {
-    public class ChartJsBubbleDataset : ChartJsDataset
+    public class BubbleChartDataset : ChartJsDataset
     {
-        //public List<BubbleData> Data { get; set; } = new List<BubbleData> { new BubbleData { x = 1, y = 2, r = 3 } };
+        public List<BubbleData> Data { get; set; } = new List<BubbleData> { new BubbleData { x = 1, y = 2, r = 3 } };
 
         public int BorderWidth { get; set; } = 3;
 
@@ -35,28 +37,5 @@
         /// TODO: Accept some form of actual color information rather than strings.
         /// </summary>
         public string BorderColor { get; set; }
-    }
-
-    public class BubbleData
-    {
-        public double x { get; set; }
-
-        public double y { get; set; }
-
-        public double r { get; set; }
-    }
-
-    public enum BubbleChartPointStyle
-    {
-        circle,
-        cross,
-        crossRot,
-        dash,
-        line,
-        rect,
-        rectRounded,
-        rectRot,
-        star,
-        triangle
     }
 }
