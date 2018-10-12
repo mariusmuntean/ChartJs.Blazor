@@ -1,43 +1,40 @@
 ﻿@page "/DoughnutChart"
 @using ChartJs.Blazor.ChartJS
+@using ChartJs.Blazor.ChartJS.DoughnutChart
 @using ChartJs.Blazor.Components
 
 <h2>Chart JS charts using Blazor</h2>
 <div class="row">
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsDoughnutChart ref="_doughnutChartJs" Chart="@blazorDoughnutChartJS" Width="600" Height="300"/>
+<ChartJsDoughnutChart ref="_doughnutChartJs" Config="@doughnutChartConfig" Width="600" Height="300"/>
 
 @functions{
 
-    public ChartJSChart blazorDoughnutChartJS { get; set; }
+    public DoughnutChartConfig doughnutChartConfig { get; set; }
     ChartJsDoughnutChart _doughnutChartJs;
 
     protected override void OnInit()
     {
-        blazorDoughnutChartJS = blazorDoughnutChartJS ?? new ChartJSChart
+        doughnutChartConfig = doughnutChartConfig ?? new DoughnutChartConfig
         {
-            ChartType = ChartTypes.DOUGHNUT.ToString(),
             CanvasId = "myFirstDoughnutChart",
-            Options = new ChartJsOptions
+            Options = new DoughnutOptions
             {
                 Text = "Sample chart from Blazor",
                 Display = true,
                 Responsive = true
             },
-            Data = new ChartJsData
+            Data = new DoughnutData
             {
                 Labels = new List<string> {"A", "B", "C", "D"},
-                Datasets = new List<ChartJsDataset>()
+                Datasets = new List<DoughnutDataset>
                 {
-                    new ChartJsDoughnutDataset()
+                    new DoughnutDataset
                     {
                         BackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
                         Label = "Light Red",
-                        Data = new List<dynamic>
-                        {
-                            1, 2, 3, 4
-                        },
+                        Data = new List<int> {1, 2, 3, 4},
                         BorderWidth = 0,
                         HoverBackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
                         HoverBorderColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
@@ -52,24 +49,18 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        _doughnutChartJs.UpdateChart(blazorDoughnutChartJS);
+        _doughnutChartJs.UpdateChart(doughnutChartConfig);
     }
 
     public void UpdateChart()
     {
         var rand = new Random();
 
-        var doughnutDataset = new ChartJsDoughnutDataset()
+        var doughnutDataset = new DoughnutDataset
         {
             BackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
             Label = "Light Red",
-            Data = new List<dynamic>
-            {
-                rand.Next(10),
-                rand.Next(10),
-                rand.Next(10),
-                rand.Next(10)
-            },
+            Data = new List<int> {rand.Next(10), rand.Next(10), rand.Next(10), rand.Next(10)},
             BorderWidth = 0,
             HoverBackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
             HoverBorderColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
@@ -77,8 +68,8 @@
             BorderColor = new[] {"#ffffff", "#ffffff", "#ffffff", "#ffffff"}
         };
 
-        blazorDoughnutChartJS.Data.Datasets.Add(doughnutDataset);
-        _doughnutChartJs.UpdateChart(blazorDoughnutChartJS);
+        doughnutChartConfig.Data.Datasets.Add(doughnutDataset);
+        _doughnutChartJs.UpdateChart(doughnutChartConfig);
     }
 
 }

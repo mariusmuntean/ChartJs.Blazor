@@ -26,9 +26,9 @@ window.ChartJSInterop = {
 
         return true;
     },
-    InitializeDoughnutChart: function(data) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId)) {
-            let thisChart = initializeChartjsChart(data, 'doughnut');
+    InitializeDoughnutChart: function(config) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
+            let thisChart = initializeChartjsChart2(config);
             BlazorCharts.push({ id: data.canvasId, chart: thisChart });
         }
 

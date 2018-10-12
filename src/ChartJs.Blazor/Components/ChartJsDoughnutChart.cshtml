@@ -1,16 +1,17 @@
 ﻿@using ChartJs.Blazor.ChartJS
+@using ChartJs.Blazor.ChartJS.DoughnutChart
 @using Microsoft.AspNetCore.Blazor.Components
 
 <div class="row">
     <div class="container">
-        <canvas id="@Chart.CanvasId" width="@Width" height="@Height"></canvas>
+        <canvas id="@Config.CanvasId" width="@Width" height="@Height"></canvas>
     </div>
 </div>
 
 @functions {
 
     [Parameter]
-    ChartJSChart Chart { get; set; }
+    DoughnutChartConfig Config { get; set; }
 
     [Parameter]
     int Width { get; set; } = 400;
@@ -20,17 +21,17 @@
 
     protected override void OnAfterRender()
     {
-        ChartJsInterop.InitializeDoughnutChart(Chart);
+        ChartJsInterop.InitializeDoughnutChart(Config);
     }
 
     void DisplayChart()
     {
-        ChartJsInterop.InitializeDoughnutChart(Chart);
+        ChartJsInterop.InitializeDoughnutChart(Config);
     }
 
-    public void UpdateChart(ChartJSChart updatedChart)
+    public void UpdateChart(DoughnutChartConfig config)
     {
-        ChartJsInterop.UpdateDoughnutChart(updatedChart);
+        ChartJsInterop.UpdateDoughnutChart(config);
     }
 
 }
