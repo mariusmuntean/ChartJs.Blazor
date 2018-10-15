@@ -1,15 +1,18 @@
 ## ChartJs interop with Blazor
 
 
+This is a Blazor Components that wraps [ChartJS](https://github.com/chartjs/Chart.js). It was based on this repo: https://github.com/muqeet-khan/BlazorComponents
 
-Currently, starting with a simple [ChartJS](https://github.com/chartjs/Chart.js) implementation. 
+I'm supporting almost all charts from ChartJs.
+
+## Please keep in mind that this is still a preview. Expect breaking changes during the next 2, 3 releases. I'm using this opportunity to learn Blazor.
 
 
 ## Prerequisites
 
 Don't know what Blazor is? Read [here](https://github.com/aspnet/Blazor)
 
-Complete all Blazor dependencies.
+Prerequisites.
 
 1. Visual Studio 15.8 or later
 2. DotNetCore 2.1.402 or later
@@ -29,86 +32,79 @@ dotnet add package ChartJs.Blazor
 
 ## Usage
 
-1. In cshtml file add this:
+1. In you cshtlm create a new ChartJsPieChart and give it an instance of PieChartConfig ...
 
 ```html
+<h2>Chart JS charts using Blazor</h2>
 <div class="row">
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsLineChart ref="lineChartJs" Chart="@blazorLineChartJS" Width="600" Height="300" />
+<ChartJsPieChart ref="pieChartJs" Config="@pieChartConfig" Width="600" Height="300"/>
 ```
 
+... make sure to create that instance
 ```csharp
 @functions{
 
-    public ChartJSChart<ChartJsLineDataset> blazorLineChartJS { get; set; } = new ChartJSChart<ChartJsLineDataset>();
-    ChartJsLineChart lineChartJs;
+    private PieChartConfig pieChartConfig { get; set; }
+    ChartJsPieChart pieChartJs;
 
     protected override void OnInit()
     {
-
-        blazorLineChartJS = new ChartJSChart<ChartJsLineDataset>()
+        pieChartConfig = pieChartConfig ?? new PieChartConfig
         {
-            ChartType = "line",
-            CanvasId = "myFirstLineChart",
-            Options = new ChartJsOptions()
+            CanvasId = "myFirstPieChart",
+            Options = new PieChartOptions
             {
                 Text = "Sample chart from Blazor",
                 Display = true,
-                Responsive = false
+                Responsive = true,
+                Animation = new PieChartAnimation {AnimateRotate = true, AnimateScale = true}
             },
-            Data = new ChartJsData<ChartJsLineDataset>()
+            Data = new PieChartData
             {
-                Labels = new List<string>() { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
-                Datasets = new List<ChartJsLineDataset>()
-                 {
-                        new ChartJsLineDataset()
-                        {
-                            BackgroundColor = "#ff6384",
-                            BorderColor = "#ff6384",
-                            Label = "# of Votes from blazor",
-                            Data = new List<int>{ 19,12,5,3,3,2},
-                            Fill = false,
-                            BorderWidth = 2,
-                            PointRadius = 3,
-                            PointBorderWidth=1
-                        }
-                 }
+                Labels = new List<string> {"A", "B", "C", "D"},
+                Datasets = new List<PieChartDataset>
+                {
+                    new PieChartDataset
+                    {
+                        BackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
+                        Data = new List<int> {4, 5, 6, 7},
+                        Label = "Light Red",
+                        BorderWidth = 0,
+                        HoverBackgroundColor = new[] {"#f06384"},
+                        HoverBorderColor = new[] {"#f06384"},
+                        HoverBorderWidth = new[] {1}, BorderColor = "#ffffff",
+                    }
+                }
             }
         };
-    }
-
-    public void UpdateChart()
-    {
-        //Update existing dataset
-        blazorLineChartJS.Data.Labels.Add($"New{DateTime.Now.Second}");
-        var firstDataSet = blazorLineChartJS.Data.Datasets[0];
-        firstDataSet.Data.Add(DateTime.Now.Second);
-
-        //Add new dataset
-        //blazorLineChartJS.Data.Datasets.Add(new ChartJsLineDataset()
-        //{
-        //    BackgroundColor = "#cc65fe",
-        //    BorderColor = "#cc65fe",
-        //    Label = "# of Votes from blazor 1",
-        //    Data = new List<int> {20,21,12,3,4,4},
-        //    Fill = true,
-        //    BorderWidth = 2,
-        //    PointRadius = 3,
-        //    PointBorderWidth = 1
-        //});
-
-        lineChartJs.UpdateChart(blazorLineChartJS);
     }
 }
 ```
 
-2. In index.html add:
+2. In your index.html add these
 
 ```html
+    .
+    .
+    .
+<body>
+    <app>Loading...</app>
+
+    <!--<script src="css/bootstrap/bootstrap-native.min.js"></script>-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-    <script type="blazor-boot">
-    </script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <!--<script type="blazor-boot">
+            </script>-->
+    <script src="_framework/blazor.webassembly.js" type="text/javascript" language="javascript"></script>
+    <script src="ChartJsInterop.js" type="text/javascript" language="javascript"></script>
+</body>
+    .
+    .
+    .
 ```
 
 
