@@ -3,7 +3,18 @@
 
 This is a Blazor Components that wraps [ChartJS](https://github.com/chartjs/Chart.js). It was based on this repo: https://github.com/muqeet-khan/BlazorComponents
 
-I'm supporting almost all charts from ChartJs.
+
+## Changelog
+<details><summary>0.2.0-alpha</summary>
+
+* Updated object model that exposes more features of ChartJs
+</details>
+
+<details><summary>0.1.0-alpha</summary>
+
+* Initial release. 
+* Support for almost all charts from ChartJs, including: LineChart, BarChart, RadarCart, Doughnut- and Pie-Chart, BubbleChart, MixedChart
+</details>
 
 ## Please keep in mind that this is still a preview. Expect breaking changes during the next 2, 3 releases. I'm using this opportunity to learn Blazor.
 
