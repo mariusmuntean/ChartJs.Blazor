@@ -57,10 +57,11 @@
 
     public void UpdateChart()
     {
-    //Add new dataset
+        //Add new dataset
         var rand = new Random();
         var max = radarChartConfig.Data.Datasets.First().Data.Max();
-        var color = $"#{rand.Next(0x1000000):X6}";
+        //var color = $"#{rand.Next(0x1000000):X6}";
+        var color = $"#{rand.Next(16777215):X6}";
         radarChartConfig.Data.Datasets.Add(new RadarChartDataset
         {
             BackgroundColor = color,

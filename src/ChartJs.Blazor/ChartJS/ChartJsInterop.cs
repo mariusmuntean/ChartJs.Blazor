@@ -79,7 +79,7 @@ namespace ChartJs.Blazor.ChartJS
 
         public static Task<bool> UpdateBubbleChart(BubbleChartConfig bubbleChart)
         {
-            return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.ReloadChart", bubbleChart);
+            return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.UpdateBubbleChart", bubbleChart);
         }
     }
 }

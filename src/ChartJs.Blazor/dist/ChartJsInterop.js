@@ -86,7 +86,7 @@ window.ChartJSInterop = {
     },
     UpdateDoughnutChart: function(config) {
         if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
-            throw `Could not find a chart with the given id. ${data.canvasId}`;
+            throw `Could not find a chart with the given id. ${config.canvasId}`;
 
         let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
 
@@ -99,7 +99,7 @@ window.ChartJSInterop = {
     },
     UpdateBarChart: function(config) {
         if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
-            throw `Could not find a chart with the given id. ${data.canvasId}`;
+            throw `Could not find a chart with the given id. ${config.canvasId}`;
 
         let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
 
@@ -113,7 +113,7 @@ window.ChartJSInterop = {
 
     ReloadChart: function(config) {
         if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
-            throw `Could not find a chart with the given id. ${data.canvasId}`;
+            throw `Could not find a chart with the given id. ${config.canvasId}`;
 
         let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
 
@@ -151,32 +151,20 @@ window.ChartJSInterop = {
 
         return true;
     },
-    UpdateBubbleChart: function(data) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
-            throw `Could not find a chart with the given id. ${data.canvasId}`;
+    UpdateBubbleChart: function(config) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
+            throw `Could not find a chart with the given id. ${config.canvasId}`;
 
-        let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
+        let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
 
         myChart.chart.destroy();
         myChart.chart = {};
-        let newChart = initializeChartjsChart(data, 'bubble');
+        let newChart = initializeChartjsChart2(config);
         myChart.chart = newChart;
 
         return true;
-    },
+    }
 };
-
-function initializeChartjsChart(data, type) {
-    let ctx = document.getElementById(data.canvasId);
-    let myChart = new Chart(ctx,
-        {
-            type: type,
-            data: data.data,
-            options: data.options
-        });
-
-    return myChart;
-}
 
 function initializeChartjsChart2(config) {
     let ctx = document.getElementById(config.canvasId);
