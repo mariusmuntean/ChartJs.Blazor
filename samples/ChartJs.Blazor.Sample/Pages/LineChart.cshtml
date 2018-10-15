@@ -1,5 +1,6 @@
 ﻿@page "/LineChart"
 @using ChartJs.Blazor.ChartJS
+@using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.Components
 
@@ -25,7 +26,7 @@
                 Text = "Sample chart from Blazor",
                 Display = true,
                 Responsive = true,
-                Title = new LineChartOptionsTitle {Display = "title?", Text = "Text?"},
+                Title = new OptionsTitle {Display = "title?", Text = "Text?"},
                 Tooltips = new LineChartOptionsTooltips
                 {
                     Mode = Mode.nearest,

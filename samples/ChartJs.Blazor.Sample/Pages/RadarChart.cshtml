@@ -1,39 +1,43 @@
 ﻿@page "/RadarChart"
 @using ChartJs.Blazor.ChartJS
+@using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.ChartJS.RadarChart
 @using ChartJs.Blazor.Components
 
 <h2>Chart JS charts using Blazor</h2>
 <div class="row">
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsRadarChart ref="radarChartJs" Chart="@blazorRadarChartJS" Width="600" Height="300"/>
+<ChartJsRadarChart ref="radarChartJs" Config="@radarChartConfig" Width="600" Height="300"/>
 
 @functions {
 
-    public ChartJSChart blazorRadarChartJS { get; set; }
+    public RadarChartConfig radarChartConfig { get; set; }
     ChartJsRadarChart radarChartJs;
 
     protected override void OnInit()
     {
-        blazorRadarChartJS = blazorRadarChartJS ?? new ChartJSChart()
+        radarChartConfig = radarChartConfig ?? new RadarChartConfig
         {
-            ChartType = ChartTypes.RADAR.ToString(),
             CanvasId = "myFirstRadarChart",
-            Options = new ChartJsOptions()
+            Options = new RadarChartOptions
             {
                 Text = "Sample chart from Blazor",
-                Display = true
+                Display = true,
+                Title = new OptionsTitle {Display = "radar chart title display", Text = "some text"},
+                Legend = new RadarChartLegend {Position = Position.top},
+                Scale = new Scale {Ticks = new Ticks {BeginAtZero = true}}
             },
-            Data = new ChartJsData()
+            Data = new RadarChartData()
             {
-                Labels = new List<string>() {"Eating", "Drinking", "Social", "Coding", "Cycling", "Running"},
-                Datasets = new List<ChartJsDataset>()
+                Labels = new List<string> {"Eating", "Drinking", "Social", "Coding", "Cycling", "Running"},
+                Datasets = new List<RadarChartDataset>
                 {
-                    new ChartJSRadarDataset()
+                    new RadarChartDataset
                     {
                         BackgroundColor = "#ff6384",
                         Label = "1st Dataset",
-                        //Data = new List<dynamic> {19, 12, 5, 3, 3, 2},
+                        Data = new List<int> {19, 12, 5, 3, 3, 2},
                         BorderWidth = 2,
                         RadarChartPointStyle = RadarChartPointStyles.star,
                         PointBackgroundColor = "#a4cef0",
@@ -48,29 +52,27 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        radarChartJs.UpdateChart(blazorRadarChartJS);
+        radarChartJs.UpdateChart(radarChartConfig);
     }
 
     public void UpdateChart()
     {
-        //Update existing dataset
-        blazorRadarChartJS.Data.Labels.Add($"New{DateTime.Now.Second}");
-        var firstDataSet = blazorRadarChartJS.Data.Datasets[0];
-        //firstDataSet.Data.Add(DateTime.Now.Second);
-
-        //Add new dataset
-        blazorRadarChartJS.Data.Datasets.Add(new ChartJSRadarDataset()
+    //Add new dataset
+        var rand = new Random();
+        var max = radarChartConfig.Data.Datasets.First().Data.Max();
+        var color = $"#{rand.Next(0x1000000):X6}";
+        radarChartConfig.Data.Datasets.Add(new RadarChartDataset
         {
-            BackgroundColor = "#cc65fe",
-            BorderColor = "#cc65fe",
+            BackgroundColor = color,
+            BorderColor = color,
             Label = "2nd Dataset",
-            //Data = new List<dynamic> {20, 21, 12, 3, 4, 4},
+            Data = new List<int> {rand.Next(max), rand.Next(max), rand.Next(max), rand.Next(max), rand.Next(max), rand.Next(max)},
             BorderWidth = 2,
             PointRadius = 3,
             PointBorderWidth = 1
         });
 
-        radarChartJs.UpdateChart(blazorRadarChartJS);
+        radarChartJs.UpdateChart(radarChartConfig);
     }
 
 }

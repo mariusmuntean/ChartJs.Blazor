@@ -1,4 +1,4 @@
-﻿namespace ChartJs.Blazor.ChartJS.DoughnutChart
+﻿namespace ChartJs.Blazor.ChartJS.Common
 {
     public enum Position
     {

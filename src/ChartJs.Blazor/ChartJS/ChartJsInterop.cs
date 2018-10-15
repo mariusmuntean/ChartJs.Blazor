@@ -5,6 +5,7 @@ using ChartJs.Blazor.ChartJS.DoughnutChart;
 using ChartJs.Blazor.ChartJS.LineChart;
 using ChartJs.Blazor.ChartJS.MixedChart;
 using ChartJs.Blazor.ChartJS.PieChart;
+using ChartJs.Blazor.ChartJS.RadarChart;
 using Microsoft.JSInterop;
 
 namespace ChartJs.Blazor.ChartJS
@@ -66,12 +67,12 @@ namespace ChartJs.Blazor.ChartJS
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.UpdateMixedChart", mixedChartConfig);
         }
 
-        public static Task<bool> InitializeRadarChart(ChartJSChart radarChart)
+        public static Task<bool> InitializeRadarChart(RadarChartConfig radarChart)
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.InitializeRadarChart", radarChart);
         }
 
-        public static Task<bool> UpdateRadarChart(ChartJSChart radarChart)
+        public static Task<bool> UpdateRadarChart(RadarChartConfig radarChart)
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.UpdateRadarChart", radarChart);
         }

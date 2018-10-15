@@ -1,8 +1,8 @@
 ﻿using ChartJs.Blazor.ChartJS.Common;
 
-namespace ChartJs.Blazor.ChartJS.DoughnutChart
+namespace ChartJs.Blazor.ChartJS.RadarChart
 {
-    public class DoughnutLegend
+    public class RadarChartLegend
     {
         public Position Position { get; set; }
     }

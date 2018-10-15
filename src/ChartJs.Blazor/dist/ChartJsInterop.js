@@ -42,10 +42,10 @@ window.ChartJSInterop = {
 
         return true;
     },
-    InitializeRadarChart: function(data) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId)) {
-            let thisChart = initializeChartjsChart(data, 'radar');
-            BlazorCharts.push({ id: data.canvasId, chart: thisChart });
+    InitializeRadarChart: function(config) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
+            let thisChart = initializeChartjsChart2(config);
+            BlazorCharts.push({ id: config.canvasId, chart: thisChart });
         }
 
         return true;
@@ -138,15 +138,15 @@ window.ChartJSInterop = {
 
         return true;
     },
-    UpdateRadarChart: function(data) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
-            throw `Could not find a chart with the given id. ${data.canvasId}`;
+    UpdateRadarChart: function(config) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
+            throw `Could not find a chart with the given id. ${config.canvasId}`;
 
-        let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
+        let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
 
         myChart.chart.destroy();
         myChart.chart = {};
-        let newChart = initializeChartjsChart(data, 'radar');
+        let newChart = initializeChartjsChart2(config);
         myChart.chart = newChart;
 
         return true;
