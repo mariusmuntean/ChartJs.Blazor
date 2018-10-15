@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace ChartJs.Blazor.ChartJS
+namespace ChartJs.Blazor.ChartJS.DoughnutChart
 {
-    public class ChartJsDoughnutDataset
+    public class DoughnutDataset
     {
         public string Type { get; } = ChartTypes.DOUGHNUT.ToString();
 

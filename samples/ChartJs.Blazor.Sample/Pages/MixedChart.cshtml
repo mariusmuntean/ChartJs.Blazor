@@ -1,62 +1,62 @@
 ﻿@page "/MixedChart"
 @using ChartJs.Blazor.ChartJS
 @using ChartJs.Blazor.ChartJS.BarChart
+@using ChartJs.Blazor.ChartJS.LineChart
+@using ChartJs.Blazor.ChartJS.MixedChart
 @using ChartJs.Blazor.Components
 
 <h2>Chart JS charts using Blazor</h2>
 <div class="row">
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsMixedChart ref="mixedChartJs" Chart="@blazorMixedChartJS" Width="600" Height="300"/>
+<ChartJsMixedChart ref="mixedChartJs" Config="@blazorMixedChartJS" Width="600" Height="300"/>
 
 @functions {
 
-    public ChartJSChart blazorMixedChartJS { get; set; }
+    MixedChartConfig blazorMixedChartJS { get; set; }
     ChartJsMixedChart mixedChartJs;
 
     protected override void OnInit()
     {
-        blazorMixedChartJS = blazorMixedChartJS ?? new ChartJSChart()
+        blazorMixedChartJS = blazorMixedChartJS ?? new MixedChartConfig
         {
-            ChartType = ChartTypes.BAR.ToString(), // this is not a mistake, the type needs to be bar
             CanvasId = "myFirstMixedChart",
-            Options = new ChartJsOptions()
+            Options = new MixedChartOptions
             {
                 Text = "Sample chart from Blazor",
-                BorderWidth = 1,
                 Display = true,
                 Responsive = true
             },
-            Data = new ChartJsData()
+            Data = new MixedChartData
             {
-                Labels = new List<string>() {"Red", "Blue", "Yellow", "Green", "Purple", "Orange"},
-                Datasets = new List<ChartJsDataset>()
+                Labels = new List<string> {"Red", "Blue", "Yellow", "Green", "Purple", "Orange"},
+                Datasets = new List<IMixableDataset>
                 {
-                    new BarChartDataset()
+                    new BarChartDataset
                     {
                         Label = "# of Votes from blazor",
                         BackgroundColor = "#4465fe",
                         BorderColor = "#4465fe",
-                        Data = new List<dynamic>() {19, 12, 5, 3, 3, 2}
+                        Data = new List<object> {19, 12, 5, 3, 3, 2}
                     },
-                    new ChartJsLineDataset()
+                    new LineChartDataset
                     {
                         BackgroundColor = "#ff6384",
                         BorderColor = "#ff6384",
                         Label = "# of Votes from blazor",
-                        Data = new List<dynamic> {19, 12, 5, 3, 3, 2},
+                        Data = new List<object> {19, 12, 5, 3, 3, 2},
                         Fill = false,
                         BorderWidth = 2,
                         PointRadius = 3,
                         PointBorderWidth = 1
                     }
                     ,
-                    new BarChartDataset()
+                    new BarChartDataset
                     {
                         Label = "# of Votes from blazor",
                         BackgroundColor = "#cc65fe",
                         BorderColor = "#cc65fe",
-                        Data = new List<dynamic>() {19, 12, 5, 3, 3, 2}
+                        Data = new List<object> {19, 12, 5, 3, 3, 2}
                     }
                 }
             }
@@ -71,24 +71,8 @@
 
     public void UpdateChart()
     {
-        //Update existing dataset
-        blazorMixedChartJS.Data.Labels.Add($"New{DateTime.Now.Second}");
-        var firstDataSet = blazorMixedChartJS.Data.Datasets[0];
-
-        //firstDataSet.Data.Add(DateTime.Now.Second);
-
-        //Add new dataset
-        //blazorLineChartJS.Data.Datasets.Add(new ChartJsLineDataset()
-        //{
-        //    BackgroundColor = "#cc65fe",
-        //    BorderColor = "#cc65fe",
-        //    Label = "# of Votes from blazor 1",
-        //    Data = new List<int> {20,21,12,3,4,4},
-        //    Fill = true,
-        //    BorderWidth = 2,
-        //    PointRadius = 3,
-        //    PointBorderWidth = 1
-        //});
+        blazorMixedChartJS.Data.Labels.Add($"New {DateTime.Now.Second}");
+        blazorMixedChartJS.Data.Datasets.ForEach(dataset => dataset.Data.Add(DateTime.Now.Second));
 
         mixedChartJs.UpdateChart(blazorMixedChartJS);
     }

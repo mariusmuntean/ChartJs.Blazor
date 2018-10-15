@@ -1,16 +1,17 @@
 ﻿@using ChartJs.Blazor.ChartJS
+@using ChartJs.Blazor.ChartJS.MixedChart
 @using Microsoft.AspNetCore.Blazor.Components
 
 <div class="row">
     <div class="container">
-        <canvas id="@Chart.CanvasId" width="@Width" height="@Height"></canvas>
+        <canvas id="@Config.CanvasId" width="@Width" height="@Height"></canvas>
     </div>
 </div>
 
 @functions {
 
     [Parameter]
-    ChartJSChart Chart { get; set; }
+    MixedChartConfig Config { get; set; }
 
     [Parameter]
     int Width { get; set; } = 400;
@@ -20,17 +21,17 @@
 
     protected override void OnAfterRender()
     {
-        ChartJsInterop.InitializeMixedChart(Chart);
+        ChartJsInterop.InitializeMixedChart(Config);
     }
 
     void DisplayChart()
     {
-        ChartJsInterop.InitializeMixedChart(Chart);
+        ChartJsInterop.InitializeMixedChart(Config);
     }
 
-    public void UpdateChart(ChartJSChart updatedChart)
+    public void UpdateChart(MixedChartConfig config)
     {
-        ChartJsInterop.UpdateMixedChart(updatedChart);
+        ChartJsInterop.UpdateMixedChart(config);
     }
 
 }

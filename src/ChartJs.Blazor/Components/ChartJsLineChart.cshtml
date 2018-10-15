@@ -1,16 +1,17 @@
 ﻿@using ChartJs.Blazor.ChartJS
+@using ChartJs.Blazor.ChartJS.LineChart
 @using Microsoft.AspNetCore.Blazor.Components
 
 <div class="row">
     <div class="container">
-        <canvas id="@Chart.CanvasId" width="@Width" height="@Height"></canvas>
+        <canvas id="@Config.CanvasId" width="@Width" height="@Height"></canvas>
     </div>
 </div>
 
 @functions {
 
     [Parameter]
-    ChartJSChart Chart { get; set; }
+    LineChartConfig Config { get; set; }
 
     [Parameter]
     int Width { get; set; } = 200;
@@ -22,22 +23,22 @@
 
     protected override void OnAfterRender()
     {
-        ChartJsInterop.InitializeLineChart(Chart).ConfigureAwait(false);
+        ChartJsInterop.InitializeLineChart(Config).ConfigureAwait(false);
     }
 
     protected override void OnInit()
     {
-        ChartJsInterop.InitializeLineChart(Chart).ConfigureAwait(false);
+        ChartJsInterop.InitializeLineChart(Config).ConfigureAwait(false);
     }
 
     void DisplayChart()
     {
-        ChartJsInterop.InitializeLineChart(Chart);
+        ChartJsInterop.InitializeLineChart(Config);
     }
 
-    public void UpdateChart(ChartJSChart updatedChart)
+    public void UpdateChart(LineChartConfig config)
     {
-        ChartJsInterop.UpdateLineChart(updatedChart);
+        ChartJsInterop.UpdateLineChart(config);
     }
 
 }

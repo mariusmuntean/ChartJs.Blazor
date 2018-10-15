@@ -6,6 +6,6 @@ namespace ChartJs.Blazor.ChartJS.DoughnutChart
     {
         public List<string> Labels { get; set; }
 
-        public List<ChartJsDoughnutDataset> Datasets { get; set; }
+        public List<DoughnutDataset> Datasets { get; set; }
     }
 }
