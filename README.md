@@ -1,7 +1,7 @@
 ## ChartJs interop with Blazor
 
 
-This is a Blazor Components that wraps [ChartJS](https://github.com/chartjs/Chart.js). It was based on this repo: https://github.com/muqeet-khan/BlazorComponents
+This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart.js). It was based on this repo: https://github.com/muqeet-khan/BlazorComponents
 
 
 ## Changelog
@@ -31,7 +31,9 @@ Prerequisites.
 
 ## Installation 
 
-To Install 
+There's a NuGet package: https://www.nuget.org/packages/ChartJs.Blazor
+
+Install from the command line:
 
 ```
 Install-Package ChartJs.Blazor
