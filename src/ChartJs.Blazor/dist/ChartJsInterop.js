@@ -18,10 +18,10 @@ window.ChartJSInterop = {
 
         return true;
     },
-    InitializePieChart: function(data) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId)) {
-            let thisChart = initializeChartjsChart(data, 'pie');
-            BlazorCharts.push({ id: data.canvasId, chart: thisChart });
+    InitializePieChart: function(config) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
+            let thisChart = initializeChartjsChart2(config);
+            BlazorCharts.push({ id: config.canvasId, chart: thisChart });
         }
 
         return true;
@@ -71,15 +71,15 @@ window.ChartJSInterop = {
 
         return true;
     },
-    UpdatePieChart: function(data) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === data.canvasId))
-            throw `Could not find a chart with the given id. ${data.canvasId}`;
+    UpdatePieChart: function(config) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
+            throw `Could not find a chart with the given id. ${config.canvasId}`;
 
-        let myChart = BlazorCharts.find(currentChart => currentChart.id === data.canvasId);
+        let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
 
         myChart.chart.destroy();
         myChart.chart = {};
-        let newChart = initializeChartjsChart(data, 'pie');
+        let newChart = initializeChartjsChart2(config);
         myChart.chart = newChart;
 
         return true;

@@ -4,6 +4,7 @@ using ChartJs.Blazor.ChartJS.BubbleChart;
 using ChartJs.Blazor.ChartJS.DoughnutChart;
 using ChartJs.Blazor.ChartJS.LineChart;
 using ChartJs.Blazor.ChartJS.MixedChart;
+using ChartJs.Blazor.ChartJS.PieChart;
 using Microsoft.JSInterop;
 
 namespace ChartJs.Blazor.ChartJS
@@ -15,7 +16,7 @@ namespace ChartJs.Blazor.ChartJS
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.InitializeLineChart", lineChartConfig);
         }
 
-        public static Task<bool> InitializePieChart(ChartJSChart pieChart)
+        public static Task<bool> InitializePieChart(PieChartConfig pieChart)
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.InitializePieChart", pieChart);
         }
@@ -45,7 +46,7 @@ namespace ChartJs.Blazor.ChartJS
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.UpdateLineChart", lineChart);
         }
 
-        public static Task<bool> UpdatePieChart(ChartJSChart pieChart)
+        public static Task<bool> UpdatePieChart(PieChartConfig pieChart)
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.UpdatePieChart", pieChart);
         }

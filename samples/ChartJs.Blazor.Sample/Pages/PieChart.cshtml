@@ -1,48 +1,45 @@
 ﻿@page "/PieChart"
 @using ChartJs.Blazor.ChartJS
+@using ChartJs.Blazor.ChartJS.PieChart
 @using ChartJs.Blazor.Components
 
 <h2>Chart JS charts using Blazor</h2>
 <div class="row">
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsPieChart ref="pieChartJs" Chart="@blazorPieChartJS" Width="600" Height="300"/>
+<ChartJsPieChart ref="pieChartJs" Config="@pieChartConfig" Width="600" Height="300"/>
 
 @functions{
 
-    public ChartJSChart blazorPieChartJS { get; set; }
+    private PieChartConfig pieChartConfig { get; set; }
     ChartJsPieChart pieChartJs;
 
     protected override void OnInit()
     {
-        blazorPieChartJS = blazorPieChartJS ?? new ChartJSChart
+        pieChartConfig = pieChartConfig ?? new PieChartConfig
         {
-            ChartType = ChartTypes.PIE.ToString(),
             CanvasId = "myFirstPieChart",
-            Options = new ChartJsOptions
+            Options = new PieChartOptions
             {
                 Text = "Sample chart from Blazor",
                 Display = true,
-                Responsive = true
+                Responsive = true,
+                Animation = new PieChartAnimation {AnimateRotate = true, AnimateScale = true}
             },
-            Data = new ChartJsData
+            Data = new PieChartData
             {
                 Labels = new List<string> {"A", "B", "C", "D"},
-                Datasets = new List<ChartJsDataset>()
+                Datasets = new List<PieChartDataset>
                 {
-                    new ChartJsPieDataset
+                    new PieChartDataset
                     {
                         BackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
+                        Data = new List<int> {4, 5, 6, 7},
                         Label = "Light Red",
-                        
-                        //Data = new List<dynamic>
-                        //{
-                        //    1, 2, 3, 4
-                        //},
                         BorderWidth = 0,
                         HoverBackgroundColor = new[] {"#f06384"},
                         HoverBorderColor = new[] {"#f06384"},
-                        HoverBorderWidth = new[] {1}, BorderColor = "#ffffff"
+                        HoverBorderWidth = new[] {1}, BorderColor = "#ffffff",
                     }
                 }
             }
@@ -52,34 +49,31 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        pieChartJs.UpdateChart(blazorPieChartJS);
+        pieChartJs.UpdateChart(pieChartConfig);
     }
 
     public void UpdateChart()
     {
         var rand = new Random();
-        blazorPieChartJS.Data = new ChartJsData
+        pieChartConfig.Data = new PieChartData
         {
             Labels = new List<string> {"A", "B", "C", "D"},
-            Datasets = new List<ChartJsDataset>()
+            Datasets = new List<PieChartDataset>
             {
-                new ChartJsPieDataset
+                new PieChartDataset
                 {
                     BackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
                     Label = "Light Red",
-                    //Data = new List<dynamic>
-                    //{
-                    //    rand.Next(10), rand.Next(10), rand.Next(10), rand.Next(10)
-                    //},
                     BorderWidth = 0,
                     HoverBackgroundColor = new[] {"#f06384"},
                     HoverBorderColor = new[] {"#f06384"},
-                    HoverBorderWidth = new[] {1}, BorderColor = "#ffffff"
+                    HoverBorderWidth = new[] {1}, BorderColor = "#ffffff",
+                    Data = new List<int> {rand.Next(10), rand.Next(10), rand.Next(10), rand.Next(10)}
                 }
             }
         };
 
-        pieChartJs.UpdateChart(blazorPieChartJS);
+        pieChartJs.UpdateChart(pieChartConfig);
     }
 
 }
