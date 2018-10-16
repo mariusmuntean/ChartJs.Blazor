@@ -1,7 +1,5 @@
 ﻿@page "/BubbleChart"
-@using ChartJs.Blazor.ChartJS
 @using ChartJs.Blazor.ChartJS.BubbleChart
-@using ChartJs.Blazor.Components
 
 <h2>Chart JS charts using Blazor</h2>
 <div class="row">
@@ -16,19 +14,19 @@
 
     protected override void OnInit()
     {
-        bubbleChartConfig = bubbleChartConfig ?? new BubbleChartConfig()
+        bubbleChartConfig = bubbleChartConfig ?? new BubbleChartConfig
         {
             CanvasId = "myFirstBubbleChart",
-            Options = new BubbleChartOptions()
+            Options = new BubbleChartOptions
             {
                 Text = "Sample chart from Blazor",
                 Display = true,
                 Responsive = true
             },
-            Data = new BubbleChartData()
+            Data = new BubbleChartData
             {
-                Animation = new Animation() {Duration = 8000},
-                Datasets = new List<BubbleChartDataset>()
+                Animation = new Animation {Duration = 8000},
+                Datasets = new List<BubbleChartDataset>
                 {
                     new BubbleChartDataset
                     {

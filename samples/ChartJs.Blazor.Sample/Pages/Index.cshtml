@@ -1,10 +1,9 @@
 ﻿@page "/"
-@using ChartJs.Blazor.ChartJS
-@using ChartJs.Blazor.ChartJS.BarChart
-@using ChartJsBarChart = ChartJs.Blazor.Components.ChartJsBarChart
+@using ChartJs.Blazor.ChartJS.BarChart.Dataset
+@using ChartJs.Blazor.Util.Color
 
 <div class="container">
-    <h2>Chart JS charts using Blazor</h2>
+    <h2>Bar Chart</h2>
     <div class="row">
         <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
     </div>
@@ -16,15 +15,15 @@
 
 @functions {
 
-    public ChartJsBarChart barChart { get; set; }
-    public BarChartConfig barChartConfig { get; set; }
+    private ChartJsBarChart barChart { get; set; }
+    private BarChartConfig barChartConfig { get; set; }
 
     protected override void OnInit()
     {
-        barChartConfig = barChartConfig ?? new BarChartConfig()
+        barChartConfig = barChartConfig ?? new BarChartConfig
         {
             CanvasId = "myBarChartCanvas",
-            Options = new BarChartOptions()
+            Options = new BarChartOptions
             {
                 Text = "Sample chart from Blazor",
                 Display = true,
@@ -33,20 +32,20 @@
             Data = new BarChartData
             {
                 Labels = new List<string> {"Red", "Blue", "Yellow", "Green", "Purple", "Orange"},
-                Datasets = new List<BarChartDataset>
+                Datasets = new List<BaseBarChartDataset>
                 {
                     new BarChartDataset
                     {
                         Label = "# of Votes from blazor",
-                        BackgroundColor = "#cc65fe",
-                        BorderColor = "#cc65fe",
+                        BackgroundColor = ColorUtil.RandomColorString(),
+                        BorderColor = ColorUtil.RandomColorString(),
                         Data = new List<dynamic> {19, 12, 5, 3, 3, 2}
                     },
                     new BarChartDataset
                     {
                         Label = "# of Likes from blazor",
-                        BackgroundColor = "#36a2eb",
-                        BorderColor = "#36a2eb",
+                        BackgroundColor = ColorUtil.ColorString(56, 78, 93),
+                        BorderColor = ColorUtil.RandomColorString(),
                         Data = new List<dynamic> {30, 10, 15, 13, 13, 12}
                     }
                 }
@@ -61,13 +60,13 @@
         barChart.Update();
     }
 
-    public void UpdateChart()
+    private void UpdateChart()
     {
     //Update existing dataset
-    //barChartData.Labels.Add($"New{DateTime.Now.Second}");
-    //barChartData.Datasets.First().Data.Add(DateTime.Now.Second);
+        barChartConfig.Data.Labels.Add($"{DateTime.Now.Second}");
+        barChartConfig.Data.Datasets.First().Data.Add(DateTime.Now.Second);
 
-    //barChartJs.UpdateChart(barChartData);
+        barChart.Update();
     }
 
 }

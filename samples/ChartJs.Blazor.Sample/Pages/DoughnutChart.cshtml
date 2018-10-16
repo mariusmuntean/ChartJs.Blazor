@@ -1,7 +1,5 @@
 ﻿@page "/DoughnutChart"
-@using ChartJs.Blazor.ChartJS
 @using ChartJs.Blazor.ChartJS.DoughnutChart
-@using ChartJs.Blazor.Components
 
 <h2>Chart JS charts using Blazor</h2>
 <div class="row">
@@ -22,6 +20,11 @@
             Options = new DoughnutOptions
             {
                 Text = "Sample chart from Blazor",
+                Animation = new DoughnutAnimation
+                {
+                    AnimateRotate = true, 
+                    AnimateScale = true
+                },
                 Display = true,
                 Responsive = true
             },

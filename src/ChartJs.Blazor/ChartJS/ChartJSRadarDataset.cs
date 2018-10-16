@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace ChartJs.Blazor.ChartJS.RadarChart
+﻿namespace ChartJs.Blazor.ChartJS
 {
-    public class RadarChartDataset
+    public class ChartJSRadarDataset : ChartJsDataset
     {
         public int BorderWidth { get; set; } = 1;
         public string PointBackgroundColor { get; set; } = "#DB5571";
@@ -16,15 +14,10 @@ namespace ChartJs.Blazor.ChartJS.RadarChart
             get { return RadarChartPointStyle.ToString(); }
         }
 
-        public string Type { get; } = ChartTypes.RADAR.ToString();
+        public override string Type { get; } = ChartTypes.RADAR.ToString();
 
         /// <summary>
-        /// The label for the dataset which appears in the legend and tooltips.
-        /// </summary>
-        public string Label { get; set; } = "";
-
-        /// <summary>
-        /// The fill color under the line.
+        /// The fill color under the line. 
         /// AS-IS: We only accept colors as string values. Normal colors and HTML Hex colors are ok to use.
         /// TODO: Accept some form of actual color information rather than strings.
         /// </summary>
@@ -36,7 +29,34 @@ namespace ChartJs.Blazor.ChartJS.RadarChart
         /// TODO: Accept some form of actual color information rather than strings.
         /// </summary>
         public string BorderColor { get; set; }
-
-        public List<int> Data { get; set; }
     }
+
+    public enum RadarChartPointStyles
+    {
+        circle,
+        cross,
+        crossRot,
+        dash,
+        line,
+        rect,
+        rectRounded,
+        rectRot,
+        star,
+        triangle,
+    }
+
+    //public class RadarChartPointStyles
+    //{
+    //    const string CIRCLE = "circle";
+    //    const string CROSS = "cross";
+    //    const string CROSS_ROT = "crossRot";
+    //    const string DASH = "dash";
+    //    const string LINE = "line";
+    //    const string RECT = "rect";
+    //    const string RECT_ROUNDED = "rectRounded";
+    //    const string RECT_ROT = "rectRot";
+    //    const string STAR = "star";
+    //    const string TRIANGLE = "triangle";
+
+    //}
 }

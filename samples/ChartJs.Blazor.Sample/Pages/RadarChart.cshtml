@@ -1,8 +1,7 @@
 ﻿@page "/RadarChart"
-@using ChartJs.Blazor.ChartJS
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.RadarChart
-@using ChartJs.Blazor.Components
+@using RadarChartPointStyles = ChartJs.Blazor.ChartJS.RadarChart.RadarChartPointStyles
 
 <h2>Chart JS charts using Blazor</h2>
 <div class="row">
@@ -12,7 +11,7 @@
 
 @functions {
 
-    public RadarChartConfig radarChartConfig { get; set; }
+    private RadarChartConfig radarChartConfig { get; set; }
     ChartJsRadarChart radarChartJs;
 
     protected override void OnInit()
@@ -39,7 +38,7 @@
                         Label = "1st Dataset",
                         Data = new List<int> {19, 12, 5, 3, 3, 2},
                         BorderWidth = 2,
-                        RadarChartPointStyle = RadarChartPointStyles.star,
+                        RadarChartPointStyle = RadarChartPointStyles.triangle,
                         PointBackgroundColor = "#a4cef0",
                         PointRadius = 5,
                         PointBorderWidth = 1

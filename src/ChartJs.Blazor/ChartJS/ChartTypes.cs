@@ -2,8 +2,8 @@
 {
     public class ChartTypes
     {
-
         public static ChartTypes BAR = new ChartTypes("bar");
+        public static ChartTypes HORIZONTALBAR = new ChartTypes("horizontalBar");
         public static ChartTypes LINE = new ChartTypes("line");
         public static ChartTypes PIE = new ChartTypes("pie");
         public static ChartTypes DOUGHNUT = new ChartTypes("doughnut");
