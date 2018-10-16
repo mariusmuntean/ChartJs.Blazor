@@ -16,17 +16,18 @@
     <Company>Marius Muntean</Company>
     <Authors>Marius Muntean</Authors>
     <Description>CharJs charts for Blazor.
-Supports: LineChart, BarChart, RadarCart, Doughnut- and Pie-Chart, BubbleChart, MixedChart</Description>
+Supports: LineChart, BarChart, RadarCart, Doughnut- and Pie-Chart, BubbleChart, MixedChart; Polar Area Chart</Description>
     <RepositoryUrl>https://github.com/mariusmuntean/ChartJs.Blazor</RepositoryUrl>
     <PackageProjectUrl>https://github.com/mariusmuntean/ChartJs.Blazor</PackageProjectUrl>
     <PackageTags>ChartJS Blazor</PackageTags>
     <PackageSummary>Library of useful components to be used within Blazor. Starting off with a simple ChartJS port to Blazor.</PackageSummary>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>1. Updated object model to expose even more of ChartJs.
+2. Added support for Polar Area Chart.</PackageReleaseNotes>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <AssemblyName>ChartJs.Blazor</AssemblyName>
     <RootNamespace>ChartJs.Blazor</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.2.0-alpha</Version>
+    <Version>0.3.0-alpha</Version>
   </PropertyGroup>
 
   <ItemGroup>

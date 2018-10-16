@@ -5,6 +5,12 @@ This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart
 
 
 ## Changelog
+<details><summary>0.3.0-alpha</summary>
+
+* Updated object model that exposes even more features of ChartJs
+* Added support for Polar Area Chart
+</details>
+
 <details><summary>0.2.0-alpha</summary>
 
 * Updated object model that exposes more features of ChartJs
