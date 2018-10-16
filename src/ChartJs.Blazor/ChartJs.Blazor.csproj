@@ -41,13 +41,13 @@ Supports: LineChart, BarChart, RadarCart, Doughnut- and Pie-Chart, BubbleChart, 
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Components\ChartJsDoughnutChart.cshtml">
+    <Content Update="Charts\ChartJsDoughnutChart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Components\ChartJsPieChart.cshtml">
+    <Content Update="Charts\ChartJsPieChart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Components\ChartJsMixedChart.cshtml">
+    <Content Update="Charts\ChartJsMixedChart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>

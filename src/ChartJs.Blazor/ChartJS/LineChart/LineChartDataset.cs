@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.MixedChart;
 
 namespace ChartJs.Blazor.ChartJS.LineChart

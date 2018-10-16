@@ -1,4 +1,6 @@
-﻿namespace ChartJs.Blazor.ChartJS.BarChart
+﻿using ChartJs.Blazor.ChartJS.Common;
+
+namespace ChartJs.Blazor.ChartJS.BarChart
 {
     public class BarChartConfig
     {

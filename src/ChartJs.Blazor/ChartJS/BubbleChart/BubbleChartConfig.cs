@@ -1,4 +1,6 @@
-﻿namespace ChartJs.Blazor.ChartJS.BubbleChart
+﻿using ChartJs.Blazor.ChartJS.Common;
+
+namespace ChartJs.Blazor.ChartJS.BubbleChart
 {
     public class BubbleChartConfig
     {

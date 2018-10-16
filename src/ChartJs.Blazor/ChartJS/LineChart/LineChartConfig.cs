@@ -1,4 +1,6 @@
-﻿namespace ChartJs.Blazor.ChartJS.LineChart
+﻿using ChartJs.Blazor.ChartJS.Common;
+
+namespace ChartJs.Blazor.ChartJS.LineChart
 {
     public class LineChartConfig
     {

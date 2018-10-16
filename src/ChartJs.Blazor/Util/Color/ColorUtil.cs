@@ -30,7 +30,7 @@ namespace ChartJs.Blazor.Util.Color
         }
 
         /// <summary>
-        /// Produces a string of the form 'rgba(r, g, b, 1)' with random values for rgb and alpha
+        /// Produces a string of the form 'rgba(r, g, b, alpha)' with random values for rgb and alpha
         /// </summary>
         /// <returns></returns>
         public static string RandomColorString()

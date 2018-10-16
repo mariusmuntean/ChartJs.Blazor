@@ -1,4 +1,6 @@
-﻿namespace ChartJs.Blazor.ChartJS.DoughnutChart
+﻿using ChartJs.Blazor.ChartJS.Common;
+
+namespace ChartJs.Blazor.ChartJS.DoughnutChart
 {
     public class DoughnutChartConfig
     {

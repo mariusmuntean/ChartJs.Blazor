@@ -3,7 +3,7 @@
 @using ChartJs.Blazor.ChartJS.RadarChart
 @using RadarChartPointStyles = ChartJs.Blazor.ChartJS.RadarChart.RadarChartPointStyles
 
-<h2>Chart JS charts using Blazor</h2>
+<h2>Radar Chart</h2>
 <div class="row">
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
@@ -22,6 +22,7 @@
             Options = new RadarChartOptions
             {
                 Text = "Sample chart from Blazor",
+                Responsive = true,
                 Display = true,
                 Title = new OptionsTitle {Display = "radar chart title display", Text = "some text"},
                 Legend = new RadarChartLegend {Position = Position.top},
@@ -38,10 +39,11 @@
                         Label = "1st Dataset",
                         Data = new List<int> {19, 12, 5, 3, 3, 2},
                         BorderWidth = 2,
-                        RadarChartPointStyle = RadarChartPointStyles.triangle,
-                        PointBackgroundColor = "#a4cef0",
-                        PointRadius = 5,
-                        PointBorderWidth = 1
+                        Fill = true,
+                        PointStyle = new RadarChartPointStyles[] {RadarChartPointStyles.DASH},
+                        PointBackgroundColor = new[] {"#a4cef0"},
+                        PointRadius = new[] {5},
+                        PointBorderWidth = new[] {1}
                     }
                 }
             }
@@ -56,10 +58,10 @@
 
     public void UpdateChart()
     {
-        //Add new dataset
+    //Add new dataset
         var rand = new Random();
         var max = radarChartConfig.Data.Datasets.First().Data.Max();
-        //var color = $"#{rand.Next(0x1000000):X6}";
+    //var color = $"#{rand.Next(0x1000000):X6}";
         var color = $"#{rand.Next(16777215):X6}";
         radarChartConfig.Data.Datasets.Add(new RadarChartDataset
         {
@@ -68,8 +70,10 @@
             Label = "2nd Dataset",
             Data = new List<int> {rand.Next(max), rand.Next(max), rand.Next(max), rand.Next(max), rand.Next(max), rand.Next(max)},
             BorderWidth = 2,
-            PointRadius = 3,
-            PointBorderWidth = 1
+            Fill = true,
+            PointRadius = new[] {3},
+            PointBorderWidth = new[] {1},
+            PointStyle = new[] {RadarChartPointStyles.RETROUNDED}
         });
 
         radarChartJs.UpdateChart(radarChartConfig);

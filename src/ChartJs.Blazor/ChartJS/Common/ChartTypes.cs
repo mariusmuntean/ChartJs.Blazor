@@ -1,4 +1,4 @@
-﻿namespace ChartJs.Blazor.ChartJS
+﻿namespace ChartJs.Blazor.ChartJS.Common
 {
     public class ChartTypes
     {

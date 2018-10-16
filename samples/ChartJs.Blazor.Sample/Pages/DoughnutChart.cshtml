@@ -3,7 +3,7 @@
 @using ChartJs.Blazor.ChartJS.DoughnutChart
 @using ChartJs.Blazor.Util.Color
 
-<h2>Chart JS charts using Blazor</h2>
+<h2>Doughnut Chart</h2>
 <div class="row">
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
@@ -61,7 +61,13 @@
     {
         var rand = new Random();
 
-        var colors = new[] {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()};
+        var colors = new[]
+        {
+            ColorUtil.RandomColorString(),
+            ColorUtil.RandomColorString(),
+            ColorUtil.RandomColorString(),
+            ColorUtil.RandomColorString()
+        };
         var doughnutDataset = new DoughnutDataset
         {
             BackgroundColor = colors,
@@ -71,7 +77,7 @@
             HoverBackgroundColor = colors,
             HoverBorderColor = colors,
             HoverBorderWidth = new[] {1, 1, 1, 1},
-            BorderColor = new[] {"#ffffff", "#ffffff", "#ffffff", "#ffffff"}
+            BorderColor = new[] {"#ffffff", "#ffffff", "#ffffff", "#ffffff"},
         };
 
         doughnutChartConfig.Data.Datasets.Add(doughnutDataset);

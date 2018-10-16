@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ChartJs.Blazor.ChartJS.Common;
 
 namespace ChartJs.Blazor.ChartJS.PieChart
 {
