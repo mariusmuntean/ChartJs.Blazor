@@ -44,6 +44,9 @@ Supports: LineChart, BarChart, RadarCart, Doughnut- and Pie-Chart, BubbleChart, 
     <Content Update="Charts\ChartJsDoughnutChart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Charts\ChartJsPolarAreaChart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Charts\ChartJsPieChart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

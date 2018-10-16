@@ -5,6 +5,7 @@ using ChartJs.Blazor.ChartJS.DoughnutChart;
 using ChartJs.Blazor.ChartJS.LineChart;
 using ChartJs.Blazor.ChartJS.MixedChart;
 using ChartJs.Blazor.ChartJS.PieChart;
+using ChartJs.Blazor.ChartJS.PolarAreaChart;
 using ChartJs.Blazor.ChartJS.RadarChart;
 using Microsoft.JSInterop;
 
@@ -30,6 +31,11 @@ namespace ChartJs.Blazor.ChartJS
         public static Task<bool> InitializeBubbleChart(BubbleChartConfig bubbleChart)
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.InitializeBubbleChart", bubbleChart);
+        }
+
+        public static Task<bool> InitializePolarAreaChart(PolarAreaChartConfig config)
+        {
+            return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.InitializePolarAreaChart", config);
         }
 
         public static Task<bool> InitializeBarChart(BarChartConfig barChartConfig)
@@ -80,6 +86,11 @@ namespace ChartJs.Blazor.ChartJS
         public static Task<bool> UpdateBubbleChart(BubbleChartConfig bubbleChart)
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.UpdateBubbleChart", bubbleChart);
+        }
+
+        public static Task<bool> UpdatePolarAreaChart(PolarAreaChartConfig config)
+        {
+            return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.UpdatePolarAreaChart", config);
         }
     }
 }

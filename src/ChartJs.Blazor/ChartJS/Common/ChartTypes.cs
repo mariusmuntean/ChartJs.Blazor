@@ -9,6 +9,7 @@
         public static ChartTypes DOUGHNUT = new ChartTypes("doughnut");
         public static ChartTypes RADAR = new ChartTypes("radar");
         public static ChartTypes BUBBLE = new ChartTypes("bubble");
+        public static ChartTypes POLARAREA = new ChartTypes("polarArea");
 
         private readonly string _chartType;
 

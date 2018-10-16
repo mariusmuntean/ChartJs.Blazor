@@ -1,4 +1,4 @@
-﻿namespace ChartJs.Blazor.ChartJS.RadarChart
+﻿namespace ChartJs.Blazor.ChartJS.Common
 {
     public class Ticks
     {

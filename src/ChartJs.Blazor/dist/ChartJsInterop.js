@@ -58,6 +58,14 @@ window.ChartJSInterop = {
 
         return true;
     },
+    InitializePolarAreaChart: function(config) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
+            let thisChart = initializeChartjsChart2(config);
+            BlazorCharts.push({ id: config.canvasId, chart: thisChart });
+        }
+
+        return true;
+    },
     UpdateLineChart: function(config) {
         if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
             throw `Could not find a chart with the given id. ${config.canvasId}`;
@@ -152,6 +160,19 @@ window.ChartJSInterop = {
         return true;
     },
     UpdateBubbleChart: function(config) {
+        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
+            throw `Could not find a chart with the given id. ${config.canvasId}`;
+
+        let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
+
+        myChart.chart.destroy();
+        myChart.chart = {};
+        let newChart = initializeChartjsChart2(config);
+        myChart.chart = newChart;
+
+        return true;
+    },
+    UpdatePolarAreaChart: function(config) {
         if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
             throw `Could not find a chart with the given id. ${config.canvasId}`;
 

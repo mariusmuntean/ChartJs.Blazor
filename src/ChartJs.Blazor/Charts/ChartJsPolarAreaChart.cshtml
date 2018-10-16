@@ -1,0 +1,36 @@
+﻿@using ChartJs.Blazor.ChartJS
+@using ChartJs.Blazor.ChartJS.PolarAreaChart
+
+<div class="row">
+    <div class="container">
+        <canvas id="@Config.CanvasId" width="@Width" height="@Height"></canvas>
+    </div>
+</div>
+
+@functions {
+
+    [Parameter]
+    PolarAreaChartConfig Config { get; set; }
+
+    [Parameter]
+    int Width { get; set; } = 400;
+
+    [Parameter]
+    int Height { get; set; } = 400;
+
+    protected override void OnAfterRender()
+    {
+        ChartJsInterop.InitializePolarAreaChart(Config);
+    }
+
+    void DisplayChart()
+    {
+        ChartJsInterop.InitializePolarAreaChart(Config);
+    }
+
+    public void UpdateChart(PolarAreaChartConfig config)
+    {
+        ChartJsInterop.UpdatePolarAreaChart(config);
+    }
+
+}
