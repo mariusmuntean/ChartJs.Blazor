@@ -1,5 +1,6 @@
 ﻿@page "/DoughnutChart"
 @using ChartJs.Blazor.ChartJS.DoughnutChart
+@using ChartJs.Blazor.Util.Color
 
 <h2>Chart JS charts using Blazor</h2>
 <div class="row">
@@ -22,7 +23,7 @@
                 Text = "Sample chart from Blazor",
                 Animation = new DoughnutAnimation
                 {
-                    AnimateRotate = true, 
+                    AnimateRotate = true,
                     AnimateScale = true
                 },
                 Display = true,
@@ -59,14 +60,15 @@
     {
         var rand = new Random();
 
+        var colors = new[] {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()};
         var doughnutDataset = new DoughnutDataset
         {
-            BackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
+            BackgroundColor = colors,
             Label = "Light Red",
             Data = new List<int> {rand.Next(10), rand.Next(10), rand.Next(10), rand.Next(10)},
             BorderWidth = 0,
-            HoverBackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
-            HoverBorderColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
+            HoverBackgroundColor = colors,
+            HoverBorderColor = colors,
             HoverBorderWidth = new[] {1, 1, 1, 1},
             BorderColor = new[] {"#ffffff", "#ffffff", "#ffffff", "#ffffff"}
         };

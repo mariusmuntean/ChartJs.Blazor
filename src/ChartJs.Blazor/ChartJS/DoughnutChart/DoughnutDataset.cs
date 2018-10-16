@@ -8,24 +8,35 @@ namespace ChartJs.Blazor.ChartJS.DoughnutChart
 
         public string Label { get; set; } = "";
 
-        public int BorderWidth { get; set; }
-        public string[] HoverBackgroundColor { get; set; }
-        public string[] HoverBorderColor { get; set; }
-        public int[] HoverBorderWidth { get; set; }
-
         /// <summary>
-        /// The fill color under the line.
-        /// AS-IS: We only accept colors as string values. Normal colors and HTML Hex colors are ok to use.
-        /// TODO: Accept some form of actual color information rather than strings.
+        /// The fill color of the arcs in the dataset.
         /// </summary>
         public string[] BackgroundColor { get; set; }
 
         /// <summary>
-        /// The color of the line
-        /// AS-IS: We only accept string colors.
-        /// TODO: Accept some form of actual color information rather than strings.
+        /// The border color of the arcs in the dataset.
         /// </summary>
         public string[] BorderColor { get; set; }
+
+        /// <summary>
+        /// The border width of the arcs in the dataset.
+        /// </summary>
+        public int BorderWidth { get; set; }
+
+        /// <summary>
+        /// The fill colour of the arcs when hovered.
+        /// </summary>
+        public string[] HoverBackgroundColor { get; set; }
+
+        /// <summary>
+        /// The stroke colour of the arcs when hovered.
+        /// </summary>
+        public string[] HoverBorderColor { get; set; }
+
+        /// <summary>
+        /// The stroke width of the arcs when hovered.
+        /// </summary>
+        public int[] HoverBorderWidth { get; set; }
 
         public List<int> Data { get; set; }
     }
