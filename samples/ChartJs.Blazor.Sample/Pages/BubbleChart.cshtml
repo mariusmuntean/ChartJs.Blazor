@@ -1,5 +1,7 @@
 ﻿@page "/BubbleChart"
 @using ChartJs.Blazor.ChartJS.BubbleChart
+@using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.Util.Color
 
 <h2>Chart JS charts using Blazor</h2>
 <div class="row">
@@ -21,7 +23,9 @@
             {
                 Text = "Sample chart from Blazor",
                 Display = true,
-                Responsive = true
+                Responsive = true,
+                Title = new OptionsTitle() {Display = "IUG", Text = "I R TITLE"},
+                Tooltips = new Tooltips() {Mode = TooltipMode.point}
             },
             Data = new BubbleChartData
             {
@@ -30,29 +34,34 @@
                 {
                     new BubbleChartDataset
                     {
-                        BackgroundColor = "#ff6384",
-                        Label = "Light Red",
+                        BackgroundColor = ColorUtil.RandomColorString(),
+                        Label = "Rando",
                         Data = new List<BubbleData>
                         {
                             new BubbleData {x = 1, y = 1, r = 5},
                             new BubbleData {x = 2, y = 1.9, r = 5},
                             new BubbleData {x = 3, y = 3, r = 6}
                         },
-                        BorderWidth = 0, HitRadius = 3, Radius = 3, HoverRadius = 5,
-                        HoverBackgroundColor = "#f06384", HoverBorderColor = "#f06384", HoverBorderWidth = 1, BorderColor = "#ccddee"
+                        BorderWidth = 1,
+                        BorderColor = "#ccddee"
                     },
                     new BubbleChartDataset
                     {
-                        BackgroundColor = "#6363ff",
-                        Label = "Light Blue",
+                        BackgroundColor = ColorUtil.RandomColorString(),
+                        Label = "Another rando",
                         Data = new List<BubbleData>
                         {
                             new BubbleData {x = 1, y = 3, r = 9},
                             new BubbleData {x = 2, y = 2.1, r = 7},
                             new BubbleData {x = 3, y = 1, r = 3}
                         },
-                        BorderWidth = 0, HitRadius = 3, Radius = 3, HoverRadius = 5,
-                        HoverBackgroundColor = "#f06384", HoverBorderColor = "#f06384", HoverBorderWidth = 1, BorderColor = "#aabbcc"
+                        BorderWidth = 0,
+                        HitRadius = 3,
+                        Radius = 3,
+                        HoverRadius = 5,
+                        HoverBackgroundColor = "#f06384",
+                        HoverBorderColor = "#f06384",
+                        BorderColor = "#aabbcc"
                     }
                 }
             }
@@ -69,25 +78,13 @@
     {
         var rand = new Random();
 
-        bubbleChartConfig.Data.Datasets.Add(new BubbleChartDataset
-        {
-            BackgroundColor = "#6363ff",
-            Label = "Light Blue",
-            Data = new List<BubbleData>
+        bubbleChartConfig.Data.Datasets.ForEach(dataset =>
+            dataset.Data.Add(new BubbleData
             {
-                new BubbleData {x = rand.NextDouble() * 5, y = rand.NextDouble() * 5, r = rand.NextDouble() * 8},
-                new BubbleData {x = rand.NextDouble() * 5, y = rand.NextDouble() * 5, r = rand.NextDouble() * 8},
-                new BubbleData {x = rand.NextDouble() * 5, y = rand.NextDouble() * 5, r = rand.NextDouble() * 8}
-            },
-            BorderWidth = 0,
-            HitRadius = 3,
-            Radius = 3,
-            HoverRadius = 5,
-            HoverBackgroundColor = "#f06384",
-            HoverBorderColor = "#f06384",
-            HoverBorderWidth = 1,
-            BorderColor = "#aabbcc"
-        });
+                x = rand.NextDouble() * 5,
+                y = rand.NextDouble() * 5,
+                r = rand.NextDouble() * 8
+            }));
 
         bubbleChartJs.UpdateChart(bubbleChartConfig);
     }

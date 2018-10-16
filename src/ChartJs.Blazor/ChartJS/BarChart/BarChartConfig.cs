@@ -2,6 +2,9 @@
 {
     public class BarChartConfig
     {
+        /// <summary>
+        /// Either 'bar' or 'horizontalBar'
+        /// </summary>
         public string Type { get; set; } = ChartTypes.BAR.ToString();
 
         public BarChartData Data { get; set; }

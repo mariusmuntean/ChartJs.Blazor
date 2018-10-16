@@ -1,6 +1,6 @@
 ﻿namespace ChartJs.Blazor.ChartJS
 {
-    public class ChartJSRadarDataset : ChartJsDataset
+    public class ChartJSRadarDataset
     {
         public int BorderWidth { get; set; } = 1;
         public string PointBackgroundColor { get; set; } = "#DB5571";
@@ -14,10 +14,12 @@
             get { return RadarChartPointStyle.ToString(); }
         }
 
-        public override string Type { get; } = ChartTypes.RADAR.ToString();
+        public string Type { get; } = ChartTypes.RADAR.ToString();
+
+        public string Label { get; set; }
 
         /// <summary>
-        /// The fill color under the line. 
+        /// The fill color under the line.
         /// AS-IS: We only accept colors as string values. Normal colors and HTML Hex colors are ok to use.
         /// TODO: Accept some form of actual color information rather than strings.
         /// </summary>

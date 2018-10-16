@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ChartJs.Blazor.ChartJS.MixedChart;
 
 namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
@@ -42,6 +43,6 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
         /// Specific for stacked bar charts
         /// </para>
         /// </summary>
-        public string Stack { get; set; }
+        public string Stack { get; set; } = Guid.NewGuid().ToString();
     }
 }

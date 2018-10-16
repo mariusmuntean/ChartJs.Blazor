@@ -6,7 +6,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     {
         public bool Responsive { get; set; }
         public OptionsTitle Title { get; set; }
-        public LineChartOptionsTooltips Tooltips { get; set; }
+        public Tooltips Tooltips { get; set; }
         public LineChartOptionsHover Hover { get; set; }
         public Scales Scales { get; set; }
         public string Text { get; set; }

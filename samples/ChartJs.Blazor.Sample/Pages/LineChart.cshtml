@@ -27,9 +27,9 @@
                 Display = true,
                 Responsive = true,
                 Title = new OptionsTitle {Display = "title?", Text = "Text?"},
-                Tooltips = new LineChartOptionsTooltips
+                Tooltips = new Tooltips
                 {
-                    Mode = Mode.nearest,
+                    Mode = TooltipMode.nearest,
                     Intersect = false
                 },
                 Scales = new Scales
@@ -62,7 +62,7 @@
                 Hover = new LineChartOptionsHover
                 {
                     Intersect = true,
-                    Mode = Mode.nearest
+                    Mode = TooltipMode.nearest
                 }
             },
             Data = new LineChartData

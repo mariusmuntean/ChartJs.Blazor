@@ -1,14 +1,12 @@
-﻿namespace ChartJs.Blazor.ChartJS.BarChart
+﻿using ChartJs.Blazor.ChartJS.Common;
+
+namespace ChartJs.Blazor.ChartJS.BarChart
 {
     /// <summary>
     /// Bar Chart Config Options. Source: http://www.chartjs.org/docs/latest/charts/bar.html#configuration-options
     /// </summary>
-    public class BarChartOptions
+    public class BarChartOptions : BaseChartConfigOptions
     {
-        public string Text { get; set; }
-        public bool Display { get; set; }
-        public bool Responsive { get; set; }
-
         /// <summary>
         /// Percent (0-1) of the available width each bar should be within the category width. 1.0 will take the whole category width and put the bars right next to each other
         /// </summary>

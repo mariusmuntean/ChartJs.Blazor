@@ -8,8 +8,8 @@
 <div class=@(collapseNavMenu ? "collapse" : null) onclick=@ToggleNavMenu>
     <ul class="nav flex-column">
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="/" Match=NavLinkMatch.All>
-                <span class="oi oi-bar-chart" aria-hidden="true"></span> Bar Chart
+            <NavLink class="nav-link" href="/radarchart">
+                <span class="oi oi-bar-chart" aria-hidden="true"></span> Radar Chart
             </NavLink>
         </li>
         <li class="nav-item px-3">
@@ -18,9 +18,27 @@
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="/radarchart">
-                <span class="oi oi-bar-chart" aria-hidden="true"></span> Radar Chart
-            </NavLink>
+            <span class="oi oi-bar-chart" aria-hidden="false"></span> Bar Charts
+            <ul class="nav flex-column">
+
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="/" Match=NavLinkMatch.All>
+                        <span class="oi oi-bar-chart" aria-hidden="true"></span> Simple Bar Chart
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="/StackedBarChart">
+                        <span class="oi oi-bar-chart" aria-hidden="true"></span> Stacked Bar Chart
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="/HorizontalBarChart">
+                        <span class="oi oi-bar-chart" aria-hidden="true"></span> Horizontal Bar Chart
+                    </NavLink>
+                </li>
+
+            </ul>
+
         </li>
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="/bubblechart">

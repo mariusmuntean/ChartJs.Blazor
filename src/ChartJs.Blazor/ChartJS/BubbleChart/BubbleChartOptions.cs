@@ -1,9 +1,11 @@
-﻿namespace ChartJs.Blazor.ChartJS.BubbleChart
+﻿using ChartJs.Blazor.ChartJS.Common;
+
+namespace ChartJs.Blazor.ChartJS.BubbleChart
 {
-    public class BubbleChartOptions
+    public class BubbleChartOptions : BaseChartConfigOptions
     {
-        public string Text { get; set; }
-        public bool Display { get; set; }
-        public bool Responsive { get; set; }
+        public OptionsTitle Title { get; set; }
+
+        public Tooltips Tooltips { get; set; }
     }
 }

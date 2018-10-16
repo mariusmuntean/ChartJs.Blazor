@@ -2,7 +2,7 @@
 {
     public class BubbleChartConfig
     {
-        public string Type { get; set; } = ChartTypes.BUBBLE.ToString();
+        public string Type { get; } = ChartTypes.BUBBLE.ToString();
 
         public BubbleChartData Data { get; set; }
 

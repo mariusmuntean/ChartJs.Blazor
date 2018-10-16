@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/StackedBarChart"
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
 @using ChartJs.Blazor.Util.Color
 
@@ -22,12 +22,18 @@
     {
         barChartConfig = barChartConfig ?? new BarChartConfig
         {
+            Type = ChartTypes.BAR.ToString(),
             CanvasId = "myBarChartCanvas",
             Options = new BarChartOptions
             {
                 Text = "Sample chart from Blazor",
                 Display = true,
-                Responsive = true
+                Responsive = true,
+                Scales = new BarChartOptionsScales
+                {
+                    xAxes = new[] {new BarChartAxis {Stacked = true}},
+                    yAxes = new[] {new BarChartAxis {Stacked = true}}
+                }
             },
             Data = new BarChartData
             {
@@ -39,14 +45,16 @@
                         Label = "# of Votes from blazor",
                         BackgroundColor = ColorUtil.RandomColorString(),
                         BorderColor = ColorUtil.RandomColorString(),
-                        Data = new List<dynamic> {19, 12, 5, 3, 3, 2}
+                        Data = new List<dynamic> {9, 2, 5, 3, 3, 2},
+                        Stack = "stack1"
                     },
                     new BarChartDataset
                     {
                         Label = "# of Likes from blazor",
                         BackgroundColor = ColorUtil.RandomColorString(),
                         BorderColor = ColorUtil.RandomColorString(),
-                        Data = new List<dynamic> {30, 10, 15, 13, 13, 12}
+                        Data = new List<dynamic> {30, 10, 15, 13, 13, 12},
+                        Stack = "stack1"
                     }
                 }
             }
@@ -56,13 +64,14 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender - bar");
-    //barChartJs.UpdateChart(barChartDat, barChartoptionsa);
+        //barChartJs.UpdateChart(barChartDat, barChartoptionsa);
         barChart.Update();
     }
 
     private void UpdateChart()
     {
-    //Update existing dataset
+        //Update existing dataset
+
         barChartConfig.Data.Labels.Add($"{DateTime.Now.Second}");
         barChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(DateTime.Now.Second); });
 

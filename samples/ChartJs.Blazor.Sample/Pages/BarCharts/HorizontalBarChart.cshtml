@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/HorizontalBarChart"
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
 @using ChartJs.Blazor.Util.Color
 
@@ -22,6 +22,7 @@
     {
         barChartConfig = barChartConfig ?? new BarChartConfig
         {
+            Type = ChartTypes.HORIZONTALBAR.ToString(),
             CanvasId = "myBarChartCanvas",
             Options = new BarChartOptions
             {
@@ -39,7 +40,8 @@
                         Label = "# of Votes from blazor",
                         BackgroundColor = ColorUtil.RandomColorString(),
                         BorderColor = ColorUtil.RandomColorString(),
-                        Data = new List<dynamic> {19, 12, 5, 3, 3, 2}
+                        BorderWidth = 1,
+                        Data = new List<dynamic> {9, 2, 5, 3, 3, 2}
                     },
                     new BarChartDataset
                     {
@@ -63,6 +65,7 @@
     private void UpdateChart()
     {
     //Update existing dataset
+
         barChartConfig.Data.Labels.Add($"{DateTime.Now.Second}");
         barChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(DateTime.Now.Second); });
 

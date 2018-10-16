@@ -1,8 +1,10 @@
 ﻿namespace ChartJs.Blazor.ChartJS
 {
-    public class ChartJsPieDataset : ChartJsDataset
+    public class ChartJsPieDataset
     {
-        public override string Type { get; } = ChartTypes.PIE.ToString();
+        public string Type { get; } = ChartTypes.PIE.ToString();
+
+        public string Label { get; set; }
 
         public int BorderWidth { get; set; }
         public string[] HoverBackgroundColor { get; set; }
