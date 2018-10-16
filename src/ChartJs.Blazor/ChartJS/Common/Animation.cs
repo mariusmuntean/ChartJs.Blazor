@@ -1,4 +1,4 @@
-﻿namespace ChartJs.Blazor.ChartJS.BubbleChart
+﻿namespace ChartJs.Blazor.ChartJS.Common
 {
     public class Animation
     {

@@ -2,14 +2,35 @@
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
-    public class LineChartOptions
+    public class LineChartOptions : BaseChartConfigOptions
     {
-        public bool Responsive { get; set; }
+        /// <summary>
+        /// general animation time
+        /// </summary>
+        public Animation Animation { get; set; }
+
+        /// <summary>
+        /// duration of animations when hovering an item
+        /// </summary>
+        public LineChartOptionsHover Hover { get; set; }
+
+        /// <summary>
+        /// animation duration after a resize
+        /// </summary>
+        public long ResponsiveAnimationDuration { get; set; }
+
         public OptionsTitle Title { get; set; }
         public Tooltips Tooltips { get; set; }
-        public LineChartOptionsHover Hover { get; set; }
         public Scales Scales { get; set; }
-        public string Text { get; set; }
-        public bool Display { get; set; }
+
+        /// <summary>
+        /// If false, the lines between points are not drawn.
+        /// </summary>
+        public bool ShowLines { get; set; } = true;
+
+        /// <summary>
+        /// If false, NaN data causes a break in the line.
+        /// </summary>
+        public bool SpanGaps { get; set; } = true;
     }
 }

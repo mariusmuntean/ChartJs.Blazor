@@ -4,7 +4,8 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 {
     public class LineChartOptionsHover
     {
-        public TooltipMode Mode { get; set; }
+        public Mode Mode { get; set; }
         public bool Intersect { get; set; }
+        public long AnimationDuration { get; set; }
     }
 }

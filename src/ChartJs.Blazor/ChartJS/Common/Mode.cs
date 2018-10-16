@@ -1,6 +1,6 @@
 ﻿namespace ChartJs.Blazor.ChartJS.Common
 {
-    public enum TooltipMode    
+    public enum Mode    
     {
         index,
         nearest,

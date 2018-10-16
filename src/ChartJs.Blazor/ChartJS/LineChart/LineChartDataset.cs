@@ -5,7 +5,9 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 {
     public class LineChartDataset : IMixableDataset
     {
+        public string Type { get; } = ChartTypes.LINE.ToString();
         public string Label { get; set; } = "";
+
 
         /// <summary>
         /// The ID of the x axis to plot this dataset on. If not specified, this defaults to the ID of the first found x axis
@@ -90,22 +92,25 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 
         /// <summary>
         /// If the line is shown as a stepped line.
+        ///
+        /// <para>
+        /// The following values are supported for steppedLine:
+        /// <para> false: No Step Interpolation (default)</para>
+        /// <para>true: Step-before Interpolation (eq. 'before')</para>
+        /// <para>'before': Step-before Interpolation</para>
+        /// <para>'after': Step-after Interpolation</para>
+        /// <para>If the steppedLine value is set to anything other than false, lineTension will be ignored.</para>
+        /// </para>
         /// </summary>
-        public bool SteppedLine { get; set; }
-
-        public string Type { get; } = ChartTypes.LINE.ToString();
+        public object SteppedLine { get; set; }
 
         /// <summary>
-        /// The fill color under the line. 
-        /// AS-IS: We only accept colors as string values. Normal colors and HTML Hex colors are ok to use.
-        /// TODO: Accept some form of actual color information rather than strings.
+        /// The fill color under the line.
         /// </summary>
         public string BackgroundColor { get; set; }
 
         /// <summary>
-        /// The color of the line
-        /// AS-IS: We only accept string colors.
-        /// TODO: Accept some form of actual color information rather than strings.
+        /// The color of the line. 
         /// </summary>
         public string BorderColor { get; set; }
 
