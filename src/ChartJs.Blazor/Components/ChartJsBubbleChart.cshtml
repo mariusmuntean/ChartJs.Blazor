@@ -1,6 +1,5 @@
 ﻿@using ChartJs.Blazor.ChartJS
 @using ChartJs.Blazor.ChartJS.BubbleChart
-@using Microsoft.AspNetCore.Blazor.Components
 <div class="row">
     <div class="container">
         <canvas id="@Config.CanvasId" width="@Width" height="@Height"></canvas>
@@ -20,7 +19,7 @@
 
     protected override void OnAfterRender()
     {
-       ChartJsInterop.InitializeBubbleChart(Config);
+        ChartJsInterop.InitializeBubbleChart(Config);
     }
 
     public void UpdateChart(BubbleChartConfig updatedChart)

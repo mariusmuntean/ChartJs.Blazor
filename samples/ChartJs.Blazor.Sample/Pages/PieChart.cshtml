@@ -1,5 +1,6 @@
 ﻿@page "/PieChart"
 @using ChartJs.Blazor.ChartJS
+@using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.PieChart
 @using ChartJs.Blazor.Components
 
@@ -24,7 +25,7 @@
                 Text = "Sample chart from Blazor",
                 Display = true,
                 Responsive = true,
-                Animation = new PieChartAnimation {AnimateRotate = true, AnimateScale = true}
+                Animation = new DoughnutAnimation {AnimateRotate = true, AnimateScale = true}
             },
             Data = new PieChartData
             {

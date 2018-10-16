@@ -1,0 +1,138 @@
+﻿@page "/LineChart"
+@using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.ChartJS.LineChart
+@using ChartJs.Blazor.Util.Color
+
+
+<h2>Chart JS charts using Blazor</h2>
+<div class="row">
+    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+</div>
+<ChartJsLineChart ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300"/>
+
+@functions{
+
+    public LineChartConfig lineChartConfig { get; set; }
+    ChartJsLineChart lineChartJs;
+
+    protected override void OnInit()
+    {
+        lineChartConfig = lineChartConfig ?? new LineChartConfig
+        {
+            CanvasId = "myFirstLineChart",
+            Options = new LineChartOptions
+            {
+                Text = "Sample chart from Blazor",
+                Display = true,
+                Responsive = true,
+                Title = new OptionsTitle {Display = "title?", Text = "Text?"},
+                Tooltips = new Tooltips
+                {
+                    Mode = Mode.nearest,
+                    Intersect = false
+                },
+                Scales = new Scales
+                {
+                    xAxes = new List<Axis>
+                    {
+                        new Axis
+                        {
+                            Display = "xAxesDisplay",
+                            ScaleLabel = new ScaleLabel
+                            {
+                                Display = ".",
+                                LabelString = ".labelString"
+                            }
+                        }
+                    },
+                    yAxes = new List<Axis>
+                    {
+                        new Axis
+                        {
+                            Display = "yAxes",
+                            ScaleLabel = new ScaleLabel
+                            {
+                                Display = "..",
+                                LabelString = "..label"
+                            }
+                        }
+                    }
+                },
+                Hover = new LineChartOptionsHover
+                {
+                    Intersect = true,
+                    Mode = Mode.nearest
+                }
+            },
+            Data = new LineChartData
+            {
+                Labels = new List<string> {"Red", "Blue", "Yellow", "Green", "Purple", "Orange"},
+                Datasets = new List<LineChartDataset>
+                {
+                    new LineChartDataset
+                    {
+                        BackgroundColor = "#ff6384",
+                        BorderColor = "#ff6384",
+                        Label = "# of Votes from blazor",
+                        Data = new List<dynamic> {4, 6, 2, 7, 9, 1},
+                        Fill = false,
+                        BorderWidth = 2,
+                        PointRadius = 3,
+                        PointBorderWidth = 1
+                    }
+                }
+            }
+        };
+    }
+
+    protected override void OnAfterRender()
+    {
+        Console.WriteLine("OnAfterRender");
+        lineChartJs.UpdateChart(lineChartConfig);
+    }
+
+    public void UpdateChart()
+    {
+    //Update existing dataset
+        var rand = new Random();
+        lineChartConfig.Data.Labels.Add($"New{DateTime.Now.Second}");
+
+        lineChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(rand.Next(dataset.Data.Cast<int>().Max())); });
+
+        lineChartJs.UpdateChart(lineChartConfig);
+    }
+
+
+    protected override Task OnInitAsync()
+    {
+        Console.WriteLine("OnInitAsync");
+        return Task.CompletedTask;
+    }
+
+
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine("OnParameterSet");
+    }
+
+    protected override Task OnParametersSetAsync()
+    {
+        Console.WriteLine("OnParameterSetAsync");
+        return Task.CompletedTask;
+    }
+
+
+    protected override bool ShouldRender()
+    {
+        Console.WriteLine("ShouldRender");
+        return true;
+    }
+
+
+    protected override Task OnAfterRenderAsync()
+    {
+        Console.WriteLine("OnAfterRenderAsync");
+        return Task.CompletedTask;
+    }
+
+}

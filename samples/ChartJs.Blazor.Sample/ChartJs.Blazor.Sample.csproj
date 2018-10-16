@@ -29,6 +29,9 @@
     <Content Update="Pages\DoughnutChart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\LineChart\FillLineChart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\PieChart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

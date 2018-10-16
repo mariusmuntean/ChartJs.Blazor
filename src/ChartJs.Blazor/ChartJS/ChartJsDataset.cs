@@ -1,4 +1,0 @@
-﻿namespace ChartJs.Blazor.ChartJS
-{
-
-}
