@@ -3,7 +3,7 @@
 ## Need you opinion
  
 Vote on what features you'd like to see implemented next
-[Link to Poll](poll.html)
+[Link to Poll](https://linkto.run/p/CTWCSM51)
 
 
 
