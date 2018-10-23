@@ -2,15 +2,8 @@
 
 ## Need you opinion
  
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script> 
-$(function(){
- $("#includedContent").load("poll.html"); 
-});
-</script> 
-
-<div id="includedContent"></div>
+Vote on what features you'd like to see implemented next
+[Link to Poll](poll.html)
 
 
 
