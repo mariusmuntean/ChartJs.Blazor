@@ -1,5 +1,22 @@
 ## ChartJs interop with Blazor
 
+## Need you opinion
+ 
+ <html> 
+  <head> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script> 
+    $(function(){
+    $("#includedContent").load("poll.html"); 
+    });
+    </script> 
+  </head> 
+
+  <body>
+    <div id="includedContent"></div>
+  </body> 
+</html>
+
 
 This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart.js). It was based on this repo: https://github.com/muqeet-khan/BlazorComponents
 
