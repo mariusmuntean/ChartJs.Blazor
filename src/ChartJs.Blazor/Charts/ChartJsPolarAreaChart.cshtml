@@ -28,9 +28,14 @@
         ChartJsInterop.InitializePolarAreaChart(Config);
     }
 
-    public void UpdateChart(PolarAreaChartConfig config)
+    public void Update()
     {
-        ChartJsInterop.UpdatePolarAreaChart(config);
+        ChartJsInterop.UpdatePolarAreaChart(Config);
+    }
+    
+    public void Reload()
+    {
+        ChartJsInterop.ReloadPolarAreaChart(Config);
     }
 
 }

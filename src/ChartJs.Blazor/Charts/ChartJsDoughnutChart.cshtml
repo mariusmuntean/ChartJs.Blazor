@@ -1,6 +1,5 @@
 ﻿@using ChartJs.Blazor.ChartJS
 @using ChartJs.Blazor.ChartJS.DoughnutChart
-@using Microsoft.AspNetCore.Blazor.Components
 
 <div class="row">
     <div class="container">
@@ -29,9 +28,14 @@
         ChartJsInterop.InitializeDoughnutChart(Config);
     }
 
-    public void UpdateChart(DoughnutChartConfig config)
+    public void Update()
     {
-        ChartJsInterop.UpdateDoughnutChart(config);
+        ChartJsInterop.UpdateDoughnutChart(Config);
+    }
+    
+    public void Reload()
+    {
+        ChartJsInterop.ReloadDoughnutChart(Config);
     }
 
 }

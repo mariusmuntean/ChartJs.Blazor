@@ -87,7 +87,7 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        lineChartJs.UpdateChart(lineChartConfig);
+        lineChartJs.Reload();
     }
 
     public void UpdateChart()
@@ -98,7 +98,7 @@
 
         lineChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(rand.Next(dataset.Data.Cast<int>().Max())); });
 
-        lineChartJs.UpdateChart(lineChartConfig);
+        lineChartJs.Reload();
     }
 
 

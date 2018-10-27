@@ -48,7 +48,7 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        pieChartJs.UpdateChart(pieChartConfig);
+        pieChartJs.Reload();
     }
 
     public void UpdateChart()
@@ -72,7 +72,7 @@
             }
         };
 
-        pieChartJs.UpdateChart(pieChartConfig);
+        pieChartJs.Reload();
     }
 
 }

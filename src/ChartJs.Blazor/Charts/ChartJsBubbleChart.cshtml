@@ -22,9 +22,14 @@
         ChartJsInterop.InitializeBubbleChart(Config);
     }
 
-    public void UpdateChart(BubbleChartConfig updatedChart)
+    public void Update()
     {
-        ChartJsInterop.UpdateBubbleChart(updatedChart);
+        ChartJsInterop.UpdateBubbleChart(Config);
+    }
+
+    public void Reload()
+    {
+        ChartJsInterop.ReloadBubbleChart(Config);
     }
 
 }

@@ -2,119 +2,12 @@
 
 Blazor.BlazorCharts = BlazorCharts;
 window.ChartJSInterop = {
-    InitializeBarChart: function(config) {
+    
+    InitializeChart: function(config) {
         if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
             let thisChart = initializeChartjsChart2(config);
             BlazorCharts.push({ id: config.canvasId, chart: thisChart });
         }
-
-        return true;
-    },
-    InitializeLineChart: function(config) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
-            let thisChart = initializeChartjsChart2(config);
-            BlazorCharts.push({ id: config.canvasId, chart: thisChart });
-        }
-
-        return true;
-    },
-    InitializePieChart: function(config) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
-            let thisChart = initializeChartjsChart2(config);
-            BlazorCharts.push({ id: config.canvasId, chart: thisChart });
-        }
-
-        return true;
-    },
-    InitializeDoughnutChart: function(config) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
-            let thisChart = initializeChartjsChart2(config);
-            BlazorCharts.push({ id: config.canvasId, chart: thisChart });
-        }
-
-        return true;
-    },
-    InitializeMixedChart: function(config) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
-            let thisChart = initializeChartjsChart2(config);
-            BlazorCharts.push({ id: config.canvasId, chart: thisChart });
-        }
-
-        return true;
-    },
-    InitializeRadarChart: function(config) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
-            let thisChart = initializeChartjsChart2(config);
-            BlazorCharts.push({ id: config.canvasId, chart: thisChart });
-        }
-
-        return true;
-    },
-    InitializeBubbleChart: function(config) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
-            let thisChart = initializeChartjsChart2(config);
-            BlazorCharts.push({ id: config.canvasId, chart: thisChart });
-        }
-
-        return true;
-    },
-    InitializePolarAreaChart: function(config) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
-            let thisChart = initializeChartjsChart2(config);
-            BlazorCharts.push({ id: config.canvasId, chart: thisChart });
-        }
-
-        return true;
-    },
-    UpdateLineChart: function(config) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
-            throw `Could not find a chart with the given id. ${config.canvasId}`;
-
-        let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
-
-        myChart.chart.destroy();
-        myChart.chart = {};
-        let newChart = initializeChartjsChart2(config);
-        myChart.chart = newChart;
-
-        return true;
-    },
-    UpdatePieChart: function(config) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
-            throw `Could not find a chart with the given id. ${config.canvasId}`;
-
-        let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
-
-        myChart.chart.destroy();
-        myChart.chart = {};
-        let newChart = initializeChartjsChart2(config);
-        myChart.chart = newChart;
-
-        return true;
-    },
-    UpdateDoughnutChart: function(config) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
-            throw `Could not find a chart with the given id. ${config.canvasId}`;
-
-        let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
-
-        myChart.chart.destroy();
-        myChart.chart = {};
-        let newChart = initializeChartjsChart2(config);
-        myChart.chart = newChart;
-
-        return true;
-    },
-    UpdateBarChart: function(config) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
-            throw `Could not find a chart with the given id. ${config.canvasId}`;
-
-        let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
-
-        myChart.chart.destroy();
-        myChart.chart = {};
-        let newChart = initializeChartjsChart2(config);
-        myChart.chart = newChart;
 
         return true;
     },
@@ -132,56 +25,22 @@ window.ChartJSInterop = {
 
         return true;
     },
-
-    UpdateMixedChart: function(config) {
+    
+    UpdateChart: function(config) {
         if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
             throw `Could not find a chart with the given id. ${config.canvasId}`;
 
         let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
 
-        myChart.chart.destroy();
-        myChart.chart = {};
-        let newChart = initializeChartjsChart2(config);
-        myChart.chart = newChart;
+        myChart.chart.config.data.datasets = config.data.datasets;
+        myChart.chart.config.data.labels = config.data.labels;
 
-        return true;
-    },
-    UpdateRadarChart: function(config) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
-            throw `Could not find a chart with the given id. ${config.canvasId}`;
-
-        let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
-
-        myChart.chart.destroy();
-        myChart.chart = {};
-        let newChart = initializeChartjsChart2(config);
-        myChart.chart = newChart;
-
-        return true;
-    },
-    UpdateBubbleChart: function(config) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
-            throw `Could not find a chart with the given id. ${config.canvasId}`;
-
-        let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
-
-        myChart.chart.destroy();
-        myChart.chart = {};
-        let newChart = initializeChartjsChart2(config);
-        myChart.chart = newChart;
-
-        return true;
-    },
-    UpdatePolarAreaChart: function(config) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
-            throw `Could not find a chart with the given id. ${config.canvasId}`;
-
-        let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
-
-        myChart.chart.destroy();
-        myChart.chart = {};
-        let newChart = initializeChartjsChart2(config);
-        myChart.chart = newChart;
+        myChart.chart.render({
+            duration: 800,
+            lazy: false,
+            easing: 'easeOutBounce'
+        });
+        myChart.chart.update();
 
         return true;
     }

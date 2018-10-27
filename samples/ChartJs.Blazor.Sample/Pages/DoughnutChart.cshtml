@@ -54,7 +54,7 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        _doughnutChartJs.UpdateChart(doughnutChartConfig);
+        _doughnutChartJs.Reload();
     }
 
     public void UpdateChart()
@@ -81,7 +81,7 @@
         };
 
         doughnutChartConfig.Data.Datasets.Add(doughnutDataset);
-        _doughnutChartJs.UpdateChart(doughnutChartConfig);
+        _doughnutChartJs.Reload();
     }
 
 }

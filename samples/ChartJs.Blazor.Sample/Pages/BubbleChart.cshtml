@@ -25,11 +25,11 @@
                 Display = true,
                 Responsive = true,
                 Title = new OptionsTitle() {Display = "IUG", Text = "I R TITLE"},
-                Tooltips = new Tooltips() {Mode = Mode.point}
+                Tooltips = new Tooltips() {Mode = Mode.point},
             },
             Data = new BubbleChartData
             {
-                Animation = new Animation {Duration = 8000},
+                Animation = new Animation {Duration = 0},
                 Datasets = new List<BubbleChartDataset>
                 {
                     new BubbleChartDataset
@@ -71,7 +71,7 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        bubbleChartJs.UpdateChart(bubbleChartConfig);
+        bubbleChartJs.Reload();
     }
 
     public void UpdateChart()
@@ -86,7 +86,7 @@
                 r = rand.NextDouble() * 8
             }));
 
-        bubbleChartJs.UpdateChart(bubbleChartConfig);
+        bubbleChartJs.Reload();
     }
 
 }

@@ -1,6 +1,5 @@
 ﻿@using ChartJs.Blazor.ChartJS
 @using ChartJs.Blazor.ChartJS.RadarChart
-@using Microsoft.AspNetCore.Blazor.Components
 
 <div class="row">
     <div class="container">
@@ -26,9 +25,14 @@
         ChartJsInterop.InitializeRadarChart(Config);
     }
 
-    public void UpdateChart(RadarChartConfig chartConfig)
+    public void Update()
     {
-        ChartJsInterop.UpdateRadarChart(chartConfig);
+        ChartJsInterop.UpdateRadarChart(Config);
+    }
+
+    public void Reload()
+    {
+        ChartJsInterop.ReloadRadarChart(Config);
     }
 
 }

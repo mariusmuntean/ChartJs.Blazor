@@ -63,8 +63,7 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender - bar");
-        //barChartJs.UpdateChart(barChartDat, barChartoptionsa);
-        barChart.Update();
+        barChart.Reload();
     }
 
     private void UpdateChart()
@@ -74,7 +73,7 @@
         barChartConfig.Data.Labels.Add($"{DateTime.Now.Second}");
         barChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(DateTime.Now.Second); });
 
-        barChart.Update();
+        barChart.Reload();
     }
 
 }

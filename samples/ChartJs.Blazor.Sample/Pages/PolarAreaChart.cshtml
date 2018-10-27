@@ -52,7 +52,7 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        polarAreaChart.UpdateChart(polarAreaChartConfig);
+        polarAreaChart.Reload();
     }
 
     public void UpdateChart()
@@ -69,7 +69,7 @@
         ds1.BorderWidth.Add(1);
         ds1.BackgroundColor.Add(ColorUtil.RandomColorString());
 
-        polarAreaChart.UpdateChart(polarAreaChartConfig);
+        polarAreaChart.Reload();
     }
 
 }

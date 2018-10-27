@@ -26,7 +26,7 @@ Supports: LineChart, BarChart, RadarCart, Doughnut- and Pie-Chart, BubbleChart, 
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <AssemblyName>ChartJs.Blazor</AssemblyName>
     <RootNamespace>ChartJs.Blazor</RootNamespace>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>0.4.0-alpha</Version>
     <AssemblyVersion>0.4.0.0</AssemblyVersion>
     <FileVersion>0.4.0.0</FileVersion>

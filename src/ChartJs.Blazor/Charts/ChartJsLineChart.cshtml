@@ -1,6 +1,5 @@
 ﻿@using ChartJs.Blazor.ChartJS
 @using ChartJs.Blazor.ChartJS.LineChart
-@using Microsoft.AspNetCore.Blazor.Components
 
 <div class="row">
     <div class="container">
@@ -31,14 +30,19 @@
         ChartJsInterop.InitializeLineChart(Config).ConfigureAwait(false);
     }
 
-    void DisplayChart()
+    public void DisplayChart()
     {
         ChartJsInterop.InitializeLineChart(Config);
     }
 
-    public void UpdateChart(LineChartConfig config)
+    public void Update()
     {
-        ChartJsInterop.UpdateLineChart(config);
+        ChartJsInterop.UpdateLineChart(Config);
+    }
+    
+    public void Reload()
+    {
+        ChartJsInterop.ReloadLineChart(Config);
     }
 
 }

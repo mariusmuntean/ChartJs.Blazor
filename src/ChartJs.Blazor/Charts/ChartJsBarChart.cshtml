@@ -23,9 +23,15 @@
         ChartJsInterop.InitializeBarChart(Config);
     }
 
-    public void Update()
+    public void Reload()
     {
         ChartJsInterop.ReloadBarChart(Config);
+    }
+
+
+    public void Update()
+    {
+        ChartJsInterop.UpdateBarChart(Config);
     }
 
 }

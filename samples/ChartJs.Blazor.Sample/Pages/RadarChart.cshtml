@@ -53,7 +53,7 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        radarChartJs.UpdateChart(radarChartConfig);
+        radarChartJs.Reload();
     }
 
     public void UpdateChart()
@@ -76,7 +76,7 @@
             PointStyle = new[] {RadarChartPointStyles.RETROUNDED}
         });
 
-        radarChartJs.UpdateChart(radarChartConfig);
+        radarChartJs.Reload();
     }
 
 }

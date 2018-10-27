@@ -1,6 +1,5 @@
 ﻿@using ChartJs.Blazor.ChartJS
 @using ChartJs.Blazor.ChartJS.MixedChart
-@using Microsoft.AspNetCore.Blazor.Components
 
 <div class="row">
     <div class="container">
@@ -29,9 +28,14 @@
         ChartJsInterop.InitializeMixedChart(Config);
     }
 
-    public void UpdateChart(MixedChartConfig config)
+    public void Update()
     {
-        ChartJsInterop.UpdateMixedChart(config);
+        ChartJsInterop.UpdateMixedChart(Config);
+    }
+    
+    public void Reload()
+    {
+        ChartJsInterop.ReloadMixedChart(Config);
     }
 
 }

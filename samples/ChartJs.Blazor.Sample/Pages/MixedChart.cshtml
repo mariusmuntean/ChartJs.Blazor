@@ -64,7 +64,7 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        mixedChartJs.UpdateChart(blazorMixedChartJS);
+        mixedChartJs.Reload();
     }
 
     public void UpdateChart()
@@ -72,7 +72,7 @@
         blazorMixedChartJS.Data.Labels.Add($"New {DateTime.Now.Second}");
         blazorMixedChartJS.Data.Datasets.ForEach(dataset => dataset.Data.Add(DateTime.Now.Second));
 
-        mixedChartJs.UpdateChart(blazorMixedChartJS);
+        mixedChartJs.Reload();
     }
 
 }
