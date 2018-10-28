@@ -21,8 +21,9 @@ Supports: LineChart, BarChart, RadarCart, Doughnut- and Pie-Chart, BubbleChart, 
     <PackageProjectUrl>https://github.com/mariusmuntean/ChartJs.Blazor</PackageProjectUrl>
     <PackageTags>ChartJS Blazor</PackageTags>
     <PackageSummary>Library of useful components to be used within Blazor. Starting off with a simple ChartJS port to Blazor.</PackageSummary>
-    <PackageReleaseNotes>1. Updated object model to expose even more of ChartJs.
-2. Added support for Polar Area Chart.</PackageReleaseNotes>
+    <PackageReleaseNotes>1. Simplified some behind-the-scenes code
+2. Added support for Scatter Chart
+3. Improved the samples and updated the gif</PackageReleaseNotes>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <AssemblyName>ChartJs.Blazor</AssemblyName>
     <RootNamespace>ChartJs.Blazor</RootNamespace>
