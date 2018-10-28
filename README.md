@@ -142,6 +142,8 @@ dotnet add package ChartJs.Blazor
 
 ## Sample Output
 
+Test it in your browser: https://chartjs-blazor-samples.netlify.com/
+
 Bar Chart Example:
 ![Charts](samples/ChartJs.Blazor.gif)
 
