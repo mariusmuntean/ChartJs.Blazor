@@ -1,0 +1,124 @@
+﻿@page "/ScatterChart"
+@using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.ChartJS.LineChart
+@using ChartJs.Blazor.ChartJS.ScatterChart
+@using ChartJs.Blazor.Util.Color
+
+<h2>Line Chart</h2>
+<div class="row">
+    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+</div>
+<ChartJsScatterChart ref="scatterChartJs" Config="@scatterChartConfig" Width="600" Height="300" />
+
+@functions{
+
+    public ScatterChartConfig scatterChartConfig { get; set; }
+    ChartJsScatterChart scatterChartJs;
+
+    protected override void OnInit()
+    {
+        scatterChartConfig = scatterChartConfig ?? new ScatterChartConfig
+        {
+            CanvasId = "myFirstScatterChart",
+            Options = new ScatterConfigOptions
+            {
+                Title = new OptionsTitle {Display = true, Text = "Scatter Chart"},
+                Responsive = true
+            },
+            Data = new ScatterConfigData
+            {
+                Datasets = new List<ScatterConfigDataset>
+                {
+                    new ScatterConfigDataset
+                    {
+                        Label = "First dataset",
+                        BorderColor = ColorUtil.RandomColorString(),
+                        BackgroundColor = ColorUtil.RandomColorString(),
+                        Data = new List<Point>
+                        {
+                            new Point(0.1, 0.3),
+                            new Point(0.2, 0.4),
+                            new Point(0.3, 0.5),
+                            new Point(0.4, 0.6)
+                        }
+                    },
+                    new ScatterConfigDataset
+                    {
+                        Label = "Second dataset",
+                        BorderColor = ColorUtil.RandomColorString(),
+                        BackgroundColor = ColorUtil.RandomColorString(),
+                        Data = new List<Point>
+                        {
+                            new Point(0.1, 0.3),
+                            new Point(0.2, 0.4),
+                            new Point(0.3, 0.5),
+                            new Point(0.4, 0.6)
+                        }
+                    },
+                    new ScatterConfigDataset
+                    {
+                        Label = "Third dataset",
+                        BorderColor = ColorUtil.RandomColorString(),
+                        BackgroundColor = ColorUtil.RandomColorString(),
+                        Data = new List<Point>
+                        {
+                            new Point(0.1, 0.3),
+                            new Point(0.2, 0.4),
+                            new Point(0.3, 0.5),
+                            new Point(0.4, 0.6)
+                        }
+                    }
+                }
+            }
+        };
+    }
+
+    protected override void OnAfterRender()
+    {
+        Console.WriteLine("OnAfterRender");
+        scatterChartJs.Reload();
+    }
+
+    public void UpdateChart()
+    {
+        //Update existing dataset
+        var rand = new Random();
+
+        scatterChartConfig.Data.Datasets.ForEach(dataset =>
+        {
+            dataset.Data.Add(new Point(rand.NextDouble(), rand.NextDouble()));
+        });
+
+        scatterChartJs.Reload();
+    }
+
+    protected override Task OnInitAsync()
+    {
+        Console.WriteLine("OnInitAsync");
+        return Task.CompletedTask;
+    }
+
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine("OnParameterSet");
+    }
+
+    protected override Task OnParametersSetAsync()
+    {
+        Console.WriteLine("OnParameterSetAsync");
+        return Task.CompletedTask;
+    }
+
+    protected override bool ShouldRender()
+    {
+        Console.WriteLine("ShouldRender");
+        return true;
+    }
+
+    protected override Task OnAfterRenderAsync()
+    {
+        Console.WriteLine("OnAfterRenderAsync");
+        return Task.CompletedTask;
+    }
+
+}

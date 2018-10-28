@@ -8,6 +8,7 @@ using ChartJs.Blazor.ChartJS.PolarAreaChart;
 using ChartJs.Blazor.ChartJS.RadarChart;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
+using ChartJs.Blazor.ChartJS.ScatterChart;
 
 namespace ChartJs.Blazor.ChartJS
 {
@@ -18,6 +19,10 @@ namespace ChartJs.Blazor.ChartJS
         public static Task<bool> InitializeLineChart(LineChartConfig lineChartConfig)
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.InitializeChart", lineChartConfig);
+        }
+        public static Task<bool> InitializeScatterChart(ScatterChartConfig scatterChartConfig)
+        {
+            return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.InitializeChart", scatterChartConfig);
         }
 
         public static Task<bool> InitializePieChart(PieChartConfig pieChart)
@@ -62,6 +67,11 @@ namespace ChartJs.Blazor.ChartJS
         public static Task<bool> UpdateLineChart(LineChartConfig lineChart)
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.UpdateChart", lineChart);
+        }
+
+        public static Task<bool> UpdateScatterChart(ScatterChartConfig scatterChartConfig)
+        {
+            return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.UpdateChart", scatterChartConfig);
         }
 
         public static Task<bool> UpdatePieChart(PieChartConfig pieChart)
@@ -111,6 +121,10 @@ namespace ChartJs.Blazor.ChartJS
         public static Task<bool> ReloadLineChart(LineChartConfig lineChartConfig)
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.ReloadChart", lineChartConfig);
+        }
+       public static Task<bool> ReloadScatterChart(ScatterChartConfig scatterChartConfig)
+        {
+            return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.ReloadChart", scatterChartConfig);
         }
 
         public static Task<bool> ReloadPieChart(PieChartConfig pieChart)

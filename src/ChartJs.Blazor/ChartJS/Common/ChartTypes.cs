@@ -10,6 +10,7 @@
         public static ChartTypes RADAR = new ChartTypes("radar");
         public static ChartTypes BUBBLE = new ChartTypes("bubble");
         public static ChartTypes POLARAREA = new ChartTypes("polarArea");
+        public static ChartTypes SCATTER = new ChartTypes("scatter");
 
         private readonly string _chartType;
 
@@ -22,5 +23,6 @@
         {
             return _chartType;
         }
+
     }
 }

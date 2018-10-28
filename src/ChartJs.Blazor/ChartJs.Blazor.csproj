@@ -44,7 +44,17 @@ Supports: LineChart, BarChart, RadarCart, Doughnut- and Pie-Chart, BubbleChart, 
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="ChartJS\ScatterChart - Copy\**" />
+    <Content Remove="ChartJS\ScatterChart - Copy\**" />
+    <EmbeddedResource Remove="ChartJS\ScatterChart - Copy\**" />
+    <None Remove="ChartJS\ScatterChart - Copy\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="Charts\ChartJsDoughnutChart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Charts\ChartJsScatterChart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Charts\ChartJsPolarAreaChart.cshtml">
