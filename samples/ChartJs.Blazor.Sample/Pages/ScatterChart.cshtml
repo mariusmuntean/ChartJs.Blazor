@@ -1,22 +1,35 @@
 ﻿@page "/ScatterChart"
 @using ChartJs.Blazor.ChartJS.Common
-@using ChartJs.Blazor.ChartJS.LineChart
+@using ChartJs.Blazor.ChartJS.Common.Utils
 @using ChartJs.Blazor.ChartJS.ScatterChart
-@using ChartJs.Blazor.Util.Color
+@using Newtonsoft.Json
 
-<h2>Line Chart</h2>
+<h2>Scatter Chart</h2>
 <div class="row">
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsScatterChart ref="scatterChartJs" Config="@scatterChartConfig" Width="600" Height="300" />
+<ChartJsScatterChart ref="scatterChartJs" Config="@scatterChartConfig" Width="600" Height="300"/>
+
+<textarea Width="600" Height="300" cols="100" rows="30">@datasetStr</textarea>
 
 @functions{
 
     public ScatterChartConfig scatterChartConfig { get; set; }
     ChartJsScatterChart scatterChartJs;
 
+    public string datasetStr => JsonConvert.SerializeObject(scatterChartConfig.Data.Datasets, Formatting.Indented, new JsonSerializerSettings()
+    {
+        NullValueHandling = NullValueHandling.Ignore
+    });
+
     protected override void OnInit()
     {
+        var points = new List<Point>();
+        points.Add(PointUtil.NewRandPoint(-10, 10, -10, 10));
+        points.Add(PointUtil.NewRandPoint(-10, 10, -10, 10));
+        points.Add(PointUtil.NewRandPoint(-10, 10, -10, 10));
+        points.Add(PointUtil.NewRandPoint(-10, 10, -10, 10));
+
         scatterChartConfig = scatterChartConfig ?? new ScatterChartConfig
         {
             CanvasId = "myFirstScatterChart",
@@ -32,42 +45,45 @@
                     new ScatterConfigDataset
                     {
                         Label = "First dataset",
-                        BorderColor = ColorUtil.RandomColorString(),
-                        BackgroundColor = ColorUtil.RandomColorString(),
-                        Data = new List<Point>
-                        {
-                            new Point(0.1, 0.3),
-                            new Point(0.2, 0.4),
-                            new Point(0.3, 0.5),
-                            new Point(0.4, 0.6)
-                        }
+                        BorderColor = "rgba(80,80,235,0.6)",
+                        BackgroundColor = "rgba(80,80,235,0.6)",
+                        BorderWidth = 3,
+                        PointRadius = 5,
+                        PointHitRadius = 5,
+                        Data = points
                     },
-                    new ScatterConfigDataset
-                    {
-                        Label = "Second dataset",
-                        BorderColor = ColorUtil.RandomColorString(),
-                        BackgroundColor = ColorUtil.RandomColorString(),
-                        Data = new List<Point>
-                        {
-                            new Point(0.1, 0.3),
-                            new Point(0.2, 0.4),
-                            new Point(0.3, 0.5),
-                            new Point(0.4, 0.6)
-                        }
-                    },
-                    new ScatterConfigDataset
-                    {
-                        Label = "Third dataset",
-                        BorderColor = ColorUtil.RandomColorString(),
-                        BackgroundColor = ColorUtil.RandomColorString(),
-                        Data = new List<Point>
-                        {
-                            new Point(0.1, 0.3),
-                            new Point(0.2, 0.4),
-                            new Point(0.3, 0.5),
-                            new Point(0.4, 0.6)
-                        }
-                    }
+                    //new ScatterConfigDataset
+                    //{
+                    //    Label = "Second dataset",
+                    //    BorderColor = "rgba(80,234,80,0.6)",
+                    //    BackgroundColor = "rgba(80,234,80,0.6)",
+                    //    BorderWidth = 3,
+                    //    PointRadius = 5,
+                    //    PointHitRadius = 5,
+                    //    Data = new List<Point>
+                    //    {
+                    //        PointUtil.NewRandPoint(-10, 10, -10, 10),
+                    //        PointUtil.NewRandPoint(-10, 10, -10, 10),
+                    //        PointUtil.NewRandPoint(-10, 10, -10, 10),
+                    //        PointUtil.NewRandPoint(-10, 10, -10, 10)
+                    //    }
+                    //},
+                    //new ScatterConfigDataset
+                    //{
+                    //    Label = "Third dataset",
+                    //    BorderColor = "rgba(234,80,80,0.6)",
+                    //    BackgroundColor = "rgba(234,80,80,0.6)",
+                    //    BorderWidth = 3,
+                    //    PointRadius = 5,
+                    //    PointHitRadius = 5,
+                    //    Data = new List<Point>
+                    //    {
+                    //        PointUtil.NewRandPoint(-10, 10, -10, 10),
+                    //        PointUtil.NewRandPoint(-10, 10, -10, 10),
+                    //        PointUtil.NewRandPoint(-10, 10, -10, 10),
+                    //        PointUtil.NewRandPoint(-10, 10, -10, 10)
+                    //    }
+                    //}
                 }
             }
         };
@@ -82,12 +98,9 @@
     public void UpdateChart()
     {
         //Update existing dataset
-        var rand = new Random();
 
-        scatterChartConfig.Data.Datasets.ForEach(dataset =>
-        {
-            dataset.Data.Add(new Point(rand.NextDouble(), rand.NextDouble()));
-        });
+        scatterChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(PointUtil.NewRandPoint(-10, 10, -10, 10)); });
+        //scatterChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(new Point(3,4)); });
 
         scatterChartJs.Reload();
     }
