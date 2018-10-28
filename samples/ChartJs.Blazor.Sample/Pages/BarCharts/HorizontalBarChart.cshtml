@@ -3,14 +3,16 @@
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.Util.Color
 
-    <h2>Stacked Bar Chart</h2>
-    <div class="row">
-        <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
-    </div>
-    <ChartJsBarChart ref="barChart"
-                     Config="@barChartConfig"
-                     Width="600"
-                     Height="300"/>
+<h2>Stacked Bar Chart</h2>
+<div class="row">
+    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+</div>
+<ChartJsBarChart ref="barChart"
+                 Config="@barChartConfig"
+                 Width="600"
+                 Height="300"/>
+
+<DataSetDisplay DataSets="@barChartConfig.Data.Datasets" Width="600" Height="300"/>
 
 @functions {
 

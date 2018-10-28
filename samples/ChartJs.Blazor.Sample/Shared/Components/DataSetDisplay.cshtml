@@ -1,0 +1,33 @@
+﻿@using Newtonsoft.Json
+
+<textarea Width="@Width"
+          Height="@Height"
+          Cols="@Cols"
+          Rows="@Rows"
+          style="display: block; margin-left: auto; margin-right: auto">@DatasetsStr</textarea>
+
+
+@functions {
+
+    [Parameter]
+    int Width { get; set; } = 600;
+
+    [Parameter]
+    int Height { get; set; } = 600;
+
+    [Parameter]
+    int Cols { get; set; } = 100;
+
+    [Parameter]
+    int Rows { get; set; } = 25;
+
+    [Parameter]
+    object DataSets { get; set; }
+
+    string DatasetsStr => DataSets != null ? JsonConvert.SerializeObject(DataSets, Formatting.Indented,
+        new JsonSerializerSettings()
+        {
+            NullValueHandling = NullValueHandling.Ignore
+        }) : "No data";
+
+}

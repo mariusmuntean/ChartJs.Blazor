@@ -9,6 +9,8 @@
 </div>
 <ChartJsLineChart ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
 
+<DataSetDisplay DataSets="@lineChartConfig.Data.Datasets" Width="600" Height="300" />
+
 @functions{
 
     public LineChartConfig lineChartConfig { get; set; }

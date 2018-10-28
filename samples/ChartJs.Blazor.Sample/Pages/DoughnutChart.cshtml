@@ -9,6 +9,8 @@
 </div>
 <ChartJsDoughnutChart ref="_doughnutChartJs" Config="@doughnutChartConfig" Width="600" Height="300"/>
 
+<DataSetDisplay DataSets="@doughnutChartConfig.Data.Datasets" Width="600" Height="300" />
+
 @functions{
 
     public DoughnutChartConfig doughnutChartConfig { get; set; }

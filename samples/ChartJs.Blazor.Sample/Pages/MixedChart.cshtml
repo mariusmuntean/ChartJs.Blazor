@@ -9,6 +9,8 @@
 </div>
 <ChartJsMixedChart ref="mixedChartJs" Config="@blazorMixedChartJS" Width="600" Height="300"/>
 
+<DataSetDisplay DataSets="@blazorMixedChartJS.Data.Datasets" Width="600" Height="300" />
+
 @functions {
 
     MixedChartConfig blazorMixedChartJS { get; set; }
