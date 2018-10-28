@@ -28,6 +28,9 @@
     <Content Update="Pages\BarCharts\StackedBarChart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\About.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\ScatterChart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
