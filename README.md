@@ -11,6 +11,13 @@ This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart
 
 
 ## Changelog
+<details><summary>0.4.0-alpha</summary>
+
+* Simplified some behind-the-scenes code
+* Added support for Scatter Chart
+* Improved the samples and updated the gif
+</details>
+
 <details><summary>0.3.0-alpha</summary>
 
 * Updated object model that exposes even more features of ChartJs
