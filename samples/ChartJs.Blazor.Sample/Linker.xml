@@ -28,8 +28,14 @@
   
   
   <!--
-    In this example, the app's entry point assembly is listed. The assembly
-    isn't stripped by the IL Linker.
+    Who doesn't use this at tis point?
   -->
   <assembly fullname="Newtonsoft.Json" />
+  
+  <!-- For the JSonProperty attribute -->
+  <assembly fullname="System">
+    <type fullname="System.ComponentModel.ReferenceConverter">
+      <method signature="System.Void .ctor(System.Type)" />
+    </type>
+  </assembly>
 </linker>
