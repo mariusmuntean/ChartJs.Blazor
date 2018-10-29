@@ -1,10 +1,14 @@
 ﻿@using Newtonsoft.Json
 
-<textarea Width="@Width"
-          Height="@Height"
-          Cols="@Cols"
-          Rows="@Rows"
-          style="display: block; margin-left: auto; margin-right: auto">@DatasetsStr</textarea>
+<div class="form-group">
+    <label for="textAreaId">Chart Dataset</label>
+    <textarea id="textAreaId"
+              class="form-control"
+              Width="@Width"
+              Height="@Height"
+              Rows="@Rows"
+              style="display: block; margin-left: auto; margin-right: auto">@DatasetsStr</textarea>
+</div>
 
 
 @functions {
@@ -16,7 +20,7 @@
     int Height { get; set; } = 600;
 
     [Parameter]
-    int Cols { get; set; } = 100;
+    int Cols { get; set; } = 0;
 
     [Parameter]
     int Rows { get; set; } = 25;
