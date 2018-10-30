@@ -2,6 +2,8 @@
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.Util.Color
+@using ChartJs.Blazor.Sample.Shared.Components
+@using Newtonsoft.Json
 
 <h2>Filled Line Chart</h2>
 <div class="row">
@@ -9,12 +11,24 @@
 </div>
 <ChartJsLineChart ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
 
-<DataSetDisplay DataSets="@lineChartConfig.Data.Datasets" Width="600" Height="300" />
+<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300" />
 
 @functions{
 
     public LineChartConfig lineChartConfig { get; set; }
     ChartJsLineChart lineChartJs;
+
+    DataSetDisplay _dataSetDisplay;
+
+    string DataSetsStr
+    {
+        get => JsonConvert.SerializeObject(lineChartConfig.Data.Datasets, Formatting.Indented);
+        set
+        {
+            lineChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<LineChartDataset>>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(lineChartConfig.Data.Datasets));
+        }
+    }
 
     protected override void OnInit()
     {
@@ -35,29 +49,29 @@
                 Scales = new Scales
                 {
                     xAxes = new List<Axis>
+            {
+                new Axis
                 {
-                    new Axis
+                    Display = "xAxesDisplay",
+                    ScaleLabel = new ScaleLabel
                     {
-                        Display = "xAxesDisplay",
-                        ScaleLabel = new ScaleLabel
-                        {
-                            Display = ".",
-                            LabelString = ".labelString"
-                        }
-                    }
-                },
-                    yAxes = new List<Axis>
-                {
-                    new Axis
-                    {
-                        Display = "yAxes",
-                        ScaleLabel = new ScaleLabel
-                        {
-                            Display = "..",
-                            LabelString = "..label"
-                        }
+                        Display = ".",
+                        LabelString = ".labelString"
                     }
                 }
+            },
+                    yAxes = new List<Axis>
+            {
+                new Axis
+                {
+                    Display = "yAxes",
+                    ScaleLabel = new ScaleLabel
+                    {
+                        Display = "..",
+                        LabelString = "..label"
+                    }
+                }
+            }
                 },
                 Hover = new LineChartOptionsHover
                 {
@@ -69,30 +83,30 @@
             {
                 Labels = new List<string> { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
                 Datasets = new List<LineChartDataset>
+        {
+            new LineChartDataset
             {
-                new LineChartDataset
-                {
-                    BackgroundColor = "#ff6384",
-                    BorderColor = "#ff6384",
-                    Label = "# of Votes from blazor",
-                    Data = new List<dynamic> {4, 6, 2, 7, 9, 1},
-                    Fill = true,
-                    BorderWidth = 2,
-                    PointRadius = 3,
-                    PointBorderWidth = 1
-                },
-                new LineChartDataset
-                {
-                    BackgroundColor = ColorUtil.ColorString(34, 78, 234, 0.56),
-                    BorderColor = ColorUtil.ColorString(34, 78, 234, 0.56),
-                    Label = "# of Votes from blazor",
-                    Data = new List<dynamic> {14, 16, 12, 17, 19, 11},
-                    Fill = true,
-                    BorderWidth = 2,
-                    PointRadius = 3,
-                    PointBorderWidth = 1
-                }
+                BackgroundColor = "#ff6384",
+                BorderColor = "#ff6384",
+                Label = "# of Votes from blazor",
+                Data = new List<dynamic> {4, 6, 2, 7, 9, 1},
+                Fill = true,
+                BorderWidth = 2,
+                PointRadius = 3,
+                PointBorderWidth = 1
+            },
+            new LineChartDataset
+            {
+                BackgroundColor = ColorUtil.ColorString(34, 78, 234, 0.56),
+                BorderColor = ColorUtil.ColorString(34, 78, 234, 0.56),
+                Label = "# of Votes from blazor",
+                Data = new List<dynamic> {14, 16, 12, 17, 19, 11},
+                Fill = true,
+                BorderWidth = 2,
+                PointRadius = 3,
+                PointBorderWidth = 1
             }
+        }
             }
         };
     }
@@ -101,6 +115,13 @@
     {
         Console.WriteLine("OnAfterRender");
         lineChartJs.Reload();
+
+
+        _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
+        {
+            lineChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<LineChartDataset>>(dataSetsStr);
+            lineChartJs.Reload();
+        };
     }
 
     public void UpdateChart()

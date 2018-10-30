@@ -1,6 +1,9 @@
 ﻿@page "/"
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
+@using ChartJs.Blazor.ChartJS.MixedChart
 @using ChartJs.Blazor.Util.Color
+@using ChartJs.Blazor.Sample.Shared.Components
+@using Newtonsoft.Json
 
 
 <h2>Simple Bar Chart</h2>
@@ -12,12 +15,24 @@
                  Width="600"
                  Height="300"/>
 
-<DataSetDisplay DataSets="@barChartConfig.Data.Datasets" Width="600" Height="300" />
+<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
 
 @functions {
 
-    private ChartJsBarChart barChart { get; set; }
     private BarChartConfig barChartConfig { get; set; }
+    private ChartJsBarChart barChart { get; set; }
+
+    DataSetDisplay _dataSetDisplay;
+
+    string DataSetsStr
+    {
+        get => JsonConvert.SerializeObject(barChartConfig.Data.Datasets, Formatting.Indented);
+        set
+        {
+            barChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<BaseBarChartDataset>>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(barChartConfig.Data.Datasets));
+        }
+    }
 
     protected override void OnInit()
     {
@@ -57,13 +72,18 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender - bar");
-        //barChartJs.UpdateChart(barChartDat, barChartoptionsa);
         barChart.Reload();
+
+        _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
+        {
+            barChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<BaseBarChartDataset>>(dataSetsStr);
+            barChart.Reload();
+        };
     }
 
     private void UpdateChart()
     {
-        //Update existing dataset
+    //Update existing dataset
         barChartConfig.Data.Labels.Add($"{DateTime.Now.Second}");
         barChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(DateTime.Now.Second); });
 

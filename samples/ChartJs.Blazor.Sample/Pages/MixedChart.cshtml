@@ -2,23 +2,36 @@
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
 @using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.ChartJS.MixedChart
+@using ChartJs.Blazor.Sample.Shared.Components
+@using Newtonsoft.Json
 
 <h2>Mixed Charts</h2>
 <div class="row">
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsMixedChart ref="mixedChartJs" Config="@blazorMixedChartJS" Width="600" Height="300"/>
+<ChartJsMixedChart ref="mixedChart" Config="@mixedChartConfig" Width="600" Height="300"/>
 
-<DataSetDisplay DataSets="@blazorMixedChartJS.Data.Datasets" Width="600" Height="300" />
+<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
 
 @functions {
 
-    MixedChartConfig blazorMixedChartJS { get; set; }
-    ChartJsMixedChart mixedChartJs;
+    MixedChartConfig mixedChartConfig { get; set; }
+    ChartJsMixedChart mixedChart;
+    DataSetDisplay _dataSetDisplay;
+
+    string DataSetsStr
+    {
+        get => JsonConvert.SerializeObject(mixedChartConfig.Data.Datasets, Formatting.Indented);
+        set
+        {
+            mixedChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<IMixableDataset>>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(mixedChartConfig.Data.Datasets));
+        }
+    }
 
     protected override void OnInit()
     {
-        blazorMixedChartJS = blazorMixedChartJS ?? new MixedChartConfig
+        mixedChartConfig = mixedChartConfig ?? new MixedChartConfig
         {
             CanvasId = "myFirstMixedChart",
             Options = new MixedChartOptions
@@ -66,15 +79,21 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        mixedChartJs.Reload();
+        mixedChart.Reload();
+
+        _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
+        {
+            mixedChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<IMixableDataset>>(dataSetsStr);
+            mixedChart.Reload();
+        };
     }
 
     public void UpdateChart()
     {
-        blazorMixedChartJS.Data.Labels.Add($"New {DateTime.Now.Second}");
-        blazorMixedChartJS.Data.Datasets.ForEach(dataset => dataset.Data.Add(DateTime.Now.Second));
+        mixedChartConfig.Data.Labels.Add($"New {DateTime.Now.Second}");
+        mixedChartConfig.Data.Datasets.ForEach(dataset => dataset.Data.Add(DateTime.Now.Second));
 
-        mixedChartJs.Reload();
+        mixedChart.Reload();
     }
 
 }

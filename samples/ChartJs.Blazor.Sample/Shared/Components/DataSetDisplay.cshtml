@@ -1,17 +1,21 @@
-﻿@using Newtonsoft.Json
+﻿@using ChartJs.Blazor.Sample.Shared.Extensions
 
 <div class="form-group">
-    <label for="textAreaId">Chart Dataset</label>
+    <label for="textAreaId">Chart Dataset - You can Edit Me</label>
     <textarea id="textAreaId"
+                ref="datasetsTextArea"
               class="form-control"
               Width="@Width"
               Height="@Height"
               Rows="@Rows"
-              style="display: block; margin-left: auto; margin-right: auto">@DatasetsStr</textarea>
+              oninput="@OnKeyUp"
+              bind-value-onchange="@DataSetsStr"
+              style="display: block; margin-left: auto; margin-right: auto"></textarea>
 </div>
 
-
 @functions {
+
+    ElementRef datasetsTextArea;
 
     [Parameter]
     int Width { get; set; } = 600;
@@ -25,13 +29,30 @@
     [Parameter]
     int Rows { get; set; } = 25;
 
+
+    //void OnKeyUp(UIChangeEventArgs args)
+    async void OnKeyUp(UIEventArgs args)
+    {
+        var datasetsTextAreaVal = await datasetsTextArea.GetValue().ConfigureAwait(false);
+        OnUpdatedDataSetsStr?.Invoke(datasetsTextAreaVal);
+    }
+
+    private string _dataSetsStr;
+
     [Parameter]
-    object DataSets { get; set; }
-
-    string DatasetsStr => DataSets != null ? JsonConvert.SerializeObject(DataSets, Formatting.Indented,
-        new JsonSerializerSettings()
+    string DataSetsStr
+    {
+        get => _dataSetsStr;
+        set
         {
-            NullValueHandling = NullValueHandling.Ignore
-        }) : "No data";
+            _dataSetsStr = value;
+            OnUpdatedDataSetsStr?.Invoke(_dataSetsStr);
+        }
+    }
 
+    [Parameter]
+    Action<string> DataSetsStrChanged { get; set; }
+
+    //[Parameter]
+    public Action<string> OnUpdatedDataSetsStr { get; set; }
 }

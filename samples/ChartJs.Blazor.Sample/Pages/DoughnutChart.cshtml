@@ -1,7 +1,10 @@
 ﻿@page "/DoughnutChart"
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.DoughnutChart
+@using ChartJs.Blazor.ChartJS.MixedChart
 @using ChartJs.Blazor.Util.Color
+@using ChartJs.Blazor.Sample.Shared.Components
+@using Newtonsoft.Json
 
 <h2>Doughnut Chart</h2>
 <div class="row">
@@ -9,12 +12,24 @@
 </div>
 <ChartJsDoughnutChart ref="_doughnutChartJs" Config="@doughnutChartConfig" Width="600" Height="300"/>
 
-<DataSetDisplay DataSets="@doughnutChartConfig.Data.Datasets" Width="600" Height="300" />
+<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
 
 @functions{
 
     public DoughnutChartConfig doughnutChartConfig { get; set; }
     ChartJsDoughnutChart _doughnutChartJs;
+
+    DataSetDisplay _dataSetDisplay;
+
+    string DataSetsStr
+    {
+        get => JsonConvert.SerializeObject(doughnutChartConfig.Data.Datasets, Formatting.Indented);
+        set
+        {
+            doughnutChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<DoughnutDataset>>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(doughnutChartConfig.Data.Datasets));
+        }
+    }
 
     protected override void OnInit()
     {
@@ -57,6 +72,12 @@
     {
         Console.WriteLine("OnAfterRender");
         _doughnutChartJs.Reload();
+
+        _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
+        {
+            doughnutChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<DoughnutDataset>>(dataSetsStr);
+            _doughnutChartJs.Reload();
+        };
     }
 
     public void UpdateChart()

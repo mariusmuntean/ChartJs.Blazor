@@ -1,7 +1,9 @@
 ﻿@page "/PolarAreaChart"
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.PolarAreaChart
+@using ChartJs.Blazor.Sample.Shared.Components
 @using ChartJs.Blazor.Util.Color
+@using Newtonsoft.Json
 
 <h2>Bubble Chart</h2>
 <div class="row">
@@ -9,12 +11,24 @@
 </div>
 <ChartJsPolarAreaChart ref="polarAreaChart" Config="@polarAreaChartConfig" Width="600" Height="300"/>
 
-<DataSetDisplay DataSets="@polarAreaChartConfig.Data.Datasets" Width="600" Height="300" />
+<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
 
 @functions{
 
     public PolarAreaChartConfig polarAreaChartConfig { get; set; }
     ChartJsPolarAreaChart polarAreaChart;
+
+    DataSetDisplay _dataSetDisplay;
+
+    string DataSetsStr
+    {
+        get => JsonConvert.SerializeObject(polarAreaChartConfig.Data.Datasets, Formatting.Indented);
+        set
+        {
+            polarAreaChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<PolarAreaDataset>>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(polarAreaChartConfig.Data.Datasets));
+        }
+    }
 
     protected override void OnInit()
     {
@@ -38,13 +52,13 @@
                 {
                     new PolarAreaDataset
                     {
-                        BackgroundColor = new List<string>() {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
-                        HoverBackgroundColor = new List<string>() {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
+                        BackgroundColor = new List<string> {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
+                        HoverBackgroundColor = new List<string> {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
                         Data = new List<int> {7, 4, 9, 7},
-                        BorderWidth = new List<int>() {1, 1, 1, 1},
-                        BorderColor = new List<string>() {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
+                        BorderWidth = new List<int> {1, 1, 1, 1},
+                        BorderColor = new List<string> {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
                         Label = "POLAR",
-                        HoverBorderColor = new List<string>() {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()}
+                        HoverBorderColor = new List<string> {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()}
                     }
                 }
             }
@@ -55,6 +69,12 @@
     {
         Console.WriteLine("OnAfterRender");
         polarAreaChart.Reload();
+
+        _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
+        {
+            polarAreaChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<PolarAreaDataset>>(dataSetsStr);
+            polarAreaChart.Reload();
+        };
     }
 
     public void UpdateChart()

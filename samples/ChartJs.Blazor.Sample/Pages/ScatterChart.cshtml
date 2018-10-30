@@ -2,6 +2,7 @@
 
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Utils
+@using ChartJs.Blazor.Sample.Shared.Components
 @using ChartJs.Blazor.ChartJS.ScatterChart
 @using Newtonsoft.Json
 
@@ -12,7 +13,7 @@
 
 <ChartJsScatterChart ref="scatterChartJs" Config="@scatterChartConfig" Width="600" Height="300"/>
 
-<DataSetDisplay DataSets="@scatterChartConfig.Data.Datasets" Width="600" Height="300"/>
+<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
 
 @functions{
 
@@ -20,10 +21,17 @@
     ScatterChartConfig scatterChartConfig { get; set; }
     ChartJsScatterChart scatterChartJs;
 
-    public string datasetStr => JsonConvert.SerializeObject(scatterChartConfig.Data.Datasets, Formatting.Indented, new JsonSerializerSettings()
+    DataSetDisplay _dataSetDisplay;
+
+    string DataSetsStr
     {
-        NullValueHandling = NullValueHandling.Ignore
-    });
+        get => JsonConvert.SerializeObject(scatterChartConfig.Data.Datasets, Formatting.Indented);
+        set
+        {
+            scatterChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<ScatterConfigDataset>>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(scatterChartConfig.Data.Datasets));
+        }
+    }
 
     protected override void OnInit()
     {
@@ -53,7 +61,7 @@
                         BorderWidth = 3,
                         PointRadius = 5,
                         PointHitRadius = 5,
-                        Data = points, 
+                        Data = points,
                         ShowLine = false
                     },
     //new ScatterConfigDataset
@@ -97,6 +105,12 @@
     {
         Console.WriteLine("OnAfterRender");
         scatterChartJs.Reload();
+
+        _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
+        {
+            scatterChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<ScatterConfigDataset>>(dataSetsStr);
+            scatterChartJs.Reload();
+        };
     }
 
     public void UpdateChart()

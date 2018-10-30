@@ -2,6 +2,8 @@
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.Util.Color
+@using ChartJs.Blazor.Sample.Shared.Components
+@using Newtonsoft.Json
 
 <h2>Stacked Bar Chart</h2>
 <div class="row">
@@ -12,12 +14,24 @@
                  Width="600"
                  Height="300"/>
 
-<DataSetDisplay DataSets="@barChartConfig.Data.Datasets" Width="600" Height="300"/>
+<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
 
 @functions {
 
-    private ChartJsBarChart barChart { get; set; }
     private BarChartConfig barChartConfig { get; set; }
+    private ChartJsBarChart barChart { get; set; }
+
+    DataSetDisplay _dataSetDisplay;
+
+    string DataSetsStr
+    {
+        get => JsonConvert.SerializeObject(barChartConfig.Data.Datasets, Formatting.Indented);
+        set
+        {
+            barChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<BaseBarChartDataset>>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(barChartConfig.Data.Datasets));
+        }
+    }
 
     protected override void OnInit()
     {
@@ -60,6 +74,12 @@
     {
         Console.WriteLine("OnAfterRender - bar");
         barChart.Update();
+
+        _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
+        {
+            barChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<BaseBarChartDataset>>(dataSetsStr);
+            barChart.Reload();
+        };
     }
 
     private void UpdateChart()

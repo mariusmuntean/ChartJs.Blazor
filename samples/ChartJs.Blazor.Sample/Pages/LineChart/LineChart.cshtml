@@ -1,20 +1,34 @@
 ﻿@page "/LineChart"
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.LineChart
+@using ChartJs.Blazor.Sample.Shared.Components
+@using Newtonsoft.Json
 
 
 <h2>Line Chart</h2>
 <div class="row">
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsLineChart ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300"/>
+<ChartJsLineChart ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
 
-<DataSetDisplay DataSets="@lineChartConfig.Data.Datasets" Width="600" Height="300" />
+<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300" />
 
 @functions{
 
     public LineChartConfig lineChartConfig { get; set; }
     ChartJsLineChart lineChartJs;
+
+    DataSetDisplay _dataSetDisplay;
+
+    string DataSetsStr
+    {
+        get => JsonConvert.SerializeObject(lineChartConfig.Data.Datasets, Formatting.Indented);
+        set
+        {
+            lineChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<LineChartDataset>>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(lineChartConfig.Data.Datasets));
+        }
+    }
 
     protected override void OnInit()
     {
@@ -26,7 +40,7 @@
                 Text = "Sample chart from Blazor",
                 Display = true,
                 Responsive = true,
-                Title = new OptionsTitle {Display = true, Text = "Text?"},
+                Title = new OptionsTitle { Display = true, Text = "Text?" },
                 Tooltips = new Tooltips
                 {
                     Mode = Mode.nearest,
@@ -35,29 +49,29 @@
                 Scales = new Scales
                 {
                     xAxes = new List<Axis>
+                {
+                    new Axis
                     {
-                        new Axis
+                        Display = "xAxesDisplay",
+                        ScaleLabel = new ScaleLabel
                         {
-                            Display = "xAxesDisplay",
-                            ScaleLabel = new ScaleLabel
-                            {
-                                Display = ".",
-                                LabelString = ".labelString"
-                            }
-                        }
-                    },
-                    yAxes = new List<Axis>
-                    {
-                        new Axis
-                        {
-                            Display = "yAxes",
-                            ScaleLabel = new ScaleLabel
-                            {
-                                Display = "..",
-                                LabelString = "..label"
-                            }
+                            Display = ".",
+                            LabelString = ".labelString"
                         }
                     }
+                },
+                    yAxes = new List<Axis>
+                {
+                    new Axis
+                    {
+                        Display = "yAxes",
+                        ScaleLabel = new ScaleLabel
+                        {
+                            Display = "..",
+                            LabelString = "..label"
+                        }
+                    }
+                }
                 },
                 Hover = new LineChartOptionsHover
                 {
@@ -67,21 +81,21 @@
             },
             Data = new LineChartData
             {
-                Labels = new List<string> {"Red", "Blue", "Yellow", "Green", "Purple", "Orange"},
+                Labels = new List<string> { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
                 Datasets = new List<LineChartDataset>
+            {
+                new LineChartDataset
                 {
-                    new LineChartDataset
-                    {
-                        BackgroundColor = "#ff6384",
-                        BorderColor = "#ff6384",
-                        Label = "# of Votes from blazor",
-                        Data = new List<dynamic> {4, 6, 2, 7, 9, 1},
-                        Fill = false,
-                        BorderWidth = 2,
-                        PointRadius = 3,
-                        PointBorderWidth = 1
-                    }
+                    BackgroundColor = "#ff6384",
+                    BorderColor = "#ff6384",
+                    Label = "# of Votes from blazor",
+                    Data = new List<dynamic> {4, 6, 2, 7, 9, 1},
+                    Fill = false,
+                    BorderWidth = 2,
+                    PointRadius = 3,
+                    PointBorderWidth = 1
                 }
+            }
             }
         };
     }
@@ -90,11 +104,17 @@
     {
         Console.WriteLine("OnAfterRender");
         lineChartJs.Reload();
+
+        _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
+        {
+            lineChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<LineChartDataset>>(dataSetsStr);
+            lineChartJs.Reload();
+        };
     }
 
     public void UpdateChart()
     {
-    //Update existing dataset
+        //Update existing dataset
         var rand = new Random();
         lineChartConfig.Data.Labels.Add($"New{DateTime.Now.Second}");
 
