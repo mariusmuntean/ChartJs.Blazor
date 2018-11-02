@@ -49,29 +49,29 @@
                 Scales = new Scales
                 {
                     xAxes = new List<Axis>
-            {
-                new Axis
                 {
-                    Display = "xAxesDisplay",
-                    ScaleLabel = new ScaleLabel
+                    new Axis
                     {
-                        Display = ".",
-                        LabelString = ".labelString"
+                        Display = "xAxesDisplay",
+                        ScaleLabel = new ScaleLabel
+                        {
+                            Display = ".",
+                            LabelString = ".labelString"
+                        }
                     }
-                }
-            },
+                },
                     yAxes = new List<Axis>
-            {
-                new Axis
                 {
-                    Display = "yAxes",
-                    ScaleLabel = new ScaleLabel
+                    new Axis
                     {
-                        Display = "..",
-                        LabelString = "..label"
+                        Display = "yAxes",
+                        ScaleLabel = new ScaleLabel
+                        {
+                            Display = "..",
+                            LabelString = "..label"
+                        }
                     }
                 }
-            }
                 },
                 Hover = new LineChartOptionsHover
                 {
@@ -83,30 +83,30 @@
             {
                 Labels = new List<string> { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
                 Datasets = new List<LineChartDataset>
-        {
-            new LineChartDataset
             {
-                BackgroundColor = "#ff6384",
-                BorderColor = "#ff6384",
-                Label = "# of Votes from blazor",
-                Data = new List<dynamic> {4, 6, 2, 7, 9, 1},
-                Fill = true,
-                BorderWidth = 2,
-                PointRadius = 3,
-                PointBorderWidth = 1
-            },
-            new LineChartDataset
-            {
-                BackgroundColor = ColorUtil.ColorString(34, 78, 234, 0.56),
-                BorderColor = ColorUtil.ColorString(34, 78, 234, 0.56),
-                Label = "# of Votes from blazor",
-                Data = new List<dynamic> {14, 16, 12, 17, 19, 11},
-                Fill = true,
-                BorderWidth = 2,
-                PointRadius = 3,
-                PointBorderWidth = 1
+                new LineChartDataset
+                {
+                    BackgroundColor = "#ff6384",
+                    BorderColor = "#ff6384",
+                    Label = "# of Votes from blazor",
+                    Data = new List<dynamic> {4, 6, 2, 7, 9, 1},
+                    Fill = true,
+                    BorderWidth = 2,
+                    PointRadius = 3,
+                    PointBorderWidth = 1
+                },
+                new LineChartDataset
+                {
+                    BackgroundColor = ColorUtil.ColorString(34, 78, 234, 0.56),
+                    BorderColor = ColorUtil.ColorString(34, 78, 234, 0.56),
+                    Label = "# of Votes from blazor",
+                    Data = new List<dynamic> {14, 16, 12, 17, 19, 11},
+                    Fill = true,
+                    BorderWidth = 2,
+                    PointRadius = 3,
+                    PointBorderWidth = 1
+                }
             }
-        }
             }
         };
     }
@@ -115,7 +115,6 @@
     {
         Console.WriteLine("OnAfterRender");
         lineChartJs.Reload();
-
 
         _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
         {
@@ -129,7 +128,7 @@
         //Update existing dataset
         var rand = new Random();
         lineChartConfig.Data.Labels.Add($"New{DateTime.Now.Second}");
-        var newVal = rand.Next(lineChartConfig.Data.Datasets.SelectMany(dataset => dataset.Data).Cast<int>().Max());
+        var newVal = rand.Next(lineChartConfig.Data.Datasets.SelectMany(dataset => dataset.Data).Select(Convert.ToInt32).Max());
         newVal -= 4;
         lineChartConfig.Data.Datasets.ForEach(dataset =>
         {
