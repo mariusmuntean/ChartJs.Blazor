@@ -1,8 +1,10 @@
 ﻿@page "/MixedChart"
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
+@using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.ChartJS.MixedChart
 @using ChartJs.Blazor.Sample.Shared.Components
+@using ChartJs.Blazor.Util.Color
 @using Newtonsoft.Json
 
 <h2>Mixed Charts</h2>
@@ -38,7 +40,21 @@
             {
                 Text = "Sample chart from Blazor",
                 Display = true,
-                Responsive = true
+                Responsive = true,
+                Legend = new Legend
+                {
+                    Position = LegendPosition.LEFT.ToString(),
+                    Reverse = true,
+                    Labels = new Labels
+                    {
+                        UsePointStyle = true,
+                        BoxWidth = 85,
+                        Padding = 55,
+                        FontSize = 15,
+                        FontColor = ColorUtil.ColorHexString(205, 205, 205),
+                        FontStyle = "Helvetica"
+                    }
+                }
             },
             Data = new MixedChartData
             {
@@ -47,7 +63,7 @@
                 {
                     new BarChartDataset
                     {
-                        Label = "# of Votes from blazor",
+                        Label = "1'st dataset",
                         BackgroundColor = "#4465fe",
                         BorderColor = "#4465fe",
                         Data = new List<object> {19, 12, 5, 3, 3, 2}
@@ -56,7 +72,7 @@
                     {
                         BackgroundColor = "#ff6384",
                         BorderColor = "#ff6384",
-                        Label = "# of Votes from blazor",
+                        Label = "2'nd dataset",
                         Data = new List<object> {19, 12, 5, 3, 3, 2},
                         Fill = false,
                         BorderWidth = 2,
@@ -66,7 +82,7 @@
                     ,
                     new BarChartDataset
                     {
-                        Label = "# of Votes from blazor",
+                        Label = "3'rd dataset",
                         BackgroundColor = "#cc65fe",
                         BorderColor = "#cc65fe",
                         Data = new List<object> {19, 12, 5, 3, 3, 2}
@@ -90,7 +106,7 @@
 
     public void UpdateChart()
     {
-        mixedChartConfig.Data.Labels.Add($"New {DateTime.Now.Second}");
+        mixedChartConfig.Data.Labels.Add($"P {mixedChartConfig.Data.Labels.Count + 1}");
         mixedChartConfig.Data.Datasets.ForEach(dataset => dataset.Data.Add(DateTime.Now.Second));
 
         mixedChart.Reload();

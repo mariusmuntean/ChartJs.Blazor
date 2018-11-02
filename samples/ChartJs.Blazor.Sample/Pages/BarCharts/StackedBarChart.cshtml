@@ -12,9 +12,9 @@
 <ChartJsBarChart ref="barChart"
                  Config="@barChartConfig"
                  Width="600"
-                 Height="300" />
+                 Height="300"/>
 
-<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300" />
+<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
 
 @functions {
 
@@ -33,70 +33,70 @@
         }
     }
 
-protected override void OnInit()
-{
-    barChartConfig = barChartConfig ?? new BarChartConfig
+    protected override void OnInit()
     {
-        Type = ChartTypes.BAR.ToString(),
-        CanvasId = "myBarChartCanvas",
-        Options = new BarChartOptions
+        barChartConfig = barChartConfig ?? new BarChartConfig
         {
-            Text = "Sample chart from Blazor",
-            Display = true,
-            Responsive = true,
-            Scales = new BarChartOptionsScales
+            Type = ChartTypes.BAR.ToString(),
+            CanvasId = "myBarChartCanvas",
+            Options = new BarChartOptions
             {
-                xAxes = new[] { new BarChartAxis { Stacked = true } },
-                yAxes = new[] { new BarChartAxis { Stacked = true } }
-            }
-        },
-        Data = new BarChartData
-        {
-            Labels = new List<string> { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
-            Datasets = new List<BaseBarChartDataset>
-        {
-            new BarChartDataset
-            {
-                Label = "# of Votes from blazor",
-                BackgroundColor = ColorUtil.RandomColorString(),
-                BorderColor = ColorUtil.RandomColorString(),
-                Data = new List<dynamic> {9, 2, 5, 3, 3, 2},
-                Stack = "stack1"
+                Text = "Sample chart from Blazor",
+                Display = true,
+                Responsive = true,
+                Scales = new BarChartOptionsScales
+                {
+                    xAxes = new[] {new BarChartAxis {Stacked = true}},
+                    yAxes = new[] {new BarChartAxis {Stacked = true}}
+                }
             },
-            new BarChartDataset
+            Data = new BarChartData
             {
-                Label = "# of Likes from blazor",
-                BackgroundColor = ColorUtil.RandomColorString(),
-                BorderColor = ColorUtil.RandomColorString(),
-                Data = new List<dynamic> {30, 10, 15, 13, 13, 12},
-                Stack = "stack1"
+                Labels = new List<string> {"Red", "Blue", "Yellow", "Green", "Purple", "Orange"},
+                Datasets = new List<BaseBarChartDataset>
+                {
+                    new BarChartDataset
+                    {
+                        Label = "1'st dataset",
+                        BackgroundColor = ColorUtil.RandomColorString(),
+                        BorderColor = ColorUtil.RandomColorString(),
+                        Data = new List<dynamic> {9, 2, 5, 3, 3, 2},
+                        Stack = "stack1"
+                    },
+                    new BarChartDataset
+                    {
+                        Label = "2'nd dataset",
+                        BackgroundColor = ColorUtil.RandomColorString(),
+                        BorderColor = ColorUtil.RandomColorString(),
+                        Data = new List<dynamic> {30, 10, 15, 13, 13, 12},
+                        Stack = "stack1"
+                    }
+                }
             }
-        }
-        }
-    };
-}
+        };
+    }
 
-protected override void OnAfterRender()
-{
-    Console.WriteLine("OnAfterRender - bar");
-    barChart.Reload();
-
-    
-    _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
+    protected override void OnAfterRender()
     {
-        barChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<BaseBarChartDataset>>(dataSetsStr);
+        Console.WriteLine("OnAfterRender - bar");
         barChart.Reload();
-    };
-}
 
-private void UpdateChart()
-{
+
+        _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
+        {
+            barChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<BaseBarChartDataset>>(dataSetsStr);
+            barChart.Reload();
+        };
+    }
+
+    private void UpdateChart()
+    {
     //Update existing dataset
 
-    barChartConfig.Data.Labels.Add($"{DateTime.Now.Second}");
-    barChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(DateTime.Now.Second); });
+        barChartConfig.Data.Labels.Add($"{DateTime.Now.Second}");
+        barChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(DateTime.Now.Second); });
 
-    barChart.Reload();
-}
+        barChart.Reload();
+    }
 
 }

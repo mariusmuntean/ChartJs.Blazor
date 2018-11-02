@@ -2,6 +2,7 @@
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.Sample.Shared.Components
 @using ChartJs.Blazor.ChartJS.RadarChart
+@using ChartJs.Blazor.Util.Color
 @using Newtonsoft.Json
 @using RadarChartPointStyles = ChartJs.Blazor.ChartJS.RadarChart.RadarChartPointStyles
 
@@ -39,11 +40,18 @@
                 Text = "Sample chart from Blazor",
                 Responsive = true,
                 Display = true,
-                Title = new OptionsTitle {Display = true, Text = "some text"},
-                Legend = new Legend {Position = LegendPosition.RIGHT.ToString()},
+                Title = new OptionsTitle {Display = true, Text = "Radar Chart"},
+                Legend = new Legend
+                {
+                    Position = LegendPosition.RIGHT.ToString(),
+                    Labels = new Labels()
+                    {
+                        FontColor = ColorUtil.ColorHexString(255, 87, 82)
+                    }
+                },
                 Scale = new Scale {Ticks = new Ticks {BeginAtZero = true}}
             },
-            Data = new RadarChartData()
+            Data = new RadarChartData
             {
                 Labels = new List<string> {"Eating", "Drinking", "Social", "Coding", "Cycling", "Running"},
                 Datasets = new List<RadarChartDataset>
@@ -83,13 +91,12 @@
     //Add new dataset
         var rand = new Random();
         var max = radarChartConfig.Data.Datasets.First().Data.Max();
-    //var color = $"#{rand.Next(0x1000000):X6}";
         var color = $"#{rand.Next(16777215):X6}";
         radarChartConfig.Data.Datasets.Add(new RadarChartDataset
         {
             BackgroundColor = color,
             BorderColor = color,
-            Label = "2nd Dataset",
+            Label = $"Dataset {radarChartConfig.Data.Datasets.Count + 1}",
             Data = new List<int> {rand.Next(max), rand.Next(max), rand.Next(max), rand.Next(max), rand.Next(max), rand.Next(max)},
             BorderWidth = 2,
             Fill = true,

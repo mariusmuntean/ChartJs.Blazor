@@ -40,8 +40,8 @@
                 Text = "Sample chart from Blazor",
                 Display = true,
                 Responsive = true,
-                Title = new OptionsTitle() {Display = true, Text = "I R TITLE"},
-                Tooltips = new Tooltips() {Mode = Mode.point},
+                Title = new OptionsTitle {Display = true, Text = "I R TITLE"},
+                Tooltips = new Tooltips {Mode = Mode.point},
             },
             Data = new BubbleChartData
             {
@@ -51,7 +51,7 @@
                     new BubbleChartDataset
                     {
                         BackgroundColor = ColorUtil.RandomColorString(),
-                        Label = "Rando",
+                        Label = "1'st dataset",
                         Data = new List<BubbleData>
                         {
                             new BubbleData {x = 1, y = 1, r = 5},
@@ -64,7 +64,7 @@
                     new BubbleChartDataset
                     {
                         BackgroundColor = ColorUtil.RandomColorString(),
-                        Label = "Another rando",
+                        Label = "2'd dataset",
                         Data = new List<BubbleData>
                         {
                             new BubbleData {x = 1, y = 3, r = 9},

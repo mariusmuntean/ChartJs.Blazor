@@ -43,7 +43,11 @@
             {
                 Text = "Sample chart from Blazor",
                 Display = true,
-                Responsive = true
+                Responsive = true,
+                Legend = new Legend()
+                {
+                    Position = LegendPosition.RIGHT.ToString()
+                },
             },
             Data = new BarChartData
             {
@@ -52,7 +56,7 @@
                 {
                     new BarChartDataset
                     {
-                        Label = "# of Votes from blazor",
+                        Label = "1'st dataset",
                         BackgroundColor = ColorUtil.RandomColorString(),
                         BorderColor = ColorUtil.RandomColorString(),
                         BorderWidth = 1,
@@ -60,7 +64,7 @@
                     },
                     new BarChartDataset
                     {
-                        Label = "# of Likes from blazor",
+                        Label = "2'nd dataset",
                         BackgroundColor = ColorUtil.RandomColorString(),
                         BorderColor = ColorUtil.RandomColorString(),
                         Data = new List<dynamic> {30, 10, 15, 13, 13, 12}

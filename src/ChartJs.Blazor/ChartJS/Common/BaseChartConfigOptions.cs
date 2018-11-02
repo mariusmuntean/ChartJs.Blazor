@@ -62,7 +62,9 @@ namespace ChartJs.Blazor.ChartJS.Common
         public int FontSize { get; set; } = 12;
 
         /// <summary>
-        /// Font style of text
+        /// Font style of text.
+        ///
+        /// <para>Supported fonts: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-label-configuration </para>
         /// </summary>
         public string FontStyle { get; set; } = "normal";
 
