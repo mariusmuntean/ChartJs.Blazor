@@ -1,5 +1,4 @@
 ﻿@page "/LineChart"
-@using System.ComponentModel
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.Sample.Shared.Components
@@ -41,6 +40,14 @@
                 Display = true,
                 Responsive = true,
                 Title = new OptionsTitle {Display = true, Text = "Text?"},
+                Legend = new Legend()
+                {
+                    Position = LegendPosition.BOTTOM.ToString(),
+                    Labels = new Labels()
+                    {
+                        UsePointStyle = true
+                    }
+                },
                 Tooltips = new Tooltips
                 {
                     Mode = Mode.nearest,

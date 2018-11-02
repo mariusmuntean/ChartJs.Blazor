@@ -1,9 +1,9 @@
-﻿namespace ChartJs.Blazor.ChartJS.MixedChart
+﻿using ChartJs.Blazor.ChartJS.Common;
+
+namespace ChartJs.Blazor.ChartJS.MixedChart
 {
-    public class MixedChartOptions
+    public class MixedChartOptions : BaseChartConfigOptions
     {
-        public string Text { get; set; }
-        public bool Display { get; set; }
-        public bool Responsive { get; set; }
+        
     }
 }

@@ -12,8 +12,6 @@ namespace ChartJs.Blazor.ChartJS.PolarAreaChart
 
         public DoughnutAnimation Animation { get; set; }
 
-        public PolarAreaLegend Legend { get; set; }
-
         public OptionsTitle Title { get; set; }
 
         public PolarAreaScale Scale { get; set; }

@@ -17,6 +17,18 @@ namespace ChartJs.Blazor.Util.Color
         }
 
         /// <summary>
+        /// Produces a string of the form '#aabbc' with the provided rgb values
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="g"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static string ColorHexString(byte r, byte g, byte b)
+        {
+            return $"#{r:X2}{g:X2}{b:X2}";
+        }
+
+        /// <summary>
         /// Produces a string of the form 'rgba(r, g, b, 1)' with the provided rgb and alpha values
         /// </summary>
         /// <param name="r"></param>

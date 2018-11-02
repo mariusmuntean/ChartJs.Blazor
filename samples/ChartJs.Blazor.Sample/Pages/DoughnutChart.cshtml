@@ -1,7 +1,6 @@
 ﻿@page "/DoughnutChart"
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.DoughnutChart
-@using ChartJs.Blazor.ChartJS.MixedChart
 @using ChartJs.Blazor.Util.Color
 @using ChartJs.Blazor.Sample.Shared.Components
 @using Newtonsoft.Json
@@ -45,7 +44,8 @@
                     AnimateScale = true
                 },
                 Display = true,
-                Responsive = true
+                Responsive = true,
+                Legend = new Legend() {Position = LegendPosition.RIGHT.ToString()}
             },
             Data = new DoughnutData
             {
