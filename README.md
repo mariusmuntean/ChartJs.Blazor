@@ -1,13 +1,9 @@
 ## ChartJs interop with Blazor
 
-## Need you opinion
- 
-Vote on what features you'd like to see implemented next
-[Link to Poll](https://linkto.run/p/CTWCSM51)
 
 
 
-This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart.js). It was based on this repo: https://github.com/muqeet-khan/BlazorComponents
+This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart.js).
 
 
 ## Changelog
@@ -37,6 +33,10 @@ This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart
 
 ## Please keep in mind that this is still a preview. Expect breaking changes during the next 2, 3 releases. I'm using this opportunity to learn Blazor.
 
+## Need you opinion
+ 
+Vote on what features you'd like to see implemented next
+[Link to Poll](https://linkto.run/p/CTWCSM51)
 
 ## Prerequisites
 
@@ -63,6 +63,8 @@ dotnet add package ChartJs.Blazor
 ```
 
 ## Usage
+
+For detailed instruction go to the [Wiki page](https://github.com/mariusmuntean/ChartJs.Blazor/wiki). 
 
 1. In you cshtlm create a new ChartJsPieChart and give it an instance of PieChartConfig ...
 
