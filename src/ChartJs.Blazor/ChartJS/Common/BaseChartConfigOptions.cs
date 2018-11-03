@@ -58,7 +58,7 @@ namespace ChartJs.Blazor.ChartJS.Common
     public class Labels
     {
         /// <summary>
-        /// width of coloured box
+        /// width of colored box
         /// </summary>
         public int BoxWidth { get; set; } = 40;
 
@@ -89,12 +89,12 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// Generates legend items for each thing in the legend. Default implementation returns the text + styling for the color box. See Legend Item for details.
         /// <para> See Legend Item: <see cref="http://www.chartjs.org/docs/latest/configuration/legend.html#legend-item-interface"/>  </para>
         /// </summary>
-        //public object GenerateLabels { get; set; }
+        public string GenerateLabels { get; set; }
 
-        ///
+        /// <summary>
         /// Filters legend items out of the legend. Receives 2 parameters, a Legend Item and the chart data.
-        ///
-        //public object Filter { get; set; }
+        /// </summary>
+        public string Filter { get; set; }
 
         /// <summary>
         ///Label style will match corresponding point style (size is based on fontSize, boxWidth is not used in this case).
