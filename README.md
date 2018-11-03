@@ -7,6 +7,13 @@ This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart
 
 
 ## Changelog
+<details><summary>0.5.0</summary>
+
+* Added support for Chart Legends with custom Js functions for handling onClick, onHover events for Legend Items.
+* Check out the updated samples page. You can now interact with the chart dataset.
+
+</details>
+
 <details><summary>0.4.0-alpha</summary>
 
 * Simplified some behind-the-scenes code
