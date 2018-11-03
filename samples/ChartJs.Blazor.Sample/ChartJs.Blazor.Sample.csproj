@@ -42,6 +42,9 @@
     <Content Update="Pages\About.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\Legend\CustomOnClick.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\ScatterChart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

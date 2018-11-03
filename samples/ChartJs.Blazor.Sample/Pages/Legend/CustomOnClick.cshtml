@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/Legend/CustomOnClick"
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.Util.Color
@@ -36,6 +36,7 @@
 
     protected override void OnInit()
     {
+        var rand = new Random();
         barChartConfig = barChartConfig ?? new BarChartConfig
         {
             CanvasId = "myBarChartCanvas",
@@ -43,7 +44,11 @@
             {
                 Text = "Sample chart from Blazor",
                 Display = true,
-                Responsive = true
+                Responsive = true,
+                Legend = new Legend()
+                {
+                    OnClick = "SampleFunctions.HideOtherDatasetsFunc"
+                }
             },
             Data = new BarChartData
             {
@@ -55,14 +60,28 @@
                         Label = "1'st dataset",
                         BackgroundColor = ColorUtil.RandomColorString(),
                         BorderColor = ColorUtil.RandomColorString(),
-                        Data = new List<dynamic> {19, 12, 5, 3, 3, 2}
+                        Data = new List<dynamic> {rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30)}
                     },
                     new BarChartDataset
                     {
                         Label = "2'nd dataset",
                         BackgroundColor = ColorUtil.RandomColorString(),
                         BorderColor = ColorUtil.RandomColorString(),
-                        Data = new List<dynamic> {30, 10, 15, 13, 13, 12}
+                        Data = new List<dynamic> {rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30)}
+                    },
+                    new BarChartDataset
+                    {
+                        Label = "3'rd dataset",
+                        BackgroundColor = ColorUtil.RandomColorString(),
+                        BorderColor = ColorUtil.RandomColorString(),
+                        Data = new List<dynamic> {rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30)}
+                    },
+                    new BarChartDataset
+                    {
+                        Label = "4'th dataset",
+                        BackgroundColor = ColorUtil.RandomColorString(),
+                        BorderColor = ColorUtil.RandomColorString(),
+                        Data = new List<dynamic> {rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30)}
                     }
                 }
             }
