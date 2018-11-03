@@ -20,6 +20,7 @@ namespace ChartJs.Blazor.ChartJS
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.InitializeChart", lineChartConfig);
         }
+
         public static Task<bool> InitializeScatterChart(ScatterChartConfig scatterChartConfig)
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.InitializeChart", scatterChartConfig);
@@ -54,7 +55,7 @@ namespace ChartJs.Blazor.ChartJS
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.InitializeChart", mixedChart);
         }
-        
+
         public static Task<bool> InitializeRadarChart(RadarChartConfig radarChartConfig)
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.InitializeChart", radarChartConfig);
@@ -122,7 +123,8 @@ namespace ChartJs.Blazor.ChartJS
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.ReloadChart", lineChartConfig);
         }
-       public static Task<bool> ReloadScatterChart(ScatterChartConfig scatterChartConfig)
+
+        public static Task<bool> ReloadScatterChart(ScatterChartConfig scatterChartConfig)
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.ReloadChart", scatterChartConfig);
         }
@@ -146,7 +148,7 @@ namespace ChartJs.Blazor.ChartJS
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.ReloadChart", polarAreaChartConfig);
         }
-        
+
         public static Task<bool> ReloadRadarChart(RadarChartConfig radarChartConfig)
         {
             return JSRuntime.Current.InvokeAsync<bool>("ChartJSInterop.ReloadChart", radarChartConfig);

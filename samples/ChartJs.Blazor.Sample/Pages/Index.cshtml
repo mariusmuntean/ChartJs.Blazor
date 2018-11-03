@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
+@using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.Util.Color
 @using ChartJs.Blazor.Sample.Shared.Components
 @using Newtonsoft.Json
@@ -42,7 +43,11 @@
             {
                 Text = "Sample chart from Blazor",
                 Display = true,
-                Responsive = true
+                Responsive = true,
+                Legend = new Legend()
+                {
+                    OnHover = "SampleFunctions.CustomOnHoverFunc"
+                }
             },
             Data = new BarChartData
             {

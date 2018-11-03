@@ -32,11 +32,17 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// </summary>
         public bool FullWidth { get; set; } = true;
 
-        // ToDo: decide how to implement this
-        //public object OnClick { get; set; }
+        /// <summary>
+        /// The name of a callback that is called when a click event is registered on a label item.
+        /// <para>E.g. "MyProjectNamespace.MyOnClickFunctionName" </para>
+        /// </summary>
+        public string OnClick { get; set; }
 
-        // ToDo: decide how to implement this
-        //public object OnHover { get; set; }
+        /// <summary>
+        /// The name of a callback that is called when a 'mousemove' event is registered on top of a label item
+        /// <para> E.g. "MyProjectNamespace.MyOnHoverFuncName" </para>
+        /// </summary>
+        public string OnHover { get; set; }
 
         /// <summary>
         /// Legend will show datasets in reverse order.
