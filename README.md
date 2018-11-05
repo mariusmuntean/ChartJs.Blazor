@@ -40,7 +40,7 @@ This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart
 
 ## Please keep in mind that this is still a preview. Expect breaking changes during the next 2, 3 releases. I'm using this opportunity to learn Blazor.
 
-## Need you opinion
+## Need your opinion
  
 Vote on what features you'd like to see implemented next
 [Link to Poll](https://linkto.run/p/CTWCSM51)
