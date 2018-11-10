@@ -68,17 +68,30 @@ function initializeChartjsChart2(config) {
 
     // replace the Legend OnClick function name with the actual function (if present)
     // ToDo: this can be improved a lot :D
-    if (config.options.legend.onClick &&
-        typeof config.options.legend.onClick === "string" &&
-        config.options.legend.onClick.includes(".")) {
+    if (config.options.legend.onClick) {
+        if (typeof config.options.legend.onClick === "object" &&
+            config.options.legend.onClick.hasOwnProperty('fullFunctionName')) {
 
-        var onClickNamespaceAndFunc = config.options.legend.onClick.split(".");
-        var onClickFunc = window[onClickNamespaceAndFunc[0]][onClickNamespaceAndFunc[1]];
+            var onClickNamespaceAndFunc = config.options.legend.onClick.fullFunctionName.split(".");
+            var onClickFunc = window[onClickNamespaceAndFunc[0]][onClickNamespaceAndFunc[1]];
 
-        if (typeof onClickFunc === "function") {
-            config.options.legend.onClick = onClickFunc;
-        } else { // fallback to the default
-            config.options.legend.onClick = Chart.defaults.global.legend.onClick;
+            if (typeof onClickFunc === "function") {
+                config.options.legend.onClick = onClickFunc;
+            } else { // fallback to the default
+                config.options.legend.onClick = Chart.defaults.global.legend.onClick;
+            }
+        } else if (typeof config.options.legend.onClick === "object" &&
+            config.options.legend.onClick.hasOwnProperty('assemblyName') &&
+            config.options.legend.onClick.hasOwnProperty('methodName')) {
+
+            config.options.legend.onClick = (function() {
+                var assemblyName = config.options.legend.onClick.assemblyName;
+                var methodName = config.options.legend.onClick.methodName;
+
+                return async function(sender, args) {
+                    await DotNet.invokeMethodAsync(assemblyName, methodName, sender, args);
+                }
+            })();
         }
     } else { // fallback to the default
         config.options.legend.onClick = Chart.defaults.global.legend.onClick;

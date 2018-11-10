@@ -25,6 +25,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.6.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Sotsera.Blazor.Toaster" Version="0.6.0" />
     <DotNetCliToolReference Include="Microsoft.AspNetCore.Blazor.Cli" Version="0.5.1" />
   </ItemGroup>
 
@@ -42,7 +43,10 @@
     <Content Update="Pages\About.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Legend\CustomOnClick.cshtml">
+    <Content Update="Pages\Legend\DotNetStatic-OnClick.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Legend\Js-OnClick.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\ScatterChart.cshtml">
