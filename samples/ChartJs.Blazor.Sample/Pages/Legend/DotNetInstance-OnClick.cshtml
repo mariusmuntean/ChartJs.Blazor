@@ -1,11 +1,15 @@
-﻿@page "/Legend/DotNetStaticOnClick"
+﻿@page "/Legend/DotNetInstanceOnClick"
+@using System.Dynamic
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Legends
 @using ChartJs.Blazor.Util.Color
 @using ChartJs.Blazor.Sample.Shared.Components
+@using Microsoft.Extensions.DependencyInjection
 @using Microsoft.JSInterop
 @using Newtonsoft.Json
+@using Newtonsoft.Json.Converters
+@using Newtonsoft.Json.Linq
 
 <h2>Simple Bar Chart</h2>
 <div class="row">
@@ -19,6 +23,9 @@
 <DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
 
 @functions {
+
+    [Inject]
+    protected Sotsera.Blazor.Toaster.IToaster Toaster { get; set; }
 
     private BarChartConfig barChartConfig { get; set; }
     private ChartJsBarChart barChart { get; set; }
@@ -48,7 +55,7 @@
                 Responsive = true,
                 Legend = new Legend
                 {
-                    OnClick = new DotNetStaticClickHandler(StaticClickHandler)
+                    OnClick = new DotNetInstanceClickHandler(InstanceClickHandler)
                 }
             },
             Data = new BarChartData
@@ -90,10 +97,25 @@
     }
 
     [JSInvokable]
-    public static void StaticClickHandler(object sender, object args)
+    public void InstanceClickHandler(object sender, object args)
     {
         Console.WriteLine(JsonConvert.SerializeObject(sender));
         Console.WriteLine(JsonConvert.SerializeObject(args));
+
+        var argsJObj = JObject.FromObject(args);
+
+        var clickedDatasetIndex = (int) argsJObj["datasetIndex"];
+        var clickedDatasetName = barChartConfig.Data.Datasets[clickedDatasetIndex].Label;
+
+        Toaster.Info(
+            $"'{clickedDatasetName}'",
+            "Dataset clicked",
+            options =>
+            {
+                options.VisibleStateDuration = 700;
+                options.ShowTransitionDuration = 100;
+                options.HideTransitionDuration = 100;
+            });
     }
 
     protected override void OnAfterRender()

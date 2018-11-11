@@ -35,12 +35,12 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends
     }
 
     /// <summary>
-    /// Specifies the assembly name and the name of a static .Net method that should be called when clicking on a Legend item.
+    /// Specifies a static .Net method that should be called when clicking on a Legend item.
     /// </summary>
     public class DotNetStaticClickHandler : ILegendClickHandler
     {
         /// <summary>
-        /// A delegate for a click handler.
+        /// The delegate for a click handler.
         /// <para>Helps enforcing the signature of the legend item click handler</para>
         /// </summary>
         /// <param name="sender">The sender of the click event</param>
@@ -51,6 +51,10 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends
 
         public string MethodName { get; }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="DotNetStaticClickHandler"/>
+        /// </summary>
+        /// <param name="clickHandler">The delegate for a click handler.</param>
         public DotNetStaticClickHandler(StaticClickHandler clickHandler)
         {
             if (clickHandler == null)
@@ -82,6 +86,57 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends
 
             //AssemblyName = assembly.GetName().Name;
             AssemblyName = clickHandler.Method.DeclaringType.Assembly.GetName().Name;
+            MethodName = clickHandler.Method.Name;
+        }
+    }
+    
+    /// <summary>
+    /// Specifies a.Net instance method that should be called when clicking on a Legend item.
+    /// </summary>
+    public class DotNetInstanceClickHandler : ILegendClickHandler
+    {
+        /// <summary>
+        /// The delegate for a click handler.
+        /// <para>Helps enforcing the signature of the legend item click handler</para>
+        /// </summary>
+        /// <param name="sender">The sender of the click event</param>
+        /// <param name="args">Click event args</param>
+        public delegate void InstanceClickHandler(object sender, object args);
+
+        public DotNetObjectRef InstanceRef { get; }
+
+        public string MethodName { get; }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="DotNetStaticClickHandler"/>
+        /// </summary>
+        /// <param name="clickHandler">The delegate for a click handler.</param>
+        public DotNetInstanceClickHandler(InstanceClickHandler clickHandler)
+        {
+            if (clickHandler == null)
+            {
+                throw new ArgumentNullException(nameof(clickHandler));
+            }
+
+            // the method needs to be public
+            if (!clickHandler.Method.IsPublic)
+            {
+                throw new ArgumentException("The click handler needs to be public", nameof(clickHandler));
+            }
+
+            // the method needs to have the attribute JSInvokable
+            var isJsInvokable = clickHandler
+                .Method
+                .CustomAttributes.Any(data => data.AttributeType == typeof(JSInvokableAttribute));
+            if (!isJsInvokable)
+            {
+                throw new ArgumentException("The passed in method must have the 'JSInvokable' attribute",
+                    nameof(clickHandler));
+            }
+
+            //AssemblyName = assembly.GetName().Name;
+            // clickHandler.Method.DeclaringType.Assembly.GetName().Name;
+            InstanceRef = new DotNetObjectRef(clickHandler.Target);
             MethodName = clickHandler.Method.Name;
         }
     }

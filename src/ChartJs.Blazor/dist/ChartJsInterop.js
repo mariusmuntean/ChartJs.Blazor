@@ -90,7 +90,20 @@ function initializeChartjsChart2(config) {
 
                 return async function(sender, args) {
                     await DotNet.invokeMethodAsync(assemblyName, methodName, sender, args);
-                }
+                };
+            })();
+        }
+        else if (typeof config.options.legend.onClick === "object" &&
+            config.options.legend.onClick.hasOwnProperty('instanceRef') &&
+            config.options.legend.onClick.hasOwnProperty('methodName')) {
+
+            config.options.legend.onClick = (function() {
+                var instanceRef = config.options.legend.onClick.instanceRef;
+                var methodName = config.options.legend.onClick.methodName;
+
+                return async function(sender, args) {
+                    await instanceRef.invokeMethodAsync(methodName, sender, args);
+                };
             })();
         }
     } else { // fallback to the default
