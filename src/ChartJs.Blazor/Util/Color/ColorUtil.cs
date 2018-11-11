@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace ChartJs.Blazor.Util.Color
 {
@@ -48,7 +49,7 @@ namespace ChartJs.Blazor.Util.Color
         public static string RandomColorString()
         {
             var rand = new Random();
-            return $"rgba({1 + rand.Next(255)}, {1 + rand.Next(255)}, {1 + rand.Next(255)}, {rand.NextDouble()})";
+            return $"rgba({1 + rand.Next(255)}, {1 + rand.Next(255)}, {1 + rand.Next(255)}, {rand.NextDouble().ToString(CultureInfo.InvariantCulture)})";
         }
     }
 }
