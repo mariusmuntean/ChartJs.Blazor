@@ -44,6 +44,9 @@
     <Content Update="Pages\About.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\BarCharts\SimpleBarChart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Legend\DotNet-Instance-Handlers.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
