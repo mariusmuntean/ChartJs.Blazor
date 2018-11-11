@@ -29,6 +29,12 @@ namespace ChartJs.Blazor.ChartJS.Common.Utils
             }
         }
 
+        /// <summary>
+        /// Checks whether or not the provided <see cref="MethodInfo"/> has the desired custom attribute
+        /// </summary>
+        /// <param name="methodInfo">The method info to check</param>
+        /// <param name="attributeType">The desired custom attribute</param>
+        /// <exception cref="ArgumentException">Thrown if the desired custom attribute was not found</exception>
         public static void AssertHasCustomAttribute(MethodInfo methodInfo, Type attributeType)
         {
             var isJsInvokable = methodInfo
@@ -39,6 +45,11 @@ namespace ChartJs.Blazor.ChartJS.Common.Utils
             }
         }
 
+        /// <summary>
+        /// Checks whether or not the provided <see cref="MethodInfo"/> represents a public method.
+        /// </summary>
+        /// <param name="methodInfo"></param>
+        /// <exception cref="ArgumentException">Thrown if the method info is not for a public method</exception>
         public static void AssertIsPublic(MethodInfo methodInfo)
         {
             if (!methodInfo.IsPublic)
@@ -47,6 +58,11 @@ namespace ChartJs.Blazor.ChartJS.Common.Utils
             }
         }
 
+        /// <summary>
+        /// Checks whether or not the provided <see cref="MethodInfo"/> represents a static method.
+        /// </summary>
+        /// <param name="methodInfo"></param>
+        /// <exception cref="ArgumentException">Thrown if the method info is not for a static method</exception>
         public static void AssertIsStatic(MethodInfo methodInfo)
         {
             if (!methodInfo.IsStatic)
