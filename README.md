@@ -2,8 +2,9 @@
 
 
 
-
 This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart.js).
+
+[![Build Status](https://dev.azure.com/marius-muntean/ChartJs.Blazor/_apis/build/status/ChartJs.Blazor-SamplesSite)](https://dev.azure.com/marius-muntean/ChartJs.Blazor/_build/latest?definitionId=4)
 
 
 ## Changelog
