@@ -1,6 +1,7 @@
-﻿using ChartJs.Blazor.ChartJS.Common.Legends;
+﻿using ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler;
+using ChartJs.Blazor.ChartJS.Common.Legends.OnHover;
 
-namespace ChartJs.Blazor.ChartJS.Common
+namespace ChartJs.Blazor.ChartJS.Common.Legends
 {
     /// <summary>
     /// The chart legend displays data about the datasets that are appearing on the chart.
@@ -33,7 +34,7 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// The name of a callback that is called when a 'mousemove' event is registered on top of a label item
         /// <para> E.g. "MyProjectNamespace.MyOnHoverFuncName" </para>
         /// </summary>
-        public string OnHover { get; set; }
+        public ILegendOnHoverHandler OnHover { get; set; }
 
         /// <summary>
         /// Legend will show datasets in reverse order.

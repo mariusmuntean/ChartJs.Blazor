@@ -1,14 +1,13 @@
 ﻿@page "/Legend/DotNetInstanceOnClick"
-@using System.Dynamic
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Legends
+@using ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
+@using ChartJs.Blazor.ChartJS.Common.Legends.OnHover
 @using ChartJs.Blazor.Util.Color
 @using ChartJs.Blazor.Sample.Shared.Components
-@using Microsoft.Extensions.DependencyInjection
 @using Microsoft.JSInterop
 @using Newtonsoft.Json
-@using Newtonsoft.Json.Converters
 @using Newtonsoft.Json.Linq
 
 <h2>Simple Bar Chart</h2>
@@ -55,7 +54,8 @@
                 Responsive = true,
                 Legend = new Legend
                 {
-                    OnClick = new DotNetInstanceClickHandler(InstanceClickHandler)
+                    OnClick = new DotNetInstanceClickHandler(InstanceClickHandler),
+                    OnHover = new DotNetInstanceHoverHandler(LegendItemInstanceOnHoverHandler)
                 }
             },
             Data = new BarChartData
@@ -97,11 +97,27 @@
     }
 
     [JSInvokable]
+    public void LegendItemInstanceOnHoverHandler(object sender, object mousemove)
+    {
+        var argsJObj = JObject.FromObject(mousemove);
+
+        var clickedDatasetIndex = (int) argsJObj["datasetIndex"];
+        var hoveredItemDatasetName = barChartConfig.Data.Datasets[clickedDatasetIndex].Label;
+
+        Toaster.Info(
+            $"'{hoveredItemDatasetName}'",
+            "Mouse over item",
+            options =>
+            {
+                options.VisibleStateDuration = 700;
+                options.ShowTransitionDuration = 100;
+                options.HideTransitionDuration = 100;
+            });
+    }
+
+    [JSInvokable]
     public void InstanceClickHandler(object sender, object args)
     {
-        Console.WriteLine(JsonConvert.SerializeObject(sender));
-        Console.WriteLine(JsonConvert.SerializeObject(args));
-
         var argsJObj = JObject.FromObject(args);
 
         var clickedDatasetIndex = (int) argsJObj["datasetIndex"];

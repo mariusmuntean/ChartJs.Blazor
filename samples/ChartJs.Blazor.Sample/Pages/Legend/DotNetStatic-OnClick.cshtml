@@ -2,6 +2,8 @@
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Legends
+@using ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
+@using ChartJs.Blazor.ChartJS.Common.Legends.OnHover
 @using ChartJs.Blazor.Util.Color
 @using ChartJs.Blazor.Sample.Shared.Components
 @using Microsoft.JSInterop
@@ -48,7 +50,8 @@
                 Responsive = true,
                 Legend = new Legend
                 {
-                    OnClick = new DotNetStaticClickHandler(StaticClickHandler)
+                    OnClick = new DotNetStaticClickHandler(StaticClickHandler),
+                    OnHover = new DotNetStaticHoverHandler(LegendItemOnHoverHandler)
                 }
             },
             Data = new BarChartData
@@ -90,10 +93,17 @@
     }
 
     [JSInvokable]
+    public static void LegendItemOnHoverHandler(object sender, object mousemove)
+    {
+        Console.WriteLine(JsonConvert.SerializeObject(sender));
+        Console.WriteLine(JsonConvert.SerializeObject(mousemove, Formatting.Indented));
+    }
+
+    [JSInvokable]
     public static void StaticClickHandler(object sender, object args)
     {
         Console.WriteLine(JsonConvert.SerializeObject(sender));
-        Console.WriteLine(JsonConvert.SerializeObject(args));
+        Console.WriteLine(JsonConvert.SerializeObject(args, Formatting.Indented));
     }
 
     protected override void OnAfterRender()

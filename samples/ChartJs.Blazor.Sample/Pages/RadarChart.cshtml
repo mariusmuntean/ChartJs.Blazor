@@ -1,5 +1,6 @@
 ﻿@page "/RadarChart"
 @using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.ChartJS.Common.Legends
 @using ChartJs.Blazor.Sample.Shared.Components
 @using ChartJs.Blazor.ChartJS.RadarChart
 @using ChartJs.Blazor.Util.Color
@@ -41,7 +42,7 @@
                 Responsive = true,
                 Display = true,
                 Title = new OptionsTitle {Display = true, Text = "Radar Chart"},
-                Legend = new ChartJS.Common.Legend
+                Legend = new ChartJS.Common.Legends.Legend
                 {
                     Position = LegendPosition.RIGHT.ToString(),
                     Labels = new Labels()

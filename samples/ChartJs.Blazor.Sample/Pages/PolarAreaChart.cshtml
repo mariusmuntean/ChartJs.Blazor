@@ -1,5 +1,6 @@
 ﻿@page "/PolarAreaChart"
 @using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.ChartJS.Common.Legends
 @using ChartJs.Blazor.ChartJS.PolarAreaChart
 @using ChartJs.Blazor.Sample.Shared.Components
 @using ChartJs.Blazor.Util.Color
@@ -43,7 +44,7 @@
                 Title = new OptionsTitle {Display = true, Text = "I R TITLE"},
                 Animation = new DoughnutAnimation {AnimateScale = true, AnimateRotate = true},
                 Scale = new PolarAreaScale {Ticks = new Ticks {BeginAtZero = true}},
-                Legend = new ChartJS.Common.Legend {Position = LegendPosition.TOP.ToString()}
+                Legend = new ChartJS.Common.Legends.Legend {Position = LegendPosition.TOP.ToString()}
             },
             Data = new PolarAreaData
             {

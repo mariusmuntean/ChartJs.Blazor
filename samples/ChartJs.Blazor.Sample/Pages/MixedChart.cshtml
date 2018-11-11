@@ -1,6 +1,7 @@
 ﻿@page "/MixedChart"
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
 @using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.ChartJS.Common.Legends
 @using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.ChartJS.MixedChart
 @using ChartJs.Blazor.Sample.Shared.Components
@@ -41,7 +42,7 @@
                 Text = "Sample chart from Blazor",
                 Display = true,
                 Responsive = true,
-                Legend = new ChartJS.Common.Legend
+                Legend = new ChartJS.Common.Legends.Legend
                 {
                     Position = LegendPosition.LEFT.ToString(),
                     Reverse = true,

@@ -1,5 +1,6 @@
 ﻿@page "/DoughnutChart"
 @using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.ChartJS.Common.Legends
 @using ChartJs.Blazor.ChartJS.DoughnutChart
 @using ChartJs.Blazor.Util.Color
 @using ChartJs.Blazor.Sample.Shared.Components
@@ -45,7 +46,7 @@
                 },
                 Display = true,
                 Responsive = true,
-                Legend = new ChartJS.Common.Legend {Position = LegendPosition.RIGHT.ToString()}
+                Legend = new ChartJS.Common.Legends.Legend {Position = LegendPosition.RIGHT.ToString()}
             },
             Data = new DoughnutData
             {
