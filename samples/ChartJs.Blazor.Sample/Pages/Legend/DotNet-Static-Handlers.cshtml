@@ -1,10 +1,11 @@
-﻿@page "/Legend/JsOnClick"
+﻿@page "/Legend/DotNetStaticHandlers"
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
-@using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Legends
 @using ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
+@using ChartJs.Blazor.ChartJS.Common.Legends.OnHover
 @using ChartJs.Blazor.Util.Color
 @using ChartJs.Blazor.Sample.Shared.Components
+@using Microsoft.JSInterop
 @using Newtonsoft.Json
 
 <h2>Simple Bar Chart</h2>
@@ -48,7 +49,8 @@
                 Responsive = true,
                 Legend = new Legend
                 {
-                    OnClick = new JsClickHandler("SampleFunctions.HideOtherDatasetsFunc") // Add the full name of your JS function here. Keep in mind that the function needs to take a sender and event args
+                    OnClick = new DotNetStaticClickHandler(StaticClickHandler),
+                    OnHover = new DotNetStaticHoverHandler(LegendItemOnHoverHandler)
                 }
             },
             Data = new BarChartData
@@ -87,6 +89,20 @@
                 }
             }
         };
+    }
+
+    [JSInvokable]
+    public static void LegendItemOnHoverHandler(object sender, object mousemove)
+    {
+        Console.WriteLine(JsonConvert.SerializeObject(sender));
+        Console.WriteLine(JsonConvert.SerializeObject(mousemove, Formatting.Indented));
+    }
+
+    [JSInvokable]
+    public static void StaticClickHandler(object sender, object args)
+    {
+        Console.WriteLine(JsonConvert.SerializeObject(sender));
+        Console.WriteLine(JsonConvert.SerializeObject(args, Formatting.Indented));
     }
 
     protected override void OnAfterRender()

@@ -1,14 +1,10 @@
-﻿@page "/Legend/DotNetInstanceOnClick"
+﻿@page "/Legend/JsHandlers"
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
-@using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Legends
 @using ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
-@using ChartJs.Blazor.ChartJS.Common.Legends.OnHover
 @using ChartJs.Blazor.Util.Color
 @using ChartJs.Blazor.Sample.Shared.Components
-@using Microsoft.JSInterop
 @using Newtonsoft.Json
-@using Newtonsoft.Json.Linq
 
 <h2>Simple Bar Chart</h2>
 <div class="row">
@@ -22,9 +18,6 @@
 <DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
 
 @functions {
-
-    [Inject]
-    protected Sotsera.Blazor.Toaster.IToaster Toaster { get; set; }
 
     private BarChartConfig barChartConfig { get; set; }
     private ChartJsBarChart barChart { get; set; }
@@ -54,8 +47,7 @@
                 Responsive = true,
                 Legend = new Legend
                 {
-                    OnClick = new DotNetInstanceClickHandler(InstanceClickHandler),
-                    OnHover = new DotNetInstanceHoverHandler(LegendItemInstanceOnHoverHandler)
+                    OnClick = new JsClickHandler("SampleFunctions.HideOtherDatasetsFunc") // Add the full name of your JS function here. Keep in mind that the function needs to take a sender and event args
                 }
             },
             Data = new BarChartData
@@ -94,44 +86,6 @@
                 }
             }
         };
-    }
-
-    [JSInvokable]
-    public void LegendItemInstanceOnHoverHandler(object sender, object mousemove)
-    {
-        var argsJObj = JObject.FromObject(mousemove);
-
-        var clickedDatasetIndex = (int) argsJObj["datasetIndex"];
-        var hoveredItemDatasetName = barChartConfig.Data.Datasets[clickedDatasetIndex].Label;
-
-        Toaster.Info(
-            $"'{hoveredItemDatasetName}'",
-            "Mouse over item",
-            options =>
-            {
-                options.VisibleStateDuration = 700;
-                options.ShowTransitionDuration = 100;
-                options.HideTransitionDuration = 100;
-            });
-    }
-
-    [JSInvokable]
-    public void InstanceClickHandler(object sender, object args)
-    {
-        var argsJObj = JObject.FromObject(args);
-
-        var clickedDatasetIndex = (int) argsJObj["datasetIndex"];
-        var clickedDatasetName = barChartConfig.Data.Datasets[clickedDatasetIndex].Label;
-
-        Toaster.Info(
-            $"'{clickedDatasetName}'",
-            "Dataset clicked",
-            options =>
-            {
-                options.VisibleStateDuration = 700;
-                options.ShowTransitionDuration = 100;
-                options.HideTransitionDuration = 100;
-            });
     }
 
     protected override void OnAfterRender()

@@ -44,13 +44,13 @@
     <Content Update="Pages\About.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Legend\DotNetInstance-OnClick.cshtml">
+    <Content Update="Pages\Legend\DotNet-Instance-Handlers.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Legend\DotNetStatic-OnClick.cshtml">
+    <Content Update="Pages\Legend\DotNet-Static-Handlers.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Legend\Js-OnClick.cshtml">
+    <Content Update="Pages\Legend\Js-Handlers.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\ScatterChart.cshtml">
