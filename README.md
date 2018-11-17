@@ -17,6 +17,14 @@ Currently I've implemented support for all ChartJs charts. Do you miss anything 
 
 ## Changelog
 <details open="open">
+<summary>v0.7.0</summary>
+
+* Updated to Blazor v0.7.0
+* Check out the updated samples page. I moved it to [www.iheartblazor.com](https://www.iheartblazor.com)
+
+</details>
+
+<details>
 <summary>v0.6.0</summary>
 
 * Extended the support for Legent Item click and hover evnt handler.
