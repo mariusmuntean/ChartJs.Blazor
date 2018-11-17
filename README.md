@@ -160,9 +160,10 @@ For detailed instruction go to the [Wiki page](https://github.com/mariusmuntean/
 
 ## Sample Output
 
-Test it in your browser: https://chartjs-blazor-samples.netlify.com/
+Test it in your browser: https://www.iheartblazor.com/
 
-Bar Chart Example:
+
+Or just watch me click through the samples
 ![Charts](samples/ChartJs.Blazor.gif)
 
 
