@@ -6,6 +6,14 @@ This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart
 
 [![Build Status](https://dev.azure.com/marius-muntean/ChartJs.Blazor/_apis/build/status/ChartJs.Blazor-SamplesSite)](https://dev.azure.com/marius-muntean/ChartJs.Blazor/_build/latest?definitionId=4)
 
+## Need your opinion
+
+Let me know how you like ChartJs.Blazor on Twitter [@MunteanMarius](https://twitter.com/@MunteanMarius )
+
+Vote on what features you'd like to see implemented next
+[Link to Poll](https://linkto.run/p/CTWCSM51)
+
+Currently I've implemented support for all ChartJs charts. Do you miss anything that makes ChartJs.Blazor a show stopper?
 
 ## Changelog
 <details open="open">
@@ -47,12 +55,7 @@ This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart
 * Support for almost all charts from ChartJs, including: LineChart, BarChart, RadarCart, Doughnut- and Pie-Chart, BubbleChart, MixedChart
 </details>
 
-## Please keep in mind that this is still a preview. Expect breaking changes during the next 2, 3 releases. I'm using this opportunity to learn Blazor.
-
-## Need your opinion
- 
-Vote on what features you'd like to see implemented next
-[Link to Poll](https://linkto.run/p/CTWCSM51)
+## Please keep in mind that this is still a preview. Expect breaking changes during the next releases. I'm using this opportunity to learn Blazor.
 
 ## Prerequisites
 
