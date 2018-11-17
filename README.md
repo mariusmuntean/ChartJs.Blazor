@@ -6,6 +6,12 @@ This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart
 
 [![Build Status](https://dev.azure.com/marius-muntean/ChartJs.Blazor/_apis/build/status/ChartJs.Blazor-SamplesSite)](https://dev.azure.com/marius-muntean/ChartJs.Blazor/_build/latest?definitionId=4)
 
+
+
+[![NuGet](https://img.shields.io/badge/ChartJs.Blazor-Latest-brightgreen.svg?style=popout)](https://www.nuget.org/packages/ChartJs.Blazor)
+
+
+
 ## Need your opinion
 
 Let me know how you like ChartJs.Blazor on Twitter [@MunteanMarius](https://twitter.com/@MunteanMarius )
