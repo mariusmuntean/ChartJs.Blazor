@@ -3,7 +3,12 @@
 Blazor.BlazorCharts = BlazorCharts;
 window.ChartJSInterop = {
     InitializeChart: function(config) {
+        config = JSON.parse(config);
+        
         if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
+            if (!config.options.legend)
+                config.options.legend = {};
+            
             let thisChart = initializeChartjsChart2(config);
             BlazorCharts.push({ id: config.canvasId, chart: thisChart });
         }
@@ -60,13 +65,16 @@ function initializeChartjsChart2(config) {
     // replace the Label's Filter function name with the actual function (if present)
     // see details here: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-label-configuration
     WireUpLegendItemFilterFunc(config);
-
+    
     let myChart = new Chart(ctx, config);
 
     return myChart;
 }
 
 function WireUpLegendItemFilterFunc(config) {
+    if (config.options.legend.labels === undefined)
+        config.options.legend.labels = { };
+    
     if (config.options.legend.labels.filter &&
         typeof config.options.legend.labels.filter === "string" &&
         config.options.legend.labels.filter.includes(".")) {
@@ -83,6 +91,9 @@ function WireUpLegendItemFilterFunc(config) {
 }
 
 function WireUpGenerateLabelsFunc(config) {
+    if (config.options.legend.labels === undefined)
+        config.options.legend.labels = { };
+    
     if (config.options.legend.labels.generateLabels &&
         typeof config.options.legend.labels.generateLabels === "string" &&
         config.options.legend.labels.generateLabels.includes(".")) {

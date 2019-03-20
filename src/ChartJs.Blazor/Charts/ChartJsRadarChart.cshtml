@@ -1,38 +1,8 @@
-﻿@using ChartJs.Blazor.ChartJS
-@using ChartJs.Blazor.ChartJS.RadarChart
+﻿@using ChartJs.Blazor.ChartJS.RadarChart
+@inherits ChartBase<RadarChartConfig>
 
 <div class="row">
     <div class="container">
         <canvas id="@Config.CanvasId" width="@Width" height="@Height"></canvas>
     </div>
 </div>
-
-@functions {
-
-    [Parameter]
-    RadarChartConfig Config { get; set; }
-
-    [Parameter]
-    int Width { get; set; } = 200;
-
-    [Parameter]
-    int Height { get; set; } = 200;
-
-    private string ChartjsChart { get; set; } = "";
-
-    protected override void OnAfterRender()
-    {
-        ChartJsInterop.InitializeRadarChart(Config);
-    }
-
-    public void Update()
-    {
-        ChartJsInterop.UpdateRadarChart(Config);
-    }
-
-    public void Reload()
-    {
-        ChartJsInterop.ReloadRadarChart(Config);
-    }
-
-}

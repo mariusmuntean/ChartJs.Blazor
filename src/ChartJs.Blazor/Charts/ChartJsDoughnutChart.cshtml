@@ -1,41 +1,8 @@
-﻿@using ChartJs.Blazor.ChartJS
-@using ChartJs.Blazor.ChartJS.DoughnutChart
+﻿@using ChartJs.Blazor.ChartJS.DoughnutChart
+@inherits ChartBase<DoughnutChartConfig>
 
 <div class="row">
     <div class="container">
         <canvas id="@Config.CanvasId" width="@Width" height="@Height"></canvas>
     </div>
 </div>
-
-@functions {
-
-    [Parameter]
-    DoughnutChartConfig Config { get; set; }
-
-    [Parameter]
-    int Width { get; set; } = 400;
-
-    [Parameter]
-    int Height { get; set; } = 400;
-
-    protected override void OnAfterRender()
-    {
-        ChartJsInterop.InitializeDoughnutChart(Config);
-    }
-
-    void DisplayChart()
-    {
-        ChartJsInterop.InitializeDoughnutChart(Config);
-    }
-
-    public void Update()
-    {
-        ChartJsInterop.UpdateDoughnutChart(Config);
-    }
-    
-    public void Reload()
-    {
-        ChartJsInterop.ReloadDoughnutChart(Config);
-    }
-
-}

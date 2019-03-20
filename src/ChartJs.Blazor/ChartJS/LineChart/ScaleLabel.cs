@@ -2,7 +2,12 @@
 {
     public class ScaleLabel
     {
-        public string Display { get; set; }
+        public ScaleLabel(string labelString = null)
+        {
+            LabelString = labelString;
+        }
+
+        public bool Display { get; set; } = true;
         public string LabelString { get; set; }
     }
 }

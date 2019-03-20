@@ -1,48 +1,8 @@
-﻿@using ChartJs.Blazor.ChartJS
-@using ChartJs.Blazor.ChartJS.ScatterChart
+﻿@using ChartJs.Blazor.ChartJS.ScatterChart
+@inherits ChartBase<ScatterChartConfig>
 
 <div class="row">
     <div class="container">
         <canvas id="@Config.CanvasId" width="@Width" height="@Height"></canvas>
     </div>
 </div>
-
-@functions {
-
-    [Parameter]
-    ScatterChartConfig Config { get; set; }
-
-    [Parameter]
-    int Width { get; set; } = 200;
-
-    [Parameter]
-    int Height { get; set; } = 200;
-
-    private string ChartjsChart { get; set; } = "";
-
-    protected override void OnAfterRender()
-    {
-        ChartJsInterop.InitializeScatterChart(Config).ConfigureAwait(false);
-    }
-
-    protected override void OnInit()
-    {
-        ChartJsInterop.InitializeScatterChart(Config).ConfigureAwait(false);
-    }
-
-    public void DisplayChart()
-    {
-        ChartJsInterop.InitializeScatterChart(Config);
-    }
-
-    public void Update()
-    {
-        ChartJsInterop.UpdateScatterChart(Config);
-    }
-    
-    public void Reload()
-    {
-        ChartJsInterop.ReloadScatterChart(Config);
-    }
-
-}

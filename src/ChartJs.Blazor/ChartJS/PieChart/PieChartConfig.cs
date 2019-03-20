@@ -2,14 +2,10 @@
 
 namespace ChartJs.Blazor.ChartJS.PieChart
 {
-    public class PieChartConfig
+    public class PieChartConfig : ChartConfigBase<PieChartOptions, PieChartData>
     {
-        public string Type { get; set; } = ChartTypes.PIE.ToString();
-
-        public PieChartOptions Options { get; set; }
-
-        public PieChartData Data { get; set; }
-
-        public string CanvasId { get; set; }
+        public PieChartConfig() : base(ChartTypes.PIE)
+        {
+        }
     }
 }

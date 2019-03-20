@@ -1,35 +1,8 @@
-﻿@using ChartJs.Blazor.ChartJS
-@using ChartJs.Blazor.ChartJS.BubbleChart
+﻿@using ChartJs.Blazor.ChartJS.BubbleChart
+@inherits ChartBase<BubbleChartConfig>
+
 <div class="row">
     <div class="container">
         <canvas id="@Config.CanvasId" width="@Width" height="@Height"></canvas>
     </div>
 </div>
-
-@functions {
-
-    [Parameter]
-    BubbleChartConfig Config { get; set; }
-
-    [Parameter]
-    int Width { get; set; } = 400;
-
-    [Parameter]
-    int Height { get; set; } = 400;
-
-    protected override void OnAfterRender()
-    {
-        ChartJsInterop.InitializeBubbleChart(Config);
-    }
-
-    public void Update()
-    {
-        ChartJsInterop.UpdateBubbleChart(Config);
-    }
-
-    public void Reload()
-    {
-        ChartJsInterop.ReloadBubbleChart(Config);
-    }
-
-}
