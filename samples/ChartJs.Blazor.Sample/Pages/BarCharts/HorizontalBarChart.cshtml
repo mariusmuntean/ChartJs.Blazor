@@ -20,7 +20,7 @@
 @functions {
 
     private BarChartConfig barChartConfig { get; set; }
-    private ChartJsBarChart barChart { get; set; }
+    ChartJsBarChart barChart { get; set; }
 
     DataSetDisplay _dataSetDisplay;
 
@@ -38,7 +38,6 @@
     {
         barChartConfig = barChartConfig ?? new BarChartConfig
         {
-            Type = ChartTypes.HORIZONTALBAR.ToString(),
             CanvasId = "myBarChartCanvas",
             Options = new BarChartOptions
             {
