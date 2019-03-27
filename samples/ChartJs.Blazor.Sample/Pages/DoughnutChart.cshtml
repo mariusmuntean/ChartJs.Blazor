@@ -72,12 +72,10 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        _doughnutChartJs.Reload();
 
         _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
         {
             doughnutChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<DoughnutDataset>>(dataSetsStr);
-            _doughnutChartJs.Reload();
         };
     }
 
@@ -105,7 +103,7 @@
         };
 
         doughnutChartConfig.Data.Datasets.Add(doughnutDataset);
-        _doughnutChartJs.Reload();
+        _doughnutChartJs.Update();
     }
 
 }

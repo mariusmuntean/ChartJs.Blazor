@@ -77,12 +77,10 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender - bar");
-        barChart.Update();
 
         _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
         {
             barChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<BaseBarChartDataset>>(dataSetsStr);
-            barChart.Reload();
         };
     }
 

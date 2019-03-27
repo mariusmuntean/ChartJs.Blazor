@@ -9,27 +9,21 @@ namespace ChartJs.Blazor.Charts
     {
         [Inject] protected IJSRuntime JsRuntime { get; set; }
         
-        [Parameter] public TConfig Config { get; set; }
+        [Parameter] public TConfig Config { get; private set; }
         
-        [Parameter] public int Width { get; set; } = 400;
+        [Parameter] public int Width { get; private set; } = 400;
 
-        [Parameter] public int Height { get; set; } = 400;
+        [Parameter] public int Height { get; private set; } = 400;
         
         protected override void OnAfterRender()
         {
             try
             {
                 base.OnAfterRender();
-                JsRuntime.InitializeChart(Config);
+                JsRuntime.SetupChart(Config);
             }
             catch { } // https://github.com/aspnet/AspNetCore/issues/8327
         }
-
-        public void Reload()
-        {
-            JsRuntime.ReloadChart(Config);
-        }
-
 
         public void Update()
         {

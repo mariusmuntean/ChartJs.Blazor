@@ -91,12 +91,10 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender - bar");
-        barChart.Reload();
 
         _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
         {
             barChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<BaseBarChartDataset>>(dataSetsStr);
-            barChart.Reload();
         };
     }
 
@@ -106,7 +104,7 @@
         barChartConfig.Data.Labels.Add($"{DateTime.Now.Second}");
         barChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(DateTime.Now.Second); });
 
-        barChart.Reload();
+        barChart.Update();
     }
 
 }

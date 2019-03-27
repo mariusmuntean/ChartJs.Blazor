@@ -69,12 +69,10 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        polarAreaChart.Reload();
 
         _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
         {
             polarAreaChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<PolarAreaDataset>>(dataSetsStr);
-            polarAreaChart.Reload();
         };
     }
 
@@ -92,7 +90,7 @@
         ds1.BorderWidth.Add(1);
         ds1.BackgroundColor.Add(ColorUtil.RandomColorString());
 
-        polarAreaChart.Reload();
+        polarAreaChart.Update();
     }
 
 }

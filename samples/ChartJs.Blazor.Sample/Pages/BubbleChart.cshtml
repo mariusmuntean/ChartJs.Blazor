@@ -87,12 +87,10 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        bubbleChartJs.Reload();
 
         _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
         {
             bubbleChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<BubbleChartDataset>>(dataSetsStr);
-            bubbleChartJs.Reload();
         };
     }
 
@@ -108,7 +106,7 @@
                 r = rand.NextDouble() * 8
             }));
 
-        bubbleChartJs.Reload();
+        bubbleChartJs.Update();
     }
 
 }

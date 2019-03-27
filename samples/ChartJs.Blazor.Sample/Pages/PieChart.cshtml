@@ -64,12 +64,10 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        pieChartJs.Reload();
 
         _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
         {
             pieChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<PieChartDataset>>(dataSetsStr);
-            pieChartJs.Reload();
         };
     }
 
@@ -94,7 +92,7 @@
         }
         };
 
-        pieChartJs.Reload();
+        pieChartJs.Update();
     }
 
 }

@@ -78,12 +78,10 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        radarChartJs.Reload();
 
         _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
         {
             radarChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<RadarChartDataset>>(dataSetsStr);
-            radarChartJs.Reload();
         };
     }
 
@@ -106,7 +104,7 @@
             PointStyle = new[] {RadarChartPointStyles.RETROUNDED}
         });
 
-        radarChartJs.Reload();
+        radarChartJs.Update();
     }
 
 }

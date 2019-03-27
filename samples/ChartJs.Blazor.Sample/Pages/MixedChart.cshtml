@@ -95,12 +95,10 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        mixedChart.Reload();
 
         _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
         {
             mixedChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<IMixableDataset>>(dataSetsStr);
-            mixedChart.Reload();
         };
     }
 
@@ -109,7 +107,7 @@
         mixedChartConfig.Data.Labels.Add($"P {mixedChartConfig.Data.Labels.Count + 1}");
         mixedChartConfig.Data.Datasets.ForEach(dataset => dataset.Data.Add(DateTime.Now.Second));
 
-        mixedChart.Reload();
+        mixedChart.Update();
     }
 
 }

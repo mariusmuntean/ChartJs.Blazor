@@ -107,12 +107,10 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        lineChartJs.Reload();
 
         _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
         {
             lineChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<LineChartDataset>>(dataSetsStr);
-            lineChartJs.Reload();
         };
     }
 
@@ -128,7 +126,7 @@
             dataset.Data.Add(next);
         });
 
-        lineChartJs.Reload();
+        lineChartJs.Update();
     }
 
     protected override Task OnInitAsync()

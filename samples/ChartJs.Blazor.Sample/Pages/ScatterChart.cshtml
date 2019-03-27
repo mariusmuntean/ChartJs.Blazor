@@ -106,12 +106,10 @@
     protected override void OnAfterRender()
     {
         Console.WriteLine("OnAfterRender");
-        scatterChartJs.Reload();
 
         _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
         {
             scatterChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<ScatterConfigDataset>>(dataSetsStr);
-            scatterChartJs.Reload();
         };
     }
 
@@ -121,7 +119,7 @@
 
         scatterChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(PointUtil.NewRandPoint(-10, 10, -10, 10)); });
 
-        scatterChartJs.Reload();
+        scatterChartJs.Update();
     }
 
     protected override Task OnInitAsync()
