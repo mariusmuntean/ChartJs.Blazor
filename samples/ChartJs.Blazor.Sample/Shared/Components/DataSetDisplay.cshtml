@@ -1,4 +1,6 @@
 ﻿@using ChartJs.Blazor.Sample.Shared.Extensions
+@using Microsoft.JSInterop;
+@inject  IJSRuntime iJSRuntime;
 
 <form style="margin-top: 20px">
     <div class="form-row">
@@ -47,7 +49,7 @@
 
     async void OnKeyUp(UIEventArgs args)
     {
-        var datasetsTextAreaVal = await datasetsTextArea.GetValue().ConfigureAwait(false);
+        var datasetsTextAreaVal = await datasetsTextArea.GetValue(iJSRuntime).ConfigureAwait(false);
         OnUpdatedDataSetsStr?.Invoke(datasetsTextAreaVal);
     }
 
