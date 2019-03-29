@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ChartJs.Blazor.Sample.Serverside.Components;
-using ChartJs.Blazor.Sample.Serverside.Services;
+using Sotsera.Blazor.Toaster.Core.Models;
 
 namespace ChartJs.Blazor.Sample.Serverside
 {
@@ -24,7 +24,12 @@ namespace ChartJs.Blazor.Sample.Serverside
 
             services.AddRazorComponents();
 
-            services.AddSingleton<WeatherForecastService>();
+            services.AddToaster(config =>
+            {
+                config.PositionClass = Defaults.Classes.Position.TopRight;
+                config.PreventDuplicates = true;
+                config.NewestOnTop = false;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

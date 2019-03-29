@@ -1,9 +1,7 @@
 ﻿@page "/HorizontalBarChart"
+@using ChartJs.Blazor.ChartJS.BarChart
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
-@using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Legends
-@using ChartJs.Blazor.Util.Color
-@using ChartJs.Blazor.Sample.Shared.Components
 @using Newtonsoft.Json
 
 <h2>Stacked Bar Chart</h2>
@@ -13,25 +11,30 @@
 <ChartJsBarChart ref="barChart"
                  Config="@barChartConfig"
                  Width="600"
-                 Height="300"/>
+                 Height="300" />
 
-<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
+<DataDisplay OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300" />
 
 @functions {
 
     private BarChartConfig barChartConfig { get; set; }
     ChartJsBarChart barChart { get; set; }
 
-    DataSetDisplay _dataSetDisplay;
-
-    string DataSetsStr
+    string DataStr
     {
-        get => JsonConvert.SerializeObject(barChartConfig.Data.Datasets, Formatting.Indented);
+        get => JsonConvert.SerializeObject(barChartConfig.Data, Formatting.Indented);
         set
         {
-            barChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<BaseBarChartDataset>>(value);
-            Console.WriteLine(JsonConvert.SerializeObject(barChartConfig.Data.Datasets));
+            barChartConfig.Data = JsonConvert.DeserializeObject<BarChartData>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(barChartConfig.Data));
         }
+    }
+
+
+    void OnDataStrChange(string dataStr)
+    {
+        barChartConfig.Data = JsonConvert.DeserializeObject<BarChartData>(dataStr);
+        barChart.Update();
     }
 
     protected override void OnInit()
@@ -51,9 +54,9 @@
             },
             Data = new BarChartData
             {
-                Labels = new List<string> {"Red", "Blue", "Yellow", "Green", "Purple", "Orange"},
+                Labels = new List<string> { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
                 Datasets = new List<BaseBarChartDataset>
-                {
+            {
                     new BarChartDataset
                     {
                         Label = "1'st dataset",
@@ -73,25 +76,12 @@
             }
         };
     }
-
-    protected override void OnAfterRender()
-    {
-        Console.WriteLine("OnAfterRender - bar");
-
-        _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
-        {
-            barChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<BaseBarChartDataset>>(dataSetsStr);
-        };
-    }
-
     private void UpdateChart()
     {
-    //Update existing dataset
+        //Update existing dataset
 
         barChartConfig.Data.Labels.Add($"{DateTime.Now.Second}");
         barChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(DateTime.Now.Second); });
-
-        barChart.Update();
     }
 
 }

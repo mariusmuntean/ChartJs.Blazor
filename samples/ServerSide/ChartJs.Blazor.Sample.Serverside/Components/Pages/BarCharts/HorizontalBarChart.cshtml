@@ -1,4 +1,4 @@
-﻿@page "/StackedBarChart"
+﻿@page "/HorizontalBarChart"
 @using ChartJs.Blazor.ChartJS.BarChart
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
 @using Newtonsoft.Json
@@ -17,7 +17,7 @@
 @functions {
 
     private BarChartConfig barChartConfig { get; set; }
-    private ChartJsBarChart barChart { get; set; }
+    ChartJsBarChart barChart { get; set; }
 
     string DataStr
     {
@@ -28,6 +28,7 @@
             Console.WriteLine(JsonConvert.SerializeObject(barChartConfig.Data));
         }
     }
+
 
     void OnDataStrChange(string dataStr)
     {
@@ -45,11 +46,10 @@
                 Text = "Sample chart from Blazor",
                 Display = true,
                 Responsive = true,
-                Scales = new BarChartOptionsScales
+                Legend = new Legend()
                 {
-                    xAxes = new[] { new BarChartAxis { Stacked = true } },
-                    yAxes = new[] { new BarChartAxis { Stacked = true } }
-                }
+                    Position = LegendPosition.RIGHT.ToString()
+                },
             },
             Data = new BarChartData
             {
@@ -61,22 +61,20 @@
                         Label = "1'st dataset",
                         BackgroundColor = ColorUtil.RandomColorString(),
                         BorderColor = ColorUtil.RandomColorString(),
-                        Data = new List<dynamic> {9, 2, 5, 3, 3, 2},
-                        Stack = "stack1"
+                        BorderWidth = 1,
+                        Data = new List<dynamic> {9, 2, 5, 3, 3, 2}
                     },
                     new BarChartDataset
                     {
                         Label = "2'nd dataset",
                         BackgroundColor = ColorUtil.RandomColorString(),
                         BorderColor = ColorUtil.RandomColorString(),
-                        Data = new List<dynamic> {30, 10, 15, 13, 13, 12},
-                        Stack = "stack1"
+                        Data = new List<dynamic> {30, 10, 15, 13, 13, 12}
                     }
                 }
             }
         };
     }
-
     private void UpdateChart()
     {
         //Update existing dataset

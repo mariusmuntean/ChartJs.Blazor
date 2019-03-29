@@ -1,9 +1,12 @@
-﻿@page "/StackedBarChart"
+﻿@page "/Legend/JsHandlers"
 @using ChartJs.Blazor.ChartJS.BarChart
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
+@using ChartJs.Blazor.ChartJS.Common.Legends
+@using ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
+@using ChartJs.Blazor.ChartJS.Common.Legends.OnHover
 @using Newtonsoft.Json
 
-<h2>Stacked Bar Chart</h2>
+<h2>Legend Item - Javascript click handler</h2>
 <div class="row">
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
@@ -37,6 +40,7 @@
 
     protected override void OnInit()
     {
+        var rand = new Random();
         barChartConfig = barChartConfig ?? new BarChartConfig
         {
             CanvasId = "myBarChartCanvas",
@@ -45,32 +49,44 @@
                 Text = "Sample chart from Blazor",
                 Display = true,
                 Responsive = true,
-                Scales = new BarChartOptionsScales
+                Legend = new Legend
                 {
-                    xAxes = new[] { new BarChartAxis { Stacked = true } },
-                    yAxes = new[] { new BarChartAxis { Stacked = true } }
+                    OnHover = new JsOnHoverHandler("SampleFunctions.CustomOnHoverFunc"),
+                    OnClick = new JsClickHandler("SampleFunctions.HideOtherDatasetsFunc") // Add the full name of your JS function here. Keep in mind that the function needs to take a sender and event args
                 }
             },
             Data = new BarChartData
             {
                 Labels = new List<string> { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
                 Datasets = new List<BaseBarChartDataset>
-            {
+        {
                     new BarChartDataset
                     {
                         Label = "1'st dataset",
                         BackgroundColor = ColorUtil.RandomColorString(),
                         BorderColor = ColorUtil.RandomColorString(),
-                        Data = new List<dynamic> {9, 2, 5, 3, 3, 2},
-                        Stack = "stack1"
+                        Data = new List<dynamic> {rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30)}
                     },
                     new BarChartDataset
                     {
                         Label = "2'nd dataset",
                         BackgroundColor = ColorUtil.RandomColorString(),
                         BorderColor = ColorUtil.RandomColorString(),
-                        Data = new List<dynamic> {30, 10, 15, 13, 13, 12},
-                        Stack = "stack1"
+                        Data = new List<dynamic> {rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30)}
+                    },
+                    new BarChartDataset
+                    {
+                        Label = "3'rd dataset",
+                        BackgroundColor = ColorUtil.RandomColorString(),
+                        BorderColor = ColorUtil.RandomColorString(),
+                        Data = new List<dynamic> {rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30)}
+                    },
+                    new BarChartDataset
+                    {
+                        Label = "4'th dataset",
+                        BackgroundColor = ColorUtil.RandomColorString(),
+                        BorderColor = ColorUtil.RandomColorString(),
+                        Data = new List<dynamic> {rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30)}
                     }
                 }
             }
@@ -80,7 +96,6 @@
     private void UpdateChart()
     {
         //Update existing dataset
-
         barChartConfig.Data.Labels.Add($"{DateTime.Now.Second}");
         barChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(DateTime.Now.Second); });
     }

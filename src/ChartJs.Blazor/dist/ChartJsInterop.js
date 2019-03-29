@@ -17,6 +17,7 @@ window.ChartJSInterop = {
 
             myChart.chart.destroy();
             myChart.chart = {};
+
             let newChart = initializeChartjsChart2(config);
             myChart.chart = newChart;
 
@@ -150,9 +151,9 @@ function WireUpOnClick(config) {
 
 function WireUpOnHover(config) {
     if (config.options.legend.onHover) {
-        if (typeof config.options.legend.onHover === "string" &&
-            config.options.legend.onHover.includes(".")) {
-            var onHoverNamespaceAndFunc = config.options.legend.onHover.split(".");
+        if (typeof config.options.legend.onHover === "object" &&
+            config.options.legend.onHover.hasOwnProperty('fullFunctionName')) {
+            var onHoverNamespaceAndFunc = config.options.legend.onHover.fullFunctionName.split(".");
             var onHoverFunc = window[onHoverNamespaceAndFunc[0]][onHoverNamespaceAndFunc[1]];
             if (typeof onHoverFunc === "function") {
                 config.options.legend.onHover = onHoverFunc;

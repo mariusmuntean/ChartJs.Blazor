@@ -1,5 +1,4 @@
 ﻿@page "/FillLineChart"
-@using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.LineChart
 @using Newtonsoft.Json
 
@@ -25,7 +24,7 @@
             Console.WriteLine(JsonConvert.SerializeObject(lineChartConfig.Data));
         }
     }
-                            
+
     void OnDataStrChange(string dataStr)
     {
         lineChartConfig.Data = JsonConvert.DeserializeObject<LineChartData>(dataStr);
@@ -51,7 +50,7 @@
                 Scales = new Scales
                 {
                     xAxes = new List<Axis>
-                {
+            {
                     new Axis
                     {
                         ScaleLabel = new ScaleLabel
@@ -61,9 +60,9 @@
                     }
                 },
                     yAxes = new List<Axis>
-                {
+            {
                     new Axis
-                    {                        
+                    {
                         ScaleLabel = new ScaleLabel
                         {
                             LabelString = "..label"
@@ -81,7 +80,7 @@
             {
                 Labels = new List<string> { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
                 Datasets = new List<LineChartDataset>
-            {
+        {
                 new LineChartDataset
                 {
                     BackgroundColor = "#ff6384",

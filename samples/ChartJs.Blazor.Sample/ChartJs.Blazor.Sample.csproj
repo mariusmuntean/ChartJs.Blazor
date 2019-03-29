@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\ChartJs.Blazor\ChartJs.Blazor.csproj" />
+    <ProjectReference Include="..\Shared\ChartJs.Blazor.Sample.Shared\ChartJs.Blazor.Sample.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -75,9 +76,6 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\MixedChart.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Shared\Components\DataSetDisplay.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>
