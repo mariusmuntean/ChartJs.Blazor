@@ -1,33 +1,35 @@
 ﻿@page "/BubbleChart"
 @using ChartJs.Blazor.ChartJS.BubbleChart
 @using ChartJs.Blazor.ChartJS.Common
-@using ChartJs.Blazor.Util.Color
-@using ChartJs.Blazor.Sample.Shared.Components
 @using Newtonsoft.Json
 
 <h2>Bubble Chart</h2>
 <div class="row">
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsBubbleChart ref="bubbleChartJs" Config="@bubbleChartConfig" Width="600" Height="300"/>
+<ChartJsBubbleChart ref="bubbleChartJs" Config="@bubbleChartConfig" Width="600" Height="300" />
 
-<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
+<DataDisplay OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300" />
 
 @functions{
 
     public BubbleChartConfig bubbleChartConfig { get; set; }
     ChartJsBubbleChart bubbleChartJs;
 
-    DataSetDisplay _dataSetDisplay;
-
-    string DataSetsStr
+    string DataStr
     {
-        get => JsonConvert.SerializeObject(bubbleChartConfig.Data.Datasets, Formatting.Indented);
+        get => JsonConvert.SerializeObject(bubbleChartConfig.Data, Formatting.Indented);
         set
         {
-            bubbleChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<BubbleChartDataset>>(value);
-            Console.WriteLine(JsonConvert.SerializeObject(bubbleChartConfig.Data.Datasets));
+            bubbleChartConfig.Data = JsonConvert.DeserializeObject<BubbleChartData>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(bubbleChartConfig.Data));
         }
+    }
+                                             
+    void OnDataStrChange(string dataStr)
+    {
+        bubbleChartConfig.Data = JsonConvert.DeserializeObject<BubbleChartData>(dataStr);
+        bubbleChartJs.Update();
     }
 
     protected override void OnInit()
@@ -40,20 +42,20 @@
                 Text = "Sample chart from Blazor",
                 Display = true,
                 Responsive = true,
-                Title = new OptionsTitle {Display = true, Text = "I R TITLE"},
-                Tooltips = new Tooltips {Mode = Mode.point},
+                Title = new OptionsTitle { Display = true, Text = "I R TITLE" },
+                Tooltips = new Tooltips { Mode = Mode.point },
             },
             Data = new BubbleChartData
             {
-                Animation = new Animation {Duration = 0},
+                Animation = new Animation { Duration = 0 },
                 Datasets = new List<BubbleChartDataset>
-                {
+            {
                     new BubbleChartDataset
                     {
                         BackgroundColor = ColorUtil.RandomColorString(),
                         Label = "1'st dataset",
                         Data = new List<BubbleData>
-                        {
+                    {
                             new BubbleData {x = 1, y = 1, r = 5},
                             new BubbleData {x = 2, y = 1.9, r = 5},
                             new BubbleData {x = 3, y = 3, r = 6}
@@ -66,7 +68,7 @@
                         BackgroundColor = ColorUtil.RandomColorString(),
                         Label = "2'd dataset",
                         Data = new List<BubbleData>
-                        {
+                    {
                             new BubbleData {x = 1, y = 3, r = 9},
                             new BubbleData {x = 2, y = 2.1, r = 7},
                             new BubbleData {x = 3, y = 1, r = 3}
@@ -84,18 +86,6 @@
         };
     }
 
-    protected override void OnAfterRender()
-    {
-        Console.WriteLine("OnAfterRender");
-        bubbleChartJs.Reload();
-
-        _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
-        {
-            bubbleChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<BubbleChartDataset>>(dataSetsStr);
-            bubbleChartJs.Reload();
-        };
-    }
-
     public void UpdateChart()
     {
         var rand = new Random();
@@ -107,8 +97,6 @@
                 y = rand.NextDouble() * 5,
                 r = rand.NextDouble() * 8
             }));
-
-        bubbleChartJs.Reload();
     }
 
 }

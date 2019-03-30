@@ -3,5 +3,6 @@
     public class Ticks
     {
         public bool BeginAtZero { get; set; }
+        public int? FontSize { get; set; }
     }
 }

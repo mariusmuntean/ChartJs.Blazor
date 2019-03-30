@@ -1,9 +1,7 @@
 ﻿@page "/RadarChart"
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Legends
-@using ChartJs.Blazor.Sample.Shared.Components
 @using ChartJs.Blazor.ChartJS.RadarChart
-@using ChartJs.Blazor.Util.Color
 @using Newtonsoft.Json
 @using RadarChartPointStyles = ChartJs.Blazor.ChartJS.RadarChart.RadarChartPointStyles
 
@@ -13,22 +11,27 @@
 </div>
 <ChartJsRadarChart ref="radarChartJs" Config="@radarChartConfig" Width="600" Height="300"/>
 
-<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
+<DataDisplay OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300"/>
 
 @functions {
 
     private RadarChartConfig radarChartConfig { get; set; }
     ChartJsRadarChart radarChartJs;
-    DataSetDisplay _dataSetDisplay;
 
-    string DataSetsStr
+    string DataStr
     {
-        get => JsonConvert.SerializeObject(radarChartConfig.Data.Datasets, Formatting.Indented);
+        get => JsonConvert.SerializeObject(radarChartConfig.Data, Formatting.Indented);
         set
         {
-            radarChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<RadarChartDataset>>(value);
-            Console.WriteLine(JsonConvert.SerializeObject(radarChartConfig.Data.Datasets));
+            radarChartConfig.Data = JsonConvert.DeserializeObject<RadarChartData>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(radarChartConfig.Data));
         }
+    }
+                                     
+    void OnDataStrChange(string dataStr)
+    {
+        radarChartConfig.Data = JsonConvert.DeserializeObject<RadarChartData>(dataStr);
+        radarChartJs.Update();
     }
 
     protected override void OnInit()
@@ -74,22 +77,9 @@
         };
     }
 
-
-    protected override void OnAfterRender()
-    {
-        Console.WriteLine("OnAfterRender");
-        radarChartJs.Reload();
-
-        _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
-        {
-            radarChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<RadarChartDataset>>(dataSetsStr);
-            radarChartJs.Reload();
-        };
-    }
-
     public void UpdateChart()
     {
-    //Add new dataset
+        //Add new dataset
         var rand = new Random();
         var max = radarChartConfig.Data.Datasets.First().Data.Max();
         var color = $"#{rand.Next(16777215):X6}";
@@ -105,8 +95,6 @@
             PointBorderWidth = new[] {1},
             PointStyle = new[] {RadarChartPointStyles.RETROUNDED}
         });
-
-        radarChartJs.Reload();
     }
 
 }

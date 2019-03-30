@@ -2,17 +2,15 @@
 
 namespace ChartJs.Blazor.ChartJS.BarChart
 {
-    public class BarChartConfig
+    /// <summary>
+    /// Either 'bar' or 'horizontalBar'
+    /// </summary>
+    public class BarChartConfig : ChartConfigBase<BarChartOptions, BarChartData>
     {
-        /// <summary>
-        /// Either 'bar' or 'horizontalBar'
-        /// </summary>
-        public string Type { get; set; } = ChartTypes.BAR.ToString();
+        public BarChartConfig(ChartTypes type = null) : base(type ?? ChartTypes.BAR)
+        {
+        }
 
-        public BarChartData Data { get; set; }
-
-        public BarChartOptions Options { get; set; }
-
-        public string CanvasId { get; set; }
+        
     }
 }

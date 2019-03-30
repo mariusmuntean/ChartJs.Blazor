@@ -2,14 +2,10 @@
 
 namespace ChartJs.Blazor.ChartJS.ScatterChart
 {
-    public class ScatterChartConfig
+    public class ScatterChartConfig : ChartConfigBase<ScatterConfigOptions, ScatterConfigData>
     {
-        public string Type { get; private set; } = ChartTypes.SCATTER.ToString();
-
-        public string CanvasId { get; set; }
-
-        public ScatterConfigData Data { get; set; }
-
-        public ScatterConfigOptions Options { get; set; }
+        public ScatterChartConfig() : base(ChartTypes.SCATTER)
+        {
+        }
     }
 }

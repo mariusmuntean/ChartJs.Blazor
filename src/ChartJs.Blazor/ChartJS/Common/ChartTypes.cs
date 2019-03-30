@@ -2,15 +2,15 @@
 {
     public class ChartTypes
     {
-        public static ChartTypes BAR = new ChartTypes("bar");
-        public static ChartTypes HORIZONTALBAR = new ChartTypes("horizontalBar");
-        public static ChartTypes LINE = new ChartTypes("line");
-        public static ChartTypes PIE = new ChartTypes("pie");
-        public static ChartTypes DOUGHNUT = new ChartTypes("doughnut");
-        public static ChartTypes RADAR = new ChartTypes("radar");
-        public static ChartTypes BUBBLE = new ChartTypes("bubble");
-        public static ChartTypes POLARAREA = new ChartTypes("polarArea");
-        public static ChartTypes SCATTER = new ChartTypes("scatter");
+        public static readonly ChartTypes BAR = new ChartTypes("bar");
+        public static readonly ChartTypes HORIZONTALBAR = new ChartTypes("horizontalBar");
+        public static readonly ChartTypes LINE = new ChartTypes("line");
+        public static readonly ChartTypes PIE = new ChartTypes("pie");
+        public static readonly ChartTypes DOUGHNUT = new ChartTypes("doughnut");
+        public static readonly ChartTypes RADAR = new ChartTypes("radar");
+        public static readonly ChartTypes BUBBLE = new ChartTypes("bubble");
+        public static readonly ChartTypes POLARAREA = new ChartTypes("polarArea");
+        public static readonly ChartTypes SCATTER = new ChartTypes("scatter");
 
         private readonly string _chartType;
 

@@ -1,0 +1,88 @@
+﻿@page "/PieChart"
+@using ChartJs.Blazor.ChartJS.PieChart
+@using Newtonsoft.Json
+
+<h2>Pie Chart</h2>
+<div class="row">
+    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+</div>
+<ChartJsPieChart ref="pieChartJs" Config="@pieChartConfig" Width="600" Height="300" />
+
+<DataDisplay  OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300" />
+
+@functions{
+
+    private PieChartConfig pieChartConfig { get; set; }
+    ChartJsPieChart pieChartJs;
+
+    string DataStr
+    {
+        get => JsonConvert.SerializeObject(pieChartConfig.Data, Formatting.Indented);
+        set
+        {
+            pieChartConfig.Data = JsonConvert.DeserializeObject<PieChartData>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(pieChartConfig.Data));
+        }
+    }
+                                            
+    void OnDataStrChange(string dataStr)
+    {
+        pieChartConfig.Data = JsonConvert.DeserializeObject<PieChartData>(dataStr);
+        pieChartJs.Update();
+    }
+
+    protected override void OnInit()
+    {
+        pieChartConfig = pieChartConfig ?? new PieChartConfig
+        {
+            CanvasId = "myFirstPieChart",
+            Options = new PieChartOptions
+            {
+                Text = "Sample chart from Blazor",
+                Display = true,
+                Responsive = true,
+                Animation = new DoughnutAnimation { AnimateRotate = true, AnimateScale = true }
+            },
+            Data = new PieChartData
+            {
+                Labels = new List<string> { "A", "B", "C", "D" },
+                Datasets = new List<PieChartDataset>
+            {
+                new PieChartDataset
+                {
+                    BackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
+                    Data = new List<int> {4, 5, 6, 7},
+                    Label = "Light Red",
+                    BorderWidth = 0,
+                    HoverBackgroundColor = new[] {"#f06384"},
+                    HoverBorderColor = new[] {"#f06384"},
+                    HoverBorderWidth = new[] {1}, BorderColor = "#ffffff",
+                }
+            }
+            }
+        };
+    }
+
+    public void UpdateChart()
+    {
+        var rand = new Random();
+        pieChartConfig.Data = new PieChartData
+        {
+            Labels = new List<string> { "A", "B", "C", "D" },
+            Datasets = new List<PieChartDataset>
+        {
+            new PieChartDataset
+            {
+                BackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
+                Label = "Light Red",
+                BorderWidth = 0,
+                HoverBackgroundColor = new[] {"#f06384"},
+                HoverBorderColor = new[] {"#f06384"},
+                HoverBorderWidth = new[] {1}, BorderColor = "#ffffff",
+                Data = new List<int> {rand.Next(10), rand.Next(10), rand.Next(10), rand.Next(10)}
+            }
+        }
+        };
+    }
+
+}

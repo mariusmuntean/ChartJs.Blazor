@@ -1,37 +1,8 @@
-﻿@using ChartJs.Blazor.ChartJS
-@using ChartJs.Blazor.ChartJS.BarChart
+﻿@using ChartJs.Blazor.ChartJS.BarChart
+@inherits ChartBase<BarChartConfig>
 
 <div class="row">
     <div class="container">
         <canvas id="@Config.CanvasId" width="@Width" height="@Height"></canvas>
     </div>
 </div>
-
-@functions {
-
-    [Parameter]
-    BarChartConfig Config { get; set; }
-
-    [Parameter]
-    int Width { get; set; } = 400;
-
-    [Parameter]
-    int Height { get; set; } = 400;
-
-    protected override void OnAfterRender()
-    {
-        ChartJsInterop.InitializeBarChart(Config);
-    }
-
-    public void Reload()
-    {
-        ChartJsInterop.ReloadBarChart(Config);
-    }
-
-
-    public void Update()
-    {
-        ChartJsInterop.UpdateBarChart(Config);
-    }
-
-}

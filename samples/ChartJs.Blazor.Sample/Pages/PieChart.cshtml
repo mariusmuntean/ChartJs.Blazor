@@ -1,7 +1,6 @@
 ﻿@page "/PieChart"
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.PieChart
-@using ChartJs.Blazor.Sample.Shared.Components
 @using Newtonsoft.Json
 
 <h2>Pie Chart</h2>
@@ -10,23 +9,27 @@
 </div>
 <ChartJsPieChart ref="pieChartJs" Config="@pieChartConfig" Width="600" Height="300" />
 
-<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300" />
+<DataDisplay  OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300" />
 
 @functions{
 
     private PieChartConfig pieChartConfig { get; set; }
     ChartJsPieChart pieChartJs;
 
-    DataSetDisplay _dataSetDisplay;
-
-    string DataSetsStr
+    string DataStr
     {
-        get => JsonConvert.SerializeObject(pieChartConfig.Data.Datasets, Formatting.Indented);
+        get => JsonConvert.SerializeObject(pieChartConfig.Data, Formatting.Indented);
         set
         {
-            pieChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<PieChartDataset>>(value);
-            Console.WriteLine(JsonConvert.SerializeObject(pieChartConfig.Data.Datasets));
+            pieChartConfig.Data = JsonConvert.DeserializeObject<PieChartData>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(pieChartConfig.Data));
         }
+    }
+                                            
+    void OnDataStrChange(string dataStr)
+    {
+        pieChartConfig.Data = JsonConvert.DeserializeObject<PieChartData>(dataStr);
+        pieChartJs.Update();
     }
 
     protected override void OnInit()
@@ -61,18 +64,6 @@
         };
     }
 
-    protected override void OnAfterRender()
-    {
-        Console.WriteLine("OnAfterRender");
-        pieChartJs.Reload();
-
-        _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
-        {
-            pieChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<PieChartDataset>>(dataSetsStr);
-            pieChartJs.Reload();
-        };
-    }
-
     public void UpdateChart()
     {
         var rand = new Random();
@@ -93,8 +84,6 @@
             }
         }
         };
-
-        pieChartJs.Reload();
     }
 
 }

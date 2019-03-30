@@ -2,8 +2,6 @@
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Legends
 @using ChartJs.Blazor.ChartJS.DoughnutChart
-@using ChartJs.Blazor.Util.Color
-@using ChartJs.Blazor.Sample.Shared.Components
 @using Newtonsoft.Json
 
 <h2>Doughnut Chart</h2>
@@ -12,23 +10,27 @@
 </div>
 <ChartJsDoughnutChart ref="_doughnutChartJs" Config="@doughnutChartConfig" Width="600" Height="300"/>
 
-<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
+<DataDisplay OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300"/>
 
 @functions{
 
     public DoughnutChartConfig doughnutChartConfig { get; set; }
     ChartJsDoughnutChart _doughnutChartJs;
 
-    DataSetDisplay _dataSetDisplay;
-
-    string DataSetsStr
+    string DataStr
     {
-        get => JsonConvert.SerializeObject(doughnutChartConfig.Data.Datasets, Formatting.Indented);
+        get => JsonConvert.SerializeObject(doughnutChartConfig.Data, Formatting.Indented);
         set
         {
-            doughnutChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<DoughnutDataset>>(value);
-            Console.WriteLine(JsonConvert.SerializeObject(doughnutChartConfig.Data.Datasets));
+            doughnutChartConfig.Data = JsonConvert.DeserializeObject<DoughnutData>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(doughnutChartConfig.Data));
         }
+    }
+                                    
+    void OnDataStrChange(string dataStr)
+    {
+        doughnutChartConfig.Data = JsonConvert.DeserializeObject<DoughnutData>(dataStr);
+        _doughnutChartJs.Update();
     }
 
     protected override void OnInit()
@@ -69,18 +71,6 @@
         };
     }
 
-    protected override void OnAfterRender()
-    {
-        Console.WriteLine("OnAfterRender");
-        _doughnutChartJs.Reload();
-
-        _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
-        {
-            doughnutChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<DoughnutDataset>>(dataSetsStr);
-            _doughnutChartJs.Reload();
-        };
-    }
-
     public void UpdateChart()
     {
         var rand = new Random();
@@ -105,7 +95,6 @@
         };
 
         doughnutChartConfig.Data.Datasets.Add(doughnutDataset);
-        _doughnutChartJs.Reload();
     }
 
 }

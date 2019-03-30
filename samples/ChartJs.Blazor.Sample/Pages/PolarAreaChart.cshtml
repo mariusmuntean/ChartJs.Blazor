@@ -2,8 +2,6 @@
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Legends
 @using ChartJs.Blazor.ChartJS.PolarAreaChart
-@using ChartJs.Blazor.Sample.Shared.Components
-@using ChartJs.Blazor.Util.Color
 @using Newtonsoft.Json
 
 <h2>Bubble Chart</h2>
@@ -12,30 +10,34 @@
 </div>
 <ChartJsPolarAreaChart ref="polarAreaChart" Config="@polarAreaChartConfig" Width="600" Height="300"/>
 
-<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
+<DataDisplay OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300"/>
 
 @functions{
 
     public PolarAreaChartConfig polarAreaChartConfig { get; set; }
     ChartJsPolarAreaChart polarAreaChart;
 
-    DataSetDisplay _dataSetDisplay;
-
-    string DataSetsStr
+    string DataStr
     {
-        get => JsonConvert.SerializeObject(polarAreaChartConfig.Data.Datasets, Formatting.Indented);
+        get => JsonConvert.SerializeObject(polarAreaChartConfig.Data, Formatting.Indented);
         set
         {
-            polarAreaChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<PolarAreaDataset>>(value);
-            Console.WriteLine(JsonConvert.SerializeObject(polarAreaChartConfig.Data.Datasets));
+            polarAreaChartConfig.Data = JsonConvert.DeserializeObject<PolarAreaData>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(polarAreaChartConfig.Data));
         }
+    }
+                                 
+    void OnDataStrChange(string dataStr)
+    {
+        polarAreaChartConfig.Data = JsonConvert.DeserializeObject<PolarAreaData>(dataStr);
+        polarAreaChart.Update();
     }
 
     protected override void OnInit()
     {
         polarAreaChartConfig = polarAreaChartConfig ?? new PolarAreaChartConfig
         {
-            CanvasId = "myFirstBubbleChart",
+            CanvasId = "myFirstPolarAreaChart",
             Options = new PolarAreaOptions
             {
                 Text = "Sample chart from Blazor",
@@ -66,18 +68,6 @@
         };
     }
 
-    protected override void OnAfterRender()
-    {
-        Console.WriteLine("OnAfterRender");
-        polarAreaChart.Reload();
-
-        _dataSetDisplay.OnUpdatedDataSetsStr += (dataSetsStr) =>
-        {
-            polarAreaChartConfig.Data.Datasets = JsonConvert.DeserializeObject<List<PolarAreaDataset>>(dataSetsStr);
-            polarAreaChart.Reload();
-        };
-    }
-
     public void UpdateChart()
     {
         var rand = new Random();
@@ -91,8 +81,6 @@
         ds1.HoverBorderColor.Add(ColorUtil.RandomColorString());
         ds1.BorderWidth.Add(1);
         ds1.BackgroundColor.Add(ColorUtil.RandomColorString());
-
-        polarAreaChart.Reload();
     }
 
 }

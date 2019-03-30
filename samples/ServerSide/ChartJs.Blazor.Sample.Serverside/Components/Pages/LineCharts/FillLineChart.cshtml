@@ -1,0 +1,124 @@
+﻿@page "/FillLineChart"
+@using ChartJs.Blazor.ChartJS.LineChart
+@using Newtonsoft.Json
+
+<h2>Filled Line Chart</h2>
+<div class="row">
+    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+</div>
+<ChartJsLineChart ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
+
+<DataDisplay OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300" />
+
+@functions{
+
+    public LineChartConfig lineChartConfig { get; set; }
+    ChartJsLineChart lineChartJs;
+
+    string DataStr
+    {
+        get => JsonConvert.SerializeObject(lineChartConfig.Data, Formatting.Indented);
+        set
+        {
+            lineChartConfig.Data = JsonConvert.DeserializeObject<LineChartData>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(lineChartConfig.Data));
+        }
+    }
+
+    void OnDataStrChange(string dataStr)
+    {
+        lineChartConfig.Data = JsonConvert.DeserializeObject<LineChartData>(dataStr);
+        lineChartJs.Update();
+    }
+
+    protected override void OnInit()
+    {
+        lineChartConfig = lineChartConfig ?? new LineChartConfig
+        {
+            CanvasId = "myFirstLineChart",
+            Options = new LineChartOptions
+            {
+                Text = "Sample chart from Blazor",
+                Display = true,
+                Responsive = true,
+                Title = new OptionsTitle { Display = true, Text = "Fill Line Chart" },
+                Tooltips = new Tooltips
+                {
+                    Mode = Mode.nearest,
+                    Intersect = false
+                },
+                Scales = new Scales
+                {
+                    xAxes = new List<Axis>
+            {
+                    new Axis
+                    {
+                        ScaleLabel = new ScaleLabel
+                        {
+                            LabelString = ".labelString"
+                        }
+                    }
+                },
+                    yAxes = new List<Axis>
+            {
+                    new Axis
+                    {
+                        ScaleLabel = new ScaleLabel
+                        {
+                            LabelString = "..label"
+                        }
+                    }
+                }
+                },
+                Hover = new LineChartOptionsHover
+                {
+                    Intersect = true,
+                    Mode = Mode.nearest
+                }
+            },
+            Data = new LineChartData
+            {
+                Labels = new List<string> { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
+                Datasets = new List<LineChartDataset>
+        {
+                new LineChartDataset
+                {
+                    BackgroundColor = "#ff6384",
+                    BorderColor = "#ff6384",
+                    Label = "1'st dataset",
+                    Data = new List<dynamic> {4, 6, 2, 7, 9, 1},
+                    Fill = true,
+                    BorderWidth = 2,
+                    PointRadius = 3,
+                    PointBorderWidth = 1
+                },
+                new LineChartDataset
+                {
+                    BackgroundColor = ColorUtil.ColorString(34, 78, 234, 0.56),
+                    BorderColor = ColorUtil.ColorString(34, 78, 234, 0.56),
+                    Label = "2'nd dataset",
+                    Data = new List<dynamic> {14, 16, 12, 17, 19, 11},
+                    Fill = true,
+                    BorderWidth = 2,
+                    PointRadius = 3,
+                    PointBorderWidth = 1
+                }
+            }
+            }
+        };
+    }
+
+    public void UpdateChart()
+    {
+        //Update existing dataset
+        var rand = new Random();
+        lineChartConfig.Data.Labels.Add($"New{DateTime.Now.Second}");
+        var newVal = rand.Next(lineChartConfig.Data.Datasets.SelectMany(dataset => dataset.Data).Select(Convert.ToInt32).Max());
+        newVal -= 4;
+        lineChartConfig.Data.Datasets.ForEach(dataset =>
+        {
+            dataset.Data.Add(newVal);
+            newVal += rand.Next(4);
+        });
+    }
+}

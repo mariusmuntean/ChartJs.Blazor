@@ -1,48 +1,8 @@
-﻿@using ChartJs.Blazor.ChartJS
-@using ChartJs.Blazor.ChartJS.LineChart
+﻿@using ChartJs.Blazor.ChartJS.LineChart
+@inherits ChartBase<LineChartConfig>
 
 <div class="row">
     <div class="container">
         <canvas id="@Config.CanvasId" width="@Width" height="@Height"></canvas>
     </div>
 </div>
-
-@functions {
-
-    [Parameter]
-    LineChartConfig Config { get; set; }
-
-    [Parameter]
-    int Width { get; set; } = 200;
-
-    [Parameter]
-    int Height { get; set; } = 200;
-
-    private string ChartjsChart { get; set; } = "";
-
-    protected override void OnAfterRender()
-    {
-        ChartJsInterop.InitializeLineChart(Config).ConfigureAwait(false);
-    }
-
-    protected override void OnInit()
-    {
-        ChartJsInterop.InitializeLineChart(Config).ConfigureAwait(false);
-    }
-
-    public void DisplayChart()
-    {
-        ChartJsInterop.InitializeLineChart(Config);
-    }
-
-    public void Update()
-    {
-        ChartJsInterop.UpdateLineChart(Config);
-    }
-    
-    public void Reload()
-    {
-        ChartJsInterop.ReloadLineChart(Config);
-    }
-
-}

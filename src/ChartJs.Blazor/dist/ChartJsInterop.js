@@ -2,30 +2,33 @@
 
 Blazor.BlazorCharts = BlazorCharts;
 window.ChartJSInterop = {
-    InitializeChart: function(config) {
+    SetupChart: function (config) {
+        config = JSON.parse(config);
+
         if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
+            if (!config.options.legend)
+                config.options.legend = {};
+
             let thisChart = initializeChartjsChart2(config);
             BlazorCharts.push({ id: config.canvasId, chart: thisChart });
+        }
+        else {
+            let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
+
+            myChart.chart.destroy();
+            myChart.chart = {};
+
+            let newChart = initializeChartjsChart2(config);
+            myChart.chart = newChart;
+
         }
 
         return true;
     },
 
-    ReloadChart: function(config) {
-        if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
-            throw `Could not find a chart with the given id. ${config.canvasId}`;
+    UpdateChart: function (config) {
+        config = JSON.parse(config);
 
-        let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
-
-        myChart.chart.destroy();
-        myChart.chart = {};
-        let newChart = initializeChartjsChart2(config);
-        myChart.chart = newChart;
-
-        return true;
-    },
-
-    UpdateChart: function(config) {
         if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
             throw `Could not find a chart with the given id. ${config.canvasId}`;
 
@@ -67,6 +70,9 @@ function initializeChartjsChart2(config) {
 }
 
 function WireUpLegendItemFilterFunc(config) {
+    if (config.options.legend.labels === undefined)
+        config.options.legend.labels = {};
+
     if (config.options.legend.labels.filter &&
         typeof config.options.legend.labels.filter === "string" &&
         config.options.legend.labels.filter.includes(".")) {
@@ -83,6 +89,9 @@ function WireUpLegendItemFilterFunc(config) {
 }
 
 function WireUpGenerateLabelsFunc(config) {
+    if (config.options.legend.labels === undefined)
+        config.options.legend.labels = {};
+
     if (config.options.legend.labels.generateLabels &&
         typeof config.options.legend.labels.generateLabels === "string" &&
         config.options.legend.labels.generateLabels.includes(".")) {
@@ -115,10 +124,10 @@ function WireUpOnClick(config) {
         else if (typeof config.options.legend.onClick === "object" &&
             config.options.legend.onClick.hasOwnProperty('assemblyName') &&
             config.options.legend.onClick.hasOwnProperty('methodName')) {
-            config.options.legend.onClick = (function() {
+            config.options.legend.onClick = (function () {
                 var assemblyName = config.options.legend.onClick.assemblyName;
                 var methodName = config.options.legend.onClick.methodName;
-                return async function(sender, args) {
+                return async function (sender, args) {
                     await DotNet.invokeMethodAsync(assemblyName, methodName, sender, args);
                 };
             })();
@@ -127,10 +136,10 @@ function WireUpOnClick(config) {
         else if (typeof config.options.legend.onClick === "object" &&
             config.options.legend.onClick.hasOwnProperty('instanceRef') &&
             config.options.legend.onClick.hasOwnProperty('methodName')) {
-            config.options.legend.onClick = (function() {
+            config.options.legend.onClick = (function () {
                 var instanceRef = config.options.legend.onClick.instanceRef;
                 var methodName = config.options.legend.onClick.methodName;
-                return async function(sender, args) {
+                return async function (sender, args) {
                     await instanceRef.invokeMethodAsync(methodName, sender, args);
                 };
             })();
@@ -142,9 +151,9 @@ function WireUpOnClick(config) {
 
 function WireUpOnHover(config) {
     if (config.options.legend.onHover) {
-        if (typeof config.options.legend.onHover === "string" &&
-            config.options.legend.onHover.includes(".")) {
-            var onHoverNamespaceAndFunc = config.options.legend.onHover.split(".");
+        if (typeof config.options.legend.onHover === "object" &&
+            config.options.legend.onHover.hasOwnProperty('fullFunctionName')) {
+            var onHoverNamespaceAndFunc = config.options.legend.onHover.fullFunctionName.split(".");
             var onHoverFunc = window[onHoverNamespaceAndFunc[0]][onHoverNamespaceAndFunc[1]];
             if (typeof onHoverFunc === "function") {
                 config.options.legend.onHover = onHoverFunc;
@@ -156,10 +165,10 @@ function WireUpOnHover(config) {
         else if (typeof config.options.legend.onHover === "object" &&
             config.options.legend.onHover.hasOwnProperty('assemblyName') &&
             config.options.legend.onHover.hasOwnProperty('methodName')) {
-            config.options.legend.onHover = (function() {
+            config.options.legend.onHover = (function () {
                 var assemblyName = config.options.legend.onHover.assemblyName;
                 var methodName = config.options.legend.onHover.methodName;
-                return async function(sender, mouseOverEvent) {
+                return async function (sender, mouseOverEvent) {
                     await DotNet.invokeMethodAsync(assemblyName, methodName, sender, mouseOverEvent);
                 };
             })();
@@ -168,10 +177,10 @@ function WireUpOnHover(config) {
         else if (typeof config.options.legend.onHover === "object" &&
             config.options.legend.onHover.hasOwnProperty('instanceRef') &&
             config.options.legend.onHover.hasOwnProperty('methodName')) {
-            config.options.legend.onHover = (function() {
+            config.options.legend.onHover = (function () {
                 var instanceRef = config.options.legend.onHover.instanceRef;
                 var methodName = config.options.legend.onHover.methodName;
-                return async function(sender, mouseOverEvent) {
+                return async function (sender, mouseOverEvent) {
                     await instanceRef.invokeMethodAsync(methodName, sender, mouseOverEvent);
                 };
             })();

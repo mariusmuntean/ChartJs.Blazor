@@ -1,0 +1,103 @@
+﻿@page "/MixedChart"
+@using ChartJs.Blazor.ChartJS.BarChart.Dataset
+@using ChartJs.Blazor.ChartJS.LineChart
+@using ChartJs.Blazor.ChartJS.MixedChart
+@using Newtonsoft.Json
+
+<h2>Mixed Charts</h2>
+<div class="row">
+    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+</div>
+<ChartJsMixedChart ref="mixedChart" Config="@mixedChartConfig" Width="600" Height="300" />
+
+<DataDisplay OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300" />
+
+@functions {
+
+    MixedChartConfig mixedChartConfig { get; set; }
+    ChartJsMixedChart mixedChart;
+
+    string DataStr
+    {
+        get => JsonConvert.SerializeObject(mixedChartConfig.Data, Formatting.Indented);
+        set
+        {
+            mixedChartConfig.Data = JsonConvert.DeserializeObject<MixedChartData>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(mixedChartConfig.Data));
+        }
+    }
+
+    void OnDataStrChange(string dataStr)
+    {
+        mixedChartConfig.Data = JsonConvert.DeserializeObject<MixedChartData>(dataStr);
+        mixedChart.Update();
+    }
+
+    protected override void OnInit()
+    {
+        mixedChartConfig = mixedChartConfig ?? new MixedChartConfig
+        {
+            CanvasId = "myFirstMixedChart",
+            Options = new MixedChartOptions
+            {
+                Text = "Sample chart from Blazor",
+                Display = true,
+                Responsive = true,
+                Legend = new ChartJS.Common.Legends.Legend
+                {
+                    Position = LegendPosition.LEFT.ToString(),
+                    Reverse = true,
+                    Labels = new Labels
+                    {
+                        UsePointStyle = true,
+                        BoxWidth = 85,
+                        Padding = 55,
+                        FontSize = 15,
+                        FontColor = ColorUtil.ColorHexString(205, 205, 205),
+                        FontStyle = "Helvetica"
+                    }
+                }
+            },
+            Data = new MixedChartData
+            {
+                Labels = new List<string> { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
+                Datasets = new List<IMixableDataset>
+        {
+                    new BarChartDataset
+                    {
+                        Label = "1'st dataset",
+                        BackgroundColor = "#4465fe",
+                        BorderColor = "#4465fe",
+                        Data = new List<object> {19, 12, 5, 3, 3, 2}
+                    },
+                    new LineChartDataset
+                    {
+                        BackgroundColor = "#ff6384",
+                        BorderColor = "#ff6384",
+                        Label = "2'nd dataset",
+                        Data = new List<object> {19, 12, 5, 3, 3, 2},
+                        Fill = false,
+                        BorderWidth = 2,
+                        PointRadius = 3,
+                        PointBorderWidth = 1
+                    }
+                    ,
+                    new BarChartDataset
+                    {
+                        Label = "3'rd dataset",
+                        BackgroundColor = "#cc65fe",
+                        BorderColor = "#cc65fe",
+                        Data = new List<object> {19, 12, 5, 3, 3, 2}
+                    }
+                }
+            }
+        };
+    }
+
+    public void UpdateChart()
+    {
+        mixedChartConfig.Data.Labels.Add($"P {mixedChartConfig.Data.Labels.Count + 1}");
+        mixedChartConfig.Data.Datasets.ForEach(dataset => dataset.Data.Add(DateTime.Now.Second));
+    }
+
+}

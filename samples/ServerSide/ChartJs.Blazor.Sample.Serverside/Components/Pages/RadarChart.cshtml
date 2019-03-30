@@ -1,0 +1,98 @@
+﻿@page "/RadarChart"
+@using ChartJs.Blazor.ChartJS.RadarChart
+@using Newtonsoft.Json
+@using RadarChartPointStyles = ChartJs.Blazor.ChartJS.RadarChart.RadarChartPointStyles
+
+<h2>Radar Chart</h2>
+<div class="row">
+    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+</div>
+<ChartJsRadarChart ref="radarChartJs" Config="@radarChartConfig" Width="600" Height="300"/>
+
+<DataDisplay OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300"/>
+
+@functions {
+
+    private RadarChartConfig radarChartConfig { get; set; }
+    ChartJsRadarChart radarChartJs;
+
+    string DataStr
+    {
+        get => JsonConvert.SerializeObject(radarChartConfig.Data, Formatting.Indented);
+        set
+        {
+            radarChartConfig.Data = JsonConvert.DeserializeObject<RadarChartData>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(radarChartConfig.Data));
+        }
+    }
+                                     
+    void OnDataStrChange(string dataStr)
+    {
+        radarChartConfig.Data = JsonConvert.DeserializeObject<RadarChartData>(dataStr);
+        radarChartJs.Update();
+    }
+
+    protected override void OnInit()
+    {
+        radarChartConfig = radarChartConfig ?? new RadarChartConfig
+        {
+            CanvasId = "myFirstRadarChart",
+            Options = new RadarChartOptions
+            {
+                Text = "Sample chart from Blazor",
+                Responsive = true,
+                Display = true,
+                Title = new OptionsTitle {Display = true, Text = "Radar Chart"},
+                Legend = new ChartJS.Common.Legends.Legend
+                {
+                    Position = LegendPosition.RIGHT.ToString(),
+                    Labels = new Labels()
+                    {
+                        FontColor = ColorUtil.ColorHexString(255, 87, 82)
+                    }
+                },
+                Scale = new Scale {Ticks = new Ticks {BeginAtZero = true}}
+            },
+            Data = new RadarChartData
+            {
+                Labels = new List<string> {"Eating", "Drinking", "Social", "Coding", "Cycling", "Running"},
+                Datasets = new List<RadarChartDataset>
+                {
+                    new RadarChartDataset
+                    {
+                        BackgroundColor = "#ff6384",
+                        Label = "1st Dataset",
+                        Data = new List<int> {19, 12, 5, 3, 3, 2},
+                        BorderWidth = 2,
+                        Fill = true,
+                        PointStyle = new RadarChartPointStyles[] {RadarChartPointStyles.DASH},
+                        PointBackgroundColor = new[] {"#a4cef0"},
+                        PointRadius = new[] {5},
+                        PointBorderWidth = new[] {1}
+                    }
+                }
+            }
+        };
+    }
+
+    public void UpdateChart()
+    {
+        //Add new dataset
+        var rand = new Random();
+        var max = radarChartConfig.Data.Datasets.First().Data.Max();
+        var color = $"#{rand.Next(16777215):X6}";
+        radarChartConfig.Data.Datasets.Add(new RadarChartDataset
+        {
+            BackgroundColor = color,
+            BorderColor = color,
+            Label = $"Dataset {radarChartConfig.Data.Datasets.Count + 1}",
+            Data = new List<int> {rand.Next(max), rand.Next(max), rand.Next(max), rand.Next(max), rand.Next(max), rand.Next(max)},
+            BorderWidth = 2,
+            Fill = true,
+            PointRadius = new[] {3},
+            PointBorderWidth = new[] {1},
+            PointStyle = new[] {RadarChartPointStyles.RETROUNDED}
+        });
+    }
+
+}

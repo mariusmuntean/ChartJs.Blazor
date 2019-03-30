@@ -109,6 +109,8 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// The fill color under the line.
         /// </summary>
         public string BackgroundColor { get; set; }
+        
+        public string PointBackgroundColor { get; set; }
 
         /// <summary>
         /// The color of the line. 

@@ -1,0 +1,83 @@
+﻿@using ChartJs.Blazor.Sample.Shared.Extensions
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.JSInterop;
+@inject IJSRuntime iJSRuntime;
+
+<form style="margin-top: 20px">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="textAreaId" class="align-bottom">Chart Data - You can Edit Me</label>
+        </div>
+        <div class="form-group col-md-6">
+            <button class="btn btn-primary float-right"
+                    type="button"
+                    onclick="@RestoreInitialData">
+                I messed up
+            </button>
+        </div>
+    </div>
+    <div class="form-row">
+        <textarea id="textAreaId"
+                  colspan="2"
+                  ref="dataTextArea"
+                  class="form-control"
+                  Width="@Width"
+                  Height="@Height"
+                  Rows="@Rows"
+                  oninput="@OnKeyUp"
+                  bind-value-onchange="@DataStr"
+                  style="display: block; margin-left: auto; margin-right: auto"></textarea>
+    </div>
+</form>
+
+@functions {
+
+    private string _initialData = null;
+
+    ElementRef dataTextArea;
+
+    [Parameter]
+    int Width { get; set; } = 600;
+
+    [Parameter]
+    int Height { get; set; } = 600;
+
+    [Parameter]
+    int Cols { get; set; } = 0;
+
+    [Parameter]
+    int Rows { get; set; } = 25;
+
+    async void OnKeyUp(UIEventArgs args)
+    {
+        var datasetsTextAreaVal = await dataTextArea.GetValue(iJSRuntime).ConfigureAwait(false);
+        OnUpdatedDataStr?.Invoke(datasetsTextAreaVal);
+    }
+
+    private string _dataStr;
+
+    [Parameter]
+    string DataStr
+    {
+        get => _dataStr;
+        set
+        {
+            _initialData = _initialData ?? value;
+
+            _dataStr = value;
+            OnUpdatedDataStr?.Invoke(_dataStr); // unfortunately this changes on when the text area looses focus; bind-value-onchange isn't working right now
+        }
+    }
+
+    [Parameter]
+    Action<string> DataStrChanged { get; set; }
+
+    [Parameter]
+    Action<string> OnUpdatedDataStr { get; set; }
+
+    private void RestoreInitialData()
+    {
+        DataStr = _initialData;
+    }
+
+}

@@ -1,41 +1,8 @@
-﻿@using ChartJs.Blazor.ChartJS
-@using ChartJs.Blazor.ChartJS.MixedChart
+﻿@using ChartJs.Blazor.ChartJS.MixedChart
+@inherits ChartBase<MixedChartConfig>
 
 <div class="row">
     <div class="container">
         <canvas id="@Config.CanvasId" width="@Width" height="@Height"></canvas>
     </div>
 </div>
-
-@functions {
-
-    [Parameter]
-    MixedChartConfig Config { get; set; }
-
-    [Parameter]
-    int Width { get; set; } = 400;
-
-    [Parameter]
-    int Height { get; set; } = 400;
-
-    protected override void OnAfterRender()
-    {
-        ChartJsInterop.InitializeMixedChart(Config);
-    }
-
-    void DisplayChart()
-    {
-        ChartJsInterop.InitializeMixedChart(Config);
-    }
-
-    public void Update()
-    {
-        ChartJsInterop.UpdateMixedChart(Config);
-    }
-    
-    public void Reload()
-    {
-        ChartJsInterop.ReloadMixedChart(Config);
-    }
-
-}

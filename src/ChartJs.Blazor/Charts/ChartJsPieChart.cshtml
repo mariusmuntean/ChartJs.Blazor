@@ -1,41 +1,8 @@
-﻿@using ChartJs.Blazor.ChartJS
-@using ChartJs.Blazor.ChartJS.PieChart
+﻿@using ChartJs.Blazor.ChartJS.PieChart
+@inherits ChartBase<PieChartConfig>
 
 <div class="row">
     <div class="container">
         <canvas id="@Config.CanvasId" width="@Width" height="@Height"></canvas>
     </div>
 </div>
-
-@functions {
-
-    [Parameter]
-    PieChartConfig Config { get; set; }
-
-    [Parameter]
-    int Width { get; set; } = 400;
-
-    [Parameter]
-    int Height { get; set; } = 400;
-
-    protected override void OnAfterRender()
-    {
-        ChartJsInterop.InitializePieChart(Config);
-    }
-
-    void DisplayChart()
-    {
-        ChartJsInterop.InitializePieChart(Config);
-    }
-
-    public void Update()
-    {
-        ChartJsInterop.UpdatePieChart(Config);
-    }
-    
-    public void Reload()
-    {
-        ChartJsInterop.ReloadPieChart(Config);
-    }
-
-}
