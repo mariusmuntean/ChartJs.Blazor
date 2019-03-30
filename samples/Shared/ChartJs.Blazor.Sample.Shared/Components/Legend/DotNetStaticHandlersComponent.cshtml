@@ -1,0 +1,117 @@
+﻿@using ChartJs.Blazor.ChartJS.BarChart
+@using ChartJs.Blazor.ChartJS.BarChart.Dataset
+@using ChartJs.Blazor.ChartJS.Common.Legends
+@using ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
+@using ChartJs.Blazor.ChartJS.Common.Legends.OnHover
+@using Microsoft.JSInterop
+@using Newtonsoft.Json
+
+<h2>Legend Item - .Net static click/hover handler (open the developer console if you run ClientSide; open your VS Output and switch to ASP.NE Core Web Server if you're running ServerSide)</h2>
+<div class="row">
+    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+</div>
+<ChartJsBarChart ref="barChart"
+                 Config="@barChartConfig"
+                 Width="600"
+                 Height="300" />
+
+<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300" />
+
+@functions {
+
+    private BarChartConfig barChartConfig { get; set; }
+    private ChartJsBarChart barChart { get; set; }
+
+    string DataStr
+    {
+        get => JsonConvert.SerializeObject(barChartConfig.Data, Formatting.Indented);
+        set
+        {
+            barChartConfig.Data = JsonConvert.DeserializeObject<BarChartData>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(barChartConfig.Data));
+        }
+    }
+
+    void OnDataStrChange(string dataStr)
+    {
+        barChartConfig.Data = JsonConvert.DeserializeObject<BarChartData>(dataStr);
+        barChart.Update();
+    }
+
+    protected override void OnInit()
+    {
+        var rand = new Random();
+        barChartConfig = barChartConfig ?? new BarChartConfig
+        {
+            CanvasId = "myBarChartCanvas",
+            Options = new BarChartOptions
+            {
+                Text = "Sample chart from Blazor",
+                Display = true,
+                Responsive = true,
+                Legend = new Legend
+                {
+                    OnClick = new DotNetStaticClickHandler(StaticClickHandler),
+                    OnHover = new DotNetStaticHoverHandler(LegendItemOnHoverHandler)
+                }
+            },
+            Data = new BarChartData
+            {
+                Labels = new List<string> { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
+                Datasets = new List<BaseBarChartDataset>
+            {
+                    new BarChartDataset
+                    {
+                        Label = "1'st dataset",
+                        BackgroundColor = ColorUtil.RandomColorString(),
+                        BorderColor = ColorUtil.RandomColorString(),
+                        Data = new List<dynamic> {rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30)}
+                    },
+                    new BarChartDataset
+                    {
+                        Label = "2'nd dataset",
+                        BackgroundColor = ColorUtil.RandomColorString(),
+                        BorderColor = ColorUtil.RandomColorString(),
+                        Data = new List<dynamic> {rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30)}
+                    },
+                    new BarChartDataset
+                    {
+                        Label = "3'rd dataset",
+                        BackgroundColor = ColorUtil.RandomColorString(),
+                        BorderColor = ColorUtil.RandomColorString(),
+                        Data = new List<dynamic> {rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30)}
+                    },
+                    new BarChartDataset
+                    {
+                        Label = "4'th dataset",
+                        BackgroundColor = ColorUtil.RandomColorString(),
+                        BorderColor = ColorUtil.RandomColorString(),
+                        Data = new List<dynamic> {rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30), rand.Next(30)}
+                    }
+                }
+            }
+        };
+    }
+
+    [JSInvokable]
+    public static void LegendItemOnHoverHandler(object sender, object mousemove)
+    {
+        Console.WriteLine(JsonConvert.SerializeObject(sender));
+        Console.WriteLine(JsonConvert.SerializeObject(mousemove, Formatting.Indented));
+    }
+
+    [JSInvokable]
+    public static void StaticClickHandler(object sender, object args)
+    {
+        Console.WriteLine(JsonConvert.SerializeObject(sender));
+        Console.WriteLine(JsonConvert.SerializeObject(args, Formatting.Indented));
+    }
+
+    private void UpdateChart()
+    {
+        //Update existing dataset
+        barChartConfig.Data.Labels.Add($"{DateTime.Now.Second}");
+        barChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(DateTime.Now.Second); });
+    }
+
+}
