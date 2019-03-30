@@ -3,7 +3,6 @@
 Blazor.BlazorCharts = BlazorCharts;
 window.ChartJSInterop = {
     SetupChart: function(config) {
-        config = JSON.parse(config);
         
         if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
             if (!config.options.legend)
@@ -27,7 +26,6 @@ window.ChartJSInterop = {
     },
 
     UpdateChart: function (config) {
-        config = JSON.parse(config);
 
         if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
             throw `Could not find a chart with the given id. ${config.canvasId}`;
