@@ -99,11 +99,7 @@ function WireUpGenerateLabelsFunc(config) {
         var generateLabelsFunc = window[generateLabelsNamespaceAndFunc[0]][generateLabelsNamespaceAndFunc[1]];
         if (typeof generateLabels === "function") {
             config.options.legend.labels.generateLabels = generateLabelsFunc;
-        } else { // fallback to the default
-            config.options.legend.labels.generateLabels = Chart.defaults.global.legend.labels.generateLabels;
         }
-    } else { // fallback to the default
-        config.options.legend.labels.generateLabels = Chart.defaults.global.legend.labels.generateLabels;
     }
 }
 
