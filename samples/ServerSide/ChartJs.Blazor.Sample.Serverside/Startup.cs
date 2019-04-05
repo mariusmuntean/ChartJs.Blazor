@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ChartJs.Blazor.Sample.Serverside.Components;
@@ -47,6 +41,10 @@ namespace ChartJs.Blazor.Sample.Serverside
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            // Add the JS interop file to the webRooPath - make sure to reference it from index.cshtml
+            ChartJsBlazor.AddStaticResourcesToWebRootPath(env.WebRootPath);
+
 
             app.UseRouting(routes =>
             {
