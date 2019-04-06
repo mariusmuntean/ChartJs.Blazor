@@ -15,17 +15,18 @@
     <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
     <Company>Marius Muntean</Company>
     <Authors>Marius Muntean</Authors>
-    <Description>
-      CharJs charts for Blazor.
-      Supports: LineChart, BarChart, RadarCart, Doughnut- and Pie-Chart, BubbleChart, MixedChart; Polar Area Chart
+    <Description>CharJs charts for Blazor.
+Supports both client- and server-side projects. See the samples
 
-      Chart Legend with custom handler for Item generation and events - Jvascript and .Net handlers supported.
-    </Description>
+Supports: LineChart, BarChart, RadarCart, Doughnut- and Pie-Chart, BubbleChart, MixedChart; Polar Area Chart
+
+Chart Legend with custom handler for Item generation and events - Jvascript and .Net handlers supported.</Description>
     <RepositoryUrl>https://github.com/mariusmuntean/ChartJs.Blazor</RepositoryUrl>
     <PackageProjectUrl>https://github.com/mariusmuntean/ChartJs.Blazor</PackageProjectUrl>
     <PackageTags>ChartJS Blazor ASP.Net Core</PackageTags>
     <PackageSummary>Library of useful components to be used within Blazor. Starting off with a simple ChartJS port to Blazor.</PackageSummary>
-    <PackageReleaseNotes>Updated to Blazor 0.9.0-preview3-19154-02</PackageReleaseNotes>
+    <PackageReleaseNotes>Can be used with Blazor 0.9.9
+Fixed disappearing charts when navigating away and back - Thanks to the community for the PRs</PackageReleaseNotes>
     <AssemblyName>ChartJs.Blazor</AssemblyName>
     <RootNamespace>ChartJs.Blazor</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
