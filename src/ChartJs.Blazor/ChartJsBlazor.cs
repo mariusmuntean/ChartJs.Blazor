@@ -13,7 +13,7 @@ namespace ChartJs.Blazor
         public static void AddStaticResourcesToWebRootPath(string webRootPath)
         {
             // Get the content of ChartJsInterop.js
-            var chartJsAssembly = Assembly.GetCallingAssembly();
+            var chartJsAssembly = Assembly.GetExecutingAssembly();
             var chartJsInteropResourceName = chartJsAssembly.GetManifestResourceNames().FirstOrDefault(s => s.EndsWith(InteropFileName));
             var resContent = string.Empty;
             using (var resourceStream = chartJsAssembly.GetManifestResourceStream(chartJsInteropResourceName))
