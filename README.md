@@ -95,6 +95,10 @@ or
 ```
 dotnet add package ChartJs.Blazor
 ```
+**Note:** For server-side projects make sure to add the following line to the `Configure(...)` method of your `Startup.cs` file
+```csharp
+ChartJsBlazor.AddStaticResourcesToWebRootPath(env.WebRootPath);
+```
 
 ## Usage
 
