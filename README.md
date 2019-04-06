@@ -24,6 +24,16 @@ Currently I've implemented support for all ChartJs charts. Do you miss anything 
 
 ## Changelog
 <details open="open">
+<summary>v0.9.0</summary>
+
+* Added support for Blazor and Razor Components projects
+* Updated to ChartJs 2.8
+* Fixed vanishing-chart-bug (thanks community)
+* Refactored the core classes of the library so they don't feel so hacky anymore (thanks community)
+
+</details>
+
+<details>
 <summary>v0.7.0</summary>
 
 * Updated to Blazor v0.7.0
