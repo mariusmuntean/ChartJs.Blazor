@@ -3,6 +3,7 @@
 
 
 This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart.js).
+You can use the library in both client- and server-side projects. See the samples or reach out on Twitter if you need help.
 
 [![Build Status](https://dev.azure.com/marius-muntean/ChartJs.Blazor/_apis/build/status/ChartJs.Blazor-SamplesSite)](https://dev.azure.com/marius-muntean/ChartJs.Blazor/_build/latest?definitionId=4)
 
@@ -175,7 +176,7 @@ For detailed instruction go to the [Wiki page](https://github.com/mariusmuntean/
 ```
 
 
-## Sample Output
+## Samples
 
 Test it in your browser: https://www.iheartblazor.com/
 
@@ -184,3 +185,12 @@ Or just watch me click through the samples
 ![Charts](samples/ChartJs.Blazor.gif)
 
 
+
+# Contributors
+This projects slowly develops a community which started to give back.
+## Many thanks to: #
+ **Lars** (https://github.com/larshg)
+ 
+ **Jan** (https://github.com/mashbrno)
+
+ I'm very gratefull for your contributions!
