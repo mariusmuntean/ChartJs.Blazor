@@ -109,6 +109,10 @@ dotnet add package ChartJs.Blazor
 ```csharp
 ChartJsBlazor.AddStaticResourcesToWebRootPath(env.WebRootPath);
 ```
+Then reference the ChartJsInterop.js file from your index.(cs)html like so
+```HTML
+<script src="~/ChartJs.Blazor/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
+```
 
 ## Usage
 
