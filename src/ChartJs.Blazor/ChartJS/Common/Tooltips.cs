@@ -2,7 +2,7 @@
 {
     public class Tooltips
     {
-        public Mode Mode { get; set; }
+        public InteractionMode InteractionMode { get; set; }
         public bool Intersect { get; set; }
     }
 }
