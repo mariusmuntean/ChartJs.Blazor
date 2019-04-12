@@ -193,6 +193,15 @@ For detailed instruction go to the [Wiki page](https://github.com/mariusmuntean/
     .
 ```
 
+3. Add Linker.xml (e.g. from https://github.com/mariusmuntean/ChartJs.Blazor/blob/master/samples/ChartJs.Blazor.Sample/Linker.xml) to your project.
+4. Edit the .csproj file as follows
+
+```xml
+  <ItemGroup>
+    <BlazorLinkerDescriptor Include="Linker.xml" />
+  </ItemGroup>
+```
+
 
 ## Samples
 
