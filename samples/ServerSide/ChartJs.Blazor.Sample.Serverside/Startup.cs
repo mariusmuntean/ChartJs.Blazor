@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ChartJs.Blazor.Sample.Serverside.Components;
 using Sotsera.Blazor.Toaster.Core.Models;
 
 namespace ChartJs.Blazor.Sample.Serverside
@@ -16,7 +15,7 @@ namespace ChartJs.Blazor.Sample.Serverside
             services.AddMvc()
                 .AddNewtonsoftJson();
 
-            services.AddRazorComponents();
+            services.AddServerSideBlazor();
 
             services.AddToaster(config =>
             {
@@ -40,16 +39,18 @@ namespace ChartJs.Blazor.Sample.Serverside
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             // Add the JS interop file to the webRooPath - make sure to reference it from index.cshtml
             ChartJsBlazor.AddStaticResourcesToWebRootPath(env.WebRootPath);
 
+            app.UseRouting();
 
-            app.UseRouting(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRazorPages();
-                routes.MapComponentHub<App>("app");
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/_Host");
             });
         }
     }

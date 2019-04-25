@@ -1,4 +1,7 @@
-﻿@page "{*clientPath}"
+﻿@page "/"
+@namespace ChartJs.Blazor.Sample.Serverside.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +27,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 
-    <script src="_framework/components.server.js"></script>
+    <script src="_framework/blazor.server.js"></script>
     <script src="~/dist/SampleJsInterop.js" type="text/javascript" language="javascript"></script>
     <script src="~/ChartJs.Blazor/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
     <link href="css/toastr.min.css" rel="stylesheet" />

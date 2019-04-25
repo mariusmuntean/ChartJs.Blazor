@@ -2,18 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RunCommand>dotnet</RunCommand>
-    <RunArguments>blazor serve</RunArguments>
-    <LangVersion>7.3</LangVersion>
     <AssemblyName>ChartJs.Blazor.Sample</AssemblyName>
     <RootNamespace>ChartJs.Blazor.Sample</RootNamespace>
+    <LangVersion>7.3</LangVersion>
+    <RazorLangVersion>3.0</RazorLangVersion>
   </PropertyGroup>
 
 
   <ItemGroup>
-
     <BlazorLinkerDescriptor Include="Linker.xml" />
-
   </ItemGroup>
 
 
@@ -22,12 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="0.9.0-preview3-19154-02" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.9.0-preview3-19154-02" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview4-19216-03" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview4-19216-03" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.DevServer" Version="3.0.0-preview4-19216-03" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Sotsera.Blazor.Toaster" Version="0.9.0-preview-1" />
-    <DotNetCliToolReference Include="Microsoft.AspNetCore.Blazor.Cli" Version="0.9.0-preview3-19154-02" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,46 +33,46 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Pages\BarCharts\HorizontalBarChart.cshtml">
+    <Content Update="Pages\BarCharts\HorizontalBarChart.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\BarCharts\StackedBarChart.cshtml">
+    <Content Update="Pages\BarCharts\StackedBarChart.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\About.cshtml">
+    <Content Update="Pages\About.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\BarCharts\SimpleBarChart.cshtml">
+    <Content Update="Pages\BarCharts\SimpleBarChart.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Legend\DotNet-Instance-Handlers.cshtml">
+    <Content Update="Pages\Legend\DotNet-Instance-Handlers.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Legend\DotNet-Static-Handlers.cshtml">
+    <Content Update="Pages\Legend\DotNet-Static-Handlers.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Legend\Js-Handlers.cshtml">
+    <Content Update="Pages\Legend\Js-Handlers.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\ScatterChart.cshtml">
+    <Content Update="Pages\ScatterChart.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\PolarAreaChart.cshtml">
+    <Content Update="Pages\PolarAreaChart.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\DoughnutChart.cshtml">
+    <Content Update="Pages\DoughnutChart.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\LineChart\FillLineChart.cshtml">
+    <Content Update="Pages\LineChart\FillLineChart.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\PieChart.cshtml">
+    <Content Update="Pages\PieChart.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\BubbleChart.cshtml">
+    <Content Update="Pages\BubbleChart.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\MixedChart.cshtml">
+    <Content Update="Pages\MixedChart.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>

@@ -1,14 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
-    <_RazorComponentInclude>Components\**\*.cshtml</_RazorComponentInclude>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Server" Version="3.0.0-preview3-19153-02" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0-preview3-19153-02" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0-preview4-19216-03" />
     <PackageReference Include="Sotsera.Blazor.Toaster" Version="0.9.0-preview-1" />
   </ItemGroup>
 
@@ -22,81 +21,88 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Components\Pages\About.cshtml">
+    <Content Update="Pages\About.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Components\Pages\BarCharts\HorizontalBarChart.cshtml">
+    <Content Update="Pages\BarCharts\HorizontalBarChart.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Components\Pages\BarCharts\SimpleBarChart.cshtml">
+    <Content Update="Pages\BarCharts\SimpleBarChart.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Components\Pages\BarCharts\StackedBarChart.cshtml">
+    <Content Update="Pages\BarCharts\StackedBarChart.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Components\Pages\BubbleChart.cshtml">
+    <Content Update="Pages\BubbleChart.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Components\Pages\DoughnutChart.cshtml">
+    <Content Update="Pages\DoughnutChart.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Components\Pages\Index.cshtml">
+    <Content Update="Pages\Index.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
     </Content>
-    <Content Update="Components\Pages\Legend\DotNet-Instance-Handlers.cshtml">
-      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-      <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Components\Pages\Legend\DotNet-Static-Handlers.cshtml">
+    <Content Update="Pages\Legend\DotNet-Instance-Handlers.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Components\Pages\Legend\Js-Handlers.cshtml">
+    <Content Update="Pages\Legend\DotNet-Static-Handlers.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Components\Pages\LineCharts\FillLineChart.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Components\Pages\MixedChart.cshtml">
+    <Content Update="Pages\Legend\Js-Handlers.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Components\Pages\PieChart.cshtml">
+    <Content Update="Pages\LineCharts\FillLineChart.razor">
+      <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\LineCharts\LineChart.razor">
+      <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
+    </Content>
+    <Content Update="Pages\MixedChart.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Components\Pages\PolarAreaChart.cshtml">
+    <Content Update="Pages\PieChart.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Components\Pages\RadarChart.cshtml">
-      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-      <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
-    </Content>
-    <Content Update="Components\Pages\ScatterChart.cshtml">
+    <Content Update="Pages\PolarAreaChart.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\RadarChart.razor">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
+    </Content>
+    <Content Update="Pages\ScatterChart.razor">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\_Imports.razor">
+      <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
     </Content>
   </ItemGroup>
 
