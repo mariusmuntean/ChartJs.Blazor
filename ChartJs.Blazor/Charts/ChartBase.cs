@@ -2,6 +2,7 @@ using ChartJs.Blazor.ChartJS;
 using ChartJs.Blazor.ChartJS.Common;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System;
 
 namespace ChartJs.Blazor.Charts
 {
@@ -22,8 +23,9 @@ namespace ChartJs.Blazor.Charts
                 base.OnAfterRender();
                 JsRuntime.SetupChart(Config);
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine($"Some error in OnAfterRender: {e.Message}");
             } // https://github.com/aspnet/AspNetCore/issues/8327
         }
 

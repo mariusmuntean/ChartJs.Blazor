@@ -17,7 +17,8 @@
     <p><em>Loading...</em></p>
 }
 
-@code {
+@functions 
+{
     LineChartConfig lineChartConfig;
     ChartJsLineChart lineChartJs;
 
@@ -54,25 +55,25 @@
                 Scales = new Scales
                 {
                     xAxes = new List<Axis>
-        {
-                    new Axis
                     {
-                        ScaleLabel = new ScaleLabel
+                        new Axis
                         {
-                            LabelString = "Zeit"
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "Zeit"
+                            }
                         }
-                    }
-                },
+                    },
                     yAxes = new List<Axis>
-        {
-                    new Axis
                     {
-                        ScaleLabel = new ScaleLabel
+                        new Axis
                         {
-                            LabelString = "Temperatur"
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "Temperatur"
+                            }
                         }
                     }
-                }
                 },
                 Hover = new LineChartOptionsHover
                 {
@@ -84,19 +85,19 @@
             {
                 Labels = new List<string>(),
                 Datasets = new List<LineChartDataset>
-    {
-                new LineChartDataset
                 {
-                    BackgroundColor = "#ff6384",
-                    BorderColor = "#ff6384",
-                    Label = "Temperatur in C°",
-                    Data = new List<object>(),
-                    Fill = false,
-                    BorderWidth = 2,
-                    PointRadius = 3,
-                    PointBorderWidth = 1
+                    new LineChartDataset
+                    {
+                        BackgroundColor = "#ff6384",
+                        BorderColor = "#ff6384",
+                        Label = "Temperatur in C°",
+                        Data = new List<object>(),
+                        Fill = false,
+                        BorderWidth = 2,
+                        PointRadius = 3,
+                        PointBorderWidth = 1
+                    }
                 }
-            }
             }
         };
 
@@ -104,12 +105,5 @@
 
         lineChartConfig.Data.Labels.AddRange(forecasts.Select(p => p.Date.ToShortDateString()));
         lineChartConfig.Data.Datasets[0].Data.AddRange(forecasts.Select(p => (object)p.TemperatureC));
-    }
-
-    protected override void OnAfterRender()
-    {
-        lineChartJs.Update();
-
-        base.OnAfterRender();
     }
 }

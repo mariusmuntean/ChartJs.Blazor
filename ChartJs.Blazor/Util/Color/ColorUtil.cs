@@ -30,7 +30,7 @@ namespace ChartJs.Blazor.Util.Color
         }
 
         /// <summary>
-        /// Produces a string of the form 'rgba(r, g, b, 1)' with the provided rgb and alpha values
+        /// Produces a string of the form 'rgba(r, g, b, alpha)' with the provided rgb and alpha values
         /// </summary>
         /// <param name="r"></param>
         /// <param name="g"></param>
