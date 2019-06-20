@@ -1,0 +1,81 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <PoorMansBuildNumber>$([System.DateTime]::Now.ToString(MMddHHmmss))</PoorMansBuildNumber>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <OutputType>library</OutputType>
+    <LangVersion>7.3</LangVersion>
+    <VersionPrefix>0.3</VersionPrefix>
+    <!--<VersionSuffix>alpha-$(PoorMansBuildNumber)</VersionSuffix>-->
+    <Title>ChartJs.Blazor</Title>
+    <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+    <Company>Marius Muntean</Company>
+    <Authors>Marius Muntean</Authors>
+    <Description>CharJs charts for Blazor.
+Supports both client- and server-side projects. See the samples
+
+Supports: LineChart, BarChart, RadarCart, Doughnut- and Pie-Chart, BubbleChart, MixedChart; Polar Area Chart
+
+Chart Legend with custom handler for Item generation and events - Jvascript and .Net handlers supported.</Description>
+    <RepositoryUrl>https://github.com/mariusmuntean/ChartJs.Blazor</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/mariusmuntean/ChartJs.Blazor</PackageProjectUrl>
+    <PackageTags>ChartJS Blazor ASP.Net Core</PackageTags>
+    <PackageSummary>Library of useful components to be used within Blazor. Starting off with a simple ChartJS port to Blazor.</PackageSummary>
+    <PackageReleaseNotes>Can be used with Blazor 0.9.0
+Fixed disappearing charts when navigating away and back - Thanks to the community for the PRs</PackageReleaseNotes>
+    <AssemblyName>ChartJs.Blazor</AssemblyName>
+    <RootNamespace>ChartJs.Blazor</RootNamespace>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Version>0.9.1-preview</Version>
+    <AssemblyVersion>0.9.1.0</AssemblyVersion>
+    <FileVersion>0.9.1.0</FileVersion>
+    <NeutralLanguage />
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Browser" Version="3.0.0-preview-19075-0444" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Build" Version="3.0.0-preview-19075-0444" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="dist\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="dist\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="dist\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ChartJS\ScatterChart - Copy\**" />
+    <Content Remove="ChartJS\ScatterChart - Copy\**" />
+    <EmbeddedResource Remove="ChartJS\ScatterChart - Copy\**" />
+    <None Remove="ChartJS\ScatterChart - Copy\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Charts\ChartJsDoughnutChart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Charts\ChartJsScatterChart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Charts\ChartJsPolarAreaChart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Charts\ChartJsPieChart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Charts\ChartJsMixedChart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <BlazorGenerate Remove="Shared\ChartJsRadarChart.cshtml" />
+  </ItemGroup>-->
+</Project>
