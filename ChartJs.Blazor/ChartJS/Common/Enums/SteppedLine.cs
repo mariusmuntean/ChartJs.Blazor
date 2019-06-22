@@ -1,12 +1,14 @@
-﻿namespace ChartJs.Blazor.ChartJS.Common.Enums
+﻿using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
+using Newtonsoft.Json;
+
+namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
     /// <summary>
     /// As per documentation here https://www.chartjs.org/docs/latest/charts/line.html#stepped-line
-    /// <para>We can use <see cref="StringEnum"></see> here, even though the values <see cref="False"></see> and <see cref="True"></see> are expected to be of type boolean,
-    /// because Javascript interprets <c>"true"</c> the same way it interprets <c>true</c></para>
     /// </summary>
-    [Newtonsoft.Json.JsonConverter(typeof(JsonToStringConverter<SteppedLine>))]
-    public class SteppedLine : StringEnum
+    
+    [JsonConverter(typeof(JsonSteppedLineConverter))]
+    public class SteppedLine : ObjectEnum
     {
         /// <summary>
         /// No Step Interpolation (default)
@@ -33,7 +35,6 @@
         /// </summary>
         public static SteppedLine Middle => new SteppedLine("middle");
 
-        private SteppedLine(string stringRep) : base(stringRep) { }
-        private SteppedLine(bool boolOption) : base(boolOption.ToString().ToLower()) { }
+        private SteppedLine(object value) : base(value) { }
     }
 }

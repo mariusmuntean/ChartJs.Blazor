@@ -1,4 +1,6 @@
-﻿namespace ChartJs.Blazor.ChartJS.Common.Enums
+﻿using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
+
+namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
     [Newtonsoft.Json.JsonConverter(typeof(JsonToStringConverter<Positions>))]
     public sealed class Positions : StringEnum
