@@ -7,6 +7,8 @@ namespace ChartJs.Blazor.ChartJS.BarChart
     /// </summary>
     public class BarChartOptions : BaseChartConfigOptions
     {
+        // TODO: Make sure these properties are where they're supposed to be. From the looks of the docs they should be in each axis, not in the options itself.
+
         /// <summary>
         /// Percent (0-1) of the available width each bar should be within the category width. 1.0 will take the whole category width and put the bars right next to each other
         /// </summary>

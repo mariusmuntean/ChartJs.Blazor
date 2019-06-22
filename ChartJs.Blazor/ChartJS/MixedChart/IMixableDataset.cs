@@ -9,10 +9,10 @@ using System.Collections.Generic;
 namespace ChartJs.Blazor.ChartJS.MixedChart
 {
     [JsonConverter(typeof(MixableDatasetConverter))]
-    public interface IMixableDataset
+    public interface IMixableDataset<TData>
     {
         ChartTypes Type { get; }
-        List<object> Data { get; set; }
+        List<TData> Data { get; set; }
     }
 
     public class MixableDatasetConverter : JsonConverter
@@ -22,7 +22,7 @@ namespace ChartJs.Blazor.ChartJS.MixedChart
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(IMixableDataset);
+            return objectType == typeof(IMixableDataset<>);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -38,18 +38,18 @@ namespace ChartJs.Blazor.ChartJS.MixedChart
             JObject jObj = JObject.Load(reader);
             ChartTypes type = jObj.Value<ChartTypes>("Type") ?? jObj.Value<ChartTypes>("type");
 
-            var dataset = default(IMixableDataset);
+            IMixableDataset<object> dataset = null;
             switch ((string)type)
             {
                 case "bar":
                 {
-                    dataset = new BarChartDataset();
+                    dataset = new BarChartDataset<object>();
                     break;
                 }
 
                 case "line":
                 {
-                    dataset = new LineChartDataset();
+                    dataset = new LineChartDataset<object>();
                     break;
                 }
             }

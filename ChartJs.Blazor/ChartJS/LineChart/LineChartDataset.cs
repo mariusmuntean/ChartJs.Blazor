@@ -4,7 +4,7 @@ using ChartJs.Blazor.ChartJS.MixedChart;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
-    public class LineChartDataset : IMixableDataset
+    public class LineChartDataset<TData> : IMixableDataset<TData>
     {
         public ChartTypes Type { get; } = ChartTypes.Line;
         public string Label { get; set; } = "";
@@ -101,10 +101,10 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public bool SpanGaps { get; set; }
 
         /// <summary>
-        /// If the line is shown as a stepped line. Use <see cref="LineChart.SteppedLine"></see> for available options.
-        /// <para>If the steppedLine value is set to anything other than <see cref="LineChart.SteppedLine.False"></see>, <see cref="LineTension"></see> will be ignored.</para>
+        /// If the line is shown as a stepped line. Use <see cref="Common.Enums.SteppedLine"></see> for available options.
+        /// <para>If the steppedLine value is set to anything other than <see cref="SteppedLine.False"></see>, <see cref="LineTension"></see> will be ignored.</para>
         /// </summary>
-        public object SteppedLine { get; set; } = LineChart.SteppedLine.False;
+        public SteppedLine SteppedLine { get; set; } = SteppedLine.False;
 
         /// <summary>
         /// The fill color under the line.
@@ -120,6 +120,6 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// </summary>
         public string BorderColor { get; set; }
 
-        public List<object> Data { get; set; }
+        public List<TData> Data { get; set; }
     }
 }

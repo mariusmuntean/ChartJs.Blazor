@@ -86,6 +86,11 @@ namespace ChartJs.Blazor.ChartJS.ScatterChart
         public bool Fill { get; set; }
 
         /// <summary>
+        /// Bezier curve tension of the line. Set to 0 to draw straightlines. This option is ignored if monotone cubic interpolation is used.
+        /// </summary>
+        public double LineTension { get; set; } = 0.4;
+
+        /// <summary>
         /// If false, the line is not drawn for this dataset.
         /// Default is true. If you are filling and dont want to show the line, then change to false.
         /// </summary>
@@ -97,18 +102,10 @@ namespace ChartJs.Blazor.ChartJS.ScatterChart
         public bool SpanGaps { get; set; }
 
         /// <summary>
-        /// If the line is shown as a stepped line.
-        ///
-        /// <para>
-        /// The following values are supported for steppedLine:
-        /// <para> false: No Step Interpolation (default)</para>
-        /// <para>true: Step-before Interpolation (eq. 'before')</para>
-        /// <para>'before': Step-before Interpolation</para>
-        /// <para>'after': Step-after Interpolation</para>
-        /// <para>If the steppedLine value is set to anything other than false, lineTension will be ignored.</para>
-        /// </para>
+        /// If the line is shown as a stepped line. Use <see cref="Common.Enums.SteppedLine"></see> for available options.
+        /// <para>If the steppedLine value is set to anything other than <see cref="SteppedLine.False"></see>, <see cref="LineTension"></see> will be ignored.</para>
         /// </summary>
-        public object SteppedLine { get; set; }
+        public SteppedLine SteppedLine { get; set; }
 
         /// <summary>
         /// The fill color under the line.

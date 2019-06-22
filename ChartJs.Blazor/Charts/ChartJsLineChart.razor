@@ -1,5 +1,6 @@
 ﻿@using ChartJs.Blazor.ChartJS.LineChart
-@inherits ChartJs.Blazor.Charts.ChartBase<LineChartConfig>
+@typeparam TData
+@inherits ChartJs.Blazor.Charts.ChartBase<LineChartConfig<TData>>
 
 <div class="row">
     <div class="container">

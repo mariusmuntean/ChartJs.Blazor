@@ -3,13 +3,13 @@
 namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
 {
     /// <summary>
-    /// Dataset for Bar Chart. Source: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties
+    /// Dataset for Bar Chart with typesafe Data. Source: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties
     ///
     /// <para>
     ///  The first value applies to the first bar, the second value to the second bar, and so on.
     /// </para>
     /// </summary>
-    public class IndividualBarChartDataset : BaseBarChartDataset
+    public class IndividualBarChartDataset<TData> : BaseBarChartDataset<TData>
     {
         /// <summary>
         /// The fill color of the bar
