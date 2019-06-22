@@ -1,3 +1,4 @@
+using ChartJs.Blazor.ChartJS.Common.Enums;
 using Newtonsoft.Json;
 
 namespace ChartJs.Blazor.ChartJS.Common
@@ -18,11 +19,10 @@ namespace ChartJs.Blazor.ChartJS.Common
     }
     
     public abstract class ChartConfigBase<TOptions, TData> : ChartConfigBase 
-        where TOptions : BaseChartConfigOptions where TData : class
+        where TOptions : BaseChartConfigOptions 
+        where TData : class
     {
-        protected ChartConfigBase(ChartTypes chartType) : base(chartType)
-        {
-        }
+        protected ChartConfigBase(ChartTypes chartType) : base(chartType) { }
 
         public TOptions Options { get; set; }
 

@@ -1,10 +1,11 @@
 ﻿using ChartJs.Blazor.ChartJS.Common;
+using ChartJs.Blazor.ChartJS.Common.Enums;
 
 namespace ChartJs.Blazor.ChartJS.ScatterChart
 {
-    public class ScatterConfigOptions : BaseChartConfigOptions
+    public class ScatterChartOptions : BaseChartConfigOptions
     {
-        public string HoverMode { get; set; } = HoverModes.NEAREST.ToString();
+        public InteractionMode HoverMode { get; set; } = InteractionMode.Nearest;
 
         public bool Intersect { get; set; }
 

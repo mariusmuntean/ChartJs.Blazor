@@ -1,11 +1,11 @@
-﻿using ChartJs.Blazor.ChartJS.Common;
+﻿using ChartJs.Blazor.ChartJS.Common.Enums;
 using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.RadarChart
 {
     public class RadarChartDataset
     {
-        public string Type { get; } = ChartTypes.RADAR.ToString();
+        public ChartTypes Type { get; } = ChartTypes.Radar;
 
         /// <summary>
         /// The label for the dataset which appears in the legend and tooltips.

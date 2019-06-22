@@ -4,7 +4,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Utils
 {
     public class PointUtil
     {
-        private static Random rand = new Random();
+        private static readonly Random rand = new Random();
 
         public static Point NewRandPoint(double minX, double maxX, double minY, double maxY)
         {

@@ -3,7 +3,7 @@ using Microsoft.JSInterop;
 
 namespace ChartJs.Blazor.ChartJS.Common.Legends.OnHover
 {
-    public class DotNetStaticHoverHandler : ILegendOnHoverHandler
+    public class DotNetStaticHoverHandler : ILegendHoverHandler
     {
         public string AssemblyName { get; }
         public string MethodName { get; }

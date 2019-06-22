@@ -1,6 +1,6 @@
 ﻿namespace ChartJs.Blazor.ChartJS.Common.Legends.OnHover
 {
-    public class JsOnHoverHandler : ILegendOnHoverHandler
+    public class JsHoverHandler : ILegendHoverHandler
     {
         /// <summary>
         /// The namespace and name of a Javascript function to be called when hovering the mouse cursor over a Legend item.
@@ -10,7 +10,7 @@
         /// </summary>
         public string FullFunctionName { get; }
 
-        public JsOnHoverHandler(string fullFunctionName)
+        public JsHoverHandler(string fullFunctionName)
         {
             FullFunctionName = fullFunctionName;
         }

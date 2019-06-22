@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using ChartJs.Blazor.ChartJS.Common;
+﻿using ChartJs.Blazor.ChartJS.Common.Enums;
+using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.DoughnutChart
 {
     public class DoughnutDataset
     {
-        public string Type { get; } = ChartTypes.DOUGHNUT.ToString();
+        public ChartTypes Type { get; } = ChartTypes.Doughnut;
 
         public string Label { get; set; } = "";
 

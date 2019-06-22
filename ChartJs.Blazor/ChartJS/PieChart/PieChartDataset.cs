@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using ChartJs.Blazor.ChartJS.Common;
+using ChartJs.Blazor.ChartJS.Common.Enums;
 
 namespace ChartJs.Blazor.ChartJS.PieChart
 {
     public class PieChartDataset
     {
-        public string Type { get; } = ChartTypes.PIE.ToString();
+        public ChartTypes Type { get; } = ChartTypes.Pie;
 
         /// <summary>
         /// The label for the dataset which appears in the legend and tooltips.

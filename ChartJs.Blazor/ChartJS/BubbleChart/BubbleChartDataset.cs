@@ -1,6 +1,6 @@
 ﻿using ChartJs.Blazor.Util.Color;
 using System.Collections.Generic;
-using ChartJs.Blazor.ChartJS.Common;
+using ChartJs.Blazor.ChartJS.Common.Enums;
 
 namespace ChartJs.Blazor.ChartJS.BubbleChart
 {
@@ -21,7 +21,7 @@ namespace ChartJs.Blazor.ChartJS.BubbleChart
         /// </summary>
         public int BorderWidth { get; set; } = 3;
 
-        public List<BubbleData> Data { get; set; } = new List<BubbleData> { new BubbleData { x = 1, y = 2, r = 3 } };
+        public List<BubbleData> Data { get; set; } = new List<BubbleData> { new BubbleData { X = 1, Y = 2, r = 3 } };
 
         public string HoverBackgroundColor { get; set; }
 
@@ -44,6 +44,6 @@ namespace ChartJs.Blazor.ChartJS.BubbleChart
 
         public int Radius { get; set; } = 3;
 
-        public string Type { get; } = ChartTypes.BUBBLE.ToString();
+        public ChartTypes Type { get; } = ChartTypes.Bubble;
     }
 }

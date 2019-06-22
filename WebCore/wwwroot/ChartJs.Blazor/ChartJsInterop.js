@@ -3,6 +3,7 @@ var BlazorCharts = [];
 Blazor.BlazorCharts = BlazorCharts;
 window.ChartJSInterop = {
     SetupChart: function (config) {
+        console.log(config);
 
         if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
             if (!config.options.legend)

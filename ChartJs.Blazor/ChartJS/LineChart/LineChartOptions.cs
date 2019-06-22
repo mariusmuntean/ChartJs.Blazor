@@ -5,17 +5,17 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     public class LineChartOptions : BaseChartConfigOptions
     {
         /// <summary>
-        /// general animation time
+        /// General animation time
         /// </summary>
         public Animation Animation { get; set; }
 
         /// <summary>
-        /// duration of animations when hovering an item
+        /// Duration of animations when hovering an item
         /// </summary>
         public LineChartOptionsHover Hover { get; set; }
 
         /// <summary>
-        /// animation duration after a resize
+        /// Animation duration after a resize
         /// </summary>
         public long ResponsiveAnimationDuration { get; set; }
 

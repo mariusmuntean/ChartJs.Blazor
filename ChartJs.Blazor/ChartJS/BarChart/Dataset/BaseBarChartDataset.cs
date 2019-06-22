@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using ChartJs.Blazor.ChartJS.Common;
+using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.ChartJS.MixedChart;
+using Newtonsoft.Json;
 
 namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
 {
@@ -15,14 +16,16 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
         /// <summary>
         /// The ID of the x axis to plot this dataset on. If not specified, this defaults to the ID of the first found x axis
         /// </summary>
-        public string xAxisID { get; set; }
+        [JsonProperty("xAxisID")]
+        public string XAxisID { get; set; }
 
         /// <summary>
         /// The ID of the y axis to plot this dataset on. If not specified, this defaults to the ID of the first found y axis
         /// </summary>
-        public string yAxisID { get; set; }
+        [JsonProperty("yAxisID")]
+        public string YAxisID { get; set; }
 
-        public string Type { get; } = ChartTypes.BAR.ToString();
+        public ChartTypes Type { get; } = ChartTypes.Bar;
 
         /// <summary>
         /// Which edge to skip drawing the border for. Options are:

@@ -1,7 +1,8 @@
 @page "/fetchdata"
 @using WebCore.Data
-@using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.ChartJS.Common.Enums
 @using ChartJs.Blazor.ChartJS.Common.Legends
 @using ChartJs.Blazor.ChartJS.LineChart
 @inject WeatherForecastService ForecastService
@@ -17,7 +18,7 @@
     <p><em>Loading...</em></p>
 }
 
-@functions 
+@functions
 {
     LineChartConfig lineChartConfig;
     ChartJsLineChart lineChartJs;
@@ -41,7 +42,7 @@
                 },
                 Legend = new Legend
                 {
-                    Position = LegendPosition.BOTTOM.ToString(),
+                    Position = LegendPosition.Right,
                     Labels = new Labels
                     {
                         UsePointStyle = true
@@ -49,13 +50,13 @@
                 },
                 Tooltips = new Tooltips
                 {
-                    InteractionMode = InteractionMode.Nearest,
+                    Mode = InteractionMode.Dataset,
                     Intersect = false
                 },
                 Scales = new Scales
                 {
                     xAxes = new List<Axis>
-                    {
+                {
                         new Axis
                         {
                             ScaleLabel = new ScaleLabel
@@ -65,7 +66,7 @@
                         }
                     },
                     yAxes = new List<Axis>
-                    {
+                {
                         new Axis
                         {
                             ScaleLabel = new ScaleLabel
@@ -78,14 +79,14 @@
                 Hover = new LineChartOptionsHover
                 {
                     Intersect = true,
-                    InteractionMode = InteractionMode.Nearest
+                    Mode = InteractionMode.Nearest
                 }
             },
             Data = new LineChartData
             {
                 Labels = new List<string>(),
                 Datasets = new List<LineChartDataset>
-                {
+            {
                     new LineChartDataset
                     {
                         BackgroundColor = "#ff6384",

@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using ChartJs.Blazor.ChartJS.Common;
+using ChartJs.Blazor.ChartJS.Common.Enums;
 
 namespace ChartJs.Blazor.ChartJS.ScatterChart
 {
-    public class ScatterConfigDataset
+    public class ScatterChartDataset
     {
         public string XAxisId { get; set; }
         public string YAxisId { get; set; }
 
         public List<Point> Data { get; set; }
 
-        public string Type { get; } = ChartTypes.SCATTER.ToString();
+        public ChartTypes Type { get; } = ChartTypes.Scatter;
 
         public string Label { get; set; } = "";
 

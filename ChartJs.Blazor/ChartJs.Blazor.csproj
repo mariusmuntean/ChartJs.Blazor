@@ -60,6 +60,10 @@ Fixed disappearing charts when navigating away and back - Thanks to the communit
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="ChartJS\Common\HoverModes.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="Charts\ChartJsDoughnutChart.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

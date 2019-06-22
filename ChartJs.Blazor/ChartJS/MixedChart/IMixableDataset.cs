@@ -1,4 +1,5 @@
 ﻿using ChartJs.Blazor.ChartJS.BarChart.Dataset;
+using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.ChartJS.LineChart;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -10,6 +11,7 @@ namespace ChartJs.Blazor.ChartJS.MixedChart
     [JsonConverter(typeof(MixableDatasetConverter))]
     public interface IMixableDataset
     {
+        ChartTypes Type { get; }
         List<object> Data { get; set; }
     }
 
@@ -33,11 +35,11 @@ namespace ChartJs.Blazor.ChartJS.MixedChart
             object existingValue,
             JsonSerializer serializer)
         {
-            var jObj = JObject.Load(reader);
-            var type = jObj.Value<string>("Type") ?? jObj.Value<string>("type");
+            JObject jObj = JObject.Load(reader);
+            ChartTypes type = jObj.Value<ChartTypes>("Type") ?? jObj.Value<ChartTypes>("type");
 
             var dataset = default(IMixableDataset);
-            switch (type)
+            switch ((string)type)
             {
                 case "bar":
                 {

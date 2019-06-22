@@ -1,8 +1,10 @@
-﻿namespace ChartJs.Blazor.ChartJS.Common
+﻿using ChartJs.Blazor.ChartJS.Common.Enums;
+
+namespace ChartJs.Blazor.ChartJS.Common
 {
     public class Tooltips
     {
-        public InteractionMode InteractionMode { get; set; }
+        public InteractionMode Mode { get; set; }
         public bool Intersect { get; set; }
     }
 }
