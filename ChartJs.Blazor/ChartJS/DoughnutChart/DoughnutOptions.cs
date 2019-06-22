@@ -1,5 +1,6 @@
 ﻿using System;
 using ChartJs.Blazor.ChartJS.Common;
+using ChartJs.Blazor.ChartJS.Common.Legends;
 
 namespace ChartJs.Blazor.ChartJS.DoughnutChart
 {
@@ -23,7 +24,5 @@ namespace ChartJs.Blazor.ChartJS.DoughnutChart
         public double Circumferences { get; set; } = 2 * Math.PI;
 
         public OptionsTitle Title { get; set; }
-
-        public DoughnutLegend DoughnutLegend { get; set; }
     }
 }

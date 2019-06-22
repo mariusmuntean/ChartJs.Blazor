@@ -8,7 +8,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
     {
         private readonly string _value;
 
-        protected StringEnum(string value) => _value = value;
+        protected StringEnum(string stringRep) => _value = stringRep;
 
         public override string ToString() => _value;
 

@@ -1,4 +1,5 @@
-﻿using ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler;
+﻿using ChartJs.Blazor.ChartJS.Common.Enums;
+using ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler;
 using ChartJs.Blazor.ChartJS.Common.Legends.OnHover;
 
 namespace ChartJs.Blazor.ChartJS.Common.Legends
@@ -17,7 +18,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends
         /// <summary>
         /// Position of the legend
         /// </summary>
-        public LegendPosition Position { get; set; } = LegendPosition.Top;
+        public Positions Position { get; set; } = Positions.Top;
 
         /// <summary>
         /// Marks that this box should take the full width of the canvas (pushing down other boxes). This is unlikely to need to be changed in day-to-day use.

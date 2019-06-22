@@ -1,7 +1,7 @@
 ﻿namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
     [Newtonsoft.Json.JsonConverter(typeof(JsonToStringConverter<ChartTypes>))]
-    public class ChartTypes : StringEnum
+    public sealed class ChartTypes : StringEnum
     {
         public static ChartTypes Bar => new ChartTypes("bar");
         public static ChartTypes HorizontalBar => new ChartTypes("horizontalBar");
@@ -13,6 +13,6 @@
         public static ChartTypes PolarArea => new ChartTypes("polarArea");
         public static ChartTypes Scatter => new ChartTypes("scatter");
 
-        private ChartTypes(string chartType) : base(chartType) { }
+        private ChartTypes(string stringRep) : base(stringRep) { }
     }
 }
