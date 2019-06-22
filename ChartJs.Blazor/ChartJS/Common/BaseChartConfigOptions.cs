@@ -7,6 +7,7 @@ namespace ChartJs.Blazor.ChartJS.Common
         public string Text { get; set; }
         public bool Display { get; set; }
         public bool Responsive { get; set; }
+        public bool MaintainAspectRatio { get; set; } = true;
 
         public Legend Legend { get; set; } = new Legend();
     }

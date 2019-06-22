@@ -95,13 +95,14 @@ function WireUpGenerateLabelsFunc(config) {
         config.options.legend.labels.generateLabels.includes(".")) {
         var generateLabelsNamespaceAndFunc = config.options.legend.labels.generateLabels.split(".");
         var generateLabelsFunc = window[generateLabelsNamespaceAndFunc[0]][generateLabelsNamespaceAndFunc[1]];
-        if (typeof generateLabels === "function") {
+        if (typeof generateLabels === "function")
             config.options.legend.labels.generateLabels = generateLabelsFunc;
-        } else { // fallback to the default
-            config.options.legend.labels.generateLabels = Chart.defaults.global.legend.labels.generateLabels;
-        }
-    } else { // fallback to the default
-        config.options.legend.labels.generateLabels = Chart.defaults.global.legend.labels.generateLabels;
+    // https://github.com/mariusmuntean/ChartJs.Blazor/pull/18
+    //    } else { // fallback to the default
+    //        config.options.legend.labels.generateLabels = Chart.defaults.global.legend.labels.generateLabels;
+    //    }
+    //} else { // fallback to the default
+    //    config.options.legend.labels.generateLabels = Chart.defaults.global.legend.labels.generateLabels;
     }
 }
 

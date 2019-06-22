@@ -6,11 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChartJs.Blazor\ChartJs.Blazor.csproj" />
+    <None Remove="Linker.xml" />
   </ItemGroup>
 
   <ItemGroup>
-    <BlazorLinkerDescriptor Include="Linker.xml" />
+    <ProjectReference Include="..\ChartJs.Blazor\ChartJs.Blazor.csproj" />
   </ItemGroup>
 
 </Project>
