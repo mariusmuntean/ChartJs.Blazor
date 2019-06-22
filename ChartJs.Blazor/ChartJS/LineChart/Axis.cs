@@ -1,4 +1,5 @@
 ﻿using ChartJs.Blazor.ChartJS.Common;
+using Newtonsoft.Json;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
@@ -8,6 +9,8 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public ScaleLabel ScaleLabel { get; set; }
         public GridLine GridLines { get; set; }
         public Ticks Ticks { get; set; }
-        public bool stacked { get; set; }
+
+        [JsonProperty("stacked")]
+        public bool Stacked { get; set; }
     }
 }
