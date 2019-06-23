@@ -7,9 +7,11 @@
     public sealed class AxisType : StringEnum
     {
         /// <summary>
-        /// The linear scale is use to chart numerical data. It can be placed on either the x or y axis. 
-        /// The scatter chart type automatically configures a line chart to use one of these scales for the x axis. 
+        /// The linear scale is use to chart numerical data. 
         /// As the name suggests, linear interpolation is used to determine where a value lies on the axis.
+        /// <para>Can be used both for Radial and for Cartesian Axes</para>
+        /// <para>For cartesian: It can be placed on either the x or y axis. 
+        /// The scatter chart type automatically configures a line chart to use one of these scales for the x axis. </para>
         /// </summary>
         public static AxisType Linear => new AxisType("linear");
 
@@ -19,7 +21,6 @@
         /// </summary>
         public static AxisType Logarithmic => new AxisType("logarithmic");
 
-        // TODO: implement the rest of this thing https://www.chartjs.org/docs/latest/axes/cartesian/category.html#category-cartesian-axis
         /// <summary>
         /// If global configuration is used, labels are drawn from one of the label arrays included in the chart data.
         /// </summary>

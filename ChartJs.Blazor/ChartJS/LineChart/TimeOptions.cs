@@ -5,13 +5,11 @@ using System.Text;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
-    public class Time
+    /// <summary>
+    /// As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html#configuration-options
+    /// </summary>
+    public class TimeOptions
     {
-        /// <summary>
-        /// How ticks are generated. 
-        /// </summary>
-        public TickSource Source { get; set; }
-
         /// <summary>
         /// Sets how different time units are displayed. See <see cref="https://www.chartjs.org/docs/latest/axes/cartesian/time.html#data-sets"></see> for more details.
         /// </summary>
@@ -39,6 +37,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 
         /// <summary>
         /// The Moment.js format string to use for the tooltip.
+        /// <para>See https://momentjs.com/docs/#/displaying/format/ for possible formats</para>
         /// </summary>
         public string TooltipFormat { get; set; }
 

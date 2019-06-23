@@ -12,6 +12,12 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     /// <typeparam name="TData"></typeparam>
     public struct TimeTupel<TData>
     {
+        public TimeTupel(Moment time, TData yValue)
+        {
+            Time = time;
+            YValue = yValue;
+        }
+
         [JsonProperty("t")]
         public Moment Time { get; set; }
 

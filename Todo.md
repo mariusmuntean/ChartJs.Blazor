@@ -1,0 +1,11 @@
+- maybe wrap string-color
+- separate data (maybe interface so every XY.. is a Data), same with Options and Datasets -> should enable more generic possibilities so the charts, datas, datasets - etc aren't linked as hard together as they're now
+- check the summaries of the axis when Data etc are separated
+- fucking aues mau testä (samples machä)
+- axes etc -> namespaces
+- rästlächi axes drzuä tuä
+- remake point styles
+- find out why currently nothing is showing (compare json output from old version with new version)
+- check why Round property of TimeOptions isnt working correctly
+- add static DefaultFormat dict (https://www.chartjs.org/docs/latest/axes/cartesian/time.html#display-formats)
+- add static de-ch dict (or find a way to generate/get it without manually specifying everything)

@@ -26,14 +26,8 @@ namespace ChartJs.Blazor.ChartJS.LineChart
             return Value.Equals(obj);
         }
 
-        public override int GetHashCode()
-        {
-            return Value.GetHashCode();
-        }
+        public override int GetHashCode() => Value.GetHashCode();
 
-        public override string ToString()
-        {
-            return $"moment({Value.ToString("o")})";
-        }
+        public override string ToString() => Value.ToString("o");
     }
 }

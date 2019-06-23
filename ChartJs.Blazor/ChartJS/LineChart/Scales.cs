@@ -4,7 +4,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 {
     public class Scales
     {
-        public List<Axis> xAxes { get; set; }
-        public List<Axis> yAxes { get; set; }
+        public List<CartesianAxis> xAxes { get; set; }
+        public List<CartesianAxis> yAxes { get; set; }
     }
 }

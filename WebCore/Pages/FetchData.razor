@@ -52,26 +52,21 @@
                 },
                 Scales = new Scales
                 {
-                    xAxes = new List<Axis>
+                    xAxes = new List<CartesianAxis>
                 {
-                        new Axis
+                        new LinearCartesianAxis
                         {
+                            Ticks = new LinearCartesianTicks
+                            {
+                                BeginAtZero = true,
+                                StepSize = 0.5
+                            },
                             ScaleLabel = new ScaleLabel
                             {
                                 LabelString = "Zeit"
                             }
                         }
                     },
-                    yAxes = new List<Axis>
-                {
-                        new Axis
-                        {
-                            ScaleLabel = new ScaleLabel
-                            {
-                                LabelString = "Temperatur"
-                            }
-                        }
-                    }
                 },
                 Hover = new LineChartOptionsHover
                 {
@@ -100,9 +95,9 @@
             }
         };
 
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
-
-        lineChartConfig.Data.Labels.AddRange(forecasts.Select(p => p.Date.ToShortDateString()));
-        lineChartConfig.Data.Datasets[0].Data.AddRange(forecasts.Select(p => p.TemperatureC));
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now, 5);
+        var onlyDays = forecasts.GroupBy(f => f.Date.Day).Select(g => g.First());
+        lineChartConfig.Data.Labels.AddRange(onlyDays.Select(p => p.Date.ToShortDateString()));
+        lineChartConfig.Data.Datasets[0].Data.AddRange(onlyDays.Select(p => p.TemperatureC));
     }
 }

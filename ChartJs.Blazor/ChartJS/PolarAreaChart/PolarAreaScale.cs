@@ -6,6 +6,6 @@ namespace ChartJs.Blazor.ChartJS.PolarAreaChart
     {
         public bool Reverse { get; set; }
 
-        public Ticks Ticks { get; set; }
+        public CartesianTicks Ticks { get; set; }
     }
 }

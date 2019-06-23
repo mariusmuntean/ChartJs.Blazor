@@ -4,6 +4,6 @@ namespace ChartJs.Blazor.ChartJS.RadarChart
 {
     public class Scale
     {
-        public Ticks Ticks { get; set; }
+        public CartesianTicks Ticks { get; set; }
     }
 }
