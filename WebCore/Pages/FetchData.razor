@@ -4,12 +4,12 @@
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Enums
 @using ChartJs.Blazor.ChartJS.Common.Legends
-@using ChartJs.Blazor.ChartJS.MixedChart
+@using ChartJs.Blazor.Util.Color
 @using ChartJs.Blazor.ChartJS.LineChart
 @inject WeatherForecastService ForecastService
 
 <h2>Line Chart</h2>
-<ChartJsLineChart TData="int" @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
+<ChartJsLineChart @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
 
 @if (forecasts == null)
 {
@@ -54,7 +54,7 @@
                 Scales = new Scales
                 {
                     xAxes = new List<Axis>
-            {
+                    {
                         new Axis
                         {
                             ScaleLabel = new ScaleLabel
@@ -64,7 +64,7 @@
                         }
                     },
                     yAxes = new List<Axis>
-            {
+                    {
                         new Axis
                         {
                             ScaleLabel = new ScaleLabel
@@ -79,40 +79,42 @@
                     Intersect = true,
                     Mode = InteractionMode.Y
                 }
-            },
-            Data = new LineChartData
-            {
-                Labels = new List<string>()
             }
         };
 
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
 
-        var intSet = new LineChartDataset<int>();
-        var stringSet = new LineChartDataset<string>();
-
-        var dataOfIntSet = new List<int>()
+        var intSet = new LineChartDataset<int>() // object
         {
-            1, 2, 3
+            BackgroundColor = ColorUtil.ColorString(0, 255, 0, 1.0),
+            BorderColor = ColorUtil.ColorString(0, 0, 255, 1.0),
+            Label = "Temperatur in C",
+            Fill = false,
+            PointBackgroundColor = ColorUtil.RandomColorString(),
+            BorderWidth = 1,
+            PointRadius = 3,
+            PointBorderWidth = 1,
+            SteppedLine = SteppedLine.False
         };
 
-        var dataOfStringSet = new List<string>()
+        var doubleSet = new LineChartDataset<double>() // object
         {
-            "1", "2", "3"
+            BackgroundColor = "#63ff84",
+            BorderColor = "#63ff84",
+            Label = "Temperatur in 1/F",
+            Fill = false,
+            BorderWidth = 1,
+            PointRadius = 4,
+            PointBorderWidth = 2,
+            SteppedLine = SteppedLine.True
         };
 
-        intSet.Data = dataOfIntSet.AsReadOnly();
-        stringSet.Data = dataOfStringSet.AsReadOnly();
+        lineChartConfig.Data.Labels.AddRange(forecasts.Select(p => p.Date.ToShortDateString()));
+        intSet.Data.AddRange(forecasts.Select(p => /*(object)*/p.TemperatureC));
+        doubleSet.Data.AddRange(forecasts.Select(p => /*(object)*/(1d / p.TemperatureF)));
 
-        var readonlySets = new List<LineChartDataset<object>>
-        {
-            intSet,
-            stringSet
-        }.AsReadOnly();
-
-        lineChartConfig.Data.Datasets = readonlySets;
-
-        //lineChartConfig.Data.Labels.AddRange(forecasts.Select(p => p.Date.ToShortDateString()));
-        //lineChartConfig.Data.Datasets[0].Data.AddRange(forecasts.Select(p => p.TemperatureC));
+        // Somehow make this conversion work without using object as generic type and without boxing
+        lineChartConfig.Data.Datasets.Add(intSet);  
+        lineChartConfig.Data.Datasets.Add(doubleSet);
     }
 }

@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.ChartJS.MixedChart;
 
@@ -10,6 +13,14 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     /// <typeparam name="TData">Defines the type of data in this dataset</typeparam>
     public class LineChartDataset<TData> : IMixableDataset<TData>
     {
+        public LineChartDataset(IEnumerable<TData> data) : this()
+        {
+            Data.AddRange(data);
+        }
+
+        public LineChartDataset() => Data = new List<TData>();
+
+
         public ChartTypes Type { get; } = ChartTypes.Line;
         public string Label { get; set; } = "";
 
@@ -124,6 +135,6 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// </summary>
         public string BorderColor { get; set; }
 
-        public IReadOnlyCollection<TData> Data { get; set; }
+        public List<TData> Data { get; }
     }
 }

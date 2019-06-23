@@ -20,12 +20,15 @@ namespace ChartJs.Blazor.ChartJS.Common
     
     public abstract class ChartConfigBase<TOptions, TData> : ChartConfigBase 
         where TOptions : BaseChartConfigOptions 
-        where TData : class
+        where TData : class, new()
     {
-        protected ChartConfigBase(ChartTypes chartType) : base(chartType) { }
+        protected ChartConfigBase(ChartTypes chartType) : base(chartType)
+        {
+            Data = new TData();
+        }
 
         public TOptions Options { get; set; }
 
-        public TData Data { get; set; }
+        public TData Data { get; }
     }
 }

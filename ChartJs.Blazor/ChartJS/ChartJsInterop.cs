@@ -91,7 +91,7 @@ namespace ChartJs.Blazor.ChartJS
         {
             // Serializing with the custom serializer settings remove null members
             var cleanChartConfigStr = JsonConvert.SerializeObject(chartConfig, JsonSerializerSettings);
-
+            
             // Get back an ExpandoObject dynamic with the clean config - having an ExpandoObject allows us to add/replace members regardless of type
             dynamic clearConfigExpando = JsonConvert.DeserializeObject<ExpandoObject>(cleanChartConfigStr, new ExpandoObjectConverter());
 
@@ -121,7 +121,7 @@ namespace ChartJs.Blazor.ChartJS
             NullValueHandling = NullValueHandling.Ignore,
             ContractResolver = new DefaultContractResolver
             {
-                NamingStrategy = new CamelCaseNamingStrategy()
+                NamingStrategy = new CamelCaseNamingStrategy(true, false)
             }
         };
     }

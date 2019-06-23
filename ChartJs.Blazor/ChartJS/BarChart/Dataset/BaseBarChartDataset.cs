@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.ChartJS.MixedChart;
 using Newtonsoft.Json;
@@ -8,6 +9,14 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
 {
     public class BaseBarChartDataset<TData> : IMixableDataset<TData>
     {
+        public BaseBarChartDataset(IEnumerable<TData> data) : this()
+        {
+            Data.AddRange(data);
+        }
+
+        public BaseBarChartDataset() => Data = new List<TData>();
+
+
         /// <summary>
         /// The label for the dataset which appears in the legend and tooltips.
         /// </summary>
@@ -33,7 +42,7 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
         public Positions BorderSkipped { get; set; }
 
         // ToDo: introduce a data type
-        public IEnumerable<TData> Data { get; set; }
+        public List<TData> Data { get; }
 
         /// <summary>
         /// The ID of the group to which this dataset belongs to (when stacked, each group will be a separate stack)
