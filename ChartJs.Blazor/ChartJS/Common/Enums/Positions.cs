@@ -1,8 +1,8 @@
-﻿using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
-
-namespace ChartJs.Blazor.ChartJS.Common.Enums
+﻿namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
-    [Newtonsoft.Json.JsonConverter(typeof(JsonToStringConverter<Positions>))]
+    /// <summary>
+    /// Represents a relative direction or position on a 2D canvas
+    /// </summary>
     public sealed class Positions : StringEnum
     {
         public static Positions Left => new Positions("left");

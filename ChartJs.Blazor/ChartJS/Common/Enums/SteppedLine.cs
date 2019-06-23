@@ -6,8 +6,6 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
     /// <summary>
     /// As per documentation here https://www.chartjs.org/docs/latest/charts/line.html#stepped-line
     /// </summary>
-    
-    [JsonConverter(typeof(JsonSteppedLineConverter))]
     public class SteppedLine : ObjectEnum
     {
         /// <summary>
@@ -35,6 +33,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
         /// </summary>
         public static SteppedLine Middle => new SteppedLine("middle");
 
-        private SteppedLine(object value) : base(value) { }
+        private SteppedLine(string stringValue) : base(stringValue) { }
+        private SteppedLine(bool boolValue) : base(boolValue) { }
     }
 }

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Newtonsoft.Json;
+using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
 
 namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public abstract class StringEnum
     {
         private readonly string _value;
@@ -20,8 +20,10 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
 
         public override bool Equals(object obj)
         {
-            if (typeof(StringEnum).IsAssignableFrom(obj.GetType())) return _value == obj.ToString();
-            if (obj.GetType() == typeof(string)) return _value == (string)obj;
+            if (typeof(StringEnum).IsAssignableFrom(obj.GetType())) return _value.Equals(obj.ToString());
+
+            // it also counts as equal if the object to compare is equal to the string stored in the wrapper
+            if (obj.GetType() == typeof(string)) return _value.Equals((string)obj);
 
             return false;
         }

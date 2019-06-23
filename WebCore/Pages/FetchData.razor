@@ -47,7 +47,7 @@
                 },
                 Tooltips = new Tooltips
                 {
-                    Mode = InteractionMode.Nearest,
+                    Mode = InteractionMode.Point,
                     Intersect = false
                 },
                 Scales = new Scales
@@ -76,7 +76,7 @@
                 Hover = new LineChartOptionsHover
                 {
                     Intersect = true,
-                    Mode = InteractionMode.Nearest
+                    Mode = InteractionMode.Y
                 }
             },
             Data = new LineChartData<int>
@@ -94,7 +94,7 @@
                         BorderWidth = 2,
                         PointRadius = 3,
                         PointBorderWidth = 1,
-                        SteppedLine = SteppedLine.TEST
+                        SteppedLine = SteppedLine.False
                     }
                 }
             }
