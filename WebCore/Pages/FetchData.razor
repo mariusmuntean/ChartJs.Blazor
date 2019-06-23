@@ -4,6 +4,7 @@
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Enums
 @using ChartJs.Blazor.ChartJS.Common.Legends
+@using ChartJs.Blazor.ChartJS.MixedChart
 @using ChartJs.Blazor.ChartJS.LineChart
 @inject WeatherForecastService ForecastService
 
@@ -17,14 +18,14 @@
 
 @functions
 {
-    LineChartConfig<int> lineChartConfig;
-    ChartJsLineChart<int> lineChartJs;
+    LineChartConfig lineChartConfig;
+    ChartJsLineChart lineChartJs;
 
     WeatherForecast[] forecasts;
 
     protected override async Task OnInitAsync()
     {
-        lineChartConfig = new LineChartConfig<int>
+        lineChartConfig = new LineChartConfig
         {
             CanvasId = "myFirstLineChart",
             Options = new LineChartOptions
@@ -53,7 +54,7 @@
                 Scales = new Scales
                 {
                     xAxes = new List<Axis>
-                {
+            {
                         new Axis
                         {
                             ScaleLabel = new ScaleLabel
@@ -63,7 +64,7 @@
                         }
                     },
                     yAxes = new List<Axis>
-                {
+            {
                         new Axis
                         {
                             ScaleLabel = new ScaleLabel
@@ -79,30 +80,39 @@
                     Mode = InteractionMode.Y
                 }
             },
-            Data = new LineChartData<int>
+            Data = new LineChartData
             {
-                Labels = new List<string>(),
-                Datasets = new List<LineChartDataset<int>>
-            {
-                    new LineChartDataset<int>
-                    {
-                        BackgroundColor = "#ff6384",
-                        BorderColor = "#ff6384",
-                        Label = "Temperatur in C°",
-                        Data = new List<int>(),
-                        Fill = false,
-                        BorderWidth = 2,
-                        PointRadius = 3,
-                        PointBorderWidth = 1,
-                        SteppedLine = SteppedLine.False
-                    }
-                }
+                Labels = new List<string>()
             }
         };
 
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
 
-        lineChartConfig.Data.Labels.AddRange(forecasts.Select(p => p.Date.ToShortDateString()));
-        lineChartConfig.Data.Datasets[0].Data.AddRange(forecasts.Select(p => p.TemperatureC));
+        var intSet = new LineChartDataset<int>();
+        var stringSet = new LineChartDataset<string>();
+
+        var dataOfIntSet = new List<int>()
+        {
+            1, 2, 3
+        };
+
+        var dataOfStringSet = new List<string>()
+        {
+            "1", "2", "3"
+        };
+
+        intSet.Data = dataOfIntSet.AsReadOnly();
+        stringSet.Data = dataOfStringSet.AsReadOnly();
+
+        var readonlySets = new List<LineChartDataset<object>>
+        {
+            intSet,
+            stringSet
+        }.AsReadOnly();
+
+        lineChartConfig.Data.Datasets = readonlySets;
+
+        //lineChartConfig.Data.Labels.AddRange(forecasts.Select(p => p.Date.ToShortDateString()));
+        //lineChartConfig.Data.Datasets[0].Data.AddRange(forecasts.Select(p => p.TemperatureC));
     }
 }

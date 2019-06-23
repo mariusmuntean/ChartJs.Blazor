@@ -33,7 +33,7 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
         public Positions BorderSkipped { get; set; }
 
         // ToDo: introduce a data type
-        public List<TData> Data { get; set; }
+        public IEnumerable<TData> Data { get; set; }
 
         /// <summary>
         /// The ID of the group to which this dataset belongs to (when stacked, each group will be a separate stack)

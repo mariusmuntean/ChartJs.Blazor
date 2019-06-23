@@ -2,9 +2,9 @@
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
-    public class LineChartData<TData>
+    public class LineChartData
     {
         public List<string> Labels { get; set; }
-        public List<LineChartDataset<TData>> Datasets { get; set; }
+        public IReadOnlyCollection<LineChartDataset<object>> Datasets { get; set; }
     }
 }

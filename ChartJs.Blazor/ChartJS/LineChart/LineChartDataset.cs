@@ -4,6 +4,10 @@ using ChartJs.Blazor.ChartJS.MixedChart;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
+    /// <summary>
+    /// A dataset for a linechart
+    /// </summary>
+    /// <typeparam name="TData">Defines the type of data in this dataset</typeparam>
     public class LineChartDataset<TData> : IMixableDataset<TData>
     {
         public ChartTypes Type { get; } = ChartTypes.Line;
@@ -120,6 +124,6 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// </summary>
         public string BorderColor { get; set; }
 
-        public List<TData> Data { get; set; }
+        public IReadOnlyCollection<TData> Data { get; set; }
     }
 }
