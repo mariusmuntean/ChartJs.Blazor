@@ -10,7 +10,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
     [JsonConverter(typeof(JsonObjectEnumConverter))]
     public abstract class ObjectEnum
     {
-        public object Value { get; }
+        internal object Value { get; }
         
         protected ObjectEnum(object value) => Value = value;
 

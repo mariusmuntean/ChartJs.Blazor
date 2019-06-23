@@ -5,11 +5,12 @@ using System.Text;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
-    class TimeAxis : Axis
+    public class TimeAxis : Axis
     {
         // continue: https://www.chartjs.org/docs/latest/axes/cartesian/time.html
 
         public string Type => "time";
         public TimeDistribution Distribution { get; set; }
+        public ScaleBounds Bounds { get; set; }
     }
 }

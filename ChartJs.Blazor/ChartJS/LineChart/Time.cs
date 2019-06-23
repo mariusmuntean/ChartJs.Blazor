@@ -5,17 +5,17 @@ using System.Text;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
-    class Time
+    public class Time
     {
         /// <summary>
         /// How ticks are generated. 
         /// </summary>
-        public string Source { get; set; }
-        
+        public TickSource Source { get; set; }
+
         /// <summary>
-        /// Sets how different time units are displayed
+        /// Sets how different time units are displayed. See <see cref="https://www.chartjs.org/docs/latest/axes/cartesian/time.html#data-sets"></see> for more details.
         /// </summary>
-        public object DisplayFormats { get; set; }
+        public Dictionary<TimeMeasurement, string> DisplayFormats { get; set; }
 
         /// <summary>
         /// If true and the <see cref="Unit"></see> is set to <see cref="TimeMeasurement.Week"></see>, then the first day of the week will be Monday. Otherwise, it will be Sunday.
@@ -24,13 +24,37 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 
         /// <summary>
         /// If defined, this will override the data maximum.
-        /// <para>Use <see cref="TimeHelper"></see> when working with times/dates.</para>
         /// </summary>
-        public string Max { get; set; }
+        public Moment Max { get; set; }
+
+        /// <summary>
+        /// If defined, this will override the data minimum.
+        /// </summary>
+        public Moment Min { get; set; }
+
+        /// <summary>
+        /// If defined, dates will be rounded to the start of this unit.
+        /// </summary>
+        public TimeMeasurement Round { get; set; }
+
+        /// <summary>
+        /// The Moment.js format string to use for the tooltip.
+        /// </summary>
+        public string TooltipFormat { get; set; }
 
         /// <summary>
         /// If defined, will force the unit to be a certain type.
         /// </summary>
         public TimeMeasurement Unit { get; set; }
+
+        /// <summary>
+        /// The number of units between grid lines.
+        /// </summary>
+        public int StepSize { get; set; }
+
+        /// <summary>
+        /// The minimum display format to be used for a time unit.
+        /// </summary>
+        public TimeMeasurement MinUnit { get; set; }
     }
 }
