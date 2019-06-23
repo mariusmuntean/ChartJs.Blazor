@@ -11,7 +11,5 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 
         public string Type => "time";
         public TimeDistribution Distribution { get; set; }
-
-
     }
 }
