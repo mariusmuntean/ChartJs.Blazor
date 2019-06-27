@@ -6,13 +6,13 @@
 
 <h2>Mixed Charts</h2>
 <div class="row">
-    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+    <button class="btn btn-primary" @onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsMixedChart ref="mixedChart" Config="@mixedChartConfig" Width="600" Height="300"/>
+<ChartJsMixedChart @ref="mixedChart" Config="@mixedChartConfig" Width="600" Height="300"/>
 
-<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300"/>
+<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" @bind-DataStr="@DataStr" Width="600" Height="300"/>
 
-@functions {
+@code{
 
     MixedChartConfig mixedChartConfig { get; set; }
     ChartJsMixedChart mixedChart;

@@ -17,7 +17,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
         /// <param name="args">Click event args</param>
         public delegate void InstanceClickHandler(object sender, object args);
 
-        public DotNetObjectRef InstanceRef { get; }
+        public object InstanceRef { get; }
 
         public string MethodName { get; }
 
@@ -50,7 +50,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
 
             //AssemblyName = assembly.GetName().Name;
             // clickHandler.Method.DeclaringType.Assembly.GetName().Name;
-            InstanceRef = new DotNetObjectRef(clickHandler.Target);
+            InstanceRef = DotNetObjectRef.Create(clickHandler.Target);
             MethodName = clickHandler.Method.Name;
         }
     }

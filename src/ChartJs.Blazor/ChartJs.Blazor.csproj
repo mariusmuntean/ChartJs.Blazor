@@ -39,43 +39,24 @@ Fixed disappearing charts when navigating away and back - Thanks to the communit
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Browser" Version="3.0.0-preview4-19216-03" />
+    <None Remove="dist\ChartJsInterop.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="dist\ChartJsInterop.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Browser" Version="3.0.0-preview6.19307.2" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="dist\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
-    <EmbeddedResource Include="dist\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
-    <EmbeddedResource Include="dist\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="ChartJS\ScatterChart - Copy\**" />
-    <Content Remove="ChartJS\ScatterChart - Copy\**" />
-    <EmbeddedResource Remove="ChartJS\ScatterChart - Copy\**" />
-    <None Remove="ChartJS\ScatterChart - Copy\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="Charts\ChartJsDoughnutChart.razor">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Charts\ChartJsScatterChart.razor">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Charts\ChartJsPolarAreaChart.razor">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Charts\ChartJsPieChart.razor">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Charts\ChartJsMixedChart.razor">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
+    <Content Update="wwwroot\ChartJsInterop.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
-  <!--<ItemGroup>
-    <BlazorGenerate Remove="Shared\ChartJsRadarChart.cshtml" />
-  </ItemGroup>-->
 </Project>

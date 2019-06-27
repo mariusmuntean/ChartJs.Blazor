@@ -4,11 +4,11 @@
 
 <h2>Filled Line Chart</h2>
 <div class="row">
-    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+    <button class="btn btn-primary" @onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsLineChart ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
+<ChartJsLineChart @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
 
-<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300" />
+<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" @bind-DataStr="@DataStr" Width="600" Height="300" />
 
 @functions{
 

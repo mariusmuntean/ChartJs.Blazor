@@ -42,9 +42,6 @@ namespace ChartJs.Blazor.Sample.Serverside
 
             app.UseStaticFiles();
 
-            // Add the JS interop file to the webRooPath - make sure to reference it from index.cshtml
-            ChartJsBlazor.AddStaticResourcesToWebRootPath(env.WebRootPath);
-
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

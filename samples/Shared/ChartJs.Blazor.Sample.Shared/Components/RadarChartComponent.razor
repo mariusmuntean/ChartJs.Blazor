@@ -6,13 +6,13 @@
 
 <h2>Radar Chart</h2>
 <div class="row">
-    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+    <button class="btn btn-primary" @onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsRadarChart ref="radarChartJs" Config="@radarChartConfig" Width="600" Height="300"/>
+<ChartJsRadarChart @ref="radarChartJs" Config="@radarChartConfig" Width="600" Height="300"/>
 
-<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300"/>
+<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" @bind-DataStr="@DataStr" Width="600" Height="300"/>
 
-@functions {
+@code{
 
     private RadarChartConfig radarChartConfig { get; set; }
     ChartJsRadarChart radarChartJs;

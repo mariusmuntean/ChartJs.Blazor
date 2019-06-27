@@ -5,13 +5,13 @@
 
 <h2>Bubble Chart</h2>
 <div class="row">
-    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+    <button class="btn btn-primary" @onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsPolarAreaChart ref="polarAreaChart" Config="@polarAreaChartConfig" Width="600" Height="300"/>
+<ChartJsPolarAreaChart @ref="polarAreaChart" Config="@polarAreaChartConfig" Width="600" Height="300"/>
 
-<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300"/>
+<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" @bind-DataStr="@DataStr" Width="600" Height="300"/>
 
-@functions{
+@code{
 
     public PolarAreaChartConfig polarAreaChartConfig { get; set; }
     ChartJsPolarAreaChart polarAreaChart;

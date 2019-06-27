@@ -17,7 +17,9 @@ namespace ChartJs.Blazor.ChartJS
         {
             try
             {
-                return jsRuntime.InvokeAsync<bool>("ChartJSInterop.SetupChart", StripNulls(chartConfig));
+                var cleanChartConfigStr = JsonConvert.SerializeObject(chartConfig, JsonSerializerSettings);
+
+                return jsRuntime.InvokeAsync<bool>("ChartJSInterop.SetupChart", cleanChartConfigStr);
             }
             catch (Exception exp)
             {
@@ -30,7 +32,9 @@ namespace ChartJs.Blazor.ChartJS
         {
             try
             {
-                return jsRuntime.InvokeAsync<bool>("ChartJSInterop.UpdateChart", StripNulls(chartConfig));
+                var cleanChartConfigStr = JsonConvert.SerializeObject(chartConfig, JsonSerializerSettings);
+
+                return jsRuntime.InvokeAsync<bool>("ChartJSInterop.UpdateChart", cleanChartConfigStr);
             }
             catch (Exception exp)
             {

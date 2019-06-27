@@ -5,13 +5,13 @@
 
 <h2>Doughnut Chart</h2>
 <div class="row">
-    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+    <button class="btn btn-primary" @onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsDoughnutChart ref="_doughnutChartJs" Config="@doughnutChartConfig" Width="600" Height="300"/>
+<ChartJsDoughnutChart @ref="_doughnutChartJs" Config="@doughnutChartConfig" Width="600" Height="300"/>
 
-<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300"/>
+<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" @bind-DataStr="@DataStr" Width="600" Height="300"/>
 
-@functions{
+@code{
 
     public DoughnutChartConfig doughnutChartConfig { get; set; }
     ChartJsDoughnutChart _doughnutChartJs;

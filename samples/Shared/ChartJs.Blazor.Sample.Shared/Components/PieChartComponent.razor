@@ -4,13 +4,13 @@
 
 <h2>Pie Chart</h2>
 <div class="row">
-    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+    <button class="btn btn-primary" @onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsPieChart ref="pieChartJs" Config="@pieChartConfig" Width="600" Height="300" />
+<ChartJsPieChart @ref="pieChartJs" Config="@pieChartConfig" Width="600" Height="300" />
 
-<DataDisplayComponent  OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300" />
+<DataDisplayComponent  OnUpdatedDataStr="@OnDataStrChange" @bind-DataStr="@DataStr" Width="600" Height="300" />
 
-@functions{
+@code{
 
     private PieChartConfig pieChartConfig { get; set; }
     ChartJsPieChart pieChartJs;

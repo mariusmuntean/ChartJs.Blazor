@@ -5,14 +5,14 @@
 
 <h2>Scatter Chart</h2>
 <div class="row">
-    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+    <button class="btn btn-primary" @onclick="@UpdateChart">Update Chart </button>
 </div>
 
-<ChartJsScatterChart ref="scatterChartJs" Config="@scatterChartConfig" Width="600" Height="300"/>
+<ChartJsScatterChart @ref="scatterChartJs" Config="@scatterChartConfig" Width="600" Height="300"/>
 
-<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300"/>
+<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" @bind-DataStr="@DataStr" Width="600" Height="300"/>
 
-@functions{
+@code{
 
 
     ScatterChartConfig scatterChartConfig { get; set; }

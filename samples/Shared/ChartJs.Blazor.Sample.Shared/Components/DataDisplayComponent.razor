@@ -11,7 +11,7 @@
         <div class="form-group col-md-6">
             <button class="btn btn-primary float-right"
                     type="button"
-                    onclick="@RestoreInitialData">
+                    @onclick="@RestoreInitialData">
                 I messed up
             </button>
         </div>
@@ -19,18 +19,17 @@
     <div class="form-row">
         <textarea id="textAreaId"
                   colspan="2"
-                  ref="dataTextArea"
+                  @ref="dataTextArea"
                   class="form-control"
                   Width="@Width"
                   Height="@Height"
                   Rows="@Rows"
-                  oninput="@OnKeyUp"
-                  bind-value-onchange="@DataStr"
-                  style="display: block; margin-left: auto; margin-right: auto"></textarea>
+                  @oninput="@OnKeyUp"
+                  style="display: block; margin-left: auto; margin-right: auto">@DataStr</textarea>
     </div>
 </form>
 
-@functions {
+@code {
 
     private string _initialData = null;
 

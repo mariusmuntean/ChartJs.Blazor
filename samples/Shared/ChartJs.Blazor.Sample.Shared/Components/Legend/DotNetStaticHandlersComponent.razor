@@ -8,14 +8,14 @@
 
 <h2>Legend Item - .Net static click/hover handler (open the developer console if you run ClientSide; open your VS Output and switch to ASP.NE Core Web Server if you're running ServerSide)</h2>
 <div class="row">
-    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+    <button class="btn btn-primary" @onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsBarChart ref="barChart"
+<ChartJsBarChart @ref="barChart"
                  Config="@barChartConfig"
                  Width="600"
                  Height="300" />
 
-<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300" />
+<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" @bind-DataStr="@DataStr" Width="600" Height="300" />
 
 @functions {
 

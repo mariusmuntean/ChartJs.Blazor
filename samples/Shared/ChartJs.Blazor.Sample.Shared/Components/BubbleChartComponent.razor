@@ -4,13 +4,13 @@
 
 <h2>Bubble Chart</h2>
 <div class="row">
-    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
+    <button class="btn btn-primary" @onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsBubbleChart ref="bubbleChartJs" Config="@bubbleChartConfig" Width="600" Height="300" />
+<ChartJsBubbleChart @ref="bubbleChartJs" Config="@bubbleChartConfig" Width="600" Height="300" />
 
-<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300" />
+<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" @bind-DataStr="@DataStr" Width="600" Height="300" />
 
-@functions{
+@code{
 
     public BubbleChartConfig bubbleChartConfig { get; set; }
     ChartJsBubbleChart bubbleChartJs;
