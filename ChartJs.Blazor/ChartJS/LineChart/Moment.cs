@@ -28,6 +28,6 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 
         public override int GetHashCode() => Value.GetHashCode();
 
-        public override string ToString() => Value.ToString("o");
+        public override string ToString() => Value.ToString("s"); // https://docs.microsoft.com/en-us/dotnet/api/system.datetime.tostring?view=netframework-4.8
     }
 }

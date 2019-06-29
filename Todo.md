@@ -11,8 +11,5 @@
 - find out why currently nothing is showing in linear line graph (compare json output from old version with new version)
 - add static DefaultFormat dict (https://www.chartjs.org/docs/latest/axes/cartesian/time.html#display-formats)
 - add static de-ch dict (or find a way to generate/get it without manually specifying everything)
-- add moment.js manually (with locales) and revert to normal chart.js without the moment.js contained
 - find out how to set localization at startup of each site (moment.js)
 - test everything (create and or use samples)
-- Check if tostring("s") is better than tostring("o") for moment (it probably is)
-- Check if you can/should use WriteRawValue instead of WriteValue after serializing in objectEnum converter
