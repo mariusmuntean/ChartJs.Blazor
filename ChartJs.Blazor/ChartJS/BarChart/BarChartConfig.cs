@@ -7,8 +7,7 @@ namespace ChartJs.Blazor.ChartJS.BarChart
     /// Config for a bar chart with typesafe data
     /// <para>Either 'bar' or 'horizontalBar'</para>
     /// </summary>
-    /// <typeparam name="TData">Defines the type of data in the bar chart</typeparam>
-    public class BarChartConfig<TData> : ChartConfigBase<BarChartOptions, BarChartData<TData>>
+    public class BarChartConfig : ChartConfigBase<BarChartOptions, BarChartData>
     {
         public BarChartConfig(ChartTypes type = null) : base(type ?? ChartTypes.Bar) { }
     }

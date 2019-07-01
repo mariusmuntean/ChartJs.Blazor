@@ -7,15 +7,21 @@ using Newtonsoft.Json;
 
 namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
 {
-    public class BaseBarChartDataset<TData> : IMixableDataset<TData>
+    /// <summary>
+    /// A base dataset for a barchart
+    /// </summary>
+    /// <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="ChartJs.Blazor.ChartJS.LineChart.Wrappers"/> for value types.</typeparam>
+    public class BaseBarChartDataset<TData> : BaseMixableDataset<TData> where TData : class
     {
         public BaseBarChartDataset(IEnumerable<TData> data) : this()
         {
-            Data.AddRange(data);
+            this.AddRange(data);
         }
 
-        public BaseBarChartDataset() => Data = new List<TData>();
+        public BaseBarChartDataset() { }
 
+
+        public override ChartTypes Type => ChartTypes.Bar;
 
         /// <summary>
         /// The label for the dataset which appears in the legend and tooltips.
@@ -34,15 +40,10 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
         [JsonProperty("yAxisID")]
         public string YAxisID { get; set; }
 
-        public ChartTypes Type { get; } = ChartTypes.Bar;
-
         /// <summary>
         /// Which edge to skip drawing the border for. 
         /// </summary>
         public Positions BorderSkipped { get; set; }
-
-        // ToDo: introduce a data type
-        public List<TData> Data { get; }
 
         /// <summary>
         /// The ID of the group to which this dataset belongs to (when stacked, each group will be a separate stack)

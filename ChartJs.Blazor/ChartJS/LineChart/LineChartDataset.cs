@@ -10,18 +10,22 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     /// <summary>
     /// A dataset for a linechart
     /// </summary>
-    /// <typeparam name="TData">Defines the type of data in this dataset</typeparam>
-    public class LineChartDataset<TData> : IMixableDataset<TData>
+    /// <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="ChartJs.Blazor.ChartJS.LineChart.Wrappers"/> for value types.</typeparam>
+    public class LineChartDataset<TData> : BaseMixableDataset<TData> where TData : class
     {
         public LineChartDataset(IEnumerable<TData> data) : this()
         {
-            Data.AddRange(data);
+            this.AddRange(data);
         }
 
-        public LineChartDataset() => Data = new List<TData>();
+        public LineChartDataset() { }
 
 
-        public ChartTypes Type { get; } = ChartTypes.Line;
+        public override ChartTypes Type => ChartTypes.Line;
+
+        /// <summary>
+        /// The label for the dataset which appears in the legend and tooltips.
+        /// </summary>
         public string Label { get; set; } = "";
 
         /// <summary>
@@ -134,7 +138,5 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// <para>See <see cref="Util.Color.ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string BorderColor { get; set; }
-
-        public List<TData> Data { get; }
     }
 }

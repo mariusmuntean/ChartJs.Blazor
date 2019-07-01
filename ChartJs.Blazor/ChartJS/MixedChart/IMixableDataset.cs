@@ -9,10 +9,10 @@ using System.Collections.Generic;
 namespace ChartJs.Blazor.ChartJS.MixedChart
 {
     [JsonConverter(typeof(MixableDatasetConverter))]
-    public interface IMixableDataset<TData>
+    public interface IMixableDataset<out TData>
     {
         ChartTypes Type { get; }
-        List<TData> Data { get; }
+        IReadOnlyCollection<TData> Data { get; }
     }
 
     public class MixableDatasetConverter : JsonConverter

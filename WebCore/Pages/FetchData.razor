@@ -6,6 +6,7 @@
 @using ChartJs.Blazor.ChartJS.Common.Legends
 @using ChartJs.Blazor.Util.Color
 @using ChartJs.Blazor.ChartJS.LineChart
+@using ChartJs.Blazor.ChartJS.LineChart.Wrappers
 @inject WeatherForecastService ForecastService
 
 <h2>Line Chart</h2>
@@ -54,7 +55,7 @@
                 Scales = new Scales
                 {
                     xAxes = new List<Axis>
-                    {
+                {
                         new Axis
                         {
                             ScaleLabel = new ScaleLabel
@@ -64,7 +65,7 @@
                         }
                     },
                     yAxes = new List<Axis>
-                    {
+                {
                         new Axis
                         {
                             ScaleLabel = new ScaleLabel
@@ -84,7 +85,7 @@
 
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
 
-        var intSet = new LineChartDataset<int>() // object
+        var intSet = new LineChartDataset<ValueWrapper<int>>() // object
         {
             BackgroundColor = ColorUtil.ColorString(0, 255, 0, 1.0),
             BorderColor = ColorUtil.ColorString(0, 0, 255, 1.0),
@@ -97,7 +98,7 @@
             SteppedLine = SteppedLine.False
         };
 
-        var doubleSet = new LineChartDataset<double>() // object
+        var doubleSet = new LineChartDataset<ValueWrapper<double>>() // object
         {
             BackgroundColor = "#63ff84",
             BorderColor = "#63ff84",
@@ -110,11 +111,10 @@
         };
 
         lineChartConfig.Data.Labels.AddRange(forecasts.Select(p => p.Date.ToShortDateString()));
-        intSet.Data.AddRange(forecasts.Select(p => /*(object)*/p.TemperatureC));
-        doubleSet.Data.AddRange(forecasts.Select(p => /*(object)*/(1d / p.TemperatureF)));
+        intSet.AddRange(forecasts.Select(p => p.TemperatureC).Wrap());
+        doubleSet.AddRange(forecasts.Select(p => (1d / p.TemperatureF)).Wrap());
 
-        // Somehow make this conversion work without using object as generic type and without boxing
-        lineChartConfig.Data.Datasets.Add(intSet);  
+        lineChartConfig.Data.Datasets.Add(intSet);
         lineChartConfig.Data.Datasets.Add(doubleSet);
     }
 }
