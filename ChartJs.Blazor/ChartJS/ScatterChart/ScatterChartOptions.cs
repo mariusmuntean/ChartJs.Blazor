@@ -9,8 +9,6 @@ namespace ChartJs.Blazor.ChartJS.ScatterChart
 
         public bool Intersect { get; set; }
 
-        public OptionsTitle Title { get; set; }
-
         public ScatterChartScales Scales { get; set; }
     }
 }

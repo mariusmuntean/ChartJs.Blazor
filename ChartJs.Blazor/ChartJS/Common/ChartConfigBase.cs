@@ -7,25 +7,25 @@ namespace ChartJs.Blazor.ChartJS.Common
     {
         protected ChartConfigBase(ChartTypes chartType)
         {
-            ChartType = chartType;
-            Type = chartType.ToString();
+            Type = chartType;
         }
 
-        [JsonIgnore]
-        public ChartTypes ChartType { get; }
-        public string Type { get; }
+        public ChartTypes Type { get; }
 
         public string CanvasId { get; set; }        
     }
-    
-    public abstract class ChartConfigBase<TOptions, TData> : ChartConfigBase 
-        where TOptions : BaseChartConfigOptions 
-        where TData : class
+
+    public abstract class ChartConfigBase<TOptions, TData> : ChartConfigBase
+        where TOptions : BaseChartConfigOptions
+        where TData : class, new()      // TODO: restrict to some interface
     {
-        protected ChartConfigBase(ChartTypes chartType) : base(chartType) { }
+        protected ChartConfigBase(ChartTypes chartType) : base(chartType)
+        {
+            Data = new TData();
+        }
 
         public TOptions Options { get; set; }
 
-        public TData Data { get; set; }
+        public TData Data { get; }
     }
 }

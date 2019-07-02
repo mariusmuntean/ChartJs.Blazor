@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <IsPackable>true</IsPackable>
     <OutputType>Library</OutputType>
     <LangVersion>7.3</LangVersion>
@@ -61,6 +61,10 @@ Fixed disappearing charts when navigating away and back - Thanks to the communit
 
   <ItemGroup>
     <Compile Remove="ChartJS\Common\HoverModes.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="dist\ChartJSBlazor.css" />
   </ItemGroup>
 
   <ItemGroup>

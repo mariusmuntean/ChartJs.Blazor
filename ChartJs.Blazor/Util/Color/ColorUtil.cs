@@ -51,5 +51,14 @@ namespace ChartJs.Blazor.Util.Color
             var rand = new Random();
             return $"rgba({1 + rand.Next(255)}, {1 + rand.Next(255)}, {1 + rand.Next(255)}, {rand.NextDouble().ToString(CultureInfo.InvariantCulture)})";
         }
+
+        /// <summary>
+        /// Generates the corresponding string representation (as hex) of a <see cref="System.Drawing.Color"></see> object.
+        /// </summary>
+        /// <returns>The string representation as a hex color string</returns>
+        public static string FromDrawingColor(System.Drawing.Color color)
+        {
+            return ColorHexString(color.R, color.G, color.B);
+        }
     }
 }

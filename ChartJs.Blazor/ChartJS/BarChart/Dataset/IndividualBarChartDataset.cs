@@ -9,7 +9,8 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
     ///  The first value applies to the first bar, the second value to the second bar, and so on.
     /// </para>
     /// </summary>
-    public class IndividualBarChartDataset<TData> : BaseBarChartDataset<TData>
+    /// <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="ChartJs.Blazor.ChartJS.LineChart.Wrappers"/> for value types.</typeparam>
+    public class IndividualBarChartDataset<TData> : BaseBarChartDataset<TData> where TData : class
     {
         /// <summary>
         /// The fill color of the bar

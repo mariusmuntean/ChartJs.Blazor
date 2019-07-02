@@ -8,7 +8,7 @@
 @inject WeatherForecastService ForecastService
 
 <h2>Line Chart</h2>
-<ChartJsLineChart TData="TimeTupel<int>" @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
+<ChartJsLineChart @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
 
 @if (forecasts == null)
 {
@@ -17,20 +17,18 @@
 
 @functions
 {
-    LineChartConfig<TimeTupel<int>> lineChartConfig;
-    ChartJsLineChart<TimeTupel<int>> lineChartJs;
+    LineChartConfig lineChartConfig;
+    ChartJsLineChart lineChartJs;
 
     WeatherForecast[] forecasts;
 
     protected override async Task OnInitAsync()
     {
-        lineChartConfig = new LineChartConfig<TimeTupel<int>>
+        lineChartConfig = new LineChartConfig
         {
             CanvasId = "timeChartExample",
             Options = new LineChartOptions
             {
-                Text = "Sample Time chart from Blazor",
-                Display = true,
                 Responsive = true,
                 Title = new OptionsTitle
                 {
@@ -83,31 +81,24 @@
                     Intersect = true,
                     Mode = InteractionMode.Y
                 }
-            },
-            Data = new LineChartData<TimeTupel<int>>
-            {
-                //Labels = new List<string>(),
-                Datasets = new List<LineChartDataset<TimeTupel<int>>>
-                {
-                    new LineChartDataset<TimeTupel<int>>
-                    {
-                        BackgroundColor = "#ff6384",
-                        BorderColor = "#ff6384",
-                        Label = "Temperatur in C°",
-                        Data = new List<TimeTupel<int>>(),
-                        Fill = false,
-                        BorderWidth = 2,
-                        PointRadius = 3,
-                        PointBorderWidth = 1,
-                        SteppedLine = SteppedLine.False
-                    }
-                }
             }
         };
 
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now, 2);
 
-        //lineChartConfig.Data.Labels.AddRange(forecasts.Select(p => p.Date.ToShortDateString()));
-        lineChartConfig.Data.Datasets[0].Data.AddRange(forecasts.Select(p => new TimeTupel<int>(p.Date, p.TemperatureC)));
+        var tempDataSet = new LineChartDataset<TimeTupel<int>>
+        {
+            BackgroundColor = "#ff6384",
+            BorderColor = "#ff6384",
+            Label = "Temperatur in C°",
+            Fill = false,
+            BorderWidth = 2,
+            PointRadius = 3,
+            PointBorderWidth = 1,
+            SteppedLine = SteppedLine.False
+        };
+
+        tempDataSet.AddRange(forecasts.Select(p => new TimeTupel<int>(p.Date, p.TemperatureC)));
+        lineChartConfig.Data.Datasets.Add(tempDataSet);
     }
 }

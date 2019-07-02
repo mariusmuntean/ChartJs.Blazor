@@ -22,7 +22,5 @@ namespace ChartJs.Blazor.ChartJS.DoughnutChart
         /// Sweep to allow arcs to cover
         /// </summary>
         public double Circumferences { get; set; } = 2 * Math.PI;
-
-        public OptionsTitle Title { get; set; }
     }
 }

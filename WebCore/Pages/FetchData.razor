@@ -4,11 +4,15 @@
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Enums
 @using ChartJs.Blazor.ChartJS.Common.Legends
+@using ChartJs.Blazor.Util.Color
 @using ChartJs.Blazor.ChartJS.LineChart
+@using ChartJs.Blazor.ChartJS.LineChart.Wrappers
 @inject WeatherForecastService ForecastService
 
 <h2>Line Chart</h2>
-<ChartJsLineChart TData="int" @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
+<div class="fetchDataContainer">
+    <ChartJsLineChart @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
+</div>
 
 @if (forecasts == null)
 {
@@ -17,20 +21,18 @@
 
 @functions
 {
-    LineChartConfig<int> lineChartConfig;
-    ChartJsLineChart<int> lineChartJs;
+    LineChartConfig lineChartConfig;
+    ChartJsLineChart lineChartJs;
 
     WeatherForecast[] forecasts;
 
     protected override async Task OnInitAsync()
     {
-        lineChartConfig = new LineChartConfig<int>
+        lineChartConfig = new LineChartConfig
         {
             CanvasId = "myFirstLineChart",
             Options = new LineChartOptions
             {
-                Text = "Sample chart from Blazor",
-                Display = true,
                 Responsive = true,
                 Title = new OptionsTitle
                 {
@@ -53,7 +55,7 @@
                 Scales = new Scales
                 {
                     xAxes = new List<CartesianAxis>
-                {
+                    {
                         new LinearCartesianAxis
                         {
                             Ticks = new LinearCartesianTicks
@@ -63,41 +65,65 @@
                             },
                             ScaleLabel = new ScaleLabel
                             {
-                                LabelString = "Zeit"
+                                LabelString = "Temp"
                             }
                         }
                     },
+                    yAxes = new List<CartesianAxis>()
+                    {
+                        new LinearCartesianAxis
+                        {
+                            Ticks = new LinearCartesianTicks
+                            {
+                                Precision = 2
+                            },
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "Zeit"
+                            }
+                        }
+                    }
                 },
                 Hover = new LineChartOptionsHover
                 {
                     Intersect = true,
                     Mode = InteractionMode.Y
                 }
-            },
-            Data = new LineChartData<int>
-            {
-                Labels = new List<string>(),
-                Datasets = new List<LineChartDataset<int>>
-            {
-                    new LineChartDataset<int>
-                    {
-                        BackgroundColor = "#ff6384",
-                        BorderColor = "#ff6384",
-                        Label = "Temperatur in C°",
-                        Data = new List<int>(),
-                        Fill = false,
-                        BorderWidth = 2,
-                        PointRadius = 3,
-                        PointBorderWidth = 1,
-                        SteppedLine = SteppedLine.False
-                    }
-                }
             }
         };
 
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now, 5);
-        var onlyDays = forecasts.GroupBy(f => f.Date.Day).Select(g => g.First());
-        lineChartConfig.Data.Labels.AddRange(onlyDays.Select(p => p.Date.ToShortDateString()));
-        lineChartConfig.Data.Datasets[0].Data.AddRange(onlyDays.Select(p => p.TemperatureC));
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now, 2);
+
+        var intSet = new LineChartDataset<ValueWrapper<int>>()
+        {
+            BackgroundColor = ColorUtil.ColorString(0, 255, 0, 1.0),
+            BorderColor = ColorUtil.ColorString(0, 0, 255, 1.0),
+            Label = "Temperatur in C",
+            Fill = false,
+            PointBackgroundColor = ColorUtil.RandomColorString(),
+            BorderWidth = 1,
+            PointRadius = 3,
+            PointBorderWidth = 1,
+            SteppedLine = SteppedLine.False
+        };
+
+        var doubleSet = new LineChartDataset<ValueWrapper<double>>()
+        {
+            BackgroundColor = "#63ff84",
+            BorderColor = "#63ff84",
+            Label = "Temperatur in 1/F",
+            Fill = false,
+            BorderWidth = 1,
+            PointRadius = 4,
+            PointBorderWidth = 2,
+            SteppedLine = SteppedLine.True
+        };
+
+        lineChartConfig.Data.Labels.AddRange(forecasts.Select(p => p.Date.ToShortDateString()));
+        intSet.AddRange(forecasts.Select(p => p.TemperatureC).Wrap());
+        //doubleSet.AddRange(forecasts.Select(p => (1d / p.TemperatureF)).Wrap());
+
+        lineChartConfig.Data.Datasets.Add(intSet);
+        //lineChartConfig.Data.Datasets.Add(doubleSet);
     }
 }

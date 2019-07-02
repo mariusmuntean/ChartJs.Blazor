@@ -142,3 +142,8 @@ app {
         display: block;
     }
 }
+
+.fetchDataContainer{
+    width: 75%;
+    height: 45%;
+}
