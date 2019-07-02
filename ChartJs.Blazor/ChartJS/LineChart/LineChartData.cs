@@ -1,4 +1,5 @@
 ﻿using ChartJs.Blazor.ChartJS.MixedChart;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -8,22 +9,32 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     {
         public LineChartData()
         {
-            Labels = new List<string>();
             Datasets = new HashSet<IMixableDataset<object>>();
         }
 
-        public LineChartData(List<string> labels, HashSet<IMixableDataset<object>> datasets)
-        {
-            if (labels == null) throw new ArgumentNullException(nameof(labels));
-            if (datasets == null) throw new ArgumentNullException(nameof(datasets));
+        /// <summary>
+        /// The labels the chart will use. 
+        /// <para>If defined (not null) the x-Axis has to be of type <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.</para>
+        /// </summary>
+        public List<string> Labels { get; set; }
 
-            if (labels.Count != datasets.Count) throw new ArgumentException("The amount of labels has to be the same as the amount of datasets.");
+        /// <summary>
+        /// The labels the horizontal Axes will use. 
+        /// <para>If defined (not null) the x-Axis has to be of type <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.</para>
+        /// </summary>
+        [JsonProperty("xLabels")]
+        public List<string> XLabels { get; set; }
 
-            Labels = labels;
-            Datasets = datasets;
-        }
+        /// <summary>
+        /// The labels the vertical Axes will use. 
+        /// <para>If defined (not null) the x-Axis has to be of type <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.</para>
+        /// </summary>
+        [JsonProperty("yLabels")]
+        public List<string> YLabels { get; set; }
 
-        public List<string> Labels { get; }
+        /// <summary>
+        /// The Datasets displayed in this chart.
+        /// </summary>
         public HashSet<IMixableDataset<object>> Datasets { get; }
     }
 }

@@ -5,12 +5,15 @@ using System.Text;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
+    /// <summary>
+    /// https://www.chartjs.org/docs/latest/axes/cartesian/linear.html#tick-configuration-options
+    /// </summary>
     public class LinearCartesianTicks : CartesianTicks
     {
         /// <summary>
         /// If true, scale will include 0 if it is not already included.
         /// </summary>
-        public bool BeginAtZero { get; set; }
+        public bool? BeginAtZero { get; set; }
 
         /// <summary>
         /// User defined minimum number for the scale, overrides minimum value from data.

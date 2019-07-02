@@ -19,7 +19,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// <summary>
         /// The weight used to sort the axis. Higher weights are further away from the chart area.
         /// </summary>
-        public int Weight { get; set; }
+        public int? Weight { get; set; }
 
         // TODO: Maybe implement: https://www.chartjs.org/docs/latest/axes/#callbacks
         // public object Callbacks { get; set; }

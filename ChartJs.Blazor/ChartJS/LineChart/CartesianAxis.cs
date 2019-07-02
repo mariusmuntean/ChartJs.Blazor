@@ -41,7 +41,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public GridLine GridLines { get; set; }
 
         //[JsonProperty("stacked")]
-        //public bool Stacked { get; set; } <- TODO: remove (probably concrete)
+        //public bool Stacked { get; set; } // <- TODO: remove (probably concrete)
     }
 
     public abstract class CartesianAxis<TTicks> : CartesianAxis where TTicks : CartesianTicks

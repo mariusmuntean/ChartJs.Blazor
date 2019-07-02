@@ -14,17 +14,10 @@
     <ChartJsLineChart @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
 </div>
 
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-
 @functions
 {
     LineChartConfig lineChartConfig;
     ChartJsLineChart lineChartJs;
-
-    WeatherForecast[] forecasts;
 
     protected override async Task OnInitAsync()
     {
@@ -49,7 +42,7 @@
                 },
                 Tooltips = new Tooltips
                 {
-                    Mode = InteractionMode.Point,
+                    Mode = InteractionMode.Nearest,
                     Intersect = false
                 },
                 Scales = new Scales
@@ -58,14 +51,17 @@
                     {
                         new LinearCartesianAxis
                         {
-                            Ticks = new LinearCartesianTicks
-                            {
-                                BeginAtZero = true,
-                                StepSize = 0.5
-                            },
                             ScaleLabel = new ScaleLabel
                             {
-                                LabelString = "Temp"
+                                LabelString = "Zeit"
+                            },
+                            GridLines = new GridLine
+                            {
+                                 Display = false
+                            },
+                            Ticks = new LinearCartesianTicks
+                            {
+                                SuggestedMin = -2
                             }
                         }
                     },
@@ -73,13 +69,9 @@
                     {
                         new LinearCartesianAxis
                         {
-                            Ticks = new LinearCartesianTicks
-                            {
-                                Precision = 2
-                            },
                             ScaleLabel = new ScaleLabel
                             {
-                                LabelString = "Zeit"
+                                LabelString = "Temp"
                             }
                         }
                     }
@@ -92,38 +84,40 @@
             }
         };
 
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now, 2);
 
-        var intSet = new LineChartDataset<ValueWrapper<int>>()
+        var tempPerHourSet = new LineChartDataset<Point>()
         {
             BackgroundColor = ColorUtil.ColorString(0, 255, 0, 1.0),
             BorderColor = ColorUtil.ColorString(0, 0, 255, 1.0),
-            Label = "Temperatur in C",
+            Label = "Temp (C) per Hour",
             Fill = false,
             PointBackgroundColor = ColorUtil.RandomColorString(),
             BorderWidth = 1,
             PointRadius = 3,
             PointBorderWidth = 1,
-            SteppedLine = SteppedLine.False
+            SteppedLine = SteppedLine.False,
         };
 
-        var doubleSet = new LineChartDataset<ValueWrapper<double>>()
+        var tempPerDaySet = new LineChartDataset<Point>()
         {
             BackgroundColor = "#63ff84",
             BorderColor = "#63ff84",
-            Label = "Temperatur in 1/F",
+            Label = "Temp (F) per Day",
             Fill = false,
             BorderWidth = 1,
-            PointRadius = 4,
-            PointBorderWidth = 2,
-            SteppedLine = SteppedLine.True
+            PointRadius = 2,
+            PointBorderWidth = 1,
+            SteppedLine = SteppedLine.False,
         };
 
-        lineChartConfig.Data.Labels.AddRange(forecasts.Select(p => p.Date.ToShortDateString()));
-        intSet.AddRange(forecasts.Select(p => p.TemperatureC).Wrap());
-        //doubleSet.AddRange(forecasts.Select(p => (1d / p.TemperatureF)).Wrap());
+        WeatherForecast[] forecasts = await ForecastService.GetForecastAsync(DateTime.Now, 5);
 
-        lineChartConfig.Data.Datasets.Add(intSet);
-        //lineChartConfig.Data.Datasets.Add(doubleSet);
+        var onlyDays = forecasts.GroupBy(f => f.Date.Day).Select(g => g.First());
+
+        tempPerHourSet.AddRange(onlyDays.Select(p => new Point(p.Date.Hour, p.TemperatureC)));
+        tempPerDaySet.AddRange(onlyDays.Select(p => new Point(p.Date.Day, p.TemperatureF)));
+
+        lineChartConfig.Data.Datasets.Add(tempPerHourSet);
+        lineChartConfig.Data.Datasets.Add(tempPerDaySet);
     }
 }
