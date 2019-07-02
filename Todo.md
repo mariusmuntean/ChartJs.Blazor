@@ -7,10 +7,7 @@
   - time stuff
 - add remaining axes
 - remake point styles
-- add static DefaultFormat dict (https://www.chartjs.org/docs/latest/axes/cartesian/time.html#display-formats)
-- add static de-ch dict (or find a way to generate/get it without manually specifying everything)
-- find out how to set localization at startup of each site (moment.js)
 - test everything (create and or use samples)
 - Maybe restrict to https://www.chartjs.org/docs/latest/charts/line.html#data-structure 
   - This would mean only allowing the wrappers. In the Datasets instead of every class
-- Find out if its a bad practise to use js to include the CSS (maybe so question)
+- Find out if its a bad practise to use js to include the CSS (maybe SO question)
