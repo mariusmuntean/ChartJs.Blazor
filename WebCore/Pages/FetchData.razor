@@ -10,7 +10,9 @@
 @inject WeatherForecastService ForecastService
 
 <h2>Line Chart</h2>
-<ChartJsLineChart @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
+<div class="fetchDataContainer">
+    <ChartJsLineChart @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
+</div>
 
 @if (forecasts == null)
 {
@@ -31,8 +33,6 @@
             CanvasId = "myFirstLineChart",
             Options = new LineChartOptions
             {
-                Text = "Sample chart from Blazor",
-                Display = true,
                 Responsive = true,
                 Title = new OptionsTitle
                 {

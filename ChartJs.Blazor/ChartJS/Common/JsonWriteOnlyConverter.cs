@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter
+namespace ChartJs.Blazor.ChartJS.Common
 {
     internal abstract class JsonWriteOnlyConverter<T> : JsonConverter<T>
     {

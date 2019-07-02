@@ -14,12 +14,6 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// </summary>
         public LineChartOptionsHover Hover { get; set; }
 
-        /// <summary>
-        /// Animation duration after a resize
-        /// </summary>
-        public long ResponsiveAnimationDuration { get; set; }
-
-        public OptionsTitle Title { get; set; }
         public Tooltips Tooltips { get; set; }
         public Scales Scales { get; set; }
 

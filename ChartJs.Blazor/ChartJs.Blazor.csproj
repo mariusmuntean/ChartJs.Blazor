@@ -64,6 +64,10 @@ Fixed disappearing charts when navigating away and back - Thanks to the communit
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="dist\ChartJSBlazor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="Charts\ChartJsDoughnutChart.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
