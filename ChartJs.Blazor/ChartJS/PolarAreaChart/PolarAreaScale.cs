@@ -1,4 +1,5 @@
 ﻿using ChartJs.Blazor.ChartJS.Common;
+using ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks;
 
 namespace ChartJs.Blazor.ChartJS.PolarAreaChart
 {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ChartJs.Blazor.ChartJS.LineChart
+namespace ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks
 {
     /// <summary>
     /// https://www.chartjs.org/docs/latest/axes/cartesian/linear.html#tick-configuration-options

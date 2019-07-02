@@ -42,6 +42,6 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends
         /// </summary>
         public bool Reverse { get; set; } = false;
 
-        public Labels Labels { get; set; } = new Labels();
+        public LegendLabelConfiguration Labels { get; set; } = new LegendLabelConfiguration();
     }
 }

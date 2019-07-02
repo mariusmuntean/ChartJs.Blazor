@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ChartJs.Blazor.ChartJS.LineChart.Axes;
+using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {

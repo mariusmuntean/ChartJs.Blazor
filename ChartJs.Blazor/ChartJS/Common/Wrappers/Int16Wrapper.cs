@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace ChartJs.Blazor.ChartJS.LineChart.Wrappers
+namespace ChartJs.Blazor.ChartJS.Common.Wrappers
 {
     [JsonConverter(typeof(JsonValueWrapperConverter<Int16Wrapper, Int16>))]
     public sealed class Int16Wrapper : ValueWrapper<Int16>

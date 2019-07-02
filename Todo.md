@@ -1,4 +1,3 @@
-- implement wrappers for covariant solution: https://stackoverflow.com/questions/56724879/create-and-use-covariant-and-mutable-list-or-potential-workaround
 - separate data (maybe interface so every XY.. is a Data), same with Options and Datasets -> should enable more generic possibilities so the charts, datas, datasets - etc aren't linked as hard together as they're now
 - (just maybe) create empty interfaces for chart types which also implement IChartType and then have lineAxis and LineTicks etc implement ILine. this would allow to have maybe a generic TChart (where : IChartType) for the config which could be ILine and all the Ticks, Options etc would automatically have to be for a line chart (also implement ILine)
 - check the summaries of the axis when Data etc are separated
@@ -8,7 +7,6 @@
   - time stuff
 - add remaining axes
 - remake point styles
-- find out why currently nothing is showing in linear line graph (compare json output from old version with new version)
 - add static DefaultFormat dict (https://www.chartjs.org/docs/latest/axes/cartesian/time.html#display-formats)
 - add static de-ch dict (or find a way to generate/get it without manually specifying everything)
 - find out how to set localization at startup of each site (moment.js)

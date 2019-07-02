@@ -3,7 +3,7 @@
     /// <summary>
     /// The legend label configuration is nested below the legend configuration
     /// </summary>
-    public class Labels
+    public class LegendLabelConfiguration
     {
         /// <summary>
         /// width of colored box

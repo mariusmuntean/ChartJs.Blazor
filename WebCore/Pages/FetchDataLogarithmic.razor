@@ -1,18 +1,18 @@
-@page "/fetchdata"
+@page "/fetchdataLogarithmic"
 @using WebCore.Data
 @using ChartJs.Blazor.Charts
 @using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.ChartJS.Common.Properties
 @using ChartJs.Blazor.ChartJS.Common.Enums
 @using ChartJs.Blazor.ChartJS.Common.Legends
-@using ChartJs.Blazor.Util.Color
 @using ChartJs.Blazor.ChartJS.LineChart
-@using ChartJs.Blazor.ChartJS.LineChart.Wrappers
+@using ChartJs.Blazor.ChartJS.LineChart.Axes
+@using ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks
+@using ChartJs.Blazor.Util.Color
 @inject WeatherForecastService ForecastService
 
-<h2>Line Chart</h2>
-<div class="fetchDataContainer">
-    <ChartJsLineChart @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
-</div>
+<h2>Line Logarithmic Chart</h2>
+<ChartJsLineChart @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
 
 @functions
 {
@@ -35,7 +35,7 @@
                 Legend = new Legend
                 {
                     Position = Positions.Right,
-                    Labels = new Labels
+                    Labels = new LegendLabelConfiguration
                     {
                         UsePointStyle = true
                     }
@@ -48,7 +48,7 @@
                 Scales = new Scales
                 {
                     xAxes = new List<CartesianAxis>
-                    {
+        {
                         new LinearCartesianAxis
                         {
                             ScaleLabel = new ScaleLabel
@@ -66,8 +66,8 @@
                         }
                     },
                     yAxes = new List<CartesianAxis>()
-                    {
-                        new LinearCartesianAxis
+        {
+                        new LogarithmicAxis
                         {
                             ScaleLabel = new ScaleLabel
                             {
@@ -110,7 +110,7 @@
             SteppedLine = SteppedLine.False,
         };
 
-        WeatherForecast[] forecasts = await ForecastService.GetForecastAsync(DateTime.Now, 5);
+        WeatherForecast[] forecasts = await ForecastService.GetStaticForecastAsync(DateTime.Now, 5);
 
         var onlyDays = forecasts.GroupBy(f => f.Date.Day).Select(g => g.First());
 

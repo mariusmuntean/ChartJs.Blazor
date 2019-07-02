@@ -1,4 +1,4 @@
-﻿namespace ChartJs.Blazor.ChartJS.Common
+﻿namespace ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks
 {
     /// <summary>
     /// As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/#tick-configuration

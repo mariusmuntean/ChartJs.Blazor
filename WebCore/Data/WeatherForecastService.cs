@@ -21,5 +21,15 @@ namespace WebCore.Data
                 Summary = Summaries[rng.Next(Summaries.Length)]
             }).ToArray());
         }
+
+        public Task<WeatherForecast[]> GetStaticForecastAsync(DateTime startDate, int amountDays)
+        {
+            return Task.FromResult(Enumerable.Range(1, amountDays * 24).Select(index => new WeatherForecast
+            {
+                Date = startDate.AddHours(index),
+                TemperatureC = (int)((double)index * 2.3),
+                Summary = Summaries[index % Summaries.Length]
+            }).ToArray());
+        }
     }
 }

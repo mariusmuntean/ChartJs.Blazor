@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ChartJs.Blazor.ChartJS.LineChart
+namespace ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks
 {
     public class CategoryTicks : CartesianTicks
     {

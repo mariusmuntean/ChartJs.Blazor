@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ChartJs.Blazor.ChartJS.LineChart.Wrappers
+namespace ChartJs.Blazor.ChartJS.Common.Wrappers
 {
     public static class WrapperExtensions
     {
@@ -11,11 +11,6 @@ namespace ChartJs.Blazor.ChartJS.LineChart.Wrappers
         {
             return wrappers.Select(v => v.Value);
         }
-
-        //public static IEnumerable<ValueWrapper<T>> Wrap<T>(this IEnumerable<T> values) where T : struct
-        //{
-        //    return values.Select(v => (ValueWrapper<T>)v);
-        //}
 
         public static IEnumerable<ByteWrapper> Wrap(this IEnumerable<Byte> values)
         {

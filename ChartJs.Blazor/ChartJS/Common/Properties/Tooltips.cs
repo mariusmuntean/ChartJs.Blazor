@@ -1,6 +1,6 @@
 ﻿using ChartJs.Blazor.ChartJS.Common.Enums;
 
-namespace ChartJs.Blazor.ChartJS.Common
+namespace ChartJs.Blazor.ChartJS.Common.Properties
 {
     public class Tooltips
     {

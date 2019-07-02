@@ -1,4 +1,4 @@
-﻿namespace ChartJs.Blazor.ChartJS.Common
+﻿namespace ChartJs.Blazor.ChartJS.Common.Properties
 {
     public class Animation
     {

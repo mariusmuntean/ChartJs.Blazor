@@ -1,8 +1,9 @@
 ﻿using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Enums;
+using ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks;
 using Newtonsoft.Json;
 
-namespace ChartJs.Blazor.ChartJS.LineChart
+namespace ChartJs.Blazor.ChartJS.LineChart.Axes
 {
     /// <summary>
     /// As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/#common-configuration

@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ChartJs.Blazor.ChartJS.LineChart.Wrappers
+namespace ChartJs.Blazor.ChartJS.Common.Wrappers
 {
     class JsonValueWrapperConverter<TWrapper, TData> : JsonWriteOnlyConverter<TWrapper> 
         where TData : struct 

@@ -1,4 +1,5 @@
 ﻿using ChartJs.Blazor.ChartJS.Common;
+using ChartJs.Blazor.ChartJS.Common.Properties;
 
 namespace ChartJs.Blazor.ChartJS.BubbleChart
 {
