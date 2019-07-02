@@ -38,7 +38,7 @@ namespace ChartJs.Blazor.ChartJS
                 p => p.Key,
                 p =>
                 {
-                    // if it's another IDict (might be a ExpandoObject or could also be an actual Dict containing ExpandoObjects) just go trough it recursively
+                    // if it's another IDict (might be a ExpandoObject or could also be an actual Dict containing ExpandoObjects) just go through it recursively
                     if (p.Value is IDictionary<string, object> dict)
                     {
                         return ConvertDynamicToDictonary(dict);
@@ -47,13 +47,10 @@ namespace ChartJs.Blazor.ChartJS
                     // if it's an IEnumerable, it might have ExpandoObjects inside, so check for that
                     if (p.Value is IEnumerable<object> list)
                     {
-                        if (list.Any(o => o is ExpandoObject))
-                        { 
-                            // if it does contain ExpandoObjects, take all of those and also go trough them recursively
-                            return list
-                                .Where(o => o is ExpandoObject)
-                                .Select(o => ConvertDynamicToDictonary((ExpandoObject)o));
-                        }
+                        // take all ExpandoObjects and go through them recursively
+                        return list
+                            .Where(o => o is ExpandoObject)
+                            .Select(o => ConvertDynamicToDictonary((ExpandoObject)o));
                     }
 
                     // neither an IDict nor an IEnumerable -> it's probably fine to just return the value it has
