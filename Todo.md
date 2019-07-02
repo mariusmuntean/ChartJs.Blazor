@@ -13,3 +13,4 @@
 - test everything (create and or use samples)
 - Maybe restrict to https://www.chartjs.org/docs/latest/charts/line.html#data-structure 
   - This would mean only allowing the wrappers. In the Datasets instead of every class
+- Find out if its a bad practise to use js to include the CSS (maybe so question)

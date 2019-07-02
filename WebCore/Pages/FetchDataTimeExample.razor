@@ -1,6 +1,7 @@
 @page "/fetchdataTimeExample"
 @using WebCore.Data
 @using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.ChartJS
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Properties
 @using ChartJs.Blazor.ChartJS.Common.Enums
@@ -9,6 +10,7 @@
 @using ChartJs.Blazor.ChartJS.LineChart.Axes
 @using ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks
 @inject WeatherForecastService ForecastService
+@inject IJSRuntime jsRuntime
 
 <h2>Line Time Chart</h2>
 <ChartJsLineChart @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
@@ -17,6 +19,23 @@
 {
     LineChartConfig lineChartConfig;
     ChartJsLineChart lineChartJs;
+    const string de_ch = "de-ch";
+    private bool localeChangeWasAttempted = false;
+
+    private async Task TryChangeLocale()
+    {
+        if (localeChangeWasAttempted) return;
+        localeChangeWasAttempted = true;
+
+        var locales = await jsRuntime.GetAvailableLocales();
+        bool localeChanged = false;
+        if (locales != null && locales.Contains(de_ch))
+        {
+            localeChanged = await jsRuntime.ChangeLocale(de_ch);
+        }
+
+        if(!localeChanged) Console.WriteLine($"Locale was not changed to {de_ch}. Either it already is {de_ch} or this locale doesn't exist.");
+    }
 
     protected override async Task OnInitAsync()
     {
@@ -60,17 +79,14 @@
                                 Unit = TimeMeasurement.Hour,
                                 Round = TimeMeasurement.Hour,
                                 TooltipFormat = "DD.MM.YYYY HH:mm",
-                                DisplayFormats = new Dictionary<TimeMeasurement, string>()
-                                {
-                                    { TimeMeasurement.Hour, "HH:00" }
-                                }
+                                DisplayFormats = TimeDisplayFormats.DE_CH
                             },
                             ScaleLabel = new ScaleLabel
                             {
                                 LabelString = "Zeit"
                             }
                         }
-                    }
+                        }
                 },
                 Hover = new LineChartOptionsHover
                 {
@@ -96,5 +112,10 @@
 
         tempDataSet.AddRange(forecasts.Select(p => new TimeTupel<int>(p.Date, p.TemperatureC)));
         lineChartConfig.Data.Datasets.Add(tempDataSet);
+    }
+
+    protected override async Task OnAfterRenderAsync()
+    {
+        await TryChangeLocale();
     }
 }

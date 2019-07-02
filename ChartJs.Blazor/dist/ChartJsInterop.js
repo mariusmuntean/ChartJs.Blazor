@@ -1,4 +1,5 @@
 ﻿/* Include CSS file (that's one link tag the developer mustn't forget less). */
+
 var scripts = document.getElementsByTagName('script');
 var executingScriptPath = scripts[scripts.length - 1].src;
 var fileName = executingScriptPath.split('/').pop();
@@ -7,7 +8,7 @@ var staticChartJSBlazorDir = executingScriptPath.replace(fileName, '');
 var absCssPath = staticChartJSBlazorDir + 'ChartJSBlazor.css'; 
 
 var cssId = 'ChartJSBlazorCss';
-if (!document.getElementById(cssId)) {
+if (!document.getElementById(cssId)) {  // only include once
     var head = document.getElementsByTagName('head')[0];
     var link = document.createElement('link');
     link.id = cssId;
@@ -18,7 +19,9 @@ if (!document.getElementById(cssId)) {
     head.appendChild(link);
 }
 
-/* Set up all the interop stuff */
+
+/* Set up all the chartjs interop stuff */
+
 var BlazorCharts = [];
 
 Blazor.BlazorCharts = BlazorCharts;
@@ -208,4 +211,32 @@ function WireUpOnHover(config) {
     } else { // fallback to the default
         config.options.legend.onHover = null;
     }
+}
+
+
+
+/* Set up all the momentjs interop stuff */
+
+function getAvailableMomentLocales() {
+    return moment.locales();
+}
+
+function getCurrentLocale() {
+    return moment.locale();
+}
+
+function changeLocale(locale) {
+    if (typeof locale !== 'string') throw 'locale must be a string';
+    let cur = getCurrentLocale();
+
+    // if the current locale is the one requested, we don't need to do anything
+    if (locale === cur) return false;
+
+    // set locale
+    let newL = moment.locale(locale);
+
+    // if the new locale is the same as the old one, it was not changed - probably because momentJs didn't find that locale
+    if (cur === newL) throw 'the locale \'' + locale + '\' could not be set. It was probably not found.';
+
+    return true;
 }

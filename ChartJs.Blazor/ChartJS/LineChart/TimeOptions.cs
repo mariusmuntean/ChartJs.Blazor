@@ -12,6 +12,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     {
         /// <summary>
         /// Sets how different time units are displayed. See <see cref="https://www.chartjs.org/docs/latest/axes/cartesian/time.html#data-sets"></see> for more details.
+        /// <para>See <see cref="TimeDisplayFormats"/> for premade formats for certain locales.</para>
         /// </summary>
         public Dictionary<TimeMeasurement, string> DisplayFormats { get; set; }
 
