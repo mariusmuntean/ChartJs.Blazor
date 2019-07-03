@@ -21,7 +21,7 @@ namespace ChartJs.Blazor.ChartJS
             try
             {
                 dynamic dynParam = StripNulls(chartConfig);
-                Dictionary<string, object> param = ConvertDynamicToDictonary(dynParam);
+                Dictionary<string, object> param = ConvertExpandoObjectToDictionary(dynParam);
                 return jsRuntime.InvokeAsync<bool>("ChartJSInterop.SetupChart", param);
             }
             catch (Exception exp)
@@ -32,39 +32,54 @@ namespace ChartJs.Blazor.ChartJS
             return Task.FromResult<bool>(false);
         }
 
-        private static Dictionary<string, object> ConvertDynamicToDictonary(IDictionary<string, object> value)
-        {
-            return value.ToDictionary(
-                p => p.Key,
-                p =>
+        /// <summary>
+        /// This method is specifically used to convert an <see cref="ExpandoObject"/> with a Tree structure to a <see cref="Dictionary{string, object}"/>.
+        /// </summary>
+        /// <param name="expando">The <see cref="ExpandoObject"/> to convert</param>
+        /// <returns>The fully converted <see cref="ExpandoObject"/></returns>
+        private static Dictionary<string, object> ConvertExpandoObjectToDictionary(ExpandoObject expando) => RecursivelyConvertIDictToDict(expando);
+
+        /// <summary>
+        /// This method takes an <see cref="IDictionary{string, object}"/> and recursively converts it to a <see cref="Dictionary{string, object}"/>. 
+        /// The idea is that every <see cref="IDictionary{string, object}"/> in the tree will be of type <see cref="Dictionary{string, object}"/> instead of some other implementation like <see cref="ExpandoObject"/>.
+        /// </summary>
+        /// <param name="value">The <see cref="IDictionary{string, object}"/> to convert</param>
+        /// <returns>The fully converted <see cref="Dictionary{string, object}"/></returns>
+        private static Dictionary<string, object> RecursivelyConvertIDictToDict(IDictionary<string, object> value) =>
+            value.ToDictionary(
+                keySelector => keySelector.Key,
+                elementSelector =>
                 {
-                    // if it's another IDict (might be a ExpandoObject or could also be an actual Dict containing ExpandoObjects) just go through it recursively
-                    if (p.Value is IDictionary<string, object> dict)
+                    // if it's another IDict just go through it recursively
+                    if (elementSelector.Value is IDictionary<string, object> dict)
                     {
-                        return ConvertDynamicToDictonary(dict);
+                        return RecursivelyConvertIDictToDict(dict);
                     }
 
-                    // if it's an IEnumerable, it might have ExpandoObjects inside, so check for that
-                    if (p.Value is IEnumerable<object> list)
+                    // if it's an IEnumerable check each element
+                    if (elementSelector.Value is IEnumerable<object> list)
                     {
-                        // take all ExpandoObjects and go through them recursively
+                        // go through all objects in the list
+                        // if the object is an IDict -> convert it
+                        // if not keep it as is
                         return list
-                            .Where(o => o is ExpandoObject)
-                            .Select(o => ConvertDynamicToDictonary((ExpandoObject)o));
+                            .Select(o => o is IDictionary<string, object>
+                                ? RecursivelyConvertIDictToDict((IDictionary<string, object>)o)
+                                : o
+                            );
                     }
 
-                    // neither an IDict nor an IEnumerable -> it's probably fine to just return the value it has
-                    return p.Value;
-                } 
+                    // neither an IDict nor an IEnumerable -> it's fine to just return the value it has
+                    return elementSelector.Value;
+                }
             );
-        }
 
         public static Task<bool> UpdateChart(this IJSRuntime jsRuntime, ChartConfigBase chartConfig)
         {
             try
             {
                 dynamic dynParam = StripNulls(chartConfig);
-                Dictionary<string, object> param = ConvertDynamicToDictonary(dynParam);
+                Dictionary<string, object> param = ConvertExpandoObjectToDictionary(dynParam);
                 return jsRuntime.InvokeAsync<bool>("ChartJSInterop.UpdateChart", param);
             }
             catch (Exception exp)
