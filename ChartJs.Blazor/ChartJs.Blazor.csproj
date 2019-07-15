@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <IsPackable>true</IsPackable>
     <OutputType>Library</OutputType>
     <LangVersion>7.3</LangVersion>
@@ -38,6 +38,10 @@ Fixed disappearing charts when navigating away and back - Thanks to the communit
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <ApplicationIcon />
     <StartupObject />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Joel Liechti\Desktop\Projekte\VS 19\DynamicChartJSBlazor\ChartJs.Blazor\ChartJs.Blazor.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -15,10 +15,15 @@ namespace ChartJs.Blazor.ChartJS.MixedChart
 
         private readonly List<TData> _data = new List<TData>();
 
+        public void Add(TData data) => _data.Add(data);
+        public void AddRange(IEnumerable<TData> data) => _data.AddRange(data);
+
         public IReadOnlyCollection<TData> Data => _data;
 
 
-        public void Add(TData data) => _data.Add(data);
-        public void AddRange(IEnumerable<TData> data) => _data.AddRange(data);
+        /// <summary>
+        /// If true, this item represents a hidden dataset. Label will be rendered with a strike-through effect.
+        /// </summary>
+        public bool Hidden { get; set; }
     }
 }

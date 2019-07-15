@@ -108,6 +108,7 @@
             PointRadius = 2,
             PointBorderWidth = 1,
             SteppedLine = SteppedLine.False,
+            Hidden = true
         };
 
         WeatherForecast[] forecasts = await ForecastService.GetStaticForecastAsync(DateTime.Now, 5);
