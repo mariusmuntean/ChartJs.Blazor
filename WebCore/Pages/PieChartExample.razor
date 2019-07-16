@@ -1,0 +1,52 @@
+@page "/pieChartExample"
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.ChartJS.PieChart
+@using ChartJs.Blazor.ChartJS.Common.Properties
+
+<h1>Pie Chart</h1>
+
+<ChartJsPieChart @ref="_pieChartJs" Config="@_config" Width="600" Height="300" />
+
+@code {
+private PieChartConfig _config;
+private ChartJsPieChart _pieChartJs;
+
+protected override void OnInit()
+{
+    _config = new PieChartConfig
+    {
+        CanvasId = "myFirstPieChart",
+        Options = new PieChartOptions
+        {
+            Title = new OptionsTitle
+            {
+                Display = true,
+                Text = "Sample chart from Blazor"
+            },
+            Responsive = true,
+            Animation = new DoughnutAnimation
+            {
+                AnimateRotate = true,
+                AnimateScale = true
+            }
+        }
+    };
+
+    _config.Data.Labels = new List<string> { "A", "B", "C", "D" };
+
+    var pieSet = new PieChartDataset
+    {
+        BackgroundColor = new[] { "#ff6384", "#55ee84", "#4463ff", "#efefef" },
+        Data = new List<int> { 4, 5, 6, 7 },                // this will be removed and shouldn't be possible
+        Label = "Light Red",
+        BorderWidth = 0,
+        HoverBackgroundColor = new[] { "#f06384" },
+        HoverBorderColor = new[] { "#f06384" },
+        HoverBorderWidth = new[] { 1 },
+        BorderColor = "#ffffff",
+    };
+
+    _config.Data.Datasets = new List<PieChartDataset>();    // this will be removed and shouldn't be possible
+    _config.Data.Datasets.Add(pieSet);
+}
+}
