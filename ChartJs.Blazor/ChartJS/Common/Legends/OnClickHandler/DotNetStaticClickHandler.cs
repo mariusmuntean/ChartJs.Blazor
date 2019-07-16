@@ -4,7 +4,7 @@ using Microsoft.JSInterop;
 namespace ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
 {
     /// <summary>
-    /// Specifies a static .Net method that should be called when clicking on a Legend item.
+    /// Specifies a static .net method that should be called when clicking on a Legend item.
     /// </summary>
     public class DotNetStaticClickHandler : ILegendClickHandler
     {
@@ -16,14 +16,20 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
         /// <param name="args">Click event args</param>
         public delegate void StaticClickHandler(object sender, object args);
 
+        /// <summary>
+        /// The name of the assembly the method is located in
+        /// </summary>
         public string AssemblyName { get; }
 
+        /// <summary>
+        /// The name of the method behind the delegate
+        /// </summary>
         public string MethodName { get; }
 
         /// <summary>
         /// Creates a new instance of <see cref="DotNetStaticClickHandler"/>
         /// </summary>
-        /// <param name="clickHandler">The delegate for a click handler.</param>
+        /// <param name="clickHandler">The delegate for a click handler</param>
         public DotNetStaticClickHandler(StaticClickHandler clickHandler)
         {
             ArgValidation.AssertNotNullOrEmpty(nameof(clickHandler), clickHandler);

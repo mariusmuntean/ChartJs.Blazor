@@ -11,7 +11,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends
     public class Legend
     {
         /// <summary>
-        /// is the legend shown
+        /// Determines if the legend is displayed
         /// </summary>
         public bool Display { get; set; } = true;
 
@@ -42,6 +42,9 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends
         /// </summary>
         public bool Reverse { get; set; } = false;
 
+        /// <summary>
+        /// Configuration options for the legend-labels
+        /// </summary>
         public LegendLabelConfiguration Labels { get; set; } = new LegendLabelConfiguration();
     }
 }

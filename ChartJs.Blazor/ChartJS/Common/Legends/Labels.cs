@@ -15,6 +15,7 @@
         /// </summary>
         public int FontSize { get; set; } = 12;
 
+        // TODO: implement with enum (normal, italic, oblique, initial, inherit)
         /// <summary>
         /// Font style of text.
         ///
@@ -45,7 +46,7 @@
         public string Filter { get; set; }
 
         /// <summary>
-        ///Label style will match corresponding point style (size is based on fontSize, boxWidth is not used in this case).
+        /// Label style will match corresponding point style (size is based on <see cref="FontSize"/>, <see cref="BoxWidth"/> is not used in this case).
         /// </summary>
         public bool UsePointStyle { get; set; } = false;
     }

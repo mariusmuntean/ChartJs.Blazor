@@ -5,8 +5,14 @@ using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
+    /// <summary>
+    /// The data-subconfig of a <see cref="LineChartConfig"/>
+    /// </summary>
     public class LineChartData
     {
+        /// <summary>
+        /// Creates a new instance of <see cref="LineChartData"/>
+        /// </summary>
         public LineChartData()
         {
             Datasets = new HashSet<IMixableDataset<object>>();

@@ -3,6 +3,9 @@ using ChartJs.Blazor.ChartJS.Common.Properties;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
+    /// <summary>
+    /// The options-subconfig of a <see cref="LineChartConfig"/>
+    /// </summary>
     public class LineChartOptions : BaseChartConfigOptions
     {
         /// <summary>
@@ -11,11 +14,18 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public Animation Animation { get; set; }
 
         /// <summary>
-        /// Duration of animations when hovering an item
+        /// Hover options for hoving over an item
         /// </summary>
         public LineChartOptionsHover Hover { get; set; }
 
+        /// <summary>
+        /// Tooltip options for this chart
+        /// </summary>
         public Tooltips Tooltips { get; set; }
+
+        /// <summary>
+        /// The scales for this chart. You can use any <see cref="Axes.CartesianAxis"/> for x and y.
+        /// </summary>
         public Scales Scales { get; set; }
 
         /// <summary>

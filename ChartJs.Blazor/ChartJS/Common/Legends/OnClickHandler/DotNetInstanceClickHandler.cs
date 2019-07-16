@@ -5,7 +5,7 @@ using Microsoft.JSInterop;
 namespace ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
 {
     /// <summary>
-    /// Specifies a.Net instance method that should be called when clicking on a Legend item.
+    /// Specifies a .net instance method that should be called when clicking on a Legend item.
     /// </summary>
     public class DotNetInstanceClickHandler : ILegendClickHandler
     {
@@ -17,8 +17,14 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
         /// <param name="args">Click event args</param>
         public delegate void InstanceClickHandler(object sender, object args);
 
+        /// <summary>
+        /// The <see cref="DotNetObjectRef"/> for the instance the delegate will be executed on.
+        /// </summary>
         public DotNetObjectRef<object> InstanceRef { get; }
 
+        /// <summary>
+        /// The name of the method behind the delegate
+        /// </summary>
         public string MethodName { get; }
 
         /// <summary>

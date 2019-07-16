@@ -3,8 +3,14 @@ using ChartJs.Blazor.ChartJS.Common.Properties;
 
 namespace ChartJs.Blazor.ChartJS.Common
 {
+    /// <summary>
+    /// The base config for the options-subconfig of a chart
+    /// </summary>
     public class BaseChartConfigOptions
     {
+        /// <summary>
+        /// Represents the title of this chart
+        /// </summary>
         public OptionsTitle Title { get; set; }
 
         /// <summary>
@@ -29,6 +35,9 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// </summary>
         public int ResponsiveAnimationDuration { get; set; }
 
+        /// <summary>
+        /// The legend for this chart
+        /// </summary>
         public Legend Legend { get; set; } = new Legend();
     }
 }

@@ -197,6 +197,16 @@
              <param name="chartConfig"></param>
              <returns></returns>
         </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.BaseChartConfigOptions">
+            <summary>
+            The base config for the options-subconfig of a chart
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseChartConfigOptions.Title">
+            <summary>
+            Represents the title of this chart
+            </summary>
+        </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.BaseChartConfigOptions.Responsive">
             <summary>
             Resizes the chart canvas when its container does.
@@ -217,6 +227,56 @@
         <member name="P:ChartJs.Blazor.ChartJS.Common.BaseChartConfigOptions.ResponsiveAnimationDuration">
             <summary>
             Duration in milliseconds it takes to animate to new size after a resize event.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseChartConfigOptions.Legend">
+            <summary>
+            The legend for this chart
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.ChartConfigBase">
+            <summary>
+            Base class for chart-configs
+            <para>Contains the most basic required information about a chart</para>
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.ChartConfigBase.#ctor(ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes)">
+            <summary>
+            Creates a ChartConfigBase
+            </summary>
+            <param name="chartType">The chartType this config is for</param>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.ChartConfigBase.Type">
+            <summary>
+            Defines what type of chart this config is for
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.ChartConfigBase.CanvasId">
+            <summary>
+            The id for the html canvas element associated with this chart
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.ChartConfigBase`2">
+            <summary>
+            Base class for chart-config which contain the options and the data subconfigs
+            </summary>
+            <typeparam name="TOptions">The type of the options-subconfig</typeparam>
+            <typeparam name="TData">The type of the data-subconfig</typeparam>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.ChartConfigBase`2.#ctor(ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes)">
+            <summary>
+            Creates a ChartConfigBase
+            </summary>
+            <param name="chartType">The chartType this config is for</param>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.ChartConfigBase`2.Options">
+            <summary>
+            The options subconfig for this chart
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.ChartConfigBase`2.Data">
+            <summary>
+            The data subconfig for this chart
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Enums.AxisDisplay">
@@ -278,11 +338,49 @@
             When building its ticks, it will automatically calculate the most comfortable unit base on the size of the scale.
             </summary>
         </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes">
+            <summary>
+            Defines the type of a chart
+            </summary>
+        </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Enums.InteractionMode">
             <summary>
             As per documentation here https://www.chartjs.org/docs/latest/general/interactions/modes.html
             </summary>
-            
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.InteractionMode.Point">
+            <summary>
+            Finds all of the items that intersect the point.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.InteractionMode.Nearest">
+            <summary>
+            Gets the items that are at the nearest distance to the point. 
+            The nearest item is determined based on the distance to the center of the chart item (point, bar). 
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.InteractionMode.Index">
+            <summary>
+            Finds item at the same index.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.InteractionMode.Dataset">
+            <summary>
+            Finds items in the same dataset.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.InteractionMode.X">
+            <summary>
+            Returns all items that would intersect based on the X coordinate of the position only. 
+            Would be useful for a vertical cursor implementation. 
+            <para>Note that this only applies to cartesian charts.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.InteractionMode.Y">
+            <summary>
+            Returns all items that would intersect based on the Y coordinate of the position. This would be useful for a horizontal cursor implementation
+            <para>Note that this only applies to cartesian charts.</para>
+            </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter.JsonObjectEnumConverter">
             <summary>
@@ -438,9 +536,9 @@
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration.UsePointStyle">
-             <summary>
-            Label style will match corresponding point style (size is based on fontSize, boxWidth is not used in this case).
-             </summary>
+            <summary>
+            Label style will match corresponding point style (size is based on <see cref="P:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration.FontSize"/>, <see cref="P:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration.BoxWidth"/> is not used in this case).
+            </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.Legend">
             <summary>
@@ -450,7 +548,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.Legend.Display">
             <summary>
-            is the legend shown
+            Determines if the legend is displayed
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.Legend.Position">
@@ -480,9 +578,14 @@
             Legend will show datasets in reverse order.
             </summary>
         </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.Legend.Labels">
+            <summary>
+            Configuration options for the legend-labels
+            </summary>
+        </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetInstanceClickHandler">
             <summary>
-            Specifies a.Net instance method that should be called when clicking on a Legend item.
+            Specifies a .net instance method that should be called when clicking on a Legend item.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetInstanceClickHandler.InstanceClickHandler">
@@ -493,6 +596,16 @@
             <param name="sender">The sender of the click event</param>
             <param name="args">Click event args</param>
         </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetInstanceClickHandler.InstanceRef">
+            <summary>
+            The <see cref="T:Microsoft.JSInterop.DotNetObjectRef"/> for the instance the delegate will be executed on.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetInstanceClickHandler.MethodName">
+            <summary>
+            The name of the method behind the delegate
+            </summary>
+        </member>
         <member name="M:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetInstanceClickHandler.#ctor(ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetInstanceClickHandler.InstanceClickHandler)">
             <summary>
             Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler"/>
@@ -501,7 +614,7 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler">
             <summary>
-            Specifies a static .Net method that should be called when clicking on a Legend item.
+            Specifies a static .net method that should be called when clicking on a Legend item.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler.StaticClickHandler">
@@ -512,11 +625,21 @@
             <param name="sender">The sender of the click event</param>
             <param name="args">Click event args</param>
         </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler.AssemblyName">
+            <summary>
+            The name of the assembly the method is located in
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler.MethodName">
+            <summary>
+            The name of the method behind the delegate
+            </summary>
+        </member>
         <member name="M:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler.#ctor(ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler.StaticClickHandler)">
             <summary>
             Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler"/>
             </summary>
-            <param name="clickHandler">The delegate for a click handler.</param>
+            <param name="clickHandler">The delegate for a click handler</param>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.ILegendClickHandler">
             <summary>
@@ -532,15 +655,83 @@
             <summary>
             The namespace and name of a Javascript function to be called when clicking on a Legend item.
             <para>E.g. "SampleFunctions.HideOtherDatasetsFunc"</para>
-            <para>Note 1: You must create this function in your JS file in wwwroot and reference it in index.html</para>
+            <para>Note 1: You must create this function in your JS file in wwwroot and reference it in _Host.cshtml</para>
             <para>Note 2: Make sure the function can handle the click sender and the click event args</para>
             </summary>
         </member>
         <member name="M:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.JsClickHandler.#ctor(System.String)">
-             <summary>
-            
-             </summary>
-             <param name="fullFunctionName">The namespace and name of a Javascript function to be called when clicking on a Legend item.</param>
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.JsClickHandler"/>
+            </summary>
+            <param name="fullFunctionName">The namespace and name of a Javascript function to be called when clicking on a Legend item.</param>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler">
+            <summary>
+            Specifies a .net instance method that should be called when hovering on a Legend item.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler.InstanceRef">
+            <summary>
+            The <see cref="T:Microsoft.JSInterop.DotNetObjectRef"/> for the instance the delegate will be executed on.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler.MethodName">
+            <summary>
+            The name of the method behind the delegate
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler.LegendItemOnHover">
+            <summary>
+            The delegate for a hover handler.
+            <para>Helps enforcing the signature of the legend item hover handler</para>
+            </summary>
+            <param name="sender">The sender of the hover event</param>
+            <param name="mouseMove"></param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler.#ctor(ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler.LegendItemOnHover)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler"/>
+            </summary>
+            <param name="legendItemOnHoverHandler">The delegate for a hover handler</param>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetStaticHoverHandler">
+            <summary>
+            Specifies a static .net method that should be called when hovering on a Legend item.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetStaticHoverHandler.AssemblyName">
+            <summary>
+            The name of the assembly the method is located in
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetStaticHoverHandler.MethodName">
+            <summary>
+            The name of the method behind the delegate
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetStaticHoverHandler.LegendItemOnHover">
+            <summary>
+            The delegate for a hover handler.
+            <para>Helps enforcing the signature of the legend item hover handler</para>
+            </summary>
+            <param name="sender">The sender of the hover event</param>
+            <param name="mouseMove"></param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetStaticHoverHandler.#ctor(ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetStaticHoverHandler.LegendItemOnHover)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetStaticHoverHandler"/>
+            </summary>
+            <param name="legendItemOnHoverHandler">The delegate for a hover handler.</param>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.ILegendHoverHandler">
+            <summary>
+            Specifies how hovering on Legend items is handled
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.JsHoverHandler">
+            <summary>
+            Specified the namespace and name of a Javascript function that should be invoked when hovering on Legend items
+            </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.JsHoverHandler.FullFunctionName">
             <summary>
@@ -548,6 +739,22 @@
             <para>E.g. "SampleFunctions.ItemHoverHandler"</para>
             <para>Note 1: You must create this function in your JS file in wwwroot and reference it in index.html</para>
             <para>Note 2: Make sure the function can handle the 'mousemove' event</para>
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.JsHoverHandler.#ctor(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.JsHoverHandler"/>
+            </summary>
+            <param name="fullFunctionName">The namespace and name of a Javascript function to be called when hovering on a Legend item.</param>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Properties.Animation">
+            <summary>
+            Defines some animation configurations
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.Animation.Duration">
+            <summary>
+            Defines the duration of the animation
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.DoughnutAnimation.AnimateRotate">
@@ -558,6 +765,36 @@
         <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.DoughnutAnimation.AnimateScale">
             <summary>
             If true, will animate scaling the chart from the center outwards.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Properties.OptionsTitle">
+            <summary>
+            Represents the title of a chart
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.OptionsTitle.Display">
+            <summary>
+            Determines if the title should be displayed or not
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.OptionsTitle.Text">
+            <summary>
+            The actual title to display
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Properties.Tooltips">
+            <summary>
+            Defines how tooltips are displayed
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.Tooltips.Mode">
+            <summary>
+            Sets which elements appear in the tooltip. See <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.InteractionMode"/> for details.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.Tooltips.Intersect">
+            <summary>
+            If true, the hover mode only applies when the mouse position intersects an item on the chart.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Utils.ArgValidation">
@@ -921,7 +1158,22 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineChartConfig">
             <summary>
-            Config for a linechart
+            Config for a LineChart
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.LineChartConfig.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineChartConfig"/>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineChartData">
+            <summary>
+            The data-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineChartConfig"/>
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.LineChartData.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineChartData"/>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartData.Labels">
@@ -1067,6 +1319,11 @@
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
+        <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineChartOptions">
+            <summary>
+            The options-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineChartConfig"/>
+            </summary>
+        </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartOptions.Animation">
             <summary>
             General animation time
@@ -1074,7 +1331,17 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartOptions.Hover">
             <summary>
-            Duration of animations when hovering an item
+            Hover options for hoving over an item
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartOptions.Tooltips">
+            <summary>
+            Tooltip options for this chart
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartOptions.Scales">
+            <summary>
+            The scales for this chart. You can use any <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis"/> for x and y.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartOptions.ShowLines">
@@ -1085,6 +1352,16 @@
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartOptions.SpanGaps">
             <summary>
             If false, NaN data causes a break in the line.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineChartOptionsHover">
+            <summary>
+            Defines the hover-options of a LineChart
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartOptionsHover.AnimationDuration">
+            <summary>
+            Duration in milliseconds it takes to animate hover style changes.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.Moment">
@@ -1111,6 +1388,11 @@
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.ScaleLabel.FontSize">
             <summary>
             Font size for scale title.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.LineChart.Scales">
+            <summary>
+            Defines the scales for cartesian charts by holding the x and y axes.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.TimeDisplayFormats">
