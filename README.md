@@ -26,8 +26,8 @@ Don't know what Blazor is? Read [here](https://github.com/aspnet/Blazor)
 
 Prerequisites.
 
-1. Visual Studio 15.8 or later
-2. DotNetCore 2.1.402 or later
+1. Visual Studio 2019 preview 2
+2. .net core 3 preview6
 
 
 ## Installation
@@ -43,92 +43,94 @@ or
 ```
 dotnet add package ChartJSBlazor
 ```
-**Note:** For server-side projects make sure to add the following line to the `Configure(...)` method of your `Startup.cs` file
-```csharp
-ChartJsBlazor.AddStaticResourcesToWebRootPath(env.WebRootPath);
-```
-Then reference the ChartJsInterop.js file from your index.(cs)html like so
-```HTML
-<script src="~/ChartJs.Blazor/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
-```
 
 ## Usage
 
 For detailed instruction go to the [Wiki page](https://github.com/mariusmuntean/ChartJSBlazor/wiki). 
 
-1. In you cshtml create a new ChartJsPieChart and give it an instance of PieChartConfig ...
+1. In you .razor file, add the following code
 
 ```html
 <h2>Chart JS charts using Blazor</h2>
 <div class="row">
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsPieChart ref="pieChartJs" Config="@pieChartConfig" Width="600" Height="300"/>
+<ChartJsPieChart @ref="pieChartJs" Config="@pieChartConfig" Width="600" Height="300"/>
 ```
 
 ... make sure to create that instance
 ```csharp
-@functions{
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.ChartJS.PieChart
+@using ChartJs.Blazor.ChartJS.Common.Properties
 
-    private PieChartConfig pieChartConfig { get; set; }
-    ChartJsPieChart pieChartJs;
+<h1>Pie Chart</h1>
 
-    protected override void OnInit()
+<ChartJsPieChart @ref="_pieChartJs" Config="@_config" Width="600" Height="300" />
+
+@code {
+private PieChartConfig _config;
+private ChartJsPieChart _pieChartJs;
+
+protected override void OnInit()
+{
+    _config = new PieChartConfig
     {
-        pieChartConfig = pieChartConfig ?? new PieChartConfig
+        CanvasId = "myFirstPieChart",
+        Options = new PieChartOptions
         {
-            CanvasId = "myFirstPieChart",
-            Options = new PieChartOptions
+            Title = new OptionsTitle
             {
-                Text = "Sample chart from Blazor",
                 Display = true,
-                Responsive = true,
-                Animation = new PieChartAnimation {AnimateRotate = true, AnimateScale = true}
+                Text = "Sample chart from Blazor"
             },
-            Data = new PieChartData
+            Responsive = true,
+            Animation = new DoughnutAnimation
             {
-                Labels = new List<string> {"A", "B", "C", "D"},
-                Datasets = new List<PieChartDataset>
-                {
-                    new PieChartDataset
-                    {
-                        BackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
-                        Data = new List<int> {4, 5, 6, 7},
-                        Label = "Light Red",
-                        BorderWidth = 0,
-                        HoverBackgroundColor = new[] {"#f06384"},
-                        HoverBorderColor = new[] {"#f06384"},
-                        HoverBorderWidth = new[] {1}, BorderColor = "#ffffff",
-                    }
-                }
+                AnimateRotate = true,
+                AnimateScale = true
             }
-        };
-    }
+        }
+    };
+
+    _config.Data.Labels = new List<string> { "A", "B", "C", "D" };
+
+    var pieSet = new PieChartDataset
+    {
+        BackgroundColor = new[] { "#ff6384", "#55ee84", "#4463ff", "#efefef" },
+        Data = new List<int> { 4, 5, 6, 7 },                // this will be removed and shouldn't be possible
+        Label = "Light Red",
+        BorderWidth = 0,
+        HoverBackgroundColor = new[] { "#f06384" },
+        HoverBorderColor = new[] { "#f06384" },
+        HoverBorderWidth = new[] { 1 },
+        BorderColor = "#ffffff",
+    };
+
+    _config.Data.Datasets = new List<PieChartDataset>();    // this will be removed and shouldn't be possible
+    _config.Data.Datasets.Add(pieSet);
+}
 }
 ```
 
-2. In your index.html add these
+2. In your `_Host.cshtml` file add this code to have `moment.js` with the locales:
 
 ```html
-    .
-    .
-    .
-<body>
-    <app>Loading...</app>
+link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"
+        integrity="sha256-AdQN98MVZs44Eq2yTwtoKufhnU+uZ7v2kXnD5vqzZVo="
+        crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script src="~/ChartJs.Blazor/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
+```
 
-    <!--<script src="css/bootstrap/bootstrap-native.min.js"></script>-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>-->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <!--<script type="blazor-boot">
-            </script>-->
-    <script src="_framework/blazor.webassembly.js" type="text/javascript" language="javascript"></script>
-    <script src="ChartJsInterop.js" type="text/javascript" language="javascript"></script>
-</body>
-    .
-    .
-    .
+or this code if you want the bundled version of `Chart.Js`, but without the locales of `moment.js` (`moment.js` itself is then included in the bundle:
+
+```html
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script> <!--Contains moment.js for time axis-->
+<script src="~/ChartJs.Blazor/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
 ```
 
 # Contributors
