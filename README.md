@@ -205,10 +205,10 @@ Or just watch me click through the samples
 
 
 # Contributors
-This projects slowly develops a community which started to give back.
+This projects slowly develops a community which starts to give back.
 ## Many thanks to: #
  **Lars** (https://github.com/larshg)
  
  **Jan** (https://github.com/mashbrno)
 
- I'm very gratefull for your contributions!
+ I'm very grateful for your contributions!
