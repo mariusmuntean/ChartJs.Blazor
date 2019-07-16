@@ -22,12 +22,12 @@ I fully intend giving all of this back to the community so that the original rep
 
 ## Prerequisites
 
-Don't know what Blazor is? Read [here](https://github.com/aspnet/Blazor)
+Don't know what Blazor is? Read [here](https://github.com/aspnet/Blazor).
 
-Prerequisites.
+The prerequisites are:
 
 1. Visual Studio 2019 preview 2
-2. .net core 3 preview6
+2. .Net core 3 preview6
 
 
 ## Installation
@@ -36,11 +36,13 @@ There's a NuGet package: ~~https://www.nuget.org/packages/ChartJSBlazor~~ TODO: 
 
 Install from the command line:
 
-```
+```bash
 Install-Package ChartJSBlazor
 ```
-or 
-```
+
+or
+
+```bash
 dotnet add package ChartJSBlazor
 ```
 
@@ -48,17 +50,8 @@ dotnet add package ChartJSBlazor
 
 For detailed instruction go to the [Wiki page](https://github.com/Joelius300/ChartJSBlazor/wiki). 
 
-1. In you .razor file, add the following code
+In you .razor file, add the following code:
 
-```html
-<h2>Chart JS charts using Blazor</h2>
-<div class="row">
-    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
-</div>
-<ChartJsPieChart @ref="pieChartJs" Config="@pieChartConfig" Width="600" Height="300"/>
-```
-
-... make sure to create that instance
 ```csharp
 @using ChartJs.Blazor.Charts
 @using ChartJs.Blazor.ChartJS.PieChart
@@ -125,7 +118,7 @@ link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/
 <script src="~/ChartJs.Blazor/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
 ```
 
-or this code if you want the bundled version of `Chart.Js`, but without the locales of `moment.js` (`moment.js` itself is then included in the bundle:
+or this code if you want the bundled version of `Chart.Js`, but without the locales of `moment.js` (`moment.js` itself is then included in the bundle):
 
 ```html
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/default.min.css">
