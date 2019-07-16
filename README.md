@@ -118,7 +118,7 @@ Then reference the ChartJsInterop.js file from your index.(cs)html like so
 
 For detailed instruction go to the [Wiki page](https://github.com/mariusmuntean/ChartJs.Blazor/wiki). 
 
-1. In you cshtlm create a new ChartJsPieChart and give it an instance of PieChartConfig ...
+1. In you cshtml create a new ChartJsPieChart and give it an instance of PieChartConfig ...
 
 ```html
 <h2>Chart JS charts using Blazor</h2>
