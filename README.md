@@ -46,7 +46,7 @@ dotnet add package ChartJSBlazor
 
 ## Usage
 
-For detailed instruction go to the [Wiki page](https://github.com/mariusmuntean/ChartJSBlazor/wiki). 
+For detailed instruction go to the [Wiki page](https://github.com/Joelius300/ChartJSBlazor/wiki). 
 
 1. In you .razor file, add the following code
 
