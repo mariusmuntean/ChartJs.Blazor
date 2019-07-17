@@ -129,4 +129,3 @@ or this code if you want the bundled version of `Chart.Js`, but without the loca
 # Contributors
 * [Joelius300](https://github.com/Joelius300)
 * [SeppPenner](https://github.com/SeppPenner)
-* [jli103828](https://github.com/jli103828)
