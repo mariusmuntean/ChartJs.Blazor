@@ -22,7 +22,7 @@ I fully intend giving all of this back to the community so that the original rep
 
 ## Prerequisites
 
-Don't know what Blazor is? Read [here](https://github.com/aspnet/Blazor).
+Don't know what Blazor is? Read [here](https://dotnet.microsoft.com/apps/aspnet/web-apps/client).
 
 The prerequisites are:
 
