@@ -394,9 +394,38 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Enums.ObjectEnum">
             <summary>
-            Inherit this class if you are in need of a pseudo-Enum which can hold values of different kinds (eg. string, double and bool)
-            <para>Do not </para>
+            Inherit this class if you are in need of a pseudo-Enum which can hold values of different kinds (eg. string, double and bool).
             </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.ObjectEnum.Value">
+            <summary>
+            Holds the actual value represented by this instance.
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Enums.ObjectEnum.#ctor(System.Object)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.ObjectEnum"/> with a value.
+            </summary>
+            <param name="value">The value this enum-instance is supposed to represent.</param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Enums.ObjectEnum.ToString">
+            <summary>
+            Returns the string representation of the underlying object. Calls <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.ObjectEnum.Value"/>.ToString().
+            </summary>
+            <returns>The string representation of the underlying object.</returns>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Enums.ObjectEnum.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object instance is considered equal to the current instance.
+            </summary>
+            <param name="obj">The object to compare with.</param>
+            <returns>true if the objects are considered equal; otherwise, false.</returns>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Enums.ObjectEnum.GetHashCode">
+            <summary>
+            Returns the hash of the underlying object.
+            </summary>
+            <returns>The hash of the underlying object.</returns>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Enums.Positions">
             <summary>

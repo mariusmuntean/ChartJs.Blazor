@@ -12,8 +12,12 @@ I fully intend giving all of this back to the community so that the original rep
 ## Changelog
 <details open="open">
 
-<details><summary>0.1.0</summary>
-* Initial release. 
+<details>
+<summary>0.10.2</summary>
+* Update ReadMe
+* Clean and update .csproj file
+* Create nuget package
+* Update XML-docs handling
 </details>
 
 </details>
@@ -27,23 +31,17 @@ Don't know what Blazor is? Read [here](https://dotnet.microsoft.com/apps/aspnet/
 The prerequisites are:
 
 1. Visual Studio 2019 preview 2
-2. .Net core 3 preview6
+2. .Net core 3 preview7
 
 
 ## Installation
 
-There's a NuGet package: ~~https://www.nuget.org/packages/ChartJSBlazor~~ TODO: It's not yet there, check https://github.com/Joelius300/ChartJSBlazor/issues/4!!
+There's a NuGet package: https://www.nuget.org/packages/ChartJs.Blazor.Fork/
 
 Install from the command line:
 
 ```bash
-Install-Package ChartJSBlazor
-```
-
-or
-
-```bash
-dotnet add package ChartJSBlazor
+dotnet add package ChartJs.Blazor.Fork
 ```
 
 ## Usage
