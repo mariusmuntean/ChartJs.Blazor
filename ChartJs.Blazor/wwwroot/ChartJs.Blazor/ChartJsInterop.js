@@ -1,26 +1,4 @@
-/* Include CSS file (that's one link tag the developer mustn't forget less). */
-
-var scripts = document.getElementsByTagName('script');
-var executingScriptPath = scripts[scripts.length - 1].src;
-var fileName = executingScriptPath.split('/').pop();
-var staticChartJSBlazorDir = executingScriptPath.replace(fileName, '');
-// It would be nice to get rid of this magic string (filename) here in case the Filename would change but I've not found a way.
-var absCssPath = staticChartJSBlazorDir + 'ChartJSBlazor.css'; 
-
-var cssId = 'ChartJSBlazorCss';
-if (!document.getElementById(cssId)) {  // only include once
-    var head = document.getElementsByTagName('head')[0];
-    var link = document.createElement('link');
-    link.id = cssId;
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    link.href = absCssPath;
-    link.media = 'all';
-    head.appendChild(link);
-}
-
-
-/* Set up all the chartjs interop stuff */
+﻿/* Set up all the chartjs interop stuff */
 
 var BlazorCharts = [];
 

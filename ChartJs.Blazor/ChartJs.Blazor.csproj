@@ -8,7 +8,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <IsPackable>true</IsPackable>
     <OutputType>Library</OutputType>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>latest</LangVersion>
     <RazorLangVersion>3.0</RazorLangVersion>
     <VersionPrefix>0.3</VersionPrefix>
     <!--<VersionSuffix>alpha-$(PoorMansBuildNumber)</VersionSuffix>-->
@@ -51,9 +51,9 @@ Fixed disappearing charts when navigating away and back - Thanks to the communit
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="dist\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
-    <EmbeddedResource Include="dist\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
-    <EmbeddedResource Include="dist\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="wwwroot\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="wwwroot\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="wwwroot\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 
   <ItemGroup>
@@ -68,7 +68,11 @@ Fixed disappearing charts when navigating away and back - Thanks to the communit
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="dist\ChartJSBlazor.css" />
+    <None Remove="wwwroot\ChartJSBlazor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\ChartJs.Blazor\ChartJsInterop.js" />
   </ItemGroup>
 
   <ItemGroup>
