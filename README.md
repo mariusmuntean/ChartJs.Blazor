@@ -11,14 +11,12 @@ I fully intend giving all of this back to the community so that the original rep
 
 ## Changelog
 <details open="open">
-
-<details>
 <summary>0.10.2</summary>
+    
 * Update ReadMe
 * Clean and update .csproj file
 * Create nuget package
 * Update XML-docs handling
-</details>
 
 </details>
 
