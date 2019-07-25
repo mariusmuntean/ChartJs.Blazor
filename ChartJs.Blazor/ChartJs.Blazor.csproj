@@ -8,7 +8,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <IsPackable>true</IsPackable>
     <OutputType>Library</OutputType>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>default</LangVersion>
     <RazorLangVersion>3.0</RazorLangVersion>
     <VersionPrefix>0.3</VersionPrefix>
     <!--<VersionSuffix>alpha-$(PoorMansBuildNumber)</VersionSuffix>-->
@@ -45,8 +45,8 @@ Fixed disappearing charts when navigating away and back - Thanks to the communit
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Browser" Version="3.0.0-preview6.19307.2" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.6.0-preview6.19303.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Browser" Version="3.0.0-preview7.19365.7" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.6.0-preview7.19362.9" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
 
@@ -72,7 +72,7 @@ Fixed disappearing charts when navigating away and back - Thanks to the communit
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\ChartJs.Blazor\ChartJsInterop.js" />
+    <None Include="wwwroot\ChartJsInterop.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -90,6 +90,12 @@ Fixed disappearing charts when navigating away and back - Thanks to the communit
     </Content>
     <Content Update="Charts\ChartJsMixedChart.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="wwwroot\ChartJSBlazor.css">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\ChartJsInterop.js">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
