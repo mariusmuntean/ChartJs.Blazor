@@ -5,7 +5,7 @@
 
 ### Constructors
 
-> Creates a new instance of <see cref="CLASS"/>
+> `Creates a new instance of <see cref="CLASS"/>`
 
 #### Example LineChartConfig
 ```
@@ -17,7 +17,7 @@
 ## Config
 ### Class summary
  
-> Config for a <see cref="CHART"/>
+> `Config for a <see cref="CHART"/>`
 
 #### Example LineChartConfig
 ```
@@ -29,7 +29,7 @@
 ## Options
 ### Class summary
 
-> The options-subconfig of a <see cref="CONFIG"/>
+> `The options-subconfig of a <see cref="CONFIG"/>`
 
 #### Example LineChartOptions
 ```
@@ -41,7 +41,7 @@
 ## Data
 ### Class summary
 
-> The data-subconfig of a <see cref="CONFIG"/>
+> `The data-subconfig of a <see cref="CONFIG"/>`
 
 #### Example LineChartData
 ```
@@ -53,13 +53,13 @@
 ## Dataset
 ### Class summary
 
-> A dataset for a <see cref="CHART"/>
+> `A dataset for a <see cref="CHART"/>`
 
 ### typeparam name="TData"
 
 It should also include a mention of the wrappers if it implements the covariant IMixableDataset.
 
-> Defines the type of data in this dataset. Use Wrappers from <see cref="Common.Wrappers"/> for value types.
+> `Defines the type of data in this dataset. Use Wrappers from <see cref="Common.Wrappers"/> for value types.`
 
 #### Example LineChartDataset<TData>
 ```
@@ -73,7 +73,7 @@ It should also include a mention of the wrappers if it implements the covariant 
 
 If there is a property that represents a color, it should be of type string (unless there's wrapper implemented -> maybe in the future). It should contain a mention of `ColorUtil`.
 
-> See <see cref="Util.Color.ColorUtil"/> for working with colors.
+> `See <see cref="Util.Color.ColorUtil"/> for working with colors.`
 
 #### Example ScaleLabel.FontColor
 ```
