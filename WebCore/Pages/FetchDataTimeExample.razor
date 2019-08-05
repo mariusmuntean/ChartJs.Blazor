@@ -110,7 +110,7 @@
             SteppedLine = SteppedLine.False
         };
 
-        tempDataSet.AddRange(forecasts.Select(p => new TimeTupel<int>(p.Date, p.TemperatureC)));
+        tempDataSet.AddRange(forecasts.Select(p => new TimeTupel<int>(new Moment(p.Date), p.TemperatureC)));
         lineChartConfig.Data.Datasets.Add(tempDataSet);
     }
 
