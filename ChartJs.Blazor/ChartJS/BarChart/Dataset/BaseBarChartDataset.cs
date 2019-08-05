@@ -10,7 +10,7 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
     /// <summary>
     /// A base dataset for a barchart
     /// </summary>
-    /// <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="ChartJs.Blazor.ChartJS.LineChart.Wrappers"/> for value types.</typeparam>
+    /// <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="Common.Wrappers"/> for value types.</typeparam>
     public class BaseBarChartDataset<TData> : BaseMixableDataset<TData> where TData : class
     {
         public BaseBarChartDataset(IEnumerable<TData> data) : this()

@@ -10,6 +10,10 @@ namespace ChartJs.Blazor.ChartJS.LineChart.Axes
     /// </summary>
     public abstract class CartesianAxis : Axis
     {
+        /// <summary>
+        /// The type of axis this instance represents.
+        /// <para>For js-interop/serialization purposes so chart.js knows what axis to use.</para>
+        /// </summary>
         public abstract AxisType Type { get; }
 
         /// <summary>
@@ -45,6 +49,10 @@ namespace ChartJs.Blazor.ChartJS.LineChart.Axes
         //public bool Stacked { get; set; } // <- TODO: remove (probably concrete)
     }
 
+    /// <summary>
+    /// <see cref="CartesianAxis"/> which contains the ticks-subconfig.
+    /// </summary>
+    /// <typeparam name="TTicks"></typeparam>
     public abstract class CartesianAxis<TTicks> : CartesianAxis where TTicks : CartesianTicks
     {
         /// <summary>

@@ -242,7 +242,7 @@
         </member>
         <member name="M:ChartJs.Blazor.ChartJS.Common.ChartConfigBase.#ctor(ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes)">
             <summary>
-            Creates a ChartConfigBase
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.ChartConfigBase"/>
             </summary>
             <param name="chartType">The chartType this config is for</param>
         </member>
@@ -258,14 +258,14 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.ChartConfigBase`2">
             <summary>
-            Base class for chart-config which contain the options and the data subconfigs
+            Base class for chart-config which contains the options and the data subconfigs
             </summary>
             <typeparam name="TOptions">The type of the options-subconfig</typeparam>
             <typeparam name="TData">The type of the data-subconfig</typeparam>
         </member>
         <member name="M:ChartJs.Blazor.ChartJS.Common.ChartConfigBase`2.#ctor(ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes)">
             <summary>
-            Creates a ChartConfigBase
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.ChartConfigBase"/>
             </summary>
             <param name="chartType">The chartType this config is for</param>
         </member>
@@ -928,6 +928,12 @@
             As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/#common-configuration
             </summary>
         </member>
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis.Type">
+            <summary>
+            The type of axis this instance represents.
+            <para>For js-interop/serialization purposes so chart.js knows what axis to use.</para>
+            </summary>
+        </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis.ID">
             <summary>
             The ID is used to link <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1"></see> and <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis"></see> together. Referenced in <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.XAxisID"></see> and <seealso cref="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.YAxisID"/>
@@ -953,6 +959,12 @@
             <summary>
             Defines options for the grid lines that run perpendicular to the axis.
             </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis`1">
+            <summary>
+            <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis"/> which contains the ticks-subconfig.
+            </summary>
+            <typeparam name="TTicks"></typeparam>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis`1.Ticks">
             <summary>
@@ -1187,7 +1199,7 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineChartConfig">
             <summary>
-            Config for a LineChart
+            Config for a <see cref="T:ChartJs.Blazor.Charts.ChartJsLineChart"/>
             </summary>
         </member>
         <member name="M:ChartJs.Blazor.ChartJS.LineChart.LineChartConfig.#ctor">
@@ -1220,7 +1232,7 @@
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartData.YLabels">
             <summary>
             The labels the vertical Axes will use. 
-            <para>If defined (not null) the x-Axis has to be of type <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.AxisType.Category"/> for the chart to work correctly.</para>
+            <para>If defined (not null) the y-Axis has to be of type <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.AxisType.Category"/> for the chart to work correctly.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartData.Datasets">
@@ -1230,9 +1242,24 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1">
             <summary>
-            A dataset for a linechart
+            A dataset for a <see cref="T:ChartJs.Blazor.Charts.ChartJsLineChart"/>
             </summary>
-            <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="!:ChartJs.Blazor.ChartJS.LineChart.Wrappers"/> for value types.</typeparam>
+            <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1"/> with some data
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1"/>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.Type">
+            <summary>
+            The type of chart this dataset is for.
+            </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.Label">
             <summary>
@@ -1257,21 +1284,19 @@
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.BorderCapStyle">
             <summary>
             Cap style of the line.
-            <para>See <see cref="!:https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap"></see> for options.</para>
-            <para>TODO: Implement options</para>
+            <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap for options.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.BorderJoinStyle">
             <summary>
             Line joint style.
-            <para>See <see cref="!:https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin"></see> for options.</para>
-            <para>TODO: Implement options</para>
+            <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin for options.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.CubicInterpolationMode">
             <summary>
             Algorithm used to interpolate a smooth curve from the discrete data points.
-            <para>See <see cref="!:https://www.chartjs.org/docs/latest/charts/line.html#cubicinterpolationmode"></see> for options.</para>
+            <para>See https://www.chartjs.org/docs/latest/charts/line.html#cubicinterpolationmode for options.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.BorderDash">
@@ -1342,6 +1367,12 @@
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.PointBackgroundColor">
+            <summary>
+            The fill color of a point.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.BorderColor">
             <summary>
             The color of the line. 
@@ -1385,7 +1416,7 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineChartOptionsHover">
             <summary>
-            Defines the hover-options of a LineChart
+            The hover-subconfig of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineChartOptions"/>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartOptionsHover.AnimationDuration">
@@ -1397,6 +1428,55 @@
             <summary>
             Wrapper class for <see cref="T:System.DateTime"></see> for serialization purposes.
             </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.Moment.#ctor(System.DateTime)">
+            <summary>
+            Creates a new <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Moment"/> which wraps the provided <see cref="T:System.DateTime"/>
+            </summary>
+            <param name="value">The <see cref="T:System.DateTime"/> value to wrap</param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.Moment.op_Explicit(System.DateTime)~ChartJs.Blazor.ChartJS.LineChart.Moment">
+            <summary>
+            Creates a new wrapper for the provided <see cref="T:System.DateTime"/>
+            </summary>
+            <param name="dateTime"></param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.Moment.op_Explicit(ChartJs.Blazor.ChartJS.LineChart.Moment)~System.DateTime">
+            <summary>
+            Extracts the <see cref="T:System.DateTime"/> value wrapped in the provided instance
+            </summary>
+            <param name="moment"></param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.Moment.Equals(System.Object)">
+            <summary>
+            Returns a value indicating whether this instance is equal to a specified object.
+            </summary>
+            <param name="obj">The object to compare to this instance.</param>
+            <returns>true if the other object is a wrapper for the same <see cref="T:System.DateTime"/> value 
+            or if it's the same <see cref="T:System.DateTime"/> value as wrapped in this instance.</returns>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.Moment.GetHashCode">
+            <summary>
+            Returns the HashCode for this instance.
+            </summary>
+            <returns>The HashCode for this instance</returns>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.Moment.ToString">
+            <summary>
+            Converts the wrapped <see cref="T:System.DateTime"/> to a format which is readable for moment.js.
+            </summary>
+            <returns>The string representation of this instance</returns>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.LineChart.ScaleLabel">
+            <summary>
+            Defines options for how to display an axis title.
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.ScaleLabel.#ctor(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.ScaleLabel"/>
+            </summary>
+            <param name="labelString">The initial value for <see cref="P:ChartJs.Blazor.ChartJS.LineChart.ScaleLabel.LabelString"/></param>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.ScaleLabel.Display">
             <summary>
@@ -1430,6 +1510,11 @@
             <para>Those <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.TimeMeasurement"/>s that are not defined, will use the default format from https://www.chartjs.org/docs/latest/axes/cartesian/time.html#display-formats </para>
             </summary>
         </member>
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeDisplayFormats.DE_CH">
+            <summary>
+            Premade format-string for the swiss (DE_CH) locale.
+            </summary>
+        </member>
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.TimeOptions">
             <summary>
             As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html#configuration-options
@@ -1437,7 +1522,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeOptions.DisplayFormats">
             <summary>
-            Sets how different time units are displayed. See <see cref="!:https://www.chartjs.org/docs/latest/axes/cartesian/time.html#data-sets"></see> for more details.
+            Sets how different time units are displayed. See https://www.chartjs.org/docs/latest/axes/cartesian/time.html#data-sets for more details.
             <para>See <see cref="T:ChartJs.Blazor.ChartJS.LineChart.TimeDisplayFormats"/> for premade formats for certain locales.</para>
             </summary>
         </member>
@@ -1485,20 +1570,75 @@
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.TimeTupel`1">
             <summary>
             Represents a point on a graph where the X-Value (<see cref="P:ChartJs.Blazor.ChartJS.LineChart.TimeTupel`1.Time"></see>) is represented by a <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Moment"></see>
-            <para>Should be used together with a <see cref="!:TimeAxis"></see></para>
+            <para>Should be used together with a <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Axes.TimeAxis"></see></para>
             <para>Reference Type so it can be used in the covariant <see cref="T:ChartJs.Blazor.ChartJS.MixedChart.IMixableDataset`1"/></para>
             </summary>
             <typeparam name="TData"></typeparam>
         </member>
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.TimeTupel`1.#ctor(ChartJs.Blazor.ChartJS.LineChart.Moment,`0)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.TimeTupel`1"/>
+            </summary>
+            <param name="time">The <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Moment"/> instance to represent the x-value.</param>
+            <param name="yValue">The value of type <typeparamref name="TData"/> which represents the y-value.</param>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeTupel`1.Time">
+            <summary>
+            The time-/x-value for this <see cref="T:ChartJs.Blazor.ChartJS.LineChart.TimeTupel`1"/>.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeTupel`1.YValue">
+            <summary>
+            The y-value for this <see cref="T:ChartJs.Blazor.ChartJS.LineChart.TimeTupel`1"/>.
+            </summary>
+        </member>
         <member name="T:ChartJs.Blazor.ChartJS.MixedChart.BaseMixableDataset`1">
             <summary>
-            The baseclass for a mixed chart.
+            The baseclass for a dataset that implements the covariant <see cref="T:ChartJs.Blazor.ChartJS.MixedChart.IMixableDataset`1"/>
             </summary>
-            <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="!:ChartJs.Blazor.ChartJS.LineChart.Wrappers"/> for value types.</typeparam>
+            <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.MixedChart.BaseMixableDataset`1.Type">
+            <summary>
+            The type of chart this dataset is for.
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.MixedChart.BaseMixableDataset`1.Add(`0)">
+            <summary>
+            Adds an element to the end of the <see cref="P:ChartJs.Blazor.ChartJS.MixedChart.BaseMixableDataset`1.Data"/>.
+            </summary>
+            <param name="data">Element to add</param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.MixedChart.BaseMixableDataset`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds the elements of the specified collection to the end of the <see cref="P:ChartJs.Blazor.ChartJS.MixedChart.BaseMixableDataset`1.Data"/>.
+            </summary>
+            <param name="data">A collection of elements to add</param>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.MixedChart.BaseMixableDataset`1.Data">
+            <summary>
+            The data contained in this dataset. Covariant through <see cref="T:ChartJs.Blazor.ChartJS.MixedChart.IMixableDataset`1"/>.
+            </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.MixedChart.BaseMixableDataset`1.Hidden">
             <summary>
-            If true, this item represents a hidden dataset. Label will be rendered with a strike-through effect.
+            If true, this instance represents a hidden dataset. Label will be rendered with a strike-through effect at the start.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.MixedChart.IMixableDataset`1">
+            <summary>
+            Interface for a covariant dataset that can be mixed with other datasets.
+            </summary>
+            <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.MixedChart.IMixableDataset`1.Type">
+            <summary>
+            The type of chart this dataset is for.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.MixedChart.IMixableDataset`1.Data">
+            <summary>
+            The data contained in this dataset (readonly because covariant).
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.Label">
@@ -1793,6 +1933,11 @@
         <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.BorderColor">
             <summary>
             The color of the line.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.Util.Color.ColorUtil">
+            <summary>
+            Provides useful methods for working with colors. Particularly the conversion from different kinds of C#-colors to string colors which are understood by javascript/css.
             </summary>
         </member>
         <member name="M:ChartJs.Blazor.Util.Color.ColorUtil.ColorString(System.Byte,System.Byte,System.Byte)">

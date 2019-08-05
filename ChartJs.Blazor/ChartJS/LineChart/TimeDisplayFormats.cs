@@ -11,6 +11,9 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     /// </summary>
     public static class TimeDisplayFormats
     {
+        /// <summary>
+        /// Premade format-string for the swiss (DE_CH) locale.
+        /// </summary>
         public static Dictionary<TimeMeasurement, string> DE_CH => new Dictionary<TimeMeasurement, string>
         {
             { TimeMeasurement.Millisecond, "HH:mm:ss.SSS" },

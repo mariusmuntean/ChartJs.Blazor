@@ -1,62 +1,22 @@
-﻿using ChartJs.Blazor.ChartJS.BarChart.Dataset;
-using ChartJs.Blazor.ChartJS.Common.Enums;
-using ChartJs.Blazor.ChartJS.LineChart;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using ChartJs.Blazor.ChartJS.Common.Enums;
 using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.MixedChart
 {
-    [JsonConverter(typeof(MixableDatasetConverter))]
+    /// <summary>
+    /// Interface for a covariant dataset that can be mixed with other datasets.
+    /// </summary>
+    /// <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="Common.Wrappers"/> for value types.</typeparam>
     public interface IMixableDataset<out TData>
     {
+        /// <summary>
+        /// The type of chart this dataset is for.
+        /// </summary>
         ChartTypes Type { get; }
+
+        /// <summary>
+        /// The data contained in this dataset (readonly because covariant).
+        /// </summary>
         IReadOnlyCollection<TData> Data { get; }
-    }
-
-    public class MixableDatasetConverter : JsonConverter
-    {
-        public override bool CanRead => true;
-        public override bool CanWrite => false;
-
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(IMixableDataset<>);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            throw new NotImplementedException("Don't use me to write JSON");
-        }
-
-        public override object ReadJson(JsonReader reader,
-            Type objectType,
-            object existingValue,
-            JsonSerializer serializer)
-        {
-            JObject jObj = JObject.Load(reader);
-            ChartTypes type = jObj.Value<ChartTypes>("Type") ?? jObj.Value<ChartTypes>("type");
-
-            IMixableDataset<object> dataset = null;
-            switch ((string)type)
-            {
-                case "bar":
-                {
-                    dataset = new BarChartDataset<object>();
-                    break;
-                }
-
-                case "line":
-                {
-                    dataset = new LineChartDataset<object>();
-                    break;
-                }
-            }
-
-            serializer.Populate(jObj.CreateReader(), dataset);
-
-            return dataset;
-        }
     }
 }

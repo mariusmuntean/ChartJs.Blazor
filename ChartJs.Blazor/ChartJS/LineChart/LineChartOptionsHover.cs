@@ -6,7 +6,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     // TODO: check if this would apply to more charts (https://www.chartjs.org/docs/latest/general/interactions) 
     // and if so rename and reuse this
     /// <summary>
-    /// Defines the hover-options of a LineChart
+    /// The hover-subconfig of <see cref="LineChartOptions"/>
     /// </summary>
     public class LineChartOptionsHover : Tooltips
     {

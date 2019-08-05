@@ -33,7 +33,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 
         /// <summary>
         /// The labels the vertical Axes will use. 
-        /// <para>If defined (not null) the x-Axis has to be of type <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.</para>
+        /// <para>If defined (not null) the y-Axis has to be of type <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.</para>
         /// </summary>
         [JsonProperty("yLabels")]
         public List<string> YLabels { get; set; }

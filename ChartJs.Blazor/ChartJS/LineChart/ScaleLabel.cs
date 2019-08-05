@@ -1,7 +1,14 @@
 ﻿namespace ChartJs.Blazor.ChartJS.LineChart
 {
+    /// <summary>
+    /// Defines options for how to display an axis title.
+    /// </summary>
     public class ScaleLabel
     {
+        /// <summary>
+        /// Creates a new instance of <see cref="ScaleLabel"/>
+        /// </summary>
+        /// <param name="labelString">The initial value for <see cref="LabelString"/></param>
         public ScaleLabel(string labelString = null)
         {
             LabelString = labelString;

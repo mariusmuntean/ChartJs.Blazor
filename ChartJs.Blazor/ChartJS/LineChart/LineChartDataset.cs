@@ -8,19 +8,27 @@ using ChartJs.Blazor.ChartJS.MixedChart;
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
     /// <summary>
-    /// A dataset for a linechart
+    /// A dataset for a <see cref="Charts.ChartJsLineChart"/>
     /// </summary>
-    /// <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="ChartJs.Blazor.ChartJS.LineChart.Wrappers"/> for value types.</typeparam>
+    /// <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="Common.Wrappers"/> for value types.</typeparam>
     public class LineChartDataset<TData> : BaseMixableDataset<TData> where TData : class
     {
+        /// <summary>
+        /// Creates a new instance of <see cref="LineChartDataset{TData}"/> with some data
+        /// </summary>
         public LineChartDataset(IEnumerable<TData> data) : this()
         {
             this.AddRange(data);
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="LineChartDataset{TData}"/>
+        /// </summary>
         public LineChartDataset() { }
 
-
+        /// <summary>
+        /// The type of chart this dataset is for.
+        /// </summary>
         public override ChartTypes Type => ChartTypes.Line;
 
         /// <summary>
@@ -43,23 +51,24 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// </summary>
         public int BorderWidth { get; set; } = 1;
 
+        // TODO: Implement options
         /// <summary>
         /// Cap style of the line.
-        /// <para>See <see cref="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap"></see> for options.</para>
-        /// <para>TODO: Implement options</para>
+        /// <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap for options.</para>
         /// </summary>
         public string BorderCapStyle { get; set; }
 
+        // TODO: Implement options
         /// <summary>
         /// Line joint style.
-        /// <para>See <see cref="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin"></see> for options.</para>
-        /// <para>TODO: Implement options</para>
+        /// <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin for options.</para>
         /// </summary>
         public string BorderJoinStyle { get; set; }
 
+        // TODO: Implement options
         /// <summary>
         /// Algorithm used to interpolate a smooth curve from the discrete data points.
-        /// <para>See <see cref="https://www.chartjs.org/docs/latest/charts/line.html#cubicinterpolationmode"></see> for options.</para>
+        /// <para>See https://www.chartjs.org/docs/latest/charts/line.html#cubicinterpolationmode for options.</para>
         /// </summary>
         public string CubicInterpolationMode { get; set; }
 
@@ -131,6 +140,10 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// </summary>
         public string BackgroundColor { get; set; }
 
+        /// <summary>
+        /// The fill color of a point.
+        /// <para>See <see cref="Util.Color.ColorUtil"/> for working with colors.</para>
+        /// </summary>
         public string PointBackgroundColor { get; set; }
 
         /// <summary>

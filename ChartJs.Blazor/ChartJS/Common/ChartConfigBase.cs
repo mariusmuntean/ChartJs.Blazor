@@ -10,7 +10,7 @@ namespace ChartJs.Blazor.ChartJS.Common
     public abstract class ChartConfigBase
     {
         /// <summary>
-        /// Creates a ChartConfigBase
+        /// Creates a new instance of <see cref="ChartConfigBase"/>
         /// </summary>
         /// <param name="chartType">The chartType this config is for</param>
         protected ChartConfigBase(ChartTypes chartType)
@@ -30,7 +30,7 @@ namespace ChartJs.Blazor.ChartJS.Common
     }
 
     /// <summary>
-    /// Base class for chart-config which contain the options and the data subconfigs
+    /// Base class for chart-config which contains the options and the data subconfigs
     /// </summary>
     /// <typeparam name="TOptions">The type of the options-subconfig</typeparam>
     /// <typeparam name="TData">The type of the data-subconfig</typeparam>
@@ -39,7 +39,7 @@ namespace ChartJs.Blazor.ChartJS.Common
         where TData : class, new()      // TODO: restrict to some interface
     {
         /// <summary>
-        /// Creates a ChartConfigBase
+        /// Creates a new instance of <see cref="ChartConfigBase"/>
         /// </summary>
         /// <param name="chartType">The chartType this config is for</param>
         protected ChartConfigBase(ChartTypes chartType) : base(chartType)

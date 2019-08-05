@@ -7,10 +7,16 @@ using System.Text;
 namespace ChartJs.Blazor.ChartJS.LineChart.Axes
 {
     /// <summary>
-    /// As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html
+    /// The time scale is used to display times and dates. 
+    /// When building its ticks, it will automatically calculate the most comfortable unit base on the size of the scale.
+    /// <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html </para>
     /// </summary>
     public class TimeAxis : CartesianAxis<TimeTicks>
     {
+        /// <summary>
+        /// The type of axis this instance represents.
+        /// <para>For js-interop/serialization purposes so chart.js knows what axis to use.</para>
+        /// </summary>
         public override AxisType Type => AxisType.Time;
 
         /// <summary>

@@ -36,7 +36,7 @@
 
         /// <summary>
         /// Generates legend items for each thing in the legend. Default implementation returns the text + styling for the color box. See Legend Item for details.
-        /// <para> See Legend Item: <see cref="http://www.chartjs.org/docs/latest/configuration/legend.html#legend-item-interface"/>  </para>
+        /// <para> See Legend Item: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-item-interface </para>
         /// </summary>
         public string GenerateLabels { get; set; }
 

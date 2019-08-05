@@ -4,7 +4,7 @@ using ChartJs.Blazor.ChartJS.Common.Enums;
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
     /// <summary>
-    /// Config for a LineChart
+    /// Config for a <see cref="Charts.ChartJsLineChart"/>
     /// </summary>
     public class LineChartConfig : ChartConfigBase<LineChartOptions, LineChartData>
     {
