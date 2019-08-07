@@ -123,3 +123,7 @@ or this code if you want the bundled version of `Chart.Js`, but without the loca
 # Contributors
 * [Joelius300](https://github.com/Joelius300)
 * [SeppPenner](https://github.com/SeppPenner)
+* [MindSwipe](https://github.com/MindSwipe)
+
+# License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Joelius300/ChartJSBlazor/blob/master/LICENSE.md)
