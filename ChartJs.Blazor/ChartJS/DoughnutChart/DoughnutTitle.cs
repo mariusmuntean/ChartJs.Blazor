@@ -6,9 +6,9 @@
     public class DoughnutTitle
     {
         /// <summary>
-        /// Gets or sets the display.
+        /// Gets or sets a value indicating whether the title is displayed or not.
         /// </summary>
-        public string Display { get; set; }
+        public bool Display { get; set; }
 
         /// <summary>
         /// Gets or sets the title text.

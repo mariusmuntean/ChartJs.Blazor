@@ -12,6 +12,8 @@ namespace ChartJs.Blazor.ChartJS.DoughnutChart
         /// <summary>
         /// Creates a new instance of <see cref="DoughnutChartConfig"/>.
         /// </summary>
-        public DoughnutChartConfig() : base(ChartTypes.Doughnut) { }
+        public DoughnutChartConfig() : base(ChartTypes.Doughnut)
+        {
+        }
     }
 }
