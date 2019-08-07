@@ -51,6 +51,6 @@ namespace ChartJs.Blazor.ChartJS.DoughnutChart
         /// <summary>
         /// Gets or sets the data in the dataset.
         /// </summary>
-        public List<int> Data { get; set; }
+        public List<double> Data { get; set; }
     }
 }

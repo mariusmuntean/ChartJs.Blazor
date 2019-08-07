@@ -42,6 +42,6 @@ namespace ChartJs.Blazor.ChartJS.PieChart
         /// </summary>
         public int[] HoverBorderWidth { get; set; }
 
-        public List<int> Data { get; set; }
+        public List<double> Data { get; set; }
     }
 }
