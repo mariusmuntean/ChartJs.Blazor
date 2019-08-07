@@ -2,10 +2,19 @@
 
 namespace ChartJs.Blazor.ChartJS.PieChart
 {
+    /// <summary>
+    /// The data-subconfig of a <see cref="PieChartConfig"/>.
+    /// </summary>
     public class PieChartData
     {
-        public List<string> Labels { get; set; }
+        /// <summary>
+        /// Gets the labels the chart will use.
+        /// </summary>
+        public List<string> Labels { get; } = new List<string>();
 
-        public List<PieChartDataset> Datasets { get; set; } 
+        /// <summary>
+        /// Gets the datasets displayed in this chart.
+        /// </summary>
+        public List<PieChartDataset> Datasets { get; } = new List<PieChartDataset>();
     }
 }
