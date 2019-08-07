@@ -64,8 +64,8 @@ namespace ChartJs.Blazor.ChartJS.DoughnutChart
         public int Weight { get; set; } = 1;
 
         /// <summary>
-        /// Gets or sets the data in the dataset.
+        /// Gets the data in the dataset.
         /// </summary>
-        public List<double> Data { get; set; }
+        public List<double> Data { get; } = new List<double>();
     }
 }
