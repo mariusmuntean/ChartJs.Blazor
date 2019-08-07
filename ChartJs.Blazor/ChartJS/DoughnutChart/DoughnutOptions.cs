@@ -26,8 +26,8 @@ namespace ChartJs.Blazor.ChartJS.DoughnutChart
         public double Rotation { get; set; } = -0.5 * Math.PI;
 
         /// <summary>
-        /// Gets or sets the sweep to allow arcs to cover
+        /// Gets or sets the sweep to allow arcs to cover.
         /// </summary>
-        public double Circumferences { get; set; } = 2 * Math.PI;
+        public double Circumference { get; set; } = 2 * Math.PI;
     }
 }
