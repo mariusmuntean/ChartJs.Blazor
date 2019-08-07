@@ -9,7 +9,7 @@ namespace ChartJs.Blazor.ChartJS.DoughnutChart
     public class DoughnutDataset
     {
         /// <summary>
-        /// Gets or sets the chart type. Doughnut in this case.
+        /// Gets or sets the chart type. "Doughnut" in this case.
         /// </summary>
         public ChartTypes Type { get; } = ChartTypes.Doughnut;
 
