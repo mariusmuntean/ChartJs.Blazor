@@ -1,8 +1,7 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace ChartJs.Blazor.ChartJS.DoughnutChart
 {
-    using System.Collections.Generic;
-
     /// <summary>
     /// The data-subconfig of a <see cref="DoughnutChartConfig"/>.
     /// </summary>

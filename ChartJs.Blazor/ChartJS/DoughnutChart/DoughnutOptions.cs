@@ -1,10 +1,9 @@
-﻿
+﻿using System;
+using ChartJs.Blazor.ChartJS.Common;
+using ChartJs.Blazor.ChartJS.Common.Properties;
+
 namespace ChartJs.Blazor.ChartJS.DoughnutChart
 {
-    using System;
-    using ChartJs.Blazor.ChartJS.Common;
-    using ChartJs.Blazor.ChartJS.Common.Properties;
-
     /// <summary>
     /// The options-subconfig of a <see cref="DoughnutChartConfig"/>.
     /// </summary>

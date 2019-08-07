@@ -1,9 +1,8 @@
-﻿
+﻿using ChartJs.Blazor.ChartJS.Common.Enums;
+using System.Collections.Generic;
+
 namespace ChartJs.Blazor.ChartJS.DoughnutChart
 {
-    using ChartJs.Blazor.ChartJS.Common.Enums;
-    using System.Collections.Generic;
-
     /// <summary>
     /// A dataset for a <see cref="Charts.ChartJsDoughnutChart"/>
     /// </summary>
