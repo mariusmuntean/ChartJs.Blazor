@@ -1,6 +1,7 @@
 ﻿using System;
 using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Properties;
+using Newtonsoft.Json;
 
 namespace ChartJs.Blazor.ChartJS.PieChart
 {
@@ -9,6 +10,12 @@ namespace ChartJs.Blazor.ChartJS.PieChart
     /// </summary>
     public class PieChartOptions : BaseChartConfigOptions
     {
+        /// <summary>
+        /// Gets or sets a value indicating whether this chart is rendered as a doughnut or a pie. Default to a pie chart.
+        /// </summary>
+        [JsonIgnore]
+        public bool IsDoughnut { get; set; } = false;
+
         /// <summary>
         /// Gets or sets the percentage of the chart that is cut out of the middle.
         /// </summary>
