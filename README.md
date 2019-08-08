@@ -19,7 +19,7 @@ I fully intend giving all of this back to the community so that the original rep
 * Create nuget package
 * Update XML-docs handling
 
-The full changelog can be found [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/CHANGELOG.md)
+The full changelog can be found [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/CHANGELOG.md).
 
 ## Please keep in mind that this is still a preview. Expect breaking changes during the next releases. I'm using this opportunity to learn Blazor.
 
