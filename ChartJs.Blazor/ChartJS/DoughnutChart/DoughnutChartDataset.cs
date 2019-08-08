@@ -8,9 +8,8 @@ namespace ChartJs.Blazor.ChartJS.DoughnutChart
     /// </summary>
     public class DoughnutChartDataset
     {
-        // Todo: Is this really needed? It's already configured in the doughnut chart config?
         /// <summary>
-        /// Gets or sets the chart type. <see cref="ChartTypes.Doughnut"/> in this case.
+        /// Gets or sets the chart type. <see cref="ChartTypes.Doughnut"/> in this case. This is needed for mixed datasets only.
         /// </summary>
         public ChartTypes Type { get; } = ChartTypes.Doughnut;
 

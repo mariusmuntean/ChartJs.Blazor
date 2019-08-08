@@ -8,9 +8,8 @@ namespace ChartJs.Blazor.ChartJS.PieChart
     /// </summary>
     public class PieChartDataset
     {
-        // Todo: Is this really needed? It's already configured in the pie chart config?
         /// <summary>
-        /// Gets or sets the chart type. <see cref="ChartTypes.Pie"/> in this case.
+        /// Gets or sets the chart type. <see cref="ChartTypes.Pie"/> in this case. This is needed for mixed datasets only.
         /// </summary>
         public ChartTypes Type { get; } = ChartTypes.Pie;
 
