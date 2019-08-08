@@ -34,7 +34,7 @@ namespace ChartJs.Blazor.ChartJS.PieChart
         /// <summary>
         /// Gets the border width of the arcs in the dataset.
         /// </summary>
-        public List<int> BorderWidth { get; set; } = new List<int>();
+        public List<int> BorderWidth { get; } = new List<int>();
 
         /// <summary>
         /// Gets the fill colour of the arcs when hovered.
