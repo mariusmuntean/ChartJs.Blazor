@@ -21,9 +21,9 @@ namespace ChartJs.Blazor.ChartJS.PieChart
         public string Label { get; set; } = "";
 
         /// <summary>
-        /// Gets or sets the fill color of the arcs in the dataset.
+        /// Gets the fill color of the arcs in the dataset.
         /// </summary>
-        public string[] BackgroundColor { get; set; }
+        public List<string> BackgroundColor { get; } = new List<string>();
 
         // Todo: Make this an enum later?!
         /// <summary>
@@ -33,29 +33,29 @@ namespace ChartJs.Blazor.ChartJS.PieChart
         public string BorderAlign { get; set; } = "center";
 
         /// <summary>
-        /// Gets or sets the border color of the arcs in the dataset.
+        /// Gets the border color of the arcs in the dataset.
         /// </summary>
-        public string[] BorderColor { get; set; }
+        public List<string> BorderColor { get; } = new List<string>();
 
         /// <summary>
-        /// Gets or sets the border width of the arcs in the dataset.
+        /// Gets the border width of the arcs in the dataset.
         /// </summary>
-        public int BorderWidth { get; set; } = 2;
+        public List<int> BorderWidth { get; set; } = new List<int>();
 
         /// <summary>
-        /// Gets or sets the fill colour of the arcs when hovered.
+        /// Gets the fill colour of the arcs when hovered.
         /// </summary>
-        public string[] HoverBackgroundColor { get; set; }
+        public List<string> HoverBackgroundColor { get; } = new List<string>();
 
         /// <summary>
-        /// Gets or sets the stroke colour of the arcs when hovered.
+        /// Gets the stroke colour of the arcs when hovered.
         /// </summary>
-        public string[] HoverBorderColor { get; set; }
+        public List<string> HoverBorderColor { get; } = new List<string>();
 
         /// <summary>
-        /// Gets or sets the stroke width of the arcs when hovered.
+        /// Gets the stroke width of the arcs when hovered.
         /// </summary>
-        public int[] HoverBorderWidth { get; set; }
+        public List<int> HoverBorderWidth { get; } = new List<int>();
 
         /// <summary>
         /// Gets or sets the relative thickness of the dataset.
