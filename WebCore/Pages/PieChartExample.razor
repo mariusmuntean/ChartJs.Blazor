@@ -5,48 +5,48 @@
 
 <h1>Pie Chart</h1>
 
-<ChartJsPieChart @ref="_pieChartJs" Config="@_config" Width="600" Height="300" />
+<ChartJsPieChart @ref="pieChartJs" Config="@config" Width="600" Height="300" />
 
 @code {
-private PieChartConfig _config;
-private ChartJsPieChart _pieChartJs;
+    private PieChartConfig config;
+    private ChartJsPieChart pieChartJs;
 
-protected override void OnInit()
-{
-    _config = new PieChartConfig
+    protected override void OnInit()
     {
-        CanvasId = "myFirstPieChart",
-        Options = new PieChartOptions
+        config = new PieChartConfig
         {
-            Title = new OptionsTitle
+            CanvasId = "myFirstPieChart",
+            Options = new PieChartOptions
             {
-                Display = true,
-                Text = "Sample chart from Blazor"
-            },
-            Responsive = true,
-            Animation = new PieAnimation
-            {
-                AnimateRotate = true,
-                AnimateScale = true
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "Sample chart from Blazor"
+                },
+                Responsive = true,
+                Animation = new PieAnimation
+                {
+                    AnimateRotate = true,
+                    AnimateScale = true
+                }
             }
-        }
-    };
+        };
 
-    _config.Data.Labels = new List<string> { "A", "B", "C", "D" };
+        config.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
 
-    var pieSet = new PieChartDataset
-    {
-        BackgroundColor = new[] { "#ff6384", "#55ee84", "#4463ff", "#efefef" },
-        Data = new List<double> { 4, 5, 6, 7 },                // this will be removed and shouldn't be possible
-        Label = "Light Red",
-        BorderWidth = 0,
-        HoverBackgroundColor = new[] { "#f06384" },
-        HoverBorderColor = new[] { "#f06384" },
-        HoverBorderWidth = new[] { 1 },
-        BorderColor = "#ffffff",
-    };
+        var pieSet = new PieChartDataset
+        {
+            BackgroundColor = new[] { "#ff6384", "#55ee84", "#4463ff", "#efefef" },
+            Label = "Light Red",
+            BorderWidth = 0,
+            HoverBackgroundColor = new[] { "#f06384" },
+            HoverBorderColor = new[] { "#f06384" },
+            HoverBorderWidth = new[] { 1 },
+            BorderColor = new[] { "#ffffff", "#ffffff", "#ffffff", "#ffffff" }
+        };
 
-    _config.Data.Datasets = new List<PieChartDataset>();    // this will be removed and shouldn't be possible
-    _config.Data.Datasets.Add(pieSet);
-}
+        pieSet.Data.AddRange(new List<double> {4, 5, 6, 7 });
+
+        config.Data.Datasets.Add(pieSet);
+    }
 }
