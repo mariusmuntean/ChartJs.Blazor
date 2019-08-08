@@ -14,12 +14,6 @@ namespace ChartJs.Blazor.ChartJS.PieChart
         /// </summary>
         public ChartTypes Type { get; } = ChartTypes.Pie;
 
-        // Todo: Is this really needed?
-        /// <summary>
-        /// Gets or sets the label of the dataset.
-        /// </summary>
-        public string Label { get; set; } = "";
-
         /// <summary>
         /// Gets the fill color of the arcs in the dataset.
         /// </summary>
