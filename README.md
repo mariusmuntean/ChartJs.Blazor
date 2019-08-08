@@ -10,15 +10,16 @@ I intend to extend the functionality (mainly of the LineChart), fix issues and a
 I fully intend giving all of this back to the community so that the original repository also gets all of these changes. Sadly because it's not a simple fork I don't know how to do that directly (let me know if you can help me with that :).
 
 ## Changelog
-<details open="open">
-<summary>0.10.2</summary>
+
+### Latest changes
+**0.10.2:**
     
 * Update ReadMe
 * Clean and update .csproj file
 * Create nuget package
 * Update XML-docs handling
 
-</details>
+The full changelog can be found [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/CHANGELOG.md).
 
 ## Please keep in mind that this is still a preview. Expect breaking changes during the next releases. I'm using this opportunity to learn Blazor.
 
