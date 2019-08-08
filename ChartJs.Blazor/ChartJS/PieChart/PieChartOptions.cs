@@ -11,10 +11,35 @@ namespace ChartJs.Blazor.ChartJS.PieChart
     public class PieChartOptions : BaseChartConfigOptions
     {
         /// <summary>
+        /// 
+        /// </summary>
+        [JsonIgnore]
+        private bool isDougnut = false;
+
+        /// <summary>
         /// Gets or sets a value indicating whether this chart is rendered as a doughnut or a pie. Default to a pie chart.
         /// </summary>
         [JsonIgnore]
-        public bool IsDoughnut { get; set; } = false;
+        public bool IsDoughnut
+        {
+            get
+            {
+                return isDougnut;
+            }
+            set
+            {
+                if (value)
+                {
+                    CutoutPercentage = 50;
+                }
+                else
+                {
+                    CutoutPercentage = 0;
+                }
+
+                isDougnut = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the percentage of the chart that is cut out of the middle.
