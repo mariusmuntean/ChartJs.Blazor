@@ -1,0 +1,124 @@
+@page "/LineLinearExample"
+@using WebCore.Data
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.ChartJS.Common.Properties
+@using ChartJs.Blazor.ChartJS.Common.Enums
+@using ChartJs.Blazor.ChartJS.Common.Legends
+@using ChartJs.Blazor.ChartJS.LineChart
+@using ChartJs.Blazor.ChartJS.LineChart.Axes
+@using ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks
+@using ChartJs.Blazor.Util.Color
+@inject WeatherForecastService ForecastService
+
+<h2>Line Linear Chart</h2>
+<ChartJsLineChart @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
+
+@functions
+{
+    LineChartConfig lineChartConfig;
+    ChartJsLineChart lineChartJs;
+
+    protected override async Task OnInitAsync()
+    {
+        lineChartConfig = new LineChartConfig
+        {
+            CanvasId = "myFirstLineChart",
+            Options = new LineChartOptions
+            {
+                Responsive = true,
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "Line Chart"
+                },
+                Legend = new Legend
+                {
+                    Position = Positions.Right,
+                    Labels = new LegendLabelConfiguration
+                    {
+                        UsePointStyle = true
+                    }
+                },
+                Tooltips = new Tooltips
+                {
+                    Mode = InteractionMode.Nearest,
+                    Intersect = false
+                },
+                Scales = new Scales
+                {
+                    xAxes = new List<CartesianAxis>
+        {
+                        new LinearCartesianAxis
+                        {
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "Zeit"
+                            },
+                            GridLines = new GridLine
+                            {
+                                 Display = false
+                            },
+                            Ticks = new LinearCartesianTicks
+                            {
+                                SuggestedMin = -2
+                            }
+                        }
+                    },
+                    yAxes = new List<CartesianAxis>()
+        {
+                        new LinearCartesianAxis
+                        {
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "Temp"
+                            }
+                        }
+                    }
+                },
+                Hover = new LineChartOptionsHover
+                {
+                    Intersect = true,
+                    Mode = InteractionMode.Y
+                }
+            }
+        };
+
+
+        var tempPerHourSet = new LineChartDataset<Point>()
+        {
+            BackgroundColor = ColorUtil.ColorString(0, 255, 0, 1.0),
+            BorderColor = ColorUtil.ColorString(0, 0, 255, 1.0),
+            Label = "Temp (C) per Hour",
+            Fill = false,
+            PointBackgroundColor = ColorUtil.RandomColorString(),
+            BorderWidth = 1,
+            PointRadius = 3,
+            PointBorderWidth = 1,
+            SteppedLine = SteppedLine.False,
+        };
+
+        var tempPerDaySet = new LineChartDataset<Point>()
+        {
+            BackgroundColor = "#63ff84",
+            BorderColor = "#63ff84",
+            Label = "Temp (F) per Day",
+            Fill = false,
+            BorderWidth = 1,
+            PointRadius = 2,
+            PointBorderWidth = 1,
+            SteppedLine = SteppedLine.False,
+            Hidden = true
+        };
+
+        WeatherForecast[] forecasts = await ForecastService.GetStaticForecastAsync(DateTime.Now, 5);
+
+        var onlyDays = forecasts.GroupBy(f => f.Date.Day).Select(g => g.First());
+
+        tempPerHourSet.AddRange(onlyDays.Select(p => new Point(p.Date.Hour, p.TemperatureC)));
+        tempPerDaySet.AddRange(onlyDays.Select(p => new Point(p.Date.Day, p.TemperatureF)));
+
+        lineChartConfig.Data.Datasets.Add(tempPerHourSet);
+        lineChartConfig.Data.Datasets.Add(tempPerDaySet);
+    }
+}

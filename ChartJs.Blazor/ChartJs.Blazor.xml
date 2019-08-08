@@ -894,7 +894,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartDataset.Type">
             <summary>
-            Gets or sets the chart type. <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes.Doughnut"/> in this case.
+            Gets or sets the chart type. <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes.Doughnut"/> in this case. This is needed for mixed datasets only.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartDataset.BackgroundColor">
@@ -1777,7 +1777,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.Type">
             <summary>
-            Gets or sets the chart type. <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes.Pie"/> in this case.
+            Gets or sets the chart type. <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes.Pie"/> in this case. This is needed for mixed datasets only.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.BackgroundColor">
