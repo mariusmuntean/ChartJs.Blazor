@@ -43,7 +43,14 @@
         It doesn't always work and the static files arent accessable.
         Theses issues will hopefully be resolved in the upcoming .net previews.
     *@
+
+    @* Removed because it currently doesn't work with server side blazor
     <script src="_content/ChartJs.Blazor/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
     <link rel="stylesheet" href="_content/ChartJs.Blazor/ChartJsBlazor.css" />
+    *@
+
+    @* Manually include because it doesn't work with server sider blazor *@
+    <script src="~/ChartJs.Blazor/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
+    <link rel="stylesheet" href="~/ChartJs.Blazor/ChartJSBlazor.css" />
 </body>
 </html>
