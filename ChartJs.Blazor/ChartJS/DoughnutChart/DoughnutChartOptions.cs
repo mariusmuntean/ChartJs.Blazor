@@ -2,17 +2,17 @@
 using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Properties;
 
-namespace ChartJs.Blazor.ChartJS.PieChart
+namespace ChartJs.Blazor.ChartJS.DoughnutChart
 {
     /// <summary>
-    /// The options-subconfig of a <see cref="PieChartConfig"/>.
+    /// The options-subconfig of a <see cref="DoughnutChartConfig"/>.
     /// </summary>
-    public class PieChartOptions : BaseChartConfigOptions
+    public class DoughnutChartOptions : BaseChartConfigOptions
     {
         /// <summary>
         /// Gets or sets the percentage of the chart that is cut out of the middle.
         /// </summary>
-        public int CutoutPercentage { get; set; } = 0;
+        public int CutoutPercentage { get; set; } = 50;
 
         /// <summary>
         /// Gets or sets the animation the chart uses.

@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using ChartJs.Blazor.ChartJS.Common.Enums;
 
-namespace ChartJs.Blazor.ChartJS.PieChart
+namespace ChartJs.Blazor.ChartJS.DoughnutChart
 {
     /// <summary>
-    /// A dataset for a <see cref="Charts.ChartJsPieChart"/>
+    /// A dataset for a <see cref="Charts.ChartJsDoughnutChart"/>
     /// </summary>
-    public class PieChartDataset
+    public class DoughnutChartDataset
     {
         /// <summary>
-        /// Gets or sets the chart type. <see cref="ChartTypes.Pie"/> in this case. This is needed for mixed datasets only.
+        /// Gets or sets the chart type. <see cref="ChartTypes.Doughnut"/> in this case. This is needed for mixed datasets only.
         /// </summary>
-        public ChartTypes Type { get; } = ChartTypes.Pie;
+        public ChartTypes Type { get; } = ChartTypes.Doughnut;
 
         /// <summary>
         /// Gets the fill color of the arcs in the dataset.

@@ -3,8 +3,16 @@ using ChartJs.Blazor.ChartJS.Common.Enums;
 
 namespace ChartJs.Blazor.ChartJS.DoughnutChart
 {
-    public class DoughnutChartConfig : ChartConfigBase<DoughnutOptions, DoughnutData>
+    /// <summary>
+    /// Config for a <see cref="DoughnutChartConfig"/>.
+    /// </summary>
+    public class DoughnutChartConfig : ChartConfigBase<DoughnutChartOptions, DoughnutChartData>
     {
-        public DoughnutChartConfig() : base(ChartTypes.Doughnut) { }
+        /// <summary>
+        /// Creates a new instance of <see cref="DoughnutChartConfig"/>.
+        /// </summary>
+        public DoughnutChartConfig() : base(ChartTypes.Doughnut)
+        {
+        }
     }
 }

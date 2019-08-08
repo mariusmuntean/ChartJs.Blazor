@@ -11,7 +11,7 @@ namespace ChartJs.Blazor.ChartJS.PolarAreaChart
         /// </summary>
         public double StartAngle { get; set; } = -0.5 * Math.PI;
 
-        public DoughnutAnimation Animation { get; set; }
+        public PieDoughnutAnimation Animation { get; set; }
 
         public PolarAreaScale Scale { get; set; }
     }

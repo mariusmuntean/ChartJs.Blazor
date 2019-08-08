@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace ChartJs.Blazor.ChartJS.PieChart
+namespace ChartJs.Blazor.ChartJS.DoughnutChart
 {
     /// <summary>
-    /// The data-subconfig of a <see cref="PieChartConfig"/>.
+    /// The data-subconfig of a <see cref="DoughnutChartConfig"/>.
     /// </summary>
-    public class PieChartData
+    public class DoughnutChartData
     {
         /// <summary>
         /// Gets the labels the chart will use.
@@ -15,6 +15,6 @@ namespace ChartJs.Blazor.ChartJS.PieChart
         /// <summary>
         /// Gets the datasets displayed in this chart.
         /// </summary>
-        public List<PieChartDataset> Datasets { get; } = new List<PieChartDataset>();
+        public List<DoughnutChartDataset> Datasets { get; } = new List<DoughnutChartDataset>();
     }
 }
