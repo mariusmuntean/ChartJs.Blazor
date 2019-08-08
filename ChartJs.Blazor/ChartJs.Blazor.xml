@@ -801,12 +801,12 @@
             The actual title to display
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.PieAnimation.AnimateRotate">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.PieDoughnutAnimation.AnimateRotate">
             <summary>
             If true, the chart will animate in with a rotation animation. This property is in the options.animation object.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.PieAnimation.AnimateScale">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.PieDoughnutAnimation.AnimateScale">
             <summary>
             If true, will animate scaling the chart from the center outwards.
             </summary>
@@ -872,104 +872,99 @@
             Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartConfig"/>.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutData">
+        <member name="T:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartData">
             <summary>
             The data-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartConfig"/>.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutData.Labels">
+        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartData.Labels">
             <summary>
             Gets the labels the chart will use.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutData.Datasets">
+        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartData.Datasets">
             <summary>
             Gets the datasets displayed in this chart.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutDataset">
+        <member name="T:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartDataset">
             <summary>
             A dataset for a <see cref="T:ChartJs.Blazor.Charts.ChartJsDoughnutChart"/>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutDataset.Type">
+        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartDataset.Type">
             <summary>
             Gets or sets the chart type. <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes.Doughnut"/> in this case.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutDataset.Label">
+        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartDataset.BackgroundColor">
             <summary>
-            Gets or sets the label of the dataset.
+            Gets the fill color of the arcs in the dataset.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutDataset.BackgroundColor">
-            <summary>
-            Gets or sets the fill color of the arcs in the dataset.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutDataset.BorderAlign">
+        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartDataset.BorderAlign">
             <summary>
             Gets or sets the border align. When 'center' is set, the borders of arcs next to each other will overlap.
             When 'inner' is set, it is guaranteed that all the borders are not overlap.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutDataset.BorderColor">
+        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartDataset.BorderColor">
             <summary>
-            Gets or sets the border color of the arcs in the dataset.
+            Gets the border color of the arcs in the dataset.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutDataset.BorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartDataset.BorderWidth">
             <summary>
-            Gets or sets the border width of the arcs in the dataset.
+            Gets the border width of the arcs in the dataset.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutDataset.HoverBackgroundColor">
+        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartDataset.HoverBackgroundColor">
             <summary>
-            Gets or sets the fill colour of the arcs when hovered.
+            Gets the fill colour of the arcs when hovered.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutDataset.HoverBorderColor">
+        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartDataset.HoverBorderColor">
             <summary>
-            Gets or sets the stroke colour of the arcs when hovered.
+            Gets the stroke colour of the arcs when hovered.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutDataset.HoverBorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartDataset.HoverBorderWidth">
             <summary>
-            Gets or sets the stroke width of the arcs when hovered.
+            Gets the stroke width of the arcs when hovered.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutDataset.Weight">
+        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartDataset.Weight">
             <summary>
             Gets or sets the relative thickness of the dataset.
-            Providing a value for weight will cause the doughnut dataset to be drawn with a thickness relative to the sum of all the dataset weight values.
+            Providing a value for weight will cause the pie dataset to be drawn with a thickness relative to the sum of all the dataset weight values.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutDataset.Data">
+        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartDataset.Data">
             <summary>
             Gets the data in the dataset.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutOptions">
+        <member name="T:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartOptions">
             <summary>
             The options-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartConfig"/>.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutOptions.CutoutPercentage">
+        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartOptions.CutoutPercentage">
             <summary>
             Gets or sets the percentage of the chart that is cut out of the middle.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutOptions.Animation">
+        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartOptions.Animation">
             <summary>
             Gets or sets the animation the chart uses.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutOptions.Rotation">
+        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartOptions.Rotation">
             <summary>
             Gets or sets the starting angle to draw arcs from.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutOptions.Circumference">
+        <member name="P:ChartJs.Blazor.ChartJS.DoughnutChart.DoughnutChartOptions.Circumference">
             <summary>
             Gets or sets the sweep to allow arcs to cover.
             </summary>
@@ -1785,14 +1780,9 @@
             Gets or sets the chart type. <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes.Pie"/> in this case.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.Label">
-            <summary>
-            Gets or sets the label of the dataset.
-            </summary>
-        </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.BackgroundColor">
             <summary>
-            Gets or sets the fill color of the arcs in the dataset.
+            Gets the fill color of the arcs in the dataset.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.BorderAlign">
@@ -1803,27 +1793,27 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.BorderColor">
             <summary>
-            Gets or sets the border color of the arcs in the dataset.
+            Gets the border color of the arcs in the dataset.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.BorderWidth">
             <summary>
-            Gets or sets the border width of the arcs in the dataset.
+            Gets the border width of the arcs in the dataset.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.HoverBackgroundColor">
             <summary>
-            Gets or sets the fill colour of the arcs when hovered.
+            Gets the fill colour of the arcs when hovered.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.HoverBorderColor">
             <summary>
-            Gets or sets the stroke colour of the arcs when hovered.
+            Gets the stroke colour of the arcs when hovered.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.HoverBorderWidth">
             <summary>
-            Gets or sets the stroke width of the arcs when hovered.
+            Gets the stroke width of the arcs when hovered.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.Weight">

@@ -24,7 +24,7 @@
                     Text = "Sample chart from Blazor"
                 },
                 Responsive = true,
-                Animation = new PieAnimation
+                Animation = new PieDoughnutAnimation
                 {
                     AnimateRotate = true,
                     AnimateScale = true
@@ -34,19 +34,16 @@
 
         config.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
 
-        var pieSet = new PieChartDataset
-        {
-            BackgroundColor = new[] { "#ff6384", "#55ee84", "#4463ff", "#efefef" },
-            Label = "Light Red",
-            BorderWidth = 0,
-            HoverBackgroundColor = new[] { "#f06384" },
-            HoverBorderColor = new[] { "#f06384" },
-            HoverBorderWidth = new[] { 1 },
-            BorderColor = new[] { "#ffffff", "#ffffff", "#ffffff", "#ffffff" }
-        };
+        var pieSet = new PieChartDataset();
 
-        pieSet.Data.AddRange(new List<double> {4, 5, 6, 7 });
+        pieSet.BackgroundColor.AddRange(new List<string> { "#ff6384", "#55ee84", "#4463ff", "#efefef" });
+        pieSet.BorderWidth.Add(0);
+        pieSet.HoverBackgroundColor.AddRange(new List<string> { "#f06384" });
+        pieSet.HoverBorderColor.AddRange(new List<string> { "#f06384" });
+        pieSet.HoverBorderWidth.Add(1);
+        pieSet.BorderColor.AddRange(new List<string> { "#ffffff", "#ffffff", "#ffffff", "#ffffff" });
 
+        pieSet.Data.AddRange(new List<double> { 4, 5, 6, 7 });
         config.Data.Datasets.Add(pieSet);
     }
 }

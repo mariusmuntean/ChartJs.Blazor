@@ -1,6 +1,6 @@
 ﻿namespace ChartJs.Blazor.ChartJS.Common.Properties
 {
-    public class PieAnimation
+    public class PieDoughnutAnimation
     {
         /// <summary>
         /// If true, the chart will animate in with a rotation animation. This property is in the options.animation object.
