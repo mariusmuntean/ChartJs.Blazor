@@ -17,7 +17,7 @@ namespace ChartJs.Blazor.ChartJS.PieChart
         /// <summary>
         /// Gets or sets the animation the chart uses.
         /// </summary>
-        public DoughnutAnimation Animation { get; set; }
+        public PieAnimation Animation { get; set; }
 
         /// <summary>
         /// Gets or sets the starting angle to draw arcs from.
