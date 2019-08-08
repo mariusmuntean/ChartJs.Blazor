@@ -1832,9 +1832,16 @@
             The options-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.PieChart.PieChartConfig"/>.
             </summary>
         </member>
+        <member name="M:ChartJs.Blazor.ChartJS.PieChart.PieChartOptions.#ctor(System.Boolean)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.PieChart.PieChartOptions"/>
+            </summary>
+            <param name="doughnutCutout">If true, the start-value for <see cref="P:ChartJs.Blazor.ChartJS.PieChart.PieChartOptions.CutoutPercentage"/> will be 50 (default for Doughnut) instead of 0 (default for Pie).</param>
+        </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartOptions.CutoutPercentage">
             <summary>
             Gets or sets the percentage of the chart that is cut out of the middle.
+            <para>Default for Pie is 0, Default for Doughnut is 50. See constructor-parameter.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartOptions.Animation">
