@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ChartJs.Blazor.Util.Color;
+using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.PolarAreaChart
 {
@@ -7,12 +8,14 @@ namespace ChartJs.Blazor.ChartJS.PolarAreaChart
         public string Label { get; set; }
 
         /// <summary>
-        /// The fill color of the arcs in the dataset. 
+        /// The fill color of the arcs in the dataset.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public List<string> BackgroundColor { get; set; }
 
         /// <summary>
-        /// The border color of the arcs in the dataset
+        /// The border color of the arcs in the dataset.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public List<string> BorderColor { get; set; }
 
@@ -23,11 +26,13 @@ namespace ChartJs.Blazor.ChartJS.PolarAreaChart
 
         /// <summary>
         /// The fill colour of the arcs when hovered.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public List<string> HoverBackgroundColor { get; set; }
 
         /// <summary>
         /// The stroke colour of the arcs when hovered.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public List<string> HoverBorderColor { get; set; }
 

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.Generic;
 using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.ChartJS.MixedChart;
+using ChartJs.Blazor.Util.Color;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
@@ -136,19 +134,19 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 
         /// <summary>
         /// The fill color under the line.
-        /// <para>See <see cref="Util.Color.ColorUtil"/> for working with colors.</para>
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string BackgroundColor { get; set; }
 
         /// <summary>
         /// The fill color of a point.
-        /// <para>See <see cref="Util.Color.ColorUtil"/> for working with colors.</para>
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string PointBackgroundColor { get; set; }
 
         /// <summary>
         /// The color of the line. 
-        /// <para>See <see cref="Util.Color.ColorUtil"/> for working with colors.</para>
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string BorderColor { get; set; }
     }

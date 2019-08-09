@@ -7,12 +7,14 @@ namespace ChartJs.Blazor.ChartJS.BubbleChart
     public class BubbleChartDataset
     {
         /// <summary>
-        /// rgba(0,0,0,0.1)'
+        /// rgba(0,0,0,0.1)'.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string BackgroundColor { get; set; } = ColorUtil.ColorString(0, 0, 0, 0.1);
 
         /// <summary>
-        /// rgba(0,0,0,0.1)'
+        /// rgba(0,0,0,0.1)'.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string BorderColor { get; set; } = ColorUtil.ColorString(0, 0, 0, 0.1);
 
@@ -23,8 +25,14 @@ namespace ChartJs.Blazor.ChartJS.BubbleChart
 
         public List<BubbleData> Data { get; set; } = new List<BubbleData> { new BubbleData { X = 1, Y = 2, r = 3 } };
 
+        /// <summary>
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
+        /// </summary>
         public string HoverBackgroundColor { get; set; }
 
+        /// <summary>
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
+        /// </summary>
         public string HoverBorderColor { get; set; }
 
         public int HoverBorderWidth { get; set; } = 1;
