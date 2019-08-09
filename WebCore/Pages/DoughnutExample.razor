@@ -1,22 +1,22 @@
 @page "/DoughnutExample"
 @using ChartJs.Blazor.Charts
-@using ChartJs.Blazor.ChartJS.DoughnutChart
+@using ChartJs.Blazor.ChartJS.PieChart
 @using ChartJs.Blazor.ChartJS.Common.Properties
 
 <h1>Doughnut Chart</h1>
 
-<ChartJsDoughnutChart @ref="doughnutChartJs" Config="@config" Width="600" Height="300" />
+<ChartJsPieChart @ref="doughnutChartJs" Config="@config" Width="600" Height="300" />
 
 @code {
-    private DoughnutChartConfig config;
-    private ChartJsDoughnutChart doughnutChartJs;
+    private PieChartConfig config;
+    private ChartJsPieChart doughnutChartJs;
 
     protected override void OnInit()
     {
-        config = new DoughnutChartConfig
+        config = new PieChartConfig
         {
             CanvasId = "myFirstDoughnutChart",
-            Options = new DoughnutChartOptions
+            Options = new PieChartOptions(true)
             {
                 Title = new OptionsTitle
                 {
@@ -34,7 +34,7 @@
 
         config.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
 
-        var doughnutSet = new DoughnutChartDataset();
+        var doughnutSet = new PieChartDataset();
 
         doughnutSet.BackgroundColor.AddRange(new List<string> { "#ff6384", "#55ee84", "#4463ff", "#efefef" });
         doughnutSet.BorderWidth.Add(0);

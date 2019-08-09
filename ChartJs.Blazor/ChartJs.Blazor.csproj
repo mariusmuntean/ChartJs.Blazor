@@ -66,9 +66,6 @@ Chart legend with custom handler for Item generation and events - Javascript and
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Charts\ChartJsDoughnutChart.razor">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
     <Content Update="Charts\ChartJsScatterChart.razor">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
