@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ChartJs.Blazor.ChartJS.Common.Enums;
+using ChartJs.Blazor.Util.Color;
 
 namespace ChartJs.Blazor.ChartJS.PieChart
 {
@@ -15,6 +16,7 @@ namespace ChartJs.Blazor.ChartJS.PieChart
 
         /// <summary>
         /// Gets the fill color of the arcs in the dataset.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public List<string> BackgroundColor { get; } = new List<string>();
 
@@ -27,6 +29,7 @@ namespace ChartJs.Blazor.ChartJS.PieChart
 
         /// <summary>
         /// Gets the border color of the arcs in the dataset.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public List<string> BorderColor { get; } = new List<string>();
 
@@ -37,11 +40,13 @@ namespace ChartJs.Blazor.ChartJS.PieChart
 
         /// <summary>
         /// Gets the fill colour of the arcs when hovered.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public List<string> HoverBackgroundColor { get; } = new List<string>();
 
         /// <summary>
         /// Gets the stroke colour of the arcs when hovered.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public List<string> HoverBorderColor { get; } = new List<string>();
 

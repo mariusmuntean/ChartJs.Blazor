@@ -1,3 +1,5 @@
+using ChartJs.Blazor.Util.Color;
+
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
     public class GridLine
@@ -14,7 +16,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 
         /// <summary>
         /// The color of the grid lines. If specified as an array, the first color applies to the first grid line, the second to the second grid line and so on.
-        /// <para>See <see cref="Util.Color.ColorUtil"/> for working with colors.</para>
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// <para>Type has to be <c>string</c> or <c>string[]</c></para>
         /// </summary>
         public object Color { get; set; }
@@ -58,7 +60,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 
         /// <summary>
         /// Stroke color of the grid line for the first index (index 0).
-        /// <para>See <see cref="Util.Color.ColorUtil"/> for working with colors.</para>
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string ZeroLineColor { get; set; }
 
