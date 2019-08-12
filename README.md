@@ -1,4 +1,8 @@
 # ChartJs interop with Blazor
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Joelius300/ChartJSBlazor/blob/master/LICENSE.md)
+[![Join the chat at https://gitter.im/ChartJSBlazor/community](https://badges.gitter.im/ChartJSBlazor/community.svg)](https://gitter.im/ChartJSBlazor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart.js).
 You can use the library in both client- and server-side projects.
 
@@ -128,6 +132,3 @@ or this code if you want the bundled version of `Chart.Js`, but without the loca
 
 # Contributing
 We really like people helping us with the project. Nevertheless, take your time to read our contributing guidelines [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/CONTRIBUTING.md).
-
-# License
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Joelius300/ChartJSBlazor/blob/master/LICENSE.md)
