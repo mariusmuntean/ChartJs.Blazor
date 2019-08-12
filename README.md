@@ -1,6 +1,9 @@
 # ChartJs interop with Blazor
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Joelius300/ChartJSBlazor/blob/master/LICENSE.md)
+[![GitHub issues](https://img.shields.io/github/issues/Joelius300/ChartJSBlazor.svg)](https://github.com/Joelius300/ChartJSBlazor/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Joelius300/ChartJSBlazor.svg)](https://github.com/Joelius300/ChartJSBlazor/network)
+[![GitHub stars](https://img.shields.io/github/stars/Joelius300/ChartJSBlazor.svg)](https://github.com/Joelius300/ChartJSBlazor/stargazers)
 [![Join the chat at https://gitter.im/ChartJSBlazor/community](https://badges.gitter.im/ChartJSBlazor/community.svg)](https://gitter.im/ChartJSBlazor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart.js).
