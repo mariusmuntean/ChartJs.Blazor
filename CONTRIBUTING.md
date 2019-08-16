@@ -5,9 +5,12 @@ Here is our guidance for how to propose new features and submit contributions vi
 To eliminate unnecessary effort and frustration and to ensure no one wastes time please file an issue before doing anything else.
 
 ### How to file an issue
-Before filing a new issue, please look through already existing issues. Search open and closed issues first, it may be that someone else has already found the problem you have and has filed an issue. Please don't clutter up the repo with duplicate issues.
+Before filing a new issue, please look through already existing issues. Search open and closed issues first, it may be that someone else has already found the problem you have and has filed an issue. Please don't clutter up the repo with duplicate issues.  
 
-If no existing issue describes the problem/ feature idea you have: Great! - please file a new issue
+Also, if something isn't working like you expect it to, I really encourage you to look at the actual [chart.js-docs](https://www.chartjs.org/docs/latest/) before submitting an issue. It's also always helpful if you include a reference to the official docs to back you up when opening an issue about wrong behaviour.  
+Since there are a lot of options for chart.js, it's really easy to miss small errors which can cause trouble. Show us your research if you find one :)
+
+If no existing issue describes the problem / feature idea you have: Great! - please file a new issue
 
 ### File a new Issue
 - Have a question that you don't see answered in our (sparse) documentation? File an issue
