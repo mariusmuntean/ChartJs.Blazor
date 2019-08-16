@@ -1,4 +1,11 @@
 # ChartJs interop with Blazor
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Joelius300/ChartJSBlazor/blob/master/LICENSE.md)
+[![GitHub issues](https://img.shields.io/github/issues/Joelius300/ChartJSBlazor.svg)](https://github.com/Joelius300/ChartJSBlazor/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Joelius300/ChartJSBlazor.svg)](https://github.com/Joelius300/ChartJSBlazor/network)
+[![GitHub stars](https://img.shields.io/github/stars/Joelius300/ChartJSBlazor.svg)](https://github.com/Joelius300/ChartJSBlazor/stargazers)
+[![Join the chat at https://gitter.im/ChartJSBlazor/community](https://badges.gitter.im/ChartJSBlazor/community.svg)](https://gitter.im/ChartJSBlazor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart.js).
 You can use the library in both client- and server-side projects.
 
@@ -126,5 +133,5 @@ or this code if you want the bundled version of `Chart.Js`, but without the loca
 * [SeppPenner](https://github.com/SeppPenner)
 * [MindSwipe](https://github.com/MindSwipe)
 
-# License
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Joelius300/ChartJSBlazor/blob/master/LICENSE.md)
+# Contributing
+We really like people helping us with the project. Nevertheless, take your time to read our contributing guidelines [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/CONTRIBUTING.md).

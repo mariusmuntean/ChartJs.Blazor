@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Enums;
+using ChartJs.Blazor.Util.Color;
 
 namespace ChartJs.Blazor.ChartJS.ScatterChart
 {
@@ -109,11 +110,13 @@ namespace ChartJs.Blazor.ChartJS.ScatterChart
 
         /// <summary>
         /// The fill color under the line.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string BackgroundColor { get; set; }
 
         /// <summary>
         /// The color of the line.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string BorderColor { get; set; }
     }

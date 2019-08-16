@@ -1,4 +1,5 @@
 ﻿using ChartJs.Blazor.ChartJS.Common.Enums;
+using ChartJs.Blazor.Util.Color;
 using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.RadarChart
@@ -14,11 +15,13 @@ namespace ChartJs.Blazor.ChartJS.RadarChart
 
         /// <summary>
         /// The fill color under the line.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string BackgroundColor { get; set; }
 
         /// <summary>
-        /// The color of the line
+        /// The color of the line.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string BorderColor { get; set; }
 
@@ -61,11 +64,13 @@ namespace ChartJs.Blazor.ChartJS.RadarChart
 
         /// <summary>
         /// The fill color for points.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string[] PointBackgroundColor { get; set; } = {"#DB5571"};
 
         /// <summary>
         /// The border color for points.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string[] PointBorderColor { get; set; } = {"#6D2A39"};
 
@@ -96,11 +101,13 @@ namespace ChartJs.Blazor.ChartJS.RadarChart
 
         /// <summary>
         /// Point background color when hovered.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string[] PointHoverBackgroundColor { get; set; }
 
         /// <summary>
         /// Point border color when hovered.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string[] PointHoverBorderColor { get; set; }
 

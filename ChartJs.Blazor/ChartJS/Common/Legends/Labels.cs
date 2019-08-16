@@ -1,4 +1,6 @@
-﻿namespace ChartJs.Blazor.ChartJS.Common.Legends
+﻿using ChartJs.Blazor.Util.Color;
+
+namespace ChartJs.Blazor.ChartJS.Common.Legends
 {
     /// <summary>
     /// The legend label configuration is nested below the legend configuration
@@ -25,9 +27,9 @@
 
         /// <summary>
         /// Color of text.
-        /// <para>See <see cref="Util.Color.ColorUtil"/> for working with colors.</para>
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public string FontColor { get; set; } = Util.Color.ColorUtil.ColorHexString(102, 102, 102);
+        public string FontColor { get; set; } = ColorUtil.ColorHexString(102, 102, 102);
 
         /// <summary>
         /// Padding between rows of colored boxes.

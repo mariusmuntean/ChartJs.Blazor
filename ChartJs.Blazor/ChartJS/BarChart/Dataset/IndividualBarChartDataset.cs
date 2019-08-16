@@ -13,12 +13,14 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
     public class IndividualBarChartDataset<TData> : BaseBarChartDataset<TData> where TData : class
     {
         /// <summary>
-        /// The fill color of the bar
+        /// The fill color of the bar.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string[] BackgroundColor { get; set; }
 
         /// <summary>
         /// The color of the bar border.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string[] BorderColor { get; set; } = {ColorUtil.ColorString(128, 128, 128, 0.1)};
 
@@ -29,11 +31,13 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
 
         /// <summary>
         /// The fill color of the bars when hovered.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string[] HoverBackgroundColor { get; set; }
 
         /// <summary>
         /// The stroke color of the bars when hovered.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string[] HoverBorderColor { get; set; }
 

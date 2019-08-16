@@ -1,4 +1,6 @@
-﻿namespace ChartJs.Blazor.ChartJS.LineChart
+﻿using ChartJs.Blazor.Util.Color;
+
+namespace ChartJs.Blazor.ChartJS.LineChart
 {
     /// <summary>
     /// Defines options for how to display an axis title.
@@ -26,7 +28,7 @@
 
         /// <summary>
         /// The fontcolor of the label
-        /// <para>See <see cref="Util.Color.ColorUtil"/> for working with colors.</para>
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string FontColor { get; set; }
 
