@@ -1,12 +1,9 @@
 ﻿using ChartJs.Blazor.ChartJS.Common.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ChartJs.Blazor.ChartJS.LineChart.Axes
+namespace ChartJs.Blazor.ChartJS.Common
 {
     /// <summary>
-    /// As per documentation here https://www.chartjs.org/docs/latest/axes/#common-configuration
+    /// As per documentation here https://www.chartjs.org/docs/latest/axes/#common-configuration.
     /// </summary>
     public abstract class Axis
     {

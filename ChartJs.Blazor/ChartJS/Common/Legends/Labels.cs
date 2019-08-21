@@ -23,7 +23,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends
         ///
         /// <para>Supported fonts: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-label-configuration </para>
         /// </summary>
-        public string FontStyle { get; set; } = "normal";
+        public string FontStyle { get; set; }
 
         /// <summary>
         /// Color of text.

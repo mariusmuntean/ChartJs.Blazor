@@ -17,7 +17,7 @@
         public int AutoSkipPadding { get; set; }
 
         /// <summary>
-        /// Distance in pixels to offset the label from the centre point of the tick (in the x direction for the x axis, and the y direction for the y axis). 
+        /// Distance in pixels to offset the label from the centre point of the tick (in the x direction for the x axis, and the y direction for the y axis).
         /// <para>Note: this can cause labels at the edges to be cropped by the edge of the canvas.</para>
         /// </summary>
         public int LabelOffset { get; set; }

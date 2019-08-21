@@ -1,8 +1,11 @@
 using ChartJs.Blazor.Util.Color;
 
-namespace ChartJs.Blazor.ChartJS.LineChart
+namespace ChartJs.Blazor.ChartJS.Common
 {
-    public class GridLine
+    /// <summary>
+    /// The grid lines sub-config of the axis-configuration (see <see cref="Axis"/>).
+    /// </summary>
+    public class GridLines
     {
         /// <summary>
         /// If false, do not display grid lines for this axis.

@@ -1,5 +1,6 @@
 ﻿using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Properties;
+using ChartJs.Blazor.ChartJS.LineChart.Axes;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
@@ -24,7 +25,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public Tooltips Tooltips { get; set; }
 
         /// <summary>
-        /// The scales for this chart. You can use any <see cref="Axes.CartesianAxis"/> for x and y.
+        /// The scales for this chart. You can use any <see cref="CartesianAxis"/> for x and y.
         /// </summary>
         public Scales Scales { get; set; }
 

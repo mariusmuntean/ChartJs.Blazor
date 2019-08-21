@@ -43,7 +43,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart.Axes
         /// <summary>
         /// Defines options for the grid lines that run perpendicular to the axis.
         /// </summary>
-        public GridLine GridLines { get; set; }
+        public GridLines GridLines { get; set; }
 
         //[JsonProperty("stacked")]
         //public bool Stacked { get; set; } // <- TODO: remove (probably concrete)

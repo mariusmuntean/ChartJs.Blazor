@@ -1,9 +1,12 @@
 ﻿namespace ChartJs.Blazor.ChartJS.Common.Properties
 {
-    public class PieDoughnutAnimation
+    /// <summary>
+    /// The animation-subconfig of the options for a radial chart.
+    /// </summary>
+    public class ArcAnimation
     {
         /// <summary>
-        /// If true, the chart will animate in with a rotation animation. This property is in the options.animation object.
+        /// If true, the chart will animate in with a rotation animation.
         /// </summary>
         public bool AnimateRotate { get; set; } = true;
 

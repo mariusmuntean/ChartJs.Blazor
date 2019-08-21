@@ -35,7 +35,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public static explicit operator DateTime(Moment moment) => moment.Value;
 
         /// <summary>
-        /// Returns a value indicating whether this instance is equal to a specified object.
+        /// Returns the value indicating whether this instance is equal to a specified object.
         /// </summary>
         /// <param name="obj">The object to compare to this instance.</param>
         /// <returns>true if the other object is a wrapper for the same <see cref="DateTime"/> value 

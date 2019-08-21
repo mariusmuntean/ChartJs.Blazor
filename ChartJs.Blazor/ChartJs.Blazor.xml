@@ -43,12 +43,14 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarChartDataset`1.BackgroundColor">
             <summary>
-            The fill color of the bar
+            The fill color of the bar.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarChartDataset`1.BorderColor">
             <summary>
             The color of the bar border.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarChartDataset`1.BorderWidth">
@@ -59,11 +61,13 @@
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarChartDataset`1.HoverBackgroundColor">
             <summary>
             The fill color of the bars when hovered.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarChartDataset`1.HoverBorderColor">
             <summary>
             The stroke color of the bars when hovered.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarChartDataset`1.HoverBorderWidth">
@@ -118,12 +122,14 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarChartDataset`1.BackgroundColor">
             <summary>
-            The fill color of the bar
+            The fill color of the bar.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarChartDataset`1.BorderColor">
             <summary>
             The color of the bar border.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarChartDataset`1.BorderWidth">
@@ -134,11 +140,13 @@
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarChartDataset`1.HoverBackgroundColor">
             <summary>
             The fill color of the bars when hovered.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarChartDataset`1.HoverBorderColor">
             <summary>
             The stroke color of the bars when hovered.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarChartDataset`1.HoverBorderWidth">
@@ -148,17 +156,29 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleChartDataset.BackgroundColor">
             <summary>
-            rgba(0,0,0,0.1)'
+            rgba(0,0,0,0.1)'.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleChartDataset.BorderColor">
             <summary>
-            rgba(0,0,0,0.1)'
+            rgba(0,0,0,0.1)'.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleChartDataset.BorderWidth">
             <summary>
             Default 3
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleChartDataset.HoverBackgroundColor">
+            <summary>
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleChartDataset.HoverBorderColor">
+            <summary>
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleChartDataset.Label">
@@ -196,6 +216,22 @@
              </summary>
              <param name="chartConfig"></param>
              <returns></returns>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axis">
+            <summary>
+            As per documentation here https://www.chartjs.org/docs/latest/axes/#common-configuration.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axis.Display">
+            <summary>
+            Controls the axis global visibility (visible when <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.AxisDisplay.True"/>, hidden when <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.AxisDisplay.False"/>). 
+            When display: <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.AxisDisplay.Auto"/>, the axis is visible only if at least one associated dataset is visible.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axis.Weight">
+            <summary>
+            The weight used to sort the axis. Higher weights are further away from the chart area.
+            </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.BaseChartConfigOptions">
             <summary>
@@ -520,6 +556,87 @@
             </summary>
             
         </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.GridLines">
+            <summary>
+            The grid lines sub-config of the axis-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axis"/>).
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.Display">
+            <summary>
+            If false, do not display grid lines for this axis.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.Circular">
+            <summary>
+            If true, gridlines are circular (on radar chart only).
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.Color">
+            <summary>
+            The color of the grid lines. If specified as an array, the first color applies to the first grid line, the second to the second grid line and so on.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>Type has to be <c>string</c> or <c>string[]</c></para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.BorderDash">
+            <summary>
+            Length and spacing of dashes on grid lines
+            <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash for patterns and details</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.LineWidth">
+            <summary>
+            Stroke width of grid lines.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.DrawBorder">
+            <summary>
+            If true, draw border at the edge between the axis and the chart area.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.DrawOnChartArea">
+            <summary>
+            If true, draw lines on the chart area inside the axis lines. This is useful when there are multiple axes and you need to control which grid lines are drawn.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.DrawTicks">
+            <summary>
+            If true, draw lines beside the ticks in the axis area beside the chart.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.TickMarkLength">
+            <summary>
+            Length in pixels that the grid lines will draw into the axis area.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.ZeroLineWidth">
+            <summary>
+            Stroke width of the grid line for the first index (index 0).
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.ZeroLineColor">
+            <summary>
+            Stroke color of the grid line for the first index (index 0).
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.ZeroLineBorderDash">
+            <summary>
+            Length and spacing of dashes of the grid line for the first index (index 0). 
+            <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash for details</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.ZeroLineBorderDashOffset">
+            <summary>
+            Offset for line dashes of the grid line for the first index (index 0).
+            <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset for details</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.OffsetGridLines">
+            <summary>
+            If true, grid lines will be shifted to be between labels. This is set to true for a category scale in a bar chart by default.
+            </summary>
+        </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration">
             <summary>
             The legend label configuration is nested below the legend configuration
@@ -776,6 +893,23 @@
             </summary>
             <param name="fullFunctionName">The namespace and name of a Javascript function to be called when hovering on a Legend item.</param>
         </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.MajorTicks">
+            <summary>
+            The major ticks sub-config of the tick-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/>).
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/styling.html#major-tick-configuration </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.MajorTicks.Enabled">
+            <summary>
+            Gets or sets the value indicating whether these options are used to show major ticks.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.MinorTicks">
+            <summary>
+            The minor ticks sub-config of the tick-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/>).
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/styling.html#minor-tick-configuration </para>
+            </summary>
+        </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Properties.Animation">
             <summary>
             Defines some animation configurations
@@ -784,6 +918,21 @@
         <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.Animation.Duration">
             <summary>
             Defines the duration of the animation
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Properties.ArcAnimation">
+            <summary>
+            The animation-subconfig of the options for a radial chart.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.ArcAnimation.AnimateRotate">
+            <summary>
+            If true, the chart will animate in with a rotation animation.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.ArcAnimation.AnimateScale">
+            <summary>
+            If true, will animate scaling the chart from the center outwards.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Properties.OptionsTitle">
@@ -801,16 +950,6 @@
             The actual title to display
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.PieDoughnutAnimation.AnimateRotate">
-            <summary>
-            If true, the chart will animate in with a rotation animation. This property is in the options.animation object.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.PieDoughnutAnimation.AnimateScale">
-            <summary>
-            If true, will animate scaling the chart from the center outwards.
-            </summary>
-        </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Properties.Tooltips">
             <summary>
             Defines how tooltips are displayed
@@ -824,6 +963,96 @@
         <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.Tooltips.Intersect">
             <summary>
             If true, the hover mode only applies when the mouse position intersects an item on the chart.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.SubTicks">
+            <summary>
+            The base class for minor and major ticks (see <see cref="T:ChartJs.Blazor.ChartJS.Common.MinorTicks"/> and see <see cref="T:ChartJs.Blazor.ChartJS.Common.MajorTicks"/>).
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.SubTicks.FontColor">
+            <summary>
+            Gets or sets the font color for a tick's labels.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.SubTicks.FontFamily">
+            <summary>
+            Gets or sets the font family for a tick's label, follows CSS font-family options.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.SubTicks.FontSize">
+            <summary>
+            Gets or sets the font size for a tick's label.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.SubTicks.FontStyle">
+            <summary>
+            Gets or sets the font style for a tick's label, follows CSS font-style options (i.e. normal, italic, oblique, initial, inherit).
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.SubTicks.LineHeight">
+            <summary>
+            Gets or sets the height of an individual line of text.
+            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/CSS/line-height </para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Ticks">
+            <summary>
+            The ticks-subconfig of the axis-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axis"/>).
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/styling.html#tick-configuration </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.Display">
+            <summary>
+            Gets or sets the value indicating whether this shows <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/> marks.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.FontColor">
+            <summary>
+            Gets or sets the font color for <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/> labels.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.FontFamily">
+            <summary>
+            Gets or sets the font family for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/> labels, follows CSS font-family options.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.FontSize">
+            <summary>
+            Gets or sets the font size for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/> labels.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.FontStyle">
+            <summary>
+            Gets or sets the font style for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/> labels, follows CSS font-style options (i.e. normal, italic, oblique, initial, inherit).
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.LineHeight">
+            <summary>
+            Gets or sets the height of an individual line of text.
+            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/CSS/line-height </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.Reverse">
+            <summary>
+            Gets or sets the value indicating whether the order of <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/> labels is reversed.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.Minor">
+            <summary>
+            Gets or sets the minor ticks configuration. Omitted options are inherited from options above (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/>).
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.Major">
+            <summary>
+            Gets or sets the major ticks configuration. Omitted options are inherited from options above (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/>).
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.Padding">
+            <summary>
+            Gets or sets the offset of the tick labels from the axis
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Utils.ArgValidation">
@@ -861,22 +1090,6 @@
             </summary>
             <param name="methodInfo"></param>
             <exception cref="T:System.ArgumentException">Thrown if the method info is not for a static method</exception>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.Axes.Axis">
-            <summary>
-            As per documentation here https://www.chartjs.org/docs/latest/axes/#common-configuration
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Axis.Display">
-            <summary>
-            Controls the axis global visibility (visible when <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.AxisDisplay.True"/>, hidden when <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.AxisDisplay.False"/>). 
-            When display: <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.AxisDisplay.Auto"/>, the axis is visible only if at least one associated dataset is visible.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Axis.Weight">
-            <summary>
-            The weight used to sort the axis. Higher weights are further away from the chart area.
-            </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis">
             <summary>
@@ -983,7 +1196,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.CartesianTicks.LabelOffset">
             <summary>
-            Distance in pixels to offset the label from the centre point of the tick (in the x direction for the x axis, and the y direction for the y axis). 
+            Distance in pixels to offset the label from the centre point of the tick (in the x direction for the x axis, and the y direction for the y axis).
             <para>Note: this can cause labels at the edges to be cropped by the edge of the canvas.</para>
             </summary>
         </member>
@@ -1116,82 +1329,6 @@
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.TimeAxis.Time">
             <summary>
             Configuration for time related stuff
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.GridLine.Display">
-            <summary>
-            If false, do not display grid lines for this axis.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.GridLine.Circular">
-            <summary>
-            If true, gridlines are circular (on radar chart only).
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.GridLine.Color">
-            <summary>
-            The color of the grid lines. If specified as an array, the first color applies to the first grid line, the second to the second grid line and so on.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
-            <para>Type has to be <c>string</c> or <c>string[]</c></para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.GridLine.BorderDash">
-            <summary>
-            Length and spacing of dashes on grid lines
-            <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash for patterns and details</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.GridLine.LineWidth">
-            <summary>
-            Stroke width of grid lines.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.GridLine.DrawBorder">
-            <summary>
-            If true, draw border at the edge between the axis and the chart area.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.GridLine.DrawOnChartArea">
-            <summary>
-            If true, draw lines on the chart area inside the axis lines. This is useful when there are multiple axes and you need to control which grid lines are drawn.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.GridLine.DrawTicks">
-            <summary>
-            If true, draw lines beside the ticks in the axis area beside the chart.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.GridLine.TickMarkLength">
-            <summary>
-            Length in pixels that the grid lines will draw into the axis area.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.GridLine.ZeroLineWidth">
-            <summary>
-            Stroke width of the grid line for the first index (index 0).
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.GridLine.ZeroLineColor">
-            <summary>
-            Stroke color of the grid line for the first index (index 0).
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.GridLine.ZeroLineBorderDash">
-            <summary>
-            Length and spacing of dashes of the grid line for the first index (index 0). 
-            <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash for details</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.GridLine.ZeroLineBorderDashOffset">
-            <summary>
-            Offset for line dashes of the grid line for the first index (index 0).
-            <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset for details</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.GridLine.OffsetGridLines">
-            <summary>
-            If true, grid lines will be shifted to be between labels. This is set to true for a category scale in a bar chart by default.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineChartConfig">
@@ -1446,7 +1583,7 @@
         </member>
         <member name="M:ChartJs.Blazor.ChartJS.LineChart.Moment.Equals(System.Object)">
             <summary>
-            Returns a value indicating whether this instance is equal to a specified object.
+            Returns the value indicating whether this instance is equal to a specified object.
             </summary>
             <param name="obj">The object to compare to this instance.</param>
             <returns>true if the other object is a wrapper for the same <see cref="T:System.DateTime"/> value 
@@ -1676,6 +1813,7 @@
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.BackgroundColor">
             <summary>
             Gets the fill color of the arcs in the dataset.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.BorderAlign">
@@ -1687,6 +1825,7 @@
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.BorderColor">
             <summary>
             Gets the border color of the arcs in the dataset.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.BorderWidth">
@@ -1697,11 +1836,13 @@
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.HoverBackgroundColor">
             <summary>
             Gets the fill colour of the arcs when hovered.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.HoverBorderColor">
             <summary>
             Gets the stroke colour of the arcs when hovered.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.HoverBorderWidth">
@@ -1739,7 +1880,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartOptions.Animation">
             <summary>
-            Gets or sets the animation the chart uses.
+            Gets or sets the animation-configuration for this chart.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartOptions.Rotation">
@@ -1752,39 +1893,268 @@
             Gets or sets the sweep to allow arcs to cover.
             </summary>
         </member>
+        <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.AngleLines">
+            <summary>
+            The angle lines sub-config of the linear-radial-axis-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis"/>).
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/linear.html </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.AngleLines.Display">
+            <summary>
+            Gets or sets the value indicating whether the angle line is displayed or not.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.AngleLines.Color">
+            <summary>
+            Gets or sets the color of the angled lines.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.AngleLines.LineWidth">
+            <summary>
+            Gets or sets the width of the angled lines.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.AngleLines.BorderDash">
+            <summary>
+            Gets or sets the length and spacing of dashes of the angled lines.
+            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.AngleLines.BorderDashOffset">
+            <summary>
+            Gets or sets the offset for line dashes.
+            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset </para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis">
+            <summary>
+            A linear readial axis.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis.AngleLines">
+            <summary>
+            Gets or sets the angle lines configuration.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#angle-line-options </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis.GridLines">
+            <summary>
+            Gets or sets the grid lines configuration.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/styling.html#grid-line-configuration </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis.PointLabels">
+            <summary>
+            Gets or sets the point labels configuration.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis.Ticks">
+            <summary>
+            Gets or sets the ticks configuration.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#tick-options </para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks">
+            <summary>
+            The ticks sub-config of the <see cref="T:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis"/>.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.BackdropColor">
+            <summary>
+            Gets or sets the color of the label backdrops.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.BackdropPaddingX">
+            <summary>
+            Gets or sets the horizontal padding of label backdrop.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.BackdropPaddingY">
+            <summary>
+            Gets or sets the vertical padding of label backdrop.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.BeginAtZero">
+            <summary>
+            Gets or sets the value indicating whether the scale will include 0 if it is not already included.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.Min">
+            <summary>
+            Gets or sets the user defined minimum number for the scale, overrides minimum value from data.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.Max">
+            <summary>
+            Gets or sets the user defined maximum number for the scale, overrides minimum value from data.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.MaxTicksLimit">
+            <summary>
+            Gets or sets the maximum number of ticks and gridlines to show.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.Precision">
+            <summary>
+            If defined and StepSize is not specified, the step size will be rounded to this many decimal places.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.StepSize">
+            <summary>
+            Gets or sets the user defined fixed step size for the scale.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.SuggestedMax">
+            <summary>
+            Gets or sets the adjustment used when calculating the maximum data value.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.SuggestedMin">
+            <summary>
+            Gets or sets the adjustment used when calculating the minimum data value.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.ShowLabelBackdrop">
+            <summary>
+            Gets or sets the value indicating whether a background is drawn behind the tick labels.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.PointLabels">
+            <summary>
+            The point labels sub-config of the linear-radial-axis-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis"/>).
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.PointLabels.FontColor">
+            <summary>
+            Gets the font color for a point label.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.PointLabels.FontSize">
+            <summary>
+            Gets or sets the font size in pixels.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.PointLabels.FontStyle">
+            <summary>
+            Gets or sets the font style to use when rendering a point label.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.PointLabels.LineHeight">
+            <summary>
+            Gets or sets the height of an individual line of text.
+            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/CSS/line-height </para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaChartConfig">
+            <summary>
+            Config for a <see cref="T:ChartJs.Blazor.Charts.ChartJsPolarAreaChart"/>
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaChartConfig.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaChartConfig"/>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaData">
+            <summary>
+            The data-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaChartConfig"/>.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaData.Labels">
+            <summary>
+            Gets the labels the chart will use.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaData.Datasets">
+            <summary>
+            Gets the datasets displayed in this chart.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset">
+            <summary>
+            A dataset for a <see cref="T:ChartJs.Blazor.Charts.ChartJsPolarAreaChart"/>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.Type">
+            <summary>
+            Gets the chart type. <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes.PolarArea"/> in this case. This is needed for mixed datasets only.
+            </summary>
+        </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.BackgroundColor">
             <summary>
-            The fill color of the arcs in the dataset. 
+            Gets the fill color of the arcs in the dataset.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.BorderAlign">
+            <summary>
+            Gets or sets the border align. When 'center' is set, the borders of arcs next to each other will overlap.
+            When 'inner' is set, it is guaranteed that all the borders are not overlap.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.BorderColor">
             <summary>
-            The border color of the arcs in the dataset
+            Gets the border color of the arcs in the dataset.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.BorderWidth">
             <summary>
-            The border width of the arcs in the dataset.
+            Gets the border width of the arcs in the dataset.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.HoverBackgroundColor">
             <summary>
-            The fill colour of the arcs when hovered.
+            Gets the fill colour of the arcs when hovered.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.HoverBorderColor">
             <summary>
-            The stroke colour of the arcs when hovered.
+            Gets the stroke colour of the arcs when hovered.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.HoverBorderWidth">
             <summary>
-            The stroke width of the arcs when hovered.
+            Gets the stroke width of the arcs when hovered.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.Data">
+            <summary>
+            Gets the data in the dataset.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaOptions">
+            <summary>
+            The options-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaChartConfig"/>.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaOptions.StartAngle">
             <summary>
-            Starting angle to draw arcs for the first item in a dataset.
+            Gets or sets the starting angle to draw arcs for the first item in a dataset.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaOptions.Animation">
+            <summary>
+            Gets or sets the animation-configuration for this chart.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaOptions.Scale">
+            <summary>
+            The scale (axis) for this chart.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.Label">
@@ -1795,11 +2165,13 @@
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.BackgroundColor">
             <summary>
             The fill color under the line.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.BorderColor">
             <summary>
-            The color of the line
+            The color of the line.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.BorderWidth">
@@ -1842,11 +2214,13 @@
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointBackgroundColor">
             <summary>
             The fill color for points.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointBorderColor">
             <summary>
             The border color for points.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointBorderWidth">
@@ -1877,11 +2251,13 @@
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointHoverBackgroundColor">
             <summary>
             Point background color when hovered.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointHoverBorderColor">
             <summary>
             Point border color when hovered.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointHoverBorderWidth">
@@ -1989,11 +2365,13 @@
         <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.BackgroundColor">
             <summary>
             The fill color under the line.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.BorderColor">
             <summary>
             The color of the line.
+            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.Util.Color.ColorUtil">
