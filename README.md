@@ -104,7 +104,7 @@ The example covers a few static options, how to use a simple point-dataset and h
 <ChartJsLineChart @ref="lineChartJs" Config="@lineConfig" Width="600" Height="300" />
 <Button @onclick="@UpdateChart">Add random point</Button>
 
-@functions
+@code
 {
     LineConfig lineConfig;
     ChartJsLineChart lineChartJs;
