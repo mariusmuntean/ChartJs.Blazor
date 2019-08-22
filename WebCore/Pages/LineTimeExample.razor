@@ -13,9 +13,9 @@
 @inject IJSRuntime jsRuntime
 
 <h2>Line Time Chart</h2>
-<ChartJsLineChart @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
+<ChartJsLineChart @ref="lineChartJs" @ref:suppressField Config="@lineChartConfig" Width="600" Height="300" />
 
-@functions
+@code
 {
     LineChartConfig lineChartConfig;
     ChartJsLineChart lineChartJs;
@@ -37,7 +37,7 @@
         if(!localeChanged) Console.WriteLine($"Locale was not changed to {de_ch}. Either it already is {de_ch} or this locale doesn't exist.");
     }
 
-    protected override async Task OnInitAsync()
+    protected override async Task OnInitializedAsync()
     {
         lineChartConfig = new LineChartConfig
         {

@@ -12,14 +12,14 @@
 @inject WeatherForecastService ForecastService
 
 <h2>Line Logarithmic Chart</h2>
-<ChartJsLineChart @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
+<ChartJsLineChart @ref="lineChartJs" @ref:suppressField Config="@lineChartConfig" Width="600" Height="300" />
 
-@functions
+@code
 {
     LineChartConfig lineChartConfig;
     ChartJsLineChart lineChartJs;
 
-    protected override async Task OnInitAsync()
+    protected override async Task OnInitializedAsync()
     {
         lineChartConfig = new LineChartConfig
         {
