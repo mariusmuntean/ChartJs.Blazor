@@ -7,10 +7,10 @@
 
 > `Creates a new instance of <see cref="CLASS"/>`
 
-#### Example LineChartConfig
+#### Example LineConfig
 ```
 /// <summary>
-/// Creates a new instance of <see cref="LineChartConfig"/>
+/// Creates a new instance of <see cref="LineConfig"/>
 /// </summary>
 ```
 
@@ -19,7 +19,7 @@
  
 > `Config for a <see cref="CHART"/>`
 
-#### Example LineChartConfig
+#### Example LineConfig
 ```
 /// <summary>
 /// Config for a <see cref="ChartJs.Blazor.Charts.ChartJsLineChart"/>
@@ -31,10 +31,10 @@
 
 > `The options-subconfig of a <see cref="CONFIG"/>`
 
-#### Example LineChartOptions
+#### Example LineOptions
 ```
 /// <summary>
-/// The options-subconfig of a <see cref="LineChartConfig"/>
+/// The options-subconfig of a <see cref="LineConfig"/>
 /// </summary>
 ```
 
@@ -43,10 +43,10 @@
 
 > `The data-subconfig of a <see cref="CONFIG"/>`
 
-#### Example LineChartData
+#### Example LineData
 ```
 /// <summary>
-/// The data-subconfig of a <see cref="LineChartConfig"/>
+/// The data-subconfig of a <see cref="LineConfig"/>
 /// </summary>
 ```
 
@@ -61,7 +61,7 @@ It should also include a mention of the wrappers if it implements the covariant 
 
 > `Defines the type of data in this dataset. Use Wrappers from <see cref="Common.Wrappers"/> for value types.`
 
-#### Example LineChartDataset<TData>
+#### Example LineDataset<TData>
 ```
 /// <summary>
 /// A dataset for a <see cref="Charts.ChartJsLineChart"/>

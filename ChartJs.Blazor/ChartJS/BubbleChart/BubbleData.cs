@@ -1,12 +1,13 @@
-﻿using ChartJs.Blazor.ChartJS.Common;
+﻿using System.Collections.Generic;
+using ChartJs.Blazor.ChartJS.Common;
+using ChartJs.Blazor.ChartJS.Common.Properties;
 
 namespace ChartJs.Blazor.ChartJS.BubbleChart
 {
-    public class BubbleData:Point
+    public class BubbleData
     {
-        /// <summary>
-        /// Bubble radius, in pixels, not scaled
-        /// </summary>
-        public double r { get; set; }
+        public Animation Animation { get; set; }
+
+        public List<BubbleDataset> Datasets { get; set; }
     }
 }

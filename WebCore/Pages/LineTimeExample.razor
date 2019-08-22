@@ -13,11 +13,11 @@
 @inject IJSRuntime jsRuntime
 
 <h2>Line Time Chart</h2>
-<ChartJsLineChart @ref="lineChartJs" @ref:suppressField Config="@lineChartConfig" Width="600" Height="300" />
+<ChartJsLineChart @ref="lineChartJs" @ref:suppressField Config="@lineConfig" Width="600" Height="300" />
 
 @code
 {
-    LineChartConfig lineChartConfig;
+    LineConfig lineConfig;
     ChartJsLineChart lineChartJs;
     const string de_ch = "de-ch";
     private bool localeChangeWasAttempted = false;
@@ -39,10 +39,10 @@
 
     protected override async Task OnInitializedAsync()
     {
-        lineChartConfig = new LineChartConfig
+        lineConfig = new LineConfig
         {
             CanvasId = "timeChartExample",
-            Options = new LineChartOptions
+            Options = new LineOptions
             {
                 Responsive = true,
                 Title = new OptionsTitle
@@ -88,7 +88,7 @@
                         }
                         }
                 },
-                Hover = new LineChartOptionsHover
+                Hover = new LineOptionsHover
                 {
                     Intersect = true,
                     Mode = InteractionMode.Y
@@ -98,11 +98,11 @@
 
         var forecasts = await ForecastService.GetForecastAsync(DateTime.Now, 2);
 
-        var tempDataSet = new LineChartDataset<TimeTupel<int>>
+        var tempDataSet = new LineDataset<TimeTupel<int>>
         {
             BackgroundColor = "#ff6384",
             BorderColor = "#ff6384",
-            Label = "Temperatur in C°",
+            Label = "Temperatur in CÂ°",
             Fill = false,
             BorderWidth = 2,
             PointRadius = 3,
@@ -111,7 +111,7 @@
         };
 
         tempDataSet.AddRange(forecasts.Select(p => new TimeTupel<int>(new Moment(p.Date), p.TemperatureC)));
-        lineChartConfig.Data.Datasets.Add(tempDataSet);
+        lineConfig.Data.Datasets.Add(tempDataSet);
     }
 
     protected override async Task OnAfterRenderAsync()

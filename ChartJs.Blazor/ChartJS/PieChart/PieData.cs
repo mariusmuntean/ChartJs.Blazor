@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace ChartJs.Blazor.ChartJS.PolarAreaChart
+namespace ChartJs.Blazor.ChartJS.PieChart
 {
     /// <summary>
-    /// The data-subconfig of a <see cref="PolarAreaConfig"/>.
+    /// The data-subconfig of a <see cref="PieConfig"/>.
     /// </summary>
-    public class PolarAreaData
+    public class PieData
     {
         /// <summary>
         /// Gets the labels the chart will use.
@@ -15,6 +15,6 @@ namespace ChartJs.Blazor.ChartJS.PolarAreaChart
         /// <summary>
         /// Gets the datasets displayed in this chart.
         /// </summary>
-        public List<PolarAreaDataset> Datasets { get; } = new List<PolarAreaDataset>();
+        public List<PieDataset> Datasets { get; } = new List<PieDataset>();
     }
 }

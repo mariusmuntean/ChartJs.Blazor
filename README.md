@@ -101,24 +101,24 @@ The example covers a few static options, how to use a simple point-dataset and h
 @using ChartJs.Blazor.Util.Color
 
 <h2>Line Linear Chart</h2>
-<ChartJsLineChart @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
+<ChartJsLineChart @ref="lineChartJs" Config="@lineConfig" Width="600" Height="300" />
 <Button @onclick="@UpdateChart">Add random point</Button>
 
 @functions
 {
-    LineChartConfig lineChartConfig;
+    LineConfig lineConfig;
     ChartJsLineChart lineChartJs;
 
-    private LineChartDataset<Point> pointDataset;
+    private LineDataset<Point> pointDataset;
 
     private Random rnd = new Random();
 
     protected override void OnInit()
     {
-        lineChartConfig = new LineChartConfig
+        lineConfig = new LineConfig
         {
             CanvasId = "mySimpleLineChart",
-            Options = new LineChartOptions
+            Options = new LineOptions
             {
                 Responsive = true,
                 Title = new OptionsTitle
@@ -166,7 +166,7 @@ The example covers a few static options, how to use a simple point-dataset and h
         };
 
 
-        pointDataset = new LineChartDataset<Point>()
+        pointDataset = new LineDataset<Point>()
         {
             BackgroundColor = ColorUtil.ColorString(0, 255, 0, 1.0),
             BorderColor = ColorUtil.ColorString(0, 0, 255, 1.0),
@@ -180,7 +180,7 @@ The example covers a few static options, how to use a simple point-dataset and h
 
         pointDataset.AddRange(Enumerable.Range(1, 10).Select(i => new Point(i, rnd.Next(30))));
 
-        lineChartConfig.Data.Datasets.Add(pointDataset);
+        lineConfig.Data.Datasets.Add(pointDataset);
     }
 
     private void UpdateChart()

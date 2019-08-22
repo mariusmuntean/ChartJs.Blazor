@@ -8,7 +8,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart.Axes
 {
     /// <summary>
     /// This axis is to be used when you want to display <see cref="string"/> values for an axis.
-    /// <para>This axis has to be used when using/defining <see cref="LineChartData.Labels"/>, <see cref="LineChartData.XLabels"/> and/or <see cref="LineChartData.YLabels"/>.</para>
+    /// <para>This axis has to be used when using/defining <see cref="LineData.Labels"/>, <see cref="LineData.XLabels"/> and/or <see cref="LineData.YLabels"/>.</para>
     /// <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/category.html </para>
     /// </summary>
     public class CategoryAxis : CartesianAxis<CategoryTicks>

@@ -4,104 +4,104 @@
         <name>ChartJs.Blazor</name>
     </assembly>
     <members>
-        <member name="T:ChartJs.Blazor.ChartJS.BarChart.BarChartConfig">
+        <member name="T:ChartJs.Blazor.ChartJS.BarChart.BarConfig">
             <summary>
             Config for a bar chart with typesafe data
             <para>Either 'bar' or 'horizontalBar'</para>
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.BarChart.BarChartOptions">
+        <member name="T:ChartJs.Blazor.ChartJS.BarChart.BarOptions">
             <summary>
             Bar Chart Config Options. Source: http://www.chartjs.org/docs/latest/charts/bar.html#configuration-options
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarChartOptions.BarPercentage">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarOptions.BarPercentage">
             <summary>
             Percent (0-1) of the available width each bar should be within the category width. 1.0 will take the whole category width and put the bars right next to each other
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarChartOptions.CategoryPercentage">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarOptions.CategoryPercentage">
             <summary>
             Percent (0-1) of the available width each category should be within the sample width.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarChartOptions.BarThickness">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarOptions.BarThickness">
             <summary>
             Manually set width of each bar in pixels. If set to 'flex', it computes "optimal" sample widths that globally arrange bars side by side. If not set (default), bars are equally sized based on the smallest interval.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarChartOptions.MaxBarThickness">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarOptions.MaxBarThickness">
             <summary>
             Set this to ensure that bars are not sized thicker than this.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarChartDataset`1">
+        <member name="T:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1">
             <summary>
             Dataset for Bar Chart with typesafe data. Source: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties
             </summary>
             <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarChartDataset`1.BackgroundColor">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.BackgroundColor">
             <summary>
             The fill color of the bar.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarChartDataset`1.BorderColor">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.BorderColor">
             <summary>
             The color of the bar border.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarChartDataset`1.BorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.BorderWidth">
             <summary>
             The stroke width of the bar in pixels.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarChartDataset`1.HoverBackgroundColor">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.HoverBackgroundColor">
             <summary>
             The fill color of the bars when hovered.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarChartDataset`1.HoverBorderColor">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.HoverBorderColor">
             <summary>
             The stroke color of the bars when hovered.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarChartDataset`1.HoverBorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.HoverBorderWidth">
             <summary>
             The stroke width of the bars when hovered.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarChartDataset`1">
+        <member name="T:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarDataset`1">
             <summary>
             A base dataset for a barchart
             </summary>
             <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarChartDataset`1.Label">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarDataset`1.Label">
             <summary>
             The label for the dataset which appears in the legend and tooltips.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarChartDataset`1.XAxisID">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarDataset`1.XAxisID">
             <summary>
             The ID of the x axis to plot this dataset on. If not specified, this defaults to the ID of the first found x axis
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarChartDataset`1.YAxisID">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarDataset`1.YAxisID">
             <summary>
             The ID of the y axis to plot this dataset on. If not specified, this defaults to the ID of the first found y axis
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarChartDataset`1.BorderSkipped">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarDataset`1.BorderSkipped">
             <summary>
             Which edge to skip drawing the border for. 
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarChartDataset`1.Stack">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarDataset`1.Stack">
              <summary>
              The ID of the group to which this dataset belongs to (when stacked, each group will be a separate stack)
             
@@ -110,7 +110,7 @@
              </para>
              </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarChartDataset`1">
+        <member name="T:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1">
              <summary>
              Dataset for Bar Chart with typesafe Data. Source: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties
             
@@ -120,75 +120,75 @@
              </summary>
              <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarChartDataset`1.BackgroundColor">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.BackgroundColor">
             <summary>
             The fill color of the bar.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarChartDataset`1.BorderColor">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.BorderColor">
             <summary>
             The color of the bar border.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarChartDataset`1.BorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.BorderWidth">
             <summary>
             The stroke width of the bar in pixels.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarChartDataset`1.HoverBackgroundColor">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.HoverBackgroundColor">
             <summary>
             The fill color of the bars when hovered.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarChartDataset`1.HoverBorderColor">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.HoverBorderColor">
             <summary>
             The stroke color of the bars when hovered.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarChartDataset`1.HoverBorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.HoverBorderWidth">
             <summary>
             The stroke width of the bars when hovered.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleChartDataset.BackgroundColor">
+        <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleDataPoint.r">
+            <summary>
+            Bubble radius, in pixels, not scaled
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleDataset.BackgroundColor">
             <summary>
             rgba(0,0,0,0.1)'.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleChartDataset.BorderColor">
+        <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleDataset.BorderColor">
             <summary>
             rgba(0,0,0,0.1)'.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleChartDataset.BorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleDataset.BorderWidth">
             <summary>
             Default 3
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleChartDataset.HoverBackgroundColor">
+        <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleDataset.HoverBackgroundColor">
             <summary>
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleChartDataset.HoverBorderColor">
+        <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleDataset.HoverBorderColor">
             <summary>
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleChartDataset.Label">
+        <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleDataset.Label">
             <summary>
             Defines the text associated to the dataset and which appears in the legend and tooltips.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleData.r">
-            <summary>
-            Bubble radius, in pixels, not scaled
             </summary>
         </member>
         <member name="M:ChartJs.Blazor.ChartJS.ChartJsInterop.ConvertExpandoObjectToDictionary(System.Dynamic.ExpandoObject)">
@@ -206,7 +206,7 @@
             <param name="value">The <see cref="!:IDictionary&lt;string, object&gt;"/> to convert</param>
             <returns>The fully converted <see cref="!:Dictionary&lt;string, object&gt;"/></returns>
         </member>
-        <member name="M:ChartJs.Blazor.ChartJS.ChartJsInterop.StripNulls(ChartJs.Blazor.ChartJS.Common.ChartConfigBase)">
+        <member name="M:ChartJs.Blazor.ChartJS.ChartJsInterop.StripNulls(ChartJs.Blazor.ChartJS.Common.ConfigBase)">
              <summary>
              Returns an object that is equivalent to the given parameter but without any null member AND it preserves DotNetInstanceClickHandler/DotNetInstanceHoverHandler members intact
             
@@ -233,84 +233,84 @@
             The weight used to sort the axis. Higher weights are further away from the chart area.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.BaseChartConfigOptions">
+        <member name="T:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions">
             <summary>
             The base config for the options-subconfig of a chart
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseChartConfigOptions.Title">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.Title">
             <summary>
             Represents the title of this chart
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseChartConfigOptions.Responsive">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.Responsive">
             <summary>
             Resizes the chart canvas when its container does.
             <para>See important note: https://www.chartjs.org/docs/latest/general/responsive.html#important-note </para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseChartConfigOptions.AspectRatio">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.AspectRatio">
             <summary>
             Canvas aspect ratio (i.e. width / height, a value of 1 representing a square canvas). 
             <para>Note that this option is ignored if the height is explicitly defined either as attribute (of the canvas) or via the style.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseChartConfigOptions.MaintainAspectRatio">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.MaintainAspectRatio">
             <summary>
             Maintain the original canvas aspect ratio (width / height) when resizing.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseChartConfigOptions.ResponsiveAnimationDuration">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.ResponsiveAnimationDuration">
             <summary>
             Duration in milliseconds it takes to animate to new size after a resize event.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseChartConfigOptions.Legend">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.Legend">
             <summary>
             The legend for this chart
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.ChartConfigBase">
+        <member name="T:ChartJs.Blazor.ChartJS.Common.ConfigBase">
             <summary>
             Base class for chart-configs
             <para>Contains the most basic required information about a chart</para>
             </summary>
         </member>
-        <member name="M:ChartJs.Blazor.ChartJS.Common.ChartConfigBase.#ctor(ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes)">
+        <member name="M:ChartJs.Blazor.ChartJS.Common.ConfigBase.#ctor(ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes)">
             <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.ChartConfigBase"/>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.ConfigBase"/>
             </summary>
             <param name="chartType">The chartType this config is for</param>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.ChartConfigBase.Type">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.ConfigBase.Type">
             <summary>
             Defines what type of chart this config is for
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.ChartConfigBase.CanvasId">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.ConfigBase.CanvasId">
             <summary>
             The id for the html canvas element associated with this chart
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.ChartConfigBase`2">
+        <member name="T:ChartJs.Blazor.ChartJS.Common.ConfigBase`2">
             <summary>
             Base class for chart-config which contains the options and the data subconfigs
             </summary>
             <typeparam name="TOptions">The type of the options-subconfig</typeparam>
             <typeparam name="TData">The type of the data-subconfig</typeparam>
         </member>
-        <member name="M:ChartJs.Blazor.ChartJS.Common.ChartConfigBase`2.#ctor(ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes)">
+        <member name="M:ChartJs.Blazor.ChartJS.Common.ConfigBase`2.#ctor(ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes)">
             <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.ChartConfigBase"/>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.ConfigBase"/>
             </summary>
             <param name="chartType">The chartType this config is for</param>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.ChartConfigBase`2.Options">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.ConfigBase`2.Options">
             <summary>
             The options subconfig for this chart
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.ChartConfigBase`2.Data">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.ConfigBase`2.Data">
             <summary>
             The data subconfig for this chart
             </summary>
@@ -532,7 +532,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.TickSource.Labels">
             <summary>
-            Generates ticks from user given <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineChartData.Labels"/> values ONLY
+            Generates ticks from user given <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineData.Labels"/> values ONLY
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Enums.TimeDistribution">
@@ -1104,7 +1104,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis.ID">
             <summary>
-            The ID is used to link <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1"></see> and <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis"></see> together. Referenced in <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.XAxisID"></see> and <seealso cref="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.YAxisID"/>
+            The ID is used to link <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1"></see> and <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis"></see> together. Referenced in <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.XAxisID"></see> and <seealso cref="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.YAxisID"/>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis.Position">
@@ -1142,7 +1142,7 @@
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.Axes.CategoryAxis">
             <summary>
             This axis is to be used when you want to display <see cref="T:System.String"/> values for an axis.
-            <para>This axis has to be used when using/defining <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineChartData.Labels"/>, <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineChartData.XLabels"/> and/or <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineChartData.YLabels"/>.</para>
+            <para>This axis has to be used when using/defining <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineData.Labels"/>, <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineData.XLabels"/> and/or <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineData.YLabels"/>.</para>
             <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/category.html </para>
             </summary>
         </member>
@@ -1331,229 +1331,229 @@
             Configuration for time related stuff
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineChartConfig">
+        <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineConfig">
             <summary>
             Config for a <see cref="T:ChartJs.Blazor.Charts.ChartJsLineChart"/>
             </summary>
         </member>
-        <member name="M:ChartJs.Blazor.ChartJS.LineChart.LineChartConfig.#ctor">
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.LineConfig.#ctor">
             <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineChartConfig"/>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineConfig"/>
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineChartData">
+        <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineData">
             <summary>
-            The data-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineChartConfig"/>
+            The data-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineConfig"/>
             </summary>
         </member>
-        <member name="M:ChartJs.Blazor.ChartJS.LineChart.LineChartData.#ctor">
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.LineData.#ctor">
             <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineChartData"/>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineData"/>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartData.Labels">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineData.Labels">
             <summary>
             The labels the chart will use. 
             <para>If defined (not null) the x-Axis has to be of type <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.AxisType.Category"/> for the chart to work correctly.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartData.XLabels">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineData.XLabels">
             <summary>
             The labels the horizontal Axes will use. 
             <para>If defined (not null) the x-Axis has to be of type <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.AxisType.Category"/> for the chart to work correctly.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartData.YLabels">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineData.YLabels">
             <summary>
             The labels the vertical Axes will use. 
             <para>If defined (not null) the y-Axis has to be of type <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.AxisType.Category"/> for the chart to work correctly.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartData.Datasets">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineData.Datasets">
             <summary>
             The Datasets displayed in this chart.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1">
+        <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1">
             <summary>
             A dataset for a <see cref="T:ChartJs.Blazor.Charts.ChartJsLineChart"/>
             </summary>
             <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
         </member>
-        <member name="M:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
             <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1"/> with some data
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1"/> with some data
             </summary>
         </member>
-        <member name="M:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.#ctor">
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.#ctor">
             <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1"/>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1"/>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.Type">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.Type">
             <summary>
             The type of chart this dataset is for.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.Label">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.Label">
             <summary>
             The label for the dataset which appears in the legend and tooltips.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.XAxisID">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.XAxisID">
             <summary>
             The ID of the x axis to plot this dataset on. If not specified, this defaults to the ID of the first found x axis
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.YAxisID">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.YAxisID">
             <summary>
             The ID of the y axis to plot this dataset on. If not specified, this defaults to the ID of the first found y axis.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.BorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.BorderWidth">
             <summary>
             The width of the line in pixels.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.BorderCapStyle">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.BorderCapStyle">
             <summary>
             Cap style of the line.
             <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap for options.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.BorderJoinStyle">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.BorderJoinStyle">
             <summary>
             Line joint style.
             <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin for options.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.CubicInterpolationMode">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.CubicInterpolationMode">
             <summary>
             Algorithm used to interpolate a smooth curve from the discrete data points.
             <para>See https://www.chartjs.org/docs/latest/charts/line.html#cubicinterpolationmode for options.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.BorderDash">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.BorderDash">
             <summary>
             Length and spacing of dashes. It's an int array. Whatever JS!
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.BorderDashOffset">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.BorderDashOffset">
             <summary>
             Offset for line dashes.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.PointBorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.PointBorderWidth">
             <summary>
             The width of the point border in pixels.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.PointRadius">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.PointRadius">
             <summary>
             The radius of the point shape. If set to 0, the point is not rendered.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.PointHitRadius">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.PointHitRadius">
             <summary>
             The pixel size of the non-displayed point that reacts to mouse events.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.PointHoverBorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.PointHoverBorderWidth">
             <summary>
             Border width of point when hovered.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.PointHoverRadius">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.PointHoverRadius">
             <summary>
             The radius of the point when hovered.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.Fill">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.Fill">
             <summary>
             How to fill the area under the line.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.LineTension">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.LineTension">
             <summary>
             Bezier curve tension of the line. Set to 0 to draw straightlines. This option is ignored if monotone cubic interpolation is used.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.ShowLine">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.ShowLine">
             <summary>
             If false, the line is not drawn for this dataset.
             Default is true. If you are filling and dont want to show the line, then change to false.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.SpanGaps">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.SpanGaps">
             <summary>
             If true, lines will be drawn between points with no or null data. If false, points with NaN data will create a break in the line
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.SteppedLine">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.SteppedLine">
             <summary>
             If the line is shown as a stepped line. Use <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.SteppedLine"></see> for available options.
-            <para>If the steppedLine value is set to anything other than <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.SteppedLine.False"></see>, <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.LineTension"></see> will be ignored.</para>
+            <para>If the steppedLine value is set to anything other than <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.SteppedLine.False"></see>, <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.LineTension"></see> will be ignored.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.BackgroundColor">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.BackgroundColor">
             <summary>
             The fill color under the line.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.PointBackgroundColor">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.PointBackgroundColor">
             <summary>
             The fill color of a point.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartDataset`1.BorderColor">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.BorderColor">
             <summary>
             The color of the line. 
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineChartOptions">
+        <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineOptions">
             <summary>
-            The options-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineChartConfig"/>
+            The options-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineConfig"/>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartOptions.Animation">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineOptions.Animation">
             <summary>
             General animation time
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartOptions.Hover">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineOptions.Hover">
             <summary>
             Hover options for hoving over an item
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartOptions.Tooltips">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineOptions.Tooltips">
             <summary>
             Tooltip options for this chart
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartOptions.Scales">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineOptions.Scales">
             <summary>
             The scales for this chart. You can use any <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis"/> for x and y.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartOptions.ShowLines">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineOptions.ShowLines">
             <summary>
             If false, the lines between points are not drawn.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartOptions.SpanGaps">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineOptions.SpanGaps">
             <summary>
             If false, NaN data causes a break in the line.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineChartOptionsHover">
+        <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineOptionsHover">
             <summary>
-            The hover-subconfig of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineChartOptions"/>
+            The hover-subconfig of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineOptions"/>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineChartOptionsHover.AnimationDuration">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineOptionsHover.AnimationDuration">
             <summary>
             Duration in milliseconds it takes to animate hover style changes.
             </summary>
@@ -1775,120 +1775,120 @@
             The data contained in this dataset (readonly because covariant).
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.PieChart.PieChartConfig">
+        <member name="T:ChartJs.Blazor.ChartJS.PieChart.PieConfig">
             <summary>
-            Config for a <see cref="T:ChartJs.Blazor.ChartJS.PieChart.PieChartConfig"/>.
+            Config for a <see cref="T:ChartJs.Blazor.ChartJS.PieChart.PieConfig"/>.
             </summary>
         </member>
-        <member name="M:ChartJs.Blazor.ChartJS.PieChart.PieChartConfig.#ctor">
+        <member name="M:ChartJs.Blazor.ChartJS.PieChart.PieConfig.#ctor">
             <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.PieChart.PieChartConfig"/>.
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.PieChart.PieConfig"/>.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.PieChart.PieChartData">
+        <member name="T:ChartJs.Blazor.ChartJS.PieChart.PieData">
             <summary>
-            The data-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.PieChart.PieChartConfig"/>.
+            The data-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.PieChart.PieConfig"/>.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartData.Labels">
+        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieData.Labels">
             <summary>
             Gets the labels the chart will use.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartData.Datasets">
+        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieData.Datasets">
             <summary>
             Gets the datasets displayed in this chart.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset">
+        <member name="T:ChartJs.Blazor.ChartJS.PieChart.PieDataset">
             <summary>
             A dataset for a <see cref="T:ChartJs.Blazor.Charts.ChartJsPieChart"/>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.Type">
+        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.Type">
             <summary>
             Gets or sets the chart type. <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.ChartTypes.Pie"/> in this case. This is needed for mixed datasets only.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.BackgroundColor">
+        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.BackgroundColor">
             <summary>
             Gets the fill color of the arcs in the dataset.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.BorderAlign">
+        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.BorderAlign">
             <summary>
             Gets or sets the border align. When 'center' is set, the borders of arcs next to each other will overlap.
             When 'inner' is set, it is guaranteed that all the borders are not overlap.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.BorderColor">
+        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.BorderColor">
             <summary>
             Gets the border color of the arcs in the dataset.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.BorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.BorderWidth">
             <summary>
             Gets the border width of the arcs in the dataset.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.HoverBackgroundColor">
+        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.HoverBackgroundColor">
             <summary>
             Gets the fill colour of the arcs when hovered.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.HoverBorderColor">
+        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.HoverBorderColor">
             <summary>
             Gets the stroke colour of the arcs when hovered.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.HoverBorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.HoverBorderWidth">
             <summary>
             Gets the stroke width of the arcs when hovered.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.Weight">
+        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.Weight">
             <summary>
             Gets or sets the relative thickness of the dataset.
             Providing a value for weight will cause the pie dataset to be drawn with a thickness relative to the sum of all the dataset weight values.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartDataset.Data">
+        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.Data">
             <summary>
             Gets the data in the dataset.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.PieChart.PieChartOptions">
+        <member name="T:ChartJs.Blazor.ChartJS.PieChart.PieOptions">
             <summary>
-            The options-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.PieChart.PieChartConfig"/>.
+            The options-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.PieChart.PieConfig"/>.
             </summary>
         </member>
-        <member name="M:ChartJs.Blazor.ChartJS.PieChart.PieChartOptions.#ctor(System.Boolean)">
+        <member name="M:ChartJs.Blazor.ChartJS.PieChart.PieOptions.#ctor(System.Boolean)">
             <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.PieChart.PieChartOptions"/>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.PieChart.PieOptions"/>
             </summary>
-            <param name="doughnutCutout">If true, the start-value for <see cref="P:ChartJs.Blazor.ChartJS.PieChart.PieChartOptions.CutoutPercentage"/> will be 50 (default for Doughnut) instead of 0 (default for Pie).</param>
+            <param name="doughnutCutout">If true, the start-value for <see cref="P:ChartJs.Blazor.ChartJS.PieChart.PieOptions.CutoutPercentage"/> will be 50 (default for Doughnut) instead of 0 (default for Pie).</param>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartOptions.CutoutPercentage">
+        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieOptions.CutoutPercentage">
             <summary>
             Gets or sets the percentage of the chart that is cut out of the middle.
             <para>Default for Pie is 0, Default for Doughnut is 50. See constructor-parameter.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartOptions.Animation">
+        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieOptions.Animation">
             <summary>
             Gets or sets the animation-configuration for this chart.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartOptions.Rotation">
+        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieOptions.Rotation">
             <summary>
             Gets or sets the starting angle to draw arcs from.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieChartOptions.Circumference">
+        <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieOptions.Circumference">
             <summary>
             Gets or sets the sweep to allow arcs to cover.
             </summary>
@@ -2057,19 +2057,19 @@
             <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/CSS/line-height </para>
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaChartConfig">
+        <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaConfig">
             <summary>
             Config for a <see cref="T:ChartJs.Blazor.Charts.ChartJsPolarAreaChart"/>
             </summary>
         </member>
-        <member name="M:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaChartConfig.#ctor">
+        <member name="M:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaConfig.#ctor">
             <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaChartConfig"/>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaConfig"/>
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaData">
             <summary>
-            The data-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaChartConfig"/>.
+            The data-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaConfig"/>.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaData.Labels">
@@ -2139,7 +2139,7 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaOptions">
             <summary>
-            The options-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaChartConfig"/>.
+            The options-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaConfig"/>.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaOptions.StartAngle">
@@ -2157,44 +2157,44 @@
             The scale (axis) for this chart.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.Label">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.Label">
             <summary>
             The label for the dataset which appears in the legend and tooltips.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.BackgroundColor">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.BackgroundColor">
             <summary>
             The fill color under the line.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.BorderColor">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.BorderColor">
             <summary>
             The color of the line.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.BorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.BorderWidth">
             <summary>
             The width of the line in pixels.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.BorderDashOffset">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.BorderDashOffset">
             <summary>
             Offset for line dashes.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.BorderCapStyle">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.BorderCapStyle">
             <summary>
             Cap style of the line
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.BorderJoinStyle">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.BorderJoinStyle">
             <summary>
             Line joint style
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.Fill">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.Fill">
              <summary>
              Both line and radar charts support a fill option on the dataset object which can be used to create area between two datasets or a dataset and a boundary, i.e. the scale origin, start or end
             <para>Source: http://www.chartjs.org/docs/latest/charts/area.html#filling-modes</para>
@@ -2206,169 +2206,169 @@
             
              </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.LineTension">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.LineTension">
             <summary>
             Bezier curve tension of the line. Set to 0 to draw straight lines.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointBackgroundColor">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointBackgroundColor">
             <summary>
             The fill color for points.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointBorderColor">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointBorderColor">
             <summary>
             The border color for points.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointBorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointBorderWidth">
             <summary>
             The width of the point border in pixels.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointRadius">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointRadius">
             <summary>
             The radius of the point shape. If set to 0, the point is not rendered.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointRotation">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointRotation">
             <summary>
             The rotation of the point in degrees
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointStyle">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointStyle">
             <summary>
             Style of the point
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointHitRadius">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointHitRadius">
             <summary>
             The pixel size of the non-displayed point that reacts to mouse events.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointHoverBackgroundColor">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointHoverBackgroundColor">
             <summary>
             Point background color when hovered.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointHoverBorderColor">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointHoverBorderColor">
             <summary>
             Point border color when hovered.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointHoverBorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointHoverBorderWidth">
             <summary>
             Border width of point when hovered.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarChartDataset.PointHoverRadius">
+        <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointHoverRadius">
             <summary>
             The radius of the point when hovered
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.XAxisID">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.XAxisID">
             <summary>
             The ID of the x axis to plot this dataset on. If not specified, this defaults to the ID of the first found x axis
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.YAxisID">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.YAxisID">
             <summary>
             The ID of the y axis to plot this dataset on. If not specified, this defaults to the ID of the first found y axis.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.BorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.BorderWidth">
             <summary>
             The width of the line in pixels.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.BorderCapStyle">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.BorderCapStyle">
             <summary>
             Cap style of the line.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.BorderJoinStyle">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.BorderJoinStyle">
             <summary>
             Line joint style.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.CubicInterpolationMode">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.CubicInterpolationMode">
             <summary>
             Algorithm used to interpolate a smooth curve from the discrete data points.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.BorderDash">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.BorderDash">
             <summary>
             Length and spacing of dashes. It's an int array. Whatever JS!
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.BorderDashOffset">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.BorderDashOffset">
             <summary>
             Offset for line dashes.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.PointBorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.PointBorderWidth">
             <summary>
             The width of the point border in pixels.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.PointRadius">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.PointRadius">
             <summary>
             The radius of the point shape. If set to 0, the point is not rendered.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.PointHitRadius">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.PointHitRadius">
             <summary>
             The pixel size of the non-displayed point that reacts to mouse events.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.PointHoverBorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.PointHoverBorderWidth">
             <summary>
             Border width of point when hovered.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.PointHoverRadius">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.PointHoverRadius">
             <summary>
             The radius of the point when hovered.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.Fill">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.Fill">
             <summary>
             How to fill the area under the line.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.LineTension">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.LineTension">
             <summary>
             Bezier curve tension of the line. Set to 0 to draw straightlines. This option is ignored if monotone cubic interpolation is used.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.ShowLine">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.ShowLine">
             <summary>
             If false, the line is not drawn for this dataset.
             Default is true. If you are filling and dont want to show the line, then change to false.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.SpanGaps">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.SpanGaps">
             <summary>
             If true, lines will be drawn between points with no or null data. If false, points with NaN data will create a break in the line
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.SteppedLine">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.SteppedLine">
             <summary>
             If the line is shown as a stepped line. Use <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.SteppedLine"></see> for available options.
-            <para>If the steppedLine value is set to anything other than <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.SteppedLine.False"></see>, <see cref="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.LineTension"></see> will be ignored.</para>
+            <para>If the steppedLine value is set to anything other than <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.SteppedLine.False"></see>, <see cref="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.LineTension"></see> will be ignored.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.BackgroundColor">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.BackgroundColor">
             <summary>
             The fill color under the line.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterChartDataset.BorderColor">
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.BorderColor">
             <summary>
             The color of the line.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>

@@ -12,19 +12,19 @@
 @inject WeatherForecastService ForecastService
 
 <h2>Line Logarithmic Chart</h2>
-<ChartJsLineChart @ref="lineChartJs" @ref:suppressField Config="@lineChartConfig" Width="600" Height="300" />
+<ChartJsLineChart @ref="lineChartJs" @ref:suppressField Config="@lineConfig" Width="600" Height="300" />
 
 @code
 {
-    LineChartConfig lineChartConfig;
+    LineConfig lineConfig;
     ChartJsLineChart lineChartJs;
 
     protected override async Task OnInitializedAsync()
     {
-        lineChartConfig = new LineChartConfig
+        lineConfig = new LineConfig
         {
             CanvasId = "myFirstLineChart",
-            Options = new LineChartOptions
+            Options = new LineOptions
             {
                 Responsive = true,
                 Title = new OptionsTitle
@@ -76,7 +76,7 @@
                         }
                     }
                 },
-                Hover = new LineChartOptionsHover
+                Hover = new LineOptionsHover
                 {
                     Intersect = true,
                     Mode = InteractionMode.Y
@@ -85,7 +85,7 @@
         };
 
 
-        var tempPerHourSet = new LineChartDataset<Point>()
+        var tempPerHourSet = new LineDataset<Point>()
         {
             BackgroundColor = ColorUtil.ColorString(0, 255, 0, 1.0),
             BorderColor = ColorUtil.ColorString(0, 0, 255, 1.0),
@@ -98,7 +98,7 @@
             SteppedLine = SteppedLine.False,
         };
 
-        var tempPerDaySet = new LineChartDataset<Point>()
+        var tempPerDaySet = new LineDataset<Point>()
         {
             BackgroundColor = "#63ff84",
             BorderColor = "#63ff84",
@@ -117,7 +117,7 @@
         tempPerHourSet.AddRange(onlyDays.Select(p => new Point(p.Date.Hour, p.TemperatureC)));
         tempPerDaySet.AddRange(onlyDays.Select(p => new Point(p.Date.Day, p.TemperatureF)));
 
-        lineChartConfig.Data.Datasets.Add(tempPerHourSet);
-        lineChartConfig.Data.Datasets.Add(tempPerDaySet);
+        lineConfig.Data.Datasets.Add(tempPerHourSet);
+        lineConfig.Data.Datasets.Add(tempPerDaySet);
     }
 }

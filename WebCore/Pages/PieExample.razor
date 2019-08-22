@@ -8,15 +8,15 @@
 <ChartJsPieChart @ref="pieChartJs" @ref:suppressField Config="@config" Width="600" Height="300" />
 
 @code {
-    private PieChartConfig config;
+    private PieConfig config;
     private ChartJsPieChart pieChartJs;
 
     protected override void OnInitialized()
     {
-        config = new PieChartConfig
+        config = new PieConfig
         {
             CanvasId = "myFirstPieChart",
-            Options = new PieChartOptions
+            Options = new PieOptions
             {
                 Title = new OptionsTitle
                 {
@@ -34,7 +34,7 @@
 
         config.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
 
-        var pieSet = new PieChartDataset();
+        var pieSet = new PieDataset();
 
         pieSet.BackgroundColor.AddRange(new List<string> { "#ff6384", "#55ee84", "#4463ff", "#efefef" });
         pieSet.BorderWidth.Add(0);

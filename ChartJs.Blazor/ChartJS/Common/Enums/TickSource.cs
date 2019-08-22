@@ -17,7 +17,7 @@
         public static TickSource Data => new TickSource("data");
 
         /// <summary>
-        /// Generates ticks from user given <see cref="LineChart.LineChartData.Labels"/> values ONLY
+        /// Generates ticks from user given <see cref="LineChart.LineData.Labels"/> values ONLY
         /// </summary>
         public static TickSource Labels => new TickSource("labels");
 

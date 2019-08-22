@@ -16,7 +16,7 @@ namespace ChartJs.Blazor.ChartJS
 {
     public static class ChartJsInterop
     {
-        public static Task<bool> SetupChart(this IJSRuntime jsRuntime, ChartConfigBase chartConfig)
+        public static Task<bool> SetupChart(this IJSRuntime jsRuntime, ConfigBase chartConfig)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace ChartJs.Blazor.ChartJS
                 }
             );
 
-        public static Task<bool> UpdateChart(this IJSRuntime jsRuntime, ChartConfigBase chartConfig)
+        public static Task<bool> UpdateChart(this IJSRuntime jsRuntime, ConfigBase chartConfig)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace ChartJs.Blazor.ChartJS
         /// </summary>
         /// <param name="chartConfig"></param>
         /// <returns></returns>
-        private static ExpandoObject StripNulls(ChartConfigBase chartConfig)
+        private static ExpandoObject StripNulls(ConfigBase chartConfig)
         {
             // Serializing with the custom serializer settings remove null members
             var cleanChartConfigStr = JsonConvert.SerializeObject(chartConfig, JsonSerializerSettings);

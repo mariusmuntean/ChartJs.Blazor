@@ -17,7 +17,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart.Axes
         public abstract AxisType Type { get; }
 
         /// <summary>
-        /// The ID is used to link <see cref="LineChartDataset{TData}"></see> and <see cref="CartesianAxis"></see> together. Referenced in <see cref="LineChartDataset{TData}.XAxisID"></see> and <seealso cref="LineChartDataset{TData}.YAxisID"/>
+        /// The ID is used to link <see cref="LineDataset{TData}"></see> and <see cref="CartesianAxis"></see> together. Referenced in <see cref="LineDataset{TData}.XAxisID"></see> and <seealso cref="LineDataset{TData}.YAxisID"/>
         /// </summary>
         [JsonProperty("id")]
         public string ID { get; set; }

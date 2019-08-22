@@ -6,7 +6,7 @@ using System;
 
 namespace ChartJs.Blazor.Charts
 {
-    public abstract class ChartBase<TConfig> : ComponentBase where TConfig : ChartConfigBase
+    public abstract class ChartBase<TConfig> : ComponentBase where TConfig : ConfigBase
     {
         [Inject] protected IJSRuntime JsRuntime { get; set; }
 

@@ -8,15 +8,15 @@
 <ChartJsPieChart @ref="doughnutChartJs" @ref:suppressField Config="@config" Width="600" Height="300" />
 
 @code {
-    private PieChartConfig config;
+    private PieConfig config;
     private ChartJsPieChart doughnutChartJs;
 
     protected override void OnInitialized()
     {
-        config = new PieChartConfig
+        config = new PieConfig
         {
             CanvasId = "myFirstDoughnutChart",
-            Options = new PieChartOptions(true)
+            Options = new PieOptions(true)
             {
                 Title = new OptionsTitle
                 {
@@ -34,7 +34,7 @@
 
         config.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
 
-        var doughnutSet = new PieChartDataset();
+        var doughnutSet = new PieDataset();
 
         doughnutSet.BackgroundColor.AddRange(new List<string> { "#ff6384", "#55ee84", "#4463ff", "#efefef" });
         doughnutSet.BorderWidth.Add(0);

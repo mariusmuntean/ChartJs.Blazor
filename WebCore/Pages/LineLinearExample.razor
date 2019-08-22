@@ -12,25 +12,25 @@
 @inject WeatherForecastService ForecastService
 
 <h2>Line Linear Chart</h2>
-<ChartJsLineChart @ref="lineChartJs" @ref:suppressField Config="@lineChartConfig" Width="600" Height="300" />
+<ChartJsLineChart @ref="lineChartJs" @ref:suppressField Config="@lineConfig" Width="600" Height="300" />
 <Button @onclick="@UpdateChart">Add random point</Button>
 
 @code
 {
-    LineChartConfig lineChartConfig;
+    LineConfig lineConfig;
     ChartJsLineChart lineChartJs;
 
-    private LineChartDataset<Point> tempPerHourSet;
-    private LineChartDataset<Point> tempPerDaySet;
+    private LineDataset<Point> tempPerHourSet;
+    private LineDataset<Point> tempPerDaySet;
 
     private Random rnd = new Random();
 
     protected override async Task OnInitializedAsync()
     {
-        lineChartConfig = new LineChartConfig
+        lineConfig = new LineConfig
         {
             CanvasId = "myFirstLineChart",
-            Options = new LineChartOptions
+            Options = new LineOptions
             {
                 Responsive = true,
                 Title = new OptionsTitle
@@ -82,7 +82,7 @@
                         }
                     }
                 },
-                Hover = new LineChartOptionsHover
+                Hover = new LineOptionsHover
                 {
                     Intersect = true,
                     Mode = InteractionMode.Y
@@ -91,7 +91,7 @@
         };
 
 
-        tempPerHourSet = new LineChartDataset<Point>()
+        tempPerHourSet = new LineDataset<Point>()
         {
             BackgroundColor = ColorUtil.ColorString(0, 255, 0, 1.0),
             BorderColor = ColorUtil.ColorString(0, 0, 255, 1.0),
@@ -104,7 +104,7 @@
             SteppedLine = SteppedLine.False,
         };
 
-        tempPerDaySet = new LineChartDataset<Point>()
+        tempPerDaySet = new LineDataset<Point>()
         {
             BackgroundColor = "#63ff84",
             BorderColor = "#63ff84",
@@ -124,8 +124,8 @@
         tempPerHourSet.AddRange(onlyDays.Select(p => new Point(p.Date.Hour, p.TemperatureC)));
         tempPerDaySet.AddRange(onlyDays.Select(p => new Point(p.Date.Day, p.TemperatureF)));
 
-        lineChartConfig.Data.Datasets.Add(tempPerHourSet);
-        lineChartConfig.Data.Datasets.Add(tempPerDaySet);
+        lineConfig.Data.Datasets.Add(tempPerHourSet);
+        lineConfig.Data.Datasets.Add(tempPerDaySet);
     }
 
     private void UpdateChart()

@@ -6,9 +6,9 @@ using ChartJs.Blazor.ChartJS.PolarAreaChart.Axis;
 namespace ChartJs.Blazor.ChartJS.PolarAreaChart
 {
     /// <summary>
-    /// The options-subconfig of a <see cref="PolarAreaChartConfig"/>.
+    /// The options-subconfig of a <see cref="PolarAreaConfig"/>.
     /// </summary>
-    public class PolarAreaOptions : BaseChartConfigOptions
+    public class PolarAreaOptions : BaseConfigOptions
     {
         /// <summary>
         /// Gets or sets the starting angle to draw arcs for the first item in a dataset.
