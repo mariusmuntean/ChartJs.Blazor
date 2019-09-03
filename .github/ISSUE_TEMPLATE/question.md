@@ -2,7 +2,7 @@
 name: Custom issue template
 about: Do you have a question related to the project? Use this template.
 title: ''
-labels: ''
+labels: 'question'
 assignees: ''
 
 ---
@@ -14,3 +14,6 @@ A clear and concise description of what you want to know.
 <!-- Remove the items which don't apply from the following list -->
 - Client-Side
 - Server-Side
+
+### Which charts is this question related to?
+<!-- Please list the charts this question applies to. If it applies to all of them, just write 'all charts'. -->

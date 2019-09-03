@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help us improve.
 title: ''
-labels: ''
+labels: 'bug'
 assignees: ''
 
 ---
@@ -14,6 +14,9 @@ A clear and concise description of what the bug is.
 <!-- Remove the items which don't apply from the following list -->
 - Client-Side
 - Server-Side
+
+### Which charts does this bug apply to?
+<!-- Please list the charts you experienced this bug with. If it applies to all of them, just write 'all charts'. -->
 
 ### To Reproduce
 Steps to reproduce the behavior:

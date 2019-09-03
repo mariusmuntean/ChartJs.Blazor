@@ -2,7 +2,7 @@
 name: Feature request
 about: Suggest an idea for this project.
 title: ''
-labels: ''
+labels: 'enhancement'
 assignees: ''
 
 ---
@@ -11,10 +11,8 @@ assignees: ''
 Is your feature request related to a problem? Please describe.
 A clear and concise description of what the problem is. Example. I'm am trying to do [...] but [...]
 
-### Which Blazor project type is your feature request related to?
-<!-- Remove the items which don't apply from the following list -->
-- Client-Side
-- Server-Side
+### Which charts does this feature request apply to?
+<!-- Please list the charts this feature request applies to. If it applies to all of them, just write 'all charts'. -->
 
 ### Describe the solution you'd like
 A clear and concise description of what you want to happen.
