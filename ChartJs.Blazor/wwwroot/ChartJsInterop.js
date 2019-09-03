@@ -89,6 +89,17 @@ function WireUpLegendItemFilterFunc(config) {
 }
 
 function WireUpGenerateLabelsFunc(config) {
+    let getDefaultFunc = function (type) {
+        let defaults = Chart.defaults[type] || Chart.defaults.global;
+        if (defaults.legend &&
+            defaults.legend.labels &&
+            defaults.legend.labels.generateLabels) {
+            return defaults.legend.labels.generateLabels;
+        }
+
+        return Chart.defaults.global.legend.labels.generateLabels;
+    }
+
     if (config.options.legend.labels === undefined)
         config.options.legend.labels = {};
 
@@ -97,18 +108,27 @@ function WireUpGenerateLabelsFunc(config) {
         config.options.legend.labels.generateLabels.includes(".")) {
         var generateLabelsNamespaceAndFunc = config.options.legend.labels.generateLabels.split(".");
         var generateLabelsFunc = window[generateLabelsNamespaceAndFunc[0]][generateLabelsNamespaceAndFunc[1]];
-        if (typeof generateLabels === "function")
+        if (typeof generateLabels === "function") {
             config.options.legend.labels.generateLabels = generateLabelsFunc;
-    // https://github.com/mariusmuntean/ChartJs.Blazor/pull/18
-    //    } else { // fallback to the default
-    //        config.options.legend.labels.generateLabels = Chart.defaults.global.legend.labels.generateLabels;
-    //    }
-    //} else { // fallback to the default
-    //    config.options.legend.labels.generateLabels = Chart.defaults.global.legend.labels.generateLabels;
+        } else { // fallback to the default
+            config.options.legend.labels.generateLabels = getDefaultFunc(config.type);
+        }
+    } else { // fallback to the default
+        config.options.legend.labels.generateLabels = getDefaultFunc(config.type);
     }
 }
 
 function WireUpOnClick(config) {
+    let getDefaultHandler = function (type) {
+        let defaults = Chart.defaults[type] || Chart.defaults.global;
+        if (defaults.legend &&
+            defaults.legend.onClick) {
+            return defaults.legend.onClick;
+        }
+
+        return Chart.defaults.global.legend.onClick;
+    }
+
     if (config.options.legend.onClick) {
         // Js function
         if (typeof config.options.legend.onClick === "object" &&
@@ -118,7 +138,7 @@ function WireUpOnClick(config) {
             if (typeof onClickFunc === "function") {
                 config.options.legend.onClick = onClickFunc;
             } else { // fallback to the default
-                config.options.legend.onClick = Chart.defaults.global.legend.onClick;
+                config.options.legend.onClick = getDefaultHandler(config.type);
             }
         }
         // .Net static method
@@ -146,7 +166,7 @@ function WireUpOnClick(config) {
             })();
         }
     } else { // fallback to the default
-        config.options.legend.onClick = Chart.defaults.global.legend.onClick;
+        config.options.legend.onClick = getDefaultHandler(config.type);
     }
 }
 
