@@ -1,5 +1,5 @@
 ---
-name: Custom issue template
+name: Question
 about: Do you have a question related to the project? Use this template.
 title: ''
 labels: 'question'
