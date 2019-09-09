@@ -1,4 +1,5 @@
-﻿using ChartJs.Blazor.ChartJS.Common.Enums;
+﻿using ChartJs.Blazor.ChartJS.Common;
+using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.Util.Color;
 using System.Collections.Generic;
 
@@ -28,12 +29,12 @@ namespace ChartJs.Blazor.ChartJS.RadarChart
         /// <summary>
         /// The width of the line in pixels.
         /// </summary>
-        public int BorderWidth { get; set; } = 1;
+        public int BorderWidth { get; set; } = 3;
 
         /// <summary>
         /// Offset for line dashes.
         /// </summary>
-        public int BorderDashOffset { get; set; }
+        public double BorderDashOffset { get; set; }
 
         /// <summary>
         /// Cap style of the line
@@ -60,66 +61,66 @@ namespace ChartJs.Blazor.ChartJS.RadarChart
         /// <summary>
         /// Bezier curve tension of the line. Set to 0 to draw straight lines.
         /// </summary>
-        public int LineTension { get; set; }
+        public double LineTension { get; set; } = 0.4;
 
         /// <summary>
         /// The fill color for points.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public string[] PointBackgroundColor { get; set; } = {"#DB5571"};
+        public IndexableOption<string> PointBackgroundColor { get; set; }
 
         /// <summary>
         /// The border color for points.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public string[] PointBorderColor { get; set; } = {"#6D2A39"};
+        public IndexableOption<string> PointBorderColor { get; set; }
 
         /// <summary>
         /// The width of the point border in pixels.
         /// </summary>
-        public int[] PointBorderWidth { get; set; } = {1};
+        public IndexableOption<int> PointBorderWidth { get; set; }
 
         /// <summary>
         /// The radius of the point shape. If set to 0, the point is not rendered.
         /// </summary>
-        public int[] PointRadius { get; set; } = {1};
+        public IndexableOption<int> PointRadius { get; set; }
 
         /// <summary>
         /// The rotation of the point in degrees
         /// </summary>
-        public int[] PointRotation { get; set; }
+        public IndexableOption<int> PointRotation { get; set; }
 
         /// <summary>
         /// Style of the point
         /// </summary>
-        public RadarPointStyles[] PointStyle { get; set; } = {RadarPointStyles.TRIANGLE};
+        public IndexableOption<RadarPointStyles> PointStyle { get; set; }
 
         /// <summary>
         /// The pixel size of the non-displayed point that reacts to mouse events.
         /// </summary>
-        public int[] PointHitRadius { get; set; }
+        public IndexableOption<int> PointHitRadius { get; set; }
 
         /// <summary>
         /// Point background color when hovered.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public string[] PointHoverBackgroundColor { get; set; }
+        public IndexableOption<string> PointHoverBackgroundColor { get; set; }
 
         /// <summary>
         /// Point border color when hovered.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public string[] PointHoverBorderColor { get; set; }
+        public IndexableOption<string> PointHoverBorderColor { get; set; }
 
         /// <summary>
         /// Border width of point when hovered.
         /// </summary>
-        public int[] PointHoverBorderWidth { get; set; }
+        public IndexableOption<int> PointHoverBorderWidth { get; set; }
 
         /// <summary>
         /// The radius of the point when hovered
         /// </summary>
-        public int[] PointHoverRadius { get; set; }
+        public IndexableOption<int> PointHoverRadius { get; set; }
 
         public List<double> Data { get; set; }
     }

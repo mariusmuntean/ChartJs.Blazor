@@ -637,6 +637,93 @@
             If true, grid lines will be shifted to be between labels. This is set to true for a category scale in a bar chart by default.
             </summary>
         </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1">
+            <summary>
+            Represents an object that can be either a single value or an array of values. This is used for typesafe js-interop.
+            </summary>
+            <typeparam name="T">The type of data this <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> is supposed to hold.</typeparam>
+        </member>
+        <member name="F:ChartJs.Blazor.ChartJS.Common.IndexableOption`1.PropertyName">
+            <summary>
+            The compile-time name of the property which gets the wrapped value. This is used internally for serialization.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.IndexableOption`1.IndexedValues">
+            <summary>
+            The indexed values represented by this instance.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.IndexableOption`1.SingleValue">
+            <summary>
+            The single value represented by this instance.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.IndexableOption`1.IsIndexed">
+            <summary>
+            Gets the value indicating whether the option wrapped in this <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> is indexed. 
+            <para>True if the wrapped value represents an array of <typeparamref name="T"/>, false if it represents a single value of <typeparamref name="T"/>.</para>
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.IndexableOption`1.#ctor(`0)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> which represents a single value.
+            </summary>
+            <param name="singleValue">The single value this <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> should represent.</param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.IndexableOption`1.#ctor(`0[])">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> which represents an array of values.
+            </summary>
+            <param name="indexedValues">The array of values this <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> should represent.</param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.IndexableOption`1.op_Implicit(`0)~ChartJs.Blazor.ChartJS.Common.IndexableOption{`0}">
+            <summary>
+            Implicitly wraps a single value of <typeparamref name="T"/> to a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/>.
+            </summary>
+            <param name="singleValue">The single value to wrap</param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.IndexableOption`1.op_Implicit(`0[])~ChartJs.Blazor.ChartJS.Common.IndexableOption{`0}">
+            <summary>
+            Implicitly wraps an array of values of <typeparamref name="T"/> to a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/>.
+            </summary>
+            <param name="indexedValues">The array of values to wrap</param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.IndexableOption`1.Equals(ChartJs.Blazor.ChartJS.Common.IndexableOption{`0})">
+            <summary>
+            Determines whether the specified <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> instance is considered equal to the current instance.
+            </summary>
+            <param name="other">The <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> to compare with.</param>
+            <returns>true if the objects are considered equal; otherwise, false.</returns>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.IndexableOption`1.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object instance is considered equal to the current instance.
+            </summary>
+            <param name="obj">The object to compare with.</param>
+            <returns>true if the objects are considered equal; otherwise, false.</returns>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.IndexableOption`1.GetHashCode">
+            <summary>
+            Returns the hash of the underlying object.
+            </summary>
+            <returns>The hash of the underlying object.</returns>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.IndexableOption`1.op_Equality(ChartJs.Blazor.ChartJS.Common.IndexableOption{`0},ChartJs.Blazor.ChartJS.Common.IndexableOption{`0})">
+            <summary>
+            Determines whether two specified <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> instances contain the same value.
+            </summary>
+            <param name="a">The first <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> to compare</param>
+            <param name="b">The second <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> to compare</param>
+            <returns>true if the value of a is the same as the value of b; otherwise, false.</returns>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.IndexableOption`1.op_Inequality(ChartJs.Blazor.ChartJS.Common.IndexableOption{`0},ChartJs.Blazor.ChartJS.Common.IndexableOption{`0})">
+            <summary>
+            Determines whether two specified <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> instances contain different values.
+            </summary>
+            <param name="a">The first <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> to compare</param>
+            <param name="b">The second <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> to compare</param>
+            <returns>true if the value of a is different from the value of b; otherwise, false.</returns>
+        </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration">
             <summary>
             The legend label configuration is nested below the legend configuration
@@ -1812,7 +1899,8 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.BackgroundColor">
             <summary>
-            Gets the fill color of the arcs in the dataset.
+            Gets or sets the fill color of the arcs in the dataset.
+            This property should be indexed, otherwise you can't distinguish the different arcs.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
@@ -1824,30 +1912,30 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.BorderColor">
             <summary>
-            Gets the border color of the arcs in the dataset.
+            Gets or sets the border color of the arcs in the dataset.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.BorderWidth">
             <summary>
-            Gets the border width of the arcs in the dataset.
+            Gets or sets the border width of the arcs in the dataset.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.HoverBackgroundColor">
             <summary>
-            Gets the fill colour of the arcs when hovered.
+            Gets or sets the fill colour of the arcs when hovered.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.HoverBorderColor">
             <summary>
-            Gets the stroke colour of the arcs when hovered.
+            Gets or sets the stroke colour of the arcs when hovered.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.HoverBorderWidth">
             <summary>
-            Gets the stroke width of the arcs when hovered.
+            Gets or sets the stroke width of the arcs when hovered.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.Weight">
@@ -2037,7 +2125,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.PointLabels.FontColor">
             <summary>
-            Gets the font color for a point label.
+            Gets or sets the font color for a point label.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
@@ -2094,7 +2182,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.BackgroundColor">
             <summary>
-            Gets the fill color of the arcs in the dataset.
+            Gets or sets the fill color of the arcs in the dataset.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
@@ -2106,30 +2194,30 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.BorderColor">
             <summary>
-            Gets the border color of the arcs in the dataset.
+            Gets or sets the border color of the arcs in the dataset.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.BorderWidth">
             <summary>
-            Gets the border width of the arcs in the dataset.
+            Gets or sets the border width of the arcs in the dataset.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.HoverBackgroundColor">
             <summary>
-            Gets the fill colour of the arcs when hovered.
+            Gets or sets the fill colour of the arcs when hovered.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.HoverBorderColor">
             <summary>
-            Gets the stroke colour of the arcs when hovered.
+            Gets or sets the stroke colour of the arcs when hovered.
             <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.HoverBorderWidth">
             <summary>
-            Gets the stroke width of the arcs when hovered.
+            Gets or sets the stroke width of the arcs when hovered.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.Data">

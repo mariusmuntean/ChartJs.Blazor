@@ -1,4 +1,5 @@
-﻿using ChartJs.Blazor.Util.Color;
+﻿using ChartJs.Blazor.ChartJS.Common;
+using ChartJs.Blazor.Util.Color;
 
 namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
 {
@@ -16,34 +17,34 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
         /// The fill color of the bar.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public string[] BackgroundColor { get; set; }
+        public IndexableOption<string> BackgroundColor { get; set; }
 
         /// <summary>
         /// The color of the bar border.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public string[] BorderColor { get; set; } = {ColorUtil.ColorString(128, 128, 128, 0.1)};
+        public IndexableOption<string> BorderColor { get; set; }
 
         /// <summary>
         /// The stroke width of the bar in pixels.
         /// </summary>
-        public int[] BorderWidth { get; set; } = {1};
+        public IndexableOption<int> BorderWidth { get; set; }
 
         /// <summary>
         /// The fill color of the bars when hovered.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public string[] HoverBackgroundColor { get; set; }
+        public IndexableOption<string> HoverBackgroundColor { get; set; }
 
         /// <summary>
         /// The stroke color of the bars when hovered.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public string[] HoverBorderColor { get; set; }
+        public IndexableOption<string> HoverBorderColor { get; set; }
 
         /// <summary>
         /// The stroke width of the bars when hovered.
         /// </summary>
-        public int[] HoverBorderWidth { get; set; }
+        public IndexableOption<int> HoverBorderWidth { get; set; }
     }
 }

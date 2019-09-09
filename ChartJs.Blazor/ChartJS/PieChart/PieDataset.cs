@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.Util.Color;
 
@@ -15,10 +16,11 @@ namespace ChartJs.Blazor.ChartJS.PieChart
         public ChartTypes Type { get; } = ChartTypes.Pie;
 
         /// <summary>
-        /// Gets the fill color of the arcs in the dataset.
+        /// Gets or sets the fill color of the arcs in the dataset.
+        /// This property should be indexed, otherwise you can't distinguish the different arcs.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public List<string> BackgroundColor { get; } = new List<string>();
+        public IndexableOption<string> BackgroundColor { get; set; }
 
         // Todo: Make this an enum later?!
         /// <summary>
@@ -28,32 +30,32 @@ namespace ChartJs.Blazor.ChartJS.PieChart
         public string BorderAlign { get; set; } = "center";
 
         /// <summary>
-        /// Gets the border color of the arcs in the dataset.
+        /// Gets or sets the border color of the arcs in the dataset.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public List<string> BorderColor { get; } = new List<string>();
+        public IndexableOption<string> BorderColor { get; set; }
 
         /// <summary>
-        /// Gets the border width of the arcs in the dataset.
+        /// Gets or sets the border width of the arcs in the dataset.
         /// </summary>
-        public List<int> BorderWidth { get; } = new List<int>();
+        public IndexableOption<int> BorderWidth { get; set; }
 
         /// <summary>
-        /// Gets the fill colour of the arcs when hovered.
+        /// Gets or sets the fill colour of the arcs when hovered.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public List<string> HoverBackgroundColor { get; } = new List<string>();
+        public IndexableOption<string> HoverBackgroundColor { get; set; }
 
         /// <summary>
-        /// Gets the stroke colour of the arcs when hovered.
+        /// Gets or sets the stroke colour of the arcs when hovered.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public List<string> HoverBorderColor { get; } = new List<string>();
+        public IndexableOption<string> HoverBorderColor { get; set; }
 
         /// <summary>
-        /// Gets the stroke width of the arcs when hovered.
+        /// Gets or sets the stroke width of the arcs when hovered.
         /// </summary>
-        public List<int> HoverBorderWidth { get; } = new List<int>();
+        public IndexableOption<int> HoverBorderWidth { get; set; }
 
         /// <summary>
         /// Gets or sets the relative thickness of the dataset.

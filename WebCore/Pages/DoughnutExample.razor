@@ -34,14 +34,15 @@
 
         config.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
 
-        var doughnutSet = new PieDataset();
-
-        doughnutSet.BackgroundColor.AddRange(new List<string> { "#ff6384", "#55ee84", "#4463ff", "#efefef" });
-        doughnutSet.BorderWidth.Add(0);
-        doughnutSet.HoverBackgroundColor.AddRange(new List<string> { "#f06384" });
-        doughnutSet.HoverBorderColor.AddRange(new List<string> { "#f06384" });
-        doughnutSet.HoverBorderWidth.Add(1);
-        doughnutSet.BorderColor.AddRange(new List<string> { "#ffffff", "#ffffff", "#ffffff", "#ffffff" });
+        var doughnutSet = new PieDataset()
+        {
+            BackgroundColor = new[] { "#ff6384", "#55ee84", "#4463ff", "#efefef" },
+            BorderWidth = 0,
+            HoverBackgroundColor = "#f06384",
+            HoverBorderColor = "#f06384",
+            HoverBorderWidth = 1,
+            BorderColor = "#ffffff"
+        };
 
         doughnutSet.Data.AddRange(new List<double> { 4, 5, 6, 7 });
         config.Data.Datasets.Add(doughnutSet);
