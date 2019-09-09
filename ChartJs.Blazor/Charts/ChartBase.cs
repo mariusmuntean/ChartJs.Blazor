@@ -10,17 +10,17 @@ namespace ChartJs.Blazor.Charts
     {
         [Inject] protected IJSRuntime JsRuntime { get; set; }
 
-        [Parameter] protected TConfig Config { get; set; }
+        [Parameter] public TConfig Config { get; set; }
 
-        [Parameter] protected int Width { get; set; } = 400;
+        [Parameter] public int Width { get; set; } = 400;
 
-        [Parameter] protected int Height { get; set; } = 400;
+        [Parameter] public int Height { get; set; } = 400;
 
-        protected override void OnAfterRender()
+        protected override void OnAfterRender(bool firstRender)
         {
             try
             {
-                base.OnAfterRender();
+                base.OnAfterRender(firstRender);
                 JsRuntime.SetupChart(Config);
             }
             catch (Exception e)

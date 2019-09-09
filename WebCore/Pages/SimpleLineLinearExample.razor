@@ -7,12 +7,11 @@
 @using ChartJs.Blazor.ChartJS.Common.Legends
 @using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.ChartJS.LineChart.Axes
-@using ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks
 @using ChartJs.Blazor.Util.Color
 
 <h2>Line Linear Chart</h2>
-<ChartJsLineChart @ref="lineChartJs" @ref:suppressField Config="@lineConfig" Width="600" Height="300" />
-<Button @onclick="@UpdateChart">Add random point</Button>
+<ChartJsLineChart @ref="lineChartJs" Config="@lineConfig" Width="600" Height="300" />
+<Button @onclick="UpdateChart">Add random point</Button>
 
 @code
 {

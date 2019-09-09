@@ -18,9 +18,9 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
         public delegate void InstanceClickHandler(object sender, object args);
 
         /// <summary>
-        /// The <see cref="DotNetObjectRef"/> for the instance the delegate will be executed on.
+        /// The <see cref="DotNetObjectReference"/> for the instance the delegate will be executed on.
         /// </summary>
-        public DotNetObjectRef<object> InstanceRef { get; }
+        public DotNetObjectReference<object> InstanceRef { get; }
 
         /// <summary>
         /// The name of the method behind the delegate
@@ -56,7 +56,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
 
             //AssemblyName = assembly.GetName().Name;
             // clickHandler.Method.DeclaringType.Assembly.GetName().Name;
-            InstanceRef = DotNetObjectRef.Create(clickHandler.Target);
+            InstanceRef = DotNetObjectReference.Create(clickHandler.Target);
             MethodName = clickHandler.Method.Name;
         }
     }

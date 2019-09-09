@@ -9,9 +9,9 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends.OnHover
     public class DotNetInstanceHoverHandler : ILegendHoverHandler
     {
         /// <summary>
-        /// The <see cref="DotNetObjectRef"/> for the instance the delegate will be executed on.
+        /// The <see cref="DotNetObjectReference"/> for the instance the delegate will be executed on.
         /// </summary>
-        public DotNetObjectRef<object> InstanceRef { get; }
+        public DotNetObjectReference<object> InstanceRef { get; }
 
         /// <summary>
         /// The name of the method behind the delegate
@@ -43,7 +43,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends.OnHover
 
             // The parameters and return type is taken care of by the delegate's definition
 
-            InstanceRef = DotNetObjectRef.Create(legendItemOnHoverHandler.Target);
+            InstanceRef = DotNetObjectReference.Create(legendItemOnHoverHandler.Target);
             MethodName = legendItemOnHoverHandler.Method.Name;
         }
     }

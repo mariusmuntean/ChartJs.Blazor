@@ -13,7 +13,7 @@
 @inject IJSRuntime jsRuntime
 
 <h2>Line Time Chart</h2>
-<ChartJsLineChart @ref="lineChartJs" @ref:suppressField Config="@lineConfig" Width="600" Height="300" />
+<ChartJsLineChart @ref="lineChartJs" Config="@lineConfig" Width="600" Height="300" />
 
 @code
 {
@@ -114,7 +114,7 @@
         lineConfig.Data.Datasets.Add(tempDataSet);
     }
 
-    protected override async Task OnAfterRenderAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await TryChangeLocale();
     }

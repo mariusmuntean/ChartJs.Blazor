@@ -744,7 +744,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetInstanceClickHandler.InstanceRef">
             <summary>
-            The <see cref="T:Microsoft.JSInterop.DotNetObjectRef"/> for the instance the delegate will be executed on.
+            The <see cref="T:Microsoft.JSInterop.DotNetObjectReference"/> for the instance the delegate will be executed on.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetInstanceClickHandler.MethodName">
@@ -818,7 +818,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler.InstanceRef">
             <summary>
-            The <see cref="T:Microsoft.JSInterop.DotNetObjectRef"/> for the instance the delegate will be executed on.
+            The <see cref="T:Microsoft.JSInterop.DotNetObjectReference"/> for the instance the delegate will be executed on.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler.MethodName">
