@@ -1,5 +1,6 @@
 using ChartJs.Blazor.ChartJS.Common.Enums;
 using Newtonsoft.Json;
+using System;
 
 namespace ChartJs.Blazor.ChartJS.Common
 {
@@ -26,7 +27,7 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// <summary>
         /// The id for the html canvas element associated with this chart
         /// </summary>
-        public string CanvasId { get; set; }        
+        public string CanvasId { get; } = Guid.NewGuid().ToString();
     }
 
     /// <summary>

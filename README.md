@@ -115,7 +115,6 @@ The example covers a few static options, how to use a simple point-dataset and h
     {
         lineConfig = new LineConfig
         {
-            CanvasId = "mySimpleLineChart",
             Options = new LineOptions
             {
                 Responsive = true,
