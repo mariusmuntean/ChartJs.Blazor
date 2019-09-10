@@ -19,14 +19,20 @@ Since it has now become apparent that the old repo is not maintained anymore, th
 ## Changelog
 
 ### Latest changes
-**0.10.2:**
-    
-* Update ReadMe
-* Clean and update .csproj file
-* Create nuget package
-* Update XML-docs handling
+**0.10.3:**
 
-The full changelog can be found [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/CHANGELOG.md).
+* Remove unnecessary highlight.js
+* Lots of XML-documentation improvements
+* Lots of bug-fixes
+* Rename classes to comply with the consistent naming conventions. From XXChartYY to XXYY.
+* Lots of general improvements (refactoring, remove redundancies, etc)
+* Implement [indexable options](https://www.chartjs.org/docs/latest/general/options.html#indexable-options)
+* Update to preview9
+* Rework Pie-Chart
+* Remove Doughnut-Chart
+* Rework Polar-Area-Chart
+
+The detailed changelog can be found [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/CHANGELOG.md).
 
 ## Please keep in mind that this is still a preview. Expect breaking changes during the next releases. We're reworking all the charts because most of them contain errors and inconsistencies.
 
