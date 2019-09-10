@@ -1,5 +1,5 @@
 # Changelog
-<details>
+<details open="open">
 <summary>0.10.3</summary>
 
 * Remove unnecessary highlight.js
@@ -22,6 +22,7 @@
   * Update Ticks to be more general and complete. There is a known issue with the Major- and the Minor-ticks (wrong properties) which will be fixed in a later update.
   * Make more complete by adding classes and properties.
 * <details><summary>Rename classes to comply with the consistent naming conventions. From XXChartYY to XXYY.</summary>
+ 
   * BarChartAxis  ->  BarAxis
   * BarChartConfig  ->  BarConfig
   * BarChartData  ->  BarData
@@ -62,6 +63,7 @@
   * ScatterChartDataset  ->  ScatterDataset
   * ScatterChartOptions  ->  ScatterOptions
   * ScatterChartScales  ->  ScatterScales
+  
 </details>
 
 </details>
