@@ -24,6 +24,7 @@ Since it has now become apparent that the old repo is not maintained anymore, th
 * Remove unnecessary highlight.js
 * Lots of XML-documentation improvements
 * Lots of bug-fixes
+* Make the Canvas-id read-only
 * Rename classes to comply with the consistent naming conventions. From XXChartYY to XXYY.
 * Lots of general improvements (refactoring, remove redundancies, etc)
 * Implement [indexable options](https://www.chartjs.org/docs/latest/general/options.html#indexable-options)

@@ -7,6 +7,7 @@
 * Lots of bug-fixes
   * Multiple wrong property names, types and or locations
   * Fix a bug that caused the wrong onClick & generateLabels function to be used for Pie- and Polar-Area-Chart
+* Make the Canvas-id read-only so users don't have to come up with unique names. A GUID will be used instead.
 * Lots of general improvements (refactoring, remove redundancies, etc)
 * Implement indexable options
   * [Indexable options](https://www.chartjs.org/docs/latest/general/options.html#indexable-options) can store either a single value or an array of values. If it's a single value it will be applies to all element. If it's an array it will be applied to the element with the same index.
