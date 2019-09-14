@@ -6,7 +6,7 @@
     <members>
         <member name="T:ChartJs.Blazor.ChartJS.BarChart.BarConfig">
             <summary>
-            Config for a bar chart with typesafe data
+            Config for a bar chart with type safe data
             <para>Either 'bar' or 'horizontalBar'</para>
             </summary>
         </member>
@@ -37,20 +37,20 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1">
             <summary>
-            Dataset for Bar Chart with typesafe data. Source: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties
+            Dataset for a bar chart with type safe data. Source: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties
             </summary>
             <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.BackgroundColor">
             <summary>
             The fill color of the bar.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.BorderColor">
             <summary>
             The color of the bar border.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.BorderWidth">
@@ -61,13 +61,13 @@
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.HoverBackgroundColor">
             <summary>
             The fill color of the bars when hovered.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.HoverBorderColor">
             <summary>
             The stroke color of the bars when hovered.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.HoverBorderWidth">
@@ -77,7 +77,7 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarDataset`1">
             <summary>
-            A base dataset for a barchart
+            A base dataset for a bar chart.
             </summary>
             <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
         </member>
@@ -102,34 +102,32 @@
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarDataset`1.Stack">
-             <summary>
-             The ID of the group to which this dataset belongs to (when stacked, each group will be a separate stack)
-            
-             <para>
-             Specific for stacked bar charts
-             </para>
-             </summary>
+            <summary>
+            The ID of the group to which this dataset belongs to (when stacked, each group will be a separate stack)
+            <para>
+            Specific for stacked bar charts
+            </para>
+            </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1">
-             <summary>
-             Dataset for Bar Chart with typesafe Data. Source: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties
-            
-             <para>
-              The first value applies to the first bar, the second value to the second bar, and so on.
-             </para>
-             </summary>
-             <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
+            <summary>
+            Dataset for a bar chart with type safe data. Source: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties
+            <para>
+             The first value applies to the first bar, the second value to the second bar, and so on.
+            </para>
+            </summary>
+            <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.BackgroundColor">
             <summary>
             The fill color of the bar.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.BorderColor">
             <summary>
             The color of the bar border.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.BorderWidth">
@@ -140,13 +138,13 @@
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.HoverBackgroundColor">
             <summary>
             The fill color of the bars when hovered.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.HoverBorderColor">
             <summary>
             The stroke color of the bars when hovered.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.HoverBorderWidth">
@@ -162,13 +160,13 @@
         <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleDataset.BackgroundColor">
             <summary>
             rgba(0,0,0,0.1)'.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleDataset.BorderColor">
             <summary>
             rgba(0,0,0,0.1)'.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleDataset.BorderWidth">
@@ -178,12 +176,12 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleDataset.HoverBackgroundColor">
             <summary>
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleDataset.HoverBorderColor">
             <summary>
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleDataset.Label">
@@ -207,15 +205,13 @@
             <returns>The fully converted <see cref="!:Dictionary&lt;string, object&gt;"/></returns>
         </member>
         <member name="M:ChartJs.Blazor.ChartJS.ChartJsInterop.StripNulls(ChartJs.Blazor.ChartJS.Common.ConfigBase)">
-             <summary>
-             Returns an object that is equivalent to the given parameter but without any null member AND it preserves DotNetInstanceClickHandler/DotNetInstanceHoverHandler members intact
-            
-             <para>Preserving DotNetInstanceClick/HoverHandler members is important because they contain DotNetObjectRefs to the instance whose method should be invoked on click/hover</para>
-            
-             <para>This whole method is hacky af but necessary. Stripping null members is only needed because the default config for the Line charts on the Blazor side is somehow messed up. If this were not the case no null member stripping were necessary and hence, the recovery of the DotNetObjectRef members would also not be needed. Nevertheless, The Show must go on!</para>
-             </summary>
-             <param name="chartConfig"></param>
-             <returns></returns>
+            <summary>
+            Returns an object that is equivalent to the given parameter but without any null member AND it preserves DotNetInstanceClickHandler/DotNetInstanceHoverHandler members intact
+            <para>Preserving DotNetInstanceClick/HoverHandler members is important because they contain DotNetObjectRefs to the instance whose method should be invoked on click/hover</para>
+            <para>This whole method is hacky af but necessary. Stripping null members is only needed because the default config for the Line charts on the Blazor side is somehow messed up. If this were not the case no null member stripping were necessary and hence, the recovery of the DotNetObjectRef members would also not be needed. Nevertheless, The Show must go on!</para>
+            </summary>
+            <param name="chartConfig"></param>
+            <returns></returns>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Axis">
             <summary>
@@ -294,7 +290,7 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.ConfigBase`2">
             <summary>
-            Base class for chart-config which contains the options and the data subconfigs
+            Base class for chart-config which contains the options and the data sub-configs
             </summary>
             <typeparam name="TOptions">The type of the options-subconfig</typeparam>
             <typeparam name="TData">The type of the data-subconfig</typeparam>
@@ -574,7 +570,7 @@
         <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.Color">
             <summary>
             The color of the grid lines. If specified as an array, the first color applies to the first grid line, the second to the second grid line and so on.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             <para>Type has to be <c>string</c> or <c>string[]</c></para>
             </summary>
         </member>
@@ -617,7 +613,7 @@
         <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.ZeroLineColor">
             <summary>
             Stroke color of the grid line for the first index (index 0).
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.ZeroLineBorderDash">
@@ -639,7 +635,7 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1">
             <summary>
-            Represents an object that can be either a single value or an array of values. This is used for typesafe js-interop.
+            Represents an object that can be either a single value or an array of values. This is used for type safe js-interop.
             </summary>
             <typeparam name="T">The type of data this <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> is supposed to hold.</typeparam>
         </member>
@@ -749,7 +745,7 @@
         <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration.FontColor">
             <summary>
             Color of text.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration.Padding">
@@ -1060,7 +1056,7 @@
         <member name="P:ChartJs.Blazor.ChartJS.Common.SubTicks.FontColor">
             <summary>
             Gets or sets the font color for a tick's labels.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.SubTicks.FontFamily">
@@ -1098,7 +1094,7 @@
         <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.FontColor">
             <summary>
             Gets or sets the font color for <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/> labels.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.FontFamily">
@@ -1562,13 +1558,13 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.LineTension">
             <summary>
-            Bezier curve tension of the line. Set to 0 to draw straightlines. This option is ignored if monotone cubic interpolation is used.
+            Bezier curve tension of the line. Set to 0 to draw straight lines. This option is ignored if monotone cubic interpolation is used.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.ShowLine">
             <summary>
             If false, the line is not drawn for this dataset.
-            Default is true. If you are filling and dont want to show the line, then change to false.
+            Default is true. If you are filling and don't want to show the line, then change to false.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.SpanGaps">
@@ -1585,19 +1581,19 @@
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.BackgroundColor">
             <summary>
             The fill color under the line.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.PointBackgroundColor">
             <summary>
             The fill color of a point.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.BorderColor">
             <summary>
             The color of the line. 
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineOptions">
@@ -1612,7 +1608,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineOptions.Hover">
             <summary>
-            Hover options for hoving over an item
+            Hover options for hovering over an item
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineOptions.Tooltips">
@@ -1711,8 +1707,8 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.ScaleLabel.FontColor">
             <summary>
-            The fontcolor of the label
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            The font color of the label
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.ScaleLabel.FontSize">
@@ -1727,13 +1723,13 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.TimeDisplayFormats">
             <summary>
-            This is a helper class containing premade displayformats to use in <see cref="P:ChartJs.Blazor.ChartJS.LineChart.TimeOptions.DisplayFormats"/> for certain locales.
+            This is a helper class containing pre-made display formats to use in <see cref="P:ChartJs.Blazor.ChartJS.LineChart.TimeOptions.DisplayFormats"/> for certain locales.
             <para>Those <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.TimeMeasurement"/>s that are not defined, will use the default format from https://www.chartjs.org/docs/latest/axes/cartesian/time.html#display-formats </para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeDisplayFormats.DE_CH">
             <summary>
-            Premade format-string for the swiss (DE_CH) locale.
+            Pre-made format-string for the swiss (DE_CH) locale.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.TimeOptions">
@@ -1744,7 +1740,7 @@
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeOptions.DisplayFormats">
             <summary>
             Sets how different time units are displayed. See https://www.chartjs.org/docs/latest/axes/cartesian/time.html#data-sets for more details.
-            <para>See <see cref="T:ChartJs.Blazor.ChartJS.LineChart.TimeDisplayFormats"/> for premade formats for certain locales.</para>
+            <para>See <see cref="T:ChartJs.Blazor.ChartJS.LineChart.TimeDisplayFormats"/> for pre-made formats for certain locales.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeOptions.IsoWeek">
@@ -1788,34 +1784,34 @@
             The minimum display format to be used for a time unit.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.TimeTupel`1">
+        <member name="T:ChartJs.Blazor.ChartJS.LineChart.TimeTuple`1">
             <summary>
-            Represents a point on a graph where the X-Value (<see cref="P:ChartJs.Blazor.ChartJS.LineChart.TimeTupel`1.Time"></see>) is represented by a <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Moment"></see>
+            Represents a point on a graph where the X-Value (<see cref="P:ChartJs.Blazor.ChartJS.LineChart.TimeTuple`1.Time"></see>) is represented by a <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Moment"></see>
             <para>Should be used together with a <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Axes.TimeAxis"></see></para>
             <para>Reference Type so it can be used in the covariant <see cref="T:ChartJs.Blazor.ChartJS.MixedChart.IMixableDataset`1"/></para>
             </summary>
             <typeparam name="TData"></typeparam>
         </member>
-        <member name="M:ChartJs.Blazor.ChartJS.LineChart.TimeTupel`1.#ctor(ChartJs.Blazor.ChartJS.LineChart.Moment,`0)">
+        <member name="M:ChartJs.Blazor.ChartJS.LineChart.TimeTuple`1.#ctor(ChartJs.Blazor.ChartJS.LineChart.Moment,`0)">
             <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.TimeTupel`1"/>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.TimeTuple`1"/>
             </summary>
             <param name="time">The <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Moment"/> instance to represent the x-value.</param>
             <param name="yValue">The value of type <typeparamref name="TData"/> which represents the y-value.</param>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeTupel`1.Time">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeTuple`1.Time">
             <summary>
-            The time-/x-value for this <see cref="T:ChartJs.Blazor.ChartJS.LineChart.TimeTupel`1"/>.
+            The time-/x-value for this <see cref="T:ChartJs.Blazor.ChartJS.LineChart.TimeTuple`1"/>.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeTupel`1.YValue">
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeTuple`1.YValue">
             <summary>
-            The y-value for this <see cref="T:ChartJs.Blazor.ChartJS.LineChart.TimeTupel`1"/>.
+            The y-value for this <see cref="T:ChartJs.Blazor.ChartJS.LineChart.TimeTuple`1"/>.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.MixedChart.BaseMixableDataset`1">
             <summary>
-            The baseclass for a dataset that implements the covariant <see cref="T:ChartJs.Blazor.ChartJS.MixedChart.IMixableDataset`1"/>
+            The base class for a dataset that implements the covariant <see cref="T:ChartJs.Blazor.ChartJS.MixedChart.IMixableDataset`1"/>
             </summary>
             <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
         </member>
@@ -1901,7 +1897,7 @@
             <summary>
             Gets or sets the fill color of the arcs in the dataset.
             This property should be indexed, otherwise you can't distinguish the different arcs.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.BorderAlign">
@@ -1913,7 +1909,7 @@
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.BorderColor">
             <summary>
             Gets or sets the border color of the arcs in the dataset.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.BorderWidth">
@@ -1924,13 +1920,13 @@
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.HoverBackgroundColor">
             <summary>
             Gets or sets the fill colour of the arcs when hovered.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.HoverBorderColor">
             <summary>
             Gets or sets the stroke colour of the arcs when hovered.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieDataset.HoverBorderWidth">
@@ -1995,7 +1991,7 @@
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.AngleLines.Color">
             <summary>
             Gets or sets the color of the angled lines.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.AngleLines.LineWidth">
@@ -2017,7 +2013,7 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis">
             <summary>
-            A linear readial axis.
+            A linear radial axis.
             <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html.</para>
             </summary>
         </member>
@@ -2054,7 +2050,7 @@
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.BackdropColor">
             <summary>
             Gets or sets the color of the label backdrops.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.BackdropPaddingX">
@@ -2126,7 +2122,7 @@
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.PointLabels.FontColor">
             <summary>
             Gets or sets the font color for a point label.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.PointLabels.FontSize">
@@ -2183,7 +2179,7 @@
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.BackgroundColor">
             <summary>
             Gets or sets the fill color of the arcs in the dataset.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.BorderAlign">
@@ -2195,7 +2191,7 @@
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.BorderColor">
             <summary>
             Gets or sets the border color of the arcs in the dataset.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.BorderWidth">
@@ -2206,13 +2202,13 @@
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.HoverBackgroundColor">
             <summary>
             Gets or sets the fill colour of the arcs when hovered.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.HoverBorderColor">
             <summary>
             Gets or sets the stroke colour of the arcs when hovered.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaDataset.HoverBorderWidth">
@@ -2253,13 +2249,13 @@
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.BackgroundColor">
             <summary>
             The fill color under the line.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.BorderColor">
             <summary>
             The color of the line.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.BorderWidth">
@@ -2302,13 +2298,13 @@
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointBackgroundColor">
             <summary>
             The fill color for points.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointBorderColor">
             <summary>
             The border color for points.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointBorderWidth">
@@ -2339,13 +2335,13 @@
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointHoverBackgroundColor">
             <summary>
             Point background color when hovered.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointHoverBorderColor">
             <summary>
             Point border color when hovered.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.RadarChart.RadarDataset.PointHoverBorderWidth">
@@ -2430,13 +2426,13 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.LineTension">
             <summary>
-            Bezier curve tension of the line. Set to 0 to draw straightlines. This option is ignored if monotone cubic interpolation is used.
+            Bezier curve tension of the line. Set to 0 to draw straight lines. This option is ignored if monotone cubic interpolation is used.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.ShowLine">
             <summary>
             If false, the line is not drawn for this dataset.
-            Default is true. If you are filling and dont want to show the line, then change to false.
+            Default is true. If you are filling and don't want to show the line, then change to false.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.SpanGaps">
@@ -2453,21 +2449,21 @@
         <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.BackgroundColor">
             <summary>
             The fill color under the line.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterDataset.BorderColor">
             <summary>
             The color of the line.
-            <para>See <see cref="T:ChartJs.Blazor.Util.Color.ColorUtil"/> for working with colors.</para>
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.Util.Color.ColorUtil">
+        <member name="T:ChartJs.Blazor.Util.ColorUtil">
             <summary>
             Provides useful methods for working with colors. Particularly the conversion from different kinds of C#-colors to string colors which are understood by javascript/css.
             </summary>
         </member>
-        <member name="M:ChartJs.Blazor.Util.Color.ColorUtil.ColorString(System.Byte,System.Byte,System.Byte)">
+        <member name="M:ChartJs.Blazor.Util.ColorUtil.ColorString(System.Byte,System.Byte,System.Byte)">
             <summary>
             Produces a string of the form 'rgba(r, g, b, 1)' with the provided rgb values where the alpha is fixed at 1
             </summary>
@@ -2476,7 +2472,7 @@
             <param name="b"></param>
             <returns></returns>
         </member>
-        <member name="M:ChartJs.Blazor.Util.Color.ColorUtil.ColorHexString(System.Byte,System.Byte,System.Byte)">
+        <member name="M:ChartJs.Blazor.Util.ColorUtil.ColorHexString(System.Byte,System.Byte,System.Byte)">
             <summary>
             Produces a string of the form '#aabbc' with the provided rgb values
             </summary>
@@ -2485,7 +2481,7 @@
             <param name="b"></param>
             <returns></returns>
         </member>
-        <member name="M:ChartJs.Blazor.Util.Color.ColorUtil.ColorString(System.Byte,System.Byte,System.Byte,System.Double)">
+        <member name="M:ChartJs.Blazor.Util.ColorUtil.ColorString(System.Byte,System.Byte,System.Byte,System.Double)">
             <summary>
             Produces a string of the form 'rgba(r, g, b, alpha)' with the provided rgb and alpha values
             </summary>
@@ -2495,13 +2491,13 @@
             <param name="alpha"></param>
             <returns></returns>
         </member>
-        <member name="M:ChartJs.Blazor.Util.Color.ColorUtil.RandomColorString">
+        <member name="M:ChartJs.Blazor.Util.ColorUtil.RandomColorString">
             <summary>
             Produces a string of the form 'rgba(r, g, b, alpha)' with random values for rgb and alpha
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ChartJs.Blazor.Util.Color.ColorUtil.FromDrawingColor(System.Drawing.Color)">
+        <member name="M:ChartJs.Blazor.Util.ColorUtil.FromDrawingColor(System.Drawing.Color)">
             <summary>
             Generates the corresponding string representation (as hex) of a <see cref="T:System.Drawing.Color"></see> object.
             </summary>

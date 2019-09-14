@@ -1,6 +1,5 @@
 ﻿using ChartJs.Blazor.ChartJS.Common;
-using ChartJs.Blazor.Util.Color;
-using System.Collections.Generic;
+using ChartJs.Blazor.Util;
 
 namespace ChartJs.Blazor.ChartJS.PolarAreaChart.Axis
 {

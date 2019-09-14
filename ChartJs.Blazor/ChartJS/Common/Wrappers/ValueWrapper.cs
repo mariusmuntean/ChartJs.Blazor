@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-
+﻿
 namespace ChartJs.Blazor.ChartJS.Common.Wrappers
 {
     public abstract class ValueWrapper<TData> where TData : struct

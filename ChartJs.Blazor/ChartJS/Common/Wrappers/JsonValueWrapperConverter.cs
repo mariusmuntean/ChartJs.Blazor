@@ -1,10 +1,4 @@
-﻿using ChartJs.Blazor.ChartJS.Common;
-using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Newtonsoft.Json;
 
 namespace ChartJs.Blazor.ChartJS.Common.Wrappers
 {

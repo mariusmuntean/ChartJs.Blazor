@@ -1,4 +1,4 @@
-﻿using ChartJs.Blazor.Util.Color;
+﻿using ChartJs.Blazor.Util;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
@@ -27,7 +27,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public string LabelString { get; set; }
 
         /// <summary>
-        /// The fontcolor of the label
+        /// The font color of the label
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string FontColor { get; set; }

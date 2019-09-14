@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ChartJs.Blazor.ChartJS.Common
 {
     /// <summary>
-    /// Represents an object that can be either a single value or an array of values. This is used for typesafe js-interop.
+    /// Represents an object that can be either a single value or an array of values. This is used for type safe js-interop.
     /// </summary>
     /// <typeparam name="T">The type of data this <see cref="IndexableOption{T}"/> is supposed to hold.</typeparam>
     [Newtonsoft.Json.JsonConverter(typeof(IndexableOptionConverter))]   // newtonsoft for now

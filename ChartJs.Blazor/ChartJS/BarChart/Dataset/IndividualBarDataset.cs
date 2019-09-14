@@ -1,11 +1,10 @@
 ﻿using ChartJs.Blazor.ChartJS.Common;
-using ChartJs.Blazor.Util.Color;
+using ChartJs.Blazor.Util;
 
 namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
 {
     /// <summary>
-    /// Dataset for Bar Chart with typesafe Data. Source: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties
-    ///
+    /// Dataset for a bar chart with type safe data. Source: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties
     /// <para>
     ///  The first value applies to the first bar, the second value to the second bar, and so on.
     /// </para>

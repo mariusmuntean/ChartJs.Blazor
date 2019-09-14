@@ -1,6 +1,5 @@
 ﻿using ChartJs.Blazor.ChartJS.MixedChart;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.LineChart

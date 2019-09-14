@@ -1,5 +1,4 @@
-﻿using ChartJs.Blazor.ChartJS.Common.Enums;
-using ChartJs.Blazor.ChartJS.Common.Properties;
+﻿using ChartJs.Blazor.ChartJS.Common.Properties;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {

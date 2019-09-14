@@ -8,7 +8,7 @@
 @using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.ChartJS.LineChart.Axes
 @using ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks
-@using ChartJs.Blazor.Util.Color
+@using ChartJs.Blazor.Util
 @inject WeatherForecastService ForecastService
 
 <h2>Line Logarithmic Chart</h2>
@@ -47,7 +47,7 @@
                 Scales = new Scales
                 {
                     xAxes = new List<CartesianAxis>
-        {
+                    {
                         new LinearCartesianAxis
                         {
                             ScaleLabel = new ScaleLabel
@@ -65,7 +65,7 @@
                         }
                     },
                     yAxes = new List<CartesianAxis>()
-        {
+                    {
                         new LogarithmicAxis
                         {
                             ScaleLabel = new ScaleLabel
@@ -111,10 +111,11 @@
 
         WeatherForecast[] forecasts = await ForecastService.GetStaticForecastAsync(DateTime.Now, 5);
 
-        var onlyDays = forecasts.GroupBy(f => f.Date.Day).Select(g => g.First());
+        IEnumerable<WeatherForecast> onlyDays = forecasts.GroupBy(f => f.Date.Day).Select(g => g.First());
 
-        tempPerHourSet.AddRange(onlyDays.Select(p => new Point(p.Date.Hour, p.TemperatureC)));
-        tempPerDaySet.AddRange(onlyDays.Select(p => new Point(p.Date.Day, p.TemperatureF)));
+        var weatherForecasts = onlyDays.ToList();
+        tempPerHourSet.AddRange(weatherForecasts.Select(p => new Point(p.Date.Hour, p.TemperatureC)));
+        tempPerDaySet.AddRange(weatherForecasts.Select(p => new Point(p.Date.Day, p.TemperatureF)));
 
         lineConfig.Data.Datasets.Add(tempPerHourSet);
         lineConfig.Data.Datasets.Add(tempPerDaySet);

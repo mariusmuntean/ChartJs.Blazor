@@ -1,9 +1,5 @@
 ﻿using ChartJs.Blazor.ChartJS.Common;
-using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {

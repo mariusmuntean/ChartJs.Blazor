@@ -1,9 +1,9 @@
-﻿using ChartJs.Blazor.Util.Color;
+﻿using ChartJs.Blazor.Util;
 
 namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
 {
     /// <summary>
-    /// Dataset for Bar Chart with typesafe data. Source: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties
+    /// Dataset for a bar chart with type safe data. Source: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties
     /// </summary>
     /// <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="Common.Wrappers"/> for value types.</typeparam>
     public class BarDataset<TData> : BaseBarDataset<TData> where TData : class

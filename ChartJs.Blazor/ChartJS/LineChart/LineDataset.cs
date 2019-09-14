@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.ChartJS.MixedChart;
-using ChartJs.Blazor.Util.Color;
+using ChartJs.Blazor.Util;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
@@ -73,7 +73,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// <summary>
         /// Length and spacing of dashes. It's an int array. Whatever JS!
         /// </summary>
-        public int[] BorderDash { get; set; } = new int[] {0, 0};
+        public int[] BorderDash { get; set; } = { 0, 0 };
 
         /// <summary>
         /// Offset for line dashes.
@@ -111,13 +111,13 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public bool Fill { get; set; }
 
         /// <summary>
-        /// Bezier curve tension of the line. Set to 0 to draw straightlines. This option is ignored if monotone cubic interpolation is used.
+        /// Bezier curve tension of the line. Set to 0 to draw straight lines. This option is ignored if monotone cubic interpolation is used.
         /// </summary>
         public double LineTension { get; set; } = 0.4;
 
         /// <summary>
         /// If false, the line is not drawn for this dataset.
-        /// Default is true. If you are filling and dont want to show the line, then change to false.
+        /// Default is true. If you are filling and don't want to show the line, then change to false.
         /// </summary>
         public bool ShowLine { get; set; } = true;
 

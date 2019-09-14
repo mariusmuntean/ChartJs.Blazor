@@ -1,7 +1,5 @@
 ﻿using ChartJs.Blazor.ChartJS.Common.Enums;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
@@ -12,7 +10,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     {
         /// <summary>
         /// Sets how different time units are displayed. See https://www.chartjs.org/docs/latest/axes/cartesian/time.html#data-sets for more details.
-        /// <para>See <see cref="TimeDisplayFormats"/> for premade formats for certain locales.</para>
+        /// <para>See <see cref="TimeDisplayFormats"/> for pre-made formats for certain locales.</para>
         /// </summary>
         public Dictionary<TimeMeasurement, string> DisplayFormats { get; set; }
 

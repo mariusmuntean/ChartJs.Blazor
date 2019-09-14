@@ -1,6 +1,4 @@
-﻿using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
-using Newtonsoft.Json;
-
+﻿
 namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
     /// <summary>

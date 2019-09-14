@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ChartJs.Blazor.ChartJS.BarChart.Dataset;
 using ChartJs.Blazor.ChartJS.MixedChart;
 
 namespace ChartJs.Blazor.ChartJS.BarChart

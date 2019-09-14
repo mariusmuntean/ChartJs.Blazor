@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.ChartJS.MixedChart;
 using Newtonsoft.Json;
@@ -8,7 +7,7 @@ using Newtonsoft.Json;
 namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
 {
     /// <summary>
-    /// A base dataset for a barchart
+    /// A base dataset for a bar chart.
     /// </summary>
     /// <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="Common.Wrappers"/> for value types.</typeparam>
     public class BaseBarDataset<TData> : BaseMixableDataset<TData> where TData : class
@@ -47,7 +46,6 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
 
         /// <summary>
         /// The ID of the group to which this dataset belongs to (when stacked, each group will be a separate stack)
-        ///
         /// <para>
         /// Specific for stacked bar charts
         /// </para>

@@ -1,8 +1,4 @@
-﻿using ChartJs.Blazor.ChartJS.Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks
 {
     /// <summary>

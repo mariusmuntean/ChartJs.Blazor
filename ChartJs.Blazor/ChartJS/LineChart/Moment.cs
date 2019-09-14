@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
@@ -10,7 +8,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     /// </summary>
     // This wrapper can be removed if https://github.com/aspnet/AspNetCore/issues/12685 passes 
     // because then we can just write a custom converter for DateTime and add that to 
-    // the options so it's used for every DateTime it sees. This should not have sideeffects.
+    // the options so it's used for every DateTime it sees. This should not have side effects.
     [JsonConverter(typeof(JsonMomentConverter))]
     public class Moment
     {

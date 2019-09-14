@@ -8,7 +8,7 @@
 @using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.ChartJS.LineChart.Axes
 @using ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks
-@using ChartJs.Blazor.Util.Color
+@using ChartJs.Blazor.Util
 @inject WeatherForecastService ForecastService
 
 <h2>Line Linear Chart</h2>
@@ -23,7 +23,7 @@
     private LineDataset<Point> tempPerHourSet;
     private LineDataset<Point> tempPerDaySet;
 
-    private Random rnd = new Random();
+    private readonly Random rnd = new Random();
 
     protected override async Task OnInitializedAsync()
     {
@@ -120,8 +120,9 @@
 
         var onlyDays = forecasts.GroupBy(f => f.Date.Day).Select(g => g.First());
 
-        tempPerHourSet.AddRange(onlyDays.Select(p => new Point(p.Date.Hour, p.TemperatureC)));
-        tempPerDaySet.AddRange(onlyDays.Select(p => new Point(p.Date.Day, p.TemperatureF)));
+        IEnumerable<WeatherForecast> weatherForecasts = onlyDays.ToList();
+        tempPerHourSet.AddRange(weatherForecasts.Select(p => new Point(p.Date.Hour, p.TemperatureC)));
+        tempPerDaySet.AddRange(weatherForecasts.Select(p => new Point(p.Date.Day, p.TemperatureF)));
 
         lineConfig.Data.Datasets.Add(tempPerHourSet);
         lineConfig.Data.Datasets.Add(tempPerDaySet);

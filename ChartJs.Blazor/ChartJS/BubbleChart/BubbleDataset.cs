@@ -1,6 +1,6 @@
-﻿using ChartJs.Blazor.Util.Color;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ChartJs.Blazor.ChartJS.Common.Enums;
+using ChartJs.Blazor.Util;
 
 namespace ChartJs.Blazor.ChartJS.BubbleChart
 {

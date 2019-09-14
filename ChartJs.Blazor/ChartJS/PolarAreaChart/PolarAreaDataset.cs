@@ -1,7 +1,8 @@
 ﻿using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.Charts;
-using ChartJs.Blazor.Util.Color;
+using ChartJs.Blazor.Util;
+
 using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.PolarAreaChart

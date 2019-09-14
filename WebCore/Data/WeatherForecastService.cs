@@ -6,7 +6,7 @@ namespace WebCore.Data
 {
     public class WeatherForecastService
     {
-        private static string[] Summaries = new[]
+        private static readonly string[] Summaries =
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
@@ -27,7 +27,7 @@ namespace WebCore.Data
             return Task.FromResult(Enumerable.Range(1, amountDays * 24).Select(index => new WeatherForecast
             {
                 Date = startDate.AddHours(index),
-                TemperatureC = (int)((double)index * 2.3),
+                TemperatureC = (int)(index * 2.3),
                 Summary = Summaries[index % Summaries.Length]
             }).ToArray());
         }

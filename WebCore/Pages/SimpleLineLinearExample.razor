@@ -1,5 +1,4 @@
 @page "/SimpleLineLinearExample"
-@using WebCore.Data
 @using ChartJs.Blazor.Charts
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Properties
@@ -7,7 +6,7 @@
 @using ChartJs.Blazor.ChartJS.Common.Legends
 @using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.ChartJS.LineChart.Axes
-@using ChartJs.Blazor.Util.Color
+@using ChartJs.Blazor.Util
 
 <h2>Line Linear Chart</h2>
 <ChartJsLineChart @ref="lineChartJs" Config="@lineConfig" Width="600" Height="300" />
@@ -20,7 +19,7 @@
 
     private LineDataset<Point> pointDataset;
 
-    private Random rnd = new Random();
+    private readonly Random rnd = new Random();
 
     protected override void OnInitialized()
     {

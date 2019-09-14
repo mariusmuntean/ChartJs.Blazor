@@ -4,7 +4,7 @@ using ChartJs.Blazor.ChartJS.Common.Enums;
 namespace ChartJs.Blazor.ChartJS.MixedChart
 {
     /// <summary>
-    /// The baseclass for a dataset that implements the covariant <see cref="IMixableDataset{TData}"/>
+    /// The base class for a dataset that implements the covariant <see cref="IMixableDataset{TData}"/>
     /// </summary>
     /// <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="Common.Wrappers"/> for value types.</typeparam>
     public abstract class BaseMixableDataset<TData> : IMixableDataset<TData> 

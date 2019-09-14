@@ -1,5 +1,4 @@
 using ChartJs.Blazor.ChartJS.Common.Enums;
-using Newtonsoft.Json;
 using System;
 
 namespace ChartJs.Blazor.ChartJS.Common
@@ -31,7 +30,7 @@ namespace ChartJs.Blazor.ChartJS.Common
     }
 
     /// <summary>
-    /// Base class for chart-config which contains the options and the data subconfigs
+    /// Base class for chart-config which contains the options and the data sub-configs
     /// </summary>
     /// <typeparam name="TOptions">The type of the options-subconfig</typeparam>
     /// <typeparam name="TData">The type of the data-subconfig</typeparam>

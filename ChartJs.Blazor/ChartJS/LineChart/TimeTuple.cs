@@ -1,7 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
@@ -11,27 +8,27 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     /// <para>Reference Type so it can be used in the covariant <see cref="MixedChart.IMixableDataset{TData}"/></para>
     /// </summary>
     /// <typeparam name="TData"></typeparam>
-    public class TimeTupel<TData>
+    public class TimeTuple<TData>
     {
         /// <summary>
-        /// Creates a new instance of <see cref="TimeTupel{TData}"/>
+        /// Creates a new instance of <see cref="TimeTuple{TData}"/>
         /// </summary>
         /// <param name="time">The <see cref="Moment"/> instance to represent the x-value.</param>
         /// <param name="yValue">The value of type <typeparamref name="TData"/> which represents the y-value.</param>
-        public TimeTupel(Moment time, TData yValue)
+        public TimeTuple(Moment time, TData yValue)
         {
             Time = time;
             YValue = yValue;
         }
 
         /// <summary>
-        /// The time-/x-value for this <see cref="TimeTupel{TData}"/>.
+        /// The time-/x-value for this <see cref="TimeTuple{TData}"/>.
         /// </summary>
         [JsonProperty("t")]
         public Moment Time { get; set; }
 
         /// <summary>
-        /// The y-value for this <see cref="TimeTupel{TData}"/>.
+        /// The y-value for this <see cref="TimeTuple{TData}"/>.
         /// </summary>
         [JsonProperty("y")]
         public TData YValue { get; set; }

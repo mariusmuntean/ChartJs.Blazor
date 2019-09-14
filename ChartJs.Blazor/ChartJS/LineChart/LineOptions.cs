@@ -15,7 +15,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public Animation Animation { get; set; }
 
         /// <summary>
-        /// Hover options for hoving over an item
+        /// Hover options for hovering over an item
         /// </summary>
         public LineOptionsHover Hover { get; set; }
 
