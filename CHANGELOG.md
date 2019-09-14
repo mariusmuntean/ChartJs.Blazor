@@ -64,6 +64,7 @@
   * ScatterChartDataset  ->  ScatterDataset
   * ScatterChartOptions  ->  ScatterOptions
   * ScatterChartScales  ->  ScatterScales
+  * TimeTupel -> TimeTuple (typo)
   
 </details>
 

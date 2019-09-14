@@ -38,7 +38,7 @@ The detailed changelog can be found [here](https://github.com/Joelius300/ChartJS
 #### How to update (breaking changes):
 * Remove any assignment of the charts CanvasId. It will be handeled automatically for you using a GUID string.
 * Use pie-chart-classes anywhere you used dougnut chart and either manually set the `CutoutPercentage` to 50 or pass in `true` for the `PieChartOptions`. It will yield the exact same results unless you have made manual changes to the chart.js-defaults using your own js.
-* Many classes and properties have been removed, added, moved, renamed and more. You might have to add new using-directives and use the new class names. This is especially the case for the charts we've reworked (Pie (& Doughnut), Polar-Area, Line). The properties should all comply with the ones from chart.js written in PascalCase ([chart.js documentation](https://www.chartjs.org/docs/latest/)).  
+* Many classes and properties have been removed, added, moved, renamed and more. You might have to add new using-directives and use the new class names. This is especially the case for the charts we've reworked (Pie (& Doughnut), Polar-Area, Line). Also a typo was fixed from `TimeTupel` to `TimeTuple`. The properties should all comply with the ones from chart.js written in PascalCase ([chart.js documentation](https://www.chartjs.org/docs/latest/)).  
 For more details take a look at the detailed changelog, the chart.js-docs and our samples.
 * **If you aren't referencing the js-interop-file dynamically using `_content`, you need to copy the new file manually from [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/ChartJs.Blazor/wwwroot/ChartJsInterop.js) (there were two bug fixes).**
 
