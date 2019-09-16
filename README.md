@@ -36,8 +36,8 @@ Since it has now become apparent that the old repo is not maintained anymore, th
 The detailed changelog can be found [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/CHANGELOG.md).
 
 #### How to update (breaking changes):
-* Remove any assignment of the charts CanvasId. It will be handeled automatically for you using a GUID string.
-* Use pie-chart-classes anywhere you used dougnut chart and either manually set the `CutoutPercentage` to 50 or pass in `true` for the `PieChartOptions`. It will yield the exact same results unless you have made manual changes to the chart.js-defaults using your own js.
+* Remove any assignment of the charts `CanvasId`. It will be handeled automatically for you using a GUID string.
+* Use pie-chart-classes anywhere you used dougnut chart and either manually set the `CutoutPercentage` to 50 or pass in `true` for the `PieOptions` constructor. It will yield the exact same results unless you have made manual changes to the chart.js-defaults using your own js.
 * Many classes and properties have been removed, added, moved, renamed and more. You might have to add new using-directives and use the new class names. This is especially the case for the charts we've reworked (Pie (& Doughnut), Polar-Area, Line). Also a typo was fixed from `TimeTupel` to `TimeTuple`. The properties should all comply with the ones from chart.js written in PascalCase ([chart.js documentation](https://www.chartjs.org/docs/latest/)).  
 For more details take a look at the detailed changelog, the chart.js-docs and our samples.
 * **If you aren't referencing the js-interop-file dynamically using `_content`, you need to copy the new file manually from [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/ChartJs.Blazor/wwwroot/ChartJsInterop.js) (there were two bug fixes).**
@@ -90,15 +90,9 @@ Furthermore, you need to include the js-interop and the css-file which enables r
 Since those are static assets in the library, you should be able to reference them via your `_Host.cshtml`/`index.html`-file directly, without copying the files. You can do that using `_content` as seen below:
 
 ```html
-<script src="_content/ChartJs.Blazor/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
-<link rel="stylesheet" href="_content/ChartJs.Blazor/ChartJsBlazor.css" />
+<script src="_content/ChartJs.Blazor.Fork/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
+<link rel="stylesheet" href="_content/ChartJs.Blazor.Fork/ChartJsBlazor.css" />
 ```
-
-If you're running the project from visual studio, you might have to add a call to `webBuilder.UseStaticWebAssets();` in the `CreateHostBuilder` method inside the `Program`-class as mentioned [here](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/ui-class?view=aspnetcore-3.0&tabs=visual-studio#consume-content-from-a-referenced-rcl).
-
-However this doesn't always seem to work and we were not yet able to make it work. We're currently discussion this issue with the asp.net team and doing extensive testing in order to solve this but at the moment, you might have to copy the files manually as a workaround.  
-You can get the newest versions from [here](https://github.com/Joelius300/ChartJSBlazor/tree/master/ChartJs.Blazor/wwwroot) and reference them directly in your project.
-
 
 Now to creating the chart. Below is a simple example for a line-chart. Examples of the other chart types can be found in the [Wiki](https://github.com/Joelius300/ChartJSBlazor/wiki/Chart-types). You can find the examples also [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/WebCore/Pages/) (the examples are probably more up to date in case the below code doesn't work).
 

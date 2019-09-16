@@ -33,24 +33,8 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script> Contains moment.js for time axis*@
-    <!-- Include js-interop and css for responsiveness -->
-    @*
-        Even though it says here https://docs.microsoft.com/en-us/aspnet/core/razor-pages/ui-class?view=aspnetcore-3.0&tabs=visual-studio#consume-content-from-a-referenced-rcl
-        that the path should be all lowercase without dots (so "_content/chartjsblazor/"), this is currently not correct.
-        You have to actually use "_content/ChartJs.Blazor/" for it to work correctly. This might change in a later preview.
 
-        Currently there are some issues with this (at least in server-side blazor).
-        It doesn't always work and the static files aren't accessible.
-        Theses issues will hopefully be resolved in the upcoming .net previews.
-    *@
-
-    @* Removed because it currently doesn't work with server side blazor
-    <script src="_content/ChartJs.Blazor/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
-    <link rel="stylesheet" href="_content/ChartJs.Blazor/ChartJsBlazor.css" />
-    *@
-
-    @* Manually include because it doesn't work with server side blazor *@
-    <script src="~/ChartJs.Blazor/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
-    <link rel="stylesheet" href="~/ChartJs.Blazor/ChartJSBlazor.css" />
+    <script src="_content/ChartJs.Blazor.Fork/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
+    <link rel="stylesheet" href="_content/ChartJs.Blazor.Fork/ChartJsBlazor.css" />
 </body>
 </html>
