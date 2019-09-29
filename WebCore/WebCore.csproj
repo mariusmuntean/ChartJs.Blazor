@@ -4,11 +4,7 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Linker.xml" />
-  </ItemGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\ChartJs.Blazor\ChartJs.Blazor.csproj" />
   </ItemGroup>
