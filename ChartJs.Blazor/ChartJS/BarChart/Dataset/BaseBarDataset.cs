@@ -20,7 +20,7 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
         public BaseBarDataset() { }
 
 
-        public override ChartTypes Type => ChartTypes.Bar;
+        public override ChartType Type => ChartType.Bar;
 
         /// <summary>
         /// The label for the dataset which appears in the legend and tooltips.
@@ -42,7 +42,7 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
         /// <summary>
         /// Which edge to skip drawing the border for. 
         /// </summary>
-        public Positions BorderSkipped { get; set; }
+        public Position BorderSkipped { get; set; }
 
         /// <summary>
         /// The ID of the group to which this dataset belongs to (when stacked, each group will be a separate stack)

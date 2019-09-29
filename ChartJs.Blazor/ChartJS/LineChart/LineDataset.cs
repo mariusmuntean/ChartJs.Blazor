@@ -27,7 +27,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// <summary>
         /// The type of chart this dataset is for.
         /// </summary>
-        public override ChartTypes Type => ChartTypes.Line;
+        public override ChartType Type => ChartType.Line;
 
         /// <summary>
         /// The label for the dataset which appears in the legend and tooltips.
@@ -49,26 +49,20 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// </summary>
         public int BorderWidth { get; set; } = 1;
 
-        // TODO: Implement options
         /// <summary>
-        /// Cap style of the line.
-        /// <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap for options.</para>
+        /// Gets or sets the cap style of the line.
         /// </summary>
-        public string BorderCapStyle { get; set; }
+        public BorderCapStyle BorderCapStyle { get; set; }
 
-        // TODO: Implement options
         /// <summary>
-        /// Line joint style.
-        /// <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin for options.</para>
+        /// Gets or sets the line join style.
         /// </summary>
-        public string BorderJoinStyle { get; set; }
+        public BorderJoinStyle BorderJoinStyle { get; set; }
 
-        // TODO: Implement options
         /// <summary>
-        /// Algorithm used to interpolate a smooth curve from the discrete data points.
-        /// <para>See https://www.chartjs.org/docs/latest/charts/line.html#cubicinterpolationmode for options.</para>
+        /// Gets or sets the algorithm used to interpolate a smooth curve from the discrete data points.
         /// </summary>
-        public string CubicInterpolationMode { get; set; }
+        public CubicInterpolationMode CubicInterpolationMode { get; set; }
 
         /// <summary>
         /// Length and spacing of dashes. It's an int array. Whatever JS!

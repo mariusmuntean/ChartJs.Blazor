@@ -5,6 +5,6 @@ namespace ChartJs.Blazor.ChartJS.BubbleChart
 {
     public class BubbleConfig : ConfigBase<BubbleOptions, BubbleData>
     {
-        public BubbleConfig() : base(ChartTypes.Bubble) { }
+        public BubbleConfig() : base(ChartType.Bubble) { }
     }
 }

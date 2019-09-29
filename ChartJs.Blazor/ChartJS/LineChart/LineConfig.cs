@@ -11,6 +11,6 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// <summary>
         /// Creates a new instance of <see cref="LineConfig"/>
         /// </summary>
-        public LineConfig() : base(ChartTypes.Line) { }
+        public LineConfig() : base(ChartType.Line) { }
     }
 }

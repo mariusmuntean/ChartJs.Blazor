@@ -13,7 +13,7 @@ namespace ChartJs.Blazor.ChartJS.MixedChart
         /// <summary>
         /// The type of chart this dataset is for.
         /// </summary>
-        public abstract ChartTypes Type { get; }
+        public abstract ChartType Type { get; }
 
         private readonly List<TData> _data = new List<TData>();
 

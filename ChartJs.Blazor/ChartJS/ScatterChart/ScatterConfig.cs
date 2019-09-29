@@ -5,6 +5,6 @@ namespace ChartJs.Blazor.ChartJS.ScatterChart
 {
     public class ScatterConfig : ConfigBase<ScatterOptions, ScatterData>
     {
-        public ScatterConfig() : base(ChartTypes.Scatter) { }
+        public ScatterConfig() : base(ChartType.Scatter) { }
     }
 }

@@ -4,7 +4,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
     /// <summary>
     /// As per documentation here https://www.chartjs.org/docs/latest/axes/#common-configuration
     /// </summary>
-    public class AxisDisplay: ObjectEnum
+    public sealed class AxisDisplay : ObjectEnum
     {
         /// <summary>
         /// Hidden

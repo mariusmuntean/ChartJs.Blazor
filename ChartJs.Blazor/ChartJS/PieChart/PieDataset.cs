@@ -11,9 +11,9 @@ namespace ChartJs.Blazor.ChartJS.PieChart
     public class PieDataset
     {
         /// <summary>
-        /// Gets or sets the chart type. <see cref="ChartTypes.Pie"/> in this case. This is needed for mixed datasets only.
+        /// Gets or sets the chart type. <see cref="ChartType.Pie"/> in this case. This is needed for mixed datasets only.
         /// </summary>
-        public ChartTypes Type { get; } = ChartTypes.Pie;
+        public ChartType Type { get; } = ChartType.Pie;
 
         /// <summary>
         /// Gets or sets the fill color of the arcs in the dataset.
@@ -22,12 +22,11 @@ namespace ChartJs.Blazor.ChartJS.PieChart
         /// </summary>
         public IndexableOption<string> BackgroundColor { get; set; }
 
-        // Todo: Make this an enum later?!
         /// <summary>
-        /// Gets or sets the border align. When 'center' is set, the borders of arcs next to each other will overlap.
-        /// When 'inner' is set, it is guaranteed that all the borders are not overlap.
+        /// Gets or sets the border align. When <see cref="BorderAlign.Center" /> is set, the borders of arcs next to each other will overlap.
+        /// When <see cref="BorderAlign.Inner" /> is set, it is guaranteed that all the borders are not overlap.
         /// </summary>
-        public string BorderAlign { get; set; } = "center";
+        public IndexableOption<BorderAlign> BorderAlign { get; set; }
 
         /// <summary>
         /// Gets or sets the border color of the arcs in the dataset.

@@ -13,7 +13,7 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// Creates a new instance of <see cref="ConfigBase"/>
         /// </summary>
         /// <param name="chartType">The chartType this config is for</param>
-        protected ConfigBase(ChartTypes chartType)
+        protected ConfigBase(ChartType chartType)
         {
             Type = chartType;
         }
@@ -21,7 +21,7 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// <summary>
         /// Defines what type of chart this config is for
         /// </summary>
-        public ChartTypes Type { get; }
+        public ChartType Type { get; }
 
         /// <summary>
         /// The id for the html canvas element associated with this chart
@@ -42,7 +42,7 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// Creates a new instance of <see cref="ConfigBase"/>
         /// </summary>
         /// <param name="chartType">The chartType this config is for</param>
-        protected ConfigBase(ChartTypes chartType) : base(chartType)
+        protected ConfigBase(ChartType chartType) : base(chartType)
         {
             Data = new TData();
         }

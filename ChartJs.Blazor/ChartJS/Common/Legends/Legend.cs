@@ -18,7 +18,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends
         /// <summary>
         /// Position of the legend
         /// </summary>
-        public Positions Position { get; set; } = Positions.Top;
+        public Position Position { get; set; } = Position.Top;
 
         /// <summary>
         /// Marks that this box should take the full width of the canvas (pushing down other boxes). This is unlikely to need to be changed in day-to-day use.

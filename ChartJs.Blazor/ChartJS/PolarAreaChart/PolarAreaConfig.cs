@@ -12,7 +12,7 @@ namespace ChartJs.Blazor.ChartJS.PolarAreaChart
         /// <summary>
         /// Creates a new instance of <see cref="PolarAreaConfig"/>
         /// </summary>
-        public PolarAreaConfig() : base(ChartTypes.PolarArea)
+        public PolarAreaConfig() : base(ChartType.PolarArea)
         {
         }
     }

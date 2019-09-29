@@ -5,6 +5,6 @@ namespace ChartJs.Blazor.ChartJS.RadarChart
 {
     public class RadarConfig : ConfigBase<RadarOptions, RadarData>
     {
-        public RadarConfig() : base(ChartTypes.Radar) { }
+        public RadarConfig() : base(ChartType.Radar) { }
     }
 }

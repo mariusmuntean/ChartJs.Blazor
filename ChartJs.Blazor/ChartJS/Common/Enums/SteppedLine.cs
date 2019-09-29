@@ -4,7 +4,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
     /// <summary>
     /// As per documentation here https://www.chartjs.org/docs/latest/charts/line.html#stepped-line
     /// </summary>
-    public class SteppedLine : ObjectEnum
+    public sealed class SteppedLine : ObjectEnum
     {
         /// <summary>
         /// No Step Interpolation (default)

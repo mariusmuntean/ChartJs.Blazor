@@ -1,4 +1,5 @@
 ﻿using ChartJs.Blazor.Util;
+using ChartJs.Blazor.ChartJS.Common.Enums;
 
 namespace ChartJs.Blazor.ChartJS.Common.Legends
 {
@@ -17,13 +18,10 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends
         /// </summary>
         public int FontSize { get; set; } = 12;
 
-        // TODO: implement with enum (normal, italic, oblique, initial, inherit)
         /// <summary>
-        /// Font style of text.
-        ///
-        /// <para>Supported fonts: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-label-configuration </para>
+        /// Gets or sets the font style for the labels text.
         /// </summary>
-        public string FontStyle { get; set; }
+        public FontStyle FontStyle { get; set; }
 
         /// <summary>
         /// Color of text.

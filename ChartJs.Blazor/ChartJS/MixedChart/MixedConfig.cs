@@ -5,7 +5,7 @@ namespace ChartJs.Blazor.ChartJS.MixedChart
 {
     public class MixedConfig<TData> : ConfigBase<MixedOptions, MixedData<TData>>
     {
-        public MixedConfig() : base(ChartTypes.Bar) // This is not a mistake
+        public MixedConfig() : base(ChartType.Bar) // This is not a mistake
         {
         }
     }

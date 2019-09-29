@@ -24,7 +24,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart.Axes
         /// <summary>
         /// The bounds property controls the scale boundary strategy (bypassed by min/max time options).
         /// </summary>
-        public ScaleBounds Bounds { get; set; }
+        public ScaleBound Bounds { get; set; }
 
         /// <summary>
         /// Configuration for time related stuff

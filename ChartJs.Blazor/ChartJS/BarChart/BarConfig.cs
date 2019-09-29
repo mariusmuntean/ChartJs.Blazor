@@ -9,6 +9,6 @@ namespace ChartJs.Blazor.ChartJS.BarChart
     /// </summary>
     public class BarConfig : ConfigBase<BarOptions, BarData>
     {
-        public BarConfig(ChartTypes type = null) : base(type ?? ChartTypes.Bar) { }
+        public BarConfig(ChartType type = null) : base(type ?? ChartType.Bar) { }
     }
 }

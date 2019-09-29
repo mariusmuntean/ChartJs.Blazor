@@ -25,7 +25,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart.Axes
         /// <summary>
         /// Position of the axis in the chart
         /// </summary>
-        public Positions Position { get; set; }
+        public Position Position { get; set; }
 
         /// <summary>
         /// If true, extra space is added to the both edges and the axis is scaled to fit into the chart area. 

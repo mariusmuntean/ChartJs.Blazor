@@ -13,9 +13,9 @@ namespace ChartJs.Blazor.ChartJS.PolarAreaChart
     public class PolarAreaDataset
     {
         /// <summary>
-        /// Gets the chart type. <see cref="ChartTypes.PolarArea"/> in this case. This is needed for mixed datasets only.
+        /// Gets the chart type. <see cref="ChartType.PolarArea"/> in this case. This is needed for mixed datasets only.
         /// </summary>
-        public ChartTypes Type { get; } = ChartTypes.PolarArea;
+        public ChartType Type { get; } = ChartType.PolarArea;
 
         /// <summary>
         /// Gets or sets the fill color of the arcs in the dataset.
@@ -23,12 +23,11 @@ namespace ChartJs.Blazor.ChartJS.PolarAreaChart
         /// </summary>
         public IndexableOption<string> BackgroundColor { get; set; }
 
-        // Todo: Make this an enum later?!
         /// <summary>
-        /// Gets or sets the border align. When 'center' is set, the borders of arcs next to each other will overlap.
-        /// When 'inner' is set, it is guaranteed that all the borders are not overlap.
+        /// Gets or sets the border align. When <see cref="BorderAlign.Center" /> is set, the borders of arcs next to each other will overlap.
+        /// When <see cref="BorderAlign.Inner" /> is set, it is guaranteed that all the borders are not overlap.
         /// </summary>
-        public string BorderAlign { get; set; }
+        public IndexableOption<BorderAlign> BorderAlign { get; set; }
 
         /// <summary>
         /// Gets or sets the border color of the arcs in the dataset.

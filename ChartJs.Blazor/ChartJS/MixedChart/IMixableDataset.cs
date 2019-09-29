@@ -12,7 +12,7 @@ namespace ChartJs.Blazor.ChartJS.MixedChart
         /// <summary>
         /// The type of chart this dataset is for.
         /// </summary>
-        ChartTypes Type { get; }
+        ChartType Type { get; }
 
         /// <summary>
         /// The data contained in this dataset (readonly because covariant).
