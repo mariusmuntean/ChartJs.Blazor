@@ -1,17 +1,24 @@
 ## ChartJs interop with Blazor
 
 
+[![Build Status](https://dev.azure.com/marius-muntean/ChartJs.Blazor/_apis/build/status/ChartJs.Blazor-SamplesSite)](https://dev.azure.com/marius-muntean/ChartJs.Blazor/_build/latest?definitionId=4)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/ChartJs.Blazor.Fork.svg)](https://www.nuget.org/packages/ChartJs.Blazor.Fork/)
+
 
 This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart.js).
 You can use the library in both client- and server-side projects. See the samples or reach out on Twitter if you need help.
 
-[![Build Status](https://dev.azure.com/marius-muntean/ChartJs.Blazor/_apis/build/status/ChartJs.Blazor-SamplesSite)](https://dev.azure.com/marius-muntean/ChartJs.Blazor/_build/latest?definitionId=4)
+#
+## Status Update
+The project was abandoned for some time and it is now being revived. 
+The plan is to update it to the latest Blazor version, update the samples and then to continue with nomal development.
+[@Joelius300](https://github.com/Joelius300) kept the project alive and developed it further; here's the repo https://github.com/Joelius300/ChartJSBlazor. We've agreed to integrate his work back into this repository.
 
+If you can't wait until the project is up and running again and you need an updated NuGet package of the library, you can use Joelius300's package: https://www.nuget.org/packages/ChartJs.Blazor.Fork/
 
+[![NuGet Downloads](https://img.shields.io/nuget/dt/ChartJs.Blazor.Fork.svg)](https://www.nuget.org/packages/ChartJs.Blazor.Fork/)
 
-[![NuGet](https://img.shields.io/badge/ChartJs.Blazor-Latest-brightgreen.svg?style=popout)](https://www.nuget.org/packages/ChartJs.Blazor)
-
-
+Many thanks to [@Joelius300](https://github.com/Joelius300)! Without your input the project wouldn't have been revived.
 
 ## Need your opinion
 
@@ -94,16 +101,16 @@ Prerequisites.
 
 ## Installation 
 
-There's a NuGet package: https://www.nuget.org/packages/ChartJs.Blazor
+There's a NuGet package: https://www.nuget.org/packages/ChartJs.Blazor.Fork
 
 Install from the command line:
 
 ```
-Install-Package ChartJs.Blazor
+Install-Package ChartJs.Blazor.Fork -Version 0.10.3-preview
 ```
 or 
 ```
-dotnet add package ChartJs.Blazor
+dotnet add package ChartJs.Blazor.Fork --version 0.10.3-preview
 ```
 **Note:** For server-side projects make sure to add the following line to the `Configure(...)` method of your `Startup.cs` file
 ```csharp
