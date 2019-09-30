@@ -5,6 +5,5 @@ namespace ChartJs.Blazor.ChartJS.BubbleChart
 {
     public class BubbleOptions : BaseConfigOptions
     {
-        public Tooltips Tooltips { get; set; }
     }
 }

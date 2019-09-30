@@ -39,5 +39,10 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// The legend for this chart
         /// </summary>
         public Legend Legend { get; set; } = new Legend();
+
+        /// <summary>
+        /// Gets or sets the tooltip options for this chart.
+        /// </summary>
+        public Tooltips Tooltips { get; set; }
     }
 }
