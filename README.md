@@ -10,6 +10,10 @@
 This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart.js).
 You can use the library in both client- and server-side projects.
 
+# Status Update (end of life)
+
+This repository has reached its end of life. All future development will be done in the [original repo](https://github.com/mariusmuntean/ChartJs.Blazor). You can find more information in [this pinned issue (#97)](https://github.com/Joelius300/ChartJSBlazor/issues/97).
+
 ## Introduction
 
 This library is a modification of [this awesome library](https://github.com/mariusmuntean/ChartJs.Blazor) by [Marius Muntean](https://github.com/mariusmuntean/). 
