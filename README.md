@@ -54,8 +54,8 @@ Don't know what Blazor is? Read [here](https://dotnet.microsoft.com/apps/aspnet/
 
 The prerequisites are:
 
-1. [Visual Studio 2019 16.3.0 preview 3.0](https://visualstudio.microsoft.com/de/vs/preview/)
-2. [.Net core 3 preview9](https://dotnet.microsoft.com/download/dotnet-core/3.0)
+1. [Visual Studio 2019 16.3](https://visualstudio.microsoft.com/downloads/)
+2. [.NET Core 3](https://dotnet.microsoft.com/download/dotnet-core/3.0)
 
 
 ## Installation
@@ -98,9 +98,13 @@ Since those are static assets in the library, you should be able to reference th
 <link rel="stylesheet" href="_content/ChartJs.Blazor.Fork/ChartJsBlazor.css" />
 ```
 
+**Disclaimer:**
+Make sure to include the Blazor `_framework`-script before including the library-script. Otherwise, you will face the error: [Uncaught reference error: "Blazor is not defined at ChartJsInterop.js:5"](https://github.com/Joelius300/ChartJSBlazor/issues/94).
+This issue is also documented in the [known issues page](https://github.com/Joelius300/ChartJSBlazor/wiki/Known-issues#uncaught-reference-error-blazor-is-not-defined-at-chartjsinteropjs5).
+
 Now to creating the chart. Below is a simple example for a line-chart. Examples of the other chart types can be found in the [Wiki](https://github.com/Joelius300/ChartJSBlazor/wiki/Chart-types). You can find the examples also [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/WebCore/Pages/) (the examples are probably more up to date in case the below code doesn't work).
 
-The example covers a few static options, how to use a simple point-dataset and how to dynamically initialize and update the data and the chart.  
+The example covers a few static options, how to use a simple point-dataset and how to dynamically initialize and update the data displayed on the chart.
 
 ```csharp
 @page "/SimpleLineLinearExample"
@@ -204,6 +208,17 @@ The example covers a few static options, how to use a simple point-dataset and h
     }
 }
 ```
+
+For running on client-side Blazor there is currently a bug with JSON.NET tracked by this [issue](https://github.com/JamesNK/Newtonsoft.Json/issues/2020).
+The known workaround is to include the following line in the parent component:
+
+```csharp
+private ReferenceConverter ReferenceConverter = new ReferenceConverter(typeof(PROBLEMATIC_COMPONENT));
+```
+
+where `PROBLEMATIC_COMPONENT` is a placeholder for the chart-component you're using inside this component (e.g. `ChartJsBarChart`, `ChartJsPieChart`, `ChartJsLineChart`, ..).
+
+This issue is also documented in the [known issues page](https://github.com/Joelius300/ChartJSBlazor/wiki/Known-issues#missingmethodexception-when-using-client-side-blazor).
 
 # Contributors
 * [Joelius300](https://github.com/Joelius300)
