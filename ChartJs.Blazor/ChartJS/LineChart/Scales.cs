@@ -1,4 +1,4 @@
-﻿using ChartJs.Blazor.ChartJS.LineChart.Axes;
+﻿using ChartJs.Blazor.ChartJS.Common.Axes;
 using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.LineChart

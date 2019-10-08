@@ -50,4 +50,18 @@ Chart legend with custom handler for Item generation and events - Javascript and
     <PackageReference Include="Microsoft.CSharp" Version="4.6.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ChartJS\BarChart\Axes\ExtendedCartesianAxes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+  </ItemGroup>
+    
+  <ItemGroup>
+    <Compile Remove="ChartJS\BarChart\Axes\ExtendedCartesianAxes.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
 </Project>

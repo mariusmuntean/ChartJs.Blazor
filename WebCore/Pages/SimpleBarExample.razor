@@ -1,0 +1,70 @@
+@page "/SimpleBarExample"
+@using ChartJs.Blazor.ChartJS.BarChart
+@using ChartJs.Blazor.ChartJS.BarChart.Axes
+@using ChartJs.Blazor.ChartJS.Common.Axes
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.ChartJS.Common.Properties
+@using ChartJs.Blazor.ChartJS.Common.Wrappers
+@using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
+
+<h1>Bar Chart</h1>
+
+<ChartJsBarChart @ref="barChartJs" Config="@config" Width="600" Height="300" />
+
+@code {
+    private BarConfig config;
+    private ChartJsBarChart barChartJs;
+
+    protected override void OnInitialized()
+    {
+        config = new BarConfig
+        {
+            Options = new BarOptions
+            {
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "Sample chart from Blazor"
+                },
+                Scales = new BarScales
+                {
+                    XAxes = new List<CartesianAxis>
+                    {
+                        new BarCategoryAxis
+                        {
+                            BarPercentage = 0.5,
+                            BarThickness = BarThickness.Flex
+                        }
+                    },
+                    YAxes = new List<CartesianAxis>
+                    {
+                        new BarLinearCartesianAxis
+                        {
+                            Ticks = new LinearCartesianTicks
+                            {
+                                BeginAtZero = true
+                            }
+                        }
+                    }
+                },
+                Responsive = true
+            }
+        };
+
+        config.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
+
+        var barSet = new BarDataset<DoubleWrapper>
+        {
+            Label = "My double dataset",
+            BackgroundColor = new[] { "#242968", "#218ba5", "#11af66", "#af9d11" },
+            BorderWidth = 0,
+            HoverBackgroundColor = "#f06384",
+            HoverBorderColor = "#f06384",
+            HoverBorderWidth = 1,
+            BorderColor = "#ffffff",
+        };
+
+        barSet.AddRange(new double[] { 8, 5, 3, 7 }.Wrap());
+        config.Data.Datasets.Add(barSet);
+    }
+}

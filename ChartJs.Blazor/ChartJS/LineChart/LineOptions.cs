@@ -1,6 +1,6 @@
 ﻿using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Properties;
-using ChartJs.Blazor.ChartJS.LineChart.Axes;
+using ChartJs.Blazor.ChartJS.Common.Axes;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {

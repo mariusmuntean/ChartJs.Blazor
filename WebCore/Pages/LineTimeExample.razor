@@ -5,9 +5,10 @@
 @using ChartJs.Blazor.ChartJS.Common.Properties
 @using ChartJs.Blazor.ChartJS.Common.Enums
 @using ChartJs.Blazor.ChartJS.Common.Legends
+@using ChartJs.Blazor.ChartJS.Common.Axes
+@using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
+@using ChartJs.Blazor.ChartJS.Common.Time
 @using ChartJs.Blazor.ChartJS.LineChart
-@using ChartJs.Blazor.ChartJS.LineChart.Axes
-@using ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks
 @inject WeatherForecastService ForecastService
 @inject IJSRuntime jsRuntime
 
@@ -33,7 +34,7 @@
             localeChanged = await jsRuntime.ChangeLocale(de_ch);
         }
 
-        if(!localeChanged) Console.WriteLine($"Locale was not changed to {de_ch}. Either it already is {de_ch} or this locale doesn't exist.");
+        if (!localeChanged) Console.WriteLine($"Locale was not changed to {de_ch}. Either it already is {de_ch} or this locale doesn't exist.");
     }
 
     protected override async Task OnInitializedAsync()
@@ -64,7 +65,7 @@
                 Scales = new Scales
                 {
                     xAxes = new List<CartesianAxis>
-                    {
+                {
                         new TimeAxis
                         {
                             Distribution = TimeDistribution.Linear,

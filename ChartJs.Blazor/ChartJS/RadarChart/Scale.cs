@@ -1,4 +1,4 @@
-﻿using ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks;
+﻿using ChartJs.Blazor.ChartJS.Common.Axes.Ticks;
 
 namespace ChartJs.Blazor.ChartJS.RadarChart
 {

@@ -4,152 +4,412 @@
         <name>ChartJs.Blazor</name>
     </assembly>
     <members>
+        <member name="T:ChartJs.Blazor.ChartJS.BarChart.Axes.BarCategoryAxis">
+            <summary>
+            Extended version of <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.CategoryAxis"/> for use in a bar chart.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/charts/bar.html#scale-configuration </para>
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.BarChart.Axes.BarCategoryAxis.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:ChartJs.Blazor.ChartJS.BarChart.Axes.BarCategoryAxis"/> class.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarCategoryAxis.BarPercentage">
+            <summary>
+            Gets or sets the percentage (0-1) of the available width each bar should be within the category width.
+            1.0 will take the whole category width and put the bars right next to each other.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarCategoryAxis.CategoryPercentage">
+            <summary>
+            Gets or sets the percentage (0-1) of the available width each category should be within the sample width.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarCategoryAxis.BarThickness">
+            <summary>
+            Gets or sets the width of each bar in pixels.
+            If set to <see cref="P:ChartJs.Blazor.ChartJS.BarChart.BarThickness.Flex"/>, it computes "optimal" sample widths that globally arrange bars side by side. If not set (default), bars are equally sized based on the smallest interval.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarCategoryAxis.MaxBarThickness">
+            <summary>
+            Gets or sets the maximum bar thickness.
+            Set this to ensure that bars are not sized thicker than this.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarCategoryAxis.MinBarLength">
+            <summary>
+            Gets or sets the minimum bar length.
+            Set this to ensure that bars have a minimum length in pixels.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarCategoryAxis.OffsetGridLines">
+            <summary>
+            Gets or sets a value indicating whether grid lines will be shifted to be between labels or not.
+            If <c>true</c>, the bars for a particular data point fall between the grid lines.
+            The grid line will move to the left by one half of the tick interval.
+            If <c>false</c>, the grid line will go right down the middle of the bars.
+            <para>Changing this value will directly affect <see cref="P:ChartJs.Blazor.ChartJS.Common.GridLines.OffsetGridLines"/> of the property <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis.GridLines"/> in this instance.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarCategoryAxis.Stacked">
+            <summary>
+            Gets or sets a value indicating whether the bar chart is stacked or not.
+            Bar charts can be configured into stacked bar charts by changing the settings on the X and Y axes to enable stacking.
+            Stacked bar charts can be used to show how one data series is made up of a number of smaller pieces.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/charts/bar.html#stacked-bar-chart </para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLinearCartesianAxis">
+            <summary>
+            Extended version of <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.LinearCartesianAxis"/> for use in a bar chart.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/charts/bar.html#scale-configuration </para>
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLinearCartesianAxis.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLinearCartesianAxis"/> class.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLinearCartesianAxis.BarPercentage">
+            <summary>
+            Gets or sets the percentage (0-1) of the available width each bar should be within the category width.
+            1.0 will take the whole category width and put the bars right next to each other.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLinearCartesianAxis.CategoryPercentage">
+            <summary>
+            Gets or sets the percentage (0-1) of the available width each category should be within the sample width.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLinearCartesianAxis.BarThickness">
+            <summary>
+            Gets or sets the width of each bar in pixels.
+            If set to <see cref="P:ChartJs.Blazor.ChartJS.BarChart.BarThickness.Flex"/>, it computes "optimal" sample widths that globally arrange bars side by side. If not set (default), bars are equally sized based on the smallest interval.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLinearCartesianAxis.MaxBarThickness">
+            <summary>
+            Gets or sets the maximum bar thickness.
+            Set this to ensure that bars are not sized thicker than this.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLinearCartesianAxis.MinBarLength">
+            <summary>
+            Gets or sets the minimum bar length.
+            Set this to ensure that bars have a minimum length in pixels.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLinearCartesianAxis.OffsetGridLines">
+            <summary>
+            Gets or sets a value indicating whether grid lines will be shifted to be between labels or not.
+            If <c>true</c>, the bars for a particular data point fall between the grid lines.
+            The grid line will move to the left by one half of the tick interval.
+            If <c>false</c>, the grid line will go right down the middle of the bars.
+            <para>Changing this value will directly affect <see cref="P:ChartJs.Blazor.ChartJS.Common.GridLines.OffsetGridLines"/> of the property <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis.GridLines"/> in this instance.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLinearCartesianAxis.Stacked">
+            <summary>
+            Gets or sets a value indicating whether the bar chart is stacked or not.
+            Bar charts can be configured into stacked bar charts by changing the settings on the X and Y axes to enable stacking.
+            Stacked bar charts can be used to show how one data series is made up of a number of smaller pieces.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/charts/bar.html#stacked-bar-chart </para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLogarithmicAxis">
+            <summary>
+            Extended version of <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.LogarithmicAxis"/> for use in a bar chart.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/charts/bar.html#scale-configuration </para>
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLogarithmicAxis.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLogarithmicAxis"/> class.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLogarithmicAxis.BarPercentage">
+            <summary>
+            Gets or sets the percentage (0-1) of the available width each bar should be within the category width.
+            1.0 will take the whole category width and put the bars right next to each other.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLogarithmicAxis.CategoryPercentage">
+            <summary>
+            Gets or sets the percentage (0-1) of the available width each category should be within the sample width.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLogarithmicAxis.BarThickness">
+            <summary>
+            Gets or sets the width of each bar in pixels.
+            If set to <see cref="P:ChartJs.Blazor.ChartJS.BarChart.BarThickness.Flex"/>, it computes "optimal" sample widths that globally arrange bars side by side. If not set (default), bars are equally sized based on the smallest interval.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLogarithmicAxis.MaxBarThickness">
+            <summary>
+            Gets or sets the maximum bar thickness.
+            Set this to ensure that bars are not sized thicker than this.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLogarithmicAxis.MinBarLength">
+            <summary>
+            Gets or sets the minimum bar length.
+            Set this to ensure that bars have a minimum length in pixels.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLogarithmicAxis.OffsetGridLines">
+            <summary>
+            Gets or sets a value indicating whether grid lines will be shifted to be between labels or not.
+            If <c>true</c>, the bars for a particular data point fall between the grid lines.
+            The grid line will move to the left by one half of the tick interval.
+            If <c>false</c>, the grid line will go right down the middle of the bars.
+            <para>Changing this value will directly affect <see cref="P:ChartJs.Blazor.ChartJS.Common.GridLines.OffsetGridLines"/> of the property <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis.GridLines"/> in this instance.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarLogarithmicAxis.Stacked">
+            <summary>
+            Gets or sets a value indicating whether the bar chart is stacked or not.
+            Bar charts can be configured into stacked bar charts by changing the settings on the X and Y axes to enable stacking.
+            Stacked bar charts can be used to show how one data series is made up of a number of smaller pieces.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/charts/bar.html#stacked-bar-chart </para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.BarChart.Axes.BarTimeAxis">
+            <summary>
+            Extended version of <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.TimeAxis"/> for use in a bar chart.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/charts/bar.html#scale-configuration </para>
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.BarChart.Axes.BarTimeAxis.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:ChartJs.Blazor.ChartJS.BarChart.Axes.BarTimeAxis"/> class.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarTimeAxis.BarPercentage">
+            <summary>
+            Gets or sets the percentage (0-1) of the available width each bar should be within the category width.
+            1.0 will take the whole category width and put the bars right next to each other.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarTimeAxis.CategoryPercentage">
+            <summary>
+            Gets or sets the percentage (0-1) of the available width each category should be within the sample width.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarTimeAxis.BarThickness">
+            <summary>
+            Gets or sets the width of each bar in pixels.
+            If set to <see cref="P:ChartJs.Blazor.ChartJS.BarChart.BarThickness.Flex"/>, it computes "optimal" sample widths that globally arrange bars side by side. If not set (default), bars are equally sized based on the smallest interval.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarTimeAxis.MaxBarThickness">
+            <summary>
+            Gets or sets the maximum bar thickness.
+            Set this to ensure that bars are not sized thicker than this.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarTimeAxis.MinBarLength">
+            <summary>
+            Gets or sets the minimum bar length.
+            Set this to ensure that bars have a minimum length in pixels.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarTimeAxis.OffsetGridLines">
+            <summary>
+            Gets or sets a value indicating whether grid lines will be shifted to be between labels or not.
+            If <c>true</c>, the bars for a particular data point fall between the grid lines.
+            The grid line will move to the left by one half of the tick interval.
+            If <c>false</c>, the grid line will go right down the middle of the bars.
+            <para>Changing this value will directly affect <see cref="P:ChartJs.Blazor.ChartJS.Common.GridLines.OffsetGridLines"/> of the property <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis.GridLines"/> in this instance.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Axes.BarTimeAxis.Stacked">
+            <summary>
+            Gets or sets a value indicating whether the bar chart is stacked or not.
+            Bar charts can be configured into stacked bar charts by changing the settings on the X and Y axes to enable stacking.
+            Stacked bar charts can be used to show how one data series is made up of a number of smaller pieces.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/charts/bar.html#stacked-bar-chart </para>
+            </summary>
+        </member>
         <member name="T:ChartJs.Blazor.ChartJS.BarChart.BarConfig">
             <summary>
-            Config for a bar chart with type safe data
-            <para>Either 'bar' or 'horizontalBar'</para>
+            Config for a <see cref="T:ChartJs.Blazor.Charts.ChartJsBarChart"/>.
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.BarChart.BarConfig.#ctor(ChartJs.Blazor.ChartJS.Common.Enums.ChartType)">
+            <summary>
+            Creates a new instance of the <see cref="T:ChartJs.Blazor.ChartJS.BarChart.BarConfig"/> class.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.BarChart.BarData">
+            <summary>
+            The data-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.BarChart.BarConfig"/>.
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.BarChart.BarData.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.BarChart.BarData"/>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarData.Datasets">
+            <summary>
+            The datasets displayed in this chart.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarData.Labels">
+            <summary>
+            Gets or sets the labels.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1">
+            <summary>
+            A dataset for a <see cref="T:ChartJs.Blazor.Charts.ChartJsBarChart"/>.
+            </summary>
+            <para>As per documentation here: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties. </para>
+            <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Creates a new instance of the <see cref="T:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1"/> class.
+            </summary>
+            <param name="data">The data to initialize the dataset with.</param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1"/> class.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.Type">
+            <summary>
+            Gets the chart type (<see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.ChartType.Bar"/> in this case). This is needed for mixed datasets only.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.BorderSkipped">
+            <summary>
+            Gets or sets a value to avoid drawing the bar stroke at the base of the fill.
+            In general, this does not need to be changed except when creating chart types that derive from a bar chart.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.Label">
+            <summary>
+            Gets or sets the label for the dataset which appears in the legend and tooltips.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.XAxisId">
+            <summary>
+            Gets or sets the ID of the x axis to plot this dataset on. If not specified, this defaults to the ID of the first found x axis.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.YAxisId">
+            <summary>
+            Gets or sets the ID of the y axis to plot this dataset on. If not specified, this defaults to the ID of the first found y axis.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.Stack">
+            <summary>
+            Gets or sets the id of the group to which this dataset belongs to (when stacked, each group will be a separate stack).
+            <para>
+            Specific for stacked bar charts.
+            </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.BackgroundColor">
+            <summary>
+            Gets or sets the fill color of the bars in the dataset.
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.BorderColor">
+            <summary>
+            Gets or sets the border color of the bars in the dataset.
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.BorderWidth">
+            <summary>
+            Gets or sets the border width of the bars in the dataset.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.HoverBackgroundColor">
+            <summary>
+            Gets or sets the fill color of the bars when hovered.
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.HoverBorderColor">
+            <summary>
+            Gets or sets the stroke color of the bars when hovered.
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.HoverBorderWidth">
+            <summary>
+            Gets or sets the stroke width of the bars when hovered.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.BarChart.BarOptions">
             <summary>
-            Bar Chart Config Options. Source: http://www.chartjs.org/docs/latest/charts/bar.html#configuration-options
+            The options-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.BarChart.BarConfig"/>.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarOptions.BarPercentage">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarOptions.Scales">
             <summary>
-            Percent (0-1) of the available width each bar should be within the category width. 1.0 will take the whole category width and put the bars right next to each other
+            Gets or sets the scales for the <see cref="T:ChartJs.Blazor.Charts.ChartJsBarChart"/>.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarOptions.CategoryPercentage">
+        <member name="T:ChartJs.Blazor.ChartJS.BarChart.BarScales">
             <summary>
-            Percent (0-1) of the available width each category should be within the sample width.
+            Defines the scales for bar charts by holding the x and y axes.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarOptions.BarThickness">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarScales.XAxes">
             <summary>
-            Manually set width of each bar in pixels. If set to 'flex', it computes "optimal" sample widths that globally arrange bars side by side. If not set (default), bars are equally sized based on the smallest interval.
+            Gets or sets the axes on the x coordinate.
+            <para>You can use any <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis"/> but there are extended axes in the <see cref="N:ChartJs.Blazor.ChartJS.BarChart.Axes"/> namespace which contain additional properties to customize the bar chart axes.</para>        
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarOptions.MaxBarThickness">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarScales.YAxes">
             <summary>
-            Set this to ensure that bars are not sized thicker than this.
+            Gets or sets the axes on the y coordinate.
+            <para>You can use any <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis"/> but there are extended axes in the <see cref="N:ChartJs.Blazor.ChartJS.BarChart.Axes"/> namespace which contain additional properties to customize the bar chart axes.</para>
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1">
+        <member name="T:ChartJs.Blazor.ChartJS.BarChart.BarThickness">
             <summary>
-            Dataset for a bar chart with type safe data. Source: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties
-            </summary>
-            <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.BackgroundColor">
-            <summary>
-            The fill color of the bar.
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            The bar thickness used to customize all bar axes (extended cartesian axes in <see cref="N:ChartJs.Blazor.ChartJS.BarChart.Axes"/>).
+            <para>As per documentation here https://www.chartjs.org/docs/latest/charts/bar.html#barthickness </para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.BorderColor">
+        <member name="M:ChartJs.Blazor.ChartJS.BarChart.BarThickness.#ctor(System.String)">
             <summary>
-            The color of the bar border.
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            Creates a new instance of the <see cref="T:ChartJs.Blazor.ChartJS.BarChart.BarThickness" /> class.
             </summary>
+            <param name="stringValue">The <see cref="T:System.String" /> value to set.</param>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.BorderWidth">
+        <member name="M:ChartJs.Blazor.ChartJS.BarChart.BarThickness.#ctor(System.Double)">
             <summary>
-            The stroke width of the bar in pixels.
+            Creates a new instance of the <see cref="T:ChartJs.Blazor.ChartJS.BarChart.BarThickness" /> class.
             </summary>
+            <param name="doubleValue">The <see cref="T:System.Double" /> value to set.</param>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.HoverBackgroundColor">
+        <member name="M:ChartJs.Blazor.ChartJS.BarChart.BarThickness.Absolute(System.Double)">
             <summary>
-            The fill color of the bars when hovered.
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            Gets a <see cref="T:ChartJs.Blazor.ChartJS.BarChart.BarThickness"/> from a <see cref="T:System.Double"/> value (in pixels).
             </summary>
+            <param name="thickness">The thickness value in pixels.</param>
+            <returns>A <see cref="T:ChartJs.Blazor.ChartJS.BarChart.BarThickness"/> from a <see cref="T:System.Double"/> value (in pixels).</returns>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.HoverBorderColor">
+        <member name="M:ChartJs.Blazor.ChartJS.BarChart.BarThickness.op_Implicit(System.Double)~ChartJs.Blazor.ChartJS.BarChart.BarThickness">
             <summary>
-            The stroke color of the bars when hovered.
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            Converts a <see cref="T:System.Double"/> value to a <see cref="T:ChartJs.Blazor.ChartJS.BarChart.BarThickness"/> value.
             </summary>
+            <param name="thickness">The thickness value in pixels.</param>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BarDataset`1.HoverBorderWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarThickness.Flex">
             <summary>
-            The stroke width of the bars when hovered.
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarDataset`1">
-            <summary>
-            A base dataset for a bar chart.
-            </summary>
-            <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarDataset`1.Label">
-            <summary>
-            The label for the dataset which appears in the legend and tooltips.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarDataset`1.XAxisID">
-            <summary>
-            The ID of the x axis to plot this dataset on. If not specified, this defaults to the ID of the first found x axis
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarDataset`1.YAxisID">
-            <summary>
-            The ID of the y axis to plot this dataset on. If not specified, this defaults to the ID of the first found y axis
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarDataset`1.BorderSkipped">
-            <summary>
-            Which edge to skip drawing the border for. 
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.BaseBarDataset`1.Stack">
-            <summary>
-            The ID of the group to which this dataset belongs to (when stacked, each group will be a separate stack)
-            <para>
-            Specific for stacked bar charts
-            </para>
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1">
-            <summary>
-            Dataset for a bar chart with type safe data. Source: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties
-            <para>
-             The first value applies to the first bar, the second value to the second bar, and so on.
-            </para>
-            </summary>
-            <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.BackgroundColor">
-            <summary>
-            The fill color of the bar.
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.BorderColor">
-            <summary>
-            The color of the bar border.
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.BorderWidth">
-            <summary>
-            The stroke width of the bar in pixels.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.HoverBackgroundColor">
-            <summary>
-            The fill color of the bars when hovered.
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.HoverBorderColor">
-            <summary>
-            The stroke color of the bars when hovered.
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.BarChart.Dataset.IndividualBarDataset`1.HoverBorderWidth">
-            <summary>
-            The stroke width of the bars when hovered.
+            If set to <see cref="P:ChartJs.Blazor.ChartJS.BarChart.BarThickness.Flex"/>, the base sample widths are calculated automatically 
+            based on the previous and following samples so that they take the full available widths without overlap.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BubbleChart.BubbleDataPoint.r">
@@ -218,20 +478,563 @@
             <param name="chartConfig"></param>
             <returns></returns>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Axis">
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.AngleLines">
+            <summary>
+            The angle lines sub-config of the linear-radial-axis-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.LinearRadialAxis"/>).
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/linear.html </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.AngleLines.Display">
+            <summary>
+            Gets or sets the value indicating whether the angle line is displayed or not.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.AngleLines.Color">
+            <summary>
+            Gets or sets the color of the angled lines.
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.AngleLines.LineWidth">
+            <summary>
+            Gets or sets the width of the angled lines.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.AngleLines.BorderDash">
+            <summary>
+            Gets or sets the length and spacing of dashes of the angled lines.
+            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.AngleLines.BorderDashOffset">
+            <summary>
+            Gets or sets the offset for line dashes.
+            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset </para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Axis">
             <summary>
             As per documentation here https://www.chartjs.org/docs/latest/axes/#common-configuration.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Axis.Display">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Axis.Display">
             <summary>
             Controls the axis global visibility (visible when <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.AxisDisplay.True"/>, hidden when <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.AxisDisplay.False"/>). 
             When display: <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.AxisDisplay.Auto"/>, the axis is visible only if at least one associated dataset is visible.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Axis.Weight">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Axis.Weight">
             <summary>
             The weight used to sort the axis. Higher weights are further away from the chart area.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis">
+            <summary>
+            As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/#common-configuration
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis.Type">
+            <summary>
+            The type of axis this instance represents.
+            <para>For js-interop/serialization purposes so chart.js knows what axis to use.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis.ID">
+            <summary>
+            The ID is used to link <see cref="!:LineDataset&lt;TData&gt;"></see> and <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis"></see> together. Referenced in <see cref="!:LineDataset&lt;TData&gt;.XAxisID"></see> and <seealso cref="!:LineDataset&lt;TData&gt;.YAxisID"/>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis.Position">
+            <summary>
+            Position of the axis in the chart
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis.Offset">
+            <summary>
+            If true, extra space is added to the both edges and the axis is scaled to fit into the chart area. 
+            This is set to true for a category scale in a bar chart by default.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis.ScaleLabel">
+            <summary>
+            Scale title configuration
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis.GridLines">
+            <summary>
+            Defines options for the grid lines that run perpendicular to the axis.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis`1">
+            <summary>
+            <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis"/> which contains the ticks-subconfig.
+            </summary>
+            <typeparam name="TTicks"></typeparam>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis`1.Ticks">
+            <summary>
+            Defines options for the tick marks that are generated by the axis.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.CategoryAxis">
+            <summary>
+            This axis is to be used when you want to display <see cref="T:System.String"/> values for an axis.
+            <para>This axis has to be used when using/defining <see cref="!:LineData.Labels"/>, <see cref="!:LineData.XLabels"/> and/or <see cref="!:LineData.YLabels"/>.</para>
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/category.html </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.CategoryAxis.Type">
+            <summary>
+            The type of axis this instance represents.
+            <para>For js-interop/serialization purposes so chart.js knows what axis to use.</para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.LinearCartesianAxis">
+            <summary>
+            The linear scale is use to chart numerical data. It can be placed on either the x or y axis. 
+            As the name suggests, linear interpolation is used to determine where a value lies on the axis.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/linear.html </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.LinearCartesianAxis.Type">
+            <summary>
+            The type of axis this instance represents.
+            <para>For js-interop/serialization purposes so chart.js knows what axis to use.</para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.LinearRadialAxis">
+            <summary>
+            A linear radial axis.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.LinearRadialAxis.AngleLines">
+            <summary>
+            Gets or sets the angle lines configuration.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#angle-line-options </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.LinearRadialAxis.GridLines">
+            <summary>
+            Gets or sets the grid lines configuration.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/styling.html#grid-line-configuration </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.LinearRadialAxis.PointLabels">
+            <summary>
+            Gets or sets the point labels configuration.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.LinearRadialAxis.Ticks">
+            <summary>
+            Gets or sets the ticks configuration.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#tick-options </para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.LogarithmicAxis">
+            <summary>
+            The logarithmic scale is use to chart numerical data. It can be placed on either the x or y axis. 
+            As the name suggests, logarithmic interpolation is used to determine where a value lies on the axis.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/logarithmic.html </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.LogarithmicAxis.Type">
+            <summary>
+            The type of axis this instance represents.
+            <para>For js-interop/serialization purposes so chart.js knows what axis to use.</para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.PointLabels">
+            <summary>
+            The point labels sub-config of the linear-radial-axis-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.LinearRadialAxis"/>).
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.PointLabels.FontColor">
+            <summary>
+            Gets or sets the font color for a point label.
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.PointLabels.FontSize">
+            <summary>
+            Gets or sets the font size in pixels.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.PointLabels.FontStyle">
+            <summary>
+            Gets or sets the font style to use when rendering a point label.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.PointLabels.LineHeight">
+            <summary>
+            Gets or sets the height of an individual line of text.
+            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/CSS/line-height </para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.ScaleLabel">
+            <summary>
+            Defines options for how to display an axis title.
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Axes.ScaleLabel.#ctor(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.ScaleLabel"/>
+            </summary>
+            <param name="labelString">The initial value for <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.ScaleLabel.LabelString"/></param>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.ScaleLabel.Display">
+            <summary>
+            If true, display the axis title.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.ScaleLabel.LabelString">
+            <summary>
+            Text for the title (i.e. "# of clicks")
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.ScaleLabel.FontColor">
+            <summary>
+            The font color of the label
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.ScaleLabel.FontSize">
+            <summary>
+            Font size for scale title.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks">
+            <summary>
+            As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/#tick-configuration
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.AutoSkip">
+            <summary>
+            If true, automatically calculates how many labels can be shown and hides labels accordingly. 
+            Labels will be rotated up to maxRotation before skipping any. Turn autoSkip off to show all labels no matter what.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.AutoSkipPadding">
+            <summary>
+            Padding between the ticks on the horizontal axis when <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.AutoSkip"></see> is enabled.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.LabelOffset">
+            <summary>
+            Distance in pixels to offset the label from the centre point of the tick (in the x direction for the x axis, and the y direction for the y axis).
+            <para>Note: this can cause labels at the edges to be cropped by the edge of the canvas.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.MaxRotation">
+            <summary>
+            Maximum rotation for tick labels when rotating to condense labels. 
+            <para>Note: Rotation doesn't occur until necessary.</para>
+            <para>Note: Only applicable to horizontal scales.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.MinRotation">
+            <summary>
+            Minimum rotation for tick labels. 
+            <para>Note: Only applicable to horizontal scales.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.Mirror">
+            <summary>
+            Flips tick labels around axis, displaying the labels inside the chart instead of outside.
+            <para>Note: Only applicable to vertical scales.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.Padding">
+            <summary>
+            Padding between the tick label and the axis. When set on a vertical axis, this applies in the horizontal (X) direction. 
+            When set on a horizontal axis, this applies in the vertical (Y) direction.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CategoryTicks.Labels">
+            <summary>
+            An array of labels to display.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CategoryTicks.Min">
+            <summary>
+            The minimum item to display. The item has to be present in <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CategoryTicks.Labels"/>.
+            <para>Read more https://www.chartjs.org/docs/latest/axes/cartesian/category.html#min-max-configuration </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CategoryTicks.Max">
+            <summary>
+            The maximum item to display. The item has to be present in <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CategoryTicks.Labels"/>.
+            <para>Read more https://www.chartjs.org/docs/latest/axes/cartesian/category.html#min-max-configuration </para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks">
+            <summary>
+            https://www.chartjs.org/docs/latest/axes/cartesian/linear.html#tick-configuration-options
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.BeginAtZero">
+            <summary>
+            If true, scale will include 0 if it is not already included.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.Min">
+            <summary>
+            User defined minimum number for the scale, overrides minimum value from data.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.Max">
+            <summary>
+            User defined maximum number for the scale, overrides maximum value from data.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.MaxTicksLimit">
+            <summary>
+            Maximum number of ticks and gridlines to show.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.Precision">
+            <summary>
+            if defined and <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.StepSize"></see> is not specified, the step size will be rounded to this many decimal places.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.StepSize">
+            <summary>
+            User defined fixed step size for the scale.
+            <para>See https://www.chartjs.org/docs/latest/axes/cartesian/linear.html#step-size for details</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.SuggestedMax">
+            <summary>
+            Adjustment used when calculating the maximum data value. This value is used as the highest value if it's higher than the maximum data-value.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.SuggestedMin">
+            <summary>
+            Adjustment used when calculating the minimum data value. This value is used as the lowest value if it's lower than the minimum data-value.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks">
+            <summary>
+            The ticks sub-config of the <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.LinearRadialAxis"/>.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks.BackdropColor">
+            <summary>
+            Gets or sets the color of the label backdrops.
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks.BackdropPaddingX">
+            <summary>
+            Gets or sets the horizontal padding of label backdrop.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks.BackdropPaddingY">
+            <summary>
+            Gets or sets the vertical padding of label backdrop.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks.BeginAtZero">
+            <summary>
+            Gets or sets the value indicating whether the scale will include 0 if it is not already included.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks.Min">
+            <summary>
+            Gets or sets the user defined minimum number for the scale, overrides minimum value from data.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks.Max">
+            <summary>
+            Gets or sets the user defined maximum number for the scale, overrides minimum value from data.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks.MaxTicksLimit">
+            <summary>
+            Gets or sets the maximum number of ticks and gridlines to show.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks.Precision">
+            <summary>
+            If defined and StepSize is not specified, the step size will be rounded to this many decimal places.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks.StepSize">
+            <summary>
+            Gets or sets the user defined fixed step size for the scale.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks.SuggestedMax">
+            <summary>
+            Gets or sets the adjustment used when calculating the maximum data value.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks.SuggestedMin">
+            <summary>
+            Gets or sets the adjustment used when calculating the minimum data value.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks.ShowLabelBackdrop">
+            <summary>
+            Gets or sets the value indicating whether a background is drawn behind the tick labels.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LogarithmicTicks.Min">
+            <summary>
+            User defined minimum number for the scale, overrides minimum value from data.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LogarithmicTicks.Max">
+            <summary>
+            User defined maximum number for the scale, overrides maximum value from data.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.MajorTicks">
+            <summary>
+            The major ticks sub-config of the tick-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/>).
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/styling.html#major-tick-configuration </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.MajorTicks.Enabled">
+            <summary>
+            Gets or sets the value indicating whether these options are used to show major ticks.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.MinorTicks">
+            <summary>
+            The minor ticks sub-config of the tick-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/>).
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/styling.html#minor-tick-configuration </para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.SubTicks">
+            <summary>
+            The base class for minor and major ticks (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.MinorTicks"/> and see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.MajorTicks"/>).
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.SubTicks.FontColor">
+            <summary>
+            Gets or sets the font color for a tick's labels.
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.SubTicks.FontFamily">
+            <summary>
+            Gets or sets the font family for a tick's label.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.SubTicks.FontSize">
+            <summary>
+            Gets or sets the font size for a tick's label.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.SubTicks.FontStyle">
+            <summary>
+            Gets or sets the font style for a tick's label.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.SubTicks.LineHeight">
+            <summary>
+            Gets or sets the height of an individual line of text.
+            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/CSS/line-height </para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks">
+            <summary>
+            The ticks-subconfig of the axis-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Axis"/>).
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/styling.html#tick-configuration </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.Display">
+            <summary>
+            Gets or sets the value indicating whether this shows <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/> marks.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.FontColor">
+            <summary>
+            Gets or sets the font color for <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/> labels.
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.FontFamily">
+            <summary>
+            Gets or sets the font family for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/> labels.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.FontSize">
+            <summary>
+            Gets or sets the font size for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/> labels.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.FontStyle">
+            <summary>
+            Gets or sets the font style for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/> labels.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.LineHeight">
+            <summary>
+            Gets or sets the height of an individual line of text.
+            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/CSS/line-height </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.Reverse">
+            <summary>
+            Gets or sets the value indicating whether the order of <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/> labels is reversed.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.Minor">
+            <summary>
+            Gets or sets the minor ticks configuration. Omitted options are inherited from options above (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/>).
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.Major">
+            <summary>
+            Gets or sets the major ticks configuration. Omitted options are inherited from options above (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/>).
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.Padding">
+            <summary>
+            Gets or sets the offset of the tick labels from the axis
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.TimeTicks.Source">
+            <summary>
+            How ticks are generated. 
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.TimeAxis">
+            <summary>
+            The time scale is used to display times and dates. 
+            When building its ticks, it will automatically calculate the most comfortable unit base on the size of the scale.
+            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.TimeAxis.Type">
+            <summary>
+            The type of axis this instance represents.
+            <para>For js-interop/serialization purposes so chart.js knows what axis to use.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.TimeAxis.Distribution">
+            <summary>
+            The distribution property controls the data distribution along the scale
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.TimeAxis.Bounds">
+            <summary>
+            The bounds property controls the scale boundary strategy (bypassed by min/max time options).
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.TimeAxis.Time">
+            <summary>
+            Configuration for time related stuff
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions">
@@ -454,6 +1257,52 @@
             Creates a new instance of the <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.BorderJoinStyle"/> class.
             </summary>
             <param name="stringValue">The <see cref="T:System.String"/> value to set.</param>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Enums.BorderSkipped">
+            <summary>
+                This setting is used to avoid drawing the bar stroke at the base of the fill.
+                In general, this does not need to be changed except when creating chart types that derive from a bar chart.
+                Note: For negative bars in vertical chart, top and bottom are flipped. Same goes for left and right in horizontal
+                chart.
+                <para>As per documentation here https://www.chartjs.org/docs/latest/charts/bar.html#borderskipped</para>
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Enums.BorderSkipped.#ctor(System.String)">
+            <summary>
+                Creates a new instance of the <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.BorderSkipped" /> class.
+            </summary>
+            <param name="stringValue">The <see cref="T:System.String" /> value to set.</param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Enums.BorderSkipped.#ctor(System.Boolean)">
+            <summary>
+                Creates a new instance of the <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.BorderSkipped" /> class.
+            </summary>
+            <param name="boolValue">The <see cref="T:System.Boolean" /> value to set.</param>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.BorderSkipped.Bottom">
+            <summary>
+                The bottom border skipped style.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.BorderSkipped.False">
+            <summary>
+                The false border skipped style.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.BorderSkipped.Left">
+            <summary>
+                The left border skipped style.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.BorderSkipped.Right">
+            <summary>
+                The right border skipped style.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.BorderSkipped.Top">
+            <summary>
+                The top border skipped style.
+            </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Enums.ChartType">
             <summary>
@@ -834,7 +1683,7 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.GridLines">
             <summary>
-            The grid lines sub-config of the axis-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axis"/>).
+            The grid lines sub-config of the axis-configuration (see <see cref="!:Axis"/>).
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.GridLines.Display">
@@ -1254,23 +2103,6 @@
             </summary>
             <param name="fullFunctionName">The namespace and name of a Javascript function to be called when hovering on a Legend item.</param>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.MajorTicks">
-            <summary>
-            The major ticks sub-config of the tick-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/>).
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/styling.html#major-tick-configuration </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.MajorTicks.Enabled">
-            <summary>
-            Gets or sets the value indicating whether these options are used to show major ticks.
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.MinorTicks">
-            <summary>
-            The minor ticks sub-config of the tick-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/>).
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/styling.html#minor-tick-configuration </para>
-            </summary>
-        </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Properties.Animation">
             <summary>
             Defines some animation configurations
@@ -1478,94 +2310,135 @@
             Gets or sets the size of the border.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.SubTicks">
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Time.Moment">
             <summary>
-            The base class for minor and major ticks (see <see cref="T:ChartJs.Blazor.ChartJS.Common.MinorTicks"/> and see <see cref="T:ChartJs.Blazor.ChartJS.Common.MajorTicks"/>).
+            Wrapper class for <see cref="T:System.DateTime"></see> for serialization purposes.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.SubTicks.FontColor">
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Time.Moment.#ctor(System.DateTime)">
             <summary>
-            Gets or sets the font color for a tick's labels.
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            Creates a new <see cref="T:ChartJs.Blazor.ChartJS.Common.Time.Moment"/> which wraps the provided <see cref="T:System.DateTime"/>
+            </summary>
+            <param name="value">The <see cref="T:System.DateTime"/> value to wrap</param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Time.Moment.op_Explicit(System.DateTime)~ChartJs.Blazor.ChartJS.Common.Time.Moment">
+            <summary>
+            Creates a new wrapper for the provided <see cref="T:System.DateTime"/>
+            </summary>
+            <param name="dateTime"></param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Time.Moment.op_Explicit(ChartJs.Blazor.ChartJS.Common.Time.Moment)~System.DateTime">
+            <summary>
+            Extracts the <see cref="T:System.DateTime"/> value wrapped in the provided instance
+            </summary>
+            <param name="moment"></param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Time.Moment.Equals(System.Object)">
+            <summary>
+            Returns the value indicating whether this instance is equal to a specified object.
+            </summary>
+            <param name="obj">The object to compare to this instance.</param>
+            <returns>true if the other object is a wrapper for the same <see cref="T:System.DateTime"/> value 
+            or if it's the same <see cref="T:System.DateTime"/> value as wrapped in this instance.</returns>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Time.Moment.GetHashCode">
+            <summary>
+            Returns the HashCode for this instance.
+            </summary>
+            <returns>The HashCode for this instance</returns>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Time.Moment.ToString">
+            <summary>
+            Converts the wrapped <see cref="T:System.DateTime"/> to a format which is readable for moment.js.
+            </summary>
+            <returns>The string representation of this instance</returns>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Time.TimeDisplayFormats">
+            <summary>
+            This is a helper class containing pre-made display formats to use in <see cref="P:ChartJs.Blazor.ChartJS.Common.Time.TimeOptions.DisplayFormats"/> for certain locales.
+            <para>Those <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.TimeMeasurement"/>s that are not defined, will use the default format from https://www.chartjs.org/docs/latest/axes/cartesian/time.html#display-formats </para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.SubTicks.FontFamily">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Time.TimeDisplayFormats.DE_CH">
             <summary>
-            Gets or sets the font family for a tick's label.
+            Pre-made format-string for the swiss (DE_CH) locale.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.SubTicks.FontSize">
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Time.TimeOptions">
             <summary>
-            Gets or sets the font size for a tick's label.
+            As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html#configuration-options
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.SubTicks.FontStyle">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Time.TimeOptions.DisplayFormats">
             <summary>
-            Gets or sets the font style for a tick's label.
+            Sets how different time units are displayed. See https://www.chartjs.org/docs/latest/axes/cartesian/time.html#data-sets for more details.
+            <para>See <see cref="T:ChartJs.Blazor.ChartJS.Common.Time.TimeDisplayFormats"/> for pre-made formats for certain locales.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.SubTicks.LineHeight">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Time.TimeOptions.IsoWeek">
             <summary>
-            Gets or sets the height of an individual line of text.
-            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/CSS/line-height </para>
+            If true and the <see cref="P:ChartJs.Blazor.ChartJS.Common.Time.TimeOptions.Unit"></see> is set to <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.TimeMeasurement.Week"></see>, then the first day of the week will be Monday. Otherwise, it will be Sunday.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Ticks">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Time.TimeOptions.Max">
             <summary>
-            The ticks-subconfig of the axis-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axis"/>).
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/styling.html#tick-configuration </para>
+            If defined, this will override the data maximum.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.Display">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Time.TimeOptions.Min">
             <summary>
-            Gets or sets the value indicating whether this shows <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/> marks.
+            If defined, this will override the data minimum.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.FontColor">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Time.TimeOptions.Round">
             <summary>
-            Gets or sets the font color for <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/> labels.
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            If defined, dates will be rounded to the start of this unit.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.FontFamily">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Time.TimeOptions.TooltipFormat">
             <summary>
-            Gets or sets the font family for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/> labels.
+            The Moment.js format string to use for the tooltip.
+            <para>See https://momentjs.com/docs/#/displaying/format/ for possible formats</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.FontSize">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Time.TimeOptions.Unit">
             <summary>
-            Gets or sets the font size for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/> labels.
+            If defined, will force the unit to be a certain type.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.FontStyle">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Time.TimeOptions.StepSize">
             <summary>
-            Gets or sets the font style for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/> labels.
+            The number of units between grid lines.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.LineHeight">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Time.TimeOptions.MinUnit">
             <summary>
-            Gets or sets the height of an individual line of text.
-            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/CSS/line-height </para>
+            The minimum display format to be used for a time unit.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.Reverse">
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Time.TimeTuple`1">
             <summary>
-            Gets or sets the value indicating whether the order of <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/> labels is reversed.
+            Represents a point on a graph where the X-Value (<see cref="P:ChartJs.Blazor.ChartJS.Common.Time.TimeTuple`1.Time"></see>) is represented by a <see cref="T:ChartJs.Blazor.ChartJS.Common.Time.Moment"></see>
+            <para>Should be used together with a <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.TimeAxis"></see></para>
+            <para>Reference Type so it can be used in the covariant <see cref="T:ChartJs.Blazor.ChartJS.MixedChart.IMixableDataset`1"/></para>
+            </summary>
+            <typeparam name="TData"></typeparam>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Time.TimeTuple`1.#ctor(ChartJs.Blazor.ChartJS.Common.Time.Moment,`0)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Time.TimeTuple`1"/>
+            </summary>
+            <param name="time">The <see cref="T:ChartJs.Blazor.ChartJS.Common.Time.Moment"/> instance to represent the x-value.</param>
+            <param name="yValue">The value of type <typeparamref name="TData"/> which represents the y-value.</param>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Time.TimeTuple`1.Time">
+            <summary>
+            The time-/x-value for this <see cref="T:ChartJs.Blazor.ChartJS.Common.Time.TimeTuple`1"/>.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.Minor">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Time.TimeTuple`1.YValue">
             <summary>
-            Gets or sets the minor ticks configuration. Omitted options are inherited from options above (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/>).
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.Major">
-            <summary>
-            Gets or sets the major ticks configuration. Omitted options are inherited from options above (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Ticks"/>).
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Ticks.Padding">
-            <summary>
-            Gets or sets the offset of the tick labels from the axis
+            The y-value for this <see cref="T:ChartJs.Blazor.ChartJS.Common.Time.TimeTuple`1"/>.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Utils.ArgValidation">
@@ -1603,246 +2476,6 @@
             </summary>
             <param name="methodInfo"></param>
             <exception cref="T:System.ArgumentException">Thrown if the method info is not for a static method</exception>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis">
-            <summary>
-            As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/#common-configuration
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis.Type">
-            <summary>
-            The type of axis this instance represents.
-            <para>For js-interop/serialization purposes so chart.js knows what axis to use.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis.ID">
-            <summary>
-            The ID is used to link <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1"></see> and <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis"></see> together. Referenced in <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.XAxisID"></see> and <seealso cref="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.YAxisID"/>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis.Position">
-            <summary>
-            Position of the axis in the chart
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis.Offset">
-            <summary>
-            If true, extra space is added to the both edges and the axis is scaled to fit into the chart area. 
-            This is set to true for a category scale in a bar chart by default.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis.ScaleLabel">
-            <summary>
-            Scale title configuration
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis.GridLines">
-            <summary>
-            Defines options for the grid lines that run perpendicular to the axis.
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis`1">
-            <summary>
-            <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis"/> which contains the ticks-subconfig.
-            </summary>
-            <typeparam name="TTicks"></typeparam>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis`1.Ticks">
-            <summary>
-            Defines options for the tick marks that are generated by the axis.
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.Axes.CategoryAxis">
-            <summary>
-            This axis is to be used when you want to display <see cref="T:System.String"/> values for an axis.
-            <para>This axis has to be used when using/defining <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineData.Labels"/>, <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineData.XLabels"/> and/or <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineData.YLabels"/>.</para>
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/category.html </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.CategoryAxis.Type">
-            <summary>
-            The type of axis this instance represents.
-            <para>For js-interop/serialization purposes so chart.js knows what axis to use.</para>
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.Axes.LinearCartesianAxis">
-            <summary>
-            The linear scale is use to chart numerical data. It can be placed on either the x or y axis. 
-            As the name suggests, linear interpolation is used to determine where a value lies on the axis.
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/linear.html </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.LinearCartesianAxis.Type">
-            <summary>
-            The type of axis this instance represents.
-            <para>For js-interop/serialization purposes so chart.js knows what axis to use.</para>
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.Axes.LogarithmicAxis">
-            <summary>
-            The logarithmic scale is use to chart numerical data. It can be placed on either the x or y axis. 
-            As the name suggests, logarithmic interpolation is used to determine where a value lies on the axis.
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/logarithmic.html </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.LogarithmicAxis.Type">
-            <summary>
-            The type of axis this instance represents.
-            <para>For js-interop/serialization purposes so chart.js knows what axis to use.</para>
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.CartesianTicks">
-            <summary>
-            As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/#tick-configuration
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.CartesianTicks.AutoSkip">
-            <summary>
-            If true, automatically calculates how many labels can be shown and hides labels accordingly. 
-            Labels will be rotated up to maxRotation before skipping any. Turn autoSkip off to show all labels no matter what.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.CartesianTicks.AutoSkipPadding">
-            <summary>
-            Padding between the ticks on the horizontal axis when <see cref="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.CartesianTicks.AutoSkip"></see> is enabled.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.CartesianTicks.LabelOffset">
-            <summary>
-            Distance in pixels to offset the label from the centre point of the tick (in the x direction for the x axis, and the y direction for the y axis).
-            <para>Note: this can cause labels at the edges to be cropped by the edge of the canvas.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.CartesianTicks.MaxRotation">
-            <summary>
-            Maximum rotation for tick labels when rotating to condense labels. 
-            <para>Note: Rotation doesn't occur until necessary.</para>
-            <para>Note: Only applicable to horizontal scales.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.CartesianTicks.MinRotation">
-            <summary>
-            Minimum rotation for tick labels. 
-            <para>Note: Only applicable to horizontal scales.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.CartesianTicks.Mirror">
-            <summary>
-            Flips tick labels around axis, displaying the labels inside the chart instead of outside.
-            <para>Note: Only applicable to vertical scales.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.CartesianTicks.Padding">
-            <summary>
-            Padding between the tick label and the axis. When set on a vertical axis, this applies in the horizontal (X) direction. 
-            When set on a horizontal axis, this applies in the vertical (Y) direction.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.CategoryTicks.Labels">
-            <summary>
-            An array of labels to display.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.CategoryTicks.Min">
-            <summary>
-            The minimum item to display. The item has to be present in <see cref="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.CategoryTicks.Labels"/>.
-            <para>Read more https://www.chartjs.org/docs/latest/axes/cartesian/category.html#min-max-configuration </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.CategoryTicks.Max">
-            <summary>
-            The maximum item to display. The item has to be present in <see cref="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.CategoryTicks.Labels"/>.
-            <para>Read more https://www.chartjs.org/docs/latest/axes/cartesian/category.html#min-max-configuration </para>
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.LinearCartesianTicks">
-            <summary>
-            https://www.chartjs.org/docs/latest/axes/cartesian/linear.html#tick-configuration-options
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.LinearCartesianTicks.BeginAtZero">
-            <summary>
-            If true, scale will include 0 if it is not already included.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.LinearCartesianTicks.Min">
-            <summary>
-            User defined minimum number for the scale, overrides minimum value from data.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.LinearCartesianTicks.Max">
-            <summary>
-            User defined maximum number for the scale, overrides maximum value from data.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.LinearCartesianTicks.MaxTicksLimit">
-            <summary>
-            Maximum number of ticks and gridlines to show.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.LinearCartesianTicks.Precision">
-            <summary>
-            if defined and <see cref="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.LinearCartesianTicks.StepSize"></see> is not specified, the step size will be rounded to this many decimal places.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.LinearCartesianTicks.StepSize">
-            <summary>
-            User defined fixed step size for the scale.
-            <para>See https://www.chartjs.org/docs/latest/axes/cartesian/linear.html#step-size for details</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.LinearCartesianTicks.SuggestedMax">
-            <summary>
-            Adjustment used when calculating the maximum data value. This value is used as the highest value if it's higher than the maximum data-value.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.LinearCartesianTicks.SuggestedMin">
-            <summary>
-            Adjustment used when calculating the minimum data value. This value is used as the lowest value if it's lower than the minimum data-value.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.LogarithmicTicks.Min">
-            <summary>
-            User defined minimum number for the scale, overrides minimum value from data.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.LogarithmicTicks.Max">
-            <summary>
-            User defined maximum number for the scale, overrides maximum value from data.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks.TimeTicks.Source">
-            <summary>
-            How ticks are generated. 
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.Axes.TimeAxis">
-            <summary>
-            The time scale is used to display times and dates. 
-            When building its ticks, it will automatically calculate the most comfortable unit base on the size of the scale.
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.TimeAxis.Type">
-            <summary>
-            The type of axis this instance represents.
-            <para>For js-interop/serialization purposes so chart.js knows what axis to use.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.TimeAxis.Distribution">
-            <summary>
-            The distribution property controls the data distribution along the scale
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.TimeAxis.Bounds">
-            <summary>
-            The bounds property controls the scale boundary strategy (bypassed by min/max time options).
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Axes.TimeAxis.Time">
-            <summary>
-            Configuration for time related stuff
-            </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineConfig">
             <summary>
@@ -2040,7 +2673,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineOptions.Scales">
             <summary>
-            The scales for this chart. You can use any <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Axes.CartesianAxis"/> for x and y.
+            The scales for this chart. You can use any <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis"/> for x and y.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineOptions.ShowLines">
@@ -2063,172 +2696,9 @@
             Duration in milliseconds it takes to animate hover style changes.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.Moment">
-            <summary>
-            Wrapper class for <see cref="T:System.DateTime"></see> for serialization purposes.
-            </summary>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.LineChart.Moment.#ctor(System.DateTime)">
-            <summary>
-            Creates a new <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Moment"/> which wraps the provided <see cref="T:System.DateTime"/>
-            </summary>
-            <param name="value">The <see cref="T:System.DateTime"/> value to wrap</param>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.LineChart.Moment.op_Explicit(System.DateTime)~ChartJs.Blazor.ChartJS.LineChart.Moment">
-            <summary>
-            Creates a new wrapper for the provided <see cref="T:System.DateTime"/>
-            </summary>
-            <param name="dateTime"></param>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.LineChart.Moment.op_Explicit(ChartJs.Blazor.ChartJS.LineChart.Moment)~System.DateTime">
-            <summary>
-            Extracts the <see cref="T:System.DateTime"/> value wrapped in the provided instance
-            </summary>
-            <param name="moment"></param>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.LineChart.Moment.Equals(System.Object)">
-            <summary>
-            Returns the value indicating whether this instance is equal to a specified object.
-            </summary>
-            <param name="obj">The object to compare to this instance.</param>
-            <returns>true if the other object is a wrapper for the same <see cref="T:System.DateTime"/> value 
-            or if it's the same <see cref="T:System.DateTime"/> value as wrapped in this instance.</returns>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.LineChart.Moment.GetHashCode">
-            <summary>
-            Returns the HashCode for this instance.
-            </summary>
-            <returns>The HashCode for this instance</returns>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.LineChart.Moment.ToString">
-            <summary>
-            Converts the wrapped <see cref="T:System.DateTime"/> to a format which is readable for moment.js.
-            </summary>
-            <returns>The string representation of this instance</returns>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.ScaleLabel">
-            <summary>
-            Defines options for how to display an axis title.
-            </summary>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.LineChart.ScaleLabel.#ctor(System.String)">
-            <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.ScaleLabel"/>
-            </summary>
-            <param name="labelString">The initial value for <see cref="P:ChartJs.Blazor.ChartJS.LineChart.ScaleLabel.LabelString"/></param>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.ScaleLabel.Display">
-            <summary>
-            If true, display the axis title.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.ScaleLabel.LabelString">
-            <summary>
-            Text for the title (i.e. "# of clicks")
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.ScaleLabel.FontColor">
-            <summary>
-            The font color of the label
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.ScaleLabel.FontSize">
-            <summary>
-            Font size for scale title.
-            </summary>
-        </member>
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.Scales">
             <summary>
             Defines the scales for cartesian charts by holding the x and y axes.
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.TimeDisplayFormats">
-            <summary>
-            This is a helper class containing pre-made display formats to use in <see cref="P:ChartJs.Blazor.ChartJS.LineChart.TimeOptions.DisplayFormats"/> for certain locales.
-            <para>Those <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.TimeMeasurement"/>s that are not defined, will use the default format from https://www.chartjs.org/docs/latest/axes/cartesian/time.html#display-formats </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeDisplayFormats.DE_CH">
-            <summary>
-            Pre-made format-string for the swiss (DE_CH) locale.
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.TimeOptions">
-            <summary>
-            As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html#configuration-options
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeOptions.DisplayFormats">
-            <summary>
-            Sets how different time units are displayed. See https://www.chartjs.org/docs/latest/axes/cartesian/time.html#data-sets for more details.
-            <para>See <see cref="T:ChartJs.Blazor.ChartJS.LineChart.TimeDisplayFormats"/> for pre-made formats for certain locales.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeOptions.IsoWeek">
-            <summary>
-            If true and the <see cref="P:ChartJs.Blazor.ChartJS.LineChart.TimeOptions.Unit"></see> is set to <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.TimeMeasurement.Week"></see>, then the first day of the week will be Monday. Otherwise, it will be Sunday.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeOptions.Max">
-            <summary>
-            If defined, this will override the data maximum.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeOptions.Min">
-            <summary>
-            If defined, this will override the data minimum.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeOptions.Round">
-            <summary>
-            If defined, dates will be rounded to the start of this unit.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeOptions.TooltipFormat">
-            <summary>
-            The Moment.js format string to use for the tooltip.
-            <para>See https://momentjs.com/docs/#/displaying/format/ for possible formats</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeOptions.Unit">
-            <summary>
-            If defined, will force the unit to be a certain type.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeOptions.StepSize">
-            <summary>
-            The number of units between grid lines.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeOptions.MinUnit">
-            <summary>
-            The minimum display format to be used for a time unit.
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.TimeTuple`1">
-            <summary>
-            Represents a point on a graph where the X-Value (<see cref="P:ChartJs.Blazor.ChartJS.LineChart.TimeTuple`1.Time"></see>) is represented by a <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Moment"></see>
-            <para>Should be used together with a <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Axes.TimeAxis"></see></para>
-            <para>Reference Type so it can be used in the covariant <see cref="T:ChartJs.Blazor.ChartJS.MixedChart.IMixableDataset`1"/></para>
-            </summary>
-            <typeparam name="TData"></typeparam>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.LineChart.TimeTuple`1.#ctor(ChartJs.Blazor.ChartJS.LineChart.Moment,`0)">
-            <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.TimeTuple`1"/>
-            </summary>
-            <param name="time">The <see cref="T:ChartJs.Blazor.ChartJS.LineChart.Moment"/> instance to represent the x-value.</param>
-            <param name="yValue">The value of type <typeparamref name="TData"/> which represents the y-value.</param>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeTuple`1.Time">
-            <summary>
-            The time-/x-value for this <see cref="T:ChartJs.Blazor.ChartJS.LineChart.TimeTuple`1"/>.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.TimeTuple`1.YValue">
-            <summary>
-            The y-value for this <see cref="T:ChartJs.Blazor.ChartJS.LineChart.TimeTuple`1"/>.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.MixedChart.BaseMixableDataset`1">
@@ -2397,170 +2867,6 @@
         <member name="P:ChartJs.Blazor.ChartJS.PieChart.PieOptions.Circumference">
             <summary>
             Gets or sets the sweep to allow arcs to cover.
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.AngleLines">
-            <summary>
-            The angle lines sub-config of the linear-radial-axis-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis"/>).
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/linear.html </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.AngleLines.Display">
-            <summary>
-            Gets or sets the value indicating whether the angle line is displayed or not.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.AngleLines.Color">
-            <summary>
-            Gets or sets the color of the angled lines.
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.AngleLines.LineWidth">
-            <summary>
-            Gets or sets the width of the angled lines.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.AngleLines.BorderDash">
-            <summary>
-            Gets or sets the length and spacing of dashes of the angled lines.
-            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.AngleLines.BorderDashOffset">
-            <summary>
-            Gets or sets the offset for line dashes.
-            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset </para>
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis">
-            <summary>
-            A linear radial axis.
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis.AngleLines">
-            <summary>
-            Gets or sets the angle lines configuration.
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#angle-line-options </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis.GridLines">
-            <summary>
-            Gets or sets the grid lines configuration.
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/styling.html#grid-line-configuration </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis.PointLabels">
-            <summary>
-            Gets or sets the point labels configuration.
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis.Ticks">
-            <summary>
-            Gets or sets the ticks configuration.
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#tick-options </para>
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks">
-            <summary>
-            The ticks sub-config of the <see cref="T:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis"/>.
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.BackdropColor">
-            <summary>
-            Gets or sets the color of the label backdrops.
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.BackdropPaddingX">
-            <summary>
-            Gets or sets the horizontal padding of label backdrop.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.BackdropPaddingY">
-            <summary>
-            Gets or sets the vertical padding of label backdrop.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.BeginAtZero">
-            <summary>
-            Gets or sets the value indicating whether the scale will include 0 if it is not already included.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.Min">
-            <summary>
-            Gets or sets the user defined minimum number for the scale, overrides minimum value from data.
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.Max">
-            <summary>
-            Gets or sets the user defined maximum number for the scale, overrides minimum value from data.
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.MaxTicksLimit">
-            <summary>
-            Gets or sets the maximum number of ticks and gridlines to show.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.Precision">
-            <summary>
-            If defined and StepSize is not specified, the step size will be rounded to this many decimal places.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.StepSize">
-            <summary>
-            Gets or sets the user defined fixed step size for the scale.
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.SuggestedMax">
-            <summary>
-            Gets or sets the adjustment used when calculating the maximum data value.
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.SuggestedMin">
-            <summary>
-            Gets or sets the adjustment used when calculating the minimum data value.
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialTicks.ShowLabelBackdrop">
-            <summary>
-            Gets or sets the value indicating whether a background is drawn behind the tick labels.
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.PointLabels">
-            <summary>
-            The point labels sub-config of the linear-radial-axis-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.LinearRadialAxis"/>).
-            <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.PointLabels.FontColor">
-            <summary>
-            Gets or sets the font color for a point label.
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.PointLabels.FontSize">
-            <summary>
-            Gets or sets the font size in pixels.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.PointLabels.FontStyle">
-            <summary>
-            Gets or sets the font style to use when rendering a point label.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.PolarAreaChart.Axis.PointLabels.LineHeight">
-            <summary>
-            Gets or sets the height of an individual line of text.
-            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/CSS/line-height </para>
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.PolarAreaChart.PolarAreaConfig">

@@ -1,7 +1,7 @@
 ﻿using System;
 using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Properties;
-using ChartJs.Blazor.ChartJS.PolarAreaChart.Axis;
+using ChartJs.Blazor.ChartJS.Common.Axes;
 
 namespace ChartJs.Blazor.ChartJS.PolarAreaChart
 {
