@@ -23,28 +23,22 @@ Since it has now become apparent that the old repo is not maintained anymore, th
 ## Changelog
 
 ### Latest changes
-**0.10.3:**
+**0.10.4:**
 
-* Remove unnecessary highlight.js
-* Lots of XML-documentation improvements
-* Lots of bug-fixes
-* Make the canvas-id read-only
-* Rename classes to comply with the consistent naming conventions. From XXChartYY to XXYY.
-* Lots of general improvements (refactoring, remove redundancies, etc)
-* Implement [indexable options](https://www.chartjs.org/docs/latest/general/options.html#indexable-options)
-* Update to preview9
-* Rework Pie-Chart
-* Remove Doughnut-Chart
-* Rework Polar-Area-Chart
+* Update to .NET Core 3.0
+* Fix static assets issue (the issue was our description)
+* Expand Tooltip-configuration and add them to all charts
+* Rework bar-chart
+  * This had some side-effects regarding namespaces.
 
 The detailed changelog can be found [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/CHANGELOG.md).
 
 #### How to update (breaking changes):
-* Remove any assignment of the charts `CanvasId`. It will be handled automatically for you using a GUID string.
-* Use pie-chart-classes anywhere you used dougnut chart and either manually set the `CutoutPercentage` to 50 or pass in `true` for the `PieOptions` constructor. It will yield the exact same results unless you have made manual changes to the chart.js-defaults using your own js.
-* Many classes and properties have been removed, added, moved, renamed and more. You might have to add new using-directives and use the new class names. This is especially the case for the charts we've reworked (Pie (& Doughnut), Polar-Area, Line). Also a typo was fixed from `TimeTupel` to `TimeTuple`. The properties should all comply with the ones from chart.js written in PascalCase ([chart.js documentation](https://www.chartjs.org/docs/latest/)).  
-For more details take a look at the detailed changelog, the chart.js-docs and our samples.
-* **If you aren't referencing the js-interop-file dynamically using `_content`, you need to copy the new file manually from [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/ChartJs.Blazor/wwwroot/ChartJsInterop.js) (there were two bug fixes).**
+* For any property that used a simple type like `string` or a very open type like `object`, there might be new enum for that which allows for type-safe customization. Check those, many of them should yield compiler errors anyway.
+* Correctly include the static assets (see the usage section below) since it wasn't described correctly before.
+* If you used any time related classes except for the axis and the ticks, you might need to include the namespace `Common.Time`.
+* For line- and polar-area-charts the axes namespaces have been removed since they were actually common classes. They have been moved to `Common.Axes` and `Common.Axes.Ticks`. Check if you need to include/remove certain namespaces.
+* Since some properties on the `BarOptions` were in the wrong place, they were removed. You can use those again (and they will now actually work) if you specify them in an Axis from the `BarChart.Axes` namespace.
 
 ## Please keep in mind that this is still a preview. Expect breaking changes during the next releases. We're reworking all the charts because most of them contain errors and inconsistencies.
 

@@ -16,7 +16,10 @@ Supports both client- and server-side projects. See the (soon to be existing) sa
 Supports: 
 Line-Chart, Bar-Chart, Radar-Chart, Doughnut- and Pie-Chart, Bubble-Chart, Mixed-Chart, PolarArea-Chart. 
 
-Chart legend with custom handler for Item generation and events - Javascript and .Net handlers supported.</Description>
+Chart legend with custom handler for Item generation and events - Javascript and .Net handlers supported.
+
+Disclaimer: This is the last published Version. Further development will take place in the original repository at https://github.com/mariusmuntean/ChartJs.Blazor.
+</Description>
     <RepositoryUrl>https://github.com/Joelius300/ChartJSBlazor</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Joelius300/ChartJSBlazor</PackageProjectUrl>
     <PackageTags>ChartJS; Blazor; ASP.Net-Core</PackageTags>
@@ -25,9 +28,9 @@ Chart legend with custom handler for Item generation and events - Javascript and
     <AssemblyName>ChartJs.Blazor</AssemblyName>
     <RootNamespace>ChartJs.Blazor</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.10.3-preview</Version>
-    <AssemblyVersion>0.10.3.0</AssemblyVersion>
-    <FileVersion>0.10.3.0</FileVersion>
+    <Version>0.10.4</Version>
+    <AssemblyVersion>0.10.4.0</AssemblyVersion>
+    <FileVersion>0.10.4.0</FileVersion>
     <NeutralLanguage />
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <ApplicationIcon />

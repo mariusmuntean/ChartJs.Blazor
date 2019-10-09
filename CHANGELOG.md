@@ -1,5 +1,31 @@
 # Changelog
 <details open="open">
+<summary>0.10.4</summary>
+
+* We updated everything to .NET Core 3 which means this library has no more preview dependencies.
+* The issue with static assets has been resolved. The readme has been updated to include how you can include the static assets without copying.
+* More special enums have been implemented for a more typesafe experience. Also some were renamed to their respective singular name.
+  * ChartTypes -> ChartType
+  * Positions -> Position
+  * AxisDisplay
+  * BorderAlign
+  * BorderCapStyle
+  * BorderJoinStyle
+  * CubicInterpolationMode
+  * FontStyle
+  * PointStyle
+  * ScaleBound
+* We reworked the Tooltips which means it's now more complete (but there are still things missing like callbacks which may be implemented later on in the original repo) and it's also available for every chart-option.
+* We reworked the bar-chart. There were some side-effects of this since the axes which were used for the line-chart.
+  * Move all Axes from the specific chart to the Common namespace. This affects line- and polar-area-charts.
+  * Some common classes like `SubTicks`, `Minor-` and `MajorTicks` have been moved around in the common namespace because there is now `Common.Axes` and `Common.Axes.Ticks`.
+  * Bar-charts accept all cartesian axes but there are some extra properties for bar-axes. For this reason there are specific axes for bar-charts in the `BarChart.Axes` namespace which derive from the cartesian axes.
+  * All Time related classes except for the `TimeAxis` and the `TimeTicks` were moved to `Common.Time`.
+  * Generally make more complete by adding new properties to axes and bar-charts. Lots of refactoring is also always something required in a rework.
+
+</details>
+
+<details>
 <summary>0.10.3</summary>
 
 * Remove unnecessary highlight.js
