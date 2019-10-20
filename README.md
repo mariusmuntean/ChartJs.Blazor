@@ -1,221 +1,223 @@
-## ChartJs interop with Blazor
+# ChartJs interop with Blazor
 
-
-[![Build Status](https://dev.azure.com/marius-muntean/ChartJs.Blazor/_apis/build/status/ChartJs.Blazor-SamplesSite)](https://dev.azure.com/marius-muntean/ChartJs.Blazor/_build/latest?definitionId=4)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Joelius300/ChartJSBlazor/blob/master/LICENSE.md)
+[![GitHub issues](https://img.shields.io/github/issues/Joelius300/ChartJSBlazor.svg)](https://github.com/Joelius300/ChartJSBlazor/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Joelius300/ChartJSBlazor.svg)](https://github.com/Joelius300/ChartJSBlazor/network)
+[![GitHub stars](https://img.shields.io/github/stars/Joelius300/ChartJSBlazor.svg)](https://github.com/Joelius300/ChartJSBlazor/stargazers)
+[![Join the chat at https://gitter.im/ChartJSBlazor/community](https://badges.gitter.im/ChartJSBlazor/community.svg)](https://gitter.im/ChartJSBlazor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/ChartJs.Blazor.Fork.svg)](https://www.nuget.org/packages/ChartJs.Blazor.Fork/)
-
 
 This is a Blazor Component that wraps [ChartJS](https://github.com/chartjs/Chart.js).
-You can use the library in both client- and server-side projects. See the samples or reach out on Twitter if you need help.
+You can use the library in both client- and server-side projects.
 
-#
-## Status Update
-The project was abandoned for some time and it is now being revived. 
-The plan is to update it to the latest Blazor version, update the samples and then to continue with nomal development.
-[@Joelius300](https://github.com/Joelius300) kept the project alive and developed it further; here's the repo https://github.com/Joelius300/ChartJSBlazor. We've agreed to integrate his work back into this repository.
+# Status Update (end of life)
 
-If you can't wait until the project is up and running again and you need an updated NuGet package of the library, you can use Joelius300's package: https://www.nuget.org/packages/ChartJs.Blazor.Fork/
+This repository has reached its end of life. All future development will be done in the [original repo](https://github.com/mariusmuntean/ChartJs.Blazor). You can find more information in [this pinned issue (#97)](https://github.com/Joelius300/ChartJSBlazor/issues/97).
 
-[![NuGet Downloads](https://img.shields.io/nuget/dt/ChartJs.Blazor.Fork.svg)](https://www.nuget.org/packages/ChartJs.Blazor.Fork/)
+## Introduction
 
-Many thanks to [@Joelius300](https://github.com/Joelius300)! Without your input the project wouldn't have been revived.
+This library is a modification of [this awesome library](https://github.com/mariusmuntean/ChartJs.Blazor) by [Marius Muntean](https://github.com/mariusmuntean/). 
 
-## Need your opinion
-
-Let me know how you like ChartJs.Blazor on Twitter [@MunteanMarius](https://twitter.com/@MunteanMarius )
-
-Vote on what features you'd like to see implemented next
-[Link to Poll](https://linkto.run/p/CTWCSM51)
-
-Currently I've implemented support for all ChartJs charts. Do you miss anything that makes ChartJs.Blazor a show stopper?
+Since it has now become apparent that the old repo is not maintained anymore, this project is continued and extended here. Since this is a project I'm working on in my free time, don't expect this to grow rapidly. There will often be differences between the docs and the actual code so I really advise you to go look at the [WebCore-project](https://github.com/Joelius300/ChartJSBlazor/tree/master/WebCore) which contains several examples that are up-to-date.
 
 ## Changelog
-<details open="open">
-<summary>v0.9.0</summary>
 
-* Added support for Blazor and Razor Components projects
-* Updated to ChartJs 2.8
-* Fixed vanishing-chart-bug (thanks community)
-* Refactored the core classes of the library so they don't feel so hacky anymore (thanks community)
+### Latest changes
+**0.10.4:**
 
-</details>
+* Update to .NET Core 3.0
+* Fix static assets issue (the issue was our description)
+* Expand Tooltip-configuration and add them to all charts
+* Rework bar-chart
+  * This had some side-effects regarding namespaces.
 
-<details>
-<summary>v0.7.0</summary>
+The detailed changelog can be found [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/CHANGELOG.md).
 
-* Updated to Blazor v0.7.0
-* Check out the updated samples page. I moved it to [www.iheartblazor.com](https://www.iheartblazor.com)
+#### How to update (breaking changes):
+* For any property that used a simple type like `string` or a very open type like `object`, there might be new enum for that which allows for type-safe customization. Check those, many of them should yield compiler errors anyway.
+* Correctly include the static assets (see the usage section below) since it wasn't described correctly before.
+* If you used any time related classes except for the axis and the ticks, you might need to include the namespace `Common.Time`.
+* For line- and polar-area-charts the axes namespaces have been removed since they were actually common classes. They have been moved to `Common.Axes` and `Common.Axes.Ticks`. Check if you need to include/remove certain namespaces.
+* Since some properties on the `BarOptions` were in the wrong place, they were removed. You can use those again (and they will now actually work) if you specify them in an Axis from the `BarChart.Axes` namespace.
 
-</details>
-
-<details>
-<summary>v0.6.0</summary>
-
-* Extended the support for Legent Item click and hover evnt handler.
-* Check out the updated samples page. You can now interact with the chart dataset.
-
-</details>
-
-<details><summary>v0.5.0</summary>
-
-* Added support for Chart Legends with custom Js functions for handling onClick, onHover events for Legend Items.
-* Check out the updated samples page. You can now interact with the chart dataset.
-
-</details>
-
-<details ><summary>0.4.0-alpha</summary>
-
-* Simplified some behind-the-scenes code
-* Added support for Scatter Chart
-* Improved the samples and updated the gif
-</details>
-
-<details><summary>0.3.0-alpha</summary>
-
-* Updated object model that exposes even more features of ChartJs
-* Added support for Polar Area Chart
-</details>
-
-<details><summary>0.2.0-alpha</summary>
-
-* Updated object model that exposes more features of ChartJs
-</details>
-
-<details><summary>0.1.0-alpha</summary>
-
-* Initial release. 
-* Support for almost all charts from ChartJs, including: LineChart, BarChart, RadarCart, Doughnut- and Pie-Chart, BubbleChart, MixedChart
-</details>
-
-## Please keep in mind that this is still a preview. Expect breaking changes during the next releases. I'm using this opportunity to learn Blazor.
+## Please keep in mind that this is still a preview. Expect breaking changes during the next releases. We're reworking all the charts because most of them contain errors and inconsistencies.
 
 ## Prerequisites
 
-Don't know what Blazor is? Read [here](https://github.com/aspnet/Blazor)
+Don't know what Blazor is? Read [here](https://dotnet.microsoft.com/apps/aspnet/web-apps/client).
 
-Prerequisites.
+The prerequisites are:
 
-1. Visual Studio 15.8 or later
-2. DotNetCore 2.1.402 or later
+1. [Visual Studio 2019 16.3](https://visualstudio.microsoft.com/downloads/)
+2. [.NET Core 3](https://dotnet.microsoft.com/download/dotnet-core/3.0)
 
 
-## Installation 
+## Installation
 
-There's a NuGet package: https://www.nuget.org/packages/ChartJs.Blazor.Fork
+There's a NuGet package available: [ChartJs.Blazor.Fork](https://www.nuget.org/packages/ChartJs.Blazor.Fork/)
 
 Install from the command line:
 
-```
-Install-Package ChartJs.Blazor.Fork -Version 0.10.3-preview
-```
-or 
-```
-dotnet add package ChartJs.Blazor.Fork --version 0.10.3-preview
-```
-**Note:** For server-side projects make sure to add the following line to the `Configure(...)` method of your `Startup.cs` file
-```csharp
-ChartJsBlazor.AddStaticResourcesToWebRootPath(env.WebRootPath);
-```
-Then reference the ChartJsInterop.js file from your index.(cs)html like so
-```HTML
-<script src="~/ChartJs.Blazor/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
+```bash
+dotnet add package ChartJs.Blazor.Fork
 ```
 
 ## Usage
 
-For detailed instruction go to the [Wiki page](https://github.com/mariusmuntean/ChartJs.Blazor/wiki). 
+For detailed instructions read the [Chart.Js](https://www.chartjs.org/docs/latest/charts/) documentation to understand how each chart works in detail or go to the [Wiki](https://github.com/Joelius300/ChartJSBlazor/wiki) to check the examples provided there. Since the example here and those in the wiki might be outdated very fast because of the many breaking changes, I would also advise you to go look at the [WebCore-project](https://github.com/Joelius300/ChartJSBlazor/tree/master/WebCore) in this repos where you can find some examples.  
 
-1. In you cshtlm create a new ChartJsPieChart and give it an instance of PieChartConfig ...
+Before you can start creating a chart with a config etc, you have to include some static assets to your project.
+
+In your `_Host.cshtml` (server-side) or in your `index.html` (client-side) -file add this code to have `moment.js` with the locales:
 
 ```html
-<h2>Chart JS charts using Blazor</h2>
-<div class="row">
-    <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
-</div>
-<ChartJsPieChart ref="pieChartJs" Config="@pieChartConfig" Width="600" Height="300"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"
+        integrity="sha256-AdQN98MVZs44Eq2yTwtoKufhnU+uZ7v2kXnD5vqzZVo="
+        crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 ```
 
-... make sure to create that instance
-```csharp
-@functions{
+or this code if you want the bundled version of `Chart.Js`, but without the locales of `moment.js` (`moment.js` itself is then included in the bundle):
 
-    private PieChartConfig pieChartConfig { get; set; }
-    ChartJsPieChart pieChartJs;
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script> <!--Contains moment.js for time axis-->
+```
+
+Furthermore, you need to include the js-interop and the css-file which enables responsiveness.  
+Since those are static assets in the library, you should be able to reference them via your `_Host.cshtml`/`index.html`-file directly, without copying the files. You can do that using `_content` as seen below:
+
+```html
+<script src="_content/ChartJs.Blazor.Fork/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
+<link rel="stylesheet" href="_content/ChartJs.Blazor.Fork/ChartJsBlazor.css" />
+```
+
+**Disclaimer:**
+Make sure to include the Blazor `_framework`-script before including the library-script. Otherwise, you will face the error: [Uncaught reference error: "Blazor is not defined at ChartJsInterop.js:5"](https://github.com/Joelius300/ChartJSBlazor/issues/94).
+This issue is also documented in the [known issues page](https://github.com/Joelius300/ChartJSBlazor/wiki/Known-issues#uncaught-reference-error-blazor-is-not-defined-at-chartjsinteropjs5).
+
+Now to creating the chart. Below is a simple example for a line-chart. Examples of the other chart types can be found in the [Wiki](https://github.com/Joelius300/ChartJSBlazor/wiki/Chart-types). You can find the examples also [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/WebCore/Pages/) (the examples are probably more up to date in case the below code doesn't work).
+
+The example covers a few static options, how to use a simple point-dataset and how to dynamically initialize and update the data displayed on the chart.
+
+```csharp
+@page "/SimpleLineLinearExample"
+@using WebCore.Data
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.ChartJS.Common.Properties
+@using ChartJs.Blazor.ChartJS.Common.Enums
+@using ChartJs.Blazor.ChartJS.Common.Legends
+@using ChartJs.Blazor.ChartJS.LineChart
+@using ChartJs.Blazor.ChartJS.LineChart.Axes
+@using ChartJs.Blazor.ChartJS.LineChart.Axes.Ticks
+@using ChartJs.Blazor.Util.Color
+
+<h2>Line Linear Chart</h2>
+<ChartJsLineChart @ref="lineChartJs" Config="@lineConfig" Width="600" Height="300" />
+<Button @onclick="UpdateChart">Add random point</Button>
+
+@code
+{
+    LineConfig lineConfig;
+    ChartJsLineChart lineChartJs;
+
+    private LineDataset<Point> pointDataset;
+
+    private Random rnd = new Random();
 
     protected override void OnInit()
     {
-        pieChartConfig = pieChartConfig ?? new PieChartConfig
+        lineConfig = new LineConfig
         {
-            CanvasId = "myFirstPieChart",
-            Options = new PieChartOptions
+            Options = new LineOptions
             {
-                Text = "Sample chart from Blazor",
-                Display = true,
                 Responsive = true,
-                Animation = new PieChartAnimation {AnimateRotate = true, AnimateScale = true}
-            },
-            Data = new PieChartData
-            {
-                Labels = new List<string> {"A", "B", "C", "D"},
-                Datasets = new List<PieChartDataset>
+                Title = new OptionsTitle
                 {
-                    new PieChartDataset
+                    Display = true,
+                    Text = "Simple Line Chart"
+                },
+                Legend = new Legend
+                {
+                    Position = Positions.Right,
+                    Labels = new LegendLabelConfiguration
                     {
-                        BackgroundColor = new[] {"#ff6384", "#55ee84", "#4463ff", "#efefef"},
-                        Data = new List<int> {4, 5, 6, 7},
-                        Label = "Light Red",
-                        BorderWidth = 0,
-                        HoverBackgroundColor = new[] {"#f06384"},
-                        HoverBorderColor = new[] {"#f06384"},
-                        HoverBorderWidth = new[] {1}, BorderColor = "#ffffff",
+                        UsePointStyle = true
+                    }
+                },
+                Tooltips = new Tooltips
+                {
+                    Mode = InteractionMode.Nearest,
+                    Intersect = false
+                },
+                Scales = new Scales
+                {
+                    xAxes = new List<CartesianAxis>
+                    {
+                        new LinearCartesianAxis
+                        {
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "X-value"
+                            }
+                        }
+                    },
+                    yAxes = new List<CartesianAxis>()
+                    {
+                        new LinearCartesianAxis
+                        {
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "Random value"
+                            }
+                        }
                     }
                 }
             }
         };
+
+
+        pointDataset = new LineDataset<Point>()
+        {
+            BackgroundColor = ColorUtil.ColorString(0, 255, 0, 1.0),
+            BorderColor = ColorUtil.ColorString(0, 0, 255, 1.0),
+            Label = "Some values",
+            Fill = false,
+            PointBackgroundColor = ColorUtil.RandomColorString(),
+            BorderWidth = 1,
+            PointRadius = 3,
+            PointBorderWidth = 1
+        };
+
+        pointDataset.AddRange(Enumerable.Range(1, 10).Select(i => new Point(i, rnd.Next(30))));
+
+        lineConfig.Data.Datasets.Add(pointDataset);
+    }
+
+    private void UpdateChart()
+    {
+        pointDataset.Add(new Point(pointDataset.Data.Last().X +1, rnd.Next(rnd.Next(50))));
+        lineChartJs.Update();
     }
 }
 ```
 
-2. In your index.html add these
+For running on client-side Blazor there is currently a bug with JSON.NET tracked by this [issue](https://github.com/JamesNK/Newtonsoft.Json/issues/2020).
+The known workaround is to include the following line in the parent component:
 
-```html
-    .
-    .
-    .
-<body>
-    <app>Loading...</app>
-
-    <!--<script src="css/bootstrap/bootstrap-native.min.js"></script>-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>-->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <!--<script type="blazor-boot">
-            </script>-->
-    <script src="_framework/blazor.webassembly.js" type="text/javascript" language="javascript"></script>
-    <script src="ChartJsInterop.js" type="text/javascript" language="javascript"></script>
-</body>
-    .
-    .
-    .
+```csharp
+private ReferenceConverter ReferenceConverter = new ReferenceConverter(typeof(PROBLEMATIC_COMPONENT));
 ```
 
+where `PROBLEMATIC_COMPONENT` is a placeholder for the chart-component you're using inside this component (e.g. `ChartJsBarChart`, `ChartJsPieChart`, `ChartJsLineChart`, ..).
 
-## Samples
-
-Test it in your browser: https://www.iheartblazor.com/
-
-
-Or just watch me click through the samples
-![Charts](samples/ChartJs.Blazor.gif)
-
-
+This issue is also documented in the [known issues page](https://github.com/Joelius300/ChartJSBlazor/wiki/Known-issues#missingmethodexception-when-using-client-side-blazor).
 
 # Contributors
-This projects slowly develops a community which started to give back.
-## Many thanks to: #
- **Lars** (https://github.com/larshg)
- 
- **Jan** (https://github.com/mashbrno)
+* [Joelius300](https://github.com/Joelius300)
+* [SeppPenner](https://github.com/SeppPenner)
+* [MindSwipe](https://github.com/MindSwipe)
 
- I'm very gratefull for your contributions!
+# Contributing
+We really like people helping us with the project. Nevertheless, take your time to read our contributing guidelines [here](https://github.com/Joelius300/ChartJSBlazor/blob/master/CONTRIBUTING.md).
