@@ -8,21 +8,22 @@
 
 <h2>Simple Bar Chart</h2>
 <div class="row">
-    <button class="btn btn-primary">Update Chart</button>
+    <button class="btn btn-primary" @onclick="OnClick">Update Chart</button>
 </div>
-<ChartJsBarChart @ref="barChart"
-                 Config="@barChartConfig"
+<ChartJsBarChart @ref="_barChart"
+                 Config="@_barChartConfig"
                  Width="600"
                  Height="300" />
 
 @code {
 
-    private BarConfig barChartConfig;
-    private ChartJsBarChart barChart;
+    private BarConfig _barChartConfig;
+    private ChartJsBarChart _barChart;
+    private BarDataset<DoubleWrapper> _barDataSet;
 
     protected override void OnInitialized()
     {
-        barChartConfig = new BarConfig
+        _barChartConfig = new BarConfig
         {
             Options = new BarOptions
             {
@@ -34,7 +35,7 @@
                 Scales = new BarScales
                 {
                     XAxes = new List<CartesianAxis>
-                {
+            {
                         new BarCategoryAxis
                         {
                             BarPercentage = 0.5,
@@ -42,7 +43,7 @@
                         }
                     },
                     YAxes = new List<CartesianAxis>
-                {
+            {
                         new BarLinearCartesianAxis
                         {
                             Ticks = new LinearCartesianTicks
@@ -55,9 +56,9 @@
             }
         };
 
-        barChartConfig.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
+        _barChartConfig.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
 
-        var barSet = new BarDataset<DoubleWrapper>
+        _barDataSet = new BarDataset<DoubleWrapper>
         {
             Label = "My double dataset",
             BackgroundColor = new[] { "#242968", "#218ba5", "#11af66", "#af9d11" },
@@ -68,15 +69,22 @@
             BorderColor = "#ffffff",
         };
 
-        barSet.AddRange(new double[] { 8, 5, 3, 7 }.Wrap());
-        barChartConfig.Data.Datasets.Add(barSet);
+        _barDataSet.AddRange(new double[] { 8, 5, 3, 7 }.Wrap());
+        _barChartConfig.Data.Datasets.Add(_barDataSet);
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
 
-        this.barChart.Update();
+        this._barChart.Update();
+    }
+
+    private void OnClick()
+    {
+        var nowSecond = DateTime.Now.Second;
+        _barChartConfig.Data.Labels.Add(nowSecond.ToString());
+        _barDataSet.Add(new DoubleWrapper(nowSecond));
     }
 
 }
