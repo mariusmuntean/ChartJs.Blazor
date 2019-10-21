@@ -1785,7 +1785,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.IndexableOption`1.IsIndexed">
             <summary>
-            Gets the value indicating whether the option wrapped in this <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> is indexed. 
+            Gets the value indicating whether the option wrapped in this <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> is indexed.
             <para>True if the wrapped value represents an array of <typeparamref name="T"/>, false if it represents a single value of <typeparamref name="T"/>.</para>
             </summary>
         </member>
