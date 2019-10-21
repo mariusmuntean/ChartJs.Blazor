@@ -35,7 +35,7 @@
                 Scales = new BarScales
                 {
                     XAxes = new List<CartesianAxis>
-            {
+    {
                         new BarCategoryAxis
                         {
                             BarPercentage = 0.5,
@@ -43,7 +43,7 @@
                         }
                     },
                     YAxes = new List<CartesianAxis>
-            {
+    {
                         new BarLinearCartesianAxis
                         {
                             Ticks = new LinearCartesianTicks
@@ -77,7 +77,10 @@
     {
         base.OnAfterRender(firstRender);
 
-        this._barChart.Update();
+        if (firstRender)
+        {
+            this.StateHasChanged();
+        }
     }
 
     private void OnClick()
