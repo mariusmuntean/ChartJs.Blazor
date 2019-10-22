@@ -7,7 +7,6 @@ namespace ChartJs.Blazor.Sample.ClientSide
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddNewtonsoftJson();
         }
 
         public void Configure(IComponentsApplicationBuilder app)

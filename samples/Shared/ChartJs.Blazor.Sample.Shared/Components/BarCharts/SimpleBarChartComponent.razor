@@ -18,6 +18,7 @@
 
 @code {
 
+    // https://github.com/Joelius300/ChartJSBlazor/issues/18
     private ReferenceConverter referenceConverter = new ReferenceConverter(typeof(ChartJsBarChart));
 
     private BarConfig _barChartConfig;
@@ -38,23 +39,23 @@
                 Scales = new BarScales
                 {
                     XAxes = new List<CartesianAxis>
-    {
-                        new BarCategoryAxis
-                        {
-                            BarPercentage = 0.5,
-                            BarThickness = BarThickness.Flex
-                        }
-                    },
-                    YAxes = new List<CartesianAxis>
-    {
-                        new BarLinearCartesianAxis
-                        {
-                            Ticks = new LinearCartesianTicks
                             {
-                                BeginAtZero = true
-                            }
-                        }
-                    }
+                                    new BarCategoryAxis
+                                    {
+                                        BarPercentage = 0.5,
+                                        BarThickness = BarThickness.Flex
+                                    }
+                                },
+                    YAxes = new List<CartesianAxis>
+                            {
+                                    new BarLinearCartesianAxis
+                                    {
+                                        Ticks = new LinearCartesianTicks
+                                        {
+                                            BeginAtZero = true
+                                        }
+                                    }
+                                }
                 }
             }
         };
