@@ -1,0 +1,75 @@
+﻿@using ChartJs.Blazor.ChartJS.BarChart
+@using ChartJs.Blazor.ChartJS.BarChart.Axes
+@using ChartJs.Blazor.ChartJS.Common.Axes
+@using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
+@using ChartJs.Blazor.ChartJS.Common.Time
+@using ChartJs.Blazor.ChartJS.Common.Enums
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.ChartJS.Common.Properties
+@using ChartJs.Blazor.Util
+
+<h1>Bar Chart</h1>
+
+<ChartJsBarChart @ref="_barChartJs" Config="@_config" Width="600" Height="300"/>
+
+@code {
+    private BarConfig _config;
+    private ChartJsBarChart _barChartJs;
+
+    protected override void OnInitialized()
+    {
+        _config = new BarConfig
+        {
+            Options = new BarOptions
+            {
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "Sample chart from Blazor"
+                },
+                Scales = new BarScales
+                {
+                    XAxes = new List<CartesianAxis>
+                    {
+                        new BarTimeAxis
+                        {
+                            BarPercentage = 0.75,
+                            Time = new TimeOptions
+                            {
+                                Unit = TimeMeasurement.Hour
+                            }
+                        }
+                    },
+                    YAxes = new List<CartesianAxis>
+                    {
+                        new BarLinearCartesianAxis
+                        {
+                            Ticks = new LinearCartesianTicks
+                            {
+                                BeginAtZero = true
+                            }
+                        }
+                    }
+                },
+                Responsive = true
+            }
+        };
+
+        var barSet = new BarDataset<TimeTuple<double>>
+        {
+            Label = "My time-double dataset",
+            BackgroundColor = new[] {"#242968", "#218ba5", "#11af66", "#af9d11"},
+            BorderWidth = 1,
+            HoverBackgroundColor = ColorUtil.ColorString(0, 0, 0, 0.1),
+            HoverBorderColor = "#020202",
+            HoverBorderWidth = 1,
+            BorderColor = "#ffffff"
+        };
+
+        DateTime now = DateTime.Now;
+        Random rnd = new Random();
+        barSet.AddRange(Enumerable.Range(2, 4).Select(i => new TimeTuple<double>((Moment) now.AddHours(i), rnd.NextDouble() * 4)));
+        _config.Data.Datasets.Add(barSet);
+    }
+
+}

@@ -1,12 +1,11 @@
-﻿@using ChartJs.Blazor.ChartJS.BarChart
+﻿@using System.ComponentModel
+@using ChartJs.Blazor.ChartJS.BarChart
 @using ChartJs.Blazor.ChartJS.BarChart.Axes
 @using ChartJs.Blazor.ChartJS.Common.Axes
 @using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
 @using ChartJs.Blazor.ChartJS.Common.Properties
 @using ChartJs.Blazor.ChartJS.Common.Wrappers
 @using ChartJs.Blazor.Charts
-@using System.ComponentModel
-
 <h2>Simple Bar Chart</h2>
 <div class="row">
     <button class="btn btn-primary" @onclick="OnClick">Update Chart</button>
@@ -19,7 +18,7 @@
 @code {
 
     // https://github.com/Joelius300/ChartJSBlazor/issues/18
-    private ReferenceConverter referenceConverter = new ReferenceConverter(typeof(ChartJsBarChart));
+    private ReferenceConverter _referenceConverter = new ReferenceConverter(typeof(ChartJsBarChart));
 
     private BarConfig _barChartConfig;
     private ChartJsBarChart _barChart;
@@ -39,23 +38,23 @@
                 Scales = new BarScales
                 {
                     XAxes = new List<CartesianAxis>
-                            {
-                                    new BarCategoryAxis
-                                    {
-                                        BarPercentage = 0.5,
-                                        BarThickness = BarThickness.Flex
-                                    }
-                                },
+                    {
+                        new BarCategoryAxis
+                        {
+                            BarPercentage = 0.5,
+                            BarThickness = BarThickness.Flex
+                        }
+                    },
                     YAxes = new List<CartesianAxis>
+                    {
+                        new BarLinearCartesianAxis
+                        {
+                            Ticks = new LinearCartesianTicks
                             {
-                                    new BarLinearCartesianAxis
-                                    {
-                                        Ticks = new LinearCartesianTicks
-                                        {
-                                            BeginAtZero = true
-                                        }
-                                    }
-                                }
+                                BeginAtZero = true
+                            }
+                        }
+                    }
                 }
             }
         };
@@ -70,7 +69,7 @@
             HoverBackgroundColor = "#f06384",
             HoverBorderColor = "#f06384",
             HoverBorderWidth = 1,
-            BorderColor = "#ffffff",
+            BorderColor = "#ffffff"
         };
 
         _barDataSet.AddRange(new double[] { 8, 5, 3, 7 }.Wrap());
@@ -83,7 +82,7 @@
 
         if (firstRender)
         {
-            this.StateHasChanged();
+            StateHasChanged();
         }
     }
 
