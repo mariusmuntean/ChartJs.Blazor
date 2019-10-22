@@ -5,6 +5,7 @@
 @using ChartJs.Blazor.ChartJS.Common.Properties
 @using ChartJs.Blazor.ChartJS.Common.Wrappers
 @using ChartJs.Blazor.Charts
+@using System.ComponentModel
 
 <h2>Simple Bar Chart</h2>
 <div class="row">
@@ -16,6 +17,8 @@
                  Height="300" />
 
 @code {
+
+    private ReferenceConverter referenceConverter = new ReferenceConverter(typeof(ChartJsBarChart));
 
     private BarConfig _barChartConfig;
     private ChartJsBarChart _barChart;
