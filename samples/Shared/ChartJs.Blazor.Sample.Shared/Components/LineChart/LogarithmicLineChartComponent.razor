@@ -9,23 +9,15 @@
 @using ChartJs.Blazor.Sample.Shared.Services
 @using ChartJs.Blazor.Util
 
-<h2>Linear Line Chart</h2>
+<h2>Logarithmic Line Chart</h2>
 <ChartJsLineChart @ref="_lineChartJs" Config="@_lineConfig" Width="600" Height="300" />
-<Button @onclick="UpdateChart">Add random point</Button>
 
 @code
 {
-    readonly WeatherForecastService _forecastService = new WeatherForecastService();
     LineConfig _lineConfig;
     ChartJsLineChart _lineChartJs;
 
-    private LineDataset<Point>
-    _tempPerHourSet;
-
-    private LineDataset<Point>
-    _tempPerDaySet;
-
-    private readonly Random _rnd = new Random();
+    WeatherForecastService _forecastService = new WeatherForecastService();
 
     protected override async Task OnInitializedAsync()
     {
@@ -73,8 +65,8 @@
                         }
                     },
                     yAxes = new List<CartesianAxis>
-                {
-                        new LinearCartesianAxis
+                    {
+                        new LogarithmicAxis
                         {
                             ScaleLabel = new ScaleLabel
                             {
@@ -91,7 +83,7 @@
             }
         };
 
-        _tempPerHourSet = new LineDataset<Point>
+        var tempPerHourSet = new LineDataset<Point>
         {
             BackgroundColor = ColorUtil.ColorString(0, 255, 0, 1.0),
             BorderColor = ColorUtil.ColorString(0, 0, 255, 1.0),
@@ -104,7 +96,7 @@
             SteppedLine = SteppedLine.False,
         };
 
-        _tempPerDaySet = new LineDataset<Point>
+        var tempPerDaySet = new LineDataset<Point>
         {
             BackgroundColor = "#63ff84",
             BorderColor = "#63ff84",
@@ -114,27 +106,19 @@
             PointRadius = 2,
             PointBorderWidth = 1,
             SteppedLine = SteppedLine.False,
-            Hidden = true
         };
 
-        var forecasts = await _forecastService.GetStaticForecastAsync(DateTime.Now, 5);
+        WeatherForecast[] forecasts = await _forecastService.GetStaticForecastAsync(DateTime.Now, 5);
 
-        var onlyDays = forecasts.GroupBy(f => f.Date.Day).Select(g => g.First());
+        var
+            onlyDays = forecasts.GroupBy(f => f.Date.Day).Select(g => g.First());
 
-        IEnumerable<WeatherForecast>
-            weatherForecasts = onlyDays.ToList();
-        _tempPerHourSet.AddRange(weatherForecasts.Select(p => new Point(p.Date.Hour, p.TemperatureC)));
-        _tempPerDaySet.AddRange(weatherForecasts.Select(p => new Point(p.Date.Day, p.TemperatureF)));
+        var weatherForecasts = onlyDays.ToList();
+        tempPerHourSet.AddRange(weatherForecasts.Select(p => new Point(p.Date.Hour, p.TemperatureC)));
+        tempPerDaySet.AddRange(weatherForecasts.Select(p => new Point(p.Date.Day, p.TemperatureF)));
 
-        _lineConfig.Data.Datasets.Add(_tempPerHourSet);
-        _lineConfig.Data.Datasets.Add(_tempPerDaySet);
-    }
-
-    private void UpdateChart()
-    {
-        _tempPerDaySet.Add(new Point(_rnd.Next(100), _rnd.Next(100)));
-        _tempPerHourSet.Add(new Point(_rnd.Next(100), _rnd.Next(100)));
-        _lineChartJs.Update();
+        _lineConfig.Data.Datasets.Add(tempPerHourSet);
+        _lineConfig.Data.Datasets.Add(tempPerDaySet);
     }
 
 }
