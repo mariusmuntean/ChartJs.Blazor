@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Mariu\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_ChartJs.Blazor.361008920.00" t="ExcludeRecursive" />
+    <e p="D:\Documents\Projects\ChartJs.Blazor" t="IncludeFlat">
+      <e p="ChartJs.Blazor.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="samples" t="Include">
+        <e p="ClientSide" t="Include">
+          <e p="ChartJs.Blazor.Sample.ClientSide" t="IncludeRecursive">
+            <e p="_Imports.razor" t="Include" />
+            <e p="App.razor" t="Include" />
+            <e p="bin" t="ExcludeRecursive" />
+            <e p="ChartJs.Blazor.Sample.ClientSide.csproj" t="IncludeRecursive" />
+            <e p="obj" t="ExcludeRecursive">
+              <e p="Debug" t="Include">
+                <e p="netstandard2.0" t="Include">
+                  <e p="ChartJs.Blazor.Sample.ClientSide.AssemblyInfo.cs" t="Include" />
+                  <e p="Razor" t="Include">
+                    <e p="_Imports.razor.g.cs" t="Include" />
+                    <e p="App.razor.g.cs" t="Include" />
+                    <e p="Pages" t="Include">
+                      <e p="BarChart" t="Include">
+                        <e p="SimpleBarChartPage.razor.g.cs" t="Include" />
+                        <e p="StackedBarChartPage.razor.g.cs" t="Include" />
+                        <e p="TimeBarChartPage.razor.g.cs" t="Include" />
+                      </e>
+                      <e p="Counter.razor.g.cs" t="Include" />
+                      <e p="FetchData.razor.g.cs" t="Include" />
+                      <e p="Index.razor.g.cs" t="Include" />
+                      <e p="LineChart" t="Include">
+                        <e p="LinearLineChartPage.razor.g.cs" t="Include" />
+                        <e p="LogarithmicLineChartPage.razor.g.cs" t="Include" />
+                        <e p="TimeLineChartPage.razor.g.cs" t="Include" />
+                      </e>
+                    </e>
+                    <e p="Shared" t="Include">
+                      <e p="MainLayout.razor.g.cs" t="Include" />
+                      <e p="NavMenu.razor.g.cs" t="Include" />
+                      <e p="SurveyPrompt.razor.g.cs" t="Include" />
+                    </e>
+                  </e>
+                </e>
+              </e>
+            </e>
+            <e p="Pages" t="Include">
+              <e p="BarChart" t="Include">
+                <e p="SimpleBarChartPage.razor" t="Include" />
+                <e p="StackedBarChartPage.razor" t="Include" />
+                <e p="TimeBarChartPage.razor" t="Include" />
+              </e>
+              <e p="Counter.razor" t="Include" />
+              <e p="FetchData.razor" t="Include" />
+              <e p="Index.razor" t="Include" />
+              <e p="LineChart" t="Include">
+                <e p="LinearLineChartPage.razor" t="Include" />
+                <e p="LogarithmicLineChartPage.razor" t="Include" />
+                <e p="TimeLineChartPage.razor" t="Include" />
+              </e>
+            </e>
+            <e p="Program.cs" t="Include" />
+            <e p="Properties" t="Include">
+              <e p="launchSettings.json" t="Include" />
+            </e>
+            <e p="Shared" t="Include">
+              <e p="MainLayout.razor" t="Include" />
+              <e p="NavMenu.razor" t="Include" />
+              <e p="SurveyPrompt.razor" t="Include" />
+            </e>
+            <e p="Startup.cs" t="Include" />
+            <e p="wwwroot" t="Include">
+              <e p="css" t="Include">
+                <e p="bootstrap" t="Include">
+                  <e p="bootstrap.min.css" t="Include" />
+                  <e p="bootstrap.min.css.map" t="Include" />
+                </e>
+                <e p="open-iconic" t="Include">
+                  <e p="font" t="Include">
+                    <e p="css" t="Include">
+                      <e p="open-iconic-bootstrap.min.css" t="Include" />
+                    </e>
+                    <e p="fonts" t="Include">
+                      <e p="open-iconic.eot" t="Include" />
+                      <e p="open-iconic.otf" t="Include" />
+                      <e p="open-iconic.svg" t="Include" />
+                      <e p="open-iconic.ttf" t="Include" />
+                      <e p="open-iconic.woff" t="Include" />
+                    </e>
+                  </e>
+                  <e p="FONT-LICENSE" t="Include" />
+                  <e p="ICON-LICENSE" t="Include" />
+                  <e p="README.md" t="Include" />
+                </e>
+                <e p="site.css" t="Include" />
+              </e>
+              <e p="index.html" t="Include" />
+              <e p="sample-data" t="Include">
+                <e p="weather.json" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="ServerSide" t="Include">
+          <e p="ChartJs.Blazor.Sample.ServerSide" t="IncludeRecursive">
+            <e p="_Imports.razor" t="Include" />
+            <e p="App.razor" t="Include" />
+            <e p="appsettings.Development.json" t="Include" />
+            <e p="appsettings.json" t="Include" />
+            <e p="bin" t="ExcludeRecursive" />
+            <e p="ChartJs.Blazor.Sample.ServerSide.csproj" t="IncludeRecursive" />
+            <e p="Data" t="Include">
+              <e p="WeatherForecast.cs" t="Include" />
+              <e p="WeatherForecastService.cs" t="Include" />
+            </e>
+            <e p="obj" t="ExcludeRecursive">
+              <e p="Debug" t="Include">
+                <e p="netcoreapp3.0" t="Include">
+                  <e p="ChartJs.Blazor.Sample.ServerSide.AssemblyInfo.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="Pages" t="Include">
+              <e p="_Host.cshtml" t="Include" />
+              <e p="BarChart" t="Include">
+                <e p="SimpleBarChartPage.razor" t="Include" />
+                <e p="StackedBarChartPage.razor" t="Include" />
+                <e p="TimeBarChartPage.razor" t="Include" />
+              </e>
+              <e p="Counter.razor" t="Include" />
+              <e p="Error.razor" t="Include" />
+              <e p="Index.razor" t="Include" />
+              <e p="LineChart" t="Include">
+                <e p="LinearLineChartPage.razor" t="Include" />
+                <e p="LogarithmicLineChartPage.razor" t="Include" />
+                <e p="TimeLineChartPage.razor" t="Include" />
+              </e>
+            </e>
+            <e p="Program.cs" t="Include" />
+            <e p="Properties" t="Include">
+              <e p="launchSettings.json" t="Include" />
+            </e>
+            <e p="Shared" t="Include">
+              <e p="MainLayout.razor" t="Include" />
+              <e p="NavMenu.razor" t="Include" />
+            </e>
+            <e p="Startup.cs" t="Include" />
+            <e p="wwwroot" t="Include">
+              <e p="css" t="Include">
+                <e p="bootstrap" t="Include">
+                  <e p="bootstrap.min.css" t="Include" />
+                  <e p="bootstrap.min.css.map" t="Include" />
+                </e>
+                <e p="open-iconic" t="Include">
+                  <e p="font" t="Include">
+                    <e p="css" t="Include">
+                      <e p="open-iconic-bootstrap.min.css" t="Include" />
+                    </e>
+                    <e p="fonts" t="Include">
+                      <e p="open-iconic.eot" t="Include" />
+                      <e p="open-iconic.otf" t="Include" />
+                      <e p="open-iconic.svg" t="Include" />
+                      <e p="open-iconic.ttf" t="Include" />
+                      <e p="open-iconic.woff" t="Include" />
+                    </e>
+                  </e>
+                  <e p="FONT-LICENSE" t="Include" />
+                  <e p="ICON-LICENSE" t="Include" />
+                  <e p="README.md" t="Include" />
+                </e>
+                <e p="site.css" t="Include" />
+              </e>
+              <e p="favicon.ico" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Shared" t="Include">
+          <e p="ChartJs.Blazor.Sample.Shared" t="IncludeRecursive">
+            <e p="_Imports.razor" t="Include" />
+            <e p="bin" t="ExcludeRecursive" />
+            <e p="ChartJs.Blazor.Sample.Shared.csproj" t="IncludeRecursive" />
+            <e p="Components" t="Include">
+              <e p="AboutComponent.razor" t="Include" />
+              <e p="BarCharts" t="Include">
+                <e p="SimpleBarChartComponent.razor" t="Include" />
+                <e p="StackedBarChartComponent.razor" t="Include" />
+                <e p="TimeBarChartComponent.razor" t="Include" />
+              </e>
+              <e p="Legend" t="Include" />
+              <e p="LineChart" t="Include">
+                <e p="LinearLineChartComponent.razor" t="Include" />
+                <e p="LogarithmicLineChartComponent.razor" t="Include" />
+                <e p="TimeLineChartComponent.razor" t="Include" />
+              </e>
+            </e>
+            <e p="Extensions" t="Include" />
+            <e p="obj" t="ExcludeRecursive">
+              <e p="Debug" t="Include">
+                <e p="netstandard2.0" t="Include">
+                  <e p="ChartJs.Blazor.Sample.Shared.AssemblyInfo.cs" t="Include" />
+                  <e p="Razor" t="Include">
+                    <e p="_Imports.razor.g.cs" t="Include" />
+                    <e p="Components" t="Include">
+                      <e p="AboutComponent.razor.g.cs" t="Include" />
+                      <e p="BarCharts" t="Include">
+                        <e p="SimpleBarChartComponent.razor.g.cs" t="Include" />
+                        <e p="StackedBarChartComponent.razor.g.cs" t="Include" />
+                        <e p="TimeBarChartComponent.razor.g.cs" t="Include" />
+                      </e>
+                      <e p="LineChart" t="Include">
+                        <e p="LinearLineChartComponent.razor.g.cs" t="Include" />
+                        <e p="LogarithmicLineChartComponent.razor.g.cs" t="Include" />
+                        <e p="TimeLineChartComponent.razor.g.cs" t="Include" />
+                      </e>
+                    </e>
+                  </e>
+                </e>
+              </e>
+            </e>
+            <e p="Properties" t="Include">
+              <e p="launchSettings.json" t="Include" />
+            </e>
+            <e p="Services" t="Include">
+              <e p="WeatherForecast.cs" t="Include" />
+              <e p="WeatherForecastService.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="src" t="Include">
+        <e p="ChartJs.Blazor" t="IncludeRecursive">
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="ChartJS" t="Include">
+            <e p="BarChart" t="Include">
+              <e p="Axes" t="Include">
+                <e p="BarCategoryAxis.cs" t="Include" />
+                <e p="BarLinearCartesianAxis.cs" t="Include" />
+                <e p="BarLogarithmicAxis.cs" t="Include" />
+                <e p="BarTimeAxis.cs" t="Include" />
+              </e>
+              <e p="BarConfig.cs" t="Include" />
+              <e p="BarData.cs" t="Include" />
+              <e p="BarDataset.cs" t="Include" />
+              <e p="BarOptions.cs" t="Include" />
+              <e p="BarScales.cs" t="Include" />
+              <e p="BarThickness.cs" t="Include" />
+            </e>
+            <e p="BubbleChart" t="Include">
+              <e p="BubbleConfig.cs" t="Include" />
+              <e p="BubbleData.cs" t="Include" />
+              <e p="BubbleDataPoint.cs" t="Include" />
+              <e p="BubbleDataset.cs" t="Include" />
+              <e p="BubbleOptions.cs" t="Include" />
+            </e>
+            <e p="ChartJsInterop.cs" t="Include" />
+            <e p="Common" t="Include">
+              <e p="Axes" t="Include">
+                <e p="AngleLines.cs" t="Include" />
+                <e p="Axis.cs" t="Include" />
+                <e p="CartesianAxis.cs" t="Include" />
+                <e p="CategoryAxis.cs" t="Include" />
+                <e p="LinearCartesianAxis.cs" t="Include" />
+                <e p="LinearRadialAxis.cs" t="Include" />
+                <e p="LogarithmicAxis.cs" t="Include" />
+                <e p="PointLabels.cs" t="Include" />
+                <e p="ScaleLabel.cs" t="Include" />
+                <e p="Ticks" t="Include">
+                  <e p="CartesianTicks.cs" t="Include" />
+                  <e p="CategoryTicks.cs" t="Include" />
+                  <e p="LinearCartesianTicks.cs" t="Include" />
+                  <e p="LinearRadialTicks .cs" t="Include" />
+                  <e p="LogarithmicTicks.cs" t="Include" />
+                  <e p="MajorTicks.cs" t="Include" />
+                  <e p="MinorTicks.cs" t="Include" />
+                  <e p="SubTicks.cs" t="Include" />
+                  <e p="Ticks.cs" t="Include" />
+                  <e p="TimeTicks.cs" t="Include" />
+                </e>
+                <e p="TimeAxis.cs" t="Include" />
+              </e>
+              <e p="BaseConfigOptions.cs" t="Include" />
+              <e p="ConfigBase.cs" t="Include" />
+              <e p="Enums" t="Include">
+                <e p="AxisDisplay.cs" t="Include" />
+                <e p="AxisType.cs" t="Include" />
+                <e p="BorderAlign.cs" t="Include" />
+                <e p="BorderCapStyle.cs" t="Include" />
+                <e p="BorderJoinStyle.cs" t="Include" />
+                <e p="BorderSkipped.cs" t="Include" />
+                <e p="ChartType.cs" t="Include" />
+                <e p="CubicInterpolationMode.cs" t="Include" />
+                <e p="FontStyle.cs" t="Include" />
+                <e p="InteractionMode.cs" t="Include" />
+                <e p="JsonConverter" t="Include">
+                  <e p="JsonObjectEnumConverter.cs" t="Include" />
+                  <e p="JsonStringEnumConverter.cs" t="Include" />
+                </e>
+                <e p="ObjectEnum.cs" t="Include" />
+                <e p="PointStyle.cs" t="Include" />
+                <e p="Position.cs" t="Include" />
+                <e p="ScaleBound.cs" t="Include" />
+                <e p="SteppedLine.cs" t="Include" />
+                <e p="StringEnum.cs" t="Include" />
+                <e p="TickSource.cs" t="Include" />
+                <e p="TimeDistribution.cs" t="Include" />
+                <e p="TimeMeasurement.cs" t="Include" />
+                <e p="TooltipPosition.cs" t="Include" />
+              </e>
+              <e p="GridLines.cs" t="Include" />
+              <e p="IndexableOption.cs" t="Include" />
+              <e p="IndexableOptionConverter.cs" t="Include" />
+              <e p="JsonWriteOnlyConverter.cs" t="Include" />
+              <e p="Legends" t="Include">
+                <e p="Labels.cs" t="Include" />
+                <e p="Legend.cs" t="Include" />
+                <e p="OnClickHandler" t="Include">
+                  <e p="DotNetInstanceClickHandler.cs" t="Include" />
+                  <e p="DotNetStaticClickHandler.cs" t="Include" />
+                  <e p="ILegendClickHandler.cs" t="Include" />
+                  <e p="JsClickHandler.cs" t="Include" />
+                </e>
+                <e p="OnHover" t="Include">
+                  <e p="DotNetInstanceHoverHandler.cs" t="Include" />
+                  <e p="DotNetStaticHoverHandler.cs" t="Include" />
+                  <e p="ILegendOnHoverHandler.cs" t="Include" />
+                  <e p="JsHoverHandler.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Point.cs" t="Include" />
+              <e p="Properties" t="Include">
+                <e p="Animation.cs" t="Include" />
+                <e p="ArcAnimation.cs" t="Include" />
+                <e p="OptionsTitle.cs" t="Include" />
+                <e p="Tooltips.cs" t="Include" />
+              </e>
+              <e p="Time" t="Include">
+                <e p="JsonMomentConverter.cs" t="Include" />
+                <e p="Moment.cs" t="Include" />
+                <e p="TimeDisplayFormats.cs" t="Include" />
+                <e p="TimeOptions.cs" t="Include" />
+                <e p="TimeTuple.cs" t="Include" />
+              </e>
+              <e p="Utils" t="Include">
+                <e p="ArgValidation.cs" t="Include" />
+                <e p="PointUtil.cs" t="Include" />
+              </e>
+              <e p="Wrappers" t="Include">
+                <e p="ByteWrapper.cs" t="Include" />
+                <e p="DoubleWrapper.cs" t="Include" />
+                <e p="FloatWrapper.cs" t="Include" />
+                <e p="Int16Wrapper.cs" t="Include" />
+                <e p="Int32Wrapper.cs" t="Include" />
+                <e p="Int64Wrapper.cs" t="Include" />
+                <e p="JsonValueWrapperConverter.cs" t="Include" />
+                <e p="ValueWrapper.cs" t="Include" />
+                <e p="WrapperExtensions.cs" t="Include" />
+              </e>
+            </e>
+            <e p="LineChart" t="Include">
+              <e p="LineConfig.cs" t="Include" />
+              <e p="LineData.cs" t="Include" />
+              <e p="LineDataset.cs" t="Include" />
+              <e p="LineOptions.cs" t="Include" />
+              <e p="LineOptionsHover.cs" t="Include" />
+              <e p="Scales.cs" t="Include" />
+            </e>
+            <e p="MixedChart" t="Include">
+              <e p="BaseMixableDataset.cs" t="Include" />
+              <e p="IMixableDataset.cs" t="Include" />
+              <e p="MixedConfig.cs" t="Include" />
+              <e p="MixedData.cs" t="Include" />
+              <e p="MixedOptions.cs" t="Include" />
+            </e>
+            <e p="MomentJsInterop.cs" t="Include" />
+            <e p="PieChart" t="Include">
+              <e p="PieConfig.cs" t="Include" />
+              <e p="PieData.cs" t="Include" />
+              <e p="PieDataset.cs" t="Include" />
+              <e p="PieOptions.cs" t="Include" />
+            </e>
+            <e p="PolarAreaChart" t="Include">
+              <e p="PolarAreaConfig.cs" t="Include" />
+              <e p="PolarAreaData.cs" t="Include" />
+              <e p="PolarAreaDataset.cs" t="Include" />
+              <e p="PolarAreaOptions.cs" t="Include" />
+            </e>
+            <e p="RadarChart" t="Include">
+              <e p="RadarConfig.cs" t="Include" />
+              <e p="RadarData.cs" t="Include" />
+              <e p="RadarDataset.cs" t="Include" />
+              <e p="RadarOptions.cs" t="Include" />
+              <e p="Scale.cs" t="Include" />
+            </e>
+            <e p="ScatterChart" t="Include">
+              <e p="GridLineSettings.cs" t="Include" />
+              <e p="ScatterAxis.cs" t="Include" />
+              <e p="ScatterConfig.cs" t="Include" />
+              <e p="ScatterData.cs" t="Include" />
+              <e p="ScatterDataset.cs" t="Include" />
+              <e p="ScatterOptions.cs" t="Include" />
+              <e p="ScatterScales.cs" t="Include" />
+            </e>
+          </e>
+          <e p="ChartJs.Blazor.csproj" t="IncludeRecursive" />
+          <e p="ChartJs.Blazor.xml" t="Include" />
+          <e p="Charts" t="Include">
+            <e p="_ViewImports.razor" t="Include" />
+            <e p="ChartBase.cs" t="Include" />
+            <e p="ChartJsBarChart.razor" t="Include" />
+            <e p="ChartJsBubbleChart.razor" t="Include" />
+            <e p="ChartJsLineChart.razor" t="Include" />
+            <e p="ChartJsMixedChart.razor" t="Include" />
+            <e p="ChartJsPieChart.razor" t="Include" />
+            <e p="ChartJsPolarAreaChart.razor" t="Include" />
+            <e p="ChartJsRadarChart.razor" t="Include" />
+            <e p="ChartJsScatterChart.razor" t="Include" />
+          </e>
+          <e p="obj" t="ExcludeRecursive">
+            <e p="Debug" t="Include">
+              <e p="netstandard2.0" t="Include">
+                <e p="ChartJs.Blazor.AssemblyInfo.cs" t="Include" />
+                <e p="Razor" t="Include">
+                  <e p="Charts" t="Include">
+                    <e p="_ViewImports.razor.g.cs" t="Include" />
+                    <e p="ChartJsBarChart.razor.g.cs" t="Include" />
+                    <e p="ChartJsBubbleChart.razor.g.cs" t="Include" />
+                    <e p="ChartJsLineChart.razor.g.cs" t="Include" />
+                    <e p="ChartJsMixedChart.razor.g.cs" t="Include" />
+                    <e p="ChartJsPieChart.razor.g.cs" t="Include" />
+                    <e p="ChartJsPolarAreaChart.razor.g.cs" t="Include" />
+                    <e p="ChartJsRadarChart.razor.g.cs" t="Include" />
+                    <e p="ChartJsScatterChart.razor.g.cs" t="Include" />
+                  </e>
+                </e>
+              </e>
+            </e>
+          </e>
+          <e p="Properties" t="Include">
+            <e p="launchSettings.json" t="Include" />
+          </e>
+          <e p="Util" t="Include">
+            <e p="ColorUtil.cs" t="Include" />
+          </e>
+          <e p="wwwroot" t="Include">
+            <e p="ChartJSBlazor.css" t="Include" />
+            <e p="ChartJsInterop.js" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+  </component>
+</project>
