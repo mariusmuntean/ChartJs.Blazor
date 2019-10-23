@@ -1,9 +1,8 @@
-﻿using ChartJs.Blazor.Util;
-using ChartJs.Blazor.ChartJS.Common;
+﻿using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Enums;
-using Newtonsoft.Json;
 using ChartJs.Blazor.ChartJS.MixedChart;
-using System;
+using ChartJs.Blazor.Util;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.BarChart
@@ -19,7 +18,8 @@ namespace ChartJs.Blazor.ChartJS.BarChart
         /// Creates a new instance of the <see cref="BarDataset{TData}"/> class.
         /// </summary>
         /// <param name="data">The data to initialize the dataset with.</param>
-        public BarDataset(IEnumerable<TData> data) : this()
+        /// <param name="chartType">An optional <see cref="ChartType"/>, either <see cref="ChartType.Bar"/> or <see cref="ChartType.HorizontalBar"/></param>
+        public BarDataset(IEnumerable<TData> data, ChartType? chartType = null) : this(chartType)
         {
             this.AddRange(data);
         }
@@ -27,12 +27,16 @@ namespace ChartJs.Blazor.ChartJS.BarChart
         /// <summary>
         /// Creates a new instance of the <see cref="BarDataset{TData}"/> class.
         /// </summary>
-        public BarDataset() { }
+        public BarDataset(ChartType? chartType = null)
+        {
+            Type = chartType ?? ChartType.Bar;
+        }
 
         /// <summary>
         /// Gets the chart type (<see cref="ChartType.Bar"/> in this case). This is needed for mixed datasets only.
         /// </summary>
-        public override ChartType Type => ChartType.Bar;
+        //public override ChartType Type => ChartType.Bar;
+        public override ChartType Type { get; }
 
         /// <summary>
         /// Gets or sets a value to avoid drawing the bar stroke at the base of the fill.

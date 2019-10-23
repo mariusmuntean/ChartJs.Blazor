@@ -269,13 +269,14 @@
             <para>As per documentation here: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties. </para>
             <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="N:ChartJs.Blazor.ChartJS.Common.Wrappers"/> for value types.</typeparam>
         </member>
-        <member name="M:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+        <member name="M:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.#ctor(System.Collections.Generic.IEnumerable{`0},ChartJs.Blazor.ChartJS.Common.Enums.ChartType)">
             <summary>
             Creates a new instance of the <see cref="T:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1"/> class.
             </summary>
             <param name="data">The data to initialize the dataset with.</param>
+            <param name="chartType">An optional <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.ChartType"/>, either <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.ChartType.Bar"/> or <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.ChartType.HorizontalBar"/></param>
         </member>
-        <member name="M:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.#ctor">
+        <member name="M:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1.#ctor(ChartJs.Blazor.ChartJS.Common.Enums.ChartType)">
             <summary>
             Creates a new instance of the <see cref="T:ChartJs.Blazor.ChartJS.BarChart.BarDataset`1"/> class.
             </summary>
@@ -541,7 +542,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis.ID">
             <summary>
-            The ID is used to link <see cref="!:LineDataset&lt;TData&gt;"></see> and <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis"></see> together. Referenced in <see cref="!:LineDataset&lt;TData&gt;.XAxisID"></see> and <seealso cref="!:LineDataset&lt;TData&gt;.YAxisID"/>
+            The ID is used to link <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1"></see> and <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis"></see> together. Referenced in <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.XAxisID"></see> and <seealso cref="P:ChartJs.Blazor.ChartJS.LineChart.LineDataset`1.YAxisID"/>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis.Position">
@@ -579,7 +580,7 @@
         <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.CategoryAxis">
             <summary>
             This axis is to be used when you want to display <see cref="T:System.String"/> values for an axis.
-            <para>This axis has to be used when using/defining <see cref="!:LineData.Labels"/>, <see cref="!:LineData.XLabels"/> and/or <see cref="!:LineData.YLabels"/>.</para>
+            <para>This axis has to be used when using/defining <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineData.Labels"/>, <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineData.XLabels"/> and/or <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineData.YLabels"/>.</para>
             <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/category.html </para>
             </summary>
         </member>

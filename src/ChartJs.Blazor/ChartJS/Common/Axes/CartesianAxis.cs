@@ -1,6 +1,6 @@
-﻿using ChartJs.Blazor.ChartJS.Common;
-using ChartJs.Blazor.ChartJS.Common.Enums;
+﻿using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.ChartJS.Common.Axes.Ticks;
+using ChartJs.Blazor.ChartJS.LineChart;
 using Newtonsoft.Json;
 
 namespace ChartJs.Blazor.ChartJS.Common.Axes

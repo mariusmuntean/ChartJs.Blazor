@@ -1,5 +1,6 @@
 ﻿using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.ChartJS.Common.Axes.Ticks;
+using ChartJs.Blazor.ChartJS.LineChart;
 
 namespace ChartJs.Blazor.ChartJS.Common.Axes
 {
