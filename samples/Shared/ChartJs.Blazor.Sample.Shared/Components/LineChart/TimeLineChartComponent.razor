@@ -26,7 +26,7 @@
     LineDataset<TimeTuple<int>> _tempDataSet;
     private bool _localeChangeWasAttempted = false;
 
-    WeatherForecastService _forecastService = new WeatherForecastService();
+    readonly WeatherForecastService _forecastService = new WeatherForecastService();
 
     private async Task TryChangeLocale()
     {
