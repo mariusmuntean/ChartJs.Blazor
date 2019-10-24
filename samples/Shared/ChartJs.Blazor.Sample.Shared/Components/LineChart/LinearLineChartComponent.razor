@@ -55,7 +55,7 @@
                 Scales = new Scales
                 {
                     xAxes = new List<CartesianAxis>
-                {
+            {
                         new LinearCartesianAxis
                         {
                             ScaleLabel = new ScaleLabel
@@ -73,7 +73,7 @@
                         }
                     },
                     yAxes = new List<CartesianAxis>
-                {
+            {
                         new LinearCartesianAxis
                         {
                             ScaleLabel = new ScaleLabel
@@ -121,8 +121,7 @@
 
         var onlyDays = forecasts.GroupBy(f => f.Date.Day).Select(g => g.First());
 
-        IEnumerable<WeatherForecast>
-            weatherForecasts = onlyDays.ToList();
+        IEnumerable<WeatherForecast> weatherForecasts = onlyDays.ToList();
         _tempPerHourSet.AddRange(weatherForecasts.Select(p => new Point(p.Date.Hour, p.TemperatureC)));
         _tempPerDaySet.AddRange(weatherForecasts.Select(p => new Point(p.Date.Day, p.TemperatureF)));
 

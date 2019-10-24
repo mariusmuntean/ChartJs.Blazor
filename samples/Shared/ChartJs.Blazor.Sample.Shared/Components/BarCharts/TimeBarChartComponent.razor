@@ -10,7 +10,7 @@
 
 <h1>Time Bar Chart</h1>
 
-<ChartJsBarChart @ref="_barChartJs" Config="@_config" Width="600" Height="300"/>
+<ChartJsBarChart @ref="_barChartJs" Config="@_config" Width="600" Height="300" />
 
 @code {
     private BarConfig _config;
@@ -30,7 +30,7 @@
                 Scales = new BarScales
                 {
                     XAxes = new List<CartesianAxis>
-                    {
+                {
                         new BarTimeAxis
                         {
                             BarPercentage = 0.75,
@@ -41,7 +41,7 @@
                         }
                     },
                     YAxes = new List<CartesianAxis>
-                    {
+                {
                         new BarLinearCartesianAxis
                         {
                             Ticks = new LinearCartesianTicks
@@ -58,7 +58,7 @@
         var barSet = new BarDataset<TimeTuple<double>>
         {
             Label = "My time-double dataset",
-            BackgroundColor = new[] {"#242968", "#218ba5", "#11af66", "#af9d11"},
+            BackgroundColor = new[] { "#242968", "#218ba5", "#11af66", "#af9d11" },
             BorderWidth = 1,
             HoverBackgroundColor = ColorUtil.ColorString(0, 0, 0, 0.1),
             HoverBorderColor = "#020202",
@@ -68,7 +68,7 @@
 
         DateTime now = DateTime.Now;
         Random rnd = new Random();
-        barSet.AddRange(Enumerable.Range(2, 4).Select(i => new TimeTuple<double>((Moment) now.AddHours(i), rnd.NextDouble() * 4)));
+        barSet.AddRange(Enumerable.Range(2, 4).Select(i => new TimeTuple<double>((Moment)now.AddHours(i), rnd.NextDouble() * 4)));
         _config.Data.Datasets.Add(barSet);
     }
 

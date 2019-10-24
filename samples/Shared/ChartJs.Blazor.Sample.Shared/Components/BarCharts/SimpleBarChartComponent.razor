@@ -38,23 +38,23 @@
                 Scales = new BarScales
                 {
                     XAxes = new List<CartesianAxis>
-                    {
-                        new BarCategoryAxis
-                        {
-                            BarPercentage = 0.5,
-                            BarThickness = BarThickness.Flex
-                        }
-                    },
-                    YAxes = new List<CartesianAxis>
-                    {
-                        new BarLinearCartesianAxis
-                        {
-                            Ticks = new LinearCartesianTicks
                             {
-                                BeginAtZero = true
-                            }
-                        }
-                    }
+                                    new BarCategoryAxis
+                                    {
+                                        BarPercentage = 0.5,
+                                        BarThickness = BarThickness.Flex
+                                    }
+                                },
+                    YAxes = new List<CartesianAxis>
+                            {
+                                    new BarLinearCartesianAxis
+                                    {
+                                        Ticks = new LinearCartesianTicks
+                                        {
+                                            BeginAtZero = true
+                                        }
+                                    }
+                                }
                 }
             }
         };

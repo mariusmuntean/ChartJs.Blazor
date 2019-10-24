@@ -43,19 +43,16 @@
                 Scales = new BarScales
                 {
                     XAxes = new List<CartesianAxis>
-            {
-                        new LinearCartesianAxis
-                        {
-                            Ticks = new LinearCartesianTicks()
-                            {
-                                AutoSkip = false,
-                                Min = 0
-                            }
-                        }
-                    },
-                    YAxes = new List<CartesianAxis>
                     {
-                    }
+                                new LinearCartesianAxis
+                                {
+                                    Ticks = new LinearCartesianTicks()
+                                    {
+                                        AutoSkip = false,
+                                        Min = 0 // Otherwise the lowest value in the dataset won't be visible
+                                    }
+                                }
+                            }
                 }
             }
         };
