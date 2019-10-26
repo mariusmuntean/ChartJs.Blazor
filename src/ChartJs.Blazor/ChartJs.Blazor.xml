@@ -3232,5 +3232,31 @@
             </summary>
             <returns>The string representation as a hex color string</returns>
         </member>
+        <member name="T:ChartJs.Blazor.Util.PointUtil">
+            <summary>
+            Utility class for working with <see cref="T:ChartJs.Blazor.ChartJS.Common.Point"/>s
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.Util.PointUtil.GetRandomPoint(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Creates a new <see cref="T:ChartJs.Blazor.ChartJS.Common.Point"/> whose x and y coordinates lay between the specified boundaries
+            </summary>
+            <param name="minX">Minimum value for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Point"/>'s x coordinate</param>
+            <param name="maxX">Maximum value for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Point"/>'s x coordinate</param>
+            <param name="minY">Minimum value for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Point"/>'s y coordinate</param>
+            <param name="maxY">Maximum value for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Point"/>'s y coordinate</param>
+            <returns></returns>
+        </member>
+        <member name="M:ChartJs.Blazor.Util.PointUtil.GetRandomPoints(System.Int32,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Creates a new <see cref="T:System.Collections.Generic.List`1"/> whose x and y coordinates lay between the specified boundaries
+            </summary>
+            <param name="amount"></param>
+            <param name="minX">Minimum value for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Point"/>'s x coordinate</param>
+            <param name="maxX">Maximum value for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Point"/>'s x coordinate</param>
+            <param name="minY">Minimum value for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Point"/>'s y coordinate</param>
+            <param name="maxY">Maximum value for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Point"/>'s y coordinate</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

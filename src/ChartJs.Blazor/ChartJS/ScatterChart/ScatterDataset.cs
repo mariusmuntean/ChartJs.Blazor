@@ -95,7 +95,7 @@ namespace ChartJs.Blazor.ChartJS.ScatterChart
         /// If false, the line is not drawn for this dataset.
         /// Default is true. If you are filling and don't want to show the line, then change to false.
         /// </summary>
-        public bool ShowLine { get; set; } = true;
+        public bool ShowLine { get; set; } = false;
 
         /// <summary>
         /// If true, lines will be drawn between points with no or null data. If false, points with NaN data will create a break in the line

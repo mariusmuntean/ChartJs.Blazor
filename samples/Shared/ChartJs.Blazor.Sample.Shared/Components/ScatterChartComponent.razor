@@ -1,0 +1,79 @@
+﻿@using ChartJs.Blazor.ChartJS.Common.Properties
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.ChartJS.ScatterChart
+@using ChartJs.Blazor.Util
+
+<h1>Scatter Chart</h1>
+<div class="row">
+    <button class="btn btn-primary" @onclick="OnClick">Add Dataset</button>
+</div>
+<ChartJsScatterChart @ref="_scatterChartJs" Config="@_config" Width="600" Height="300" />
+
+@code {
+    private ScatterConfig _config;
+    private ChartJsScatterChart _scatterChartJs;
+
+    protected override void OnInitialized()
+    {
+        _config = new ScatterConfig
+        {
+            Options = new ScatterOptions
+            {
+                Title = new OptionsTitle
+                {
+                    Text = "My Random points",
+                    Display = true
+                },
+                Scales = new ScatterScales
+                {
+                    XAxes = new List<ScatterAxis>
+{
+                        new ScatterAxis
+                        {
+                            Type = "linear"
+                        }
+                    }
+                }
+            }
+        };
+
+        _config.Data.Datasets.Add(new ScatterDataset
+        {
+            Data = PointUtil.GetRandomPoints(),
+            BackgroundColor = ColorUtil.RandomColorString(),
+            BorderColor = ColorUtil.RandomColorString(),
+            ShowLine = false,
+            PointRadius = 5,
+            PointHitRadius = 5,
+            PointHoverRadius = 8
+        });
+
+        _config.Data.Datasets.Add(new ScatterDataset
+        {
+            Data = PointUtil.GetRandomPoints(),
+            BackgroundColor = ColorUtil.RandomColorString(),
+            BorderColor = ColorUtil.RandomColorString(),
+            ShowLine = false,
+            PointRadius = 5,
+            PointHitRadius = 5,
+            PointHoverRadius = 8
+        });
+    }
+
+    public void OnClick()
+    {
+        _config.Data.Datasets.Add(new ScatterDataset
+        {
+            Data = PointUtil.GetRandomPoints(),
+            BackgroundColor = ColorUtil.RandomColorString(),
+            BorderColor = ColorUtil.RandomColorString(),
+            ShowLine = false,
+            PointRadius = 5,
+            PointHitRadius = 5,
+            PointHoverRadius = 8
+        });
+
+        _scatterChartJs.Update();
+    }
+
+}
