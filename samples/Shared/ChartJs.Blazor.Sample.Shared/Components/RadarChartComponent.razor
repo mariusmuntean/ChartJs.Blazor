@@ -1,0 +1,53 @@
+﻿@using ChartJs.Blazor.ChartJS.Common.Properties
+@using ChartJs.Blazor.ChartJS.RadarChart
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.Util
+
+<h1>Scatter Chart</h1>
+<div class="row">
+    <button class="btn btn-primary" @onclick="OnClick">Add Dataset</button>
+</div>
+<ChartJsRadarChart @ref="_radarChartJs" Config="@_config" Width="600" Height="300" />
+
+@code {
+    private RadarConfig _config;
+    private ChartJsRadarChart _radarChartJs;
+
+    private Random _rand = new Random();
+
+    protected override void OnInitialized()
+    {
+        _config = new RadarConfig
+        {
+            Options = new RadarOptions
+            {
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "Participant's scores on the big-five"
+                }
+            }
+        };
+
+        _config.Data.Labels = new List<string> { "Extraversion", "Agreeableness", "Conscientiousness", "Neuroticism", "Openness/Intellect" };
+        _config.Data.Datasets.Add(new RadarDataset
+        {
+            Data = new List<double> { _rand.NextDouble(), _rand.NextDouble(), _rand.NextDouble(), _rand.NextDouble(), _rand.NextDouble() },
+            Label = $"Participant {_config.Data.Datasets.Count + 1}",
+            BorderColor = ColorUtil.RandomColorString()
+        });
+    }
+
+    public void OnClick()
+    {
+        _config.Data.Datasets.Add(new RadarDataset
+        {
+            Data = new List<double> { _rand.NextDouble(), _rand.NextDouble(), _rand.NextDouble(), _rand.NextDouble(), _rand.NextDouble() },
+            Label = $"Participant {_config.Data.Datasets.Count + 1}",
+            BorderColor = ColorUtil.RandomColorString()
+        });
+
+        _radarChartJs.Update();
+    }
+
+}
