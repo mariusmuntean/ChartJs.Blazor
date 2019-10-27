@@ -17,16 +17,22 @@
         @(await Html.RenderComponentAsync<App>(RenderMode.ServerPrerendered))
     </app>
 
-<script src="_framework/blazor.server.js"></script>
+    <script src="_framework/blazor.server.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"
-        integrity="sha256-AdQN98MVZs44Eq2yTwtoKufhnU+uZ7v2kXnD5vqzZVo="
-        crossorigin="anonymous">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-@*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script> Contains moment.js for time axis*@
+    <!-- Here I'm referencing the static resources from the library -->
+    <!--  In case you need another version of any of the included javascript files, you can adjust the script tags to include the version you need, e.g. from a CDN or your wwwroot directory. -->
+    <!-- Since ChartJs is dependent on moment.js, it is important to first include the reference to moment.js and then to ChartJs -->
 
-<script src="_content/ChartJs.Blazor/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
-<link rel="stylesheet" href="_content/ChartJs.Blazor/ChartJsBlazor.css" />
+    <!-- Reference the included moment.js javascript file. -->
+    <script src="_content/ChartJs.Blazor/moment-with-locales.min.js" type="text/javascript" language="javascript"></script>
+
+    <!-- Reference the included ChartJs javascript file. -->
+    <script src="_content/ChartJs.Blazor/Chart.min.js" type="text/javascript" language="javascript"></script>
+
+    <!-- This is the glue between the C# code and the ChartJs charts -->
+    <script src="_content/ChartJs.Blazor/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
+
+    <!-- Some styling -->
+    <link rel="stylesheet" href="_content/ChartJs.Blazor/ChartJSBlazor.css" />
 </body>
 </html>
