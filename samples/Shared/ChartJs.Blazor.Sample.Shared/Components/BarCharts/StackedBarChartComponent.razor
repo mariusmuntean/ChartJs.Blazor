@@ -1,4 +1,5 @@
-﻿@using ChartJs.Blazor.ChartJS.BarChart
+﻿@using System.Drawing
+@using ChartJs.Blazor.ChartJS.BarChart
 @using ChartJs.Blazor.ChartJS.BarChart.Axes
 @using ChartJs.Blazor.ChartJS.Common.Axes
 @using ChartJs.Blazor.Charts
@@ -45,10 +46,10 @@
         var barSet1 = new BarDataset<DoubleWrapper>
         {
             Label = "Red",
-            BackgroundColor = ColorUtil.ColorHexString(200, 0, 0),
+            BackgroundColor = ColorUtil.RandomColorString(),
             BorderWidth = 1,
             HoverBackgroundColor = ColorUtil.ColorString(0, 0, 0, 0.1),
-            HoverBorderColor = "#020202",
+            HoverBorderColor = ColorUtil.RandomColorString(),
             HoverBorderWidth = 1,
             BorderColor = "#ffffff",
         };
@@ -59,10 +60,10 @@
         var barSet2 = new BarDataset<DoubleWrapper>
         {
             Label = "Green",
-            BackgroundColor = ColorUtil.ColorHexString(0, 200, 0),
+            BackgroundColor = ColorUtil.RandomColorString(),
             BorderWidth = 1,
             HoverBackgroundColor = ColorUtil.ColorString(0, 0, 0, 0.1),
-            HoverBorderColor = "#020202",
+            HoverBorderColor = ColorUtil.RandomColorString(),
             HoverBorderWidth = 1,
             BorderColor = "#ffffff",
         };
@@ -73,10 +74,10 @@
         var barSet3 = new BarDataset<DoubleWrapper>
         {
             Label = "Blue",
-            BackgroundColor = ColorUtil.ColorHexString(0, 0, 200),
+            BackgroundColor = ColorUtil.RandomColorString(),
             BorderWidth = 1,
             HoverBackgroundColor = ColorUtil.ColorString(0, 0, 0, 0.1),
-            HoverBorderColor = "#020202",
+            HoverBorderColor = ColorUtil.RandomColorString(),
             HoverBorderWidth = 1,
             BorderColor = "#ffffff",
         };

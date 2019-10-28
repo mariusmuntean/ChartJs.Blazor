@@ -8,6 +8,7 @@
 @using ChartJs.Blazor.ChartJS.Common.Time
 @using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.Sample.Shared.Services
+@using ChartJs.Blazor.Util
 @inject IJSRuntime JsRuntime
 
 <h2>Time Line Chart</h2>
@@ -105,8 +106,8 @@
 
         _tempDataSet = new LineDataset<TimeTuple<int>>
         {
-            BackgroundColor = "#ff6384",
-            BorderColor = "#ff6384",
+            BackgroundColor = ColorUtil.RandomColorString(),
+            BorderColor = ColorUtil.RandomColorString(),
             Label = "Temperature in C°",
             Fill = false,
             BorderWidth = 2,
