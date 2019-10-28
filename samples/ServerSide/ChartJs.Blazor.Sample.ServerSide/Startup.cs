@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WeatherForecastService = ChartJs.Blazor.Sample.Shared.Services.WeatherForecastService;
 
 namespace ChartJs.Blazor.Sample.ServerSide
 {
@@ -39,6 +41,11 @@ namespace ChartJs.Blazor.Sample.ServerSide
             }
 
             app.UseHttpsRedirection();
+
+            var rewriteOptions = new RewriteOptions();
+            rewriteOptions.AddRedirect("^$", "/welcome");
+            app.UseRewriter(rewriteOptions);
+
             app.UseStaticFiles();
 
             app.UseRouting();
