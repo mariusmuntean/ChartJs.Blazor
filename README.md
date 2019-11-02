@@ -5,8 +5,12 @@
 [![GitHub issues](https://img.shields.io/github/issues/mariusmuntean/chartjs.blazor)](https://github.com/mariusmuntean/ChartJs.Blazor/issues)
 [![GitHub forks](https://img.shields.io/github/forks/mariusmuntean/chartjs.blazor)](https://github.com/mariusmuntean/ChartJs.Blazor/network/members)
 [![GitHub stars](https://img.shields.io/github/stars/mariusmuntean/chartjs.blazor)](https://github.com/mariusmuntean/ChartJs.Blazor/stargazers)
+
 [![Join the chat at https://gitter.im/ChartJs-Blazor/community](https://badges.gitter.im/ChartJs-Blazor/community.svg)](https://gitter.im/ChartJs-Blazor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![NuGet Downloads](https://img.shields.io/nuget/dt/ChartJs.Blazor?label=NuGet%20Downloads)](https://www.nuget.org/packages/ChartJs.Blazor/)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4edc0972-1674-4ff7-8fdc-41e643b33738/deploy-status)](https://app.netlify.com/sites/chartjs-blazor-samples/deploys)
 
 
 # Introduction
@@ -65,7 +69,7 @@ Now add a reference to `ChartJs.Blazor` in your `_Imports.razor`
 
 ### Chart
 Now you can create a .razor file where you display one of the charts.
-Let's show a pie chart with 4 slices.
+Let's show a pie chart with 4 slices 🍕.
 
 Make your page known to the router by adding a `@page` statement
 ```csharp
@@ -203,9 +207,11 @@ The **samples** folder contains three projects, one for a client-side Blazor app
 
 The documentation might lag the actual development state (who likes to write documentation, am I right?) but the samples will probably never lag the actual state of the library. This is due to the way in which I develop where I constantly run the samples to play with new features of ChartJs.
 
-To make it easier for you to see what ChartJs.Blazor can do I host the client-side samples with [Netlify](https://www.netlify.com) on [www.iheartblazor.com](https://www.iheartblazor.com) (and a few other domains 😁 )
+To make it easier for you to see what ChartJs.Blazor can do I host the client-side samples with [Netlify](https://www.netlify.com) on [www.iheartblazor.com](https://www.iheartblazor.com) (and a few other domains 😁)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4edc0972-1674-4ff7-8fdc-41e643b33738/deploy-status)](https://app.netlify.com/sites/chartjs-blazor-samples/deploys)
+
+If you go there you should see something like this:
+![Charts](media/samples.gif)
 
 # Contributors
 This projects slowly develops a community which started to give back.
