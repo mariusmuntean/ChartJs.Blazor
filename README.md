@@ -9,10 +9,9 @@
 [![NuGet Downloads](https://img.shields.io/nuget/dt/ChartJs.Blazor?label=NuGet%20Downloads)](https://www.nuget.org/packages/ChartJs.Blazor/)
 
 
-
 # Introduction
 
-This is a Blazor library that wraps [ChartJs](https://github.com/chartjs/Chart.js). You can use the library in both client- and server-side projects. See the samples or reach out on Twitter if you need help.
+This is a Blazor library that wraps [ChartJs](https://github.com/chartjs/Chart.js). You can use the library in both client- and server-side projects. See the *Getting Started*, browse the samples or reach out on Twitter if you need help.
 
 Don't know what Blazor is? Read [here](https://dotnet.microsoft.com/apps/aspnet/web-apps/client).
 
@@ -40,9 +39,9 @@ dotnet add package ChartJs.Blazor
 ## Usage
 
 ### Assets
-Before you can start creating a chart with a config etc, you have to include some static assets to your project.
+Before you can start creating a chart, you have to add some static assets to your project. These come bundled with ChartJs.Blazor, so you only need to add a few lines to your `Index.html`/`_Host.cshtml`.
 
-In your `_Host.cshtml` (server-side) or in your `index.html` (client-side) file add the following lines to the `body` tag **after** the `_framework` reference
+In your `_Host.cshtml` (server-side) or in your `index.html` (client-side) add the following lines to the `body` tag **after** the `_framework` reference
 
 ```html
 <!-- Reference the included moment.js javascript file. -->
@@ -68,12 +67,12 @@ Now add a reference to `ChartJs.Blazor` in your `_Imports.razor`
 Now you can create a .razor file where you display one of the charts.
 Let's show a pie chart with 4 slices.
 
-Make your page known to the router by adding a @page statement
+Make your page known to the router by adding a `@page` statement
 ```csharp
-@page "MyPieChart"
+@page "/MyPieChart"
 ```
 
-Then add a few @using statements
+Then add a few `@using` statements
 ```csharp
 @using ChartJs.Blazor.Charts
 @using ChartJs.Blazor.ChartJS.PieChart
@@ -81,11 +80,11 @@ Then add a few @using statements
 @using ChartJs.Blazor.Util
 ```
 
-Below the @using statements add a ChartJsPieChart component
+Below the `@using` statements add a `ChartJsPieChart` component
 ```html
 <ChartJsPieChart @ref="_pieChartJs" Config="@_config" Width="600" Height="300"/>
 ```
-The last step is to make the ChartJsPieChart from above, reachable from your code to configure it and to give it some data to display. In the @code section of your .razor file create matching variables to reference the chart and its configuration. Finally, give your chart a title and some data. The finished code should look like this:
+The last step is to make the `ChartJsPieChart` from above, reachable from your code to configure it and to give it some data to display. In the `@code` section of your .razor file create matching variables to reference the chart and its configuration. Finally, give your chart a title and some data. The finished code should look like this:
 
 ```csharp
     private PieConfig _config;
@@ -130,14 +129,13 @@ The last step is to make the ChartJsPieChart from above, reachable from your cod
 
 **Breakdown**
 
-First, in your index.html/_Host.cshtml you've added references to static assets from ChartJs.Blazor. During build time, library assets get packages under _content/LibraryName.
+First, in your  `Index.html`/`_Host.cshtml` you've added references to static assets from `ChartJs.Blazor`. During build time, library assets get packaged under *_content/LibraryName*.
 
-Then, you've imported ChartJs.Blazor in your _Imports.razor. The Blazor Team mentioned that this shouldn't be necessary in the future.
+Then, you've imported `ChartJs.Blazor` in your `_Imports.razor`. The Blazor Team mentioned that this shouldn't be necessary in the future.
 
-In your .razor file you added the ChartJsPieChart component and gave it some width and height. You specified that the component should use the variable _config as the chart's configuration object. You also told Blazor that you want a direct reference to the chart and that the reference should be saved in your _pieChartJs variable.
+In your .razor file you added the `ChartJsPieChart`` component and gave it some width and height. You specified that the component should use the variable `_config`` as the chart's configuration object. You also told Blazor that you want a direct reference to the chart and that the reference should be saved in your `_pieChartJs`` variable.
 
-When your page's OnInitialize() method is executed you're setting the chart's configuration and dataset to be displayed.
-
+When your page's `OnInitialized()` method is executed you're setting the chart's configuration and dataset to be displayed.
 
 
 ## Known Limitations
@@ -149,7 +147,6 @@ When your page's OnInitialize() method is executed you're setting the chart's co
 
 ### Samples
 
-
 * For running on client-side Blazor there is currently a bug with JSON.NET tracked by this [issue](https://github.com/JamesNK/Newtonsoft.Json/issues/2020).
 The known workaround is to include the following line in the parent component:
 
@@ -159,9 +156,8 @@ private ReferenceConverter ReferenceConverter = new ReferenceConverter(typeof(PR
 
 where `PROBLEMATIC_COMPONENT` is a placeholder for the chart-component you're using inside this component (e.g. `ChartJsBarChart`, `ChartJsPieChart`, `ChartJsLineChart`, ..).
 
-This issue is also documented in the [known issues page](https://github.com/Joelius300/ChartJSBlazor/wiki/Known-issues#missingmethodexception-when-using-client-side-blazor).
 
-* When publishing the client-side Blazor sample, the generated dist folder is missing _content\ChartJs.Blazor. This seems to be known bug in the current version ob client-side Blazor. To work around this bug you need to go to the publish folder and inside the wwwroot folder you should find the missing _content folder. Copy the _content folder to the dist folder. The final dist folder should look like this
+* When publishing the client-side Blazor sample, the generated **dist** folder is missing **_content\ChartJs.Blazor**. This seems to be a known bug in the current version of client-side Blazor. To work around this bug you need to go to the **publish** folder and locate the **wwwroot** folder. There you should find the missing **_content** folder. Copy the **_content** folder to the **dist** folder. The final **dist** folder should look like this
 ```shell
 │   index.html
 │
@@ -203,10 +199,9 @@ This issue is also documented in the [known issues page](https://github.com/Joel
 For detailed instructions read the [Chart.Js](https://www.chartjs.org/docs/latest/charts/) documentation to understand how each chart works. 
 
 ## A word on the samples
-The samples folder contains three projects, one for a client-side Blazor app, another one for a server-side Blazor app and a shared project. The shared project is not really necessary but that is how I chose to avoid code duplication.
+The **samples** folder contains three projects, one for a client-side Blazor app, another one for a server-side Blazor app and a shared project. The shared project is not really necessary but that is how I chose to avoid code duplication.
 
-The documentation might lag the actual development (who likes to write documentation, am I right?) but the samples will probably never lag the actual state of the library. This is due to the way in which I develop where I constantly run the samples to play with new features of ChartJs.
-
+The documentation might lag the actual development state (who likes to write documentation, am I right?) but the samples will probably never lag the actual state of the library. This is due to the way in which I develop where I constantly run the samples to play with new features of ChartJs.
 
 To make it easier for you to see what ChartJs.Blazor can do I host the client-side samples with [Netlify](https://www.netlify.com) on [www.iheartblazor.com](https://www.iheartblazor.com) (and a few other domains 😁 )
 
@@ -214,7 +209,7 @@ To make it easier for you to see what ChartJs.Blazor can do I host the client-si
 
 # Contributors
 This projects slowly develops a community which started to give back.
-## Special Thanks to: ##
+## Special thanks to: ##
 * [Joelius300](https://github.com/Joelius300) for keeping the project alive, developing it further and finally giving me the needed motivation to revive it.
 
 ## Many thanks to: #
