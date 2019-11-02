@@ -91,6 +91,9 @@ Below the `@using` statements add a `ChartJsPieChart` component
 The last step is to make the `ChartJsPieChart` from above, reachable from your code to configure it and to give it some data to display. In the `@code` section of your .razor file create matching variables to reference the chart and its configuration. Finally, give your chart a title and some data. The finished code should look like this:
 
 ```csharp
+    // This is necessary for the time being - see the known sample limitations
+    private ReferenceConverter ReferenceConverter = new ReferenceConverter(typeof(ChartJsPieChart));
+
     private PieConfig _config;
     private ChartJsPieChart _pieChartJs;
 
@@ -137,7 +140,7 @@ First, in your  `Index.html`/`_Host.cshtml` you've added references to static as
 
 Then, you've imported `ChartJs.Blazor` in your `_Imports.razor`. The Blazor Team mentioned that this shouldn't be necessary in the future.
 
-In your .razor file you added the `ChartJsPieChart`` component and gave it some width and height. You specified that the component should use the variable `_config`` as the chart's configuration object. You also told Blazor that you want a direct reference to the chart and that the reference should be saved in your `_pieChartJs`` variable.
+In your .razor file you added the `ChartJsPieChart` component and gave it some width and height. You specified that the component should use the variable `_config`` as the chart's configuration object. You also told Blazor that you want a direct reference to the chart and that the reference should be saved in your `_pieChartJs`` variable.
 
 When your page's `OnInitialized()` method is executed you're setting the chart's configuration and dataset to be displayed.
 
