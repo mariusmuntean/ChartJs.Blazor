@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartJs.Blazor.Sample.Share
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartJs.Blazor.Sample.ServerSide", "samples\ServerSide\ChartJs.Blazor.Sample.ServerSide\ChartJs.Blazor.Sample.ServerSide.csproj", "{D547792A-5B2C-4FAF-93AA-71BAA9BF845C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartJs.Blazor.Sample.ClientSide", "samples\ClientSide\ChartJs.Blazor.Sample.ClientSide\ChartJs.Blazor.Sample.ClientSide.csproj", "{153F4719-305A-4AD0-975A-91ABD9935F87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartJs.Blazor.Sample.ClientSide", "samples\ClientSide\ChartJs.Blazor.Sample.ClientSide\ChartJs.Blazor.Sample.ClientSide.csproj", "{153F4719-305A-4AD0-975A-91ABD9935F87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
