@@ -1,9 +1,9 @@
-﻿using ChartJs.Blazor.ChartJS.Common;
+﻿using ChartJs.Blazor.ChartJS.Common.Axes.Ticks;
 
 namespace ChartJs.Blazor.ChartJS.RadarChart
 {
     public class Scale
     {
-        public Ticks Ticks { get; set; }
+        public CartesianTicks Ticks { get; set; }
     }
 }

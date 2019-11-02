@@ -1,19 +1,28 @@
 ﻿using System;
 using ChartJs.Blazor.ChartJS.Common;
+using ChartJs.Blazor.ChartJS.Common.Properties;
+using ChartJs.Blazor.ChartJS.Common.Axes;
 
 namespace ChartJs.Blazor.ChartJS.PolarAreaChart
 {
-    public class PolarAreaOptions : BaseChartConfigOptions
+    /// <summary>
+    /// The options-subconfig of a <see cref="PolarAreaConfig"/>.
+    /// </summary>
+    public class PolarAreaOptions : BaseConfigOptions
     {
         /// <summary>
-        /// Starting angle to draw arcs for the first item in a dataset.
+        /// Gets or sets the starting angle to draw arcs for the first item in a dataset.
         /// </summary>
         public double StartAngle { get; set; } = -0.5 * Math.PI;
 
-        public DoughnutAnimation Animation { get; set; }
+        /// <summary>
+        /// Gets or sets the animation-configuration for this chart.
+        /// </summary>
+        public ArcAnimation Animation { get; set; }
 
-        public OptionsTitle Title { get; set; }
-
-        public PolarAreaScale Scale { get; set; }
+        /// <summary>
+        /// The scale (axis) for this chart.
+        /// </summary>
+        public LinearRadialAxis Scale { get; set; }
     }
 }

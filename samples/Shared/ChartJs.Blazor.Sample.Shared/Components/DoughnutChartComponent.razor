@@ -1,0 +1,50 @@
+﻿@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.ChartJS.PieChart
+@using ChartJs.Blazor.ChartJS.Common.Properties
+@using ChartJs.Blazor.Util
+
+<h1>Doughnut Chart</h1>
+
+<ChartJsPieChart @ref="_doughnutChartJs" Config="@_config" Width="600" Height="300" />
+
+@code {
+    private PieConfig _config;
+    private ChartJsPieChart _doughnutChartJs;
+
+    protected override void OnInitialized()
+    {
+        _config = new PieConfig
+        {
+            Options = new PieOptions(true)
+            {
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "Sample chart from Blazor"
+                },
+                Responsive = true,
+                Animation = new ArcAnimation
+                {
+                    AnimateRotate = true,
+                    AnimateScale = true
+                }
+            }
+        };
+
+        _config.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
+
+        var doughnutSet = new PieDataset
+        {
+            BackgroundColor = new[] { ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString() },
+            BorderWidth = 0,
+            HoverBackgroundColor = ColorUtil.RandomColorString(),
+            HoverBorderColor = ColorUtil.RandomColorString(),
+            HoverBorderWidth = 1,
+            BorderColor = "#ffffff"
+        };
+
+        doughnutSet.Data.AddRange(new double[] { 4, 5, 6, 7 });
+        _config.Data.Datasets.Add(doughnutSet);
+    }
+
+}

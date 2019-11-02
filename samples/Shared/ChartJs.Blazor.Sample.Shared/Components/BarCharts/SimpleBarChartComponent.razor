@@ -1,0 +1,97 @@
+﻿@using System.ComponentModel
+@using ChartJs.Blazor.ChartJS.BarChart
+@using ChartJs.Blazor.ChartJS.BarChart.Axes
+@using ChartJs.Blazor.ChartJS.Common.Axes
+@using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
+@using ChartJs.Blazor.ChartJS.Common.Properties
+@using ChartJs.Blazor.ChartJS.Common.Wrappers
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.Util
+<h2>Simple Bar Chart</h2>
+<div class="row">
+    <button class="btn btn-primary" @onclick="OnClick">Update Chart</button>
+</div>
+<ChartJsBarChart @ref="_barChart"
+                 Config="@_barChartConfig"
+                 Width="600"
+                 Height="300" />
+
+@code {
+
+    // https://github.com/Joelius300/ChartJSBlazor/issues/18
+    private ReferenceConverter _referenceConverter = new ReferenceConverter(typeof(ChartJsBarChart));
+
+    private BarConfig _barChartConfig;
+    private ChartJsBarChart _barChart;
+    private BarDataset<DoubleWrapper> _barDataSet;
+
+    protected override void OnInitialized()
+    {
+        _barChartConfig = new BarConfig
+        {
+            Options = new BarOptions
+            {
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "Simple Bar Chart"
+                },
+                Scales = new BarScales
+                {
+                    XAxes = new List<CartesianAxis>
+                            {
+                                    new BarCategoryAxis
+                                    {
+                                        BarPercentage = 0.5,
+                                        BarThickness = BarThickness.Flex
+                                    }
+                                },
+                    YAxes = new List<CartesianAxis>
+                            {
+                                    new BarLinearCartesianAxis
+                                    {
+                                        Ticks = new LinearCartesianTicks
+                                        {
+                                            BeginAtZero = true
+                                        }
+                                    }
+                                }
+                }
+            }
+        };
+
+        _barChartConfig.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
+
+        _barDataSet = new BarDataset<DoubleWrapper>
+        {
+            Label = "My double dataset",
+            BackgroundColor = new[] { ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString() },
+            BorderWidth = 0,
+            HoverBackgroundColor = ColorUtil.RandomColorString(),
+            HoverBorderColor = ColorUtil.RandomColorString(),
+            HoverBorderWidth = 1,
+            BorderColor = "#ffffff"
+        };
+
+        _barDataSet.AddRange(new double[] { 8, 5, 3, 7 }.Wrap());
+        _barChartConfig.Data.Datasets.Add(_barDataSet);
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (firstRender)
+        {
+            StateHasChanged();
+        }
+    }
+
+    private void OnClick()
+    {
+        var nowSecond = DateTime.Now.Second;
+        _barChartConfig.Data.Labels.Add(nowSecond.ToString());
+        _barDataSet.Add(new DoubleWrapper(nowSecond));
+    }
+
+}

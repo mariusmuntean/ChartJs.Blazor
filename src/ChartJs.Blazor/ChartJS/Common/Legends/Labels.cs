@@ -1,11 +1,12 @@
-﻿using ChartJs.Blazor.Util.Color;
+﻿using ChartJs.Blazor.Util;
+using ChartJs.Blazor.ChartJS.Common.Enums;
 
 namespace ChartJs.Blazor.ChartJS.Common.Legends
 {
     /// <summary>
     /// The legend label configuration is nested below the legend configuration
     /// </summary>
-    public class Labels
+    public class LegendLabelConfiguration
     {
         /// <summary>
         /// width of colored box
@@ -18,11 +19,9 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends
         public int FontSize { get; set; } = 12;
 
         /// <summary>
-        /// Font style of text.
-        ///
-        /// <para>Supported fonts: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-label-configuration </para>
+        /// Gets or sets the font style for the labels text.
         /// </summary>
-        public string FontStyle { get; set; } = "normal";
+        public FontStyle FontStyle { get; set; }
 
         /// <summary>
         /// Color of text.
@@ -37,7 +36,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends
 
         /// <summary>
         /// Generates legend items for each thing in the legend. Default implementation returns the text + styling for the color box. See Legend Item for details.
-        /// <para> See Legend Item: <see cref="http://www.chartjs.org/docs/latest/configuration/legend.html#legend-item-interface"/>  </para>
+        /// <para> See Legend Item: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-item-interface </para>
         /// </summary>
         public string GenerateLabels { get; set; }
 
@@ -47,7 +46,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends
         public string Filter { get; set; }
 
         /// <summary>
-        ///Label style will match corresponding point style (size is based on fontSize, boxWidth is not used in this case).
+        /// Label style will match corresponding point style (size is based on <see cref="FontSize"/>, <see cref="BoxWidth"/> is not used in this case).
         /// </summary>
         public bool UsePointStyle { get; set; } = false;
     }

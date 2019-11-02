@@ -1,0 +1,38 @@
+﻿@page "/"
+@namespace ChartJs.Blazor.Sample.ServerSide.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChartJs.Blazor.Sample.ServerSide</title>
+    <base href="~/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <app>
+        @(await Html.RenderComponentAsync<App>(RenderMode.ServerPrerendered))
+    </app>
+
+    <script src="_framework/blazor.server.js"></script>
+
+    <!-- Here I'm referencing the static resources from the library -->
+    <!--  In case you need another version of any of the included javascript files, you can adjust the script tags to include the version you need, e.g. from a CDN or your wwwroot directory. -->
+    <!-- Since ChartJs is dependent on moment.js, it is important to first include the reference to moment.js and then to ChartJs -->
+
+    <!-- Reference the included moment.js javascript file. -->
+    <script src="_content/ChartJs.Blazor/moment-with-locales.min.js" type="text/javascript" language="javascript"></script>
+
+    <!-- Reference the included ChartJs javascript file. -->
+    <script src="_content/ChartJs.Blazor/Chart.min.js" type="text/javascript" language="javascript"></script>
+
+    <!-- This is the glue between the C# code and the ChartJs charts -->
+    <script src="_content/ChartJs.Blazor/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
+
+    <!-- Some styling -->
+    <link rel="stylesheet" href="_content/ChartJs.Blazor/ChartJSBlazor.css" />
+</body>
+</html>

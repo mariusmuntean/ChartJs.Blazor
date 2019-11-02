@@ -2,28 +2,30 @@ using ChartJs.Blazor.ChartJS;
 using ChartJs.Blazor.ChartJS.Common;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System;
 
 namespace ChartJs.Blazor.Charts
 {
-    public abstract class ChartBase<TConfig> : ComponentBase where TConfig : ChartConfigBase
+    public abstract class ChartBase<TConfig> : ComponentBase where TConfig : ConfigBase
     {
         [Inject] protected IJSRuntime JsRuntime { get; set; }
 
-        [Parameter] protected TConfig Config { get; set; }
+        [Parameter] public TConfig Config { get; set; }
 
-        [Parameter] protected int Width { get; set; } = 400;
+        [Parameter] public int Width { get; set; } = 400;
 
-        [Parameter] protected int Height { get; set; } = 400;
+        [Parameter] public int Height { get; set; } = 400;
 
-        protected override void OnAfterRender()
+        protected override void OnAfterRender(bool firstRender)
         {
             try
             {
-                base.OnAfterRender();
+                base.OnAfterRender(firstRender);
                 JsRuntime.SetupChart(Config);
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine($"Some error in OnAfterRender: {e.Message}");
             } // https://github.com/aspnet/AspNetCore/issues/8327
         }
 

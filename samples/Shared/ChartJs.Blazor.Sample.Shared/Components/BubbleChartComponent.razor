@@ -1,0 +1,97 @@
+﻿@using ChartJs.Blazor.ChartJS.BubbleChart
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.Util
+
+<h1>Pie Chart</h1>
+<div class="row">
+    <button class="btn btn-primary" @onclick="OnClick">Add Dataset</button>
+</div>
+<ChartJsBubbleChart @ref="_bubbleChartJs" Config="@_config" Width="600" Height="300" />
+
+@code {
+    private BubbleConfig _config;
+    private ChartJsBubbleChart _bubbleChartJs;
+
+    private Random _rand = new Random();
+
+    protected override void OnInitialized()
+    {
+        _config = new BubbleConfig
+        {
+            Options = new BubbleOptions
+            {
+            }
+        };
+
+        _config.Data.Datasets = new List<BubbleDataset>
+                {
+                        new BubbleDataset
+                        {
+                            Label = "1'st dataset",
+                            BackgroundColor = ColorUtil.RandomColorString(),
+                            Data = new List<BubbleDataPoint>
+                        {
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10)
+                            }
+                        },
+                        new BubbleDataset
+                        {
+                            Label = "2'nd dataset",
+                            BackgroundColor = ColorUtil.RandomColorString(),
+                            Data = new List<BubbleDataPoint>
+                        {
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10)
+                            }
+                        },
+                        new BubbleDataset
+                        {
+                            Label = "3'rd dataset",
+                            BackgroundColor = ColorUtil.RandomColorString(),
+                            Data = new List<BubbleDataPoint>
+                        {
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10)
+                            }
+                        },
+                    };
+    }
+
+    private void OnClick()
+    {
+        _config.Data.Datasets.Add(new BubbleDataset
+        {
+            Label = $"{_config.Data.Datasets.Count + 1}'th dataset",
+            BackgroundColor = ColorUtil.RandomColorString(),
+            Data = new List<BubbleDataPoint>
+                    {
+                            new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                            new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                            new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                            new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                            new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                            new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+                            new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10)
+                        }
+        });
+
+        _bubbleChartJs.Update();
+    }
+
+}

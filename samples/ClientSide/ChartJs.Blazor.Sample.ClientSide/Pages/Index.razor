@@ -1,0 +1,18 @@
+﻿@page "/"
+@inject NavigationManager NavigationManager
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+@code
+{
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        NavigationManager.NavigateTo("/welcome");
+    }
+
+}
