@@ -21,7 +21,10 @@ namespace ChartJs.Blazor.Charts
             try
             {
                 base.OnAfterRender(firstRender);
-                JsRuntime.SetupChart(Config);
+                if (firstRender)
+                {
+                    JsRuntime.SetupChart(Config);
+                }
             }
             catch (Exception e)
             {

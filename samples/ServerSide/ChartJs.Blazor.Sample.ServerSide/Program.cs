@@ -15,7 +15,7 @@ namespace ChartJs.Blazor.Sample.ServerSide
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<ChartJs.Blazor.Sample.ServerSide.Startup>();
                 });
     }
 }

@@ -66,8 +66,8 @@
             BorderColor = "#ffffff"
         };
 
-        DateTime now = DateTime.Now;
-        Random rnd = new Random();
+        var now = DateTime.Now;
+        var rnd = new Random();
         barSet.AddRange(Enumerable.Range(2, 4).Select(i => new TimeTuple<double>((Moment)now.AddHours(i), rnd.NextDouble() * 4)));
         _config.Data.Datasets.Add(barSet);
     }

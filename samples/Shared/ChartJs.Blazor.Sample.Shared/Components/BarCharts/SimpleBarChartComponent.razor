@@ -77,21 +77,14 @@
         _barChartConfig.Data.Datasets.Add(_barDataSet);
     }
 
-    protected override void OnAfterRender(bool firstRender)
-    {
-        base.OnAfterRender(firstRender);
-
-        if (firstRender)
-        {
-            StateHasChanged();
-        }
-    }
 
     private void OnClick()
     {
         var nowSecond = DateTime.Now.Second;
         _barChartConfig.Data.Labels.Add(nowSecond.ToString());
         _barDataSet.Add(new DoubleWrapper(nowSecond));
+
+        _barChart.Update();
     }
 
 }

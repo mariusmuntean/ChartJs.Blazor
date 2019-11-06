@@ -15,22 +15,20 @@ namespace ChartJs.Blazor.ChartJS
 {
     public static class ChartJsInterop
     {
-        public async static ValueTask<bool> SetupChart(this IJSRuntime jsRuntime, ConfigBase chartConfig)
+        public static ValueTask<bool> SetupChart(this IJSRuntime jsRuntime, ConfigBase chartConfig)
         {
             try
             {
-                await jsRuntime.InvokeVoidAsync("exampleJsFunctions.showPrompt", "Kai");
-
                 dynamic dynParam = StripNulls(chartConfig);
                 Dictionary<string, object> param = ConvertExpandoObjectToDictionary(dynParam);
-                return await jsRuntime.InvokeAsync<bool>("ChartJSInterop.SetupChart", param);
+                return jsRuntime.InvokeAsync<bool>("ChartJSInterop.SetupChart", param);
             }
             catch (Exception exp)
             {
                 Console.WriteLine($"Error while setting up chart: {exp.Message}");
             }
 
-            return await new ValueTask<bool>(false);
+            return new ValueTask<bool>(false);
         }
 
         /// <summary>
@@ -65,7 +63,7 @@ namespace ChartJs.Blazor.ChartJS
                         // if not keep it as is
                         return list
                             .Select(o => o is IDictionary<string, object>
-                                ? RecursivelyConvertIDictToDict((IDictionary<string, object>)o)
+                                ? RecursivelyConvertIDictToDict((IDictionary<string, object>) o)
                                 : o
                             );
                     }

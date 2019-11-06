@@ -25,7 +25,7 @@
     private ChartJsBarChart _barChart;
     private BarDataset<DoubleWrapper> _barDataSet;
 
-    protected override void OnInitialized()
+    protected override Task OnInitializedAsync()
     {
 
         //Note the constructor argument
@@ -69,16 +69,8 @@
 
         _barDataSet.AddRange(new double[] { 8, 5, 3, 7 }.Wrap());
         _barChartConfig.Data.Datasets.Add(_barDataSet);
-    }
 
-    protected override void OnAfterRender(bool firstRender)
-    {
-        base.OnAfterRender(firstRender);
-
-        if (firstRender)
-        {
-            StateHasChanged();
-        }
+        return Task.CompletedTask;
     }
 
     private void OnClick()
@@ -87,6 +79,10 @@
         _barChartConfig.Data.Labels.Add(nowSecond.ToString());
         _barDataSet.Add(new DoubleWrapper(nowSecond));
         _barDataSet.BackgroundColor = _barChartConfig.Data.Labels.Select(l => ColorUtil.RandomColorString()).ToArray();
+
+        _barChartConfig.Options.Title.Text += DateTime.Now.Second.ToString();
+
+        _barChart.Update();
     }
 
 }
