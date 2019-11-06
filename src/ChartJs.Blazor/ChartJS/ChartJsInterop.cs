@@ -15,20 +15,22 @@ namespace ChartJs.Blazor.ChartJS
 {
     public static class ChartJsInterop
     {
-        public static ValueTask<bool> SetupChart(this IJSRuntime jsRuntime, ConfigBase chartConfig)
+        public async static ValueTask<bool> SetupChart(this IJSRuntime jsRuntime, ConfigBase chartConfig)
         {
             try
             {
+                await jsRuntime.InvokeVoidAsync("exampleJsFunctions.showPrompt", "Kai");
+
                 dynamic dynParam = StripNulls(chartConfig);
                 Dictionary<string, object> param = ConvertExpandoObjectToDictionary(dynParam);
-                return jsRuntime.InvokeAsync<bool>("ChartJSInterop.SetupChart", param);
+                return await jsRuntime.InvokeAsync<bool>("ChartJSInterop.SetupChart", param);
             }
             catch (Exception exp)
             {
                 Console.WriteLine($"Error while setting up chart: {exp.Message}");
             }
 
-            return new ValueTask<bool>(false);
+            return await new ValueTask<bool>(false);
         }
 
         /// <summary>

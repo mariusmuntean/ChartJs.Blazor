@@ -12,10 +12,12 @@ window.ChartJSInterop = {
                 config.options.legend = {};
 
             let thisChart = initializeChartjsChart2(config);
-            BlazorCharts.push({ id: config.canvasId, chart: thisChart });
-        }
-        else {
+            BlazorCharts.push({id: config.canvasId, chart: thisChart});
+        } else {
             let myChart = BlazorCharts.find(currentChart => currentChart.id === config.canvasId);
+
+            // Apply new config on top of the old one
+            // const newConfig = {...myChart.chart.config, config};
 
             myChart.chart.destroy();
             myChart.chart = {};
@@ -210,7 +212,6 @@ function WireUpOnHover(config) {
         config.options.legend.onHover = null;
     }
 }
-
 
 
 /* Set up all the momentjs interop stuff */

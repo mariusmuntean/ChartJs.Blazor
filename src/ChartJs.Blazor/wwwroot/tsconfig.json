@@ -1,0 +1,9 @@
+﻿{
+  "include": ["*.ts"],
+  "compilerOptions": {
+    "allowJs": true,
+    "module": "none",
+    "target": "es2019",
+    "lib": ["dom", "es2019"]
+  }
+}
