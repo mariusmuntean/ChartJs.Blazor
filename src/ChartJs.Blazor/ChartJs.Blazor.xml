@@ -455,6 +455,19 @@
             Gets or sets the point style.
             </summary>
         </member>
+        <member name="T:ChartJs.Blazor.ChartJS.ChartJsInterop">
+            <summary>
+            Interop layer with the included/referenced ChartJs
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.ChartJsInterop.SetupChart(Microsoft.JSInterop.IJSRuntime,ChartJs.Blazor.ChartJS.Common.ConfigBase)">
+            <summary>
+            Set up a new chart. Call only once.
+            </summary>
+            <param name="jsRuntime"></param>
+            <param name="chartConfig"></param>
+            <returns></returns>
+        </member>
         <member name="M:ChartJs.Blazor.ChartJS.ChartJsInterop.ConvertExpandoObjectToDictionary(System.Dynamic.ExpandoObject)">
             <summary>
             This method is specifically used to convert an <see cref="T:System.Dynamic.ExpandoObject"/> with a Tree structure to a <see cref="!:Dictionary&lt;string, object&gt;"/>.
@@ -464,11 +477,19 @@
         </member>
         <member name="M:ChartJs.Blazor.ChartJS.ChartJsInterop.RecursivelyConvertIDictToDict(System.Collections.Generic.IDictionary{System.String,System.Object})">
             <summary>
-            This method takes an <see cref="!:IDictionary&lt;string, object&gt;"/> and recursively converts it to a <see cref="!:Dictionary&lt;string, object&gt;"/>. 
+            This method takes an <see cref="!:IDictionary&lt;string, object&gt;"/> and recursively converts it to a <see cref="!:Dictionary&lt;string, object&gt;"/>.
             The idea is that every <see cref="!:IDictionary&lt;string, object&gt;"/> in the tree will be of type <see cref="!:Dictionary&lt;string, object&gt;"/> instead of some other implementation like <see cref="T:System.Dynamic.ExpandoObject"/>.
             </summary>
             <param name="value">The <see cref="!:IDictionary&lt;string, object&gt;"/> to convert</param>
             <returns>The fully converted <see cref="!:Dictionary&lt;string, object&gt;"/></returns>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.ChartJsInterop.UpdateChart(Microsoft.JSInterop.IJSRuntime,ChartJs.Blazor.ChartJS.Common.ConfigBase)">
+            <summary>
+            Update an existing chart. Make sure that the <see cref="P:ChartJs.Blazor.ChartJS.Common.ConfigBase.CanvasId"/> matches that on an existing chart.
+            </summary>
+            <param name="jsRuntime"></param>
+            <param name="chartConfig"></param>
+            <returns></returns>
         </member>
         <member name="M:ChartJs.Blazor.ChartJS.ChartJsInterop.StripNulls(ChartJs.Blazor.ChartJS.Common.ConfigBase)">
             <summary>
@@ -2750,6 +2771,26 @@
             <summary>
             The data contained in this dataset (readonly because covariant).
             </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.MomentJsInterop">
+            <summary>
+            Interop layer with the included/referenced moment.js
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.MomentJsInterop.GetAvailableLocales(Microsoft.JSInterop.IJSRuntime)">
+            <summary>
+            Gets the available locales
+            </summary>
+            <param name="jsRuntime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.MomentJsInterop.ChangeLocale(Microsoft.JSInterop.IJSRuntime,System.String)">
+            <summary>
+            Changes the current locale to the provided one
+            </summary>
+            <param name="jsRuntime"></param>
+            <param name="locale"></param>
+            <returns></returns>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.PieChart.PieConfig">
             <summary>

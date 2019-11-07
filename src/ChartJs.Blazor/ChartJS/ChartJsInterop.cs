@@ -1,27 +1,38 @@
-﻿using Microsoft.JSInterop;
-using System.Threading.Tasks;
-using ChartJs.Blazor.ChartJS.Common;
-using System;
-using System.Dynamic;
+﻿using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler;
 using ChartJs.Blazor.ChartJS.Common.Legends.OnHover;
+using Microsoft.JSInterop;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ChartJs.Blazor.ChartJS
 {
+    /// <summary>
+    /// Interop layer with the included/referenced ChartJs
+    /// </summary>
     public static class ChartJsInterop
     {
+        private const string ChartJsInteropName = "ChartJsBlazorInterop";
+
+        /// <summary>
+        /// Set up a new chart. Call only once.
+        /// </summary>
+        /// <param name="jsRuntime"></param>
+        /// <param name="chartConfig"></param>
+        /// <returns></returns>
         public static ValueTask<bool> SetupChart(this IJSRuntime jsRuntime, ConfigBase chartConfig)
         {
             try
             {
                 dynamic dynParam = StripNulls(chartConfig);
                 Dictionary<string, object> param = ConvertExpandoObjectToDictionary(dynParam);
-                return jsRuntime.InvokeAsync<bool>("ChartJSInterop.SetupChart", param);
+                return jsRuntime.InvokeAsync<bool>($"{ChartJsInteropName}.SetupChart", param);
             }
             catch (Exception exp)
             {
@@ -39,7 +50,7 @@ namespace ChartJs.Blazor.ChartJS
         private static Dictionary<string, object> ConvertExpandoObjectToDictionary(ExpandoObject expando) => RecursivelyConvertIDictToDict(expando);
 
         /// <summary>
-        /// This method takes an <see cref="IDictionary{string, object}"/> and recursively converts it to a <see cref="Dictionary{string, object}"/>. 
+        /// This method takes an <see cref="IDictionary{string, object}"/> and recursively converts it to a <see cref="Dictionary{string, object}"/>.
         /// The idea is that every <see cref="IDictionary{string, object}"/> in the tree will be of type <see cref="Dictionary{string, object}"/> instead of some other implementation like <see cref="ExpandoObject"/>.
         /// </summary>
         /// <param name="value">The <see cref="IDictionary{string, object}"/> to convert</param>
@@ -63,7 +74,7 @@ namespace ChartJs.Blazor.ChartJS
                         // if not keep it as is
                         return list
                             .Select(o => o is IDictionary<string, object>
-                                ? RecursivelyConvertIDictToDict((IDictionary<string, object>) o)
+                                ? RecursivelyConvertIDictToDict((IDictionary<string, object>)o)
                                 : o
                             );
                     }
@@ -73,13 +84,19 @@ namespace ChartJs.Blazor.ChartJS
                 }
             );
 
+        /// <summary>
+        /// Update an existing chart. Make sure that the <see cref="ConfigBase.CanvasId"/> matches that on an existing chart.
+        /// </summary>
+        /// <param name="jsRuntime"></param>
+        /// <param name="chartConfig"></param>
+        /// <returns></returns>
         public static ValueTask<bool> UpdateChart(this IJSRuntime jsRuntime, ConfigBase chartConfig)
         {
             try
             {
                 dynamic dynParam = StripNulls(chartConfig);
                 Dictionary<string, object> param = ConvertExpandoObjectToDictionary(dynParam);
-                return jsRuntime.InvokeAsync<bool>("ChartJSInterop.UpdateChart", param);
+                return jsRuntime.InvokeAsync<bool>($"{ChartJsInteropName}.UpdateChart", param);
             }
             catch (Exception exp)
             {
@@ -105,7 +122,7 @@ namespace ChartJs.Blazor.ChartJS
             dynamic clearConfigExpando = JsonConvert.DeserializeObject<ExpandoObject>(cleanChartConfigStr, new ExpandoObjectConverter());
 
             // Restore any .net refs that need to be passed intact
-            var dynamicChartConfig = (dynamic) chartConfig;
+            var dynamicChartConfig = (dynamic)chartConfig;
             if (dynamicChartConfig?.Options?.Legend?.OnClick != null
                 && dynamicChartConfig?.Options?.Legend?.OnClick is DotNetInstanceClickHandler)
             {

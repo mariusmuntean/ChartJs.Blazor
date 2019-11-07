@@ -6,7 +6,7 @@ interface ChartConfiguration extends Chart.ChartConfiguration {
     canvasId: string;
 }
 
-class ChartJSInterop {
+class ChartJsBlazorInterop {
 
     BlazorCharts = new Map<string, Chart>();
     // Apply new config on top of the old one
@@ -17,7 +17,7 @@ class ChartJSInterop {
             if (!config.options.legend)
                 config.options.legend = {};
 
-            let thisChart = this.initializeChartjsChart2(config);
+            let thisChart = this.initializeChartjsChart(config);
             this.BlazorCharts.set(config.canvasId, thisChart);
 
             return true;
@@ -46,7 +46,7 @@ class ChartJSInterop {
         return true;
     }
 
-    private initializeChartjsChart2(config: ChartConfiguration): Chart {
+    private initializeChartjsChart(config: ChartConfiguration): Chart {
         let ctx = <HTMLCanvasElement>document.getElementById(config.canvasId);
 
         // replace the Legend's OnHover function name with the actual function (if present)
@@ -117,7 +117,7 @@ class ChartJSInterop {
     }
 
     private WireUpOnClick(config) {
-        let getDefaultHandler = function (type) {
+        let getDefaultHandler = type => {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
             if (defaults.legend &&
                 defaults.legend.onClick) {
@@ -211,36 +211,44 @@ class ChartJSInterop {
 }
 
 function AttachChartJsInterop(): void {
-    window['ChartJSInterop'] = new ChartJSInterop();
+    window[ChartJsBlazorInterop.name] = new ChartJsBlazorInterop();
 }
 
 AttachChartJsInterop();
 
 
-
-
 /* Set up all the momentjs interop stuff */
+class MomentJsInterop {
 
-function getAvailableMomentLocales() {
-    return moment.locales();
+    public getAvailableMomentLocales(): string[] {
+        return moment.locales();
+    }
+
+    public getCurrentLocale(): string {
+        return moment.locale();
+    }
+
+    public changeLocale(locale: string) {
+        if (typeof locale !== 'string') {
+            throw 'locale must be a string';
+        }
+        let cur = this.getCurrentLocale();
+
+        // if the current locale is the one requested, we don't need to do anything
+        if (locale === cur) return false;
+
+        // set locale
+        let newL = moment.locale(locale);
+
+        // if the new locale is the same as the old one, it was not changed - probably because momentJs didn't find that locale
+        if (cur === newL) throw 'the locale \'' + locale + '\' could not be set. It was probably not found.';
+
+        return true;
+    }
 }
 
-function getCurrentLocale() {
-    return moment.locale();
+function AttachMomentJsInterop(): void {
+    window[MomentJsInterop.name] = new MomentJsInterop();
 }
 
-function changeLocale(locale) {
-    if (typeof locale !== 'string') throw 'locale must be a string';
-    let cur = getCurrentLocale();
-
-    // if the current locale is the one requested, we don't need to do anything
-    if (locale === cur) return false;
-
-    // set locale
-    let newL = moment.locale(locale);
-
-    // if the new locale is the same as the old one, it was not changed - probably because momentJs didn't find that locale
-    if (cur === newL) throw 'the locale \'' + locale + '\' could not be set. It was probably not found.';
-
-    return true;
-}
+AttachMomentJsInterop();
