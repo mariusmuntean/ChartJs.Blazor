@@ -55,7 +55,7 @@ In your `_Host.cshtml` (server-side) or in your `index.html` (client-side) add t
 <script src="_content/ChartJs.Blazor/Chart.min.js" type="text/javascript" language="javascript"></script>
 
 <!-- This is the glue between the C# code and the ChartJs charts -->
-<script src="_content/ChartJs.Blazor/ChartJsInterop.js" type="text/javascript" language="javascript"></script>
+<script src="_content/ChartJs.Blazor/ChartJsBlazorInterop.js" type="text/javascript" language="javascript"></script>
 
 <!-- Some styling -->
 <link rel="stylesheet" href="_content/ChartJs.Blazor/ChartJSBlazor.css" />
@@ -183,7 +183,7 @@ where `PROBLEMATIC_COMPONENT` is a placeholder for the chart-component you're us
 │   └───ChartJs.Blazor
 │           Chart.min.js
 │           ChartJSBlazor.css
-│           ChartJsInterop.js
+│           ChartJsBlazorInterop.js
 │           moment-with-locales.min.js
 │
 └───_framework

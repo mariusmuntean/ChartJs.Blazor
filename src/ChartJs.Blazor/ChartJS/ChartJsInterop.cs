@@ -18,7 +18,7 @@ namespace ChartJs.Blazor.ChartJS
     /// </summary>
     public static class ChartJsInterop
     {
-        private const string ChartJsInteropName = "ChartJsBlazorInterop";
+        private const string ChartJsInteropName = "ChartJsInterop";
 
         /// <summary>
         /// Set up a new chart. Call only once.
