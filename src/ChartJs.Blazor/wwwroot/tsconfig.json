@@ -6,7 +6,8 @@
     "lib": [ "dom", "es2018" ],
     "outDir": "",
     "sourceMap": true,
-    "sourceRoot": "ts/"
+    "sourceRoot": "ts/",
+    "typeRoots": ["ts/types/"]
   },
   "include": [
     "ts/*.ts"

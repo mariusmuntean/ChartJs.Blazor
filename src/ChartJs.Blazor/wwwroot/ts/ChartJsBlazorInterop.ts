@@ -1,14 +1,22 @@
-﻿/* Set up all the chartjs interop stuff */
-/// <reference path="types/moment.d.ts" />
+﻿/// <reference path="types/moment.d.ts" />
 /// <reference path="types/Chart.min.d.ts" />   
+
+/* Set up all the chartjs interop stuff */
 
 interface ChartConfiguration extends Chart.ChartConfiguration {
     canvasId: string;
 }
 
+interface DotNetType {
+    invokeMethodAsync(assemblyName, methodName, sender, args): Promise<any>;
+}
+
+declare var DotNet: DotNetType;
+
 class ChartJsInterop {
 
     BlazorCharts = new Map<string, Chart>();
+
     // Apply new config on top of the old one
     // const newConfig = {...myChart.chart.config, config};
     public SetupChart(config: ChartConfiguration): boolean {
@@ -106,7 +114,7 @@ class ChartJsInterop {
             config.options.legend.labels.generateLabels.includes(".")) {
             var generateLabelsNamespaceAndFunc = config.options.legend.labels.generateLabels.split(".");
             var generateLabelsFunc = window[generateLabelsNamespaceAndFunc[0]][generateLabelsNamespaceAndFunc[1]];
-            if (typeof generateLabels === "function") {
+            if (typeof generateLabelsFunc === "function") {
                 config.options.legend.labels.generateLabels = generateLabelsFunc;
             } else { // fallback to the default
                 config.options.legend.labels.generateLabels = getDefaultFunc(config.type);

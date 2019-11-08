@@ -414,13 +414,20 @@
             <e p="PointUtil.cs" t="Include" />
           </e>
           <e p="wwwroot" t="Include">
-            <e p="Chart.min.d.ts" t="Include" />
             <e p="Chart.min.js" t="Include" />
             <e p="ChartJSBlazor.css" t="Include" />
-            <e p="ChartJsInterop.js" t="Include" />
+            <e p="ChartJsBlazorInterop.js" t="Include" />
+            <e p="ChartJsBlazorInterop.js.map" t="Include" />
             <e p="ExampleTsInterop.js" t="Include" />
-            <e p="ExampleTsInterop.ts" t="Include" />
+            <e p="ExampleTsInterop.js.map" t="Include" />
             <e p="moment-with-locales.min.js" t="Include" />
+            <e p="ts" t="Include">
+              <e p="ChartJsBlazorInterop.ts" t="Include" />
+              <e p="types" t="Include">
+                <e p="Chart.min.d.ts" t="Include" />
+                <e p="moment.d.ts" t="Include" />
+              </e>
+            </e>
             <e p="tsconfig.json" t="Include" />
           </e>
         </e>

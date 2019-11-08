@@ -1,4 +1,3 @@
-/* Set up all the chartjs interop stuff */
 /// <reference path="types/moment.d.ts" />
 /// <reference path="types/Chart.min.d.ts" />   
 class ChartJsInterop {
@@ -82,7 +81,7 @@ class ChartJsInterop {
             config.options.legend.labels.generateLabels.includes(".")) {
             var generateLabelsNamespaceAndFunc = config.options.legend.labels.generateLabels.split(".");
             var generateLabelsFunc = window[generateLabelsNamespaceAndFunc[0]][generateLabelsNamespaceAndFunc[1]];
-            if (typeof generateLabels === "function") {
+            if (typeof generateLabelsFunc === "function") {
                 config.options.legend.labels.generateLabels = generateLabelsFunc;
             }
             else { // fallback to the default
