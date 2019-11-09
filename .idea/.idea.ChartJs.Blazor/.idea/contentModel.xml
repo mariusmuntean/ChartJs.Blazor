@@ -1,11 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$USER_HOME$/Library/Caches/Rider2019.2/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/Rider2019.2/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_ChartJs.Blazor.50056620.00" t="ExcludeRecursive" />
-    <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
-    <e p="$APPLICATION_CONFIG_DIR$/Extensions" t="IncludeRecursive" />
-    <e p="$PROJECT_DIR$" t="IncludeFlat">
+    <e p="C:\Users\Mariu\.Rider2019.2\config\javascript\nodejs\12.13.0\core-modules" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\.Rider2019.2\config\javascript\nodejs\12.13.0\node-typings\node_modules\@types" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_ChartJs.Blazor.361008920.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.dom.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.dom.iterable.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2015.collection.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2015.core.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2015.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2015.generator.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2015.iterable.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2015.promise.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2015.proxy.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2015.reflect.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2015.symbol.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2015.symbol.wellknown.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2016.array.include.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2016.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2016.full.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2017.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2017.full.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2017.intl.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2017.object.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2017.sharedmemory.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2017.string.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2017.typedarrays.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2018.asyncgenerator.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2018.asynciterable.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2018.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2018.full.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2018.intl.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2018.promise.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2018.regexp.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2019.array.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2019.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2019.full.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2019.object.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2019.string.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2019.symbol.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2020.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2020.full.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2020.string.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es2020.symbol.wellknown.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es5.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.es6.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.esnext.array.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.esnext.asynciterable.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.esnext.bigint.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.esnext.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.esnext.full.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.esnext.intl.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.esnext.symbol.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.scripthost.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.webworker.d.ts" t="IncludeRecursive" />
+    <e p="C:\Users\Mariu\AppData\Roaming\npm\node_modules\typescript\lib\lib.webworker.importscripts.d.ts" t="IncludeRecursive" />
+    <e p="D:\Documents\Projects\ChartJs.Blazor" t="IncludeFlat">
       <e p="ChartJs.Blazor.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="samples" t="Include">
@@ -418,8 +470,6 @@
             <e p="ChartJSBlazor.css" t="Include" />
             <e p="ChartJsBlazorInterop.js" t="Include" />
             <e p="ChartJsBlazorInterop.js.map" t="Include" />
-            <e p="ExampleTsInterop.js" t="Include" />
-            <e p="ExampleTsInterop.js.map" t="Include" />
             <e p="moment-with-locales.min.js" t="Include" />
             <e p="ts" t="Include">
               <e p="ChartJsBlazorInterop.ts" t="Include" />
