@@ -85,6 +85,9 @@
               </e>
               <e p="BubbleChartPage.razor" t="Include" />
               <e p="DoughnutChartPage.razor" t="Include" />
+              <e p="Handlers" t="Include">
+                <e p="LegendOnClickHandlerpage.razor" t="Include" />
+              </e>
               <e p="Index.razor" t="Include" />
               <e p="LineChart" t="Include">
                 <e p="LinearLineChartPage.razor" t="Include" />
@@ -170,6 +173,9 @@
               <e p="BubbleChartPage.razor" t="Include" />
               <e p="DoughnutChartPage.razor" t="Include" />
               <e p="Error.razor" t="Include" />
+              <e p="Handlers" t="Include">
+                <e p="LegendOnClickHandlerpage.razor" t="Include" />
+              </e>
               <e p="LineChart" t="Include">
                 <e p="LinearLineChartPage.razor" t="Include" />
                 <e p="LogarithmicLineChartPage.razor" t="Include" />
@@ -234,6 +240,9 @@
               </e>
               <e p="BubbleChartComponent.razor" t="Include" />
               <e p="DoughnutChartComponent.razor" t="Include" />
+              <e p="Handlers" t="Include">
+                <e p="LegendClickHandlerComponent.razor" t="Include" />
+              </e>
               <e p="Legend" t="Include" />
               <e p="LineChart" t="Include">
                 <e p="LinearLineChartComponent.razor" t="Include" />
@@ -246,7 +255,6 @@
               <e p="ScatterChartComponent.razor" t="Include" />
               <e p="Welcome.razor" t="Include" />
             </e>
-            <e p="Extensions" t="Include" />
             <e p="obj" t="ExcludeRecursive">
               <e p="Debug" t="Include">
                 <e p="netstandard2.0" t="Include">

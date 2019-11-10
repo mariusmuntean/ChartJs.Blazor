@@ -16,9 +16,7 @@ declare var DotNet: DotNetType;
 class ChartJsInterop {
 
     BlazorCharts = new Map<string, Chart>();
-
-    // Apply new config on top of the old one
-    // const newConfig = {...myChart.chart.config, config};
+    
     public SetupChart(config: ChartConfiguration): boolean {
 
         if (!this.BlazorCharts.has(config.canvasId)) {
@@ -133,7 +131,7 @@ class ChartJsInterop {
             }
 
             return Chart.defaults.global.legend.onClick;
-        }
+        };
 
         if (config.options.legend.onClick) {
             // Js function

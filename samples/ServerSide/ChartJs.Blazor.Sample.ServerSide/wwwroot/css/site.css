@@ -123,7 +123,7 @@ app {
     }
 
     .sidebar {
-        width: 250px;
+        width: auto;
         height: 100vh;
         position: sticky;
         top: 0;

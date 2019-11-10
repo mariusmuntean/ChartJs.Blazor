@@ -1,4 +1,3 @@
-using ChartJs.Blazor.Sample.ServerSide;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 

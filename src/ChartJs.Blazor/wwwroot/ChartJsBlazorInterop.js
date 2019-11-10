@@ -4,8 +4,6 @@ class ChartJsInterop {
     constructor() {
         this.BlazorCharts = new Map();
     }
-    // Apply new config on top of the old one
-    // const newConfig = {...myChart.chart.config, config};
     SetupChart(config) {
         if (!this.BlazorCharts.has(config.canvasId)) {
             if (!config.options.legend)

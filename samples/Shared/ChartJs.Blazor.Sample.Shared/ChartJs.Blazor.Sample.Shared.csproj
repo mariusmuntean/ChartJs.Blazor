@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Components\Legend\" />
-    <Folder Include="Extensions\" />
+    <Folder Include="Services" />
   </ItemGroup>
 
 </Project>
