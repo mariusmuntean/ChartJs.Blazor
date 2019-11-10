@@ -1,0 +1,132 @@
+﻿@using System.Timers
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.ChartJS.Common.Axes
+@using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
+@using ChartJs.Blazor.ChartJS.Common.Properties
+@using ChartJs.Blazor.ChartJS.Common.Enums
+@using ChartJs.Blazor.ChartJS.Common.Time
+@using ChartJs.Blazor.ChartJS.LineChart
+@using ChartJs.Blazor.Util
+
+@implements IDisposable
+
+<h2>Linear Line Chart</h2>
+<ChartJsLineChart @ref="_lineChartJs" Config="@_lineConfig" Width="600" Height="300"/>
+<Button @onclick="Start">Start</Button>
+<Button @onclick="Stop">Stop</Button>
+
+@code
+{
+    LineConfig _lineConfig;
+    ChartJsLineChart _lineChartJs;
+
+    private LineDataset<Point> _sineSet;
+
+    private readonly Random _rnd = new Random();
+    private Timer _timer;
+    private DateTime _startTime;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _lineConfig = new LineConfig
+        {
+            Options = new LineOptions
+            {
+                Responsive = true,
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "Line Chart"
+                },
+                Scales = new Scales
+                {
+                    xAxes = new List<CartesianAxis>
+                    {
+                        new LinearCartesianAxis
+                        {
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "Zeit"
+                            },
+                            GridLines = new GridLines
+                            {
+                                Display = false
+                            },
+                            Ticks = new LinearCartesianTicks
+                            {
+                                SuggestedMin = -2
+                            }
+                        }
+                    },
+                    yAxes = new List<CartesianAxis>
+                    {
+                        new LinearCartesianAxis
+                        {
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "Temp"
+                            }
+                        }
+                    }
+                },
+                Hover = new LineOptionsHover
+                {
+                    Intersect = true,
+                    Mode = InteractionMode.Y
+                }
+            }
+        };
+
+        _sineSet = new LineDataset<Point>
+        {
+            BackgroundColor = ColorUtil.ColorString(0, 255, 0, 1.0),
+            BorderColor = ColorUtil.ColorString(0, 0, 255, 1.0),
+            Label = "Temp (C) per Hour",
+            Fill = false,
+            PointBackgroundColor = ColorUtil.RandomColorString(),
+            BorderWidth = 1,
+            PointRadius = 3,
+            PointBorderWidth = 1,
+        };
+
+        _lineConfig.Data.Datasets.Add(_sineSet);
+
+        _timer = new Timer(300) {AutoReset = true};
+        _timer.Elapsed += TimerOnElapsed;
+    }
+
+    private void TimerOnElapsed(object sender, ElapsedEventArgs e)
+    {
+        var x = (DateTime.Now - _startTime).TotalMilliseconds;
+        var fileTimeAsRadians = x * 0.0174533;
+        _sineSet.Add(new Point(x, Math.Sin(fileTimeAsRadians)));
+
+        if (_sineSet.Data.Count > 100)
+        {
+            _sineSet.RemoveAt(0); 
+        }
+
+        _lineChartJs.Update();
+
+        //InvokeAsync(StateHasChanged);
+    }
+
+    private void Start()
+    {
+        _startTime = DateTime.Now;
+        
+        _timer.Start();
+    }
+
+    private void Stop()
+    {
+        _timer.Stop();
+    }
+
+    public void Dispose()
+    {
+        _timer?.Dispose();
+    }
+
+}
