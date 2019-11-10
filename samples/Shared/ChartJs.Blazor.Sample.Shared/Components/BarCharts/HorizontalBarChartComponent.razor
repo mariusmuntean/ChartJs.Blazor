@@ -9,7 +9,8 @@
 @using ChartJs.Blazor.Util
 <h2>Horizontal Bar Chart</h2>
 <div class="row">
-	<button class="btn btn-primary" @onclick="OnClick">Update Chart</button>
+	<button class="btn btn-primary" @onclick="AddData">Add Data</button>
+	<button class="btn btn-primary" @onclick="RemoveData">Remove Data</button>
 	        </div>
 	        <ChartJsBarChart @ref="_barChart"
 	                          Config="@_barChartConfig"
@@ -86,13 +87,16 @@
 
 		        private void RemoveData()
 		        {
-			        if (_barChartConfig.Data.Labels.Count > 1)
+			        if (_barChartConfig.Data.Labels.Count > 0)
 			        {
 				        _barChartConfig.Data.Labels.RemoveAt(_barChartConfig.Data.Labels.Count - 1);
 			        }
 
 
-//			        _barDataSet.Data.GetEnumerator().
+			        if (_barDataSet.Data.Count > 0)
+			        {
+				        _barDataSet.RemoveAt(_barDataSet.Data.Count - 1);
+			        }
 
 
 			        _barChart.Update();
