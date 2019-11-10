@@ -49,8 +49,8 @@ class ChartJsInterop {
         if (config.options.legend.labels.filter &&
             typeof config.options.legend.labels.filter === "string" &&
             config.options.legend.labels.filter.includes(".")) {
-            var filtersNamespaceAndFunc = config.options.legend.labels.filter.split(".");
-            var filterFunc = window[filtersNamespaceAndFunc[0]][filtersNamespaceAndFunc[1]];
+            const filtersNamespaceAndFunc = config.options.legend.labels.filter.split(".");
+            const filterFunc = window[filtersNamespaceAndFunc[0]][filtersNamespaceAndFunc[1]];
             if (typeof filterFunc === "function") {
                 config.options.legend.labels.filter = filterFunc;
             }
@@ -77,8 +77,8 @@ class ChartJsInterop {
         if (config.options.legend.labels.generateLabels &&
             typeof config.options.legend.labels.generateLabels === "string" &&
             config.options.legend.labels.generateLabels.includes(".")) {
-            var generateLabelsNamespaceAndFunc = config.options.legend.labels.generateLabels.split(".");
-            var generateLabelsFunc = window[generateLabelsNamespaceAndFunc[0]][generateLabelsNamespaceAndFunc[1]];
+            const generateLabelsNamespaceAndFunc = config.options.legend.labels.generateLabels.split(".");
+            const generateLabelsFunc = window[generateLabelsNamespaceAndFunc[0]][generateLabelsNamespaceAndFunc[1]];
             if (typeof generateLabelsFunc === "function") {
                 config.options.legend.labels.generateLabels = generateLabelsFunc;
             }
@@ -103,8 +103,8 @@ class ChartJsInterop {
             // Js function
             if (typeof config.options.legend.onClick === "object" &&
                 config.options.legend.onClick.hasOwnProperty('fullFunctionName')) {
-                var onClickNamespaceAndFunc = config.options.legend.onClick.fullFunctionName.split(".");
-                var onClickFunc = window[onClickNamespaceAndFunc[0]][onClickNamespaceAndFunc[1]];
+                const onClickNamespaceAndFunc = config.options.legend.onClick.fullFunctionName.split(".");
+                const onClickFunc = window[onClickNamespaceAndFunc[0]][onClickNamespaceAndFunc[1]];
                 if (typeof onClickFunc === "function") {
                     config.options.legend.onClick = onClickFunc;
                 }
@@ -117,8 +117,8 @@ class ChartJsInterop {
                 config.options.legend.onClick.hasOwnProperty('assemblyName') &&
                 config.options.legend.onClick.hasOwnProperty('methodName')) {
                 config.options.legend.onClick = (function () {
-                    var assemblyName = config.options.legend.onClick.assemblyName;
-                    var methodName = config.options.legend.onClick.methodName;
+                    const assemblyName = config.options.legend.onClick.assemblyName;
+                    const methodName = config.options.legend.onClick.methodName;
                     return async function (sender, args) {
                         await DotNet.invokeMethodAsync(assemblyName, methodName, sender, args);
                     };
@@ -129,8 +129,8 @@ class ChartJsInterop {
                 config.options.legend.onClick.hasOwnProperty('instanceRef') &&
                 config.options.legend.onClick.hasOwnProperty('methodName')) {
                 config.options.legend.onClick = (function () {
-                    var instanceRef = config.options.legend.onClick.instanceRef;
-                    var methodName = config.options.legend.onClick.methodName;
+                    const instanceRef = config.options.legend.onClick.instanceRef;
+                    const methodName = config.options.legend.onClick.methodName;
                     return async function (sender, args) {
                         await instanceRef.invokeMethodAsync(methodName, sender, args);
                     };
@@ -145,8 +145,8 @@ class ChartJsInterop {
         if (config.options.legend.onHover) {
             if (typeof config.options.legend.onHover === "object" &&
                 config.options.legend.onHover.hasOwnProperty('fullFunctionName')) {
-                var onHoverNamespaceAndFunc = config.options.legend.onHover.fullFunctionName.split(".");
-                var onHoverFunc = window[onHoverNamespaceAndFunc[0]][onHoverNamespaceAndFunc[1]];
+                const onHoverNamespaceAndFunc = config.options.legend.onHover.fullFunctionName.split(".");
+                const onHoverFunc = window[onHoverNamespaceAndFunc[0]][onHoverNamespaceAndFunc[1]];
                 if (typeof onHoverFunc === "function") {
                     config.options.legend.onHover = onHoverFunc;
                 }
@@ -159,8 +159,8 @@ class ChartJsInterop {
                 config.options.legend.onHover.hasOwnProperty('assemblyName') &&
                 config.options.legend.onHover.hasOwnProperty('methodName')) {
                 config.options.legend.onHover = (function () {
-                    var assemblyName = config.options.legend.onHover.assemblyName;
-                    var methodName = config.options.legend.onHover.methodName;
+                    const assemblyName = config.options.legend.onHover.assemblyName;
+                    const methodName = config.options.legend.onHover.methodName;
                     return async function (sender, mouseOverEvent) {
                         await DotNet.invokeMethodAsync(assemblyName, methodName, sender, mouseOverEvent);
                     };
@@ -171,8 +171,8 @@ class ChartJsInterop {
                 config.options.legend.onHover.hasOwnProperty('instanceRef') &&
                 config.options.legend.onHover.hasOwnProperty('methodName')) {
                 config.options.legend.onHover = (function () {
-                    var instanceRef = config.options.legend.onHover.instanceRef;
-                    var methodName = config.options.legend.onHover.methodName;
+                    const instanceRef = config.options.legend.onHover.instanceRef;
+                    const methodName = config.options.legend.onHover.methodName;
                     return async function (sender, mouseOverEvent) {
                         await instanceRef.invokeMethodAsync(methodName, sender, mouseOverEvent);
                     };
