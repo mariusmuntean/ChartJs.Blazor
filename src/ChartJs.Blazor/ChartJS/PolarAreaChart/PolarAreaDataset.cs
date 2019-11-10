@@ -1,8 +1,8 @@
-﻿using ChartJs.Blazor.ChartJS.Common;
+﻿using System;
+using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.Charts;
 using ChartJs.Blazor.Util;
-
 using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.PolarAreaChart
@@ -10,8 +10,10 @@ namespace ChartJs.Blazor.ChartJS.PolarAreaChart
     /// <summary>
     /// A dataset for a <see cref="ChartJsPolarAreaChart"/>
     /// </summary>
-    public class PolarAreaDataset
+    public class PolarAreaDataset : IDataset
     {
+        public string Id { get; } = Guid.NewGuid().ToString();
+
         /// <summary>
         /// Gets the chart type. <see cref="ChartType.PolarArea"/> in this case. This is needed for mixed datasets only.
         /// </summary>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ChartJs.Blazor.ChartJS.Common.Enums;
 
 namespace ChartJs.Blazor.ChartJS.MixedChart
@@ -7,9 +8,10 @@ namespace ChartJs.Blazor.ChartJS.MixedChart
     /// The base class for a dataset that implements the covariant <see cref="IMixableDataset{TData}"/>
     /// </summary>
     /// <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="Common.Wrappers"/> for value types.</typeparam>
-    public abstract class BaseMixableDataset<TData> : IMixableDataset<TData> 
-        where TData : class
+    public abstract class BaseMixableDataset<TData> : IMixableDataset<TData>  where TData : class
     {
+        public string Id { get; set; } = Guid.NewGuid().ToString();
+
         /// <summary>
         /// The type of chart this dataset is for.
         /// </summary>

@@ -584,6 +584,7 @@ declare namespace Chart {
     }) => T;
 
     interface ChartDataSets {
+        id: string;
         cubicInterpolationMode?: 'default' | 'monotone';
         backgroundColor?: ChartColor | ChartColor[] | Scriptable<ChartColor>;
         borderAlign?: BorderAlignment | BorderAlignment[] | Scriptable<BorderAlignment>;

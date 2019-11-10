@@ -20,14 +20,51 @@ class ChartJsInterop {
         if (!this.BlazorCharts.has(config.canvasId))
             throw `Could not find a chart with the given id. ${config.canvasId}`;
         let myChart = this.BlazorCharts.get(config.canvasId);
-        myChart.config.data.datasets = config.data.datasets;
-        myChart.config.data.labels = config.data.labels;
-        // Mutating the Options seems better because the rest of the computed options members are preserved
+        /// Handle datasets
+        this.HandleDatasets(myChart, config);
+        /// Handle labels
+        this.MergeLabels(myChart, config);
+        // Handle options - mutating the Options seems better because the rest of the computed options members are preserved
         Object.entries(config.options).forEach(e => {
             myChart.config.options[e[0]] = e[1];
         });
         myChart.update();
         return true;
+    }
+    HandleDatasets(myChart, config) {
+        // Remove any datasets the aren't in the new config
+        let dataSetsToRemove = myChart.config.data.datasets.filter(d => config.data.datasets.find(newD => newD.id === d.id) === undefined);
+        for (const d of dataSetsToRemove) {
+            const indexToRemoveAt = myChart.config.data.datasets.indexOf(d);
+            if (indexToRemoveAt != -1) {
+                myChart.config.data.datasets.splice(indexToRemoveAt, 1);
+            }
+        }
+        // Add new datasets
+        let dataSetsToAdd = config.data.datasets.filter(newD => myChart.config.data.datasets.find(d => newD.id === d.id) === undefined);
+        dataSetsToAdd.forEach(d => myChart.config.data.datasets.push(d));
+        // Update any existing datasets
+        let datasetsToUpdate = myChart.config.data.datasets
+            .filter(d => config.data.datasets.find(newD => newD.id === d.id) !== undefined)
+            .map(d => ({ oldD: d, newD: config.data.datasets.find(val => val.id === d.id) }));
+        datasetsToUpdate.forEach(pair => {
+            // pair.oldD.data.slice(0, pair.oldD.data.length);
+            // pair.newD.data.forEach(newEntry => pair.oldD.data.push(newEntry));
+            Object.entries(pair.newD).forEach(entry => pair.oldD[entry[0]] = entry[1]);
+        });
+    }
+    MergeLabels(myChart, config) {
+        if (config.data.labels === undefined || config.data.labels.length === 0) {
+            myChart.config.data.labels = new Array();
+            return;
+        }
+        if (!myChart.config.data.labels) {
+            myChart.config.data.labels = new Array();
+        }
+        // clear existing labels
+        myChart.config.data.labels.splice(0, myChart.config.data.labels.length);
+        // add all the new labels
+        config.data.labels.forEach(l => myChart.config.data.labels.push(l));
     }
     initializeChartjsChart(config) {
         let ctx = document.getElementById(config.canvasId);

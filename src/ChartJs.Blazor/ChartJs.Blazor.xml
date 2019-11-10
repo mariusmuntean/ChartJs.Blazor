@@ -1784,6 +1784,12 @@
             If true, grid lines will be shifted to be between labels. This is set to true for a category scale in a bar chart by default.
             </summary>
         </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.IDataset">
+            <summary>
+            Dataset contract, enforcing the existence of the Id member
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:ChartJs.Blazor.ChartJS.Common.IDataset.Id" -->
         <member name="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1">
             <summary>
             Represents an object that can be either a single value or an array of values. This is used for type safe js-interop.

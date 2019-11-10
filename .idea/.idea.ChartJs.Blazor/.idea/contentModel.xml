@@ -352,6 +352,7 @@
                 <e p="TooltipPosition.cs" t="Include" />
               </e>
               <e p="GridLines.cs" t="Include" />
+              <e p="IDataset.cs" t="Include" />
               <e p="IndexableOption.cs" t="Include" />
               <e p="IndexableOptionConverter.cs" t="Include" />
               <e p="JsonWriteOnlyConverter.cs" t="Include" />

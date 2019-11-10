@@ -1,13 +1,15 @@
-﻿using ChartJs.Blazor.ChartJS.Common;
+﻿using System;
+using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.Util;
-
 using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.RadarChart
 {
     public class RadarDataset
     {
+        public string Id { get; } = Guid.NewGuid().ToString();
+
         public ChartType Type { get; } = ChartType.Radar;
 
         /// <summary>

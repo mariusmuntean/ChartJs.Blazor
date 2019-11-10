@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.Util;
 
 namespace ChartJs.Blazor.ChartJS.BubbleChart
 {
-    public class BubbleDataset
+    public class BubbleDataset : IDataset
     {
+        public string Id { get; } = Guid.NewGuid().ToString();
+        
         /// <summary>
         /// rgba(0,0,0,0.1)'.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
@@ -24,7 +27,7 @@ namespace ChartJs.Blazor.ChartJS.BubbleChart
         /// </summary>
         public int BorderWidth { get; set; } = 3;
 
-        public List<BubbleDataPoint> Data { get; set; } = new List<BubbleDataPoint> { new BubbleDataPoint { X = 1, Y = 2, r = 3 } };
+        public List<BubbleDataPoint> Data { get; set; } = new List<BubbleDataPoint> {new BubbleDataPoint {X = 1, Y = 2, r = 3}};
 
         /// <summary>
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>

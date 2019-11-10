@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.Util;
@@ -8,8 +9,10 @@ namespace ChartJs.Blazor.ChartJS.PieChart
     /// <summary>
     /// A dataset for a <see cref="Charts.ChartJsPieChart"/>
     /// </summary>
-    public class PieDataset
+    public class PieDataset : IDataset
     {
+        public string Id { get; } = Guid.NewGuid().ToString();
+
         /// <summary>
         /// Gets or sets the chart type. <see cref="ChartType.Pie"/> in this case. This is needed for mixed datasets only.
         /// </summary>
