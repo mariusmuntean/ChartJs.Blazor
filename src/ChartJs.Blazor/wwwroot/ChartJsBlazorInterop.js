@@ -1,11 +1,3 @@
-function AttachChartJsInterop() {
-    window[ChartJsInterop.name] = new ChartJsInterop();
-}
-AttachChartJsInterop();
-function AttachMomentJsInterop() {
-    window[MomentJsInterop.name] = new MomentJsInterop();
-}
-AttachMomentJsInterop();
 /* Set up all the chartjs interop stuff */
 /// <reference path="types/Chart.min.d.ts" />   
 class ChartJsInterop {
@@ -254,4 +246,14 @@ class MomentJsInterop {
         return true;
     }
 }
+/// <reference path="ChartJsInterop.ts" />
+/// <reference path="MomentJsInterop.ts" />
+function AttachChartJsInterop() {
+    window[ChartJsInterop.name] = new ChartJsInterop();
+}
+AttachChartJsInterop();
+function AttachMomentJsInterop() {
+    window[MomentJsInterop.name] = new MomentJsInterop();
+}
+AttachMomentJsInterop();
 //# sourceMappingURL=ChartJsBlazorInterop.js.map

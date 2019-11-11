@@ -555,10 +555,9 @@
             <e p="ChartJsBlazorInterop.js" t="Include" />
             <e p="ChartJsBlazorInterop.js.map" t="Include" />
             <e p="moment-with-locales.min.js" t="Include" />
-            <e p="MomentJsInterop.js" t="Include" />
-            <e p="MomentJsInterop.js.map" t="Include" />
             <e p="ts" t="Include">
               <e p="ChartJsBlazorInterop.ts" t="Include" />
+              <e p="ChartJsInterop.ts" t="Include" />
               <e p="MomentJsInterop.ts" t="Include" />
               <e p="types" t="Include">
                 <e p="Chart.min.d.ts" t="Include" />
