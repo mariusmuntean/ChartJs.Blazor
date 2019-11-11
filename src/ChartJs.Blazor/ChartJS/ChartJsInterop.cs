@@ -1,6 +1,4 @@
 ﻿using ChartJs.Blazor.ChartJS.Common;
-using ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler;
-using ChartJs.Blazor.ChartJS.Common.Legends.OnHover;
 using Microsoft.JSInterop;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -10,6 +8,8 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
+using ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler;
+using ChartJs.Blazor.ChartJS.Common.Handlers.OnHover;
 
 namespace ChartJs.Blazor.ChartJS
 {
@@ -74,7 +74,7 @@ namespace ChartJs.Blazor.ChartJS
                         // if not keep it as is
                         return list
                             .Select(o => o is IDictionary<string, object>
-                                ? RecursivelyConvertIDictToDict((IDictionary<string, object>)o)
+                                ? RecursivelyConvertIDictToDict((IDictionary<string, object>) o)
                                 : o
                             );
                     }
@@ -122,7 +122,7 @@ namespace ChartJs.Blazor.ChartJS
             dynamic clearConfigExpando = JsonConvert.DeserializeObject<ExpandoObject>(cleanChartConfigStr, new ExpandoObjectConverter());
 
             // Restore any .net refs that need to be passed intact
-            var dynamicChartConfig = (dynamic)chartConfig;
+            var dynamicChartConfig = (dynamic) chartConfig;
             if (dynamicChartConfig?.Options?.Legend?.OnClick != null
                 && dynamicChartConfig?.Options?.Legend?.OnClick is DotNetInstanceClickHandler)
             {
@@ -137,6 +137,13 @@ namespace ChartJs.Blazor.ChartJS
                 clearConfigExpando.options = clearConfigExpando.options ?? new { };
                 clearConfigExpando.options.legend = clearConfigExpando.options.legend ?? new { };
                 clearConfigExpando.options.legend.onHover = dynamicChartConfig.Options.Legend.OnHover;
+            }
+
+            if (dynamicChartConfig?.Options?.OnClick != null
+                && dynamicChartConfig?.Options?.OnClick is IClickHandler)
+            {
+                clearConfigExpando.options = clearConfigExpando.options ?? new { };
+                clearConfigExpando.options.onClick = dynamicChartConfig.Options.OnClick;
             }
 
             return clearConfigExpando;

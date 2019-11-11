@@ -1,9 +1,9 @@
-﻿namespace ChartJs.Blazor.ChartJS.Common.Legends.OnHover
+﻿namespace ChartJs.Blazor.ChartJS.Common.Handlers.OnHover
 {
     /// <summary>
-    /// Specified the namespace and name of a Javascript function that should be invoked when hovering on Legend items
+    /// Specified the namespace and name of a Javascript function that should be invoked when hovering
     /// </summary>
-    public class JsHoverHandler : ILegendHoverHandler
+    public class JsHoverHandler : IHoverHandler
     {
         /// <summary>
         /// The namespace and name of a Javascript function to be called when hovering the mouse cursor over a Legend item.

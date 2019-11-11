@@ -1,4 +1,5 @@
-﻿using ChartJs.Blazor.ChartJS.Common.Legends;
+﻿using ChartJs.Blazor.ChartJS.Common.Handlers;
+using ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler;
 using ChartJs.Blazor.ChartJS.Common.Properties;
 
 namespace ChartJs.Blazor.ChartJS.Common
@@ -44,5 +45,7 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// Gets or sets the tooltip options for this chart.
         /// </summary>
         public Tooltips Tooltips { get; set; }
+
+        public IClickHandler OnClick { get; set; }
     }
 }

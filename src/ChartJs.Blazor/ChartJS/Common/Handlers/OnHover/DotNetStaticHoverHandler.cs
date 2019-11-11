@@ -1,12 +1,12 @@
 ﻿using ChartJs.Blazor.ChartJS.Common.Utils;
 using Microsoft.JSInterop;
 
-namespace ChartJs.Blazor.ChartJS.Common.Legends.OnHover
+namespace ChartJs.Blazor.ChartJS.Common.Handlers.OnHover
 {
     /// <summary>
-    /// Specifies a static .net method that should be called when hovering on a Legend item.
+    /// Specifies a static .net method that should be called when hovering on an item.
     /// </summary>
-    public class DotNetStaticHoverHandler : ILegendHoverHandler
+    public class DotNetStaticHoverHandler : IHoverHandler
     {
         /// <summary>
         /// The name of the assembly the method is located in

@@ -1784,6 +1784,260 @@
             If true, grid lines will be shifted to be between labels. This is set to true for a category scale in a bar chart by default.
             </summary>
         </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration">
+            <summary>
+            The legend label configuration is nested below the legend configuration
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.BoxWidth">
+            <summary>
+            width of colored box
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.FontSize">
+            <summary>
+            Font size of text
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.FontStyle">
+            <summary>
+            Gets or sets the font style for the labels text.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.FontColor">
+            <summary>
+            Color of text.
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.Padding">
+            <summary>
+            Padding between rows of colored boxes.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.GenerateLabels">
+            <summary>
+            Generates legend items for each thing in the legend. Default implementation returns the text + styling for the color box. See Legend Item for details.
+            <para> See Legend Item: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-item-interface </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.Filter">
+            <summary>
+            Filters legend items out of the legend. Receives 2 parameters, a Legend Item and the chart data.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.UsePointStyle">
+            <summary>
+            Label style will match corresponding point style (size is based on <see cref="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.FontSize"/>, <see cref="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.BoxWidth"/> is not used in this case).
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.Legend">
+            <summary>
+            The chart legend displays data about the datasets that are appearing on the chart.
+            <para>Link: http://www.chartjs.org/docs/latest/configuration/legend.html </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.Display">
+            <summary>
+            Determines if the legend is displayed
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.Position">
+            <summary>
+            Position of the legend
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.FullWidth">
+            <summary>
+            Marks that this box should take the full width of the canvas (pushing down other boxes). This is unlikely to need to be changed in day-to-day use.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.OnClick">
+            <summary>
+            The callback that is called when a click event is registered on a label item.
+            <para>See <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetInstanceClickHandler"></see>, <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler"></see> and <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.JsClickHandler"></see></para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.OnHover">
+            <summary>
+            The callback that is called when a 'mousemove' event is registered on top of a label item
+            <para>See <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetInstanceHoverHandler"></see>, <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetStaticHoverHandler"></see> and <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.JsHoverHandler"></see></para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.Reverse">
+            <summary>
+            Legend will show datasets in reverse order.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.Labels">
+            <summary>
+            Configuration options for the legend-labels
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetInstanceClickHandler">
+            <summary>
+            Specifies a .net instance method that should be called when clicking on a Legend item.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetInstanceClickHandler.InstanceClickHandler">
+            <summary>
+            The delegate for a click handler.
+            <para>Helps enforcing the signature of the legend item click handler</para>
+            </summary>
+            <param name="sender">The sender of the click event</param>
+            <param name="args">Click event args</param>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetInstanceClickHandler.InstanceRef">
+            <summary>
+            The <see cref="T:Microsoft.JSInterop.DotNetObjectReference"/> for the instance the delegate will be executed on.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetInstanceClickHandler.MethodName">
+            <summary>
+            The name of the method behind the delegate
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetInstanceClickHandler.#ctor(ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetInstanceClickHandler.InstanceClickHandler)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler"/>
+            </summary>
+            <param name="clickHandler">The delegate for a click handler.</param>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler">
+            <summary>
+            Specifies a static .net method that should be called when clicking
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler.StaticClickHandler">
+            <summary>
+            The delegate for a click handler.
+            <para>Helps enforcing the signature of the legend item click handler</para>
+            </summary>
+            <param name="sender">The sender of the click event</param>
+            <param name="args">Click event args</param>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler.AssemblyName">
+            <summary>
+            The name of the assembly the method is located in
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler.MethodName">
+            <summary>
+            The name of the method behind the delegate
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler.#ctor(ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler.StaticClickHandler)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler"/>
+            </summary>
+            <param name="clickHandler">The delegate for a click handler</param>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.IClickHandler">
+            <summary>
+            Specifies how clicking items is handled
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.JsClickHandler">
+            <summary>
+            Specified the namespace and name of a Javascript function that should be invoked when clicking
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.JsClickHandler.FullFunctionName">
+            <summary>
+            The namespace and name of a Javascript function to be called when clicking on a Legend item.
+            <para>E.g. "SampleFunctions.HideOtherDatasetsFunc"</para>
+            <para>Note 1: You must create this function in your JS file in wwwroot and reference it in _Host.cshtml</para>
+            <para>Note 2: Make sure the function can handle the click sender and the click event args</para>
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.JsClickHandler.#ctor(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.JsClickHandler"/>
+            </summary>
+            <param name="fullFunctionName">The namespace and name of a Javascript function to be called when clicking on a Legend item.</param>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetInstanceHoverHandler">
+            <summary>
+            Specifies a .net instance method that should be called when hovering on an item.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetInstanceHoverHandler.InstanceRef">
+            <summary>
+            The <see cref="T:Microsoft.JSInterop.DotNetObjectReference"/> for the instance the delegate will be executed on.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetInstanceHoverHandler.MethodName">
+            <summary>
+            The name of the method behind the delegate
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetInstanceHoverHandler.LegendItemOnHover">
+            <summary>
+            The delegate for a hover handler.
+            <para>Helps enforcing the signature of the legend item hover handler</para>
+            </summary>
+            <param name="sender">The sender of the hover event</param>
+            <param name="mouseMove"></param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetInstanceHoverHandler.#ctor(ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetInstanceHoverHandler.LegendItemOnHover)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetInstanceHoverHandler"/>
+            </summary>
+            <param name="legendItemOnHoverHandler">The delegate for a hover handler</param>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetStaticHoverHandler">
+            <summary>
+            Specifies a static .net method that should be called when hovering on an item.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetStaticHoverHandler.AssemblyName">
+            <summary>
+            The name of the assembly the method is located in
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetStaticHoverHandler.MethodName">
+            <summary>
+            The name of the method behind the delegate
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetStaticHoverHandler.LegendItemOnHover">
+            <summary>
+            The delegate for a hover handler.
+            <para>Helps enforcing the signature of the legend item hover handler</para>
+            </summary>
+            <param name="sender">The sender of the hover event</param>
+            <param name="mouseMove"></param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetStaticHoverHandler.#ctor(ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetStaticHoverHandler.LegendItemOnHover)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetStaticHoverHandler"/>
+            </summary>
+            <param name="legendItemOnHoverHandler">The delegate for a hover handler.</param>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.IHoverHandler">
+            <summary>
+            Specifies how hovering on items is handled
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.JsHoverHandler">
+            <summary>
+            Specified the namespace and name of a Javascript function that should be invoked when hovering
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.JsHoverHandler.FullFunctionName">
+            <summary>
+            The namespace and name of a Javascript function to be called when hovering the mouse cursor over a Legend item.
+            <para>E.g. "SampleFunctions.ItemHoverHandler"</para>
+            <para>Note 1: You must create this function in your JS file in wwwroot and reference it in index.html</para>
+            <para>Note 2: Make sure the function can handle the 'mousemove' event</para>
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.JsHoverHandler.#ctor(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.JsHoverHandler"/>
+            </summary>
+            <param name="fullFunctionName">The namespace and name of a Javascript function to be called when hovering on a Legend item.</param>
+        </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.IDataset">
             <summary>
             Dataset contract, enforcing the existence of the Id member
@@ -1876,260 +2130,6 @@
             <param name="a">The first <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> to compare</param>
             <param name="b">The second <see cref="T:ChartJs.Blazor.ChartJS.Common.IndexableOption`1"/> to compare</param>
             <returns>true if the value of a is different from the value of b; otherwise, false.</returns>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration">
-            <summary>
-            The legend label configuration is nested below the legend configuration
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration.BoxWidth">
-            <summary>
-            width of colored box
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration.FontSize">
-            <summary>
-            Font size of text
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration.FontStyle">
-            <summary>
-            Gets or sets the font style for the labels text.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration.FontColor">
-            <summary>
-            Color of text.
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration.Padding">
-            <summary>
-            Padding between rows of colored boxes.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration.GenerateLabels">
-            <summary>
-            Generates legend items for each thing in the legend. Default implementation returns the text + styling for the color box. See Legend Item for details.
-            <para> See Legend Item: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-item-interface </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration.Filter">
-            <summary>
-            Filters legend items out of the legend. Receives 2 parameters, a Legend Item and the chart data.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration.UsePointStyle">
-            <summary>
-            Label style will match corresponding point style (size is based on <see cref="P:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration.FontSize"/>, <see cref="P:ChartJs.Blazor.ChartJS.Common.Legends.LegendLabelConfiguration.BoxWidth"/> is not used in this case).
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.Legend">
-            <summary>
-            The chart legend displays data about the datasets that are appearing on the chart.
-            <para>Link: http://www.chartjs.org/docs/latest/configuration/legend.html </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.Legend.Display">
-            <summary>
-            Determines if the legend is displayed
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.Legend.Position">
-            <summary>
-            Position of the legend
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.Legend.FullWidth">
-            <summary>
-            Marks that this box should take the full width of the canvas (pushing down other boxes). This is unlikely to need to be changed in day-to-day use.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.Legend.OnClick">
-            <summary>
-            The callback that is called when a click event is registered on a label item.
-            <para>See <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetInstanceClickHandler"></see>, <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler"></see> and <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.JsClickHandler"></see></para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.Legend.OnHover">
-            <summary>
-            The callback that is called when a 'mousemove' event is registered on top of a label item
-            <para>See <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler"></see>, <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetStaticHoverHandler"></see> and <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.JsHoverHandler"></see></para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.Legend.Reverse">
-            <summary>
-            Legend will show datasets in reverse order.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.Legend.Labels">
-            <summary>
-            Configuration options for the legend-labels
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetInstanceClickHandler">
-            <summary>
-            Specifies a .net instance method that should be called when clicking on a Legend item.
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetInstanceClickHandler.InstanceClickHandler">
-            <summary>
-            The delegate for a click handler.
-            <para>Helps enforcing the signature of the legend item click handler</para>
-            </summary>
-            <param name="sender">The sender of the click event</param>
-            <param name="args">Click event args</param>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetInstanceClickHandler.InstanceRef">
-            <summary>
-            The <see cref="T:Microsoft.JSInterop.DotNetObjectReference"/> for the instance the delegate will be executed on.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetInstanceClickHandler.MethodName">
-            <summary>
-            The name of the method behind the delegate
-            </summary>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetInstanceClickHandler.#ctor(ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetInstanceClickHandler.InstanceClickHandler)">
-            <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler"/>
-            </summary>
-            <param name="clickHandler">The delegate for a click handler.</param>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler">
-            <summary>
-            Specifies a static .net method that should be called when clicking on a Legend item.
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler.StaticClickHandler">
-            <summary>
-            The delegate for a click handler.
-            <para>Helps enforcing the signature of the legend item click handler</para>
-            </summary>
-            <param name="sender">The sender of the click event</param>
-            <param name="args">Click event args</param>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler.AssemblyName">
-            <summary>
-            The name of the assembly the method is located in
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler.MethodName">
-            <summary>
-            The name of the method behind the delegate
-            </summary>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler.#ctor(ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler.StaticClickHandler)">
-            <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.DotNetStaticClickHandler"/>
-            </summary>
-            <param name="clickHandler">The delegate for a click handler</param>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.ILegendClickHandler">
-            <summary>
-            Specifies how clicking on Legend items is handled
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.JsClickHandler">
-            <summary>
-            Specified the namespace and name of a Javascript function that should be invoked when clicking Legend items
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.JsClickHandler.FullFunctionName">
-            <summary>
-            The namespace and name of a Javascript function to be called when clicking on a Legend item.
-            <para>E.g. "SampleFunctions.HideOtherDatasetsFunc"</para>
-            <para>Note 1: You must create this function in your JS file in wwwroot and reference it in _Host.cshtml</para>
-            <para>Note 2: Make sure the function can handle the click sender and the click event args</para>
-            </summary>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.JsClickHandler.#ctor(System.String)">
-            <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler.JsClickHandler"/>
-            </summary>
-            <param name="fullFunctionName">The namespace and name of a Javascript function to be called when clicking on a Legend item.</param>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler">
-            <summary>
-            Specifies a .net instance method that should be called when hovering on a Legend item.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler.InstanceRef">
-            <summary>
-            The <see cref="T:Microsoft.JSInterop.DotNetObjectReference"/> for the instance the delegate will be executed on.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler.MethodName">
-            <summary>
-            The name of the method behind the delegate
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler.LegendItemOnHover">
-            <summary>
-            The delegate for a hover handler.
-            <para>Helps enforcing the signature of the legend item hover handler</para>
-            </summary>
-            <param name="sender">The sender of the hover event</param>
-            <param name="mouseMove"></param>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler.#ctor(ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler.LegendItemOnHover)">
-            <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetInstanceHoverHandler"/>
-            </summary>
-            <param name="legendItemOnHoverHandler">The delegate for a hover handler</param>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetStaticHoverHandler">
-            <summary>
-            Specifies a static .net method that should be called when hovering on a Legend item.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetStaticHoverHandler.AssemblyName">
-            <summary>
-            The name of the assembly the method is located in
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetStaticHoverHandler.MethodName">
-            <summary>
-            The name of the method behind the delegate
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetStaticHoverHandler.LegendItemOnHover">
-            <summary>
-            The delegate for a hover handler.
-            <para>Helps enforcing the signature of the legend item hover handler</para>
-            </summary>
-            <param name="sender">The sender of the hover event</param>
-            <param name="mouseMove"></param>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetStaticHoverHandler.#ctor(ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetStaticHoverHandler.LegendItemOnHover)">
-            <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.DotNetStaticHoverHandler"/>
-            </summary>
-            <param name="legendItemOnHoverHandler">The delegate for a hover handler.</param>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.ILegendHoverHandler">
-            <summary>
-            Specifies how hovering on Legend items is handled
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.JsHoverHandler">
-            <summary>
-            Specified the namespace and name of a Javascript function that should be invoked when hovering on Legend items
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.JsHoverHandler.FullFunctionName">
-            <summary>
-            The namespace and name of a Javascript function to be called when hovering the mouse cursor over a Legend item.
-            <para>E.g. "SampleFunctions.ItemHoverHandler"</para>
-            <para>Note 1: You must create this function in your JS file in wwwroot and reference it in index.html</para>
-            <para>Note 2: Make sure the function can handle the 'mousemove' event</para>
-            </summary>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.JsHoverHandler.#ctor(System.String)">
-            <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Legends.OnHover.JsHoverHandler"/>
-            </summary>
-            <param name="fullFunctionName">The namespace and name of a Javascript function to be called when hovering on a Legend item.</param>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Properties.Animation">
             <summary>

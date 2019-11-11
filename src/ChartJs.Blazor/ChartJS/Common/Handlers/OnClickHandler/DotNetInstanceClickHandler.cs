@@ -2,12 +2,12 @@
 using System.Linq;
 using Microsoft.JSInterop;
 
-namespace ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
+namespace ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler
 {
     /// <summary>
     /// Specifies a .net instance method that should be called when clicking on a Legend item.
     /// </summary>
-    public class DotNetInstanceClickHandler : ILegendClickHandler
+    public class DotNetInstanceClickHandler : IClickHandler
     {
         /// <summary>
         /// The delegate for a click handler.

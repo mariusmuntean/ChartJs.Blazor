@@ -1,9 +1,9 @@
-﻿namespace ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
+﻿namespace ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler
 {
     /// <summary>
-    /// Specified the namespace and name of a Javascript function that should be invoked when clicking Legend items
+    /// Specified the namespace and name of a Javascript function that should be invoked when clicking
     /// </summary>
-    public class JsClickHandler : ILegendClickHandler
+    public class JsClickHandler : IClickHandler
     {
         /// <summary>
         /// The namespace and name of a Javascript function to be called when clicking on a Legend item.

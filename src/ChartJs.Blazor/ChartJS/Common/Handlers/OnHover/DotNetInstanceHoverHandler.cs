@@ -1,12 +1,12 @@
 ﻿using ChartJs.Blazor.ChartJS.Common.Utils;
 using Microsoft.JSInterop;
 
-namespace ChartJs.Blazor.ChartJS.Common.Legends.OnHover
+namespace ChartJs.Blazor.ChartJS.Common.Handlers.OnHover
 {
     /// <summary>
-    /// Specifies a .net instance method that should be called when hovering on a Legend item.
+    /// Specifies a .net instance method that should be called when hovering on an item.
     /// </summary>
-    public class DotNetInstanceHoverHandler : ILegendHoverHandler
+    public class DotNetInstanceHoverHandler : IHoverHandler
     {
         /// <summary>
         /// The <see cref="DotNetObjectReference"/> for the instance the delegate will be executed on.

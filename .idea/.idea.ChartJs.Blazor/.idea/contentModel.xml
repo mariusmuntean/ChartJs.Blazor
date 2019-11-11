@@ -89,7 +89,7 @@
                 <e p="SineLineChartPage.razor" t="Include" />
               </e>
               <e p="Handlers" t="Include">
-                <e p="LegendOnClickHandlerpage.razor" t="Include" />
+                <e p="OnClickHandlerPage.razor" t="Include" />
               </e>
               <e p="Index.razor" t="Include" />
               <e p="LineChart" t="Include">
@@ -216,7 +216,7 @@
                 <e p="SineLineChartPage.razor" t="Include" />
               </e>
               <e p="Handlers" t="Include">
-                <e p="LegendOnClickHandlerpage.razor" t="Include" />
+                <e p="OnClickHandlerPage.razor" t="Include" />
               </e>
               <e p="LineChart" t="Include">
                 <e p="LinearLineChartPage.razor" t="Include" />
@@ -286,7 +286,7 @@
                 <e p="SineLineChartComponent.razor" t="Include" />
               </e>
               <e p="Handlers" t="Include">
-                <e p="LegendClickHandlerComponent.razor" t="Include" />
+                <e p="DotNetInstanceClickHandlerComponent.razor" t="Include" />
               </e>
               <e p="Legend" t="Include" />
               <e p="LineChart" t="Include">
@@ -427,26 +427,26 @@
                 <e p="TooltipPosition.cs" t="Include" />
               </e>
               <e p="GridLines.cs" t="Include" />
-              <e p="IDataset.cs" t="Include" />
-              <e p="IndexableOption.cs" t="Include" />
-              <e p="IndexableOptionConverter.cs" t="Include" />
-              <e p="JsonWriteOnlyConverter.cs" t="Include" />
-              <e p="Legends" t="Include">
+              <e p="Handlers" t="Include">
                 <e p="Labels.cs" t="Include" />
                 <e p="Legend.cs" t="Include" />
                 <e p="OnClickHandler" t="Include">
                   <e p="DotNetInstanceClickHandler.cs" t="Include" />
                   <e p="DotNetStaticClickHandler.cs" t="Include" />
-                  <e p="ILegendClickHandler.cs" t="Include" />
+                  <e p="IClickHandler.cs" t="Include" />
                   <e p="JsClickHandler.cs" t="Include" />
                 </e>
                 <e p="OnHover" t="Include">
                   <e p="DotNetInstanceHoverHandler.cs" t="Include" />
                   <e p="DotNetStaticHoverHandler.cs" t="Include" />
-                  <e p="ILegendOnHoverHandler.cs" t="Include" />
+                  <e p="IOnHoverHandler.cs" t="Include" />
                   <e p="JsHoverHandler.cs" t="Include" />
                 </e>
               </e>
+              <e p="IDataset.cs" t="Include" />
+              <e p="IndexableOption.cs" t="Include" />
+              <e p="IndexableOptionConverter.cs" t="Include" />
+              <e p="JsonWriteOnlyConverter.cs" t="Include" />
               <e p="Point.cs" t="Include" />
               <e p="Properties" t="Include">
                 <e p="Animation.cs" t="Include" />

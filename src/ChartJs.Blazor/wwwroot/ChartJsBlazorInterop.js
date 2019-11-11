@@ -70,8 +70,10 @@ class ChartJsInterop {
         let ctx = document.getElementById(config.canvasId);
         // replace the Legend's OnHover function name with the actual function (if present)
         this.WireUpOnHover(config);
+        // replace the Options' OnClick function name with the actual function (if present)
+        this.WireUpOptionsOnClickFunc(config);
         // replace the Legend's OnClick function name with the actual function (if present)
-        this.WireUpOnClick(config);
+        this.WireUpLegendOnClick(config);
         // replace the Label's GenerateLabels function name with the actual function (if present)
         this.WireUpGenerateLabelsFunc(config);
         // replace the Label's Filter function name with the actual function (if present)
@@ -127,7 +129,60 @@ class ChartJsInterop {
             config.options.legend.labels.generateLabels = getDefaultFunc(config.type);
         }
     }
-    WireUpOnClick(config) {
+    WireUpOptionsOnClickFunc(config) {
+        let getDefaultFunc = function (type) {
+            let defaults = Chart.defaults[type] || Chart.defaults.global;
+            if (defaults && defaults.onClick) {
+                return defaults.onClick;
+            }
+            return undefined;
+        };
+        if (config.options.onClick) {
+            // Js function
+            if (typeof config.options.onClick === "object" &&
+                config.options.onClick.hasOwnProperty('fullFunctionName')) {
+                let onClickStringName = config.options.onClick;
+                const onClickNamespaceAndFunc = onClickStringName.fullFunctionName.split(".");
+                const onClickFunc = window[onClickNamespaceAndFunc[0]][onClickNamespaceAndFunc[1]];
+                if (typeof onClickFunc === "function") {
+                    config.options.onClick = onClickFunc;
+                }
+                else { // fallback to the default
+                    config.options.onClick = getDefaultFunc(config.type);
+                }
+            }
+            // .Net static method
+            else if (typeof config.options.onClick === "object" &&
+                config.options.onClick.hasOwnProperty('assemblyName') &&
+                config.options.onClick.hasOwnProperty('methodName')) {
+                config.options.onClick = (function () {
+                    const onClickStatickHandler = config.options.onClick;
+                    const assemblyName = onClickStatickHandler.assemblyName;
+                    const methodName = onClickStatickHandler.methodName;
+                    return async function (sender, args) {
+                        await DotNet.invokeMethodAsync(assemblyName, methodName, sender, args);
+                    };
+                })();
+            }
+            // .Net instance method
+            else if (typeof config.options.onClick === "object" &&
+                config.options.onClick.hasOwnProperty('instanceRef') &&
+                config.options.onClick.hasOwnProperty('methodName')) {
+                config.options.onClick = (function () {
+                    const onClickInstanceHandler = config.options.onClick;
+                    const instanceRef = onClickInstanceHandler.instanceRef;
+                    const methodName = onClickInstanceHandler.methodName;
+                    return async function (sender, args) {
+                        await instanceRef.invokeMethodAsync(methodName, sender, args.map(e => Object.assign({}, e, { _chart: undefined })));
+                    };
+                })();
+            }
+        }
+        else { // fallback to the default
+            config.options.onClick = getDefaultFunc(config.type);
+        }
+    }
+    WireUpLegendOnClick(config) {
         let getDefaultHandler = type => {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
             if (defaults.legend &&
