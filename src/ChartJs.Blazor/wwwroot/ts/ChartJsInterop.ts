@@ -1,18 +1,19 @@
-function AttachChartJsInterop() {
-    window[ChartJsInterop.name] = new ChartJsInterop();
-}
-AttachChartJsInterop();
-function AttachMomentJsInterop() {
-    window[MomentJsInterop.name] = new MomentJsInterop();
-}
-AttachMomentJsInterop();
 /* Set up all the chartjs interop stuff */
 /// <reference path="types/Chart.min.d.ts" />   
+
+interface ChartConfiguration extends Chart.ChartConfiguration {
+    canvasId: string;
+}
+
+interface DotNetType {
+    invokeMethodAsync(assemblyName, methodName, sender, args): Promise<any>;
+}
+
+declare var DotNet: DotNetType;
+
 class ChartJsInterop {
-    constructor() {
-        this.BlazorCharts = new Map();
-    }
-    SetupChart(config) {
+    BlazorCharts = new Map<string, Chart>();
+    public SetupChart(config: ChartConfiguration): boolean {
         if (!this.BlazorCharts.has(config.canvasId)) {
             if (!config.options.legend)
                 config.options.legend = {};
@@ -24,7 +25,7 @@ class ChartJsInterop {
             return this.UpdateChart(config);
         }
     }
-    UpdateChart(config) {
+    public UpdateChart(config: ChartConfiguration): boolean {
         if (!this.BlazorCharts.has(config.canvasId))
             throw `Could not find a chart with the given id. ${config.canvasId}`;
         let myChart = this.BlazorCharts.get(config.canvasId);
@@ -39,7 +40,7 @@ class ChartJsInterop {
         myChart.update();
         return true;
     }
-    HandleDatasets(myChart, config) {
+    private HandleDatasets(myChart: Chart, config: ChartConfiguration) {
         // Remove any datasets the aren't in the new config
         let dataSetsToRemove = myChart.config.data.datasets.filter(d => config.data.datasets.find(newD => newD.id === d.id) === undefined);
         for (const d of dataSetsToRemove) {
@@ -61,21 +62,21 @@ class ChartJsInterop {
             Object.entries(pair.newD).forEach(entry => pair.oldD[entry[0]] = entry[1]);
         });
     }
-    MergeLabels(myChart, config) {
+    private MergeLabels(myChart: Chart, config: ChartConfiguration) {
         if (config.data.labels === undefined || config.data.labels.length === 0) {
-            myChart.config.data.labels = new Array();
+            myChart.config.data.labels = new Array<string | string[]>();
             return;
         }
         if (!myChart.config.data.labels) {
-            myChart.config.data.labels = new Array();
+            myChart.config.data.labels = new Array<string | string[]>();
         }
         // clear existing labels
         myChart.config.data.labels.splice(0, myChart.config.data.labels.length);
         // add all the new labels
         config.data.labels.forEach(l => myChart.config.data.labels.push(l));
     }
-    initializeChartjsChart(config) {
-        let ctx = document.getElementById(config.canvasId);
+    private initializeChartjsChart(config: ChartConfiguration): Chart {
+        let ctx = <HTMLCanvasElement>document.getElementById(config.canvasId);
         // replace the Legend's OnHover function name with the actual function (if present)
         this.WireUpOnHover(config);
         // replace the Legend's OnClick function name with the actual function (if present)
@@ -88,7 +89,7 @@ class ChartJsInterop {
         let myChart = new Chart(ctx, config);
         return myChart;
     }
-    WireUpLegendItemFilterFunc(config) {
+    private WireUpLegendItemFilterFunc(config) {
         if (config.options.legend.labels === undefined)
             config.options.legend.labels = {};
         if (config.options.legend.labels.filter &&
@@ -107,7 +108,7 @@ class ChartJsInterop {
             config.options.legend.labels.filter = null;
         }
     }
-    WireUpGenerateLabelsFunc(config) {
+    private WireUpGenerateLabelsFunc(config) {
         let getDefaultFunc = function (type) {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
             if (defaults.legend &&
@@ -135,7 +136,7 @@ class ChartJsInterop {
             config.options.legend.labels.generateLabels = getDefaultFunc(config.type);
         }
     }
-    WireUpOnClick(config) {
+    private WireUpOnClick(config) {
         let getDefaultHandler = type => {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
             if (defaults.legend &&
@@ -186,7 +187,7 @@ class ChartJsInterop {
             config.options.legend.onClick = getDefaultHandler(config.type);
         }
     }
-    WireUpOnHover(config) {
+    private WireUpOnHover(config) {
         if (config.options.legend.onHover) {
             if (typeof config.options.legend.onHover === "object" &&
                 config.options.legend.onHover.hasOwnProperty('fullFunctionName')) {
@@ -229,29 +230,3 @@ class ChartJsInterop {
         }
     }
 }
-/* Set up all the momentjs interop stuff */
-/// <reference path="types/moment.d.ts" />
-class MomentJsInterop {
-    getAvailableMomentLocales() {
-        return moment.locales();
-    }
-    getCurrentLocale() {
-        return moment.locale();
-    }
-    changeLocale(locale) {
-        if (typeof locale !== 'string') {
-            throw 'locale must be a string';
-        }
-        let cur = this.getCurrentLocale();
-        // if the current locale is the one requested, we don't need to do anything
-        if (locale === cur)
-            return false;
-        // set locale
-        let newL = moment.locale(locale);
-        // if the new locale is the same as the old one, it was not changed - probably because momentJs didn't find that locale
-        if (cur === newL)
-            throw 'the locale \'' + locale + '\' could not be set. It was probably not found.';
-        return true;
-    }
-}
-//# sourceMappingURL=ChartJsBlazorInterop.js.map

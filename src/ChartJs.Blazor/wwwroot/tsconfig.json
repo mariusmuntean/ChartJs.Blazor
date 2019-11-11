@@ -5,6 +5,7 @@
     "target": "es2018",
     "lib": [ "dom", "es2018" ],
     "outDir": "",
+    "outFile": "ChartJsBlazorInterop.js",
     "sourceMap": true,
     "sourceRoot": "ts/",
     "typeRoots": ["ts/types/"]
