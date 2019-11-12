@@ -167,25 +167,63 @@ class ChartJsInterop {
             return undefined;
         };
 
-        if (config.options.onClick) {
+        config.options.onClick = this.GetHandler(config.options.onClick, getDefaultFunc(config.type));
+    }
+
+    private WireUpLegendOnClick(config) {
+        let getDefaultHandler = type => {
+            let defaults = Chart.defaults[type] || Chart.defaults.global;
+            if (defaults && defaults.legend && defaults.legend.onClick) {
+                return defaults.legend.onClick;
+            }
+            return Chart.defaults.global.legend.onClick;
+        };
+
+        config.options.legend.onClick = this.GetHandler(config.options.legend.onClick, getDefaultHandler(config.type));
+    }
+
+    private WireUpOnHover(config) {
+        let getDefaultFunc = function (type) {
+            let defaults = Chart.defaults[type] || Chart.defaults.global;
+            if (defaults && defaults.options && defaults.options.legend) {
+                return defaults.options.legend.onHover;
+            }
+            return undefined;
+        };
+
+        config.options.legend.onHover = this.GetHandler(config.options.legend.onHover, getDefaultFunc(config.type));
+    }
+
+    /**
+     * Given an IClickHandler (see the C# code), it tries to recover the referenced handler. 
+     * It currently supports Javascript functions, which are expected to be attached to the window object; .Net static functions and .Net object instance methods
+     *
+     * Failing to recover any handler from the IClickHandler, it returns the default handler.
+     *  
+     * @param iClickHandler
+     * @param chartJsDefaultHandler
+     * @constructor
+     */
+    private GetHandler(iClickHandler, chartJsDefaultHandler: Function) {
+        if (iClickHandler) {
             // Js function
-            if (typeof config.options.onClick === "object" &&
-                config.options.onClick.hasOwnProperty('fullFunctionName')) {
-                let onClickStringName: { fullFunctionName: string } = <any>config.options.onClick;
+            if (typeof iClickHandler === "object" &&
+                iClickHandler.hasOwnProperty('fullFunctionName')) {
+                let onClickStringName: { fullFunctionName: string } = <any>iClickHandler;
                 const onClickNamespaceAndFunc = onClickStringName.fullFunctionName.split(".");
                 const onClickFunc = window[onClickNamespaceAndFunc[0]][onClickNamespaceAndFunc[1]];
                 if (typeof onClickFunc === "function") {
-                    config.options.onClick = onClickFunc;
+                    return onClickFunc;
                 } else { // fallback to the default
-                    config.options.onClick = getDefaultFunc(config.type);
+                    return chartJsDefaultHandler;
                 }
             }
             // .Net static method
-            else if (typeof config.options.onClick === "object" &&
-                config.options.onClick.hasOwnProperty('assemblyName') &&
-                config.options.onClick.hasOwnProperty('methodName')) {
-                config.options.onClick = (function () {
-                    const onClickStatickHandler: { assemblyName: string, methodName: string } = <any>config.options.onClick;
+            else if (typeof iClickHandler === "object" &&
+                iClickHandler.hasOwnProperty('assemblyName') &&
+                iClickHandler.hasOwnProperty('methodName')) {
+                return (function () {
+                    const onClickStatickHandler: { assemblyName: string, methodName: string } = <any>iClickHandler;
                     const assemblyName = onClickStatickHandler.assemblyName;
                     const methodName = onClickStatickHandler.methodName;
                     return async function (sender, args) {
@@ -194,113 +232,25 @@ class ChartJsInterop {
                 })();
             }
             // .Net instance method
-            else if (typeof config.options.onClick === "object" &&
-                config.options.onClick.hasOwnProperty('instanceRef') &&
-                config.options.onClick.hasOwnProperty('methodName')) {
-                config.options.onClick = (function () {
-                    const onClickInstanceHandler: { instanceRef: DotNetObjectReference, methodName: string } = <any>config.options.onClick;
+            else if (typeof iClickHandler === "object" &&
+                iClickHandler.hasOwnProperty('instanceRef') &&
+                iClickHandler.hasOwnProperty('methodName')) {
+                return (function () {
+                    const onClickInstanceHandler: { instanceRef: DotNetObjectReference, methodName: string } = <any>iClickHandler;
                     const instanceRef = onClickInstanceHandler.instanceRef;
                     const methodName = onClickInstanceHandler.methodName;
                     return async function (sender, args) {
                         await instanceRef.invokeMethodAsync(methodName,
                             sender,
-                            args.map(e => Object.assign({}, e, {_chart: undefined})));
+                            // This is sometimes necessary in order to avoid circular reference errors during JSON serialization
+                            typeof args['map'] === 'function' ?
+                                args.map(e => Object.assign({}, e, {_chart: undefined})) : args
+                        );
                     };
                 })();
             }
         } else { // fallback to the default
-            config.options.onClick = getDefaultFunc(config.type);
-        }
-    }
-
-    private WireUpLegendOnClick(config) {
-        let getDefaultHandler = type => {
-            let defaults = Chart.defaults[type] || Chart.defaults.global;
-            if (defaults.legend &&
-                defaults.legend.onClick) {
-                return defaults.legend.onClick;
-            }
-            return Chart.defaults.global.legend.onClick;
-        };
-        if (config.options.legend.onClick) {
-            // Js function
-            if (typeof config.options.legend.onClick === "object" &&
-                config.options.legend.onClick.hasOwnProperty('fullFunctionName')) {
-                const onClickNamespaceAndFunc = config.options.legend.onClick.fullFunctionName.split(".");
-                const onClickFunc = window[onClickNamespaceAndFunc[0]][onClickNamespaceAndFunc[1]];
-                if (typeof onClickFunc === "function") {
-                    config.options.legend.onClick = onClickFunc;
-                } else { // fallback to the default
-                    config.options.legend.onClick = getDefaultHandler(config.type);
-                }
-            }
-            // .Net static method
-            else if (typeof config.options.legend.onClick === "object" &&
-                config.options.legend.onClick.hasOwnProperty('assemblyName') &&
-                config.options.legend.onClick.hasOwnProperty('methodName')) {
-                config.options.legend.onClick = (function () {
-                    const assemblyName = config.options.legend.onClick.assemblyName;
-                    const methodName = config.options.legend.onClick.methodName;
-                    return async function (sender, args) {
-                        await DotNet.invokeMethodAsync(assemblyName, methodName, sender, args);
-                    };
-                })();
-            }
-            // .Net instance method
-            else if (typeof config.options.legend.onClick === "object" &&
-                config.options.legend.onClick.hasOwnProperty('instanceRef') &&
-                config.options.legend.onClick.hasOwnProperty('methodName')) {
-                config.options.legend.onClick = (function () {
-                    const instanceRef = config.options.legend.onClick.instanceRef;
-                    const methodName = config.options.legend.onClick.methodName;
-                    return async function (sender, args) {
-                        await instanceRef.invokeMethodAsync(methodName, sender, args);
-                    };
-                })();
-            }
-        } else { // fallback to the default
-            config.options.legend.onClick = getDefaultHandler(config.type);
-        }
-    }
-
-    private WireUpOnHover(config) {
-        if (config.options.legend.onHover) {
-            if (typeof config.options.legend.onHover === "object" &&
-                config.options.legend.onHover.hasOwnProperty('fullFunctionName')) {
-                const onHoverNamespaceAndFunc = config.options.legend.onHover.fullFunctionName.split(".");
-                const onHoverFunc = window[onHoverNamespaceAndFunc[0]][onHoverNamespaceAndFunc[1]];
-                if (typeof onHoverFunc === "function") {
-                    config.options.legend.onHover = onHoverFunc;
-                } else { // fallback to the default
-                    config.options.legend.onHover = null;
-                }
-            }
-            // .Net static method
-            else if (typeof config.options.legend.onHover === "object" &&
-                config.options.legend.onHover.hasOwnProperty('assemblyName') &&
-                config.options.legend.onHover.hasOwnProperty('methodName')) {
-                config.options.legend.onHover = (function () {
-                    const assemblyName = config.options.legend.onHover.assemblyName;
-                    const methodName = config.options.legend.onHover.methodName;
-                    return async function (sender, mouseOverEvent) {
-                        await DotNet.invokeMethodAsync(assemblyName, methodName, sender, mouseOverEvent);
-                    };
-                })();
-            }
-            // .Net instance method
-            else if (typeof config.options.legend.onHover === "object" &&
-                config.options.legend.onHover.hasOwnProperty('instanceRef') &&
-                config.options.legend.onHover.hasOwnProperty('methodName')) {
-                config.options.legend.onHover = (function () {
-                    const instanceRef = config.options.legend.onHover.instanceRef;
-                    const methodName = config.options.legend.onHover.methodName;
-                    return async function (sender, mouseOverEvent) {
-                        await instanceRef.invokeMethodAsync(methodName, sender, mouseOverEvent);
-                    };
-                })();
-            }
-        } else { // fallback to the default
-            config.options.legend.onHover = null;
+            return chartJsDefaultHandler;
         }
     }
 }

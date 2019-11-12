@@ -124,7 +124,7 @@ namespace ChartJs.Blazor.ChartJS
             // Restore any .net refs that need to be passed intact
             var dynamicChartConfig = (dynamic) chartConfig;
             if (dynamicChartConfig?.Options?.Legend?.OnClick != null
-                && dynamicChartConfig?.Options?.Legend?.OnClick is DotNetInstanceClickHandler)
+                && dynamicChartConfig?.Options?.Legend?.OnClick is IClickHandler)
             {
                 clearConfigExpando.options = clearConfigExpando.options ?? new { };
                 clearConfigExpando.options.legend = clearConfigExpando.options.legend ?? new { };
@@ -132,7 +132,7 @@ namespace ChartJs.Blazor.ChartJS
             }
 
             if (dynamicChartConfig?.Options?.Legend?.OnHover != null
-                && dynamicChartConfig?.Options?.Legend?.OnHover is DotNetInstanceHoverHandler)
+                && dynamicChartConfig?.Options?.Legend?.OnHover is IHoverHandler)
             {
                 clearConfigExpando.options = clearConfigExpando.options ?? new { };
                 clearConfigExpando.options.legend = clearConfigExpando.options.legend ?? new { };
