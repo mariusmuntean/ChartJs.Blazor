@@ -55,6 +55,6 @@ namespace ChartJs.Blazor.ChartJS.Common.Time
         /// Converts the wrapped <see cref="DateTime"/> to a format which is readable for moment.js.
         /// </summary>
         /// <returns>The string representation of this instance</returns>
-        public override string ToString() => Value.ToString("s"); // https://docs.microsoft.com/en-us/dotnet/api/system.datetime.tostring?view=netframework-4.8
+        public override string ToString() => Value.ToString("o"); // https://docs.microsoft.com/en-us/dotnet/api/system.datetime.tostring?view=netframework-4.8
     }
 }
