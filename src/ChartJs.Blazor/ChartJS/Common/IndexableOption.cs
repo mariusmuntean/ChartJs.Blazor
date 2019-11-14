@@ -24,7 +24,7 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// <summary>
         /// The indexed values represented by this instance.
         /// </summary>
-        internal T[] IndexedValues
+        public T[] IndexedValues
         {
             get
             {
@@ -40,7 +40,7 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// <summary>
         /// The single value represented by this instance.
         /// </summary>
-        internal T SingleValue
+        public T SingleValue
         {
             get
             {
