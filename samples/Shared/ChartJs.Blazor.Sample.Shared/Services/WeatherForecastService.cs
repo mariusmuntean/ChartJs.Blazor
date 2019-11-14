@@ -16,7 +16,7 @@ namespace ChartJs.Blazor.Sample.Shared.Services
             var rng = new Random();
             return Task.FromResult(Enumerable.Range(1, amountDays * 24).Select(index => new WeatherForecast
             {
-                Date = startDate.AddHours(index),
+                Date = startDate.AddHours(index).AddMilliseconds(rng.NextDouble()*1000),
                 TemperatureC = rng.Next(-20, 55),
                 Summary = Summaries[rng.Next(Summaries.Length)]
             }).ToArray());
