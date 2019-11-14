@@ -16,16 +16,16 @@ Compatible with client-side and server-side Blazor applications.</Description>
     <PackageProjectUrl>https://github.com/mariusmuntean/ChartJs.Blazor</PackageProjectUrl>
     <PackageTags>ChartJS Blazor ASP.Net Core wasm</PackageTags>
     <PackageSummary></PackageSummary>
-    <PackageReleaseNotes>Refactored a lot of code.
-Updated to the latest Blazor.</PackageReleaseNotes>
+    <PackageReleaseNotes></PackageReleaseNotes>
     <AssemblyName>ChartJs.Blazor</AssemblyName>
     <RootNamespace>ChartJs.Blazor</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <FileVersion>1.0.2.0</FileVersion>
     <NeutralLanguage />
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageVersion>1.0.2</PackageVersion>
   </PropertyGroup>
 
 
