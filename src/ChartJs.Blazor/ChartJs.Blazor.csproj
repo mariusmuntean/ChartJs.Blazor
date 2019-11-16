@@ -16,7 +16,8 @@ Compatible with client-side and server-side Blazor applications.</Description>
     <PackageProjectUrl>https://github.com/mariusmuntean/ChartJs.Blazor</PackageProjectUrl>
     <PackageTags>ChartJS Blazor ASP.Net Core wasm</PackageTags>
     <PackageSummary></PackageSummary>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>Much-improved Js interop layer that allows registering static and instance handlers for clicks and hover events. 
+Delta updates result in an animation to the new value instead of a complete redraw.</PackageReleaseNotes>
     <AssemblyName>ChartJs.Blazor</AssemblyName>
     <RootNamespace>ChartJs.Blazor</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
