@@ -21,7 +21,7 @@ Delta updates result in an animation to the new value instead of a complete redr
     <AssemblyName>ChartJs.Blazor</AssemblyName>
     <RootNamespace>ChartJs.Blazor</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <AssemblyVersion>1.0.2.0</AssemblyVersion>
     <FileVersion>1.0.2.0</FileVersion>
     <NeutralLanguage />

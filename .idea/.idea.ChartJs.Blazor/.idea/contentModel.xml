@@ -490,19 +490,6 @@
             <e p="Debug" t="Include">
               <e p="netstandard2.0" t="Include">
                 <e p="ChartJs.Blazor.AssemblyInfo.cs" t="Include" />
-                <e p="Razor" t="Include">
-                  <e p="Charts" t="Include">
-                    <e p="_ViewImports.razor.g.cs" t="Include" />
-                    <e p="ChartJsBarChart.razor.g.cs" t="Include" />
-                    <e p="ChartJsBubbleChart.razor.g.cs" t="Include" />
-                    <e p="ChartJsLineChart.razor.g.cs" t="Include" />
-                    <e p="ChartJsMixedChart.razor.g.cs" t="Include" />
-                    <e p="ChartJsPieChart.razor.g.cs" t="Include" />
-                    <e p="ChartJsPolarAreaChart.razor.g.cs" t="Include" />
-                    <e p="ChartJsRadarChart.razor.g.cs" t="Include" />
-                    <e p="ChartJsScatterChart.razor.g.cs" t="Include" />
-                  </e>
-                </e>
               </e>
             </e>
           </e>
