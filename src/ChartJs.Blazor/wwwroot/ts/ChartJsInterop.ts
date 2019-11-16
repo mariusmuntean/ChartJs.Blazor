@@ -94,10 +94,13 @@ class ChartJsInterop {
         let ctx = <HTMLCanvasElement>document.getElementById(config.canvasId);
 
         // replace the Legend's OnHover function name with the actual function (if present)
-        this.WireUpOnHover(config);
+        this.WireUpLegendOnHover(config);
 
         // replace the Options' OnClick function name with the actual function (if present)
         this.WireUpOptionsOnClickFunc(config);
+
+        // replace the Options.Hover.OnHover func name with the actual function (if present)
+        this.WireUpOptionsOnHoverFunc(config);
 
         // replace the Legend's OnClick function name with the actual function (if present)
         this.WireUpLegendOnClick(config);
@@ -170,6 +173,20 @@ class ChartJsInterop {
         config.options.onClick = this.GetHandler(config.options.onClick, getDefaultFunc(config.type));
     }
 
+    private WireUpOptionsOnHoverFunc(config: ChartConfiguration) {
+        let getDefaultFunc = function (type) {
+            let defaults = Chart.defaults[type] || Chart.defaults.global;
+            if (defaults && defaults.hover && defaults.hover.onHover) {
+                return defaults.hover.onHover;
+            }
+            return undefined;
+        };
+
+        if (config.options.hover) {
+            config.options.hover.onHover = this.GetHandler(config.options.hover.onHover, getDefaultFunc(config.type));
+        }
+    }
+
     private WireUpLegendOnClick(config) {
         let getDefaultHandler = type => {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
@@ -182,7 +199,7 @@ class ChartJsInterop {
         config.options.legend.onClick = this.GetHandler(config.options.legend.onClick, getDefaultHandler(config.type));
     }
 
-    private WireUpOnHover(config) {
+    private WireUpLegendOnHover(config) {
         let getDefaultFunc = function (type) {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
             if (defaults && defaults.options && defaults.options.legend) {
@@ -195,11 +212,11 @@ class ChartJsInterop {
     }
 
     /**
-     * Given an IClickHandler (see the C# code), it tries to recover the referenced handler. 
+     * Given an IClickHandler (see the C# code), it tries to recover the referenced handler.
      * It currently supports Javascript functions, which are expected to be attached to the window object; .Net static functions and .Net object instance methods
      *
      * Failing to recover any handler from the IClickHandler, it returns the default handler.
-     *  
+     *
      * @param iClickHandler
      * @param chartJsDefaultHandler
      * @constructor

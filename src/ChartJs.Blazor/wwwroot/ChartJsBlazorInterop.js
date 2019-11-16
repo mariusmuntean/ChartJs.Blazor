@@ -69,9 +69,11 @@ class ChartJsInterop {
     initializeChartjsChart(config) {
         let ctx = document.getElementById(config.canvasId);
         // replace the Legend's OnHover function name with the actual function (if present)
-        this.WireUpOnHover(config);
+        this.WireUpLegendOnHover(config);
         // replace the Options' OnClick function name with the actual function (if present)
         this.WireUpOptionsOnClickFunc(config);
+        // replace the Options.Hover.OnHover func name with the actual function (if present)
+        this.WireUpOptionsOnHoverFunc(config);
         // replace the Legend's OnClick function name with the actual function (if present)
         this.WireUpLegendOnClick(config);
         // replace the Label's GenerateLabels function name with the actual function (if present)
@@ -139,6 +141,18 @@ class ChartJsInterop {
         };
         config.options.onClick = this.GetHandler(config.options.onClick, getDefaultFunc(config.type));
     }
+    WireUpOptionsOnHoverFunc(config) {
+        let getDefaultFunc = function (type) {
+            let defaults = Chart.defaults[type] || Chart.defaults.global;
+            if (defaults && defaults.hover && defaults.hover.onHover) {
+                return defaults.hover.onHover;
+            }
+            return undefined;
+        };
+        if (config.options.hover) {
+            config.options.hover.onHover = this.GetHandler(config.options.hover.onHover, getDefaultFunc(config.type));
+        }
+    }
     WireUpLegendOnClick(config) {
         let getDefaultHandler = type => {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
@@ -149,7 +163,7 @@ class ChartJsInterop {
         };
         config.options.legend.onClick = this.GetHandler(config.options.legend.onClick, getDefaultHandler(config.type));
     }
-    WireUpOnHover(config) {
+    WireUpLegendOnHover(config) {
         let getDefaultFunc = function (type) {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
             if (defaults && defaults.options && defaults.options.legend) {

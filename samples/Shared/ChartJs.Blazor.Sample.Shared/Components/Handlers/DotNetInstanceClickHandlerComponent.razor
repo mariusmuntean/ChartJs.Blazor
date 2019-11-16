@@ -1,3 +1,4 @@
+@using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Handlers
 @using ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler
 @using ChartJs.Blazor.ChartJS.Common.Handlers.OnHover
@@ -7,9 +8,11 @@
 @using ChartJs.Blazor.Util
 @using Newtonsoft.Json
 
-<h1>.Net Instance Click Handler</h1>
-<h3>Hover over and click the legend items and the chart data itself</h3>
-<h4>Browse the code to see how to register a .Net click handler for legend items.</h4>
+<h1>Click and Hover Handlers</h1>
+<h4>Hover over the donut chart. It has a Javascript handler registered that turns its opacity to 50%</h4>
+<h4>Hover over the legend items. It will print the hover event args in the text area below</h4>
+<h4>Click on the legend items and on the donut chart to show the event args</h4>
+<h5>Browse the code to see how to register a .Net/Js click/hover handler.</h5>
 
 <ChartJsPieChart @ref="_doughnutChartJs" Config="@_config" Width="600" Height="300"/>
 
@@ -54,7 +57,11 @@
                             OnClick = new DotNetInstanceClickHandler(OnLegendClickHandler),
                             OnHover = new DotNetInstanceHoverHandler(OnLegendHoverHandler)
                         },
-                        OnClick = new DotNetInstanceClickHandler(OnClickHandler)
+                        OnClick = new DotNetInstanceClickHandler(OnClickHandler),
+                        Hover = new Hover()
+                        {
+                            OnHover = new JsHoverHandler("SampleInterop.OnHover")
+                        }
                     }
                 };
 

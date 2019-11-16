@@ -47,5 +47,7 @@ namespace ChartJs.Blazor.ChartJS.Common
         public Tooltips Tooltips { get; set; }
 
         public IClickHandler OnClick { get; set; }
+
+        public Hover Hover { get; set; }
     }
 }

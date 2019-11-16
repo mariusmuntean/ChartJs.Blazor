@@ -20,6 +20,42 @@
               <e p="Debug" t="Include">
                 <e p="netstandard2.0" t="Include">
                   <e p="ChartJs.Blazor.Sample.ClientSide.AssemblyInfo.cs" t="Include" />
+                  <e p="Razor" t="Include">
+                    <e p="_Imports.razor.g.cs" t="Include" />
+                    <e p="App.razor.g.cs" t="Include" />
+                    <e p="Pages" t="Include">
+                      <e p="About.razor.g.cs" t="Include" />
+                      <e p="BarChart" t="Include">
+                        <e p="HorizontalBarChartPage.razor.g.cs" t="Include" />
+                        <e p="SimpleBarChartPage.razor.g.cs" t="Include" />
+                        <e p="StackedBarChartPage.razor.g.cs" t="Include" />
+                        <e p="TimeBarChartPage.razor.g.cs" t="Include" />
+                      </e>
+                      <e p="BubbleChartPage.razor.g.cs" t="Include" />
+                      <e p="DoughnutChartPage.razor.g.cs" t="Include" />
+                      <e p="Fun" t="Include">
+                        <e p="SineLineChartPage.razor.g.cs" t="Include" />
+                      </e>
+                      <e p="Handlers" t="Include">
+                        <e p="OnClickHandlerPage.razor.g.cs" t="Include" />
+                      </e>
+                      <e p="Index.razor.g.cs" t="Include" />
+                      <e p="LineChart" t="Include">
+                        <e p="LinearLineChartPage.razor.g.cs" t="Include" />
+                        <e p="LogarithmicLineChartPage.razor.g.cs" t="Include" />
+                        <e p="TimeLineChartPage.razor.g.cs" t="Include" />
+                      </e>
+                      <e p="PieChartPage.razor.g.cs" t="Include" />
+                      <e p="PolarAreaChartpage.razor.g.cs" t="Include" />
+                      <e p="RadarChartPage.razor.g.cs" t="Include" />
+                      <e p="ScatterChartPage.razor.g.cs" t="Include" />
+                      <e p="WelcomePage.razor.g.cs" t="Include" />
+                    </e>
+                    <e p="Shared" t="Include">
+                      <e p="MainLayout.razor.g.cs" t="Include" />
+                      <e p="NavMenu.razor.g.cs" t="Include" />
+                    </e>
+                  </e>
                 </e>
               </e>
             </e>
@@ -90,6 +126,7 @@
               <e p="sample-data" t="Include">
                 <e p="weather.json" t="Include" />
               </e>
+              <e p="SampleInterop.js" t="Include" />
             </e>
           </e>
         </e>
@@ -176,6 +213,7 @@
                 <e p="site.css" t="Include" />
               </e>
               <e p="favicon.ico" t="Include" />
+              <e p="SampleInterop.js" t="Include" />
             </e>
           </e>
         </e>
@@ -216,6 +254,36 @@
               <e p="Debug" t="Include">
                 <e p="netstandard2.0" t="Include">
                   <e p="ChartJs.Blazor.Sample.Shared.AssemblyInfo.cs" t="Include" />
+                  <e p="Razor" t="Include">
+                    <e p="_Imports.razor.g.cs" t="Include" />
+                    <e p="Components" t="Include">
+                      <e p="AboutComponent.razor.g.cs" t="Include" />
+                      <e p="BarCharts" t="Include">
+                        <e p="HorizontalBarChartComponent.razor.g.cs" t="Include" />
+                        <e p="SimpleBarChartComponent.razor.g.cs" t="Include" />
+                        <e p="StackedBarChartComponent.razor.g.cs" t="Include" />
+                        <e p="TimeBarChartComponent.razor.g.cs" t="Include" />
+                      </e>
+                      <e p="BubbleChartComponent.razor.g.cs" t="Include" />
+                      <e p="DoughnutChartComponent.razor.g.cs" t="Include" />
+                      <e p="Fun" t="Include">
+                        <e p="SineLineChartComponent.razor.g.cs" t="Include" />
+                      </e>
+                      <e p="Handlers" t="Include">
+                        <e p="DotNetInstanceClickHandlerComponent.razor.g.cs" t="Include" />
+                      </e>
+                      <e p="LineChart" t="Include">
+                        <e p="LinearLineChartComponent.razor.g.cs" t="Include" />
+                        <e p="LogarithmicLineChartComponent.razor.g.cs" t="Include" />
+                        <e p="TimeLineChartComponent.razor.g.cs" t="Include" />
+                      </e>
+                      <e p="PieChartComponent.razor.g.cs" t="Include" />
+                      <e p="PolarAreaChartComponent.razor.g.cs" t="Include" />
+                      <e p="RadarChartComponent.razor.g.cs" t="Include" />
+                      <e p="ScatterChartComponent.razor.g.cs" t="Include" />
+                      <e p="Welcome.razor.g.cs" t="Include" />
+                    </e>
+                  </e>
                 </e>
               </e>
             </e>
@@ -325,6 +393,7 @@
                   <e p="JsHoverHandler.cs" t="Include" />
                 </e>
               </e>
+              <e p="Hover.cs" t="Include" />
               <e p="IDataset.cs" t="Include" />
               <e p="IndexableOption.cs" t="Include" />
               <e p="IndexableOptionConverter.cs" t="Include" />
@@ -421,6 +490,19 @@
             <e p="Debug" t="Include">
               <e p="netstandard2.0" t="Include">
                 <e p="ChartJs.Blazor.AssemblyInfo.cs" t="Include" />
+                <e p="Razor" t="Include">
+                  <e p="Charts" t="Include">
+                    <e p="_ViewImports.razor.g.cs" t="Include" />
+                    <e p="ChartJsBarChart.razor.g.cs" t="Include" />
+                    <e p="ChartJsBubbleChart.razor.g.cs" t="Include" />
+                    <e p="ChartJsLineChart.razor.g.cs" t="Include" />
+                    <e p="ChartJsMixedChart.razor.g.cs" t="Include" />
+                    <e p="ChartJsPieChart.razor.g.cs" t="Include" />
+                    <e p="ChartJsPolarAreaChart.razor.g.cs" t="Include" />
+                    <e p="ChartJsRadarChart.razor.g.cs" t="Include" />
+                    <e p="ChartJsScatterChart.razor.g.cs" t="Include" />
+                  </e>
+                </e>
               </e>
             </e>
           </e>
