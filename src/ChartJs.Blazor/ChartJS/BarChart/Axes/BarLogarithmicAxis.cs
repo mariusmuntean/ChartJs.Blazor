@@ -18,6 +18,7 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Axes
 			{
 				OffsetGridLines = false
 			};
+			Offset = false;
         }
 
         /// <summary>

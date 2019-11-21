@@ -30,6 +30,7 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Axes
 			{
 				OffsetGridLines = <#= className.Contains("Category").ToString().ToLower() #>
 			};
+			Offset = <#= className.Contains("Category").ToString().ToLower() #>;
         }
 
         /// <summary>
