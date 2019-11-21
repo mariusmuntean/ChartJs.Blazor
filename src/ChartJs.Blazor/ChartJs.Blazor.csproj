@@ -24,7 +24,6 @@ Delta updates result in an animation to the new value instead of a complete redr
     <Version>1.0.2</Version>
     <AssemblyVersion>1.0.2.0</AssemblyVersion>
     <FileVersion>1.0.2.0</FileVersion>
-    <NeutralLanguage />
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageVersion>1.0.2</PackageVersion>
   </PropertyGroup>
@@ -47,4 +46,17 @@ Delta updates result in an animation to the new value instead of a complete redr
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+
+    <ItemGroup>
+        <None Update="ChartJS\BarChart\Axes\ExtendedCartesianAxes.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>ExtendedCartesianAxes.cs</LastGenOutput>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="ChartJS\BarChart\Axes\ExtendedCartesianAxes.cs">
+        <DependentUpon>ExtendedCartesianAxes.tt</DependentUpon>
+      </Compile>
+    </ItemGroup>
 </Project>

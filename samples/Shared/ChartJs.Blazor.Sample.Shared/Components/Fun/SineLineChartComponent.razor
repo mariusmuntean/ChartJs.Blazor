@@ -23,11 +23,10 @@
 
     private LineDataset<Point> _sineSet;
 
-    private readonly Random _rnd = new Random();
     private Timer _timer;
     private DateTime _startTime;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         _lineConfig = new LineConfig
         {

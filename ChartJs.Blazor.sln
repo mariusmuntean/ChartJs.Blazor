@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{08E01108-AF6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{5474F748-8E27-4FD6-AD9D-1087578ED4D7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartJs.Blazor", "src\ChartJs.Blazor\ChartJs.Blazor.csproj", "{1990A3D7-7B00-469F-BC97-F614393F7A52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartJs.Blazor", "src\ChartJs.Blazor\ChartJs.Blazor.csproj", "{1990A3D7-7B00-469F-BC97-F614393F7A52}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientSide", "ClientSide", "{474E0BD0-B8C0-4A00-9B05-B1B33F3B7C94}"
 EndProject
