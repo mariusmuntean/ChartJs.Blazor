@@ -91,9 +91,6 @@ Below the `@using` statements add a `ChartJsPieChart` component
 The last step is to make the `ChartJsPieChart` from above, reachable from your code to configure it and to give it some data to display. In the `@code` section of your .razor file create matching variables to reference the chart and its configuration. Finally, give your chart a title and some data. The finished code should look like this:
 
 ```csharp
-    // This is necessary for the time being - see the known sample limitations
-    private ReferenceConverter ReferenceConverter = new ReferenceConverter(typeof(ChartJsPieChart));
-
     private PieConfig _config;
     private ChartJsPieChart _pieChartJs;
 
@@ -149,20 +146,60 @@ When your page's `OnInitialized()` method is executed you're setting the chart's
 
 ### Library
 
-* .Net click and hover event handlers haven't beed properly tested.
-* Updating a chart's config/dataset redraws it instead of using ChartJs' feature to morph the previous state into the new one.
+* Client-side Blazor projects are currently affected by a bug in `JSON.NET` tracked by this [issue](https://github.com/JamesNK/Newtonsoft.Json/issues/2020).
+
+    There are two known workarounds:
+    
+    * **Prefered Option** - add a file named [Linker.xml](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/blazor/configure-linker?view=aspnetcore-3.0) to the root of your client-side project to instruct the Mono linker to keep a certain constructor that `JSON.NET` invokes via reflection.
+    Make sure to select `BlazorLinkerDescription` as the build action of the `Linker.xml` file. In case that your IDE doesn't offer that option, simply edit the `.csproj` file and add this to it:
+        ```xml
+            <ItemGroup>
+                <BlazorLinkerDescriptor Include="Linker.xml" />
+            </ItemGroup>
+        ```
+        The content of the `Linker.xml` should be similar to this (adjust to your project's entry point assembly):
+        ```xml
+            <?xml version="1.0" encoding="UTF-8" ?>
+            <!--
+            This file specifies which parts of the BCL or Blazor packages must not be
+            stripped by the IL Linker even if they aren't referenced by user code.
+            -->
+            <linker>
+                <assembly fullname="mscorlib">
+                    <!--
+                        Preserve the methods in WasmRuntime because its methods are called by 
+                        JavaScript client-side code to implement timers.
+                        Fixes: https://github.com/aspnet/Blazor/issues/239
+                        -->
+                    <type fullname="System.Threading.WasmRuntime" />
+                </assembly>
+                <assembly fullname="System.Core">
+                    <!--
+                        System.Linq.Expressions* is required by Json.NET and any 
+                        expression.Compile caller. The assembly isn't stripped.
+                        -->
+                    <type fullname="System.Linq.Expressions*" />
+                </assembly>
+                <!-- The app's entry point assembly is listed. -->
+                <assembly fullname="ChartJs.Blazor.Sample.ClientSide" />
+                <!-- Take care of System.MissingMethodException: Constructor on type 'System.ComponentModel.ReferenceConverter' not found. -->
+                <assembly fullname="System">
+                    <type fullname="System.ComponentModel.ReferenceConverter">
+                    <method signature="System.Void .ctor(System.Type)" />
+                    </type>
+                </assembly>
+            </linker>
+        ```
+
+    * ***Alternative Option*** - include the following line in the parent component:
+
+        ```csharp
+        private ReferenceConverter ReferenceConverter = new ReferenceConverter(typeof(PROBLEMATIC_COMPONENT));
+        ```
+
+        where `PROBLEMATIC_COMPONENT` is a placeholder for the chart-component you're using inside this component (e.g. `ChartJsBarChart`, `ChartJsPieChart`, `ChartJsLineChart`, ..).
 
 ### Samples
-
-* For running on client-side Blazor there is currently a bug with JSON.NET tracked by this [issue](https://github.com/JamesNK/Newtonsoft.Json/issues/2020).
-The known workaround is to include the following line in the parent component:
-
-```csharp
-private ReferenceConverter ReferenceConverter = new ReferenceConverter(typeof(PROBLEMATIC_COMPONENT));
-```
-
-where `PROBLEMATIC_COMPONENT` is a placeholder for the chart-component you're using inside this component (e.g. `ChartJsBarChart`, `ChartJsPieChart`, `ChartJsLineChart`, ..).
-
 
 * When publishing the client-side Blazor sample, the generated **dist** folder is missing **_content\ChartJs.Blazor**. This seems to be a known bug in the current version of client-side Blazor. To work around this bug you need to go to the **publish** folder and locate the **wwwroot** folder. There you should find the missing **_content** folder. Copy the **_content** folder to the **dist** folder. The final **dist** folder should look like this
 ```shell
