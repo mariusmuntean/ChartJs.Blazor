@@ -18,4 +18,8 @@
     <ProjectReference Include="..\..\Shared\ChartJs.Blazor.Sample.Shared\ChartJs.Blazor.Sample.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <BlazorLinkerDescriptor Include="Linker.xml" />
+  </ItemGroup>
+
 </Project>
