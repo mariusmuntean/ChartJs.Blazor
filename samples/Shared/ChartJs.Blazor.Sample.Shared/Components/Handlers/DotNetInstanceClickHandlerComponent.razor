@@ -21,94 +21,90 @@
 <text font-size="small">Hint: you can delete the text below</text>
 <br/>
 <button type="button" class="btn btn-outline-danger" @onclick="OnClear">Clear</button>
-        <br/>
-        <textarea	rows="@Rows" 
+<br/>
+<textarea	rows="@Rows" 
 			@bind-value="@EventArgs"
 			@bind-value:event="oninput"
 			style="width: 100%; resize: both; height:auto "></textarea>
 
 
-        @code {
-            private PieConfig _config;
-            private ChartJsPieChart _doughnutChartJs;
+@code {
+	private PieConfig _config;
+	private ChartJsPieChart _doughnutChartJs;
 
-            public string EventArgs { get; set; } = "";
-            public int Rows { get; set; } = 3;
+	public string EventArgs { get; set; } = "";
+	public int Rows { get; set; } = 3;
 
-            protected override void OnInitialized()
-            {
-                _config = new PieConfig
-                {
-                    Options = new PieOptions(true)
-                    {
-                        Title = new OptionsTitle
-                        {
-                            Display = true,
-                            Text = "Sample chart from Blazor"
-                        },
-                        Responsive = true,
-                        Animation = new ArcAnimation
-                        {
-                            AnimateRotate = true,
-                            AnimateScale = true
-                        },
-                        Legend = new Legend()
-                        {
-                            OnClick = new DotNetInstanceClickHandler(OnLegendClickHandler),
-                            OnHover = new DotNetInstanceHoverHandler(OnLegendHoverHandler)
-                        },
-                        OnClick = new DotNetInstanceClickHandler(OnClickHandler),
-                        Hover = new Hover()
-                        {
-                            OnHover = new JsHoverHandler("SampleInterop.OnHover")
-                        }
-                    }
-                };
+	protected override async Task OnInitializedAsync() {
+		_config = new PieConfig {
+			Options = new PieOptions(true) {
+				Title = new OptionsTitle {
+					Display = true,
+					Text = "Sample chart from Blazor"
+				},
+				Responsive = true,
+				Animation = new ArcAnimation {
+					AnimateRotate = true,
+					AnimateScale = true
+				},
+				Legend = new Legend() {
+					OnClick = new DotNetInstanceClickHandler(OnLegendClickHandler),
+					OnHover = new DotNetInstanceHoverHandler(OnLegendHoverHandler)
+				},
+				OnClick = new DotNetInstanceClickHandler(OnClickHandler),
+				Hover = new Hover() {
+					OnHover = new JsHoverHandler("SampleInterop.OnHover")
+				}
+			}
+		};
 
-                _config.Data.Labels.AddRange(new[] {"A", "B", "C", "D"});
+		_config.Data.Labels.AddRange(new[] {"A", "B", "C", "D"});
 
-                var doughnutSet = new PieDataset
-                {
-                    BackgroundColor = new[] {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
-                    BorderWidth = 0,
-                    HoverBackgroundColor = ColorUtil.RandomColorString(),
-                    HoverBorderColor = ColorUtil.RandomColorString(),
-                    HoverBorderWidth = 1,
-                    BorderColor = "#ffffff"
-                };
+		await Task.Delay(100);
+		
+		var doughnutSet = new PieDataset {
+			BackgroundColor = new[] {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
+			BorderWidth = 0,
+			HoverBackgroundColor = ColorUtil.RandomColorString(),
+			HoverBorderColor = ColorUtil.RandomColorString(),
+			HoverBorderWidth = 1,
+			BorderColor = "#ffffff"
+		};
 
-                doughnutSet.Data.AddRange(new double[] {4, 5, 6, 7});
-                _config.Data.Datasets.Add(doughnutSet);
-            }
+		doughnutSet.Data.AddRange(new double[] {4, 5, 6, 7});
+		_config.Data.Datasets.Add(doughnutSet);
+	}
+//
+//	protected override Task OnAfterRenderAsync(bool firstRender) {
+//		_doughnutChartJs.Update();
+//
+//		return Task.CompletedTask;
+//	}
 
-            [JSInvokable]
-            public void OnLegendClickHandler(object sender, object args)
-            {
-                EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
-                Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
-                StateHasChanged();
-            }
+	[JSInvokable]
+	public void OnLegendClickHandler(object sender, object args) {
+		EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
+		Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
+		StateHasChanged();
+	}
 
-            [JSInvokable]
-            public void OnLegendHoverHandler(object sender, object args)
-            {
-                EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
-                Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
-                StateHasChanged();
-            }
+	[JSInvokable]
+	public void OnLegendHoverHandler(object sender, object args) {
+		EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
+		Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
+		StateHasChanged();
+	}
 
-            [JSInvokable]
-            public void OnClickHandler(object sender, object args)
-            {
-                EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
-                Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
-                StateHasChanged();
-            }
+	[JSInvokable]
+	public void OnClickHandler(object sender, object args) {
+		EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
+		Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
+		StateHasChanged();
+	}
 
-            private void OnClear()
-            {
-                EventArgs = string.Empty;
-                StateHasChanged();
-            }
+	private void OnClear() {
+		EventArgs = string.Empty;
+		StateHasChanged();
+	}
 
-        }
+}

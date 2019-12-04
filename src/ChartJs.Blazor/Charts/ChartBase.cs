@@ -3,6 +3,7 @@ using ChartJs.Blazor.ChartJS.Common;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
+using System.Threading.Tasks;
 
 namespace ChartJs.Blazor.Charts
 {
@@ -16,19 +17,16 @@ namespace ChartJs.Blazor.Charts
 
         [Parameter] public int Height { get; set; } = 400;
 
-        protected override void OnAfterRender(bool firstRender)
+        protected override Task OnAfterRenderAsync(bool firstRender)
         {
             try
             {
-                base.OnAfterRender(firstRender);
-                if (firstRender)
-                {
-                    JsRuntime.SetupChart(Config);
-                }
+                return firstRender ? JsRuntime.SetupChart(Config).AsTask() : JsRuntime.UpdateChart(Config).AsTask();
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Some error in OnAfterRender: {e.Message}");
+                return Task.CompletedTask;
             } // https://github.com/aspnet/AspNetCore/issues/8327
         }
 

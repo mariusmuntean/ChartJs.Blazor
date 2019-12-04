@@ -43,6 +43,9 @@ class ChartJsInterop {
 
         /// Handle labels
         this.MergeLabels(myChart, config);
+        
+        // Redo any wiring up
+        this.WireUpFunctions(config);
 
         // Handle options - mutating the Options seems better because the rest of the computed options members are preserved
         Object.entries(config.options).forEach(e => {
@@ -93,6 +96,14 @@ class ChartJsInterop {
     private initializeChartjsChart(config: ChartConfiguration): Chart {
         let ctx = <HTMLCanvasElement>document.getElementById(config.canvasId);
 
+        this.WireUpFunctions(config);
+        
+        let myChart = new Chart(ctx, config);
+        return myChart;
+    }
+
+    private WireUpFunctions(config: ChartConfiguration) {
+
         // replace the Legend's OnHover function name with the actual function (if present)
         this.WireUpLegendOnHover(config);
 
@@ -111,8 +122,6 @@ class ChartJsInterop {
         // replace the Label's Filter function name with the actual function (if present)
         // see details here: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-label-configuration
         this.WireUpLegendItemFilterFunc(config);
-        let myChart = new Chart(ctx, config);
-        return myChart;
     }
 
     private WireUpLegendItemFilterFunc(config) {
