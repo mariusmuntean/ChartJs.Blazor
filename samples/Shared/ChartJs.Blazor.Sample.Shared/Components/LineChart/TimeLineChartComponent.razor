@@ -125,10 +125,10 @@
         await TryChangeLocale();
     }
 
-    private void OnClick()
+    private async Task OnClick()
     {
         _tempDataSet.Fill = !_tempDataSet.Fill;
-        _lineChartJs.Update();
+        await _lineChartJs.Update();
     }
 
 }

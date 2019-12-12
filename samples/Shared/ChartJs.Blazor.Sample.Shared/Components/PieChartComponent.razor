@@ -62,7 +62,7 @@
 		_config.Data.Datasets.Add(pieSet);
 	}
 
-	private void AddData() {
+	private async Task AddData() {
 		var dataset = _config.Data.Datasets.LastOrDefault();
 		if (dataset == null) {
 			return;
@@ -74,10 +74,10 @@
 		dataset.Data.Add(newVal);
 		dataset.BackgroundColor = dataset.BackgroundColor.IndexedValues.Append(ColorUtil.RandomColorString()).ToArray();
 
-		_pieChartJs.Update();
+		await _pieChartJs.Update();
 	}
 
-	private void RemoveData() {
+	private async Task RemoveData() {
 		var dataset = _config.Data.Datasets.LastOrDefault();
 		if (dataset == null || dataset.Data.Count < 1) {
 			return;
@@ -86,10 +86,10 @@
 		_config.Data.Labels.RemoveAt(_config.Data.Labels.Count - 1);
 		dataset.Data.RemoveAt(dataset.Data.Count - 1);
 
-		_pieChartJs.Update();
+		await _pieChartJs.Update();
 	}
 
-	private void AddDataset() {
+	private async Task AddDataset() {
 		var pieSet = new PieDataset {
 			BorderWidth = 0,
 			HoverBackgroundColor = ColorUtil.RandomColorString(),
@@ -106,13 +106,13 @@
 		pieSet.BackgroundColor = Enumerable.Range(0, count).Select(i => ColorUtil.RandomColorString()).ToArray();
 
 		_config.Data.Datasets.Add(pieSet);
-		_pieChartJs.Update();
+		await _pieChartJs.Update();
 	}
 
-	private void RemoveDataset() {
+	private async Task RemoveDataset() {
 		if (_config.Data.Datasets.Count > 1) {
 			_config.Data.Datasets.RemoveAt(_config.Data.Datasets.Count - 1);
-			_pieChartJs.Update();
+			await _pieChartJs.Update();
 		}
 	}
 
