@@ -38,7 +38,7 @@
         });
     }
 
-    public void OnClick()
+    public async Task OnClick()
     {
         _config.Data.Datasets.Add(new RadarDataset
         {
@@ -47,7 +47,7 @@
             BorderColor = ColorUtil.RandomColorString()
         });
 
-        _radarChartJs.Update();
+        await _radarChartJs.Update();
     }
 
 }

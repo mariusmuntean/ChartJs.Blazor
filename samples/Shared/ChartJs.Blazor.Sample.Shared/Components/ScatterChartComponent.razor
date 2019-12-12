@@ -60,7 +60,7 @@
         });
     }
 
-    public void OnClick()
+    public async Task OnClick()
     {
         _config.Data.Datasets.Add(new ScatterDataset
         {
@@ -73,7 +73,7 @@
             PointHoverRadius = 8
         });
 
-        _scatterChartJs.Update();
+        await _scatterChartJs.Update();
     }
 
 }

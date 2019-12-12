@@ -1,3 +1,4 @@
+@using System.Globalization
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Handlers
 @using ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler
@@ -14,6 +15,8 @@
 <h4>Click on the legend items and on the donut chart to show the event args</h4>
 <h5>Browse the code to see how to register a .Net/Js click/hover handler.</h5>
 
+<button class="btn btn-primary" @onclick="AddData">Add data</button>
+
 <ChartJsPieChart @ref="_doughnutChartJs" Config="@_config" Width="600" Height="300"/>
 
 <text>In each entry, the property "index" refers to the data index in that dataset</text>
@@ -21,94 +24,113 @@
 <text font-size="small">Hint: you can delete the text below</text>
 <br/>
 <button type="button" class="btn btn-outline-danger" @onclick="OnClear">Clear</button>
-        <br/>
-        <textarea	rows="@Rows" 
+<br/>
+<textarea	rows="@Rows" 
 			@bind-value="@EventArgs"
 			@bind-value:event="oninput"
 			style="width: 100%; resize: both; height:auto "></textarea>
 
 
-        @code {
-            private PieConfig _config;
-            private ChartJsPieChart _doughnutChartJs;
+@code {
+    private PieConfig _config;
+    private ChartJsPieChart _doughnutChartJs;
 
-            public string EventArgs { get; set; } = "";
-            public int Rows { get; set; } = 3;
+    public string EventArgs { get; set; } = "";
+    public int Rows { get; set; } = 3;
 
-            protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
+    {
+        _config = new PieConfig
+        {
+            Options = new PieOptions(true)
             {
-                _config = new PieConfig
+                Title = new OptionsTitle
                 {
-                    Options = new PieOptions(true)
-                    {
-                        Title = new OptionsTitle
-                        {
-                            Display = true,
-                            Text = "Sample chart from Blazor"
-                        },
-                        Responsive = true,
-                        Animation = new ArcAnimation
-                        {
-                            AnimateRotate = true,
-                            AnimateScale = true
-                        },
-                        Legend = new Legend()
-                        {
-                            OnClick = new DotNetInstanceClickHandler(OnLegendClickHandler),
-                            OnHover = new DotNetInstanceHoverHandler(OnLegendHoverHandler)
-                        },
-                        OnClick = new DotNetInstanceClickHandler(OnClickHandler),
-                        Hover = new Hover()
-                        {
-                            OnHover = new JsHoverHandler("SampleInterop.OnHover")
-                        }
-                    }
-                };
-
-                _config.Data.Labels.AddRange(new[] {"A", "B", "C", "D"});
-
-                var doughnutSet = new PieDataset
+                    Display = true,
+                    Text = "Sample chart from Blazor"
+                },
+                Responsive = true,
+                Animation = new ArcAnimation
                 {
-                    BackgroundColor = new[] {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
-                    BorderWidth = 0,
-                    HoverBackgroundColor = ColorUtil.RandomColorString(),
-                    HoverBorderColor = ColorUtil.RandomColorString(),
-                    HoverBorderWidth = 1,
-                    BorderColor = "#ffffff"
-                };
-
-                doughnutSet.Data.AddRange(new double[] {4, 5, 6, 7});
-                _config.Data.Datasets.Add(doughnutSet);
+                    AnimateRotate = true,
+                    AnimateScale = true
+                },
+                Legend = new Legend()
+                {
+                    OnClick = new DotNetInstanceClickHandler(OnLegendClickHandler),
+                    OnHover = new DotNetInstanceHoverHandler(OnLegendHoverHandler)
+                },
+                OnClick = new DotNetInstanceClickHandler(OnClickHandler),
+                Hover = new Hover()
+                {
+                    OnHover = new JsHoverHandler("SampleInterop.OnHover")
+                }
             }
+        };
 
-            [JSInvokable]
-            public void OnLegendClickHandler(object sender, object args)
-            {
-                EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
-                Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
-                StateHasChanged();
-            }
+        _config.Data.Labels.AddRange(new[] {"A", "B", "C", "D"});
 
-            [JSInvokable]
-            public void OnLegendHoverHandler(object sender, object args)
-            {
-                EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
-                Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
-                StateHasChanged();
-            }
+        await Task.Delay(100);
 
-            [JSInvokable]
-            public void OnClickHandler(object sender, object args)
-            {
-                EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
-                Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
-                StateHasChanged();
-            }
+        var doughnutSet = new PieDataset
+        {
+            BackgroundColor = new[] {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
+            BorderWidth = 0,
+            HoverBackgroundColor = ColorUtil.RandomColorString(),
+            HoverBorderColor = ColorUtil.RandomColorString(),
+            HoverBorderWidth = 1,
+            BorderColor = "#ffffff"
+        };
 
-            private void OnClear()
-            {
-                EventArgs = string.Empty;
-                StateHasChanged();
-            }
+        doughnutSet.Data.AddRange(new double[] {4, 5, 6, 7});
+        _config.Data.Datasets.Add(doughnutSet);
+    }
 
+    [JSInvokable]
+    public void OnLegendClickHandler(object sender, object args)
+    {
+        EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
+        Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
+        StateHasChanged();
+    }
+
+    [JSInvokable]
+    public void OnLegendHoverHandler(object sender, object args)
+    {
+        EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
+        Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
+        StateHasChanged();
+    }
+
+    [JSInvokable]
+    public void OnClickHandler(object sender, object args)
+    {
+        EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
+        Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
+        StateHasChanged();
+    }
+
+    private void OnClear()
+    {
+        EventArgs = string.Empty;
+        StateHasChanged();
+    }
+
+    private async Task AddData()
+    {
+        var dataset = _config.Data.Datasets.LastOrDefault();
+        if (dataset == null)
+        {
+            return;
         }
+
+        var rand = new Random();
+        var newVal = 1 + rand.NextDouble() * 10;
+        _config.Data.Labels.Add(newVal.ToString(CultureInfo.InvariantCulture));
+        dataset.Data.Add(newVal);
+        dataset.BackgroundColor = dataset.BackgroundColor.IndexedValues.Append(ColorUtil.RandomColorString()).ToArray();
+
+        await _doughnutChartJs.Update();
+    }
+
+}

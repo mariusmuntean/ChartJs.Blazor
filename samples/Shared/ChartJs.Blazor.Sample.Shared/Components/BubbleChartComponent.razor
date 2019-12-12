@@ -73,7 +73,7 @@
                     };
     }
 
-    private void OnClick()
+    private async Task OnClick()
     {
         _config.Data.Datasets.Add(new BubbleDataset
         {
@@ -91,7 +91,7 @@
                         }
         });
 
-        _bubbleChartJs.Update();
+        await _bubbleChartJs.Update();
     }
 
 }

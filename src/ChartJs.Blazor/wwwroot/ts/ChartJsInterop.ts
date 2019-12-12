@@ -44,6 +44,9 @@ class ChartJsInterop {
         /// Handle labels
         this.MergeLabels(myChart, config);
 
+        // Redo any wiring up
+        this.WireUpFunctions(config);
+
         // Handle options - mutating the Options seems better because the rest of the computed options members are preserved
         Object.entries(config.options).forEach(e => {
             myChart.config.options[e[0]] = e[1];
@@ -62,9 +65,11 @@ class ChartJsInterop {
                 myChart.config.data.datasets.splice(indexToRemoveAt, 1);
             }
         }
+
         // Add new datasets
         let dataSetsToAdd = config.data.datasets.filter(newD => myChart.config.data.datasets.find(d => newD.id === d.id) === undefined);
         dataSetsToAdd.forEach(d => myChart.config.data.datasets.push(d));
+
         // Update any existing datasets
         let datasetsToUpdate = myChart.config.data.datasets
             .filter(d => config.data.datasets.find(newD => newD.id === d.id) !== undefined)
@@ -86,12 +91,21 @@ class ChartJsInterop {
         }
         // clear existing labels
         myChart.config.data.labels.splice(0, myChart.config.data.labels.length);
+        
         // add all the new labels
         config.data.labels.forEach(l => myChart.config.data.labels.push(l));
     }
 
     private initializeChartjsChart(config: ChartConfiguration): Chart {
         let ctx = <HTMLCanvasElement>document.getElementById(config.canvasId);
+
+        this.WireUpFunctions(config);
+
+        let myChart = new Chart(ctx, config);
+        return myChart;
+    }
+
+    private WireUpFunctions(config: ChartConfiguration) {
 
         // replace the Legend's OnHover function name with the actual function (if present)
         this.WireUpLegendOnHover(config);
@@ -111,8 +125,6 @@ class ChartJsInterop {
         // replace the Label's Filter function name with the actual function (if present)
         // see details here: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-label-configuration
         this.WireUpLegendItemFilterFunc(config);
-        let myChart = new Chart(ctx, config);
-        return myChart;
     }
 
     private WireUpLegendItemFilterFunc(config) {

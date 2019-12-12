@@ -129,11 +129,11 @@
         _lineConfig.Data.Datasets.Add(_tempPerDaySet);
     }
 
-    private void UpdateChart()
+    private async Task UpdateChart()
     {
         _tempPerDaySet.Add(new Point(_rnd.Next(100), _rnd.Next(100)));
         _tempPerHourSet.Add(new Point(_rnd.Next(100), _rnd.Next(100)));
-        _lineChartJs.Update();
+        await _lineChartJs.Update();
     }
 
 }

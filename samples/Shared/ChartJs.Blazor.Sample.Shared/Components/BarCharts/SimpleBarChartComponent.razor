@@ -69,15 +69,15 @@
 	}
 
 
-	private void AddData() {
+	private async Task AddData() {
 		var nowSecond = DateTime.Now.Second;
 		_barChartConfig.Data.Labels.Add(nowSecond.ToString());
 		_barDataSet.Add(new DoubleWrapper(nowSecond));
 
-		_barChart.Update();
+		await _barChart.Update();
 	}
 
-	private void RemoveData() {
+	private async Task RemoveData() {
 		if (_barChartConfig.Data.Labels.Count > 0) {
 			_barChartConfig.Data.Labels.RemoveAt(_barChartConfig.Data.Labels.Count - 1);
 		}
@@ -86,7 +86,7 @@
 			_barDataSet.RemoveAt(_barDataSet.Data.Count - 1);
 		}
 
-		_barChart.Update();
+		await _barChart.Update();
 	}
 
 }

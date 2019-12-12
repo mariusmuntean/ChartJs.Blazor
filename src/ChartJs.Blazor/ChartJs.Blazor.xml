@@ -3257,6 +3257,38 @@
             <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
+        <member name="T:ChartJs.Blazor.Charts.ChartBase`1">
+            <summary>
+            Base type for all charts
+            </summary>
+            <typeparam name="TConfig"></typeparam>
+        </member>
+        <member name="P:ChartJs.Blazor.Charts.ChartBase`1.Config">
+            <summary>
+            The configuration of the chart to be drawn.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.Charts.ChartBase`1.Width">
+            <summary>
+            The width of the canvas HTML element used to draw the chart.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.Charts.ChartBase`1.Height">
+            <summary>
+            The height of the canvas HTML element used to draw the chart.
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.Charts.ChartBase`1.OnAfterRenderAsync(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:ChartJs.Blazor.Charts.ChartBase`1.Update">
+             <summary>
+             Updates the chart.
+            
+             <para>Call this method after you've changed something in the chart#s configuration</para>
+             </summary>
+             <returns></returns>
+        </member>
         <member name="T:ChartJs.Blazor.Util.ColorUtil">
             <summary>
             Provides useful methods for working with colors. Particularly the conversion from different kinds of C#-colors to string colors which are understood by javascript/css.
