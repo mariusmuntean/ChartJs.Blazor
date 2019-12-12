@@ -86,23 +86,6 @@
         _config.Data.Datasets.Add(doughnutSet);
     }
 
-    private async Task AddData()
-    {
-        var dataset = _config.Data.Datasets.LastOrDefault();
-        if (dataset == null)
-        {
-            return;
-        }
-
-        var rand = new Random();
-        var newVal = 1 + rand.NextDouble() * 10;
-        _config.Data.Labels.Add(newVal.ToString(CultureInfo.InvariantCulture));
-        dataset.Data.Add(newVal);
-        dataset.BackgroundColor = dataset.BackgroundColor.IndexedValues.Append(ColorUtil.RandomColorString()).ToArray();
-
-        await _doughnutChartJs.Update();
-    }
-
     [JSInvokable]
     public void OnLegendClickHandler(object sender, object args)
     {
@@ -131,6 +114,23 @@
     {
         EventArgs = string.Empty;
         StateHasChanged();
+    }
+
+    private async Task AddData()
+    {
+        var dataset = _config.Data.Datasets.LastOrDefault();
+        if (dataset == null)
+        {
+            return;
+        }
+
+        var rand = new Random();
+        var newVal = 1 + rand.NextDouble() * 10;
+        _config.Data.Labels.Add(newVal.ToString(CultureInfo.InvariantCulture));
+        dataset.Data.Add(newVal);
+        dataset.BackgroundColor = dataset.BackgroundColor.IndexedValues.Append(ColorUtil.RandomColorString()).ToArray();
+
+        await _doughnutChartJs.Update();
     }
 
 }
