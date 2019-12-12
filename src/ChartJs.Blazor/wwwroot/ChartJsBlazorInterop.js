@@ -3,6 +3,74 @@
 class ChartJsInterop {
     constructor() {
         this.BlazorCharts = new Map();
+        /**
+         * Given an IClickHandler (see the C# code), it tries to recover the referenced handler.
+         * It currently supports Javascript functions, which are expected to be attached to the window object; .Net static functions and .Net object instance methods
+         *
+         * Failing to recover any handler from the IClickHandler, it returns the default handler.
+         *
+         * @param iClickHandler
+         * @param chartJsDefaultHandler
+         * @constructor
+         */
+        this.GetHandler = (iClickHandler, chartJsDefaultHandler) => {
+            if (iClickHandler) {
+                // Js function
+                if (typeof iClickHandler === "object" &&
+                    iClickHandler.hasOwnProperty('fullFunctionName')) {
+                    let onClickStringName = iClickHandler;
+                    const onClickNamespaceAndFunc = onClickStringName.fullFunctionName.split(".");
+                    const onClickFunc = window[onClickNamespaceAndFunc[0]][onClickNamespaceAndFunc[1]];
+                    if (typeof onClickFunc === "function") {
+                        return onClickFunc;
+                    }
+                    else { // fallback to the default
+                        return chartJsDefaultHandler;
+                    }
+                }
+                // .Net static method
+                else if (typeof iClickHandler === "object" &&
+                    iClickHandler.hasOwnProperty('assemblyName') &&
+                    iClickHandler.hasOwnProperty('methodName')) {
+                    return (() => {
+                        const onClickStatickHandler = iClickHandler;
+                        const assemblyName = onClickStatickHandler.assemblyName;
+                        const methodName = onClickStatickHandler.methodName;
+                        return async (sender, args) => {
+                            // This is sometimes necessary in order to avoid circular reference errors during JSON serialization
+                            args = this.GetCleanArgs(args);
+                            await DotNet.invokeMethodAsync(assemblyName, methodName, sender, args);
+                        };
+                    })();
+                }
+                // .Net instance method
+                else if (typeof iClickHandler === "object" &&
+                    iClickHandler.hasOwnProperty('instanceRef') &&
+                    iClickHandler.hasOwnProperty('methodName')) {
+                    return (() => {
+                        const onClickInstanceHandler = iClickHandler;
+                        const instanceRef = onClickInstanceHandler.instanceRef;
+                        const methodName = onClickInstanceHandler.methodName;
+                        return async (sender, args) => {
+                            // This is sometimes necessary in order to avoid circular reference errors during JSON serialization
+                            args = this.GetCleanArgs(args);
+                            await instanceRef.invokeMethodAsync(methodName, sender, args);
+                        };
+                    })();
+                }
+            }
+            else { // fallback to the default
+                return chartJsDefaultHandler;
+            }
+        };
+        this.GetCleanArgs = (args) => {
+            // ToDo: refactor the function to clean up the args of each chart type 
+            return typeof args['map'] === 'function' ?
+                args.map(e => {
+                    const newE = Object.assign({}, e, { _chart: undefined }, { _xScale: undefined }, { _yScale: undefined });
+                    return newE;
+                }) : args;
+        };
     }
     SetupChart(config) {
         if (!this.BlazorCharts.has(config.canvasId)) {
@@ -177,65 +245,6 @@ class ChartJsInterop {
             return undefined;
         };
         config.options.legend.onHover = this.GetHandler(config.options.legend.onHover, getDefaultFunc(config.type));
-    }
-    /**
-     * Given an IClickHandler (see the C# code), it tries to recover the referenced handler.
-     * It currently supports Javascript functions, which are expected to be attached to the window object; .Net static functions and .Net object instance methods
-     *
-     * Failing to recover any handler from the IClickHandler, it returns the default handler.
-     *
-     * @param iClickHandler
-     * @param chartJsDefaultHandler
-     * @constructor
-     */
-    GetHandler(iClickHandler, chartJsDefaultHandler) {
-        if (iClickHandler) {
-            // Js function
-            if (typeof iClickHandler === "object" &&
-                iClickHandler.hasOwnProperty('fullFunctionName')) {
-                let onClickStringName = iClickHandler;
-                const onClickNamespaceAndFunc = onClickStringName.fullFunctionName.split(".");
-                const onClickFunc = window[onClickNamespaceAndFunc[0]][onClickNamespaceAndFunc[1]];
-                if (typeof onClickFunc === "function") {
-                    return onClickFunc;
-                }
-                else { // fallback to the default
-                    return chartJsDefaultHandler;
-                }
-            }
-            // .Net static method
-            else if (typeof iClickHandler === "object" &&
-                iClickHandler.hasOwnProperty('assemblyName') &&
-                iClickHandler.hasOwnProperty('methodName')) {
-                return (function () {
-                    const onClickStatickHandler = iClickHandler;
-                    const assemblyName = onClickStatickHandler.assemblyName;
-                    const methodName = onClickStatickHandler.methodName;
-                    return async function (sender, args) {
-                        await DotNet.invokeMethodAsync(assemblyName, methodName, sender, args);
-                    };
-                })();
-            }
-            // .Net instance method
-            else if (typeof iClickHandler === "object" &&
-                iClickHandler.hasOwnProperty('instanceRef') &&
-                iClickHandler.hasOwnProperty('methodName')) {
-                return (function () {
-                    const onClickInstanceHandler = iClickHandler;
-                    const instanceRef = onClickInstanceHandler.instanceRef;
-                    const methodName = onClickInstanceHandler.methodName;
-                    return async function (sender, args) {
-                        await instanceRef.invokeMethodAsync(methodName, sender, 
-                        // This is sometimes necessary in order to avoid circular reference errors during JSON serialization
-                        typeof args['map'] === 'function' ?
-                            args.map(e => Object.assign({}, e, { _chart: undefined })) : args);
-                    };
-                })();
-            }
-        }
-        else { // fallback to the default
-            return chartJsDefaultHandler;
-        }
     }
 }
 /* Set up all the momentjs interop stuff */
