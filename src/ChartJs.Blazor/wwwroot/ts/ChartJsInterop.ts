@@ -91,7 +91,7 @@ class ChartJsInterop {
         }
         // clear existing labels
         myChart.config.data.labels.splice(0, myChart.config.data.labels.length);
-        
+
         // add all the new labels
         config.data.labels.forEach(l => myChart.config.data.labels.push(l));
     }
@@ -176,10 +176,7 @@ class ChartJsInterop {
     private WireUpOptionsOnClickFunc(config: ChartConfiguration) {
         let getDefaultFunc = function (type) {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
-            if (defaults && defaults.onClick) {
-                return defaults.onClick;
-            }
-            return undefined;
+            return defaults?.onClick || undefined;
         };
 
         config.options.onClick = this.GetHandler(config.options.onClick, getDefaultFunc(config.type));
@@ -188,10 +185,7 @@ class ChartJsInterop {
     private WireUpOptionsOnHoverFunc(config: ChartConfiguration) {
         let getDefaultFunc = function (type) {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
-            if (defaults && defaults.hover && defaults.hover.onHover) {
-                return defaults.hover.onHover;
-            }
-            return undefined;
+            return defaults?.hover?.onHover || undefined;
         };
 
         if (config.options.hover) {
@@ -201,11 +195,8 @@ class ChartJsInterop {
 
     private WireUpLegendOnClick(config) {
         let getDefaultHandler = type => {
-            let defaults = Chart.defaults[type] || Chart.defaults.global;
-            if (defaults && defaults.legend && defaults.legend.onClick) {
-                return defaults.legend.onClick;
-            }
-            return Chart.defaults.global.legend.onClick;
+            let chartDefaults = Chart.defaults[type];
+            return chartDefaults?.legend?.onClick || Chart.defaults.global?.legend?.onClick || undefined;
         };
 
         config.options.legend.onClick = this.GetHandler(config.options.legend.onClick, getDefaultHandler(config.type));
@@ -213,11 +204,8 @@ class ChartJsInterop {
 
     private WireUpLegendOnHover(config) {
         let getDefaultFunc = function (type) {
-            let defaults = Chart.defaults[type] || Chart.defaults.global;
-            if (defaults && defaults.options && defaults.options.legend) {
-                return defaults.options.legend.onHover;
-            }
-            return undefined;
+            let chartDefaults = Chart.defaults[type];
+            return chartDefaults?.legend?.onHover || Chart.defaults.global?.legend?.onHover || undefined;
         };
 
         config.options.legend.onHover = this.GetHandler(config.options.legend.onHover, getDefaultFunc(config.type));
@@ -233,7 +221,7 @@ class ChartJsInterop {
      * @param chartJsDefaultHandler
      * @constructor
      */
-    private GetHandler(iClickHandler, chartJsDefaultHandler: Function) {
+    private GetHandler = (iClickHandler, chartJsDefaultHandler: Function) => {
         if (iClickHandler) {
             // Js function
             if (typeof iClickHandler === "object" &&
@@ -251,11 +239,15 @@ class ChartJsInterop {
             else if (typeof iClickHandler === "object" &&
                 iClickHandler.hasOwnProperty('assemblyName') &&
                 iClickHandler.hasOwnProperty('methodName')) {
-                return (function () {
+                return (() => {
                     const onClickStatickHandler: { assemblyName: string, methodName: string } = <any>iClickHandler;
                     const assemblyName = onClickStatickHandler.assemblyName;
                     const methodName = onClickStatickHandler.methodName;
-                    return async function (sender, args) {
+                    return async (sender, args) => {
+
+                        // This is sometimes necessary in order to avoid circular reference errors during JSON serialization
+                        args = this.GetCleanArgs(args);
+
                         await DotNet.invokeMethodAsync(assemblyName, methodName, sender, args);
                     };
                 })();
@@ -264,22 +256,32 @@ class ChartJsInterop {
             else if (typeof iClickHandler === "object" &&
                 iClickHandler.hasOwnProperty('instanceRef') &&
                 iClickHandler.hasOwnProperty('methodName')) {
-                return (function () {
+                return (() => {
                     const onClickInstanceHandler: { instanceRef: DotNetObjectReference, methodName: string } = <any>iClickHandler;
                     const instanceRef = onClickInstanceHandler.instanceRef;
                     const methodName = onClickInstanceHandler.methodName;
-                    return async function (sender, args) {
-                        await instanceRef.invokeMethodAsync(methodName,
-                            sender,
-                            // This is sometimes necessary in order to avoid circular reference errors during JSON serialization
-                            typeof args['map'] === 'function' ?
-                                args.map(e => Object.assign({}, e, {_chart: undefined})) : args
-                        );
+
+                    return async (sender, args) => {
+
+                        // This is sometimes necessary in order to avoid circular reference errors during JSON serialization
+                        args = this.GetCleanArgs(args);
+
+                        await instanceRef.invokeMethodAsync(methodName, sender, args);
                     };
                 })();
             }
         } else { // fallback to the default
             return chartJsDefaultHandler;
         }
-    }
+    };
+
+    private GetCleanArgs = (args) => {
+        // ToDo: refactor the function to clean up the args of each chart type 
+        return typeof args['map'] === 'function' ?
+            args.map(e => {
+                    const newE = Object.assign({}, e, {_chart: undefined}, {_xScale: undefined}, {_yScale: undefined});
+                    return newE;
+                }
+            ) : args;
+    };
 }

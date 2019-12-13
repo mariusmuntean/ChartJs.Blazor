@@ -55,13 +55,13 @@
                     AnimateRotate = true,
                     AnimateScale = true
                 },
-                Legend = new Legend()
+                Legend = new Legend
                 {
                     OnClick = new DotNetInstanceClickHandler(OnLegendClickHandler),
                     OnHover = new DotNetInstanceHoverHandler(OnLegendHoverHandler)
                 },
                 OnClick = new DotNetInstanceClickHandler(OnClickHandler),
-                Hover = new Hover()
+                Hover = new Hover
                 {
                     OnHover = new JsHoverHandler("SampleInterop.OnHover")
                 }
