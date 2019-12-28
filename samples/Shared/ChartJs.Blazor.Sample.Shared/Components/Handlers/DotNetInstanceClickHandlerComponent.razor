@@ -59,10 +59,10 @@
                     OnClick = new DotNetInstanceClickHandler(OnLegendClickHandler),
                     OnHover = new DotNetInstanceHoverHandler(OnLegendHoverHandler)
                 },
-                OnClick = new DotNetInstanceClickHandler(OnClickHandler),
+                OnClick = new DelegateHandler<LegendItemOnClick>(OnClickHandler),
                 Hover = new Hover
                 {
-                    OnHover = new JsHoverHandler("SampleInterop.OnHover")
+                    OnHover = new JavascriptHandler("SampleInterop.OnHover")
                 }
             }
         };

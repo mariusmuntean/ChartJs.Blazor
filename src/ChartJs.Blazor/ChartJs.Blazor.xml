@@ -1772,6 +1772,92 @@
             If true, grid lines will be shifted to be between labels. This is set to true for a category scale in a bar chart by default.
             </summary>
         </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1">
+            <summary>
+            Wraps a C#-delegate to make it callable by Javascript.
+            </summary>
+            <typeparam name="T">The type of the delegate you want to invoke from Javascript.</typeparam>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.MethodName">
+            <summary>
+            The name of the method which should be called from Javascript. In this case it's always the name of the <see cref="M:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.Invoke(System.Object[])"/>-method.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.HandlerReference">
+            <summary>
+            Keeps a reference to this object which is used to invoke the stored delegate from Javascript.
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.#ctor(`0)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1"/>.
+            </summary>
+            <param name="function">The delegate you want to invoke from Javascript.</param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.Invoke(System.Object[])">
+            <summary>
+            Invokes the delegate dynamically.
+            </summary>
+            <param name="args">All the arguments for the method as array.</param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.Finalize">
+            <summary>
+            The <see cref="M:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.Dispose"/> method doesn't have any unmanaged resources to free BUT once this object is finalized
+            we need to prevent any further use of the <see cref="T:Microsoft.JSInterop.DotNetObjectReference"/> to this object. Since the <see cref="P:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.HandlerReference"/>
+            will only be disposed if this <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1"/> instance is disposed or when <c>dispose</c> is called from Javascript
+            (which shouldn't happen) we HAVE to dispose the reference when this instance is finalized.
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.op_Implicit(`0)~ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler{`0}">
+            <summary>
+            Converts a delegate of type <typeparamref name="T"/> to a <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1"/> implicitly.
+            </summary>
+            <param name="function"></param>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.IMethodHandler`1">
+            <summary>
+            Defines that a type is able to handle method calls coming from Javascript.
+            </summary>
+            <typeparam name="T">The signature of the method this instance represents. It may be an actual object or just a convention for the programmer.</typeparam>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.IMethodHandler`1.MethodName">
+            <summary>
+            The name of the method which should be called from Javascript. The method name can be a reference to C# or Javascript.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.JavascriptHandler`1">
+            <summary>
+            Contains information about a Javascript function with a certain signature which will be called internally by Javascript.
+            The type parameter <typeparamref name="T"/> defines the signature for the Javascript method but doesn't have any actual use other than that.
+            </summary>
+            <typeparam name="T">The signature of the method you want to invoke from Javascript. This type parameter is
+            nothing more than a convention which tells you what parameters and return type is expected from the Javascript function.
+            Just like you might mistype the method name, you might return the wrong value from Javascript. These cases can't be caught
+            by the compiler so make sure to double-check those.</typeparam>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.JavascriptHandler`1.MethodName">
+            <summary>
+            The namespace and name of a Javascript function to be called, separated by a point.
+            <para>E.g. "SampleFunctions.ItemHoverHandler"</para>
+            <para>Note 1: You must create this function in a JS file in wwwroot and reference it in index.html / _Host.cshtml.</para>
+            <para>Note 2: Make sure the function has the expected parameters and return type. See <typeparamref name="T"/> for the expected signature.</para>
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.JavascriptHandler`1.#ctor(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.JavascriptHandler`1"/>.
+            </summary>
+            <param name="methodName">The namespace and name of a Javascript function (see <see cref="P:ChartJs.Blazor.ChartJS.Common.Handlers.JavascriptHandler`1.MethodName"/> for details).</param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.JavascriptHandler`1.op_Implicit(System.String)~ChartJs.Blazor.ChartJS.Common.Handlers.JavascriptHandler{`0}">
+            <summary>
+            Converts a string to a <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.JavascriptHandler`1"/> implicitly.
+            </summary>
+            <param name="methodName">The namespace and name of a Javascript function to be called, separated by a point (see <see cref="P:ChartJs.Blazor.ChartJS.Common.Handlers.JavascriptHandler`1.MethodName"/> for details).</param>
+        </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration">
             <summary>
             The legend label configuration is nested below the legend configuration
@@ -1843,13 +1929,13 @@
         <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.OnClick">
             <summary>
             The callback that is called when a click event is registered on a label item.
-            <para>See <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetInstanceClickHandler"></see>, <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler"></see> and <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.JsClickHandler"></see></para>
+            <para>See <see cref="!:DotNetInstanceClickHandler"></see>, <see cref="!:DotNetStaticClickHandler"></see> and <see cref="!:JsClickHandler"></see></para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.OnHover">
             <summary>
             The callback that is called when a 'mousemove' event is registered on top of a label item
-            <para>See <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetInstanceHoverHandler"></see>, <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetStaticHoverHandler"></see> and <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.JsHoverHandler"></see></para>
+            <para>See <see cref="!:DotNetInstanceHoverHandler"></see>, <see cref="!:DotNetStaticHoverHandler"></see> and <see cref="!:JsHoverHandler"></see></para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.Reverse">
@@ -1862,169 +1948,31 @@
             Configuration options for the legend-labels
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetInstanceClickHandler">
-            <summary>
-            Specifies a .net instance method that should be called when clicking on a Legend item.
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetInstanceClickHandler.InstanceClickHandler">
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.LegendItemOnClick">
             <summary>
             The delegate for a click handler.
-            <para>Helps enforcing the signature of the legend item click handler</para>
+            <para>Helps enforcing the signature of the legend item click handler.</para>
             </summary>
             <param name="sender">The sender of the click event</param>
             <param name="args">Click event args</param>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetInstanceClickHandler.InstanceRef">
-            <summary>
-            The <see cref="T:Microsoft.JSInterop.DotNetObjectReference"/> for the instance the delegate will be executed on.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetInstanceClickHandler.MethodName">
-            <summary>
-            The name of the method behind the delegate
-            </summary>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetInstanceClickHandler.#ctor(ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetInstanceClickHandler.InstanceClickHandler)">
-            <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler"/>
-            </summary>
-            <param name="clickHandler">The delegate for a click handler.</param>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler">
-            <summary>
-            Specifies a static .net method that should be called when clicking
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler.StaticClickHandler">
-            <summary>
-            The delegate for a click handler.
-            <para>Helps enforcing the signature of the legend item click handler</para>
-            </summary>
-            <param name="sender">The sender of the click event</param>
-            <param name="args">Click event args</param>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler.AssemblyName">
-            <summary>
-            The name of the assembly the method is located in
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler.MethodName">
-            <summary>
-            The name of the method behind the delegate
-            </summary>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler.#ctor(ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler.StaticClickHandler)">
-            <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.DotNetStaticClickHandler"/>
-            </summary>
-            <param name="clickHandler">The delegate for a click handler</param>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.IClickHandler">
             <summary>
-            Specifies how clicking items is handled
+            Specifies how clicking items is handled.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.JsClickHandler">
-            <summary>
-            Specified the namespace and name of a Javascript function that should be invoked when clicking
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.JsClickHandler.FullFunctionName">
-            <summary>
-            The namespace and name of a Javascript function to be called when clicking on a Legend item.
-            <para>E.g. "SampleFunctions.HideOtherDatasetsFunc"</para>
-            <para>Note 1: You must create this function in your JS file in wwwroot and reference it in _Host.cshtml</para>
-            <para>Note 2: Make sure the function can handle the click sender and the click event args</para>
-            </summary>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.JsClickHandler.#ctor(System.String)">
-            <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.JsClickHandler"/>
-            </summary>
-            <param name="fullFunctionName">The namespace and name of a Javascript function to be called when clicking on a Legend item.</param>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetInstanceHoverHandler">
-            <summary>
-            Specifies a .net instance method that should be called when hovering on an item.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetInstanceHoverHandler.InstanceRef">
-            <summary>
-            The <see cref="T:Microsoft.JSInterop.DotNetObjectReference"/> for the instance the delegate will be executed on.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetInstanceHoverHandler.MethodName">
-            <summary>
-            The name of the method behind the delegate
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetInstanceHoverHandler.LegendItemOnHover">
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.LegendItemOnHover">
             <summary>
             The delegate for a hover handler.
-            <para>Helps enforcing the signature of the legend item hover handler</para>
+            <para>Helps enforcing the signature of the legend item hover handler.</para>
             </summary>
             <param name="sender">The sender of the hover event</param>
-            <param name="mouseMove"></param>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetInstanceHoverHandler.#ctor(ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetInstanceHoverHandler.LegendItemOnHover)">
-            <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetInstanceHoverHandler"/>
-            </summary>
-            <param name="legendItemOnHoverHandler">The delegate for a hover handler</param>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetStaticHoverHandler">
-            <summary>
-            Specifies a static .net method that should be called when hovering on an item.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetStaticHoverHandler.AssemblyName">
-            <summary>
-            The name of the assembly the method is located in
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetStaticHoverHandler.MethodName">
-            <summary>
-            The name of the method behind the delegate
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetStaticHoverHandler.LegendItemOnHover">
-            <summary>
-            The delegate for a hover handler.
-            <para>Helps enforcing the signature of the legend item hover handler</para>
-            </summary>
-            <param name="sender">The sender of the hover event</param>
-            <param name="mouseMove"></param>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetStaticHoverHandler.#ctor(ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetStaticHoverHandler.LegendItemOnHover)">
-            <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.DotNetStaticHoverHandler"/>
-            </summary>
-            <param name="legendItemOnHoverHandler">The delegate for a hover handler.</param>
+            <param name="args">Hover event args</param>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.IHoverHandler">
             <summary>
-            Specifies how hovering on items is handled
+            Specifies how hovering on items is handled.
             </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.JsHoverHandler">
-            <summary>
-            Specified the namespace and name of a Javascript function that should be invoked when hovering
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.JsHoverHandler.FullFunctionName">
-            <summary>
-            The namespace and name of a Javascript function to be called when hovering the mouse cursor over a Legend item.
-            <para>E.g. "SampleFunctions.ItemHoverHandler"</para>
-            <para>Note 1: You must create this function in your JS file in wwwroot and reference it in index.html</para>
-            <para>Note 2: Make sure the function can handle the 'mousemove' event</para>
-            </summary>
-        </member>
-        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.JsHoverHandler.#ctor(System.String)">
-            <summary>
-            Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.JsHoverHandler"/>
-            </summary>
-            <param name="fullFunctionName">The namespace and name of a Javascript function to be called when hovering on a Legend item.</param>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.IDataset">
             <summary>

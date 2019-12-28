@@ -6,15 +6,9 @@ interface ChartConfiguration extends Chart.ChartConfiguration {
     canvasId: string;
 }
 
-interface DotNetType {
-    invokeMethodAsync(assemblyName, methodName, sender, args): Promise<any>;
-}
-
 interface DotNetObjectReference {
-    invokeMethodAsync(methodName, sender, args): Promise<any>;
+    invokeMethodAsync(methodName: string, ...args): Promise<any>;
 }
-
-declare var DotNet: DotNetType;
 
 class ChartJsInterop {
 
@@ -127,161 +121,109 @@ class ChartJsInterop {
         this.WireUpLegendItemFilterFunc(config);
     }
 
-    private WireUpLegendItemFilterFunc(config) {
-        if (config.options.legend.labels === undefined)
-            config.options.legend.labels = {};
-        if (config.options.legend.labels.filter &&
-            typeof config.options.legend.labels.filter === "string" &&
-            config.options.legend.labels.filter.includes(".")) {
-            const filtersNamespaceAndFunc = config.options.legend.labels.filter.split(".");
-            const filterFunc = window[filtersNamespaceAndFunc[0]][filtersNamespaceAndFunc[1]];
-            if (typeof filterFunc === "function") {
-                config.options.legend.labels.filter = filterFunc;
-            } else { // fallback to the default, which is null
-                config.options.legend.labels.filter = null;
-            }
-        } else { // fallback to the default, which is null
-            config.options.legend.labels.filter = null;
-        }
-    }
-
-    private WireUpGenerateLabelsFunc(config) {
-        let getDefaultFunc = function (type) {
-            let defaults = Chart.defaults[type] || Chart.defaults.global;
-            if (defaults.legend &&
-                defaults.legend.labels &&
-                defaults.legend.labels.generateLabels) {
-                return defaults.legend.labels.generateLabels;
-            }
-            return Chart.defaults.global.legend.labels.generateLabels;
+    private WireUpLegendItemFilterFunc(config: ChartConfiguration) {
+        let getDefaultFunc = type => {
+            let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
+            return chartDefaults?.legend?.labels?.filter || Chart.defaults.global?.legend?.labels?.filter;
         };
 
-        if (config.options.legend.labels === undefined)
-            config.options.legend.labels = {};
-        if (config.options.legend.labels.generateLabels &&
-            typeof config.options.legend.labels.generateLabels === "string" &&
-            config.options.legend.labels.generateLabels.includes(".")) {
-            const generateLabelsNamespaceAndFunc = config.options.legend.labels.generateLabels.split(".");
-            const generateLabelsFunc = window[generateLabelsNamespaceAndFunc[0]][generateLabelsNamespaceAndFunc[1]];
-            if (typeof generateLabelsFunc === "function") {
-                config.options.legend.labels.generateLabels = generateLabelsFunc;
-            } else { // fallback to the default
-                config.options.legend.labels.generateLabels = getDefaultFunc(config.type);
-            }
-        } else { // fallback to the default
-            config.options.legend.labels.generateLabels = getDefaultFunc(config.type);
-        }
+        config.options.legend.labels.filter = this.GetMethodHandler(config.options.legend.labels.filter, getDefaultFunc(config.type));
+    }
+
+    private WireUpGenerateLabelsFunc(config: ChartConfiguration) {
+        let getDefaultFunc = type => {
+            let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
+            return chartDefaults?.legend?.labels?.generateLabels || Chart.defaults.global?.legend?.labels?.generateLabels;
+        };
+
+        config.options.legend.labels.generateLabels = this.GetMethodHandler(config.options.legend.labels.generateLabels, getDefaultFunc(config.type));
     }
 
     private WireUpOptionsOnClickFunc(config: ChartConfiguration) {
-        let getDefaultFunc = function (type) {
+        let getDefaultFunc = type => {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
-            return defaults?.onClick || undefined;
+            return defaults?.onClick || Chart.defaults.global?.onClick;
         };
 
-        config.options.onClick = this.GetHandler(config.options.onClick, getDefaultFunc(config.type));
+        config.options.onClick = this.GetMethodHandler(config.options.onClick, getDefaultFunc(config.type));
     }
 
     private WireUpOptionsOnHoverFunc(config: ChartConfiguration) {
-        let getDefaultFunc = function (type) {
+        let getDefaultFunc = type => {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
-            return defaults?.hover?.onHover || undefined;
+            return defaults?.hover?.onHover || Chart.defaults.global?.hover?.onHover;
         };
 
         if (config.options.hover) {
-            config.options.hover.onHover = this.GetHandler(config.options.hover.onHover, getDefaultFunc(config.type));
+            config.options.hover.onHover = this.GetMethodHandler(config.options.hover.onHover, getDefaultFunc(config.type));
         }
     }
 
-    private WireUpLegendOnClick(config) {
+    private WireUpLegendOnClick(config: ChartConfiguration) {
         let getDefaultHandler = type => {
-            let chartDefaults = Chart.defaults[type];
-            return chartDefaults?.legend?.onClick || Chart.defaults.global?.legend?.onClick || undefined;
+            let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
+            return chartDefaults?.legend?.onClick || Chart.defaults.global?.legend?.onClick;
         };
 
-        config.options.legend.onClick = this.GetHandler(config.options.legend.onClick, getDefaultHandler(config.type));
+        config.options.legend.onClick = this.GetMethodHandler(config.options.legend.onClick, getDefaultHandler(config.type));
     }
 
-    private WireUpLegendOnHover(config) {
-        let getDefaultFunc = function (type) {
-            let chartDefaults = Chart.defaults[type];
-            return chartDefaults?.legend?.onHover || Chart.defaults.global?.legend?.onHover || undefined;
+    private WireUpLegendOnHover(config: ChartConfiguration) {
+        let getDefaultFunc = type => {
+            let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
+            return chartDefaults?.legend?.onHover || Chart.defaults.global?.legend?.onHover;
         };
 
-        config.options.legend.onHover = this.GetHandler(config.options.legend.onHover, getDefaultFunc(config.type));
+        config.options.legend.onHover = this.GetMethodHandler(config.options.legend.onHover, getDefaultFunc(config.type));
     }
 
     /**
-     * Given an IClickHandler (see the C# code), it tries to recover the referenced handler.
-     * It currently supports Javascript functions, which are expected to be attached to the window object; .Net static functions and .Net object instance methods
+     * Given an IMethodHandler (see the C# code), it tries to resolve the referenced method.
+     * It currently supports Javascript functions, which are expected to be attached to the window object; and .Net delegates which can be
+     * bound to .Net static functions, .Net object instance methods and more.
      *
-     * Failing to recover any handler from the IClickHandler, it returns the default handler.
+     * Failing to recover any handler from the IMethodHandler, it returns the default handler.
      *
-     * @param iClickHandler
+     * @param iMethodHandler
      * @param chartJsDefaultHandler
      * @constructor
      */
-    private GetHandler = (iClickHandler, chartJsDefaultHandler: Function) => {
-        if (iClickHandler) {
-            // Js function
-            if (typeof iClickHandler === "object" &&
-                iClickHandler.hasOwnProperty('fullFunctionName')) {
-                let onClickStringName: { fullFunctionName: string } = <any>iClickHandler;
-                const onClickNamespaceAndFunc = onClickStringName.fullFunctionName.split(".");
-                const onClickFunc = window[onClickNamespaceAndFunc[0]][onClickNamespaceAndFunc[1]];
-                if (typeof onClickFunc === "function") {
-                    return onClickFunc;
-                } else { // fallback to the default
-                    return chartJsDefaultHandler;
-                }
-            }
-            // .Net static method
-            else if (typeof iClickHandler === "object" &&
-                iClickHandler.hasOwnProperty('assemblyName') &&
-                iClickHandler.hasOwnProperty('methodName')) {
-                return (() => {
-                    const onClickStatickHandler: { assemblyName: string, methodName: string } = <any>iClickHandler;
-                    const assemblyName = onClickStatickHandler.assemblyName;
-                    const methodName = onClickStatickHandler.methodName;
-                    return async (sender, args) => {
-
-                        // This is sometimes necessary in order to avoid circular reference errors during JSON serialization
-                        args = this.GetCleanArgs(args);
-
-                        await DotNet.invokeMethodAsync(assemblyName, methodName, sender, args);
-                    };
-                })();
-            }
-            // .Net instance method
-            else if (typeof iClickHandler === "object" &&
-                iClickHandler.hasOwnProperty('instanceRef') &&
-                iClickHandler.hasOwnProperty('methodName')) {
-                return (() => {
-                    const onClickInstanceHandler: { instanceRef: DotNetObjectReference, methodName: string } = <any>iClickHandler;
-                    const instanceRef = onClickInstanceHandler.instanceRef;
-                    const methodName = onClickInstanceHandler.methodName;
-
-                    return async (sender, args) => {
-
-                        // This is sometimes necessary in order to avoid circular reference errors during JSON serialization
-                        args = this.GetCleanArgs(args);
-
-                        await instanceRef.invokeMethodAsync(methodName, sender, args);
-                    };
-                })();
-            }
-        } else { // fallback to the default
+    private GetMethodHandler = (iMethodHandler, chartJsDefaultHandler: Function) => {
+        if (!iMethodHandler ||
+            typeof iMethodHandler !== "object" ||
+            !iMethodHandler.hasOwnProperty('methodName')) {
             return chartJsDefaultHandler;
+        }
+
+        if (iMethodHandler.hasOwnProperty('handlerReference')) {
+            return (() => {
+                const onClickInstanceHandler: { handlerReference: DotNetObjectReference, methodName: string } = <any>iMethodHandler;
+                const instanceRef = onClickInstanceHandler.handlerReference;
+                const methodName = onClickInstanceHandler.methodName;
+
+                return async (...args) => {
+                    await instanceRef.invokeMethodAsync(methodName, args);
+                };
+            })();
+        } else {
+            let onClickStringName: { fullFunctionName: string } = <any>iMethodHandler;
+            const onClickNamespaceAndFunc = onClickStringName.fullFunctionName.split(".");
+            const onClickFunc = window[onClickNamespaceAndFunc[0]][onClickNamespaceAndFunc[1]];
+            if (typeof onClickFunc === "function") {
+                return onClickFunc;
+            } else { // fallback to the default
+                return chartJsDefaultHandler;
+            }
         }
     };
 
-    private GetCleanArgs = (args) => {
-        // ToDo: refactor the function to clean up the args of each chart type 
-        return typeof args['map'] === 'function' ?
-            args.map(e => {
-                    const newE = Object.assign({}, e, {_chart: undefined}, {_xScale: undefined}, {_yScale: undefined});
-                    return newE;
-                }
-            ) : args;
-    };
+    //private GetCleanArgs = (args) => {
+    //    // ToDo: refactor the function to clean up the args of each chart type 
+    //    return typeof args['map'] === 'function' ?
+    //        args.map(e => {
+    //                const newE = Object.assign({}, e, {_chart: undefined}, {_xScale: undefined}, {_yScale: undefined});
+    //                return newE;
+    //            }
+    //        ) : args;
+    //};
 }
