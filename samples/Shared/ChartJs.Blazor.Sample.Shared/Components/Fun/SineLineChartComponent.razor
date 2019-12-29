@@ -51,10 +51,6 @@
                             GridLines = new GridLines
                             {
                                 Display = false
-                            },
-                            Ticks = new LinearCartesianTicks
-                            {
-                                SuggestedMin = -2
                             }
                         }
                     },
@@ -101,7 +97,7 @@
         var fileTimeAsRadians = x * 0.0174533;
         _sineSet.Add(new Point(x, Math.Sin(fileTimeAsRadians)));
 
-        if (_sineSet.Data.Count > 100)
+        if (_sineSet.Data.Count > 45)
         {
             _sineSet.RemoveAt(0);
         }
@@ -112,7 +108,6 @@
     private void Start()
     {
         _stopWatch = Stopwatch.StartNew();
-
         _timer.Start();
     }
 

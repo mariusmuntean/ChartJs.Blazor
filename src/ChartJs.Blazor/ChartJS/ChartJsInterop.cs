@@ -124,6 +124,20 @@ namespace ChartJs.Blazor.ChartJS
             // Restore any .net refs that need to be passed intact
             // TODO Find a way to do this dynamically. Maybe with attributes or something like that?
             var dynamicChartConfig = (dynamic) chartConfig;
+            if (dynamicChartConfig?.Options?.OnClick is IMethodHandler chartOnClick && chartOnClick != null)
+            {
+                dynamicCleanChartConfig.options = dynamicCleanChartConfig.options ?? new { };
+
+                dynamicCleanChartConfig.options.onClick = chartOnClick;
+            }
+
+            if (dynamicChartConfig?.Options?.OnHover is IMethodHandler chartOnHover && chartOnHover != null)
+            {
+                dynamicCleanChartConfig.options = dynamicCleanChartConfig.options ?? new { };
+
+                dynamicCleanChartConfig.options.onHover = chartOnHover;
+            }
+
             if (dynamicChartConfig?.Options?.Legend?.OnClick is IMethodHandler legendOnClick && legendOnClick != null)
             {
                 dynamicCleanChartConfig.options = dynamicCleanChartConfig.options ?? new { };
@@ -140,25 +154,22 @@ namespace ChartJs.Blazor.ChartJS
                 dynamicCleanChartConfig.options.legend.onHover = legendOnHover;
             }
 
-            if (dynamicChartConfig?.Options?.OnClick is IMethodHandler chartOnClick && chartOnClick != null)
+            if (dynamicChartConfig?.Options?.Legend?.Labels?.GenerateLabels is IMethodHandler generateLabels && generateLabels != null)
             {
                 dynamicCleanChartConfig.options = dynamicCleanChartConfig.options ?? new { };
+                dynamicCleanChartConfig.options.legend = dynamicCleanChartConfig.options.legend ?? new { };
+                dynamicCleanChartConfig.options.legend.labels = dynamicCleanChartConfig.options.legend.labels ?? new { };
 
-                dynamicCleanChartConfig.options.onClick = chartOnClick;
+                dynamicCleanChartConfig.options.legend.labels.generateLabels = generateLabels;
             }
 
-            if (dynamicChartConfig?.Options?.OnHover is IMethodHandler chartOnHover && chartOnHover != null)
+            if (dynamicChartConfig?.Options?.Legend?.Labels?.Filter is IMethodHandler filter && filter != null)
             {
                 dynamicCleanChartConfig.options = dynamicCleanChartConfig.options ?? new { };
+                dynamicCleanChartConfig.options.legend = dynamicCleanChartConfig.options.legend ?? new { };
+                dynamicCleanChartConfig.options.legend.labels = dynamicCleanChartConfig.options.legend.labels ?? new { };
 
-                dynamicCleanChartConfig.options.onHover = chartOnHover;
-            }
-
-            if (dynamicChartConfig?.Options?.Hover?.OnHover is IMethodHandler chartHoverOnHover && chartHoverOnHover != null)
-            {
-                dynamicCleanChartConfig.options = dynamicCleanChartConfig.options ?? new { };
-
-                dynamicCleanChartConfig.options.hover.onHover = chartHoverOnHover;
+                dynamicCleanChartConfig.options.legend.labels.filter = filter;
             }
 
             return dynamicCleanChartConfig;

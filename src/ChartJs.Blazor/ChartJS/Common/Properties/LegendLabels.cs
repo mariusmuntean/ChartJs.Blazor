@@ -1,4 +1,5 @@
 ﻿using ChartJs.Blazor.ChartJS.Common.Enums;
+using ChartJs.Blazor.ChartJS.Common.Handlers;
 using ChartJs.Blazor.Util;
 
 namespace ChartJs.Blazor.ChartJS.Common.Properties
@@ -34,18 +35,15 @@ namespace ChartJs.Blazor.ChartJS.Common.Properties
         /// </summary>
         public int Padding { get; set; } = 10;
 
-        // TODO Callback
         /// <summary>
-        /// Generates legend items for each thing in the legend. Default implementation returns the text + styling for the color box. See Legend Item for details.
-        /// <para> See Legend Item: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-item-interface </para>
+        /// Generates legend items for each thing in the legend. Default implementation returns the text + styling for the color box.
         /// </summary>
-        public string GenerateLabels { get; set; }
+        public IMethodHandler<LegendLabelsGenerator> GenerateLabels { get; set; }
 
-        // TODO Callback
         /// <summary>
         /// Filters legend items out of the legend. Receives 2 parameters, a Legend Item and the chart data.
         /// </summary>
-        public string Filter { get; set; }
+        public IMethodHandler<LegendLabelFilter> Filter { get; set; }
 
         /// <summary>
         /// Label style will match corresponding point style (size is based on <see cref="FontSize"/>, <see cref="BoxWidth"/> is not used in this case).

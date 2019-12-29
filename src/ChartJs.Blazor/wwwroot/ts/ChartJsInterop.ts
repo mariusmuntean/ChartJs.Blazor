@@ -7,6 +7,7 @@ interface ChartConfiguration extends Chart.ChartConfiguration {
 }
 
 interface DotNetObjectReference {
+    invokeMethod(methodName: string, ...args): any;
     invokeMethodAsync(methodName: string, ...args): Promise<any>;
 }
 
@@ -180,7 +181,7 @@ class ChartJsInterop {
 
     /**
      * Given an IMethodHandler (see the C# code), it tries to resolve the referenced method.
-     * It currently supports Javascript functions, which are expected to be attached to the window object; and .Net delegates which can be
+     * It currently supports Javascript functions, which are expected to be attached to the window object, and .Net delegates which can be
      * bound to .Net static functions, .Net object instance methods and more.
      *
      * Failing to recover any handler from the IMethodHandler, it returns the default handler.
@@ -202,9 +203,20 @@ class ChartJsInterop {
             const methodName = onClickInstanceHandler.methodName;
 
             return async (...args) => {
-                args = args.map(element => JSON.decycle(element)); // remove all circular references so it can be stringifyied and later deserialized. This requires cycle.js.
+                let cleanArgs = args.map(element => JSON.decycle(element)); // remove all circular references so it can be stringifyied and later deserialized. This requires cycle.js.
 
-                await instanceRef.invokeMethodAsync(methodName, args);
+                /* Currently this function is async meaning that it returns a Promise. Since Chart.Js may only check if the value is truthy
+                 * (like in the case of legend.labels.filter) it gives wrong results because a promise that will resolve to be false is still seen
+                 * as truthy at the point where the value is checked. Chart.Js simply does not expect a Promise from that function and therefore
+                 * doesn't await it. We somehow need to make sure we return the actual value here and not a promise. The wrapping with another 
+                 * non-async layer (...args) => (async args => {})(args) doesn't help. You can use the SampleInterop.AsyncFilter as example of it
+                 * not working because the promise which will resolve to false will still fail to hide the labels because the promise object is seen as truthy.
+                 * We cannot use the synchronous version instanceRef.invokeMethod because (at least for server-side) you get an error saying that
+                 * the current dispatcher doesn't support synchronous calls.
+                 */
+
+                // return instanceRef.invokeMethod(methodName, cleanArgs);
+                return await instanceRef.invokeMethodAsync(methodName, cleanArgs);
             };
         } else {
             let onClickStringName: { methodName: string } = <any>iMethodHandler;
