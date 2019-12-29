@@ -29,9 +29,10 @@ class ChartJsInterop {
                     /* Currently this function is async meaning that it returns a Promise. Since Chart.Js may only check if the value is truthy
                      * (like in the case of legend.labels.filter) it gives wrong results because a promise that will resolve to be false is still seen
                      * as truthy at the point where the value is checked. Chart.Js simply does not expect a Promise from that function and therefore
-                     * doesn't await it. We somehow need to make sure we return the actual value here and not a promise. The wrapping with another
-                     * non-async layer (...args) => (async args => {})(args) doesn't help. You can use the SampleInterop.AsyncFilter as example of it
-                     * not working because the promise which will resolve to false will still fail to hide the labels because the promise object is seen as truthy.
+                     * doesn't await it (see https://jsfiddle.net/jkcLyarh/1/). We somehow need to make sure we return the actual value here and not a promise.
+                     * The wrapping with another non-async layer (...args) => (async args => {})(args) doesn't help. You can use the SampleInterop.AsyncFilter
+                     * as example of it not working because the promise which will resolve to false will still fail to hide the labels because the promise object
+                     * is seen as truthy.
                      * We cannot use the synchronous version instanceRef.invokeMethod because (at least for server-side) you get an error saying that
                      * the current dispatcher doesn't support synchronous calls.
                      */
