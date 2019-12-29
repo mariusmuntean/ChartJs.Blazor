@@ -10,6 +10,11 @@ interface DotNetObjectReference {
     invokeMethodAsync(methodName: string, ...args): Promise<any>;
 }
 
+// cycle.js (minified from https://github.com/douglascrockford/JSON-js)
+interface JSON {
+    decycle(element: any, replacer?: (value: any) => any): any;
+}
+
 class ChartJsInterop {
 
     BlazorCharts = new Map<string, Chart>();
@@ -32,10 +37,10 @@ class ChartJsInterop {
 
         let myChart = this.BlazorCharts.get(config.canvasId);
 
-        /// Handle datasets
+        // Handle datasets
         this.HandleDatasets(myChart, config);
 
-        /// Handle labels
+        // Handle labels
         this.MergeLabels(myChart, config);
 
         // Redo any wiring up
@@ -101,45 +106,25 @@ class ChartJsInterop {
 
     private WireUpFunctions(config: ChartConfiguration) {
 
-        // replace the Legend's OnHover function name with the actual function (if present)
-        this.WireUpLegendOnHover(config);
-
-        // replace the Options' OnClick function name with the actual function (if present)
-        this.WireUpOptionsOnClickFunc(config);
-
-        // replace the Options.Hover.OnHover func name with the actual function (if present)
-        this.WireUpOptionsOnHoverFunc(config);
+        // replace the Option's OnClick function name with the actual function (if present)
+        this.WireUpOptionsOnClick(config);
+        // replace the Option's OnHover function name with the actual function (if present)
+        this.WireUpOptionsOnHover(config);
 
         // replace the Legend's OnClick function name with the actual function (if present)
         this.WireUpLegendOnClick(config);
-
-        // replace the Label's GenerateLabels function name with the actual function (if present)
-        this.WireUpGenerateLabelsFunc(config);
+        // replace the Legend's OnHover function name with the actual function (if present)
+        this.WireUpLegendOnHover(config);
 
         // replace the Label's Filter function name with the actual function (if present)
         // see details here: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-label-configuration
-        this.WireUpLegendItemFilterFunc(config);
+        this.WireUpLegendItemFilter(config);
+
+        // replace the Label's GenerateLabels function name with the actual function (if present)
+        this.WireUpGenerateLabels(config);
     }
 
-    private WireUpLegendItemFilterFunc(config: ChartConfiguration) {
-        let getDefaultFunc = type => {
-            let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
-            return chartDefaults?.legend?.labels?.filter || Chart.defaults.global?.legend?.labels?.filter;
-        };
-
-        config.options.legend.labels.filter = this.GetMethodHandler(config.options.legend.labels.filter, getDefaultFunc(config.type));
-    }
-
-    private WireUpGenerateLabelsFunc(config: ChartConfiguration) {
-        let getDefaultFunc = type => {
-            let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
-            return chartDefaults?.legend?.labels?.generateLabels || Chart.defaults.global?.legend?.labels?.generateLabels;
-        };
-
-        config.options.legend.labels.generateLabels = this.GetMethodHandler(config.options.legend.labels.generateLabels, getDefaultFunc(config.type));
-    }
-
-    private WireUpOptionsOnClickFunc(config: ChartConfiguration) {
+    private WireUpOptionsOnClick(config: ChartConfiguration) {
         let getDefaultFunc = type => {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
             return defaults?.onClick || Chart.defaults.global?.onClick;
@@ -148,15 +133,13 @@ class ChartJsInterop {
         config.options.onClick = this.GetMethodHandler(config.options.onClick, getDefaultFunc(config.type));
     }
 
-    private WireUpOptionsOnHoverFunc(config: ChartConfiguration) {
+    private WireUpOptionsOnHover(config: ChartConfiguration) {
         let getDefaultFunc = type => {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
-            return defaults?.hover?.onHover || Chart.defaults.global?.hover?.onHover;
+            return defaults?.onHover || Chart.defaults.global?.onHover;
         };
 
-        if (config.options.hover) {
-            config.options.hover.onHover = this.GetMethodHandler(config.options.hover.onHover, getDefaultFunc(config.type));
-        }
+        config.options.onHover = this.GetMethodHandler(config.options.onHover, getDefaultFunc(config.type));
     }
 
     private WireUpLegendOnClick(config: ChartConfiguration) {
@@ -177,6 +160,24 @@ class ChartJsInterop {
         config.options.legend.onHover = this.GetMethodHandler(config.options.legend.onHover, getDefaultFunc(config.type));
     }
 
+    private WireUpLegendItemFilter(config: ChartConfiguration) {
+        let getDefaultFunc = type => {
+            let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
+            return chartDefaults?.legend?.labels?.filter || Chart.defaults.global?.legend?.labels?.filter;
+        };
+
+        config.options.legend.labels.filter = this.GetMethodHandler(config.options.legend.labels.filter, getDefaultFunc(config.type));
+    }
+
+    private WireUpGenerateLabels(config: ChartConfiguration) {
+        let getDefaultFunc = type => {
+            let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
+            return chartDefaults?.legend?.labels?.generateLabels || Chart.defaults.global?.legend?.labels?.generateLabels;
+        };
+
+        config.options.legend.labels.generateLabels = this.GetMethodHandler(config.options.legend.labels.generateLabels, getDefaultFunc(config.type));
+    }
+
     /**
      * Given an IMethodHandler (see the C# code), it tries to resolve the referenced method.
      * It currently supports Javascript functions, which are expected to be attached to the window object; and .Net delegates which can be
@@ -185,45 +186,35 @@ class ChartJsInterop {
      * Failing to recover any handler from the IMethodHandler, it returns the default handler.
      *
      * @param iMethodHandler
-     * @param chartJsDefaultHandler
+     * @param defaultFunc
      * @constructor
      */
-    private GetMethodHandler = (iMethodHandler, chartJsDefaultHandler: Function) => {
+    private GetMethodHandler = (iMethodHandler, defaultFunc: Function) => {
         if (!iMethodHandler ||
             typeof iMethodHandler !== "object" ||
             !iMethodHandler.hasOwnProperty('methodName')) {
-            return chartJsDefaultHandler;
+            return defaultFunc;
         }
 
         if (iMethodHandler.hasOwnProperty('handlerReference')) {
-            return (() => {
-                const onClickInstanceHandler: { handlerReference: DotNetObjectReference, methodName: string } = <any>iMethodHandler;
-                const instanceRef = onClickInstanceHandler.handlerReference;
-                const methodName = onClickInstanceHandler.methodName;
+            const onClickInstanceHandler: { handlerReference: DotNetObjectReference, methodName: string } = <any>iMethodHandler;
+            const instanceRef = onClickInstanceHandler.handlerReference;
+            const methodName = onClickInstanceHandler.methodName;
 
-                return async (...args) => {
-                    await instanceRef.invokeMethodAsync(methodName, args);
-                };
-            })();
+            return async (...args) => {
+                args = args.map(element => JSON.decycle(element)); // remove all circular references so it can be stringifyied and later deserialized. This requires cycle.js.
+
+                await instanceRef.invokeMethodAsync(methodName, args);
+            };
         } else {
-            let onClickStringName: { fullFunctionName: string } = <any>iMethodHandler;
-            const onClickNamespaceAndFunc = onClickStringName.fullFunctionName.split(".");
+            let onClickStringName: { methodName: string } = <any>iMethodHandler;
+            const onClickNamespaceAndFunc = onClickStringName.methodName.split(".");
             const onClickFunc = window[onClickNamespaceAndFunc[0]][onClickNamespaceAndFunc[1]];
             if (typeof onClickFunc === "function") {
                 return onClickFunc;
             } else { // fallback to the default
-                return chartJsDefaultHandler;
+                return defaultFunc;
             }
         }
     };
-
-    //private GetCleanArgs = (args) => {
-    //    // ToDo: refactor the function to clean up the args of each chart type 
-    //    return typeof args['map'] === 'function' ?
-    //        args.map(e => {
-    //                const newE = Object.assign({}, e, {_chart: undefined}, {_xScale: undefined}, {_yScale: undefined});
-    //                return newE;
-    //            }
-    //        ) : args;
-    //};
 }

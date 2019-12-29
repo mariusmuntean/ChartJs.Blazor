@@ -1,12 +1,12 @@
 ﻿using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.Util;
 
-namespace ChartJs.Blazor.ChartJS.Common.Handlers
+namespace ChartJs.Blazor.ChartJS.Common.Properties
 {
     /// <summary>
     /// The legend label configuration is nested below the legend configuration
     /// </summary>
-    public class LegendLabelConfiguration
+    public class LegendLabels
     {
         /// <summary>
         /// width of colored box
@@ -34,12 +34,14 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
         /// </summary>
         public int Padding { get; set; } = 10;
 
+        // TODO Callback
         /// <summary>
         /// Generates legend items for each thing in the legend. Default implementation returns the text + styling for the color box. See Legend Item for details.
         /// <para> See Legend Item: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-item-interface </para>
         /// </summary>
         public string GenerateLabels { get; set; }
 
+        // TODO Callback
         /// <summary>
         /// Filters legend items out of the legend. Receives 2 parameters, a Legend Item and the chart data.
         /// </summary>

@@ -1,13 +1,12 @@
 @using System.Globalization
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Handlers
-@using ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler
-@using ChartJs.Blazor.ChartJS.Common.Handlers.OnHover
 @using ChartJs.Blazor.Charts
 @using ChartJs.Blazor.ChartJS.PieChart
 @using ChartJs.Blazor.ChartJS.Common.Properties
 @using ChartJs.Blazor.Util
 @using Newtonsoft.Json
+@using System.Text.Json
 
 <h1>Click and Hover Handlers</h1>
 <h4>Hover over the donut chart. It has a Javascript handler registered that turns its opacity to 50%</h4>
@@ -56,14 +55,10 @@
                 },
                 Legend = new Legend
                 {
-                    OnClick = new DotNetInstanceClickHandler(OnLegendClickHandler),
-                    OnHover = new DotNetInstanceHoverHandler(OnLegendHoverHandler)
+                    OnClick = new DelegateHandler<LegendItemMouseEvent>(ShowEventAndArgs),
+                    OnHover = new JavascriptHandler<LegendItemMouseEvent>("SampleInterop.PrintEventAndArgs")
                 },
-                OnClick = new DelegateHandler<LegendItemOnClick>(OnClickHandler),
-                Hover = new Hover
-                {
-                    OnHover = new JavascriptHandler("SampleInterop.OnHover")
-                }
+                OnClick = new DelegateHandler<ChartMouseEvent>(ChartMouseEvent),
             }
         };
 
@@ -85,28 +80,16 @@
         _config.Data.Datasets.Add(doughnutSet);
     }
 
-    [JSInvokable]
-    public void OnLegendClickHandler(object sender, object args)
+    public void ShowEventAndArgs(JsonElement @event, JsonElement args)
     {
-        EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
-        Rows = Math.Max(3, EventArgs.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Length + 1);
+        EventArgs += args.GetRawText() + Environment.NewLine;
+        Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
         StateHasChanged();
     }
 
-    [JSInvokable]
-    public void OnLegendHoverHandler(object sender, object args)
+    public void ChartMouseEvent(JsonElement mouseEvent, object[] activeElements)
     {
-        EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
-        Rows = Math.Max(3, EventArgs.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Length + 1);
-        StateHasChanged();
-    }
-
-    [JSInvokable]
-    public void OnClickHandler(object sender, object args)
-    {
-        EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
-        Rows = Math.Max(3, EventArgs.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Length + 1);
-        StateHasChanged();
+        Console.WriteLine($"Chart Mouse Event: {mouseEvent}");
     }
 
     private void OnClear()

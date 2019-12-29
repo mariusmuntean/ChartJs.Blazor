@@ -9,10 +9,10 @@
 @using ChartJs.Blazor.ChartJS.Common.Axes
 @using ChartJs.Blazor.ChartJS.Common.Wrappers
 @using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
-@using ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler
-@using Newtonsoft.Json
+@using ChartJs.Blazor.ChartJS.Common.Handlers
+@using System.Text.Json
 
-<ChartJsBarChart @ref="barChartJs" Config="@_config" Height="250"/>
+<ChartJsBarChart @ref="barChartJs" Config="@_config" Height="250" />
 
 <textarea rows="@Rows" @bind-value="@EventArgs" @bind-value:event="oninput" style="width: 100%; resize: both; height:auto "></textarea>
 
@@ -40,7 +40,7 @@
                 Scales = new BarScales
                 {
                     XAxes = new List<CartesianAxis>
-                    {
+                {
                         new BarCategoryAxis
                         {
                             BarPercentage = 0.5,
@@ -48,7 +48,7 @@
                         }
                     },
                     YAxes = new List<CartesianAxis>
-                    {
+                {
                         new BarLinearCartesianAxis
                         {
                             Ticks = new LinearCartesianTicks
@@ -58,18 +58,22 @@
                         }
                     }
                 },
-                OnClick = new DotNetInstanceClickHandler(OnClickHandler),
+                OnClick = new DelegateHandler<ChartMouseEvent>((e, elems) => Console.WriteLine(e.GetRawText())),
+                Legend = new Legend
+                {
+                    OnClick = new DelegateHandler<LegendItemMouseEvent>(StaticInterop.TestInterop)
+                },
                 MaintainAspectRatio = false,
                 Responsive = true
             }
         };
 
-        _config.Data.Labels.AddRange(new[] {"A", "B", "C", "D"});
+        _config.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
 
         _barDataSet = new BarDataset<DoubleWrapper>
         {
             Label = "My double dataset",
-            BackgroundColor = new[] {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
+            BackgroundColor = new[] { ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString() },
             BorderWidth = 0,
             HoverBackgroundColor = ColorUtil.RandomColorString(),
             HoverBorderColor = ColorUtil.RandomColorString(),
@@ -77,16 +81,8 @@
             BorderColor = "#ffffff"
         };
 
-        _barDataSet.AddRange(new double[] {8, 5, 3, 7}.Wrap());
+        _barDataSet.AddRange(new double[] { 8, 5, 3, 7 }.Wrap());
         _config.Data.Datasets.Add(_barDataSet);
-    }
-
-    [JSInvokable]
-    public void OnClickHandler(object sender, object args)
-    {
-        EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
-        Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
-        StateHasChanged();
     }
 
     private void OnClear()
@@ -95,4 +91,13 @@
         StateHasChanged();
     }
 
+    private static class StaticInterop
+    {
+        private static int s_eventCount = 0;
+
+        public static void TestInterop(JsonElement @event, JsonElement args)
+        {
+            Console.WriteLine($"{System.Threading.Interlocked.Increment(ref s_eventCount)}. event");
+        }
+    }
 }

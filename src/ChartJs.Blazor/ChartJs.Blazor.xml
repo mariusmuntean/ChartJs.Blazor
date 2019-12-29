@@ -457,7 +457,7 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.ChartJsInterop">
             <summary>
-            Interop layer with the included/referenced ChartJs
+            Interop layer from C# to Javascript.
             </summary>
         </member>
         <member name="M:ChartJs.Blazor.ChartJS.ChartJsInterop.SetupChart(Microsoft.JSInterop.IJSRuntime,ChartJs.Blazor.ChartJS.Common.ConfigBase)">
@@ -465,39 +465,40 @@
             Set up a new chart. Call only once.
             </summary>
             <param name="jsRuntime"></param>
-            <param name="chartConfig"></param>
+            <param name="chartConfig">The config for the new chart.</param>
             <returns></returns>
         </member>
         <member name="M:ChartJs.Blazor.ChartJS.ChartJsInterop.ConvertExpandoObjectToDictionary(System.Dynamic.ExpandoObject)">
             <summary>
-            This method is specifically used to convert an <see cref="T:System.Dynamic.ExpandoObject"/> with a Tree structure to a <see cref="!:Dictionary&lt;string, object&gt;"/>.
+            This method is specifically used to convert an <see cref="T:System.Dynamic.ExpandoObject"/> with a Tree structure to a <c>Dictionary&lt;string, object&gt;</c>.
             </summary>
-            <param name="expando">The <see cref="T:System.Dynamic.ExpandoObject"/> to convert</param>
-            <returns>The fully converted <see cref="T:System.Dynamic.ExpandoObject"/></returns>
+            <param name="expando">The <see cref="T:System.Dynamic.ExpandoObject"/> to convert.</param>
+            <returns>The fully converted <see cref="T:System.Dynamic.ExpandoObject"/>.</returns>
         </member>
         <member name="M:ChartJs.Blazor.ChartJS.ChartJsInterop.RecursivelyConvertIDictToDict(System.Collections.Generic.IDictionary{System.String,System.Object})">
             <summary>
-            This method takes an <see cref="!:IDictionary&lt;string, object&gt;"/> and recursively converts it to a <see cref="!:Dictionary&lt;string, object&gt;"/>.
-            The idea is that every <see cref="!:IDictionary&lt;string, object&gt;"/> in the tree will be of type <see cref="!:Dictionary&lt;string, object&gt;"/> instead of some other implementation like <see cref="T:System.Dynamic.ExpandoObject"/>.
+            This method takes an <c>IDictionary&lt;string, object&gt;</c> and recursively converts it to a <c>Dictionary&lt;string, object&gt;</c>.
+            The idea is that every <c>IDictionary&lt;string, object&gt;</c> in the tree will be of type <c>Dictionary&lt;string, object&gt;</c> instead of some other implementation like <see cref="T:System.Dynamic.ExpandoObject"/>.
             </summary>
-            <param name="value">The <see cref="!:IDictionary&lt;string, object&gt;"/> to convert</param>
-            <returns>The fully converted <see cref="!:Dictionary&lt;string, object&gt;"/></returns>
+            <param name="value">The <c>IDictionary&lt;string, object&gt;</c> to convert</param>
+            <returns>The fully converted <c>Dictionary&lt;string, object&gt;</c></returns>
         </member>
         <member name="M:ChartJs.Blazor.ChartJS.ChartJsInterop.UpdateChart(Microsoft.JSInterop.IJSRuntime,ChartJs.Blazor.ChartJS.Common.ConfigBase)">
             <summary>
-            Update an existing chart. Make sure that the <see cref="P:ChartJs.Blazor.ChartJS.Common.ConfigBase.CanvasId"/> matches that on an existing chart.
+            Update an existing chart. Make sure that the Chart with this <see cref="P:ChartJs.Blazor.ChartJS.Common.ConfigBase.CanvasId"/> already exists.
             </summary>
             <param name="jsRuntime"></param>
-            <param name="chartConfig"></param>
+            <param name="chartConfig">The updated config of the chart you want to update.</param>
             <returns></returns>
         </member>
         <member name="M:ChartJs.Blazor.ChartJS.ChartJsInterop.StripNulls(ChartJs.Blazor.ChartJS.Common.ConfigBase)">
             <summary>
-            Returns an object that is equivalent to the given parameter but without any null member AND it preserves DotNetInstanceClickHandler/DotNetInstanceHoverHandler members intact
-            <para>Preserving DotNetInstanceClick/HoverHandler members is important because they contain DotNetObjectRefs to the instance whose method should be invoked on click/hover</para>
-            <para>This whole method is hacky af but necessary. Stripping null members is only needed because the default config for the Line charts on the Blazor side is somehow messed up. If this were not the case no null member stripping were necessary and hence, the recovery of the DotNetObjectRef members would also not be needed. Nevertheless, The Show must go on!</para>
+            Returns an object that is equivalent to the given parameter but without any null members AND it preserves IMethodHandlers intact.
+            <para>Preserving IMethodHandler members is important because they contain <see cref="T:Microsoft.JSInterop.DotNetObjectReference`1"/> to the instance whose method should be invoked on click/hover/whatever.</para>
+            <para>This whole method is hacky af but necessary. Stripping null members is only needed because chartJs doesn't handle null values and undefined values the same and with JSRuntime null gets serialized to null.
+            If this were not the case, no null member stripping were necessary and hence, the recovery of the <see cref="T:Microsoft.JSInterop.DotNetObjectReference`1"/> members would also not be needed. Nevertheless, The Show must go on!</para>
             </summary>
-            <param name="chartConfig"></param>
+            <param name="chartConfig">The config you want to strip of null members.</param>
             <returns></returns>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.AngleLines">
@@ -1050,44 +1051,65 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions">
             <summary>
-            The base config for the options-subconfig of a chart
+            The base config for the options-subconfig of a chart.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.Title">
             <summary>
-            Represents the title of this chart
+            Gets or sets the title of this chart.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.Responsive">
             <summary>
-            Resizes the chart canvas when its container does.
+            Gets or sets a value indicating whether the chart canvas should be resized when its container is.
             <para>See important note: https://www.chartjs.org/docs/latest/general/responsive.html#important-note </para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.AspectRatio">
             <summary>
-            Canvas aspect ratio (i.e. width / height, a value of 1 representing a square canvas). 
+            Gets or sets the canvas aspect ratio (i.e. width / height, a value of 1 representing a square canvas). 
             <para>Note that this option is ignored if the height is explicitly defined either as attribute (of the canvas) or via the style.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.MaintainAspectRatio">
             <summary>
-            Maintain the original canvas aspect ratio (width / height) when resizing.
+            Gets or sets a value indicating whether to maintain the original canvas aspect ratio (width / height) when resizing.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.ResponsiveAnimationDuration">
             <summary>
-            Duration in milliseconds it takes to animate to new size after a resize event.
+            Gets or sets the duration in milliseconds it takes to animate to new size after a resize event.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.Legend">
             <summary>
-            The legend for this chart
+            Gets or sets the legend for this chart.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.Tooltips">
             <summary>
             Gets or sets the tooltip options for this chart.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.Events">
+            <summary>
+            The events option defines the browser events that the chart should listen to for tooltips and hovering.
+            <para>By default, this includes 'mousemove', 'mouseout', 'click', 'touchstart' and 'touchmove'.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.OnClick">
+            <summary>
+            Called if the event is of type 'mouseup' or 'click'. Called in the context of the chart and passed the event and an array of active elements.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.OnHover">
+            <summary>
+            Called when any of the events fire. Called in the context of the chart and passed the event and an array of active elements (bars, points, etc).
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions.Hover">
+            <summary>
+            Gets or sets the hover configuration for this chart.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.ConfigBase">
@@ -1772,6 +1794,13 @@
             If true, grid lines will be shifted to be between labels. This is set to true for a category scale in a bar chart by default.
             </summary>
         </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.ChartMouseEvent">
+            <summary>
+            A delegate for all sorts of mouse events on a chart.
+            </summary>
+            <param name="mouseEvent">The mouse event.</param>
+            <param name="activeElements"></param>
+        </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1">
             <summary>
             Wraps a C#-delegate to make it callable by Javascript.
@@ -1780,7 +1809,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.MethodName">
             <summary>
-            The name of the method which should be called from Javascript. In this case it's always the name of the <see cref="M:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.Invoke(System.Object[])"/>-method.
+            The name of the method which should be called from Javascript. In this case it's always the name of the <see cref="M:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.Invoke(System.Text.Json.JsonElement[])"/>-method.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.HandlerReference">
@@ -1794,11 +1823,11 @@
             </summary>
             <param name="function">The delegate you want to invoke from Javascript.</param>
         </member>
-        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.Invoke(System.Object[])">
+        <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.Invoke(System.Text.Json.JsonElement[])">
             <summary>
-            Invokes the delegate dynamically.
+            Invokes the delegate dynamically. This method should only be called from Javascript.
             </summary>
-            <param name="args">All the arguments for the method as array.</param>
+            <param name="jsonArgs">All the arguments for the method as array. These are not deserialized yet because the type is unknown.</param>
         </member>
         <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.Dispose">
             <inheritdoc/>
@@ -1823,7 +1852,12 @@
             </summary>
             <typeparam name="T">The signature of the method this instance represents. It may be an actual object or just a convention for the programmer.</typeparam>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.IMethodHandler`1.MethodName">
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.IMethodHandler">
+            <summary>
+            Defines that a type is able to handle method calls coming from Javascript. In order to maintain the strongly typed nature of C#, please prefer using <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.IMethodHandler`1"/>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.IMethodHandler.MethodName">
             <summary>
             The name of the method which should be called from Javascript. The method name can be a reference to C# or Javascript.
             </summary>
@@ -1858,120 +1892,37 @@
             </summary>
             <param name="methodName">The namespace and name of a Javascript function to be called, separated by a point (see <see cref="P:ChartJs.Blazor.ChartJS.Common.Handlers.JavascriptHandler`1.MethodName"/> for details).</param>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration">
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.LegendItemMouseEvent">
             <summary>
-            The legend label configuration is nested below the legend configuration
+            A delegate for all sorts of mouse events on a legend item.
+            </summary>
+            <param name="mouseEvent">The mouse event.</param>
+            <param name="legendItem">The legend item which was clicked.</param>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Hover">
+            <summary>
+            The hover configuration contains general settings regarding hovering over a chart.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.BoxWidth">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Hover.Mode">
             <summary>
-            width of colored box
+            Gets or sets which elements appear in the tooltip.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.FontSize">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Hover.Intersect">
             <summary>
-            Font size of text
+            If true, the hover mode only applies when the mouse position intersects an item on the chart.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.FontStyle">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Hover.Axis">
             <summary>
-            Gets or sets the font style for the labels text.
+            Gets or sets which directions are used in calculating distances. Can be set to 'x', 'y', or 'xy'.
+            Defaults to 'x' for <see cref="P:ChartJs.Blazor.ChartJS.Common.Hover.Mode"/> == <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.InteractionMode.Index"/> and 'xy' for <see cref="P:ChartJs.Blazor.ChartJS.Common.Hover.Mode"/> == <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.InteractionMode.Dataset"/> or <see cref="P:ChartJs.Blazor.ChartJS.Common.Enums.InteractionMode.Nearest"/>.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.FontColor">
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Hover.AnimationDuration">
             <summary>
-            Color of text.
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.Padding">
-            <summary>
-            Padding between rows of colored boxes.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.GenerateLabels">
-            <summary>
-            Generates legend items for each thing in the legend. Default implementation returns the text + styling for the color box. See Legend Item for details.
-            <para> See Legend Item: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-item-interface </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.Filter">
-            <summary>
-            Filters legend items out of the legend. Receives 2 parameters, a Legend Item and the chart data.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.UsePointStyle">
-            <summary>
-            Label style will match corresponding point style (size is based on <see cref="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.FontSize"/>, <see cref="P:ChartJs.Blazor.ChartJS.Common.Handlers.LegendLabelConfiguration.BoxWidth"/> is not used in this case).
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.Legend">
-            <summary>
-            The chart legend displays data about the datasets that are appearing on the chart.
-            <para>Link: http://www.chartjs.org/docs/latest/configuration/legend.html </para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.Display">
-            <summary>
-            Determines if the legend is displayed
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.Position">
-            <summary>
-            Position of the legend
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.FullWidth">
-            <summary>
-            Marks that this box should take the full width of the canvas (pushing down other boxes). This is unlikely to need to be changed in day-to-day use.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.OnClick">
-            <summary>
-            The callback that is called when a click event is registered on a label item.
-            <para>See <see cref="!:DotNetInstanceClickHandler"></see>, <see cref="!:DotNetStaticClickHandler"></see> and <see cref="!:JsClickHandler"></see></para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.OnHover">
-            <summary>
-            The callback that is called when a 'mousemove' event is registered on top of a label item
-            <para>See <see cref="!:DotNetInstanceHoverHandler"></see>, <see cref="!:DotNetStaticHoverHandler"></see> and <see cref="!:JsHoverHandler"></see></para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.Reverse">
-            <summary>
-            Legend will show datasets in reverse order.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.Legend.Labels">
-            <summary>
-            Configuration options for the legend-labels
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.LegendItemOnClick">
-            <summary>
-            The delegate for a click handler.
-            <para>Helps enforcing the signature of the legend item click handler.</para>
-            </summary>
-            <param name="sender">The sender of the click event</param>
-            <param name="args">Click event args</param>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler.IClickHandler">
-            <summary>
-            Specifies how clicking items is handled.
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.LegendItemOnHover">
-            <summary>
-            The delegate for a hover handler.
-            <para>Helps enforcing the signature of the legend item hover handler.</para>
-            </summary>
-            <param name="sender">The sender of the hover event</param>
-            <param name="args">Hover event args</param>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.OnHover.IHoverHandler">
-            <summary>
-            Specifies how hovering on items is handled.
+            Gets or sets the duration in milliseconds it takes to animate hover style changes.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.IDataset">
@@ -2090,6 +2041,96 @@
         <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.ArcAnimation.AnimateScale">
             <summary>
             If true, will animate scaling the chart from the center outwards.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Properties.Legend">
+            <summary>
+            The chart legend displays data about the datasets that are appearing on the chart.
+            <para>Link: http://www.chartjs.org/docs/latest/configuration/legend.html </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.Legend.Display">
+            <summary>
+            Determines if the legend is displayed
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.Legend.Position">
+            <summary>
+            Position of the legend
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.Legend.FullWidth">
+            <summary>
+            Marks that this box should take the full width of the canvas (pushing down other boxes). This is unlikely to need to be changed in day-to-day use.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.Legend.OnClick">
+            <summary>
+            The callback that is called when a click event is registered on a label item.
+            <para>See <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.JavascriptHandler`1"></see> and <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1"></see>.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.Legend.OnHover">
+            <summary>
+            The callback that is called when a 'mousemove' event is registered on top of a label item
+            <para>See <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.JavascriptHandler`1"></see> and <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1"></see>.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.Legend.Reverse">
+            <summary>
+            Legend will show datasets in reverse order.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.Legend.Labels">
+            <summary>
+            Configuration options for the legend-labels
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Properties.LegendLabels">
+            <summary>
+            The legend label configuration is nested below the legend configuration
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.LegendLabels.BoxWidth">
+            <summary>
+            width of colored box
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.LegendLabels.FontSize">
+            <summary>
+            Font size of text
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.LegendLabels.FontStyle">
+            <summary>
+            Gets or sets the font style for the labels text.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.LegendLabels.FontColor">
+            <summary>
+            Color of text.
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.LegendLabels.Padding">
+            <summary>
+            Padding between rows of colored boxes.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.LegendLabels.GenerateLabels">
+            <summary>
+            Generates legend items for each thing in the legend. Default implementation returns the text + styling for the color box. See Legend Item for details.
+            <para> See Legend Item: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-item-interface </para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.LegendLabels.Filter">
+            <summary>
+            Filters legend items out of the legend. Receives 2 parameters, a Legend Item and the chart data.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.LegendLabels.UsePointStyle">
+            <summary>
+            Label style will match corresponding point style (size is based on <see cref="P:ChartJs.Blazor.ChartJS.Common.Properties.LegendLabels.FontSize"/>, <see cref="P:ChartJs.Blazor.ChartJS.Common.Properties.LegendLabels.BoxWidth"/> is not used in this case).
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Properties.OptionsTitle">
@@ -2667,11 +2708,6 @@
             General animation time
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineOptions.Hover">
-            <summary>
-            Hover options for hovering over an item
-            </summary>
-        </member>
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineOptions.Scales">
             <summary>
             The scales for this chart. You can use any <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis"/> for x and y.
@@ -2685,16 +2721,6 @@
         <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineOptions.SpanGaps">
             <summary>
             If false, NaN data causes a break in the line.
-            </summary>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineOptionsHover">
-            <summary>
-            The hover-subconfig of <see cref="T:ChartJs.Blazor.ChartJS.LineChart.LineOptions"/>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.LineChart.LineOptionsHover.AnimationDuration">
-            <summary>
-            Duration in milliseconds it takes to animate hover style changes.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.Scales">

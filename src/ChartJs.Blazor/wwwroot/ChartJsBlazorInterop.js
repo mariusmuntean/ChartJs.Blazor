@@ -11,46 +11,36 @@ class ChartJsInterop {
          * Failing to recover any handler from the IMethodHandler, it returns the default handler.
          *
          * @param iMethodHandler
-         * @param chartJsDefaultHandler
+         * @param defaultFunc
          * @constructor
          */
-        this.GetMethodHandler = (iMethodHandler, chartJsDefaultHandler) => {
+        this.GetMethodHandler = (iMethodHandler, defaultFunc) => {
             if (!iMethodHandler ||
                 typeof iMethodHandler !== "object" ||
                 !iMethodHandler.hasOwnProperty('methodName')) {
-                return chartJsDefaultHandler;
+                return defaultFunc;
             }
             if (iMethodHandler.hasOwnProperty('handlerReference')) {
-                return (() => {
-                    const onClickInstanceHandler = iMethodHandler;
-                    const instanceRef = onClickInstanceHandler.handlerReference;
-                    const methodName = onClickInstanceHandler.methodName;
-                    return async (...args) => {
-                        await instanceRef.invokeMethodAsync(methodName, args);
-                    };
-                })();
+                const onClickInstanceHandler = iMethodHandler;
+                const instanceRef = onClickInstanceHandler.handlerReference;
+                const methodName = onClickInstanceHandler.methodName;
+                return async (...args) => {
+                    args = args.map(element => JSON.decycle(element)); // remove all circular references so it can be stringifyied and later deserialized. This requires cycle.js.
+                    await instanceRef.invokeMethodAsync(methodName, args);
+                };
             }
             else {
                 let onClickStringName = iMethodHandler;
-                const onClickNamespaceAndFunc = onClickStringName.fullFunctionName.split(".");
+                const onClickNamespaceAndFunc = onClickStringName.methodName.split(".");
                 const onClickFunc = window[onClickNamespaceAndFunc[0]][onClickNamespaceAndFunc[1]];
                 if (typeof onClickFunc === "function") {
                     return onClickFunc;
                 }
                 else { // fallback to the default
-                    return chartJsDefaultHandler;
+                    return defaultFunc;
                 }
             }
         };
-        //private GetCleanArgs = (args) => {
-        //    // ToDo: refactor the function to clean up the args of each chart type 
-        //    return typeof args['map'] === 'function' ?
-        //        args.map(e => {
-        //                const newE = Object.assign({}, e, {_chart: undefined}, {_xScale: undefined}, {_yScale: undefined});
-        //                return newE;
-        //            }
-        //        ) : args;
-        //};
     }
     SetupChart(config) {
         if (!this.BlazorCharts.has(config.canvasId)) {
@@ -68,9 +58,9 @@ class ChartJsInterop {
         if (!this.BlazorCharts.has(config.canvasId))
             throw `Could not find a chart with the given id. ${config.canvasId}`;
         let myChart = this.BlazorCharts.get(config.canvasId);
-        /// Handle datasets
+        // Handle datasets
         this.HandleDatasets(myChart, config);
-        /// Handle labels
+        // Handle labels
         this.MergeLabels(myChart, config);
         // Redo any wiring up
         this.WireUpFunctions(config);
@@ -123,37 +113,21 @@ class ChartJsInterop {
         return myChart;
     }
     WireUpFunctions(config) {
-        // replace the Legend's OnHover function name with the actual function (if present)
-        this.WireUpLegendOnHover(config);
-        // replace the Options' OnClick function name with the actual function (if present)
-        this.WireUpOptionsOnClickFunc(config);
-        // replace the Options.Hover.OnHover func name with the actual function (if present)
-        this.WireUpOptionsOnHoverFunc(config);
+        // replace the Option's OnClick function name with the actual function (if present)
+        this.WireUpOptionsOnClick(config);
+        // replace the Option's OnHover function name with the actual function (if present)
+        this.WireUpOptionsOnHover(config);
         // replace the Legend's OnClick function name with the actual function (if present)
         this.WireUpLegendOnClick(config);
-        // replace the Label's GenerateLabels function name with the actual function (if present)
-        this.WireUpGenerateLabelsFunc(config);
+        // replace the Legend's OnHover function name with the actual function (if present)
+        this.WireUpLegendOnHover(config);
         // replace the Label's Filter function name with the actual function (if present)
         // see details here: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-label-configuration
-        this.WireUpLegendItemFilterFunc(config);
+        this.WireUpLegendItemFilter(config);
+        // replace the Label's GenerateLabels function name with the actual function (if present)
+        this.WireUpGenerateLabels(config);
     }
-    WireUpLegendItemFilterFunc(config) {
-        let getDefaultFunc = type => {
-            var _a, _b, _c, _d, _e, _f;
-            let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
-            return ((_c = (_b = (_a = chartDefaults) === null || _a === void 0 ? void 0 : _a.legend) === null || _b === void 0 ? void 0 : _b.labels) === null || _c === void 0 ? void 0 : _c.filter) || ((_f = (_e = (_d = Chart.defaults.global) === null || _d === void 0 ? void 0 : _d.legend) === null || _e === void 0 ? void 0 : _e.labels) === null || _f === void 0 ? void 0 : _f.filter);
-        };
-        config.options.legend.labels.filter = this.GetMethodHandler(config.options.legend.labels.filter, getDefaultFunc(config.type));
-    }
-    WireUpGenerateLabelsFunc(config) {
-        let getDefaultFunc = type => {
-            var _a, _b, _c, _d, _e, _f;
-            let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
-            return ((_c = (_b = (_a = chartDefaults) === null || _a === void 0 ? void 0 : _a.legend) === null || _b === void 0 ? void 0 : _b.labels) === null || _c === void 0 ? void 0 : _c.generateLabels) || ((_f = (_e = (_d = Chart.defaults.global) === null || _d === void 0 ? void 0 : _d.legend) === null || _e === void 0 ? void 0 : _e.labels) === null || _f === void 0 ? void 0 : _f.generateLabels);
-        };
-        config.options.legend.labels.generateLabels = this.GetMethodHandler(config.options.legend.labels.generateLabels, getDefaultFunc(config.type));
-    }
-    WireUpOptionsOnClickFunc(config) {
+    WireUpOptionsOnClick(config) {
         let getDefaultFunc = type => {
             var _a, _b;
             let defaults = Chart.defaults[type] || Chart.defaults.global;
@@ -161,15 +135,13 @@ class ChartJsInterop {
         };
         config.options.onClick = this.GetMethodHandler(config.options.onClick, getDefaultFunc(config.type));
     }
-    WireUpOptionsOnHoverFunc(config) {
+    WireUpOptionsOnHover(config) {
         let getDefaultFunc = type => {
-            var _a, _b, _c, _d;
+            var _a, _b;
             let defaults = Chart.defaults[type] || Chart.defaults.global;
-            return ((_b = (_a = defaults) === null || _a === void 0 ? void 0 : _a.hover) === null || _b === void 0 ? void 0 : _b.onHover) || ((_d = (_c = Chart.defaults.global) === null || _c === void 0 ? void 0 : _c.hover) === null || _d === void 0 ? void 0 : _d.onHover);
+            return ((_a = defaults) === null || _a === void 0 ? void 0 : _a.onHover) || ((_b = Chart.defaults.global) === null || _b === void 0 ? void 0 : _b.onHover);
         };
-        if (config.options.hover) {
-            config.options.hover.onHover = this.GetMethodHandler(config.options.hover.onHover, getDefaultFunc(config.type));
-        }
+        config.options.onHover = this.GetMethodHandler(config.options.onHover, getDefaultFunc(config.type));
     }
     WireUpLegendOnClick(config) {
         let getDefaultHandler = type => {
@@ -186,6 +158,22 @@ class ChartJsInterop {
             return ((_b = (_a = chartDefaults) === null || _a === void 0 ? void 0 : _a.legend) === null || _b === void 0 ? void 0 : _b.onHover) || ((_d = (_c = Chart.defaults.global) === null || _c === void 0 ? void 0 : _c.legend) === null || _d === void 0 ? void 0 : _d.onHover);
         };
         config.options.legend.onHover = this.GetMethodHandler(config.options.legend.onHover, getDefaultFunc(config.type));
+    }
+    WireUpLegendItemFilter(config) {
+        let getDefaultFunc = type => {
+            var _a, _b, _c, _d, _e, _f;
+            let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
+            return ((_c = (_b = (_a = chartDefaults) === null || _a === void 0 ? void 0 : _a.legend) === null || _b === void 0 ? void 0 : _b.labels) === null || _c === void 0 ? void 0 : _c.filter) || ((_f = (_e = (_d = Chart.defaults.global) === null || _d === void 0 ? void 0 : _d.legend) === null || _e === void 0 ? void 0 : _e.labels) === null || _f === void 0 ? void 0 : _f.filter);
+        };
+        config.options.legend.labels.filter = this.GetMethodHandler(config.options.legend.labels.filter, getDefaultFunc(config.type));
+    }
+    WireUpGenerateLabels(config) {
+        let getDefaultFunc = type => {
+            var _a, _b, _c, _d, _e, _f;
+            let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
+            return ((_c = (_b = (_a = chartDefaults) === null || _a === void 0 ? void 0 : _a.legend) === null || _b === void 0 ? void 0 : _b.labels) === null || _c === void 0 ? void 0 : _c.generateLabels) || ((_f = (_e = (_d = Chart.defaults.global) === null || _d === void 0 ? void 0 : _d.legend) === null || _e === void 0 ? void 0 : _e.labels) === null || _f === void 0 ? void 0 : _f.generateLabels);
+        };
+        config.options.legend.labels.generateLabels = this.GetMethodHandler(config.options.legend.labels.generateLabels, getDefaultFunc(config.type));
     }
 }
 /* Set up all the momentjs interop stuff */

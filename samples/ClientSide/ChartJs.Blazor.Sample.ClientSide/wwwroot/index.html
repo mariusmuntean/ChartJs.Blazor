@@ -9,28 +9,30 @@
     <link href="css/site.css" rel="stylesheet"/>
 </head>
 <body>
-<app>Loading...</app>
+    <app>Loading...</app>
 
-<script src="_framework/blazor.webassembly.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
 
-<!-- Here I'm referencing the static resources from the library -->
-<!--  In case you need another version of any of the included javascript files, you can adjust the script tags to include the version you need, e.g. from a CDN or your wwwroot directory. -->
-<!-- Since ChartJs is dependent on moment.js, it is important to first include the reference to moment.js and then to ChartJs -->
+    <!-- Here I'm referencing the static resources from the library -->
+    <!--  In case you need another version of any of the included javascript files, you can adjust the script tags to include the version you need, e.g. from a CDN or your wwwroot directory. -->
+    <!-- Since ChartJs is dependent on moment.js, it is important to first include the reference to moment.js and then to ChartJs -->
+    <!-- Reference the included moment.js javascript file. -->
+    <script src="_content/ChartJs.Blazor/moment-with-locales.min.js" type="text/javascript" language="javascript"></script>
 
-<!-- Reference the included moment.js javascript file. -->
-<script src="_content/ChartJs.Blazor/moment-with-locales.min.js" type="text/javascript" language="javascript"></script>
+    <!-- Reference the included ChartJs javascript file. -->
+    <script src="_content/ChartJs.Blazor/Chart.min.js" type="text/javascript" language="javascript"></script>
 
-<!-- Reference the included ChartJs javascript file. -->
-<script src="_content/ChartJs.Blazor/Chart.min.js" type="text/javascript" language="javascript"></script>
+    <!-- This contains the JSON.decycle and JSON.retrocycle functions used to remove the circular references of the events in order to allow serialization from js. -->
+    <script src="_content/ChartJs.Blazor/cycle.js" type="text/javascript" language="javascript"></script>
 
-<!-- This is the glue between the C# code and the ChartJs charts -->
-<script src="_content/ChartJs.Blazor/ChartJsBlazorInterop.js" type="text/javascript" language="javascript"></script>
+    <!-- This is the glue between the C# code and the ChartJs charts -->
+    <script src="_content/ChartJs.Blazor/ChartJsBlazorInterop.js" type="text/javascript" language="javascript"></script>
 
-<!-- Some styling -->
-<link rel="stylesheet" href="_content/ChartJs.Blazor/ChartJSBlazor.css"/>
+    <!-- Some styling -->
+    <link rel="stylesheet" href="_content/ChartJs.Blazor/ChartJSBlazor.css" />
 
-<!-- OPTIONAL: some local interop -->
-<script src="SampleInterop.js" type="text/javascript" language="JavaScript"></script>
+    <!-- OPTIONAL: some local interop -->
+    <script src="SampleInterop.js" type="text/javascript" language="JavaScript"></script>
 
 </body>
 </html>

@@ -4,7 +4,7 @@
 @using ChartJs.Blazor.ChartJS.Common.Enums
 @using ChartJs.Blazor.ChartJS.Common.Axes
 @using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
-@using ChartJs.Blazor.ChartJS.Common.Handlers
+@using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Time
 @using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.Sample.Shared.Services
@@ -58,7 +58,7 @@
                 Legend = new Legend
                 {
                     Position = Position.Right,
-                    Labels = new LegendLabelConfiguration
+                    Labels = new LegendLabels
                     {
                         UsePointStyle = true
                     }
@@ -93,7 +93,7 @@
                         }
                     }
                 },
-                Hover = new LineOptionsHover
+                Hover = new Hover
                 {
                     Intersect = true,
                     Mode = InteractionMode.Y

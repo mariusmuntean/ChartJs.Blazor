@@ -1,9 +1,10 @@
 window.SampleInterop = {
 
-    OnHover: function (sender, args) {
-        if (args && args.length > 0) {
-            sender.srcElement.style.opacity = "0.5";
-        }
+    PrintEventAndArgs: function (event, args) {
+        console.log("sender: ");
+        console.log(event);
+        console.log("args: ");
+        console.log(args)
     }
 }
 ;

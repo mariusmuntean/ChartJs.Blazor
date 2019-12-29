@@ -1,8 +1,7 @@
 ﻿using ChartJs.Blazor.ChartJS.Common.Enums;
-using ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler;
-using ChartJs.Blazor.ChartJS.Common.Handlers.OnHover;
+using ChartJs.Blazor.ChartJS.Common.Handlers;
 
-namespace ChartJs.Blazor.ChartJS.Common.Handlers
+namespace ChartJs.Blazor.ChartJS.Common.Properties
 {
     /// <summary>
     /// The chart legend displays data about the datasets that are appearing on the chart.
@@ -27,15 +26,15 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
 
         /// <summary>
         /// The callback that is called when a click event is registered on a label item.
-        /// <para>See <see cref="DotNetInstanceClickHandler"></see>, <see cref="DotNetStaticClickHandler"></see> and <see cref="JsClickHandler"></see></para>
+        /// <para>See <see cref="JavascriptHandler{T}"></see> and <see cref="DelegateHandler{T}"></see>.</para>
         /// </summary>
-        public IClickHandler OnClick { get; set; }
+        public IMethodHandler<LegendItemMouseEvent> OnClick { get; set; }
 
         /// <summary>
         /// The callback that is called when a 'mousemove' event is registered on top of a label item
-        /// <para>See <see cref="DotNetInstanceHoverHandler"></see>, <see cref="DotNetStaticHoverHandler"></see> and <see cref="JsHoverHandler"></see></para>
+        /// <para>See <see cref="JavascriptHandler{T}"></see> and <see cref="DelegateHandler{T}"></see>.</para>
         /// </summary>
-        public IHoverHandler OnHover { get; set; }
+        public IMethodHandler<LegendItemMouseEvent> OnHover { get; set; }
 
         /// <summary>
         /// Legend will show datasets in reverse order.
@@ -45,6 +44,6 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
         /// <summary>
         /// Configuration options for the legend-labels
         /// </summary>
-        public LegendLabelConfiguration Labels { get; set; } = new LegendLabelConfiguration();
+        public LegendLabels Labels { get; set; } = new LegendLabels();
     }
 }

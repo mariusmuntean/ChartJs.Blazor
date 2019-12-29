@@ -7,6 +7,7 @@
 @using ChartJs.Blazor.ChartJS.Common.Enums
 @using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.Util
+@using System.Diagnostics
 
 @implements IDisposable
 
@@ -23,7 +24,7 @@
     private LineDataset<Point> _sineSet;
 
     private Timer _timer;
-    private DateTime _startTime;
+    private Stopwatch _stopWatch;
 
     protected override void OnInitialized()
     {
@@ -68,7 +69,7 @@
                         }
                     }
                 },
-                Hover = new LineOptionsHover
+                Hover = new Hover
                 {
                     Intersect = true,
                     Mode = InteractionMode.Y
@@ -80,7 +81,7 @@
         {
             BackgroundColor = ColorUtil.ColorString(0, 255, 0, 1.0),
             BorderColor = ColorUtil.ColorString(0, 0, 255, 1.0),
-            Label = "Sine",
+            Label = "Sine set",
             Fill = false,
             PointBackgroundColor = ColorUtil.RandomColorString(),
             BorderWidth = 1,
@@ -96,7 +97,7 @@
 
     private void TimerOnElapsed(object sender, ElapsedEventArgs e)
     {
-        var x = (DateTime.Now - _startTime).TotalMilliseconds;
+        var x = _stopWatch.ElapsedMilliseconds;
         var fileTimeAsRadians = x * 0.0174533;
         _sineSet.Add(new Point(x, Math.Sin(fileTimeAsRadians)));
 
@@ -106,13 +107,11 @@
         }
 
         _lineChartJs.Update();
-
-        //InvokeAsync(StateHasChanged);
     }
 
     private void Start()
     {
-        _startTime = DateTime.Now;
+        _stopWatch = Stopwatch.StartNew();
 
         _timer.Start();
     }
@@ -126,5 +125,4 @@
     {
         _timer?.Dispose();
     }
-
 }

@@ -15,11 +15,6 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public Animation Animation { get; set; }
 
         /// <summary>
-        /// Hover options for hovering over an item
-        /// </summary>
-        public LineOptionsHover Hover { get; set; }
-
-        /// <summary>
         /// The scales for this chart. You can use any <see cref="CartesianAxis"/> for x and y.
         /// </summary>
         public Scales Scales { get; set; }

@@ -1,7 +1,10 @@
 ﻿using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Text.Json;
 
 namespace ChartJs.Blazor.ChartJS.Common.Handlers
 {
@@ -12,16 +15,18 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
     public class DelegateHandler<T> : IMethodHandler<T>, IDisposable
         where T : Delegate
     {
+        private readonly ParameterInfo[] _delegateParameters;
         private readonly T _function;
 
         /// <summary>
-        /// The name of the method which should be called from Javascript. In this case it's always the name of the <see cref="Invoke(object[])"/>-method.
+        /// The name of the method which should be called from Javascript. In this case it's always the name of the <see cref="Invoke(JsonElement[])"/>-method.
         /// </summary>
         public string MethodName => nameof(Invoke);
 
         /// <summary>
         /// Keeps a reference to this object which is used to invoke the stored delegate from Javascript.
         /// </summary>
+        [Newtonsoft.Json.JsonIgnore] // this property only has to be serialized by the JSRuntime where a custom converter will be used.
         public DotNetObjectReference<DelegateHandler<T>> HandlerReference { get; }
 
         /// <summary>
@@ -31,15 +36,39 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
         public DelegateHandler(T function)
         {
             _function = function ?? throw new ArgumentNullException(nameof(function));
+            _delegateParameters = typeof(T).GetMethod("Invoke").GetParameters(); // https://stackoverflow.com/a/429564/10883465
             HandlerReference = DotNetObjectReference.Create(this);
         }
 
         /// <summary>
-        /// Invokes the delegate dynamically.
+        /// Invokes the delegate dynamically. This method should only be called from Javascript.
         /// </summary>
-        /// <param name="args">All the arguments for the method as array.</param>
+        /// <param name="jsonArgs">All the arguments for the method as array. These are not deserialized yet because the type is unknown.</param>
         [JSInvokable]
-        public virtual object Invoke(params object[] args) => _function.DynamicInvoke(args);
+        public virtual object Invoke(params JsonElement[] jsonArgs)
+        {
+            if (_delegateParameters.Length != jsonArgs.Length)
+                throw new ArgumentException($"The function expects {_delegateParameters.Length} arguments but found {jsonArgs.Length}.");
+
+            if (_delegateParameters.Length == 0)
+                return _function.DynamicInvoke(null);
+
+            object[] invokationArgs = new object[_delegateParameters.Length];
+            for (int i = 0; i < _delegateParameters.Length; i++)
+            {
+                if (_delegateParameters[i].ParameterType == typeof(object) ||
+                    _delegateParameters[i].ParameterType == typeof(JsonElement))
+                {
+                    invokationArgs[i] = jsonArgs[i];
+                }
+                else
+                {
+                    invokationArgs[i] = JsonSerializer.Deserialize(jsonArgs[i].GetRawText(), _delegateParameters[i].ParameterType);
+                }
+            }
+            
+            return _function.DynamicInvoke(invokationArgs);
+        }
 
         /// <inheritdoc/>
         public void Dispose()
