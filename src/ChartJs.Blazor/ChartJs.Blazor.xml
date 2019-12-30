@@ -2158,17 +2158,54 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Properties.OptionsTitle">
             <summary>
-            Represents the title of a chart
+            The title-subconfig of <see cref="T:ChartJs.Blazor.ChartJS.Common.BaseConfigOptions"/>. Specifies how the chart title is displayed.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.OptionsTitle.Display">
             <summary>
-            Determines if the title should be displayed or not
+            Gets or sets a value indicating whether the title should be displayed or not.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.OptionsTitle.Position">
+            <summary>
+            Gets or sets the position of the title.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.OptionsTitle.FontSize">
+            <summary>
+            Gets or sets the font size for the title text.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.OptionsTitle.FontFamily">
+            <summary>
+            Gets or sets the font family for the title text.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.OptionsTitle.FontColor">
+            <summary>
+            Gets or sets the font color for the title text.
+            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.OptionsTitle.FontStyle">
+            <summary>
+            Gets or sets the font style for the title text.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.OptionsTitle.Padding">
+            <summary>
+            Gets or sets the number of pixels to add above and below the title text.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.OptionsTitle.LineHeight">
+            <summary>
+            Gets or sets the height of an individual line of text.
+            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/CSS/line-height </para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.OptionsTitle.Text">
             <summary>
-            The actual title to display
+            Gets or sets the title text to display. If specified as an array, text is rendered on multiple lines.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Properties.Tooltips">
