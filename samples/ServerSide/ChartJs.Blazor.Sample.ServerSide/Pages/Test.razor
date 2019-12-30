@@ -5,6 +5,7 @@
 @using ChartJs.Blazor.Util
 @using ChartJs.Blazor.ChartJS.BarChart
 @using ChartJs.Blazor.ChartJS.BarChart.Axes
+@using ChartJs.Blazor.ChartJS.Common.Enums
 @using ChartJs.Blazor.ChartJS.Common.Axes
 @using ChartJs.Blazor.ChartJS.Common.Wrappers
 @using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
@@ -33,7 +34,8 @@
                 Title = new OptionsTitle
                 {
                     Display = true,
-                    Text = "Simple Bar Chart"
+                    Text = new[] { "Simple Bar Chart", "with two lines of title" },
+                    FontStyle = FontStyle.Italic
                 },
                 Scales = new BarScales
                 {
