@@ -31,10 +31,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
         /// <summary>
         /// Keeps a reference to this object which is used to invoke the stored delegate from Javascript.
         /// </summary>
-        // This property only has to be serialized by the JSRuntime where a custom converter will be used. This means it won't exist
-        // in the cleaned config and is actually the reason we need to manually restore some objects after cleaning the config.
-        // TODO Figure out what the best way to serialize this would be and also how much we would benefit from it. Currently I'm thinking
-        // it might remove the need to manually restore the IMethodHandlers on C# side entirely (js-side wouldn't be affected).
+        // This property only has to be serialized by the JSRuntime where a custom converter will be used.
         [Newtonsoft.Json.JsonIgnore]
         public DotNetObjectReference<DelegateHandler<T>> HandlerReference { get; }
 

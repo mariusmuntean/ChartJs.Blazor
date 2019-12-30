@@ -9,6 +9,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using ChartJs.Blazor.ChartJS.Common.Handlers;
+using ChartJs.Blazor.Util;
 
 namespace ChartJs.Blazor.ChartJS
 {
@@ -106,73 +107,66 @@ namespace ChartJs.Blazor.ChartJS
         }
 
         /// <summary>
-        /// Returns an object that is equivalent to the given parameter but without any null members AND it preserves IMethodHandlers intact.
-        /// <para>Preserving IMethodHandler members is important because they contain <see cref="DotNetObjectReference{T}"/> to the instance whose method should be invoked on click/hover/whatever.</para>
-        /// <para>This whole method is hacky af but necessary. Stripping null members is only needed because chartJs doesn't handle null values and undefined values the same and with JSRuntime null gets serialized to null.
-        /// If this were not the case, no null member stripping were necessary and hence, the recovery of the <see cref="DotNetObjectReference{T}"/> members would also not be needed. Nevertheless, The Show must go on!</para>
+        /// Returns an object that is equivalent to the given parameter but without any null members AND it preserves <see cref="IMethodHandler"/>s intact.
+        /// <para>Preserving <see cref="IMethodHandler"/> members is important because they might be <see cref="DelegateHandler{T}"/> instances which contain
+        /// delegates that can't be (de)serialized.</para>
+        /// <para>Stripping null members is only needed because chartJs doesn't handle null values and undefined values the same and with JSRuntime null gets
+        /// serialized to null instead of undefined (not at all) and WE CAN'T CHANGE THAT (see https://github.com/aspnet/AspNetCore/issues/12685).
+        /// If this were not the case, no null member stripping were necessary -> no json.net serialize-deserialize magic -> no loss of <see cref="DelegateHandler{T}"/>
+        /// instances -> no recovery of those. Everything would be better with AspNetCore#12685 finally being implemented but to fully migrate to System.Text.Json
+        /// we might also need corefx#38650 and corefx#39905.
+        /// Nevertheless, The Show must go on!</para>
         /// </summary>
         /// <param name="chartConfig">The config you want to strip of null members.</param>
         /// <returns></returns>
         private static ExpandoObject StripNulls(ConfigBase chartConfig)
         {
             // Serializing with the custom serializer settings remove null members
-            var cleanChartConfigStr = JsonConvert.SerializeObject(chartConfig, JsonSerializerSettings);
+            string cleanChartConfigStr = JsonConvert.SerializeObject(chartConfig, JsonSerializerSettings);
 
             // Get back an ExpandoObject dynamic with the clean config - having an ExpandoObject allows us to add/replace members regardless of type
-            dynamic dynamicCleanChartConfig = JsonConvert.DeserializeObject<ExpandoObject>(cleanChartConfigStr, new ExpandoObjectConverter());
+            ExpandoObject cleanChartConfig = JsonConvert.DeserializeObject<ExpandoObject>(cleanChartConfigStr, new ExpandoObjectConverter());
 
             // Restore any .net refs that need to be passed intact
             // TODO Find a way to do this dynamically. Maybe with attributes or something like that?
-            var dynamicChartConfig = (dynamic) chartConfig;
+            dynamic dynamicChartConfig = (dynamic)chartConfig;
             if (dynamicChartConfig?.Options?.OnClick is IMethodHandler chartOnClick && chartOnClick != null)
             {
-                dynamicCleanChartConfig.options = dynamicCleanChartConfig.options ?? new { };
-
-                dynamicCleanChartConfig.options.onClick = chartOnClick;
+                const string path = "options.onClick";
+                cleanChartConfig.SetValue(path, chartOnClick);
             }
 
             if (dynamicChartConfig?.Options?.OnHover is IMethodHandler chartOnHover && chartOnHover != null)
             {
-                dynamicCleanChartConfig.options = dynamicCleanChartConfig.options ?? new { };
-
-                dynamicCleanChartConfig.options.onHover = chartOnHover;
+                const string path = "options.onHover";
+                cleanChartConfig.SetValue(path, chartOnHover);
             }
 
             if (dynamicChartConfig?.Options?.Legend?.OnClick is IMethodHandler legendOnClick && legendOnClick != null)
             {
-                dynamicCleanChartConfig.options = dynamicCleanChartConfig.options ?? new { };
-                dynamicCleanChartConfig.options.legend = dynamicCleanChartConfig.options.legend ?? new { };
-
-                dynamicCleanChartConfig.options.legend.onClick = legendOnClick;
+                const string path = "options.legend.onClick";
+                cleanChartConfig.SetValue(path, legendOnClick);
             }
 
             if (dynamicChartConfig?.Options?.Legend?.OnHover is IMethodHandler legendOnHover && legendOnHover != null)
             {
-                dynamicCleanChartConfig.options = dynamicCleanChartConfig.options ?? new { };
-                dynamicCleanChartConfig.options.legend = dynamicCleanChartConfig.options.legend ?? new { };
-
-                dynamicCleanChartConfig.options.legend.onHover = legendOnHover;
+                const string path = "options.legend.onHover";
+                cleanChartConfig.SetValue(path, legendOnHover);
             }
 
             if (dynamicChartConfig?.Options?.Legend?.Labels?.GenerateLabels is IMethodHandler generateLabels && generateLabels != null)
             {
-                dynamicCleanChartConfig.options = dynamicCleanChartConfig.options ?? new { };
-                dynamicCleanChartConfig.options.legend = dynamicCleanChartConfig.options.legend ?? new { };
-                dynamicCleanChartConfig.options.legend.labels = dynamicCleanChartConfig.options.legend.labels ?? new { };
-
-                dynamicCleanChartConfig.options.legend.labels.generateLabels = generateLabels;
+                const string path = "options.legend.labels.generateLabels";
+                cleanChartConfig.SetValue(path, generateLabels);
             }
 
             if (dynamicChartConfig?.Options?.Legend?.Labels?.Filter is IMethodHandler filter && filter != null)
             {
-                dynamicCleanChartConfig.options = dynamicCleanChartConfig.options ?? new { };
-                dynamicCleanChartConfig.options.legend = dynamicCleanChartConfig.options.legend ?? new { };
-                dynamicCleanChartConfig.options.legend.labels = dynamicCleanChartConfig.options.legend.labels ?? new { };
-
-                dynamicCleanChartConfig.options.legend.labels.filter = filter;
+                const string path = "options.legend.labels.filter";
+                cleanChartConfig.SetValue(path, filter);
             }
 
-            return dynamicCleanChartConfig;
+            return cleanChartConfig;
         }
 
         private static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
