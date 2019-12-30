@@ -47,12 +47,12 @@
                 Scales = new Scales
                 {
                     xAxes = new List<CartesianAxis>
-                {
+                    {
                         new LinearCartesianAxis
                         {
                             ScaleLabel = new ScaleLabel
                             {
-                                LabelString = "Zeit"
+                                LabelString = "Time"
                             },
                             GridLines = new GridLines
                             {
@@ -110,8 +110,7 @@
 
         WeatherForecast[] forecasts = await _forecastService.GetStaticForecastAsync(DateTime.Now, 5);
 
-        var
-            onlyDays = forecasts.GroupBy(f => f.Date.Day).Select(g => g.First());
+        var onlyDays = forecasts.GroupBy(f => f.Date.Day).Select(g => g.First());
 
         var weatherForecasts = onlyDays.ToList();
         tempPerHourSet.AddRange(weatherForecasts.Select(p => new Point(p.Date.Hour, p.TemperatureC)));
@@ -120,5 +119,4 @@
         _lineConfig.Data.Datasets.Add(tempPerHourSet);
         _lineConfig.Data.Datasets.Add(tempPerDaySet);
     }
-
 }

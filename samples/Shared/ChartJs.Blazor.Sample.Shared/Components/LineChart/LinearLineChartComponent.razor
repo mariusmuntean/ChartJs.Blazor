@@ -19,11 +19,9 @@
     LineConfig _lineConfig;
     ChartJsLineChart _lineChartJs;
 
-    private LineDataset<Point>
-    _tempPerHourSet;
+    private LineDataset<Point> _tempPerHourSet;
 
-    private LineDataset<Point>
-    _tempPerDaySet;
+    private LineDataset<Point> _tempPerDaySet;
 
     private readonly Random _rnd = new Random();
 
@@ -55,12 +53,12 @@
                 Scales = new Scales
                 {
                     xAxes = new List<CartesianAxis>
-            {
+                    {
                         new LinearCartesianAxis
                         {
                             ScaleLabel = new ScaleLabel
                             {
-                                LabelString = "Zeit"
+                                LabelString = "Time"
                             },
                             GridLines = new GridLines
                             {
@@ -73,7 +71,7 @@
                         }
                     },
                     yAxes = new List<CartesianAxis>
-            {
+                    {
                         new LinearCartesianAxis
                         {
                             ScaleLabel = new ScaleLabel
@@ -135,5 +133,4 @@
         _tempPerHourSet.Add(new Point(_rnd.Next(100), _rnd.Next(100)));
         await _lineChartJs.Update();
     }
-
 }

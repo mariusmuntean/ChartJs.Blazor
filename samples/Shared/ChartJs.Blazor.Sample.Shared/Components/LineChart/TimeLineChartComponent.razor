@@ -20,7 +20,6 @@
 
 @code
 {
-
     LineConfig _lineConfig;
     ChartJsLineChart _lineChartJs;
     const string DeCh = "de-ch";
@@ -72,7 +71,7 @@
                 Scales = new Scales
                 {
                     xAxes = new List<CartesianAxis>
-            {
+                    {
                         new TimeAxis
                         {
                             Distribution = TimeDistribution.Linear,
@@ -130,5 +129,4 @@
         _tempDataSet.Fill = !_tempDataSet.Fill;
         await _lineChartJs.Update();
     }
-
 }

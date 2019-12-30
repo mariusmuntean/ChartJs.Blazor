@@ -9,84 +9,98 @@
 
 <h2>Simple Bar Chart</h2>
 <div class="row">
-	<button class="btn btn-primary" @onclick="AddData">
-		Add Data
-	</button>
-	<button class="btn btn-primary" @onclick="RemoveData">
-		Remove Data
-	</button>
+    <button class="btn btn-primary" @onclick="AddData">
+        Add Data
+    </button>
+    <button class="btn btn-primary" @onclick="RemoveData">
+        Remove Data
+    </button>
 </div>
 <ChartJsBarChart @ref="_barChart"
-				 Config="@_barChartConfig"
-				 Width="600"
-				 Height="300"/>
+                 Config="@_barChartConfig"
+                 Width="600"
+                 Height="300" />
 
-@code {
+@code
+{
 
-	private BarConfig _barChartConfig;
-	private ChartJsBarChart _barChart;
-	private BarDataset<DoubleWrapper> _barDataSet;
+    private BarConfig _barChartConfig;
+    private ChartJsBarChart _barChart;
+    private BarDataset<DoubleWrapper> _barDataSet;
 
-	protected override void OnInitialized() {
-		_barChartConfig = new BarConfig {
-			Options = new BarOptions {
-				Title = new OptionsTitle {
-					Display = true,
-					Text = "Simple Bar Chart"
-				},
-				Scales = new BarScales {
-					XAxes = new List<CartesianAxis> {
-						new BarCategoryAxis {
-							BarPercentage = 0.5,
-							BarThickness = BarThickness.Flex
-						}
-					},
-					YAxes = new List<CartesianAxis> {
-						new BarLinearCartesianAxis {
-							Ticks = new LinearCartesianTicks {
-								BeginAtZero = true
-							}
-						}
-					}
-				}
-			}
-		};
+    protected override void OnInitialized()
+    {
+        _barChartConfig = new BarConfig
+        {
+            Options = new BarOptions
+            {
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "Simple Bar Chart"
+                },
+                Scales = new BarScales
+                {
+                    XAxes = new List<CartesianAxis>
+                    {
+                        new BarCategoryAxis
+                        {
+                            BarPercentage = 0.5,
+                            BarThickness = BarThickness.Flex
+                        }
+                    },
+                    YAxes = new List<CartesianAxis>
+                    {
+                        new BarLinearCartesianAxis
+                        {
+                            Ticks = new LinearCartesianTicks
+                            {
+                                BeginAtZero = true
+                            }
+                        }
+                    }
+                }
+            }
+        };
 
-		_barChartConfig.Data.Labels.AddRange(new[] {"A", "B", "C", "D"});
+        _barChartConfig.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
 
-		_barDataSet = new BarDataset<DoubleWrapper> {
-			Label = "My double dataset",
-			BackgroundColor = new[] {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
-			BorderWidth = 0,
-			HoverBackgroundColor = ColorUtil.RandomColorString(),
-			HoverBorderColor = ColorUtil.RandomColorString(),
-			HoverBorderWidth = 1,
-			BorderColor = "#ffffff"
-		};
+        _barDataSet = new BarDataset<DoubleWrapper>
+        {
+            Label = "My double dataset",
+            BackgroundColor = new[] { ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString() },
+            BorderWidth = 0,
+            HoverBackgroundColor = ColorUtil.RandomColorString(),
+            HoverBorderColor = ColorUtil.RandomColorString(),
+            HoverBorderWidth = 1,
+            BorderColor = "#ffffff"
+        };
 
-		_barDataSet.AddRange(new double[] {8, 5, 3, 7}.Wrap());
-		_barChartConfig.Data.Datasets.Add(_barDataSet);
-	}
+        _barDataSet.AddRange(new double[] { 8, 5, 3, 7 }.Wrap());
+        _barChartConfig.Data.Datasets.Add(_barDataSet);
+    }
 
+    private async Task AddData()
+    {
+        var nowSecond = DateTime.Now.Second;
+        _barChartConfig.Data.Labels.Add(nowSecond.ToString());
+        _barDataSet.Add(new DoubleWrapper(nowSecond));
 
-	private async Task AddData() {
-		var nowSecond = DateTime.Now.Second;
-		_barChartConfig.Data.Labels.Add(nowSecond.ToString());
-		_barDataSet.Add(new DoubleWrapper(nowSecond));
+        await _barChart.Update();
+    }
 
-		await _barChart.Update();
-	}
+    private async Task RemoveData()
+    {
+        if (_barChartConfig.Data.Labels.Count > 0)
+        {
+            _barChartConfig.Data.Labels.RemoveAt(_barChartConfig.Data.Labels.Count - 1);
+        }
 
-	private async Task RemoveData() {
-		if (_barChartConfig.Data.Labels.Count > 0) {
-			_barChartConfig.Data.Labels.RemoveAt(_barChartConfig.Data.Labels.Count - 1);
-		}
+        if (_barDataSet.Data.Count > 0)
+        {
+            _barDataSet.RemoveAt(_barDataSet.Data.Count - 1);
+        }
 
-		if (_barDataSet.Data.Count > 0) {
-			_barDataSet.RemoveAt(_barDataSet.Data.Count - 1);
-		}
-
-		await _barChart.Update();
-	}
-
+        await _barChart.Update();
+    }
 }

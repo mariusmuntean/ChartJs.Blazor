@@ -17,19 +17,18 @@
 
 <button class="btn btn-primary" @onclick="AddData">Add data</button>
 
-<ChartJsPieChart @ref="_doughnutChartJs" Config="@_config" Width="600" Height="300"/>
+<ChartJsPieChart @ref="_doughnutChartJs" Config="@_config" Width="600" Height="300" />
 
 <text>In each entry, the property "index" refers to the data index in that dataset</text>
-<br/>
+<br />
 <text font-size="small">Hint: you can delete the text below</text>
-<br/>
+<br />
 <button type="button" class="btn btn-outline-danger" @onclick="OnClear">Clear</button>
-<br/>
-<textarea	rows="@Rows" 
-			@bind-value="@EventArgs"
-			@bind-value:event="oninput"
-			style="width: 100%; resize: both; height:auto "></textarea>
-
+<br />
+<textarea rows="@Rows"
+          @bind-value="@EventArgs"
+          @bind-value:event="oninput"
+          style="width: 100%; resize: both; height:auto "></textarea>
 
 @code {
     private PieConfig _config;
@@ -68,13 +67,13 @@
             }
         };
 
-        _config.Data.Labels.AddRange(new[] {"A", "B", "C", "D"});
+        _config.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
 
         await Task.Delay(100);
 
         var doughnutSet = new PieDataset
         {
-            BackgroundColor = new[] {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
+            BackgroundColor = new[] { ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString() },
             BorderWidth = 0,
             HoverBackgroundColor = ColorUtil.RandomColorString(),
             HoverBorderColor = ColorUtil.RandomColorString(),
@@ -82,7 +81,7 @@
             BorderColor = "#ffffff"
         };
 
-        doughnutSet.Data.AddRange(new double[] {4, 5, 6, 7});
+        doughnutSet.Data.AddRange(new double[] { 4, 5, 6, 7 });
         _config.Data.Datasets.Add(doughnutSet);
     }
 
@@ -90,7 +89,7 @@
     public void OnLegendClickHandler(object sender, object args)
     {
         EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
-        Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
+        Rows = Math.Max(3, EventArgs.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Length + 1);
         StateHasChanged();
     }
 
@@ -98,7 +97,7 @@
     public void OnLegendHoverHandler(object sender, object args)
     {
         EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
-        Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
+        Rows = Math.Max(3, EventArgs.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Length + 1);
         StateHasChanged();
     }
 
@@ -106,7 +105,7 @@
     public void OnClickHandler(object sender, object args)
     {
         EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
-        Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
+        Rows = Math.Max(3, EventArgs.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Length + 1);
         StateHasChanged();
     }
 
@@ -119,10 +118,7 @@
     private async Task AddData()
     {
         var dataset = _config.Data.Datasets.LastOrDefault();
-        if (dataset == null)
-        {
-            return;
-        }
+        if (dataset == null) return;
 
         var rand = new Random();
         var newVal = 1 + rand.NextDouble() * 10;
@@ -132,5 +128,4 @@
 
         await _doughnutChartJs.Update();
     }
-
 }
