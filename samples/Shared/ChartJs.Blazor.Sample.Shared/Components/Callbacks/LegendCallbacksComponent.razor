@@ -134,9 +134,9 @@
         }
     }
 
-    private bool LabelsFilter(JsonElement item, JsonElement chart)
+    private bool LabelsFilter(LegendItem item, JsonElement chart)
     {
-        int index = item.GetProperty("index").GetInt32();
+        int index = item.Index.Value;
         bool shown = index % 3 != 0;
         Console.WriteLine($"Index: {index} -> {(shown ? "shown" : "hidden")}");
 

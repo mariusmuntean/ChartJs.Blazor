@@ -8,5 +8,5 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
     /// </summary>
     /// <param name="legendItem">The <see cref="LegendItem"/> to either include or filter out.</param>
     /// <param name="chartData"></param>
-    public delegate bool LegendLabelFilter(JsonElement legendItem, JsonElement chartData);
+    public delegate bool LegendLabelFilter(LegendItem legendItem, JsonElement chartData);
 }

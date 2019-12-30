@@ -15,6 +15,11 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
     public class DelegateHandler<T> : IMethodHandler<T>, IDisposable
         where T : Delegate
     {
+        private static readonly JsonSerializerOptions s_deserializeOptions = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+
         private readonly ParameterInfo[] _delegateParameters;
         private readonly T _function;
 
@@ -26,7 +31,11 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
         /// <summary>
         /// Keeps a reference to this object which is used to invoke the stored delegate from Javascript.
         /// </summary>
-        [Newtonsoft.Json.JsonIgnore] // this property only has to be serialized by the JSRuntime where a custom converter will be used.
+        // This property only has to be serialized by the JSRuntime where a custom converter will be used. This means it won't exist
+        // in the cleaned config and is actually the reason we need to manually restore some objects after cleaning the config.
+        // TODO Figure out what the best way to serialize this would be and also how much we would benefit from it. Currently I'm thinking
+        // it might remove the need to manually restore the IMethodHandlers on C# side entirely (js-side wouldn't be affected).
+        [Newtonsoft.Json.JsonIgnore]
         public DotNetObjectReference<DelegateHandler<T>> HandlerReference { get; }
 
         /// <summary>
@@ -43,7 +52,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
         /// <summary>
         /// Invokes the delegate dynamically. This method should only be called from Javascript.
         /// </summary>
-        /// <param name="jsonArgs">All the arguments for the method as array. These are not deserialized yet because the type is unknown.</param>
+        /// <param name="jsonArgs">All the arguments for the method as array. These are not deserialized yet because the types are unknown.</param>
         [JSInvokable]
         public virtual object Invoke(params JsonElement[] jsonArgs)
         {
@@ -63,7 +72,10 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
                 }
                 else
                 {
-                    invokationArgs[i] = JsonSerializer.Deserialize(jsonArgs[i].GetRawText(), _delegateParameters[i].ParameterType);
+#if DEBUG
+                    Console.WriteLine($"Deserializing: {jsonArgs[i].GetRawText()} to {_delegateParameters[i].ParameterType.Name}");
+#endif
+                    invokationArgs[i] = JsonSerializer.Deserialize(jsonArgs[i].GetRawText(), _delegateParameters[i].ParameterType, s_deserializeOptions);
                 }
             }
             
