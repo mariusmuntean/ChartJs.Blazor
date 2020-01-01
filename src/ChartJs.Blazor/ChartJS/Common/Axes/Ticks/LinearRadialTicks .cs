@@ -48,7 +48,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Axes.Ticks
         public int MaxTicksLimit { get; set; } = 11;
 
         /// <summary>
-        /// If defined and StepSize is not specified, the step size will be rounded to this many decimal places.
+        /// If defined and <see cref="StepSize"/> is not specified, the step size will be rounded to this many decimal places.
         /// </summary>
         public int? Precision { get; set; }
 

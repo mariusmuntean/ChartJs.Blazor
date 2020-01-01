@@ -4,12 +4,12 @@ using ChartJs.Blazor.ChartJS.Common.Enums;
 namespace ChartJs.Blazor.ChartJS.Common.Axes.Ticks
 {
     /// <summary>
-    /// The base class for minor and major ticks (see <see cref="MinorTicks"/> and see <see cref="MajorTicks"/>).
+    /// The ultimate base class for tick mark configurations.
     /// </summary>
     public abstract class SubTicks
     {
         /// <summary>
-        /// Gets or sets the font color for a tick's labels.
+        /// Gets or sets the font color for a tick's label.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public string FontColor { get; set; }
@@ -22,7 +22,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Axes.Ticks
         /// <summary>
         /// Gets or sets the font size for a tick's label.
         /// </summary>
-        public int FontSize { get; set; } = 12;
+        public int? FontSize { get; set; }
 
         /// <summary>
         /// Gets or sets the font style for a tick's label.
