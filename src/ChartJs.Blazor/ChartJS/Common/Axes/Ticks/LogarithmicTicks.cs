@@ -1,16 +1,11 @@
 ﻿
 namespace ChartJs.Blazor.ChartJS.Common.Axes.Ticks
 {
+    /// <summary>
+    /// The ticks-subconfig of <see cref="LogarithmicAxis"/>. It has the same members as <see cref="CartesianTicks"/>.
+    /// https://www.chartjs.org/docs/latest/axes/cartesian/logarithmic.html#tick-configuration-options
+    /// </summary>
     public class LogarithmicTicks : CartesianTicks
     {
-        /// <summary>
-        /// User defined minimum number for the scale, overrides minimum value from data.
-        /// </summary>
-        public int Min { get; set; }
-
-        /// <summary>
-        /// User defined maximum number for the scale, overrides maximum value from data.
-        /// </summary>
-        public int Max { get; set; }
     }
 }

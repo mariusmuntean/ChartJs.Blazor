@@ -729,70 +729,87 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks">
             <summary>
+            The base class for all tick mark configurations of cartesian axes (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis"/>). Ticks-subconfig of <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis"/>.
             As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/#tick-configuration
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.Min">
+            <summary>
+            Gets or sets the user defined minimum number for the scale, overrides minimum value from data.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.Max">
+            <summary>
+            Gets or sets the user defined maximum number for the scale, overrides maximum value from data.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.SampleSize">
+            <summary>
+            The number of ticks to examine when deciding how many labels will fit.
+            Setting a smaller value will be faster, but may be less accurate when there is large variability in label length.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.AutoSkip">
             <summary>
             If true, automatically calculates how many labels can be shown and hides labels accordingly. 
-            Labels will be rotated up to maxRotation before skipping any. Turn autoSkip off to show all labels no matter what.
+            Labels will be rotated up to maxRotation before skipping any. Turn <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.AutoSkip" /> off to show all labels no matter what.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.AutoSkipPadding">
             <summary>
-            Padding between the ticks on the horizontal axis when <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.AutoSkip"></see> is enabled.
+            Gets or sets the padding between the ticks on the horizontal axis when <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.AutoSkip" /> is enabled.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.LabelOffset">
             <summary>
-            Distance in pixels to offset the label from the centre point of the tick (in the x direction for the x axis, and the y direction for the y axis).
+            Gets or sets the distance in pixels to offset the label from the centre point of the tick (in the x direction for the x axis, and the y direction for the y axis).
             <para>Note: this can cause labels at the edges to be cropped by the edge of the canvas.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.MaxRotation">
             <summary>
-            Maximum rotation for tick labels when rotating to condense labels. 
+            Gets or sets the maximum rotation for tick labels when rotating to condense labels.
             <para>Note: Rotation doesn't occur until necessary.</para>
             <para>Note: Only applicable to horizontal scales.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.MinRotation">
             <summary>
-            Minimum rotation for tick labels. 
+            Gets or sets the minimum rotation for tick labels.
             <para>Note: Only applicable to horizontal scales.</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.Mirror">
             <summary>
-            Flips tick labels around axis, displaying the labels inside the chart instead of outside.
+            If true, flips tick labels around axis, displaying the labels inside the chart instead of outside.
             <para>Note: Only applicable to vertical scales.</para>
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks.Padding">
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CategoryTicks">
             <summary>
-            Padding between the tick label and the axis. When set on a vertical axis, this applies in the horizontal (X) direction. 
-            When set on a horizontal axis, this applies in the vertical (Y) direction.
+            The ticks-subconfig of <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.CategoryAxis"/>.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CategoryTicks.Labels">
             <summary>
-            An array of labels to display.
+            Gets or sets an array of labels to display.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CategoryTicks.Min">
             <summary>
-            The minimum item to display. The item has to be present in <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CategoryTicks.Labels"/>.
+            Gets or sets the minimum item to display. The item has to be present in <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CategoryTicks.Labels"/>.
             <para>Read more https://www.chartjs.org/docs/latest/axes/cartesian/category.html#min-max-configuration </para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CategoryTicks.Max">
             <summary>
-            The maximum item to display. The item has to be present in <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CategoryTicks.Labels"/>.
+            Gets or sets the maximum item to display. The item has to be present in <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CategoryTicks.Labels"/>.
             <para>Read more https://www.chartjs.org/docs/latest/axes/cartesian/category.html#min-max-configuration </para>
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks">
             <summary>
+            The ticks-subconfig of <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.LinearCartesianAxis"/>.
             https://www.chartjs.org/docs/latest/axes/cartesian/linear.html#tick-configuration-options
             </summary>
         </member>
@@ -801,40 +818,32 @@
             If true, scale will include 0 if it is not already included.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.Min">
-            <summary>
-            User defined minimum number for the scale, overrides minimum value from data.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.Max">
-            <summary>
-            User defined maximum number for the scale, overrides maximum value from data.
-            </summary>
-        </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.MaxTicksLimit">
             <summary>
-            Maximum number of ticks and gridlines to show.
+            Gets or sets the maximum number of ticks and gridlines to show.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.Precision">
             <summary>
-            if defined and <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.StepSize"></see> is not specified, the step size will be rounded to this many decimal places.
+            If defined and <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.StepSize"/> is not specified, the step size will be rounded to this many decimal places.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.StepSize">
             <summary>
-            User defined fixed step size for the scale.
+            Gets or sets the user defined fixed step size for the scale.
             <para>See https://www.chartjs.org/docs/latest/axes/cartesian/linear.html#step-size for details</para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.SuggestedMax">
             <summary>
-            Adjustment used when calculating the maximum data value. This value is used as the highest value if it's higher than the maximum data-value.
+            Gets or sets the adjustment used when calculating the maximum data value.
+            This value is used as the highest value if it's higher than the maximum data-value.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearCartesianTicks.SuggestedMin">
             <summary>
-            Adjustment used when calculating the minimum data value. This value is used as the lowest value if it's lower than the minimum data-value.
+            Gets or sets the adjustment used when calculating the minimum data value.
+            This value is used as the lowest value if it's lower than the minimum data-value.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks">
@@ -883,7 +892,7 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks.Precision">
             <summary>
-            If defined and StepSize is not specified, the step size will be rounded to this many decimal places.
+            If defined and <see cref="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks.StepSize"/> is not specified, the step size will be rounded to this many decimal places.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LinearRadialTicks.StepSize">
@@ -909,14 +918,10 @@
             Gets or sets the value indicating whether a background is drawn behind the tick labels.
             </summary>
         </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LogarithmicTicks.Min">
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LogarithmicTicks">
             <summary>
-            User defined minimum number for the scale, overrides minimum value from data.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.LogarithmicTicks.Max">
-            <summary>
-            User defined maximum number for the scale, overrides maximum value from data.
+            The ticks-subconfig of <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.LogarithmicAxis"/>. It has the same members as <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.CartesianTicks"/>.
+            https://www.chartjs.org/docs/latest/axes/cartesian/logarithmic.html#tick-configuration-options
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.MajorTicks">
@@ -938,12 +943,12 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.SubTicks">
             <summary>
-            The base class for minor and major ticks (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.MinorTicks"/> and see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.MajorTicks"/>).
+            The ultimate base class for tick mark configurations.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.SubTicks.FontColor">
             <summary>
-            Gets or sets the font color for a tick's labels.
+            Gets or sets the font color for a tick's label.
             <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
             </summary>
         </member>
@@ -970,65 +975,49 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks">
             <summary>
-            The ticks-subconfig of the axis-configuration (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Axis"/>).
+            The base class for all tick mark configurations. Ticks-subconfig of the common <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Axis"/>.
             <para>As per documentation here https://www.chartjs.org/docs/latest/axes/styling.html#tick-configuration </para>
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.Display">
             <summary>
-            Gets or sets the value indicating whether this shows <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/> marks.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.FontColor">
-            <summary>
-            Gets or sets the font color for <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/> labels.
-            <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.FontFamily">
-            <summary>
-            Gets or sets the font family for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/> labels.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.FontSize">
-            <summary>
-            Gets or sets the font size for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/> labels.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.FontStyle">
-            <summary>
-            Gets or sets the font style for the <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/> labels.
-            </summary>
-        </member>
-        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.LineHeight">
-            <summary>
-            Gets or sets the height of an individual line of text.
-            <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/CSS/line-height </para>
+            Gets or sets the value indicating whether this axis displays tick marks.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.Reverse">
             <summary>
-            Gets or sets the value indicating whether the order of <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/> labels is reversed.
+            Gets or sets the value indicating whether the order of the tick labels is reversed.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.Minor">
             <summary>
-            Gets or sets the minor ticks configuration. Omitted options are inherited from options above (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/>).
+            Gets or sets the minor ticks configuration. Omitted options are inherited.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.Major">
             <summary>
-            Gets or sets the major ticks configuration. Omitted options are inherited from options above (see <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks"/>).
+            Gets or sets the major ticks configuration. Omitted options are inherited.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.Padding">
             <summary>
-            Gets or sets the offset of the tick labels from the axis
+            Gets or sets the offset of the tick labels from the axis. When set on a vertical axis, this applies in the horizontal (X) direction.
+            When set on a horizontal axis, this applies in the vertical (Y) direction.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.Z">
+            <summary>
+            Gets or sets the Z-index of the tick layer. Useful when ticks are drawn on chart area. Values &lt;= 0 are drawn under datasets, &gt; 0 on top.
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.TimeTicks">
+            <summary>
+            The ticks-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.TimeAxis"/>.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.TimeTicks.Source">
             <summary>
-            How ticks are generated. 
+            Gets or sets how ticks are generated.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.TimeAxis">
@@ -1649,21 +1638,20 @@
             <summary>
             As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html#ticks-source
             </summary>
-            
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.TickSource.Auto">
             <summary>
-            Generates "optimal" ticks based on scale size and time options
+            Generates "optimal" ticks based on scale size and time options.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.TickSource.Data">
             <summary>
-            Generates ticks from data (including labels from data {t|x|y} objects)
+            Generates ticks from data (including labels from data {t|x|y} objects).
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.TickSource.Labels">
             <summary>
-            Generates ticks from user given <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineData.Labels"/> values ONLY
+            Generates ticks from user given <see cref="P:ChartJs.Blazor.ChartJS.LineChart.LineData.Labels"/> values ONLY.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Enums.TimeDistribution">
