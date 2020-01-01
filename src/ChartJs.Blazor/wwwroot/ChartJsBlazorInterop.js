@@ -140,6 +140,8 @@ class ChartJsInterop {
         this.WireUpLegendItemFilter(config);
         // replace the Label's GenerateLabels function name with the actual function (if present)
         this.WireUpGenerateLabels(config);
+        // replace the Axis' Ticks function name with the actual function (if present)
+        this.WireUpTickCallback(config);
     }
     WireUpOptionsOnClick(config) {
         let getDefaultFunc = type => {
@@ -188,6 +190,33 @@ class ChartJsInterop {
             return ((_c = (_b = (_a = chartDefaults) === null || _a === void 0 ? void 0 : _a.legend) === null || _b === void 0 ? void 0 : _b.labels) === null || _c === void 0 ? void 0 : _c.generateLabels) || Chart.defaults.global.legend.labels.generateLabels;
         };
         config.options.legend.labels.generateLabels = this.GetMethodHandler(config.options.legend.labels.generateLabels, getDefaultFunc(config.type));
+    }
+    WireUpTickCallback(config) {
+        /* Defaults table (found out by checking Chart.defaults in console) -> everything undefined
+         * Bar (scales): undefined
+         * Bubble (scales): undefined
+         * Pie & Doughnut: don't even have scale(s) field
+         * HorizontalBar (scales): undefined
+         * Line (scales): undefined
+         * PolarArea (scale): undefined
+         * Radar (scale): undefined
+         * Scatter (scales): undefined
+         */
+        var _a, _b, _c;
+        const assignCallbacks = axes => {
+            if (axes) {
+                for (var i = 0; i < axes.length; i++) {
+                    if (!axes[i].ticks)
+                        continue;
+                    axes[i].ticks.callback = this.GetMethodHandler(axes[i].ticks.callback, undefined);
+                }
+            }
+        };
+        assignCallbacks((_a = config.options.scales) === null || _a === void 0 ? void 0 : _a.xAxes);
+        assignCallbacks((_b = config.options.scales) === null || _b === void 0 ? void 0 : _b.yAxes);
+        if ((_c = config.options.scale) === null || _c === void 0 ? void 0 : _c.ticks) {
+            config.options.scale.ticks.callback = this.GetMethodHandler(config.options.scale.ticks.callback, undefined);
+        }
     }
 }
 /* Set up all the momentjs interop stuff */

@@ -106,23 +106,21 @@ class ChartJsInterop {
     }
 
     private WireUpFunctions(config: ChartConfiguration) {
-
         // replace the Option's OnClick function name with the actual function (if present)
         this.WireUpOptionsOnClick(config);
         // replace the Option's OnHover function name with the actual function (if present)
         this.WireUpOptionsOnHover(config);
-
         // replace the Legend's OnClick function name with the actual function (if present)
         this.WireUpLegendOnClick(config);
         // replace the Legend's OnHover function name with the actual function (if present)
         this.WireUpLegendOnHover(config);
-
         // replace the Label's Filter function name with the actual function (if present)
         // see details here: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-label-configuration
         this.WireUpLegendItemFilter(config);
-
         // replace the Label's GenerateLabels function name with the actual function (if present)
         this.WireUpGenerateLabels(config);
+        // replace the Axis' Ticks function name with the actual function (if present)
+        this.WireUpTickCallback(config);
     }
 
     private WireUpOptionsOnClick(config: ChartConfiguration) {
@@ -177,6 +175,35 @@ class ChartJsInterop {
         };
 
         config.options.legend.labels.generateLabels = this.GetMethodHandler(config.options.legend.labels.generateLabels, getDefaultFunc(config.type));
+    }
+
+    private WireUpTickCallback(config: ChartConfiguration) {
+        /* Defaults table (found out by checking Chart.defaults in console) -> everything undefined
+         * Bar (scales): undefined
+         * Bubble (scales): undefined
+         * Pie & Doughnut: don't even have scale(s) field
+         * HorizontalBar (scales): undefined
+         * Line (scales): undefined
+         * PolarArea (scale): undefined
+         * Radar (scale): undefined
+         * Scatter (scales): undefined
+         */
+
+        const assignCallbacks = axes => {
+            if (axes) {
+                for (var i = 0; i < axes.length; i++) {
+                    if (!axes[i].ticks) continue;
+                    axes[i].ticks.callback = this.GetMethodHandler(axes[i].ticks.callback, undefined);
+                }
+            }
+        }
+
+        assignCallbacks(config.options.scales?.xAxes);
+        assignCallbacks(config.options.scales?.yAxes);
+
+        if (config.options.scale?.ticks) {
+            config.options.scale.ticks.callback = this.GetMethodHandler(config.options.scale.ticks.callback, undefined);
+        }
     }
 
     /**

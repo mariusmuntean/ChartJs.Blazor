@@ -1,5 +1,6 @@
 ﻿using ChartJs.Blazor.Util;
 using ChartJs.Blazor.ChartJS.Common.Enums;
+using ChartJs.Blazor.ChartJS.Common.Handlers;
 
 namespace ChartJs.Blazor.ChartJS.Common.Axes.Ticks
 {
@@ -39,5 +40,11 @@ namespace ChartJs.Blazor.ChartJS.Common.Axes.Ticks
         /// Gets or sets the Z-index of the tick layer. Useful when ticks are drawn on chart area. Values &lt;= 0 are drawn under datasets, &gt; 0 on top.
         /// </summary>
         public int Z { get; set; }
+
+        /// <summary>
+        /// Returns the string representation of the tick value as it should be displayed on the chart.
+        /// <para>More on https://www.chartjs.org/docs/latest/axes/labelling.html#creating-custom-tick-formats </para>
+        /// </summary>
+        public IMethodHandler<AxisTickCallback> Callback { get; set; }
     }
 }

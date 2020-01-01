@@ -1016,6 +1016,12 @@
             Gets or sets the Z-index of the tick layer. Useful when ticks are drawn on chart area. Values &lt;= 0 are drawn under datasets, &gt; 0 on top.
             </summary>
         </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.Ticks.Callback">
+            <summary>
+            Returns the string representation of the tick value as it should be displayed on the chart.
+            <para>More on https://www.chartjs.org/docs/latest/axes/labelling.html#creating-custom-tick-formats </para>
+            </summary>
+        </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Axes.Ticks.TimeTicks">
             <summary>
             The ticks-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.TimeAxis"/>.
@@ -1798,6 +1804,15 @@
             <summary>
             If true, grid lines will be shifted to be between labels. This is set to true for a category scale in a bar chart by default.
             </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.AxisTickCallback">
+            <summary>
+            A delegate used for customizing tick marks on an axis. If this callback returns <c>null</c> (or undefined), the associated grid line will be hidden.
+            </summary>
+            <param name="value">The value. It's usually a double but can also be other types like string (e.g. in a category axis).</param>
+            <param name="index">The index of the tick mark.</param>
+            <param name="values">An array of labels. Normally those are just strings but in a <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.TimeAxis"/> they have a 'label' and a 'major' field.</param>
+            <returns>The new value of the tick mark or null if you want to hide that grid line.</returns>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.ChartMouseEvent">
             <summary>
