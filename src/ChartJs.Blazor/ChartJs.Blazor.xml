@@ -1822,6 +1822,11 @@
             Keeps a reference to this object which is used to invoke the stored delegate from Javascript.
             </summary>
         </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.ReturnsValue">
+            <summary>
+            Gets a value indicating whether or not this delegate will return a value.
+            </summary>
+        </member>
         <member name="M:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1.#ctor(`0)">
             <summary>
             Creates a new instance of <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.DelegateHandler`1"/>.

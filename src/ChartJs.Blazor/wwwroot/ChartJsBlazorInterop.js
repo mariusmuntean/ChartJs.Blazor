@@ -4,15 +4,14 @@ class ChartJsInterop {
     constructor() {
         this.BlazorCharts = new Map();
         /**
-         * Given an IMethodHandler (see the C# code), it tries to resolve the referenced method.
+         * Given an IMethodHandler (see C# code), it tries to resolve the referenced method.
          * It currently supports Javascript functions, which are expected to be attached to the window object, and .Net delegates which can be
          * bound to .Net static functions, .Net object instance methods and more.
          *
-         * Failing to recover any handler from the IMethodHandler, it returns the default handler.
+         * When failing to recover a method from the IMethodHandler, it returns the default handler.
          *
-         * @param iMethodHandler
-         * @param defaultFunc
-         * @constructor
+         * @param iMethodHandler the serialized IMethodHandler (see C# code)
+         * @param defaultFunc the fallback value to use in case the method can't be resolved
          */
         this.GetMethodHandler = (iMethodHandler, defaultFunc) => {
             if (!iMethodHandler ||
@@ -21,33 +20,37 @@ class ChartJsInterop {
                 return defaultFunc;
             }
             if (iMethodHandler.hasOwnProperty('handlerReference')) {
-                const onClickInstanceHandler = iMethodHandler;
-                const instanceRef = onClickInstanceHandler.handlerReference;
-                const methodName = onClickInstanceHandler.methodName;
-                return async (...args) => {
-                    let cleanArgs = args.map(element => JSON.decycle(element)); // remove all circular references so it can be stringifyied and later deserialized. This requires cycle.js.
-                    /* Currently this function is async meaning that it returns a Promise. Since Chart.Js may only check if the value is truthy
-                     * (like in the case of legend.labels.filter) it gives wrong results because a promise that will resolve to be false is still seen
-                     * as truthy at the point where the value is checked. Chart.Js simply does not expect a Promise from that function and therefore
-                     * doesn't await it (see https://jsfiddle.net/jkcLyarh/1/). We somehow need to make sure we return the actual value here and not a promise.
-                     * The wrapping with another non-async layer (...args) => (async args => {})(args) doesn't help. You can use the SampleInterop.AsyncFilter
-                     * as example of it not working because the promise which will resolve to false will still fail to hide the labels because the promise object
-                     * is seen as truthy. https://stackoverflow.com/questions/59543973/use-async-function-when-consumer-doesnt-expect-a-promise
-                     * We cannot use the synchronous version instanceRef.invokeMethod because in server-side you get an error saying that
-                     * the current dispatcher doesn't support synchronous calls. If we use that, we have to disallow server-side callbacks with return value.
-                     */
-                    // return instanceRef.invokeMethod(methodName, cleanArgs); // only works on client side
-                    return await instanceRef.invokeMethodAsync(methodName, cleanArgs); // works on both
-                };
+                const handler = iMethodHandler;
+                // remove all circular references so it can be stringifyied and later deserialized by C#. This requires cycle.js.
+                const cleanArgs = args => args.map(element => JSON.decycle(element));
+                if (!handler.returnsValue) {
+                    // https://stackoverflow.com/questions/59543973/use-async-function-when-consumer-doesnt-expect-a-promise
+                    return (...args) => handler.handlerReference.invokeMethodAsync(handler.methodName, cleanArgs(args));
+                }
+                else {
+                    if (window.hasOwnProperty('MONO')) {
+                        return (...args) => handler.handlerReference.invokeMethod(handler.methodName, cleanArgs(args)); // only works on client side
+                    }
+                    else {
+                        console.warn("Using C# delegates that return values in chart.js callbacks is not supported on " +
+                            "server side blazor because the server side dispatcher doesn't support synchronous interop calls. Falling back to default value.");
+                        return defaultFunc;
+                    }
+                }
             }
             else {
-                let onClickStringName = iMethodHandler;
-                const onClickNamespaceAndFunc = onClickStringName.methodName.split(".");
-                const onClickFunc = window[onClickNamespaceAndFunc[0]][onClickNamespaceAndFunc[1]];
-                if (typeof onClickFunc === "function") {
-                    return onClickFunc;
+                const handler = iMethodHandler;
+                try {
+                    const namespaceAndFunc = handler.methodName.split(".");
+                    const func = window[namespaceAndFunc[0]][namespaceAndFunc[1]];
+                    if (typeof func === "function") {
+                        return func;
+                    }
+                    else {
+                        return defaultFunc;
+                    }
                 }
-                else { // fallback to the default
+                catch (_a) {
                     return defaultFunc;
                 }
             }
@@ -140,49 +143,49 @@ class ChartJsInterop {
     }
     WireUpOptionsOnClick(config) {
         let getDefaultFunc = type => {
-            var _a, _b;
+            var _a;
             let defaults = Chart.defaults[type] || Chart.defaults.global;
-            return ((_a = defaults) === null || _a === void 0 ? void 0 : _a.onClick) || ((_b = Chart.defaults.global) === null || _b === void 0 ? void 0 : _b.onClick);
+            return ((_a = defaults) === null || _a === void 0 ? void 0 : _a.onClick) || Chart.defaults.global.onClick;
         };
         config.options.onClick = this.GetMethodHandler(config.options.onClick, getDefaultFunc(config.type));
     }
     WireUpOptionsOnHover(config) {
         let getDefaultFunc = type => {
-            var _a, _b;
+            var _a;
             let defaults = Chart.defaults[type] || Chart.defaults.global;
-            return ((_a = defaults) === null || _a === void 0 ? void 0 : _a.onHover) || ((_b = Chart.defaults.global) === null || _b === void 0 ? void 0 : _b.onHover);
+            return ((_a = defaults) === null || _a === void 0 ? void 0 : _a.onHover) || Chart.defaults.global.onHover;
         };
         config.options.onHover = this.GetMethodHandler(config.options.onHover, getDefaultFunc(config.type));
     }
     WireUpLegendOnClick(config) {
         let getDefaultHandler = type => {
-            var _a, _b, _c, _d;
+            var _a, _b;
             let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
-            return ((_b = (_a = chartDefaults) === null || _a === void 0 ? void 0 : _a.legend) === null || _b === void 0 ? void 0 : _b.onClick) || ((_d = (_c = Chart.defaults.global) === null || _c === void 0 ? void 0 : _c.legend) === null || _d === void 0 ? void 0 : _d.onClick);
+            return ((_b = (_a = chartDefaults) === null || _a === void 0 ? void 0 : _a.legend) === null || _b === void 0 ? void 0 : _b.onClick) || Chart.defaults.global.legend.onClick;
         };
         config.options.legend.onClick = this.GetMethodHandler(config.options.legend.onClick, getDefaultHandler(config.type));
     }
     WireUpLegendOnHover(config) {
         let getDefaultFunc = type => {
-            var _a, _b, _c, _d;
+            var _a, _b;
             let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
-            return ((_b = (_a = chartDefaults) === null || _a === void 0 ? void 0 : _a.legend) === null || _b === void 0 ? void 0 : _b.onHover) || ((_d = (_c = Chart.defaults.global) === null || _c === void 0 ? void 0 : _c.legend) === null || _d === void 0 ? void 0 : _d.onHover);
+            return ((_b = (_a = chartDefaults) === null || _a === void 0 ? void 0 : _a.legend) === null || _b === void 0 ? void 0 : _b.onHover) || Chart.defaults.global.legend.onHover;
         };
         config.options.legend.onHover = this.GetMethodHandler(config.options.legend.onHover, getDefaultFunc(config.type));
     }
     WireUpLegendItemFilter(config) {
         let getDefaultFunc = type => {
-            var _a, _b, _c, _d, _e, _f;
+            var _a, _b, _c;
             let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
-            return ((_c = (_b = (_a = chartDefaults) === null || _a === void 0 ? void 0 : _a.legend) === null || _b === void 0 ? void 0 : _b.labels) === null || _c === void 0 ? void 0 : _c.filter) || ((_f = (_e = (_d = Chart.defaults.global) === null || _d === void 0 ? void 0 : _d.legend) === null || _e === void 0 ? void 0 : _e.labels) === null || _f === void 0 ? void 0 : _f.filter);
+            return ((_c = (_b = (_a = chartDefaults) === null || _a === void 0 ? void 0 : _a.legend) === null || _b === void 0 ? void 0 : _b.labels) === null || _c === void 0 ? void 0 : _c.filter) || Chart.defaults.global.legend.labels.filter;
         };
         config.options.legend.labels.filter = this.GetMethodHandler(config.options.legend.labels.filter, getDefaultFunc(config.type));
     }
     WireUpGenerateLabels(config) {
         let getDefaultFunc = type => {
-            var _a, _b, _c, _d, _e, _f;
+            var _a, _b, _c;
             let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
-            return ((_c = (_b = (_a = chartDefaults) === null || _a === void 0 ? void 0 : _a.legend) === null || _b === void 0 ? void 0 : _b.labels) === null || _c === void 0 ? void 0 : _c.generateLabels) || ((_f = (_e = (_d = Chart.defaults.global) === null || _d === void 0 ? void 0 : _d.legend) === null || _e === void 0 ? void 0 : _e.labels) === null || _f === void 0 ? void 0 : _f.generateLabels);
+            return ((_c = (_b = (_a = chartDefaults) === null || _a === void 0 ? void 0 : _a.legend) === null || _b === void 0 ? void 0 : _b.labels) === null || _c === void 0 ? void 0 : _c.generateLabels) || Chart.defaults.global.legend.labels.generateLabels;
         };
         config.options.legend.labels.generateLabels = this.GetMethodHandler(config.options.legend.labels.generateLabels, getDefaultFunc(config.type));
     }

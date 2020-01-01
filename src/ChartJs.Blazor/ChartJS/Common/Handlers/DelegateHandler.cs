@@ -15,6 +15,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
     public class DelegateHandler<T> : IMethodHandler<T>, IDisposable
         where T : Delegate
     {
+        private const string DelegateMethodName = "Invoke";
         private static readonly JsonSerializerOptions s_deserializeOptions = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
@@ -36,13 +37,18 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
         public DotNetObjectReference<DelegateHandler<T>> HandlerReference { get; }
 
         /// <summary>
+        /// Gets a value indicating whether or not this delegate will return a value.
+        /// </summary>
+        public bool ReturnsValue => typeof(T).GetMethod(DelegateMethodName).ReturnType != typeof(void);
+
+        /// <summary>
         /// Creates a new instance of <see cref="DelegateHandler{T}"/>.
         /// </summary>
         /// <param name="function">The delegate you want to invoke from Javascript.</param>
         public DelegateHandler(T function)
         {
             _function = function ?? throw new ArgumentNullException(nameof(function));
-            _delegateParameters = typeof(T).GetMethod("Invoke").GetParameters(); // https://stackoverflow.com/a/429564/10883465
+            _delegateParameters = typeof(T).GetMethod(DelegateMethodName).GetParameters(); // https://stackoverflow.com/a/429564/10883465
             HandlerReference = DotNetObjectReference.Create(this);
         }
 

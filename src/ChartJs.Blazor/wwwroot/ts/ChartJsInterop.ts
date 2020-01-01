@@ -128,7 +128,7 @@ class ChartJsInterop {
     private WireUpOptionsOnClick(config: ChartConfiguration) {
         let getDefaultFunc = type => {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
-            return defaults?.onClick || Chart.defaults.global?.onClick;
+            return defaults?.onClick || Chart.defaults.global.onClick;
         };
 
         config.options.onClick = this.GetMethodHandler(config.options.onClick, getDefaultFunc(config.type));
@@ -137,7 +137,7 @@ class ChartJsInterop {
     private WireUpOptionsOnHover(config: ChartConfiguration) {
         let getDefaultFunc = type => {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
-            return defaults?.onHover || Chart.defaults.global?.onHover;
+            return defaults?.onHover || Chart.defaults.global.onHover;
         };
 
         config.options.onHover = this.GetMethodHandler(config.options.onHover, getDefaultFunc(config.type));
@@ -146,7 +146,7 @@ class ChartJsInterop {
     private WireUpLegendOnClick(config: ChartConfiguration) {
         let getDefaultHandler = type => {
             let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
-            return chartDefaults?.legend?.onClick || Chart.defaults.global?.legend?.onClick;
+            return chartDefaults?.legend?.onClick || Chart.defaults.global.legend.onClick;
         };
 
         config.options.legend.onClick = this.GetMethodHandler(config.options.legend.onClick, getDefaultHandler(config.type));
@@ -155,7 +155,7 @@ class ChartJsInterop {
     private WireUpLegendOnHover(config: ChartConfiguration) {
         let getDefaultFunc = type => {
             let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
-            return chartDefaults?.legend?.onHover || Chart.defaults.global?.legend?.onHover;
+            return chartDefaults?.legend?.onHover || Chart.defaults.global.legend.onHover;
         };
 
         config.options.legend.onHover = this.GetMethodHandler(config.options.legend.onHover, getDefaultFunc(config.type));
@@ -164,7 +164,7 @@ class ChartJsInterop {
     private WireUpLegendItemFilter(config: ChartConfiguration) {
         let getDefaultFunc = type => {
             let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
-            return chartDefaults?.legend?.labels?.filter || Chart.defaults.global?.legend?.labels?.filter;
+            return chartDefaults?.legend?.labels?.filter || Chart.defaults.global.legend.labels.filter;
         };
 
         config.options.legend.labels.filter = this.GetMethodHandler(config.options.legend.labels.filter, getDefaultFunc(config.type));
@@ -173,22 +173,21 @@ class ChartJsInterop {
     private WireUpGenerateLabels(config: ChartConfiguration) {
         let getDefaultFunc = type => {
             let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
-            return chartDefaults?.legend?.labels?.generateLabels || Chart.defaults.global?.legend?.labels?.generateLabels;
+            return chartDefaults?.legend?.labels?.generateLabels || Chart.defaults.global.legend.labels.generateLabels;
         };
 
         config.options.legend.labels.generateLabels = this.GetMethodHandler(config.options.legend.labels.generateLabels, getDefaultFunc(config.type));
     }
 
     /**
-     * Given an IMethodHandler (see the C# code), it tries to resolve the referenced method.
+     * Given an IMethodHandler (see C# code), it tries to resolve the referenced method.
      * It currently supports Javascript functions, which are expected to be attached to the window object, and .Net delegates which can be
      * bound to .Net static functions, .Net object instance methods and more.
      *
-     * Failing to recover any handler from the IMethodHandler, it returns the default handler.
+     * When failing to recover a method from the IMethodHandler, it returns the default handler.
      *
-     * @param iMethodHandler
-     * @param defaultFunc
-     * @constructor
+     * @param iMethodHandler the serialized IMethodHandler (see C# code)
+     * @param defaultFunc the fallback value to use in case the method can't be resolved
      */
     private GetMethodHandler = (iMethodHandler, defaultFunc: Function) => {
         if (!iMethodHandler ||
@@ -198,34 +197,34 @@ class ChartJsInterop {
         }
 
         if (iMethodHandler.hasOwnProperty('handlerReference')) {
-            const onClickInstanceHandler: { handlerReference: DotNetObjectReference, methodName: string } = <any>iMethodHandler;
-            const instanceRef = onClickInstanceHandler.handlerReference;
-            const methodName = onClickInstanceHandler.methodName;
+            const handler: { handlerReference: DotNetObjectReference, methodName: string, returnsValue: boolean } = <any>iMethodHandler;
+            // remove all circular references so it can be stringifyied and later deserialized by C#. This requires cycle.js.
+            const cleanArgs = args => args.map(element => JSON.decycle(element));
 
-            return async (...args) => {
-                let cleanArgs = args.map(element => JSON.decycle(element)); // remove all circular references so it can be stringifyied and later deserialized. This requires cycle.js.
+            if (!handler.returnsValue) {
+                // https://stackoverflow.com/questions/59543973/use-async-function-when-consumer-doesnt-expect-a-promise
+                return (...args) => handler.handlerReference.invokeMethodAsync(handler.methodName, cleanArgs(args));
+            } else {
+                if (window.hasOwnProperty('MONO')) {
+                    return (...args) => handler.handlerReference.invokeMethod(handler.methodName, cleanArgs(args)); // only works on client side
+                } else {
+                    console.warn("Using C# delegates that return values in chart.js callbacks is not supported on " +
+                        "server side blazor because the server side dispatcher doesn't support synchronous interop calls. Falling back to default value.")
 
-                /* Currently this function is async meaning that it returns a Promise. Since Chart.Js may only check if the value is truthy
-                 * (like in the case of legend.labels.filter) it gives wrong results because a promise that will resolve to be false is still seen
-                 * as truthy at the point where the value is checked. Chart.Js simply does not expect a Promise from that function and therefore
-                 * doesn't await it (see https://jsfiddle.net/jkcLyarh/1/). We somehow need to make sure we return the actual value here and not a promise. 
-                 * The wrapping with another non-async layer (...args) => (async args => {})(args) doesn't help. You can use the SampleInterop.AsyncFilter 
-                 * as example of it not working because the promise which will resolve to false will still fail to hide the labels because the promise object
-                 * is seen as truthy. https://stackoverflow.com/questions/59543973/use-async-function-when-consumer-doesnt-expect-a-promise
-                 * We cannot use the synchronous version instanceRef.invokeMethod because in server-side you get an error saying that
-                 * the current dispatcher doesn't support synchronous calls. If we use that, we have to disallow server-side callbacks with return value.
-                 */
-
-                // return instanceRef.invokeMethod(methodName, cleanArgs); // only works on client side
-                return await instanceRef.invokeMethodAsync(methodName, cleanArgs); // works on both
-            };
+                    return defaultFunc;
+                }
+            }
         } else {
-            let onClickStringName: { methodName: string } = <any>iMethodHandler;
-            const onClickNamespaceAndFunc = onClickStringName.methodName.split(".");
-            const onClickFunc = window[onClickNamespaceAndFunc[0]][onClickNamespaceAndFunc[1]];
-            if (typeof onClickFunc === "function") {
-                return onClickFunc;
-            } else { // fallback to the default
+            const handler: { methodName: string } = <any>iMethodHandler;
+            try {
+                const namespaceAndFunc = handler.methodName.split(".");
+                const func = window[namespaceAndFunc[0]][namespaceAndFunc[1]];
+                if (typeof func === "function") {
+                    return func;
+                } else {
+                    return defaultFunc;
+                }
+            } catch {
                 return defaultFunc;
             }
         }
