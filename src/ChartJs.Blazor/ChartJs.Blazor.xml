@@ -1376,6 +1376,16 @@
             The scatter chart type.
             </summary>
         </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.ChartType.CandleStick">
+            <summary>
+            The financial candlestick chart type
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Enums.ChartType.Ohlc">
+            <summary>
+            the financial ohlc chart type
+            </summary>
+        </member>
         <member name="M:ChartJs.Blazor.ChartJS.Common.Enums.ChartType.#ctor(System.String)">
             <summary>
             Creates a new instance of the <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.ChartType"/> class.

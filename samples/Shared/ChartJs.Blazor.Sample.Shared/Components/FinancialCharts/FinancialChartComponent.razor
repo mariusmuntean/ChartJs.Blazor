@@ -1,0 +1,58 @@
+﻿@using ChartJs.Blazor.ChartJS.FinancialChart
+@using ChartJs.Blazor.ChartJS.Common.Axes
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.ChartJS.Common.Properties
+@using ChartJs.Blazor.ChartJS.Common.Wrappers
+@using ChartJs.Blazor.Util
+
+<h2>Financial chart example</h2>
+<li>
+    <ChartJsFinancialChart @ref="_financialChart" Config="@_config" />
+</li>
+<li>
+    <button class="btn btn-primary" @onclick="OnClick">Fill On/Off</button>
+</li>
+
+@code {
+    private ChartJs.Blazor.ChartJS.FinancialChart.FinancialConfig _config;
+    private ChartJsFinancialChart _financialChart;
+
+
+    protected override Task OnInitializedAsync()
+    {
+        _config = new ChartJs.Blazor.ChartJS.FinancialChart.FinancialConfig(ChartJS.Common.Enums.ChartType.CandleStick)
+        {
+            Options = new FinancialOptions
+            {
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "financial chart"
+                },
+                Responsive = false,
+                Scales = new ChartJS.BarChart.BarScales
+                {
+                    XAxes = new List<CartesianAxis>
+                    {
+                        new TimeAxis()
+                        {
+                            Ticks = new ChartJS.Common.Axes.Ticks.TimeTicks
+                            {
+                                Source = ChartJS.Common.Enums.TickSource.Data
+                            },
+                        }
+                    }
+                }
+            }
+        };
+
+        var financialChartDataSet = new ChartJs.Blazor.ChartJS.FinancialChart.FinancialDataset<ChartJs.Blazor.ChartJS.Common.Time.TimeTuple<double[]>>(chartType: ChartJs.Blazor.ChartJS.Common.Enums.ChartType.CandleStick);
+        _config.Data.Datasets.Add(financialChartDataSet);
+        return Task.CompletedTask;
+    }
+
+    private async void OnClick()
+    {
+
+    }
+}
