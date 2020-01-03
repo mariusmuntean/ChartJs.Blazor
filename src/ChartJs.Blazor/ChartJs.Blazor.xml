@@ -366,13 +366,13 @@
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarScales.XAxes">
             <summary>
-            Gets or sets the axes on the x coordinate.
+            Gets or sets the configurations for the x-axes.
             <para>You can use any <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis"/> but there are extended axes in the <see cref="N:ChartJs.Blazor.ChartJS.BarChart.Axes"/> namespace which contain additional properties to customize the bar chart axes.</para>        
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarScales.YAxes">
             <summary>
-            Gets or sets the axes on the y coordinate.
+            Gets or sets the configurations for the y-axes.
             <para>You can use any <see cref="T:ChartJs.Blazor.ChartJS.Common.Axes.CartesianAxis"/> but there are extended axes in the <see cref="N:ChartJs.Blazor.ChartJS.BarChart.Axes"/> namespace which contain additional properties to customize the bar chart axes.</para>
             </summary>
         </member>
@@ -2754,6 +2754,16 @@
             Defines the scales for cartesian charts by holding the x and y axes.
             </summary>
         </member>
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Scales.XAxes">
+            <summary>
+            Gets or sets the configurations for the x-axes.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.LineChart.Scales.YAxes">
+            <summary>
+            Gets or sets the configurations for the y-axes.
+            </summary>
+        </member>
         <member name="T:ChartJs.Blazor.ChartJS.MixedChart.BaseMixableDataset`1">
             <summary>
             The base class for a dataset that implements the covariant <see cref="T:ChartJs.Blazor.ChartJS.MixedChart.IMixableDataset`1"/>
@@ -3280,6 +3290,21 @@
             <summary>
             The color of the line.
             <para>See <see cref="T:ChartJs.Blazor.Util.ColorUtil"/> for working with colors.</para>
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.ScatterChart.ScatterScales">
+            <summary>
+            Defines the scales for scatter charts by holding the x and y axes.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterScales.XAxes">
+            <summary>
+            Gets or sets the configurations for the x-axes.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.ScatterChart.ScatterScales.YAxes">
+            <summary>
+            Gets or sets the configurations for the y-axes.
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.Charts.ChartBase`1">
