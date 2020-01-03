@@ -1,4 +1,5 @@
 ﻿using ChartJs.Blazor.ChartJS.Common.Axes;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
@@ -8,9 +9,16 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     /// </summary>
     public class Scales
     {
-#pragma warning disable CS1591, IDE1006 // Missing XML comment for publicly visible type or member
-        public List<CartesianAxis> xAxes { get; set; }
-        public List<CartesianAxis> yAxes { get; set; }
-#pragma warning restore CS1591, IDE1006 // Missing XML comment for publicly visible type or member
+        /// <summary>
+        /// Gets or sets the configurations for the x-axes.
+        /// </summary>
+        [JsonProperty("xAxes")]
+        public List<CartesianAxis> XAxes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the configurations for the y-axes.
+        /// </summary>
+        [JsonProperty("yAxes")]
+        public List<CartesianAxis> YAxes { get; set; }
     }
 }
