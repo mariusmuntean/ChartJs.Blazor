@@ -1,9 +1,13 @@
-﻿namespace ChartJs.Blazor.ChartJS.Common.Enums
+﻿using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
+using System.Text.Json.Serialization;
+
+namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
     /// <summary>
     /// Specifies the border alignment of a <see cref="PieChart"/> and a <see cref="PolarAreaChart"/>.
     /// <para>As per documentation here https://www.chartjs.org/docs/latest/charts/doughnut.html#border-alignment </para>
     /// </summary>
+    [JsonConverter(typeof(JsonStringEnumReader<BorderAlign>))]
     public sealed class BorderAlign : StringEnum
     {
         /// <summary>

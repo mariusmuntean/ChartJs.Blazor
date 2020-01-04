@@ -6,7 +6,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
     /// <summary>
     /// Inherit this class if you are in need of a pseudo-Enum which can hold values of different kinds (eg. string, double and bool).
     /// </summary>
-    [JsonConverter(typeof(JsonObjectEnumConverter))]
+    [JsonConverter(typeof(JsonObjectEnumWriter))]
     public abstract class ObjectEnum
     {
         /// <summary>

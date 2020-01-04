@@ -1,9 +1,13 @@
-﻿namespace ChartJs.Blazor.ChartJS.Common.Enums
+﻿using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
+using System.Text.Json.Serialization;
+
+namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
     /// <summary>
     /// Specifies the scale boundary strategy.
     /// <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html#scale-bounds </para>
     /// </summary>
+    [JsonConverter(typeof(JsonStringEnumReader<ScaleBound>))]
     public sealed class ScaleBound : StringEnum
     {
         /// <summary>

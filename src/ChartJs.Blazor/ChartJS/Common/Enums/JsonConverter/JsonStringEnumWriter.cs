@@ -3,9 +3,9 @@
 namespace ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter
 {
     /// <summary>
-    /// JsonConverter for converting and writing a StringEnum value. This JsonConverter can only write.
+    /// Newtonsoft JsonConverter for writing a <see cref="StringEnum"/> value. This JsonConverter can only write.
     /// </summary>
-    internal class JsonStringEnumConverter : JsonWriteOnlyConverter<StringEnum>
+    internal class JsonStringEnumWriter : JsonWriteOnlyConverter<StringEnum>
     {
         public override void WriteJson(JsonWriter writer, StringEnum value, JsonSerializer serializer)
         {

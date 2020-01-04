@@ -1,8 +1,12 @@
-﻿namespace ChartJs.Blazor.ChartJS.Common.Enums
+﻿using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
+using System.Text.Json.Serialization;
+
+namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
     /// <summary>
     /// Represents a relative direction or position on a 2D canvas.
     /// </summary>
+    [JsonConverter(typeof(JsonStringEnumReader<Position>))]
     public sealed class Position : StringEnum
     {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member

@@ -1,9 +1,13 @@
-﻿namespace ChartJs.Blazor.ChartJS.Common.Enums
+﻿using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
+using System.Text.Json.Serialization;
+
+namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
     /// <summary>
     /// Specifies where the tooltip will be displayed.
     /// <para>As per documentation here https://www.chartjs.org/docs/latest/configuration/tooltip.html#position-modes </para>
     /// </summary>
+    [JsonConverter(typeof(JsonStringEnumReader<TooltipPosition>))]
     public sealed class TooltipPosition : StringEnum
     {
         /// <summary>
