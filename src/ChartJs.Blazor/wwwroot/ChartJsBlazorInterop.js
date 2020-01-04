@@ -209,6 +209,9 @@ class ChartJsInterop {
                     if (!axes[i].ticks)
                         continue;
                     axes[i].ticks.callback = this.GetMethodHandler(axes[i].ticks.callback, undefined);
+                    if (!axes[i].ticks.callback) {
+                        delete axes[i].ticks.callback; // undefined != deleted, chartJs throws an error if it's undefined so we have to delete it
+                    }
                 }
             }
         };

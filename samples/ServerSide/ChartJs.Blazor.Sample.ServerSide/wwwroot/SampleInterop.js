@@ -25,5 +25,14 @@ window.SampleInterop = {
 
         return result;
     },
-    AsyncFilter: (item, chart) => new Promise((resolve, reject) => resolve(false))
+    AsyncFilter: (item, chart) => new Promise((resolve, reject) => resolve(false)),
+    PrintEverything: function (...args) {
+        for (var i = 0; i < args.length; i++) {
+            console.log(typeof args[i]);
+            console.log(args[i]);
+        }
+
+        return args[0];
+    },
+    MsTicksCallback: (value, index, values) => value + " ms"
 }

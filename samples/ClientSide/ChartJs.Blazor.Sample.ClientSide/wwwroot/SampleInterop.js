@@ -15,5 +15,6 @@ window.SampleInterop = {
         }
 
         return labels;
-    }
+    },
+    MsTicksCallback: (value, index, values) => value + " ms"
 }

@@ -1,6 +1,7 @@
 ﻿@using System.Timers
 @using ChartJs.Blazor.Charts
 @using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.ChartJS.Common.Handlers
 @using ChartJs.Blazor.ChartJS.Common.Axes
 @using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
 @using ChartJs.Blazor.ChartJS.Common.Properties
@@ -51,6 +52,10 @@
                             GridLines = new GridLines
                             {
                                 Display = false
+                            },
+                            Ticks = new LinearCartesianTicks
+                            {
+                                Callback = new JavascriptHandler<AxisTickCallback>("SampleInterop.MsTicksCallback")
                             }
                         }
                     },
@@ -97,7 +102,7 @@
         var fileTimeAsRadians = x * 0.0174533;
         _sineSet.Add(new Point(x, Math.Sin(fileTimeAsRadians)));
 
-        if (_sineSet.Data.Count > 45)
+        if (_sineSet.Data.Count > 30)
         {
             _sineSet.RemoveAt(0);
         }

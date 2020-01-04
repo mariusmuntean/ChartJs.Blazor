@@ -8,6 +8,7 @@
 @using ChartJs.Blazor.ChartJS.Common.Handlers
 @using ChartJs.Blazor.Sample.Shared.Services
 @using ChartJs.Blazor.Util
+@using System.Text.Json
 
 <h2>Linear Line Chart</h2>
 <ChartJsLineChart @ref="_lineChartJs" Config="@_lineConfig" Width="600" Height="300" />
@@ -77,6 +78,10 @@
                             ScaleLabel = new ScaleLabel
                             {
                                 LabelString = "Temp"
+                            },
+                            Ticks = new LinearCartesianTicks
+                            {
+                                Callback = new DelegateHandler<AxisTickCallback>(DegreesTickCallback)
                             }
                         }
                     }
@@ -132,5 +137,10 @@
         _tempPerDaySet.Add(new Point(_rnd.Next(100), _rnd.Next(100)));
         _tempPerHourSet.Add(new Point(_rnd.Next(100), _rnd.Next(100)));
         await _lineChartJs.Update();
+    }
+
+    private string DegreesTickCallback(JsonElement value, int index, JsonElement[] values)
+    {
+        return $"{value} °";
     }
 }

@@ -166,7 +166,48 @@ namespace ChartJs.Blazor.ChartJS
                 cleanChartConfig.SetValue(path, filter);
             }
 
+            // Ticks callback need special handling because it can be either a single scale or two arrays of scales (xAxes and yAxes)
+            // it's really ugly (and quite slow), I hope we can improve this later on. Also ms, PLEASE, give us customizable jsruntime serialization.
+            try
+            {
+                if (dynamicChartConfig?.Options?.Scale?.Callback is IMethodHandler singleScaleTickCallback && singleScaleTickCallback != null)
+                {
+                    const string path = "options.scale.callback";
+                    cleanChartConfig.SetValue(path, singleScaleTickCallback);
+                }
+            }
+            catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException) // happens when the options don't have a Scale property
+            {
+                try
+                {
+                    // here we trust that if the Scales property exists, it contains an XAxes and a YAxes property
+                    if (dynamicChartConfig?.Options?.Scales?.XAxes is IEnumerable<object> xAxes && xAxes != null)
+                    {
+                        AssignAxes(xAxes, "options.scales.xAxes");
+                    }
+
+                    if (dynamicChartConfig?.Options?.Scales?.YAxes is IEnumerable<object> yAxes && yAxes != null)
+                    {
+                        AssignAxes(yAxes, "options.scales.yAxes");
+                    }
+                }
+                catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException) { } // happens when the options don't have a Scales property (only Pie & Doughnut)
+            }
+
             return cleanChartConfig;
+
+            void AssignAxes(IEnumerable<object> axes, string axesPath)
+            {
+                IEnumerable<object> axesInDynamic = cleanChartConfig.GetValue(axesPath) as IEnumerable<object>;
+
+                foreach ((object axis, ExpandoObject axisInDynamic) in axes.Zip(axesInDynamic, (axis, axisInDynamic) => (axis, (ExpandoObject)axisInDynamic)))
+                {
+                    if (((dynamic)axis)?.Ticks?.Callback is IMethodHandler axisTickCallback && axisTickCallback != null)
+                    {
+                        axisInDynamic.SetValue("ticks.callback", axisTickCallback);
+                    }
+                }
+            }
         }
 
         private static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
