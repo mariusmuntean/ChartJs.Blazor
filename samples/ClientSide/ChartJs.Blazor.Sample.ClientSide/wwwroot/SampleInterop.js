@@ -12,6 +12,7 @@ window.SampleInterop = {
         for (var i = 0; i < labels.length; i++) {
             labels[i].lineWidth *= 2;
             labels[i].text += ' [from callback]';
+            labels[i].lineCap = 'butt';
         }
 
         return labels;

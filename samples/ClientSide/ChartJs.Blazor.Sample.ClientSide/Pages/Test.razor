@@ -5,6 +5,7 @@
 @using ChartJs.Blazor.Util
 @using ChartJs.Blazor.ChartJS.BarChart
 @using ChartJs.Blazor.ChartJS.BarChart.Axes
+@using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Axes
 @using ChartJs.Blazor.ChartJS.Common.Wrappers
 @using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
@@ -93,7 +94,7 @@
     {
         private static int s_eventCount = 0;
 
-        public static void TestInterop(JsonElement @event, JsonElement args)
+        public static void TestInterop(JsonElement @event, LegendItem args)
         {
             Console.WriteLine($"{System.Threading.Interlocked.Increment(ref s_eventCount)}. event");
         }

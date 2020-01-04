@@ -8,5 +8,5 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
     /// </summary>
     /// <param name="mouseEvent">The mouse event.</param>
     /// <param name="legendItem">The legend item which was clicked.</param>
-    public delegate void LegendItemMouseEvent(JsonElement mouseEvent, JsonElement legendItem);
+    public delegate void LegendItemMouseEvent(JsonElement mouseEvent, LegendItem legendItem);
 }

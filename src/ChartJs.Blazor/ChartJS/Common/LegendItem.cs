@@ -10,14 +10,13 @@ namespace ChartJs.Blazor.ChartJS.Common
     /// The model of the legend items which are displayed in the chart.
     /// <para>As per documentation here https://www.chartjs.org/docs/latest/configuration/legend.html#legend-item-interface </para>
     /// </summary>
-    // TODO Test if this is deserialized correctly (by System.Text.Json) because of the string enums.
     public class LegendItem
     {
         /// <summary>
         /// The index of the dataset this legend item corresponds to. DO NOT set this value when returning an instance of this class to ChartJs.
         /// Only use this property when retrieving the index in a legend-event.
         /// </summary>
-        public int? Index { get; set; } // in 2.9 this changes to DatasetIndex
+        public int? Index { get; set; } // TODO in 2.9 this changes to DatasetIndex
 
         /// <summary>
         /// Gets or sets the label-text that will be displayed.

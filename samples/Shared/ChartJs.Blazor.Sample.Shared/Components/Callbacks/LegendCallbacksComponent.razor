@@ -53,8 +53,10 @@
                 },
                 Legend = new Legend
                 {
+                    OnHover = new DelegateHandler<LegendItemMouseEvent>(ShowEventAndArgs),
                     Labels = new LegendLabels
                     {
+                        UsePointStyle = true,
                         GenerateLabels = new JavascriptHandler<LegendLabelsGenerator>("SampleInterop.CreateLabels"),
                         Filter = new DelegateHandler<LegendLabelFilter>(LabelsFilter) // new JavascriptHandler<LegendLabelFilter>("SampleInterop.Filter") // 
                     }
@@ -132,6 +134,11 @@
             _config.Data.Datasets.RemoveAt(_config.Data.Datasets.Count - 1);
             await _pieChartJs.Update();
         }
+    }
+
+    public void ShowEventAndArgs(JsonElement @event, LegendItem args)
+    {
+        Console.WriteLine($"Index: {args.Index}, Hidden: {args.Hidden}, Text: '{args.Text}'");
     }
 
     private bool LabelsFilter(LegendItem item, JsonElement chart)

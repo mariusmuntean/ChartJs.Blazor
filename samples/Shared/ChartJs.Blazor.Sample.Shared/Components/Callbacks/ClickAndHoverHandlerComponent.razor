@@ -81,9 +81,9 @@
         _config.Data.Datasets.Add(doughnutSet);
     }
 
-    public void ShowEventAndArgs(JsonElement @event, JsonElement args)
+    public void ShowEventAndArgs(JsonElement @event, LegendItem args)
     {
-        EventArgs = args.GetRawText() + Environment.NewLine + EventArgs;
+        EventArgs = $"Index: {args.Index}, Hidden: {args.Hidden}, Text: '{args.Text}'" + Environment.NewLine + EventArgs;
         Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
         StateHasChanged();
     }
