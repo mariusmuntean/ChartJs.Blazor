@@ -2515,6 +2515,75 @@
             <param name="methodInfo"></param>
             <exception cref="T:System.ArgumentException">Thrown if the method info is not for a static method</exception>
         </member>
+        <member name="T:ChartJs.Blazor.ChartJS.FinancialChart.FinancialConfig">
+            <summary>
+            Configration for Financial Chart
+            </summary>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.FinancialChart.FinancialConfig.#ctor(ChartJs.Blazor.ChartJS.Common.Enums.ChartType)">
+            <summary>
+            FinancialConfig Default constructor
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.FinancialChart.FinancialData">
+            <summary>
+            financial chart data structure
+            reference by https://www.chartjs.org/chartjs-chart-financial/index.js
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.FinancialChart.FinancialData.Time">
+            <summary>
+            Time is timestamp
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.FinancialChart.FinancialData.Open">
+            <summary>
+            Open price
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.FinancialChart.FinancialData.High">
+            <summary>
+            High price
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.FinancialChart.FinancialData.Low">
+            <summary>
+            Low price
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.FinancialChart.FinancialData.Close">
+            <summary>
+            Close price
+            </summary>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.FinancialChart.FinancialDataset`1">
+            <summary>
+            FinancialChart Default Dataset
+            financial chart (chartjs extension) is extend BarDataset
+            if you want understand this, then watching this document
+            https://www.chartjs.org/docs/latest/developers/charts.html
+            </summary>
+            <typeparam name="TData"></typeparam>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.FinancialChart.FinancialDataset`1.#ctor(ChartJs.Blazor.ChartJS.Common.Enums.ChartType)">
+            <summary>
+            FinancialDataset default constructor
+            </summary>
+            <param name="chartType"></param>
+        </member>
+        <member name="M:ChartJs.Blazor.ChartJS.FinancialChart.FinancialDataset`1.#ctor(System.Collections.Generic.IEnumerable{`0},ChartJs.Blazor.ChartJS.Common.Enums.ChartType)">
+            <summary>
+            construct FinancialDataset with data initialize
+            </summary>
+            <param name="data"></param>
+            <param name="chartType"></param>
+        </member>
+        <member name="T:ChartJs.Blazor.ChartJS.FinancialChart.FinancialOptions">
+            <summary>
+            Financial option class
+            </summary>
+        </member>
         <member name="T:ChartJs.Blazor.ChartJS.LineChart.LineConfig">
             <summary>
             Config for a <see cref="T:ChartJs.Blazor.Charts.ChartJsLineChart"/>
