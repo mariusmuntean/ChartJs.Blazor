@@ -1,4 +1,4 @@
-﻿using System;
+﻿using ChartJs.Blazor.ChartJS.Common.Time;
 
 namespace ChartJs.Blazor.ChartJS.FinancialChart
 {
@@ -8,11 +8,12 @@ namespace ChartJs.Blazor.ChartJS.FinancialChart
     /// </summary>
     public class FinancialData
     {
+
         /// <summary>
         /// Time is timestamp
         /// </summary>
         [Newtonsoft.Json.JsonProperty("t")]
-        public DateTime Time { get; set; }
+        public Moment Time { get; set; }
 
         /// <summary>
         /// Open price

@@ -57,7 +57,7 @@
             double value = Random.NextDouble();
             financialChartDataSet.Add(new FinancialData
             {
-                Time = DateTime.UtcNow.AddDays(index),
+                Time = new ChartJS.Common.Time.Moment(DateTime.UtcNow.AddDays(index)),
                 Open = value,
                 High = value + (value * Random.NextDouble()),
                 Low = value + (value * Random.NextDouble()) - Random.NextDouble(),
