@@ -354,6 +354,11 @@
             The options-subconfig of a <see cref="T:ChartJs.Blazor.ChartJS.BarChart.BarConfig"/>.
             </summary>
         </member>
+        <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarOptions.Animation">
+            <summary>
+            General animation time
+            </summary>
+        </member>
         <member name="P:ChartJs.Blazor.ChartJS.BarChart.BarOptions.Scales">
             <summary>
             Gets or sets the scales for the <see cref="T:ChartJs.Blazor.Charts.ChartJsBarChart"/>.
@@ -2142,6 +2147,11 @@
         <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.ArcAnimation.AnimateScale">
             <summary>
             If true, will animate scaling the chart from the center outwards.
+            </summary>
+        </member>
+        <member name="P:ChartJs.Blazor.ChartJS.Common.Properties.ArcAnimation.Duration">
+            <summary>
+            Defines the duration of the ArcAnimation
             </summary>
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Properties.OptionsTitle">
