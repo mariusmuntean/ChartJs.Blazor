@@ -10,7 +10,7 @@ namespace ChartJs.Blazor.ChartJS.BarChart
 	public class BarOptions : BaseConfigOptions
 	{
 		/// <summary>
-		/// General animation time
+		/// General animation for bar chart options
 		/// </summary>
 		public Animation Animation { get; set; }
 
