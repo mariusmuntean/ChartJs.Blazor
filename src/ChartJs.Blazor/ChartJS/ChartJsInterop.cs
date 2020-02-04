@@ -130,37 +130,37 @@ namespace ChartJs.Blazor.ChartJS
             // Restore any .net refs that need to be passed intact
             // TODO Find a way to do this dynamically. Maybe with attributes or something like that?
             dynamic dynamicChartConfig = (dynamic)chartConfig;
-            if (dynamicChartConfig?.Options?.OnClick is IMethodHandler chartOnClick && chartOnClick != null)
+            if (dynamicChartConfig?.Options?.OnClick is IMethodHandler chartOnClick)
             {
                 const string path = "options.onClick";
                 cleanChartConfig.SetValue(path, chartOnClick);
             }
 
-            if (dynamicChartConfig?.Options?.OnHover is IMethodHandler chartOnHover && chartOnHover != null)
+            if (dynamicChartConfig?.Options?.OnHover is IMethodHandler chartOnHover)
             {
                 const string path = "options.onHover";
                 cleanChartConfig.SetValue(path, chartOnHover);
             }
 
-            if (dynamicChartConfig?.Options?.Legend?.OnClick is IMethodHandler legendOnClick && legendOnClick != null)
+            if (dynamicChartConfig?.Options?.Legend?.OnClick is IMethodHandler legendOnClick)
             {
                 const string path = "options.legend.onClick";
                 cleanChartConfig.SetValue(path, legendOnClick);
             }
 
-            if (dynamicChartConfig?.Options?.Legend?.OnHover is IMethodHandler legendOnHover && legendOnHover != null)
+            if (dynamicChartConfig?.Options?.Legend?.OnHover is IMethodHandler legendOnHover)
             {
                 const string path = "options.legend.onHover";
                 cleanChartConfig.SetValue(path, legendOnHover);
             }
 
-            if (dynamicChartConfig?.Options?.Legend?.Labels?.GenerateLabels is IMethodHandler generateLabels && generateLabels != null)
+            if (dynamicChartConfig?.Options?.Legend?.Labels?.GenerateLabels is IMethodHandler generateLabels)
             {
                 const string path = "options.legend.labels.generateLabels";
                 cleanChartConfig.SetValue(path, generateLabels);
             }
 
-            if (dynamicChartConfig?.Options?.Legend?.Labels?.Filter is IMethodHandler filter && filter != null)
+            if (dynamicChartConfig?.Options?.Legend?.Labels?.Filter is IMethodHandler filter)
             {
                 const string path = "options.legend.labels.filter";
                 cleanChartConfig.SetValue(path, filter);
@@ -170,7 +170,7 @@ namespace ChartJs.Blazor.ChartJS
             // it's really ugly (and quite slow), I hope we can improve this later on. Also ms, PLEASE, give us customizable jsruntime serialization.
             try
             {
-                if (dynamicChartConfig?.Options?.Scale?.Callback is IMethodHandler singleScaleTickCallback && singleScaleTickCallback != null)
+                if (dynamicChartConfig?.Options?.Scale?.Callback is IMethodHandler singleScaleTickCallback)
                 {
                     const string path = "options.scale.callback";
                     cleanChartConfig.SetValue(path, singleScaleTickCallback);
@@ -181,12 +181,12 @@ namespace ChartJs.Blazor.ChartJS
                 try
                 {
                     // here we trust that if the Scales property exists, it contains an XAxes and a YAxes property
-                    if (dynamicChartConfig?.Options?.Scales?.XAxes is IEnumerable<object> xAxes && xAxes != null)
+                    if (dynamicChartConfig?.Options?.Scales?.XAxes is IEnumerable<object> xAxes)
                     {
                         AssignAxes(xAxes, "options.scales.xAxes");
                     }
 
-                    if (dynamicChartConfig?.Options?.Scales?.YAxes is IEnumerable<object> yAxes && yAxes != null)
+                    if (dynamicChartConfig?.Options?.Scales?.YAxes is IEnumerable<object> yAxes)
                     {
                         AssignAxes(yAxes, "options.scales.yAxes");
                     }
@@ -202,7 +202,7 @@ namespace ChartJs.Blazor.ChartJS
 
                 foreach ((object axis, ExpandoObject axisInDynamic) in axes.Zip(axesInDynamic, (axis, axisInDynamic) => (axis, (ExpandoObject)axisInDynamic)))
                 {
-                    if (((dynamic)axis)?.Ticks?.Callback is IMethodHandler axisTickCallback && axisTickCallback != null)
+                    if (((dynamic)axis)?.Ticks?.Callback is IMethodHandler axisTickCallback)
                     {
                         axisInDynamic.SetValue("ticks.callback", axisTickCallback);
                     }

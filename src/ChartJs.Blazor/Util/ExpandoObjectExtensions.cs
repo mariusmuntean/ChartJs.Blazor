@@ -33,14 +33,14 @@ namespace ChartJs.Blazor.Util
             {
                 string segment = segments[i];
                 IDictionary<string, object> newSource;
-                try
+                if (source.TryGetValue(segment, out object val))
                 {
-                    newSource = source[segment] as IDictionary<string, object>;
+                    newSource = val as IDictionary<string, object>;
                 }
-                catch (KeyNotFoundException)
+                else
                 {
-                    source[segment] = new ExpandoObject();
-                    newSource = source[segment] as IDictionary<string, object>;
+                    newSource = new ExpandoObject();
+                    source[segment] = newSource;
                 }
 
                 if (i < segments.Length - 1 || !allowForeignLastPart)
