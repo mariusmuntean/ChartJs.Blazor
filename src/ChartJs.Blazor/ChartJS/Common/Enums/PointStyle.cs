@@ -1,7 +1,4 @@
 ﻿
-using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
-using System.Text.Json.Serialization;
-
 namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
     /// <summary>
@@ -9,7 +6,6 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
     /// <para>As per documentation here https://www.chartjs.org/docs/latest/configuration/elements.html#point-styles </para>
     /// <para>Some samples showcasing the different styles can be found here https://www.chartjs.org/samples/latest/charts/line/point-styles.html </para>
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumReader<PointStyle>))]
     public sealed class PointStyle : StringEnum
     {
         /// <summary>

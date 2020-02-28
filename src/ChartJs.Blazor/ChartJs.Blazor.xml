@@ -1510,21 +1510,6 @@
             Newtonsoft JsonConverter for writing an <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.ObjectEnum"/> value. This JsonConverter can only write.
             </summary>
         </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter.JsonStringEnumReader`1">
-            <summary>
-            System.Text.Json JsonConverter for reading <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.StringEnum"/>s. The <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.StringEnum"/> is created via reflection
-            and does not take in account what values actually exist in the "enum". This is not a big deal
-            because the values that are deserialized using this converter should only come from chart.js and should be mapped correctly
-            to an "enum"-value in that <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.StringEnum"/>.
-            </summary>
-            <typeparam name="T">The type of <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.StringEnum"/> this converter is for. This is required because System.Text.Json
-            doesn't allow converters for base-classes yet.</typeparam>
-        </member>
-        <member name="T:ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter.JsonStringEnumWriter">
-            <summary>
-            Newtonsoft JsonConverter for writing a <see cref="T:ChartJs.Blazor.ChartJS.Common.Enums.StringEnum"/> value. This JsonConverter can only write.
-            </summary>
-        </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Enums.ObjectEnum">
             <summary>
             Inherit this class if you are in need of a pseudo-Enum which can hold values of different kinds (eg. string, double and bool).
@@ -1888,7 +1873,7 @@
         </member>
         <member name="T:ChartJs.Blazor.ChartJS.Common.Handlers.IMethodHandler">
             <summary>
-            Defines that a type is able to handle method calls coming from Javascript. In order to maintain the strongly typed nature of C#, please prefer using <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.IMethodHandler`1"/>
+            Defines that a type is able to handle method calls coming from Javascript. In order to maintain the strongly typed nature of C#, please prefer using <see cref="T:ChartJs.Blazor.ChartJS.Common.Handlers.IMethodHandler`1"/>.
             </summary>
         </member>
         <member name="P:ChartJs.Blazor.ChartJS.Common.Handlers.IMethodHandler.MethodName">

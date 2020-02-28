@@ -1,12 +1,8 @@
-﻿using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
-using System.Text.Json.Serialization;
-
-namespace ChartJs.Blazor.ChartJS.Common.Enums
+﻿namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
     /// <summary>
     /// As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html#ticks-source
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumReader<TickSource>))]
     public sealed class TickSource : StringEnum
     {
         /// <summary>

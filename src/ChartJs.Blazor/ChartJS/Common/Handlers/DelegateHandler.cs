@@ -1,10 +1,10 @@
 ﻿using Microsoft.JSInterop;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Text.Json;
 
 namespace ChartJs.Blazor.ChartJS.Common.Handlers
 {
@@ -15,17 +15,21 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
     public class DelegateHandler<T> : IMethodHandler<T>, IDisposable
         where T : Delegate
     {
-        private static readonly ParameterInfo[] _delegateParameters;
-        private static readonly bool _delegateHasReturnValue;
-        private static readonly JsonSerializerOptions s_deserializeOptions = new JsonSerializerOptions
+        private static readonly ParameterInfo[] s_delegateParameters;
+        private static readonly bool s_delegateHasReturnValue;
+        private static readonly JsonSerializerSettings s_deserializeOptions = new JsonSerializerSettings
         {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            NullValueHandling = NullValueHandling.Ignore,
+            ContractResolver = new DefaultContractResolver
+            {
+                NamingStrategy = new CamelCaseNamingStrategy(true, false)
+            }
         };
 
         private readonly T _function;
 
         /// <summary>
-        /// The name of the method which should be called from Javascript. In this case it's always the name of the <see cref="Invoke(JsonElement[])"/>-method.
+        /// The name of the method which should be called from Javascript. In this case it's always the name of the <see cref="Invoke(System.Text.Json.JsonElement[])"/>-method.
         /// </summary>
         public string MethodName => nameof(Invoke);
 
@@ -39,15 +43,15 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
         /// <summary>
         /// Gets a value indicating whether or not this delegate will return a value.
         /// </summary>
-        public bool ReturnsValue => _delegateHasReturnValue;
+        public bool ReturnsValue => s_delegateHasReturnValue;
 
         static DelegateHandler()
         {
             // https://stackoverflow.com/a/429564/10883465
             MethodInfo internalDelegateMethod = typeof(T).GetMethod("Invoke");
 
-            _delegateParameters = internalDelegateMethod.GetParameters();
-            _delegateHasReturnValue = internalDelegateMethod.ReturnType != typeof(void);
+            s_delegateParameters = internalDelegateMethod.GetParameters();
+            s_delegateHasReturnValue = internalDelegateMethod.ReturnType != typeof(void);
         }
 
         /// <summary>
@@ -65,28 +69,28 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
         /// </summary>
         /// <param name="jsonArgs">All the arguments for the method as array. These are not deserialized yet because the types are unknown.</param>
         [JSInvokable]
-        public virtual object Invoke(params JsonElement[] jsonArgs)
+        public virtual object Invoke(params System.Text.Json.JsonElement[] jsonArgs)
         {
-            if (_delegateParameters.Length != jsonArgs.Length)
-                throw new ArgumentException($"The function expects {_delegateParameters.Length} arguments but found {jsonArgs.Length}.");
+            if (s_delegateParameters.Length != jsonArgs.Length)
+                throw new ArgumentException($"The function expects {s_delegateParameters.Length} arguments but found {jsonArgs.Length}.");
 
-            if (_delegateParameters.Length == 0)
+            if (s_delegateParameters.Length == 0)
                 return _function.DynamicInvoke(null);
 
-            object[] invokationArgs = new object[_delegateParameters.Length];
-            for (int i = 0; i < _delegateParameters.Length; i++)
+            object[] invokationArgs = new object[s_delegateParameters.Length];
+            for (int i = 0; i < s_delegateParameters.Length; i++)
             {
-                if (_delegateParameters[i].ParameterType == typeof(object) ||
-                    _delegateParameters[i].ParameterType == typeof(JsonElement))
+                if (s_delegateParameters[i].ParameterType == typeof(object) ||
+                    s_delegateParameters[i].ParameterType == typeof(System.Text.Json.JsonElement))
                 {
                     invokationArgs[i] = jsonArgs[i];
                 }
                 else
                 {
 #if DEBUG
-                    Console.WriteLine($"Deserializing: {jsonArgs[i].GetRawText()} to {_delegateParameters[i].ParameterType.Name}");
+                    Console.WriteLine($"Deserializing: {jsonArgs[i].GetRawText()} to {s_delegateParameters[i].ParameterType.Name}");
 #endif
-                    invokationArgs[i] = JsonSerializer.Deserialize(jsonArgs[i].GetRawText(), _delegateParameters[i].ParameterType, s_deserializeOptions);
+                    invokationArgs[i] = JsonConvert.DeserializeObject(jsonArgs[i].GetRawText(), s_delegateParameters[i].ParameterType, s_deserializeOptions);
                 }
             }
             

@@ -1,13 +1,9 @@
-﻿using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
-using System.Text.Json.Serialization;
-
-namespace ChartJs.Blazor.ChartJS.Common.Enums
+﻿namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
     /// <summary>
     /// Specifies the border join style.
     /// <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin </para>
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumReader<BorderJoinStyle>))]
     public sealed class BorderJoinStyle : StringEnum
     {
         /// <summary>

@@ -5,7 +5,7 @@ using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
 
 namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
-    [Newtonsoft.Json.JsonConverter(typeof(JsonStringEnumWriter))]
+    [Newtonsoft.Json.JsonConverterAttribute(typeof(JsonConverter.JsonStringEnumConverter))]
     public abstract class StringEnum
     {
         private readonly string _value;

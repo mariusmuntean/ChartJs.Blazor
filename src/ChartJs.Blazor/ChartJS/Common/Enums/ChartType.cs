@@ -1,12 +1,8 @@
-﻿using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
-using System.Text.Json.Serialization;
-
-namespace ChartJs.Blazor.ChartJS.Common.Enums
+﻿namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
     /// <summary>
     /// Defines the chart types.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumReader<ChartType>))]
     public sealed class ChartType : StringEnum
     {
         /// <summary>

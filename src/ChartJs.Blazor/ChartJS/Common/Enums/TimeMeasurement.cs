@@ -1,12 +1,8 @@
-﻿using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
-using System.Text.Json.Serialization;
-
-namespace ChartJs.Blazor.ChartJS.Common.Enums
+﻿namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
     /// <summary>
     /// As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html#time-units
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumReader<TimeMeasurement>))]
     public sealed class TimeMeasurement : StringEnum
     {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member

@@ -1,13 +1,9 @@
-﻿using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
-using System.Text.Json.Serialization;
-
-namespace ChartJs.Blazor.ChartJS.Common.Enums
+﻿namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
     /// <summary>
     /// Specifies the border cap style.
     /// <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap </para>
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumReader<BorderCapStyle>))]
     public sealed class BorderCapStyle : StringEnum
     {
         /// <summary>
