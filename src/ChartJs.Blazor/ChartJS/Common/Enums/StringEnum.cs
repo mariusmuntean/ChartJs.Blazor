@@ -1,9 +1,6 @@
-﻿using Newtonsoft.Json;
-using ChartJs.Blazor.ChartJS.Common.Enums.JsonConverter;
-
 namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
-    [JsonConverter(typeof(JsonStringEnumConverter))]
+    [Newtonsoft.Json.JsonConverter(typeof(Serialization.JsonStringEnumConverter))]
     public abstract class StringEnum
     {
         private readonly string _value;
