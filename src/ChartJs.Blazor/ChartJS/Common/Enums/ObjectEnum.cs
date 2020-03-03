@@ -3,7 +3,9 @@
 namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
     /// <summary>
-    /// The base class for enums that can represent different types.
+    /// The base class for enums that can represent different types. We also use these
+    /// "enums" like Discriminated Unions to provide a type safe way of communicating with the
+    /// dynamic language javascript is.
     /// <para>
     /// De-/serialization is supported but only for the following types:
     /// <see cref="int"/>, <see cref="double"/>, <see cref="string"/> and <see cref="bool"/>.
@@ -12,13 +14,19 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
     /// </para>
     /// <para>
     /// When implementing an object enum, make sure to provide only private constructors
-    /// with the types that are allowed. The actual enum values are static properties that pass
-    /// the correct value to the private constructor.
+    /// with the types that are allowed (DO NOT expose public constructors; expose meaningful
+    /// factory methods instead). The actual enum values are static properties that pass
+    /// the correct value to the private constructor. You can also have static factory methods that
+    /// create an instance of the object enum with the specified value as long as the parameter
+    /// type is supported. Also consider sealing your enum unless you have a specific reason not to.
     /// </para>
     /// </summary>
     [Newtonsoft.Json.JsonConverter(typeof(Serialization.JsonObjectEnumConverter))]
     public abstract class ObjectEnum
     {
+        // TODO Have a static property that defines the supported types (probably int, bool, double and string)
+        // and use it in the converter.
+
         /// <summary>
         /// Holds the actual value represented by this instance.
         /// </summary>
