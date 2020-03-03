@@ -1,4 +1,6 @@
-﻿namespace ChartJs.Blazor.ChartJS.Common.Enums
+﻿using System;
+
+namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
     /// <summary>
     /// The base class for enums that can represent different types.
@@ -21,12 +23,15 @@
         /// Holds the actual value represented by this instance.
         /// </summary>
         internal object Value { get; }
-        
+
         /// <summary>
         /// Creates a new instance of <see cref="ObjectEnum"/> with a value.
         /// </summary>
         /// <param name="value">The value this enum-instance is supposed to represent.</param>
-        protected ObjectEnum(object value) => Value = value;
+        protected ObjectEnum(object value)
+        {
+            Value = value ?? throw new ArgumentNullException(nameof(value));
+        }
 
         /// <summary>
         /// Returns the string representation of the underlying object. Calls <see cref="object.ToString"/>
@@ -35,6 +40,9 @@
         /// <returns>The string representation of the underlying object.</returns>
         public override string ToString() => Value.ToString();
 
+        // TODO: Check how to properly do equality stuff for this wrapper class
+        // https://softwareengineering.stackexchange.com/questions/397235/should-wrappers-compare-as-equal-using-the-operator-when-they-wrap-the-same-o
+
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static bool operator == (ObjectEnum a, ObjectEnum b) => a.Value == b.Value;
         public static bool operator != (ObjectEnum a, ObjectEnum b) => a.Value != b.Value;
@@ -42,7 +50,6 @@
 
         /// <summary>
         /// Determines whether the specified object instance is considered equal to the current instance.
-        /// If the underlying object is equal to <paramref name="obj"/>, this method will also return <see langword="true"/>.
         /// </summary>
         /// <param name="obj">The object to compare with.</param>
         /// <returns>true if the objects are considered equal; otherwise, false.</returns>
@@ -51,8 +58,7 @@
             if (typeof(ObjectEnum).IsAssignableFrom(obj.GetType()) && obj != null)
                 return Value.Equals(((ObjectEnum)obj).Value);
 
-            // it also counts as equal if the object to compare is equal to the object stored in the wrapper
-            return Value.Equals(obj);
+            return false;
         }
 
         /// <summary>
