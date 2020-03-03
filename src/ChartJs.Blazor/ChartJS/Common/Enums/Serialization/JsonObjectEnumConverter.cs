@@ -33,6 +33,9 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
                 ObjectEnumFactory factory = ObjectEnumFactory.GetFactory(objectType);
                 // TODO Check what c# types those token types produce and act accordingly here and in the 
                 // summary of ObjectEnum. Maybe it's not double but float.
+                // Another way of checking this stuff would be to first check if the token type is primitive (https://github.com/JamesNK/Newtonsoft.Json/blob/master/Src/Newtonsoft.Json/Utilities/JsonTokenUtils.cs#L56)
+                // and then ensure that reader.Value.GetType() returns one of the supported types for object enums.
+                // if the type is supported in general but not for this specific enum type, factory.Create will throw.
                 return factory.Create(reader.Value);
             }
 
@@ -44,6 +47,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
             try
             {
                 // TODO check if it's one of the supported types. Otherwise it might get serialized but can't be deserialized.
+                // just make sure it's consistently the same with deserializing!
                 writer.WriteValue(wrapper.Value);
             }
             catch (JsonWriterException)
