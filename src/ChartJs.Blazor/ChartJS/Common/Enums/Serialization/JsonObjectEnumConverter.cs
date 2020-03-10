@@ -6,40 +6,45 @@ using System.Linq;
 
 namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
 {
-    /* Currently supported token/types:
-     * Integer -> int
-     * Float -> double
-     * String -> string
-     * Boolean -> bool
-     * Null -> null
-     * Undefined -> null
-     */
     internal class JsonObjectEnumConverter : JsonConverter<ObjectEnum>
     {
-        private const string NotSupportedTokenMessage = "Deserializing ObjectEnums from token type '{0}' isn't supported. " +
-                                                        "Supported tokens: {1}";
-
-        private static readonly JsonToken[] s_supportedTokens = new[]
-        {
-            JsonToken.Null, JsonToken.Undefined, JsonToken.Boolean, JsonToken.Float, JsonToken.Integer, JsonToken.String
-        };
-
         public override ObjectEnum ReadJson(JsonReader reader, Type objectType, [AllowNull] ObjectEnum existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            if (s_supportedTokens.Contains(reader.TokenType))
+            if (reader.TokenType == JsonToken.Null || reader.TokenType == JsonToken.Undefined)
             {
-                // the supported tokens are all primitive so we can just do it like this. See similar use case:
-                // https://github.com/JamesNK/Newtonsoft.Json/blob/a31156e90a14038872f54eb60ff0e9676ca4a0d8/Src/Newtonsoft.Json/Converters/ExpandoObjectConverter.cs#L81
-                ObjectEnumFactory factory = ObjectEnumFactory.GetFactory(objectType);
-                // TODO Check what c# types those token types produce and act accordingly here and in the 
-                // summary of ObjectEnum. Maybe it's not double but float.
-                // Another way of checking this stuff would be to first check if the token type is primitive (https://github.com/JamesNK/Newtonsoft.Json/blob/master/Src/Newtonsoft.Json/Utilities/JsonTokenUtils.cs#L56)
-                // and then ensure that reader.Value.GetType() returns one of the supported types for object enums.
-                // if the type is supported in general but not for this specific enum type, factory.Create will throw.
-                return factory.Create(reader.Value);
+                return null;
             }
 
-            throw new NotSupportedException(string.Format(NotSupportedTokenMessage, reader.TokenType, string.Join(", ", s_supportedTokens)));
+            if (reader.Value == null)
+            {
+                /* Covers:
+                 * - All token types that result in reader.Value not being assigned (yet) except null and undefined
+                 *   Examples are: StartArray, StartObject, ..
+                 */
+                throw new NotSupportedException($"Deserializing ObjectEnums from token type '{reader.TokenType}' isn't supported.");
+            }
+
+            Type readerValueType = reader.Value.GetType();
+            /* The Type of reader.Value isn't always what it was when it was serialized.
+             * An issue pointing that out: https://github.com/dotnet/orleans/issues/1269#issuecomment-171233788
+             * - Any integer number will be of type System.Int64 unless its smaller
+             *   than Int64.MinValue or higher than Int64.MaxValue, then it will be of type System.Numerics.BigInteger
+             * - Any non-integer number will be of type System.Double
+             *
+             * Either we only support Int32 and cast down every Int64 since chart.js doesn't have high values anyway
+             * or we try to find a matching constructor. Int32 is much more common in the enums but the json.net
+             * default is Int64.. we need to find a good match which doesn't hurt performance too much.
+             * We could first try to see if there is an Int64/BigInteger constructor (just search for Value.GetType())
+             * and if there isn't one, cast down to Int32 (throw on overflow) and then try again. This would probably
+             * not be much slower than directly casting to Int32 and passing it into the factory.
+             */
+
+            if (!ObjectEnum.SupportedSerializationTypes.Contains(readerValueType))
+                // TODO use factory.CanConvertFrom to avoid redundant checks
+                throw new NotSupportedException($"Serialization for ObjectEnum containing '{readerValueType.Name}' not supported.");
+
+            ObjectEnumFactory factory = ObjectEnumFactory.GetFactory(objectType);
+            return factory.Create(reader.Value);
         }
 
         public override void WriteJson(JsonWriter writer, ObjectEnum wrapper, JsonSerializer serializer)

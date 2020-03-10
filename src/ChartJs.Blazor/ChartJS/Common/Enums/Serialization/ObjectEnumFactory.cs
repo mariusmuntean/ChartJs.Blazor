@@ -46,9 +46,11 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
             }
         }
 
+        // TODO Add CanConvertFrom(Type contentType) which looks through _constructorCache.Keys
+
         private Dictionary<Type, ConstructorInfo> CreateConstructorDictionary()
         {
-            var dict = new Dictionary<Type, ConstructorInfo>();
+            Dictionary<Type, ConstructorInfo> dict = new Dictionary<Type, ConstructorInfo>();
             ConstructorInfo[] constructors = _enumType.GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic);
             foreach (ConstructorInfo constructor in constructors)
             {
