@@ -15,7 +15,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
     /// <para>
     /// When implementing an object enum, make sure to provide only private constructors
     /// with the types that are allowed (DO NOT expose public constructors; expose meaningful
-    /// factory methods instead). The actual enum values are static properties that pass
+    /// static factory methods instead). The actual enum values are static properties that pass
     /// the correct value to the private constructor. You can also have static factory methods that
     /// create an instance of the object enum with the specified value as long as the parameter
     /// type is supported. Also consider sealing your enum unless you have a specific reason not to.
@@ -24,8 +24,15 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
     [Newtonsoft.Json.JsonConverter(typeof(Serialization.JsonObjectEnumConverter))]
     public abstract class ObjectEnum
     {
-        // TODO Have a static property that defines the supported types (probably int, bool, double and string)
-        // and use it in the converter.
+        /// <summary>
+        /// Gets the types that are supported for serialization and deserialization.
+        /// <see cref="ObjectEnum"/> can contain objects of different types but you will get
+        /// a <see cref="NotSupportedException"/> once you try to serialize or deserialize that object.
+        /// </summary>
+        internal static readonly Type[] SupportedSerializationTypes = new[]
+        {
+            typeof(int), typeof(double), typeof(string), typeof(bool)
+        };
 
         /// <summary>
         /// Holds the actual value represented by this instance.
