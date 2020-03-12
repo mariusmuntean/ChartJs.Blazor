@@ -32,16 +32,21 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 ### Additional context / logging
-Add any other context about the problem here.
+Add any additional context about the problem here.
 
 <!-- Include debugging or logging information here: -->
 
 ```batch
-\\ Put your error log here
+// Put your error log here
 ```
 ### Code example
-Please provide full code examples below where possible to make it easier for the developers to check your issues.
+Please provide full code examples below where possible to make it easier for the developers to check your issues.  
+Please also add the working JavaScript equivalent so we can see what you were trying to achieve.
  
 ```csharp
-\\ Put your example code here
+// Put your example code here
+```
+
+```javascript
+// Put your JavaScript code here
 ```

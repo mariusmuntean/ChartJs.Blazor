@@ -17,8 +17,14 @@ A clear and concise description of what the problem is. Example. I'm am trying t
 ### Describe the solution you'd like
 A clear and concise description of what you want to happen.
 
+### JavaScript equivalent
+<!--
+    In most scenarios there is a way to achieve the behaviour you'd like with JavaScript since this library just acts as a bridge between Blazor (C#) and Chart.js (JavaScript).
+    Please write the JavaScript-code here and/or add a link to a [jsfiddle](https://jsfiddle.net).
+-->
+
 ### Describe alternatives you've considered
 A clear and concise description of any alternative solutions or features you've considered.
 
 ### Additional context
-Add any other context or screenshots about the feature request here.
+Add any additional context or screenshots about the feature request here.

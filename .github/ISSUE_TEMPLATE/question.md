@@ -17,3 +17,6 @@ A clear and concise description of what you want to know.
 
 ### Which charts is this question related to?
 <!-- Please list the charts this question applies to. If it applies to all of them, just write 'all charts'. -->
+
+### Additional context
+Add any additional context, screenshots or code about the question here.
