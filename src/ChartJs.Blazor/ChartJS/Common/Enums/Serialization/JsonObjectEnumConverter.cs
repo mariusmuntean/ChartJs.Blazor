@@ -10,7 +10,8 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
     {
         public override ObjectEnum ReadJson(JsonReader reader, Type objectType, [AllowNull] ObjectEnum existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            if (reader.TokenType == JsonToken.Null || reader.TokenType == JsonToken.Undefined)
+            if (reader.TokenType == JsonToken.Null ||
+                reader.TokenType == JsonToken.Undefined)
             {
                 return null;
             }
@@ -39,11 +40,10 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
              * not be much slower than directly casting to Int32 and passing it into the factory.
              */
 
-            if (!ObjectEnum.SupportedSerializationTypes.Contains(readerValueType))
-                // TODO use factory.CanConvertFrom to avoid redundant checks
-                throw new NotSupportedException($"Serialization for ObjectEnum containing '{readerValueType.Name}' not supported.");
-
             ObjectEnumFactory factory = ObjectEnumFactory.GetFactory(objectType);
+            if (factory.CanConvertFrom(readerValueType))
+                throw new NotSupportedException($"Deserialization {nameof(ObjectEnum)} '{objectType.FullName}' from '{readerValueType.Name}' not supported.");
+
             return factory.Create(reader.Value);
         }
 

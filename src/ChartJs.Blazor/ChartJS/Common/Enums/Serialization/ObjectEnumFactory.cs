@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -10,9 +11,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
     {
         private static readonly ConcurrentDictionary<Type, ObjectEnumFactory> s_factorySingletons = new ConcurrentDictionary<Type, ObjectEnumFactory>();
         
-        private readonly Lazy<Dictionary<Type, ConstructorInfo>> _constructorCache;
-        protected Dictionary<Type, ConstructorInfo> ConstructorCache => _constructorCache.Value;
-
+        private readonly Dictionary<Type, ConstructorInfo> _constructorCache;
         private readonly Type _enumType;
 
         public static ObjectEnumFactory GetFactory(Type enumType)
@@ -30,23 +29,29 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
         {
             // checks omitted because the constructor is non-public
             _enumType = enumType;
-            _constructorCache = new Lazy<Dictionary<Type, ConstructorInfo>>(CreateConstructorDictionary);
+            _constructorCache = CreateConstructorDictionary();
         }
 
         public ObjectEnum Create(object value)
         {
-            if (ConstructorCache.TryGetValue(value.GetType(), out ConstructorInfo constructor))
+            Type valueType = value.GetType();
+            if (_constructorCache.TryGetValue(valueType, out ConstructorInfo constructor))
             {
                 return (ObjectEnum)constructor.Invoke(new[] { value });
             }
-            else
+
+            if (IsSupportedSerializationType(valueType))
             {
                 throw new NotSupportedException($"The object enum '{_enumType.FullName}' doesn't have a constructor which takes a single " +
-                                                $"argument of type '{value.GetType().FullName}'.");
+                                                $"argument of type '{valueType.FullName}'.");
+            }
+            else
+            {
+                throw new NotSupportedException($"The type '{valueType}' isn't supported for serialization within {nameof(ObjectEnum)}.");
             }
         }
 
-        // TODO Add CanConvertFrom(Type contentType) which looks through _constructorCache.Keys
+        public bool CanConvertFrom(Type contentType) => _constructorCache.ContainsKey(contentType);
 
         private Dictionary<Type, ConstructorInfo> CreateConstructorDictionary()
         {
@@ -61,13 +66,21 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
                 }
 
                 Type paramType = constructorParams[0].ParameterType;
-                if (paramType != typeof(object))
+                if (IsSupportedSerializationType(paramType))
                 {
                     dict.Add(paramType, constructor);
                 }
             }
 
+            if (dict.Count == 0)
+            {
+                throw new NotSupportedException($"The {nameof(ObjectEnum)} type '{_enumType.FullName}' doesn't have any " +
+                                                $"suitable constructors for deserialization.");
+            }
+
             return dict;
         }
+
+        private bool IsSupportedSerializationType(Type type) => ObjectEnum.SupportedSerializationTypes.Contains(type);
     }
 }
