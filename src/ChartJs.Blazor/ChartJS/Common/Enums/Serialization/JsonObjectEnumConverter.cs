@@ -25,7 +25,8 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
                 throw new NotSupportedException($"Deserializing ObjectEnums from token type '{reader.TokenType}' isn't supported.");
             }
 
-            Type readerValueType = reader.Value.GetType();
+            object value = reader.Value;
+            Type readerValueType = value.GetType();
             /* The Type of reader.Value isn't always what it was when it was serialized.
              * An issue pointing that out: https://github.com/dotnet/orleans/issues/1269#issuecomment-171233788
              * - Any integer number will be of type System.Int64 unless its smaller
@@ -41,27 +42,42 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
              */
 
             ObjectEnumFactory factory = ObjectEnumFactory.GetFactory(objectType);
-            if (factory.CanConvertFrom(readerValueType))
-                throw new NotSupportedException($"Deserialization {nameof(ObjectEnum)} '{objectType.FullName}' from '{readerValueType.Name}' not supported.");
 
-            return factory.Create(reader.Value);
+            // special case for long since json.net's default for number deserialization is long but our enums
+            // use int (plus we only support int at the moment). BigInteger isn't supported at all.
+            if (readerValueType == typeof(long))
+            {
+                long asLong = (long)value;
+                if (asLong < int.MinValue ||
+                    asLong > int.MaxValue)
+                {
+                    throw new OverflowException($"The deserialized number ({value}) is out of the range of int ({int.MinValue} - {int.MaxValue}).");
+                }
+                else
+                {
+                    value = (int)asLong;
+                    readerValueType = typeof(int);
+                }
+            }
+
+            if (factory.CanConvertFrom(readerValueType))
+                throw new NotSupportedException($"Deserialization {nameof(ObjectEnum)} '{objectType.FullName}' from '{readerValueType.Name}' isn't supported.");
+
+            return factory.Create(value);
         }
 
         public override void WriteJson(JsonWriter writer, ObjectEnum wrapper, JsonSerializer serializer)
         {
-            try
+            Type wrappedType = wrapper.Value.GetType();
+            if (!ObjectEnum.IsSupportedSerializationType(wrappedType))
             {
-                // TODO check if it's one of the supported types. Otherwise it might get serialized but can't be deserialized.
-                // just make sure it's consistently the same with deserializing!
-                writer.WriteValue(wrapper.Value);
+                throw new NotSupportedException($"The type '{wrappedType.FullName}' isn't supported for serialization " +
+                                                $"within an instance of any {nameof(ObjectEnum)}-type.");
             }
-            catch (JsonWriterException)
-            {
-                // if the contained value can't be written in a single Token, deserialization isn't supported
-                // so we won't support serializing it either.
-                throw new NotSupportedException($"The type '{wrapper.Value.GetType().FullName}' isn't supported " +
-                    $"in object enums because it cannot be written as a single token.");
-            }
+
+            // The types we support can always be written in a single Token.
+            // If that was not the case, we'd need to handle JsonWriterException here.
+            writer.WriteValue(wrapper.Value);
         }
     }
 }
