@@ -40,7 +40,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
                 return (ObjectEnum)constructor.Invoke(new[] { value });
             }
 
-            if (IsSupportedSerializationType(valueType))
+            if (ObjectEnum.IsSupportedSerializationType(valueType))
             {
                 throw new NotSupportedException($"The object enum '{_enumType.FullName}' doesn't have a constructor which takes a single " +
                                                 $"argument of type '{valueType.FullName}'.");
@@ -66,7 +66,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
                 }
 
                 Type paramType = constructorParams[0].ParameterType;
-                if (IsSupportedSerializationType(paramType))
+                if (ObjectEnum.IsSupportedSerializationType(paramType))
                 {
                     dict.Add(paramType, constructor);
                 }
@@ -80,7 +80,5 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
 
             return dict;
         }
-
-        private bool IsSupportedSerializationType(Type type) => ObjectEnum.SupportedSerializationTypes.Contains(type);
     }
 }

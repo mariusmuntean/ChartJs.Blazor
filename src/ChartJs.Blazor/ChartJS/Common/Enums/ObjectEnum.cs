@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace ChartJs.Blazor.ChartJS.Common.Enums
 {
@@ -29,7 +30,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
         /// <see cref="ObjectEnum"/> can contain objects of different types but you will get
         /// a <see cref="NotSupportedException"/> once you try to serialize or deserialize that object.
         /// </summary>
-        internal static readonly Type[] SupportedSerializationTypes = new[]
+        private static readonly Type[] SupportedSerializationTypes = new[]
         {
             typeof(int), typeof(double), typeof(string), typeof(bool)
         };
@@ -47,6 +48,14 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
         {
             Value = value ?? throw new ArgumentNullException(nameof(value));
         }
+
+        /// <summary>
+        /// Checks if a <see cref="Type"/> is in the list of supported serialization types. If
+        /// this function returns <see langword="false"/>, de-/serialization will fail on <see cref="ObjectEnum"/>s
+        /// containing an instance of that <see cref="Type"/> (<paramref name="type"/>).
+        /// </summary>
+        /// <param name="type">The <see cref="Type"/> to check.</param>
+        internal static bool IsSupportedSerializationType(Type type) => SupportedSerializationTypes.Contains(type);
 
         /// <summary>
         /// Returns the string representation of the underlying object. Calls <see cref="object.ToString"/>
