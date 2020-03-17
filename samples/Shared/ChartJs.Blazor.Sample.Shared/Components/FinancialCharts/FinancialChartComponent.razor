@@ -1,0 +1,74 @@
+﻿@using ChartJs.Blazor.ChartJS.FinancialChart
+@using ChartJs.Blazor.ChartJS.Common.Axes
+@using ChartJs.Blazor.Charts
+@using ChartJs.Blazor.ChartJS.Common.Properties
+@using ChartJs.Blazor.ChartJS.Common.Wrappers
+@using ChartJs.Blazor.Util
+
+<h2>Financial chart example</h2>
+<div>
+    <div>
+        <ChartJsFinancialChart @ref="_financialChart" Config="@_config" />
+    </div>
+    <div>
+        <button class="btn btn-primary">Fill On/Off</button>
+    </div>
+</div>
+
+@code {
+    private ChartJs.Blazor.ChartJS.FinancialChart.FinancialConfig _config;
+    private ChartJsFinancialChart _financialChart;
+
+    private int pointCount = 20;
+    private Random Random = new Random();
+
+    protected override Task OnInitializedAsync()
+    {
+        _config = new ChartJs.Blazor.ChartJS.FinancialChart.FinancialConfig(ChartJS.Common.Enums.ChartType.CandleStick)
+        {
+            Options = new FinancialOptions
+            {
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "financial chart"
+                },
+                Responsive = false,
+                Scales = new ChartJS.BarChart.BarScales
+                {
+                    XAxes = new List<CartesianAxis>
+                    {
+                        new TimeAxis()
+                        {
+                            Ticks = new ChartJS.Common.Axes.Ticks.TimeTicks
+                            {
+                                Source = ChartJS.Common.Enums.TickSource.Data
+                            },
+                        }
+                    }
+                }
+            }
+        };
+
+        var financialChartDataSet = new ChartJs.Blazor.ChartJS.FinancialChart.FinancialDataset<FinancialData>(chartType: ChartJs.Blazor.ChartJS.Common.Enums.ChartType.CandleStick);
+
+        for (int index = 0; index < pointCount; ++index)
+        {
+            double value = Random.NextDouble();
+            financialChartDataSet.Add(new FinancialData
+            {
+                Time = new ChartJS.Common.Time.Moment(DateTime.UtcNow.AddDays(index)),
+                Open = value,
+                High = value + (value * Random.NextDouble()),
+                Low = value + (value * Random.NextDouble()) - Random.NextDouble(),
+                Close = value + (value * Random.NextDouble()) -(value * Random.NextDouble())
+
+            });
+
+        }
+
+
+        _config.Data.Datasets.Add(financialChartDataSet);
+        return Task.CompletedTask;
+    }
+}

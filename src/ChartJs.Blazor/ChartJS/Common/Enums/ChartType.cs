@@ -51,6 +51,16 @@
         public static ChartType Scatter => new ChartType("scatter");
 
         /// <summary>
+        /// The financial candlestick chart type
+        /// </summary>
+        public static ChartType CandleStick => new ChartType("candlestick");
+
+        /// <summary>
+        /// the financial ohlc chart type
+        /// </summary>
+        public static ChartType Ohlc => new ChartType("ohlc");
+
+        /// <summary>
         /// Creates a new instance of the <see cref="ChartType"/> class.
         /// </summary>
         /// <param name="stringValue">The <see cref="string"/> value to set.</param>
