@@ -18,9 +18,8 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
 
             if (reader.Value == null)
             {
-                /* Covers:
-                 * - All token types that result in reader.Value not being assigned (yet) except null and undefined
-                 *   Examples are: StartArray, StartObject, ..
+                /* Covers all token types that result in reader.Value not being assigned (yet) except null and undefined
+                 * Examples are: StartArray, StartObject, ..
                  */
                 throw new NotSupportedException($"Deserializing ObjectEnums from token type '{reader.TokenType}' isn't supported.");
             }
@@ -33,18 +32,18 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
              *   than Int64.MinValue or higher than Int64.MaxValue, then it will be of type System.Numerics.BigInteger
              * - Any non-integer number will be of type System.Double
              *
-             * Either we only support Int32 and cast down every Int64 since chart.js doesn't have high values anyway
-             * or we try to find a matching constructor. Int32 is much more common in the enums but the json.net
-             * default is Int64.. we need to find a good match which doesn't hurt performance too much.
-             * We could first try to see if there is an Int64/BigInteger constructor (just search for Value.GetType())
-             * and if there isn't one, cast down to Int32 (throw on overflow) and then try again. This would probably
-             * not be much slower than directly casting to Int32 and passing it into the factory.
+             * Currently we cast down long to int and ignore BigInteger. This means that only int is supported
+             * and we don't waste time checking for other options and converting between types.
+             * 
+             * Another option would be to check for a suitable constructor and if there isn't one try to find the
+             * most optimal conversion. Even though that sounds nice, it's really not necessary at the moment. There's
+             * no need for BigInteger support in the enums and it would hurt performance a bit.
              */
 
             ObjectEnumFactory factory = ObjectEnumFactory.GetFactory(objectType);
 
             // special case for long since json.net's default for number deserialization is long but our enums
-            // use int (plus we only support int at the moment). BigInteger isn't supported at all.
+            // use (and only support) int at the moment. BigInteger isn't supported at all and will throw on the next check.
             if (readerValueType == typeof(long))
             {
                 long asLong = (long)value;
@@ -60,10 +59,25 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
                 }
             }
 
-            if (factory.CanConvertFrom(readerValueType))
-                throw new NotSupportedException($"Deserialization {nameof(ObjectEnum)} '{objectType.FullName}' from '{readerValueType.Name}' isn't supported.");
+            if (!factory.CanConvertFrom(readerValueType))
+            {
+                if (readerValueType == typeof(int) &&
+                    factory.CanConvertFrom(typeof(double)))
+                {
+                    /* Sometimes a value like "0" or "10" might get deserialized as int even though
+                     * the ObjectEnum meant to handle a double. In that case, we can convert
+                     * the int value to a double and create the enum value from there.
+                     */
+                    value = (double)(int)value; // both casts are required! (else InvalidCastException)
+                    readerValueType = typeof(double);
+                }
+                else
+                {
+                    throw new NotSupportedException($"Deserialization {nameof(ObjectEnum)} '{objectType.FullName}' from '{readerValueType.Name}' isn't supported.");
+                }
+            }
 
-            return factory.Create(value);
+            return factory.Create(value, readerValueType);
         }
 
         public override void WriteJson(JsonWriter writer, ObjectEnum wrapper, JsonSerializer serializer)

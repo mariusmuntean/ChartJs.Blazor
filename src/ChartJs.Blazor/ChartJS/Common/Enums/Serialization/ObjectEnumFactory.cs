@@ -7,6 +7,11 @@ using System.Text;
 
 namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
 {
+    /* We favour using a non-generic design here because the "entry point" where this class is used
+     * is a JsonConverter that has to work for all types of ObjectEnum. Therefore the converter isn't
+     * generic and we don't have a generic parameter to begin with. We would need to use reflection
+     * to create the factory and if we just work with Type, we can reduce the reflection use a bit.
+     */
     internal class ObjectEnumFactory
     {
         private static readonly ConcurrentDictionary<Type, ObjectEnumFactory> s_factorySingletons = new ConcurrentDictionary<Type, ObjectEnumFactory>();
@@ -14,6 +19,10 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
         private readonly Dictionary<Type, ConstructorInfo> _constructorCache;
         private readonly Type _enumType;
 
+        /// <summary>
+        /// Gets (and creates if needed) the singleton-factory for this <paramref name="enumType"/>.
+        /// </summary>
+        /// <param name="enumType">The <see cref="ObjectEnum"/>-type whose factory to get.</param>
         public static ObjectEnumFactory GetFactory(Type enumType)
         {
             if (enumType == null)
@@ -32,9 +41,27 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
             _constructorCache = CreateConstructorDictionary();
         }
 
-        public ObjectEnum Create(object value)
+        /// <summary>
+        /// Creates a new instance of the <see cref="ObjectEnum"/>-type this factory is for.
+        /// If there is no suitable constructor for the <paramref name="value"/>, a
+        /// <see cref="NotSupportedException"/> will be thrown.
+        /// </summary>
+        /// <param name="value">The value used for instantiating the <see cref="ObjectEnum"/>.</param>
+        public ObjectEnum Create(object value) => Create(value, value.GetType());
+
+        /// <summary>
+        /// Creates a new instance of the <see cref="ObjectEnum"/>-type this factory is for.
+        /// If there is no suitable constructor for the type <paramref name="valueType"/>, a
+        /// <see cref="NotSupportedException"/> will be thrown.
+        /// <para>
+        /// Use this method if the type of <paramref name="value"/> is already known
+        /// (and you're sure about it).
+        /// </para>
+        /// </summary>
+        /// <param name="value">The value used for instantiating the <see cref="ObjectEnum"/>.</param>
+        /// <param name="valueType">The <see cref="Type"/> of <paramref name="value"/>.</param>
+        public ObjectEnum Create(object value, Type valueType)
         {
-            Type valueType = value.GetType();
             if (_constructorCache.TryGetValue(valueType, out ConstructorInfo constructor))
             {
                 return (ObjectEnum)constructor.Invoke(new[] { value });
@@ -51,6 +78,13 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
             }
         }
 
+        /// <summary>
+        /// Checks if a suitable constructor for this <paramref name="contentType"/> exists which
+        /// can be used to create a new instance of that <see cref="ObjectEnum"/>-type.
+        /// </summary>
+        /// <param name="contentType">The <see cref="Type"/> of the enum-content to look for.</param>
+        /// <returns><see langword="true"/> if there is a suitable constructor for that <paramref name="contentType"/>;
+        /// otherwise <see langword="false"/>.</returns>
         public bool CanConvertFrom(Type contentType) => _constructorCache.ContainsKey(contentType);
 
         private Dictionary<Type, ConstructorInfo> CreateConstructorDictionary()
