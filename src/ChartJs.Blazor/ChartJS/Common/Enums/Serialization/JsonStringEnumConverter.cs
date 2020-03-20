@@ -23,12 +23,13 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
 
                     return (StringEnum)constructor.Invoke(new[] { reader.Value });
                 default:
-                    throw new JsonSerializationException($"Unexpected token while deserializing {nameof(StringEnum)} ({objectType.Name}): {reader.TokenType}");
+                    throw new NotSupportedException($"Deserializing StringEnums from token type '{reader.TokenType}' isn't supported.");
             }
         }
 
         public override void WriteJson(JsonWriter writer, StringEnum value, JsonSerializer serializer)
         {
+            // Note: value won't be null (json.net wouldn't call this method if it were null)
             // ToString was overwritten by StringEnum -> safe to just print the string representation
             writer.WriteValue(value.ToString());
         }
