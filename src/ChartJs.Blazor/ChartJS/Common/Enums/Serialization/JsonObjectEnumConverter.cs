@@ -82,6 +82,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
 
         public override void WriteJson(JsonWriter writer, ObjectEnum wrapper, JsonSerializer serializer)
         {
+            // Note: wrapper won't be null (json.net wouldn't call this method if it were null)
             Type wrappedType = wrapper.Value.GetType();
             if (!ObjectEnum.IsSupportedSerializationType(wrappedType))
             {
