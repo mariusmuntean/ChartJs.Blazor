@@ -26,7 +26,10 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
         /// Creates a new instance of <see cref="StringEnum"/>.
         /// </summary>
         /// <param name="stringRep">The <see cref="string"/> this instance should represent.</param>
-        protected StringEnum(string stringRep) => _value = stringRep;
+        protected StringEnum(string stringRep)
+        {
+            _value = stringRep ?? throw new ArgumentNullException(nameof(stringRep));
+        }
 
         /// <summary>
         /// Determines whether the specified object is considered equal to the current object.
