@@ -267,4 +267,5 @@ This projects slowly develops a community which started to give back.
  I'm very gratefull for your contributions!
 
 # Contributing
-We really like people helping us with the project. Nevertheless, take your time to read our contributing guidelines [here](CONTRIBUTING.md).
+We really like people helping us with the project. Nevertheless, take your time to read our contributing guidelines [here](CONTRIBUTING.md).  
+Also keep in mind that this library is just a bridge from Blazor (C#) to Chart.js (JavaScript) so if you have a question on how to achieve something or experience unexpected behaviour, research how to do/fix it with JavaScript and only when you know how to get the correct behaviour in JavaScript open an issue here with all that information. It will greatly help us to give feedback and prevents us from wasting our limited time on issues that aren't really connected to this library. Thank you!
