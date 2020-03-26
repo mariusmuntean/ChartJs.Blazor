@@ -27,7 +27,7 @@ namespace ChartJs.Blazor.ChartJS.PieChart
         /// <summary>
         /// Gets or sets the animation-configuration for this chart.
         /// </summary>
-        public ArcAnimation Animation { get; set; }
+        public new ArcAnimation Animation { get; set; }
 
         /// <summary>
         /// Gets or sets the starting angle to draw arcs from.

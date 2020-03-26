@@ -3,16 +3,18 @@
     /// <summary>
     /// The animation-subconfig of the options for a radial chart.
     /// </summary>
-    public class ArcAnimation
+    public class ArcAnimation : Animation
     {
         /// <summary>
-        /// If true, the chart will animate in with a rotation animation.
+        /// Gets or sets a value indicating whether the chart will
+        /// load in with a rotation animation or not.
         /// </summary>
-        public bool AnimateRotate { get; set; } = true;
+        public bool? AnimateRotate { get; set; }
 
         /// <summary>
-        /// If true, will animate scaling the chart from the center outwards.
+        /// Gets or sets a value indicating whether the chart will
+        /// load in with a scaling animation (from the center outwards) or not.
         /// </summary>
-        public bool AnimateScale { get; set; } = false;
+        public bool? AnimateScale { get; set; }
     }
 }

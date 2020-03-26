@@ -46,6 +46,11 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// </summary>
         public Tooltips Tooltips { get; set; }
 
+        /// <summary>
+        /// Gets or sets the animation-configuration for this chart.
+        /// </summary>
+        public Animation Animation { get; set; }
+
         public IClickHandler OnClick { get; set; }
 
         public Hover Hover { get; set; }

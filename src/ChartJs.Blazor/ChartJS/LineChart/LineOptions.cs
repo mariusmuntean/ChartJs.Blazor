@@ -10,11 +10,6 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     public class LineOptions : BaseConfigOptions
     {
         /// <summary>
-        /// General animation time
-        /// </summary>
-        public Animation Animation { get; set; }
-
-        /// <summary>
         /// Hover options for hovering over an item
         /// </summary>
         public LineOptionsHover Hover { get; set; }

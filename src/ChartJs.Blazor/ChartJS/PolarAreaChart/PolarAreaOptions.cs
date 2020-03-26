@@ -18,7 +18,7 @@ namespace ChartJs.Blazor.ChartJS.PolarAreaChart
         /// <summary>
         /// Gets or sets the animation-configuration for this chart.
         /// </summary>
-        public ArcAnimation Animation { get; set; }
+        public new ArcAnimation Animation { get; set; }
 
         /// <summary>
         /// The scale (axis) for this chart.
