@@ -51,9 +51,13 @@
         public static ChartType Scatter => new ChartType("scatter");
 
         /// <summary>
-        /// Creates a new instance of the <see cref="ChartType"/> class.
+        /// This method constructs a <see cref="ChartType" /> which represents the given value.
+        /// Only use this method if you're implementing your own chart e.g. for a chart.js
+        /// extension. Otherwise use the static properties.
         /// </summary>
-        /// <param name="stringValue">The <see cref="string"/> value to set.</param>
+        /// <param name="customChartType">The string representation of your custom chart type.</param>
+        public static ChartType Custom(string customChartType) => new ChartType(customChartType);
+
         private ChartType(string stringValue) : base(stringValue) { }
     }
 }
