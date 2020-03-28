@@ -1,6 +1,8 @@
 ﻿using ChartJs.Blazor.ChartJS.Common.Handlers;
 using ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler;
 using ChartJs.Blazor.ChartJS.Common.Properties;
+using System;
+using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.Common
 {
@@ -51,8 +53,25 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// </summary>
         public Animation Animation { get; set; }
 
+        /// <summary>
+        /// Gets the plugin options. The key has to be the unique
+        /// identification of the plugin.
+        /// <para>
+        /// Reference for chart.js plugin options: 
+        /// <a href="https://www.chartjs.org/docs/latest/developers/plugins.html#plugin-options"/>
+        /// </para>
+        /// </summary>
+        public Dictionary<string, object> Plugins { get; } = new Dictionary<string, object>();
+
         public IClickHandler OnClick { get; set; }
 
         public Hover Hover { get; set; }
+
+        /// <summary>
+        /// This method tells json.net to only serialize the plugin options when
+        /// there are plugin options, don't call it directly.
+        /// </summary>
+        [Obsolete("Only for json.net, don't call it.", true)]
+        public bool ShouldSerializePlugins() => Plugins.Count > 0;
     }
 }
