@@ -9,6 +9,11 @@ namespace ChartJs.Blazor.Util
     public static class ColorUtil
     {
         /// <summary>
+        /// The random number generator.
+        /// </summary>
+        private static readonly Random rand = new Random();
+
+        /// <summary>
         /// Produces a string of the form 'rgba(r, g, b, 1)' with the provided rgb values where the alpha is fixed at 1
         /// </summary>
         /// <param name="r"></param>
@@ -51,7 +56,6 @@ namespace ChartJs.Blazor.Util
         /// <returns></returns>
         public static string RandomColorString()
         {
-            var rand = new Random();
             return $"rgba({1 + rand.Next(255)}, {1 + rand.Next(255)}, {1 + rand.Next(255)}, {rand.NextDouble().ToString(CultureInfo.InvariantCulture)})";
         }
 
