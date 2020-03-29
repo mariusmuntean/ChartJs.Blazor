@@ -9,7 +9,7 @@ namespace ChartJs.Blazor.Util
     /// <summary>
     /// This class contains extensions for the <see cref="ExpandoObject"/> type which allows for easier access and modification particularly when nested.
     /// </summary>
-    public static class ExpandoObjectExtensions
+    internal static class ExpandoObjectExtensions
     {
         /// <summary>
         /// Ensures that a specified path (e.g. "A.B.C") exists on the <see cref="ExpandoObject"/>. Any missing members will be filled with empty <see cref="ExpandoObject"/>s. 
