@@ -1,4 +1,4 @@
-﻿using ChartJs.Blazor.ChartJS.Common.Utils;
+﻿using ChartJs.Blazor.Util;
 using Microsoft.JSInterop;
 
 namespace ChartJs.Blazor.ChartJS.Common.Handlers.OnHover

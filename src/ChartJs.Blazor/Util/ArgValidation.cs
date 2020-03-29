@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace ChartJs.Blazor.ChartJS.Common.Utils
+namespace ChartJs.Blazor.Util
 {
     /// <summary>
     /// Validates arguments
