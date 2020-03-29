@@ -10,7 +10,7 @@ namespace ChartJs.Blazor.Util
     /// </summary>
     public static class PointUtil
     {
-        private static readonly Random Random = new Random();
+        private static readonly Random s_rand = new Random();
 
         /// <summary>
         /// Creates a new <see cref="Point"/> whose x and y coordinates lay between the specified boundaries
@@ -32,9 +32,15 @@ namespace ChartJs.Blazor.Util
                 throw new ArgumentOutOfRangeException(nameof(minY), $"{nameof(minY)} must be less than {nameof(maxY)}");
             }
 
-            var x = minX + (Random.NextDouble() * (maxX - minX));
-            var y = minY + (Random.NextDouble() * (maxY - minY));
+            double x;
+            double y;
 
+            lock (s_rand)
+            {
+                x = minX + (s_rand.NextDouble() * (maxX - minX));
+                y = minY + (s_rand.NextDouble() * (maxY - minY));
+            }
+            
             return new Point(x, y);
         }
 
