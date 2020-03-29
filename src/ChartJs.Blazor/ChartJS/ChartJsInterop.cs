@@ -16,7 +16,7 @@ namespace ChartJs.Blazor.ChartJS
     /// <summary>
     /// Interop layer from C# to Javascript.
     /// </summary>
-    public static class ChartJsInterop
+    internal static class ChartJsInterop
     {
         private const string ChartJsInteropName = "ChartJsInterop";
 
