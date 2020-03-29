@@ -28,14 +28,7 @@ namespace ChartJs.Blazor.ChartJS
         /// <returns></returns>
         public static ValueTask<bool> ChangeLocale(this IJSRuntime jsRuntime, string locale)
         {
-            try
-            {
-                return jsRuntime.InvokeAsync<bool>($"{MomentJsInteropName}.changeLocale", locale);
-            }
-            catch
-            {
-                return new ValueTask<bool>(false);
-            }
+            return jsRuntime.InvokeAsync<bool>($"{MomentJsInteropName}.changeLocale", locale);
         }
     }
 }

@@ -28,18 +28,9 @@ namespace ChartJs.Blazor.ChartJS
         /// <returns></returns>
         public static ValueTask<bool> SetupChart(this IJSRuntime jsRuntime, ConfigBase chartConfig)
         {
-            try
-            {
-                dynamic dynParam = StripNulls(chartConfig);
-                Dictionary<string, object> param = ConvertExpandoObjectToDictionary(dynParam);
-                return jsRuntime.InvokeAsync<bool>($"{ChartJsInteropName}.SetupChart", param);
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine($"Error while setting up chart: {exp.Message}");
-            }
-
-            return new ValueTask<bool>(false);
+            dynamic dynParam = StripNulls(chartConfig);
+            Dictionary<string, object> param = ConvertExpandoObjectToDictionary(dynParam);
+            return jsRuntime.InvokeAsync<bool>($"{ChartJsInteropName}.SetupChart", param);
         }
 
         /// <summary>
@@ -92,18 +83,9 @@ namespace ChartJs.Blazor.ChartJS
         /// <returns></returns>
         public static ValueTask<bool> UpdateChart(this IJSRuntime jsRuntime, ConfigBase chartConfig)
         {
-            try
-            {
-                dynamic dynParam = StripNulls(chartConfig);
-                Dictionary<string, object> param = ConvertExpandoObjectToDictionary(dynParam);
-                return jsRuntime.InvokeAsync<bool>($"{ChartJsInteropName}.UpdateChart", param);
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine($"Error while updating chart: {exp.Message}");
-            }
-
-            return new ValueTask<bool>(false);
+            dynamic dynParam = StripNulls(chartConfig);
+            Dictionary<string, object> param = ConvertExpandoObjectToDictionary(dynParam);
+            return jsRuntime.InvokeAsync<bool>($"{ChartJsInteropName}.UpdateChart", param);
         }
 
         /// <summary>
