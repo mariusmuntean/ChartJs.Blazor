@@ -1,4 +1,5 @@
-﻿using ChartJs.Blazor.ChartJS.Common.Handlers;
+﻿using ChartJs.Blazor.ChartJS.Common.Enums;
+using ChartJs.Blazor.ChartJS.Common.Handlers;
 using ChartJs.Blazor.ChartJS.Common.Properties;
 
 namespace ChartJs.Blazor.ChartJS.Common
@@ -46,18 +47,23 @@ namespace ChartJs.Blazor.ChartJS.Common
         public Tooltips Tooltips { get; set; }
 
         /// <summary>
-        /// The events option defines the browser events that the chart should listen to for tooltips and hovering.
-        /// <para>By default, this includes 'mousemove', 'mouseout', 'click', 'touchstart' and 'touchmove'.</para>
+        /// Gets or sets the browser events that the chart should listen to for tooltips and hovering.
+        /// <para>
+        /// If <see langword="null"/>, this includes <see cref="BrowserEvent.MouseMove"/>, <see cref="BrowserEvent.MouseOut"/>,
+        /// <see cref="BrowserEvent.Click"/>, <see cref="BrowserEvent.TouchStart"/> and <see cref="BrowserEvent.TouchMove"/>.
+        /// </para>
         /// </summary>
-        public string[] Events { get; set; }
+        public BrowserEvent[] Events { get; set; }
 
         /// <summary>
-        /// Called if the event is of type 'mouseup' or 'click'. Called in the context of the chart and passed the event and an array of active elements.
+        /// Called if the event is of type <see cref="BrowserEvent.MouseUp"/> or <see cref="BrowserEvent.Click"/>.
+        /// Called in the context of the chart and passed the event and an array of active elements.
         /// </summary>
         public IMethodHandler<ChartMouseEvent> OnClick { get; set; }
 
         /// <summary>
-        /// Called when any of the events fire. Called in the context of the chart and passed the event and an array of active elements (bars, points, etc).
+        /// Called when any of the <see cref="Events"/> fire. Called in the context of the chart and passed the
+        /// event and an array of active elements (bars, points, etc).
         /// </summary>
         public IMethodHandler<ChartMouseEvent> OnHover { get; set; }
 
