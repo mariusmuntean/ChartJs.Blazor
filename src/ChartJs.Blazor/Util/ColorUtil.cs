@@ -53,10 +53,16 @@ namespace ChartJs.Blazor.Util
         /// <returns></returns>
         public static string RandomColorString()
         {
+            byte[] rgb = new byte[3];
+            double alpha;
+
             lock (s_rand)
             {
-                return $"rgba({1 + s_rand.Next(255)}, {1 + s_rand.Next(255)}, {1 + s_rand.Next(255)}, {s_rand.NextDouble().ToString(CultureInfo.InvariantCulture)})";
+                s_rand.NextBytes(rgb);
+                alpha = s_rand.NextDouble();
             }
+
+            return ColorString(rgb[0], rgb[1], rgb[2], alpha);
         }
 
         /// <summary>
