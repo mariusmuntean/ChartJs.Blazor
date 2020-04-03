@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace ChartJs.Blazor.ChartJS.Common.Handlers
+namespace ChartJs.Blazor.Interop
 {
     /// <summary>
     /// Wraps a C#-delegate to make it callable by Javascript.

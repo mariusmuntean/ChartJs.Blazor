@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ChartJs.Blazor.ChartJS.Common.Handlers
+namespace ChartJs.Blazor.Interop
 {
 #pragma warning disable CS0618 // Type or member is obsolete
 

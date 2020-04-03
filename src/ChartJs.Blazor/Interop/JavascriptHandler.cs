@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ChartJs.Blazor.ChartJS.Common.Handlers
+namespace ChartJs.Blazor.Interop
 {
     /// <summary>
     /// Contains information about a Javascript function with a certain signature which will be called internally by Javascript.

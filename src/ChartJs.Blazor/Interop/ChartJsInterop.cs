@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using ChartJs.Blazor.ChartJS.Common.Handlers;
 using ChartJs.Blazor.Util;
 
-namespace ChartJs.Blazor.ChartJS
+namespace ChartJs.Blazor.Interop
 {
     /// <summary>
     /// Interop layer from C# to Javascript.

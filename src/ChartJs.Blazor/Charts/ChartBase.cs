@@ -1,5 +1,6 @@
 using ChartJs.Blazor.ChartJS;
 using ChartJs.Blazor.ChartJS.Common;
+using ChartJs.Blazor.Interop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
