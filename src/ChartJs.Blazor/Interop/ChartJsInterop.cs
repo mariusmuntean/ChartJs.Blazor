@@ -20,6 +20,15 @@ namespace ChartJs.Blazor.Interop
     {
         private const string ChartJsInteropName = "ChartJsInterop";
 
+        internal static JsonSerializerSettings JsonSerializerSettings { get; } = new JsonSerializerSettings
+        {
+            NullValueHandling = NullValueHandling.Ignore,
+            ContractResolver = new DefaultContractResolver
+            {
+                NamingStrategy = new CamelCaseNamingStrategy(true, false)
+            }
+        };
+
         /// <summary>
         /// Set up a new chart. Call only once.
         /// </summary>
@@ -213,14 +222,5 @@ namespace ChartJs.Blazor.Interop
 
 #pragma warning restore CS0618 // Type or member is obsolete
         }
-
-        private static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
-        {
-            NullValueHandling = NullValueHandling.Ignore,
-            ContractResolver = new DefaultContractResolver
-            {
-                NamingStrategy = new CamelCaseNamingStrategy(true, false)
-            }
-        };
     }
 }

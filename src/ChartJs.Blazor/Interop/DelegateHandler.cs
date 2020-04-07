@@ -18,19 +18,11 @@ namespace ChartJs.Blazor.Interop
     {
         private static readonly ParameterInfo[] s_delegateParameters;
         private static readonly bool s_delegateHasReturnValue;
-        private static readonly JsonSerializerSettings s_deserializeOptions = new JsonSerializerSettings
-        {
-            NullValueHandling = NullValueHandling.Ignore,
-            ContractResolver = new DefaultContractResolver
-            {
-                NamingStrategy = new CamelCaseNamingStrategy(true, false)
-            }
-        };
 
         private readonly T _function;
 
         /// <summary>
-        /// The name of the method which should be called from Javascript. In this case it's always the name of the <see cref="Invoke(System.Text.Json.JsonElement[])"/>-method.
+        /// The name of the method which should be called from Javascript. In this case it's always the name of the <see cref="Invoke"/>-method.
         /// </summary>
         public string MethodName => nameof(Invoke);
 
@@ -95,7 +87,7 @@ namespace ChartJs.Blazor.Interop
 #if DEBUG
                     Console.WriteLine($"Deserializing: {jsonArgs[i]} to {deserializeType.Name}");
 #endif
-                    invokationArgs[i] = JsonConvert.DeserializeObject(jsonArgs[i], deserializeType, s_deserializeOptions);
+                    invokationArgs[i] = JsonConvert.DeserializeObject(jsonArgs[i], deserializeType, ChartJsInterop.JsonSerializerSettings);
                 }
             }
 
