@@ -11,13 +11,7 @@ interface DotNetObjectReference {
     invokeMethodAsync(methodName: string, ...args): Promise<any>;
 }
 
-// cycle.js (minified from https://github.com/douglascrockford/JSON-js)
-interface JSON {
-    decycle(element: any, replacer?: (value: any) => any): any;
-}
-
 class ChartJsInterop {
-
     BlazorCharts = new Map<string, Chart>();
 
     public SetupChart(config: ChartConfiguration): boolean {
@@ -219,7 +213,7 @@ class ChartJsInterop {
      * @param iMethodHandler the serialized IMethodHandler (see C# code)
      * @param defaultFunc the fallback value to use in case the method can't be resolved
      */
-    private GetMethodHandler = (iMethodHandler, defaultFunc: Function) => {
+    private GetMethodHandler(iMethodHandler, defaultFunc: Function) {
         if (!iMethodHandler ||
             typeof iMethodHandler !== "object" ||
             !iMethodHandler.hasOwnProperty('methodName')) {
@@ -228,15 +222,17 @@ class ChartJsInterop {
 
         if (iMethodHandler.hasOwnProperty('handlerReference')) {
             const handler: { handlerReference: DotNetObjectReference, methodName: string, returnsValue: boolean } = <any>iMethodHandler;
-            // remove all circular references so it can be stringifyied and later deserialized by C#. This requires cycle.js.
-            const cleanArgs = args => args.map(element => JSON.decycle(element));
+            // stringify args and ignore all circular references. This means that objects of type DotNetObject will not be
+            // deserialized correctly (since it's already a string when it reaches JSON.stringify in the blazor interop layer)
+            // but the values passed to chart callbacks should never contain such objects anyway.
+            const stringifyArgs = (args: any[]) => args.map(element => this.stringifyObjectIgnoreCircular(element));
 
             if (!handler.returnsValue) {
                 // https://stackoverflow.com/questions/59543973/use-async-function-when-consumer-doesnt-expect-a-promise
-                return (...args) => handler.handlerReference.invokeMethodAsync(handler.methodName, cleanArgs(args));
+                return (...args) => handler.handlerReference.invokeMethodAsync(handler.methodName, stringifyArgs(args));
             } else {
                 if (window.hasOwnProperty('MONO')) {
-                    return (...args) => handler.handlerReference.invokeMethod(handler.methodName, cleanArgs(args)); // only works on client side
+                    return (...args) => handler.handlerReference.invokeMethod(handler.methodName, stringifyArgs(args)); // only works on client side
                 } else {
                     console.warn("Using C# delegates that return values in chart.js callbacks is not supported on " +
                         "server side blazor because the server side dispatcher doesn't support synchronous interop calls. Falling back to default value.")
@@ -258,5 +254,29 @@ class ChartJsInterop {
                 return defaultFunc;
             }
         }
-    };
+    }
+
+    private stringifyObjectIgnoreCircular(object: any) {
+        const seen = new WeakSet();
+        const replacer = (name, value) => {
+            if (
+                typeof value === "object"
+                && value !== null
+                && !(value instanceof Boolean)
+                && !(value instanceof Date)
+                && !(value instanceof Number)
+                && !(value instanceof RegExp)
+                && !(value instanceof String)
+            ) {
+                if (seen.has(value))
+                    return undefined;
+
+                seen.add(value);
+            }
+
+            return value;
+        }
+
+        return JSON.stringify(object, replacer);
+    }
 }

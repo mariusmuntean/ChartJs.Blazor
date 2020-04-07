@@ -6,7 +6,7 @@
 @using ChartJs.Blazor.ChartJS.Common.Handlers
 @using ChartJs.Blazor.Interop
 @using ChartJs.Blazor.Util
-@using System.Text.Json
+@using Newtonsoft.Json.Linq;
 
 <h1>Pie Chart with legend callbacks</h1>
 
@@ -137,12 +137,12 @@
         }
     }
 
-    public void ShowEventAndArgs(JsonElement @event, LegendItem args)
+    public void ShowEventAndArgs(JObject @event, LegendItem args)
     {
         Console.WriteLine($"Index: {args.Index}, Hidden: {args.Hidden}, Text: '{args.Text}'");
     }
 
-    private bool LabelsFilter(LegendItem item, JsonElement chart)
+    private bool LabelsFilter(LegendItem item, JObject chart)
     {
         int index = item.Index.Value;
         bool shown = index % 3 != 0;

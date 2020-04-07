@@ -1,12 +1,13 @@
-﻿using System.Text.Json;
+﻿using Newtonsoft.Json.Linq;
 
 namespace ChartJs.Blazor.ChartJS.Common.Handlers
 {
-    // TODO Use actual types instead of just JsonElement.
     /// <summary>
-    /// A filter for legend items. Should return true if you want to show the legend item; false if not.
+    /// A filter for legend items. Should return <see langword="true"/> if you want to show the legend item;
+    /// <see langword="false"/> if not.
     /// </summary>
     /// <param name="legendItem">The <see cref="LegendItem"/> to either include or filter out.</param>
-    /// <param name="chartData"></param>
-    public delegate bool LegendLabelFilter(LegendItem legendItem, JsonElement chartData);
+    /// <param name="chartData">The chart data.</param>
+    /// <returns><see langword="true"/> if you want to show the legend item; <see langword="false"/> if not.</returns>
+    public delegate bool LegendLabelFilter(LegendItem legendItem, JObject chartData);
 }

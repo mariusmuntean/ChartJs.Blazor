@@ -9,7 +9,7 @@
 @using ChartJs.Blazor.Interop
 @using ChartJs.Blazor.Sample.Shared.Services
 @using ChartJs.Blazor.Util
-@using System.Text.Json
+@using Newtonsoft.Json.Linq;
 
 <h2>Linear Line Chart</h2>
 <ChartJsLineChart @ref="_lineChartJs" Config="@_lineConfig" Width="600" Height="300" />
@@ -140,7 +140,7 @@
         await _lineChartJs.Update();
     }
 
-    private string DegreesTickCallback(JsonElement value, int index, JsonElement[] values)
+    private string DegreesTickCallback(JValue value, int index, JArray values)
     {
         return $"{value} °";
     }

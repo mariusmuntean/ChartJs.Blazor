@@ -1,5 +1,6 @@
 ﻿using Microsoft.JSInterop;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
@@ -67,9 +68,12 @@ namespace ChartJs.Blazor.Interop
         /// <summary>
         /// Invokes the delegate dynamically. This method should only be called from Javascript.
         /// </summary>
-        /// <param name="jsonArgs">All the arguments for the method as array. These are not deserialized yet because the types are unknown.</param>
+        /// <param name="jsonArgs">
+        /// All the arguments for the method as array. These are not deserialized yet because the types are unknown.
+        /// This array can contain ANYTHING, do not trust its values.
+        /// </param>
         [JSInvokable]
-        public virtual object Invoke(params System.Text.Json.JsonElement[] jsonArgs)
+        public virtual object Invoke(params string[] jsonArgs)
         {
             if (s_delegateParameters.Length != jsonArgs.Length)
                 throw new ArgumentException($"The function expects {s_delegateParameters.Length} arguments but found {jsonArgs.Length}.");
@@ -80,20 +84,21 @@ namespace ChartJs.Blazor.Interop
             object[] invokationArgs = new object[s_delegateParameters.Length];
             for (int i = 0; i < s_delegateParameters.Length; i++)
             {
-                if (s_delegateParameters[i].ParameterType == typeof(object) ||
-                    s_delegateParameters[i].ParameterType == typeof(System.Text.Json.JsonElement))
+                Type deserializeType = s_delegateParameters[i].ParameterType;
+                if (deserializeType == typeof(object) ||
+                    typeof(JToken).IsAssignableFrom(deserializeType))
                 {
-                    invokationArgs[i] = jsonArgs[i];
+                    invokationArgs[i] = JToken.Parse(jsonArgs[i]);
                 }
                 else
                 {
 #if DEBUG
-                    Console.WriteLine($"Deserializing: {jsonArgs[i].GetRawText()} to {s_delegateParameters[i].ParameterType.Name}");
+                    Console.WriteLine($"Deserializing: {jsonArgs[i]} to {deserializeType.Name}");
 #endif
-                    invokationArgs[i] = JsonConvert.DeserializeObject(jsonArgs[i].GetRawText(), s_delegateParameters[i].ParameterType, s_deserializeOptions);
+                    invokationArgs[i] = JsonConvert.DeserializeObject(jsonArgs[i], deserializeType, s_deserializeOptions);
                 }
             }
-            
+
             return _function.DynamicInvoke(invokationArgs);
         }
 

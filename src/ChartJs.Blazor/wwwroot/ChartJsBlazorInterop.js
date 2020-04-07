@@ -3,58 +3,6 @@
 class ChartJsInterop {
     constructor() {
         this.BlazorCharts = new Map();
-        /**
-         * Given an IMethodHandler (see C# code), it tries to resolve the referenced method.
-         * It currently supports Javascript functions, which are expected to be attached to the window object, and .Net delegates which can be
-         * bound to .Net static functions, .Net object instance methods and more.
-         *
-         * When failing to recover a method from the IMethodHandler, it returns the default handler.
-         *
-         * @param iMethodHandler the serialized IMethodHandler (see C# code)
-         * @param defaultFunc the fallback value to use in case the method can't be resolved
-         */
-        this.GetMethodHandler = (iMethodHandler, defaultFunc) => {
-            if (!iMethodHandler ||
-                typeof iMethodHandler !== "object" ||
-                !iMethodHandler.hasOwnProperty('methodName')) {
-                return defaultFunc;
-            }
-            if (iMethodHandler.hasOwnProperty('handlerReference')) {
-                const handler = iMethodHandler;
-                // remove all circular references so it can be stringifyied and later deserialized by C#. This requires cycle.js.
-                const cleanArgs = args => args.map(element => JSON.decycle(element));
-                if (!handler.returnsValue) {
-                    // https://stackoverflow.com/questions/59543973/use-async-function-when-consumer-doesnt-expect-a-promise
-                    return (...args) => handler.handlerReference.invokeMethodAsync(handler.methodName, cleanArgs(args));
-                }
-                else {
-                    if (window.hasOwnProperty('MONO')) {
-                        return (...args) => handler.handlerReference.invokeMethod(handler.methodName, cleanArgs(args)); // only works on client side
-                    }
-                    else {
-                        console.warn("Using C# delegates that return values in chart.js callbacks is not supported on " +
-                            "server side blazor because the server side dispatcher doesn't support synchronous interop calls. Falling back to default value.");
-                        return defaultFunc;
-                    }
-                }
-            }
-            else {
-                const handler = iMethodHandler;
-                try {
-                    const namespaceAndFunc = handler.methodName.split(".");
-                    const func = window[namespaceAndFunc[0]][namespaceAndFunc[1]];
-                    if (typeof func === "function") {
-                        return func;
-                    }
-                    else {
-                        return defaultFunc;
-                    }
-                }
-                catch (_a) {
-                    return defaultFunc;
-                }
-            }
-        };
     }
     SetupChart(config) {
         if (!this.BlazorCharts.has(config.canvasId)) {
@@ -220,6 +168,78 @@ class ChartJsInterop {
         if ((_c = config.options.scale) === null || _c === void 0 ? void 0 : _c.ticks) {
             config.options.scale.ticks.callback = this.GetMethodHandler(config.options.scale.ticks.callback, undefined);
         }
+    }
+    /**
+     * Given an IMethodHandler (see C# code), it tries to resolve the referenced method.
+     * It currently supports Javascript functions, which are expected to be attached to the window object, and .Net delegates which can be
+     * bound to .Net static functions, .Net object instance methods and more.
+     *
+     * When failing to recover a method from the IMethodHandler, it returns the default handler.
+     *
+     * @param iMethodHandler the serialized IMethodHandler (see C# code)
+     * @param defaultFunc the fallback value to use in case the method can't be resolved
+     */
+    GetMethodHandler(iMethodHandler, defaultFunc) {
+        if (!iMethodHandler ||
+            typeof iMethodHandler !== "object" ||
+            !iMethodHandler.hasOwnProperty('methodName')) {
+            return defaultFunc;
+        }
+        if (iMethodHandler.hasOwnProperty('handlerReference')) {
+            const handler = iMethodHandler;
+            // stringify args and ignore all circular references. This means that objects of type DotNetObject will not be
+            // deserialized correctly (since it's already a string when it reaches JSON.stringify in the blazor interop layer)
+            // but the values passed to chart callbacks should never contain such objects anyway.
+            const stringifyArgs = (args) => args.map(element => this.stringifyObjectIgnoreCircular(element));
+            if (!handler.returnsValue) {
+                // https://stackoverflow.com/questions/59543973/use-async-function-when-consumer-doesnt-expect-a-promise
+                return (...args) => handler.handlerReference.invokeMethodAsync(handler.methodName, stringifyArgs(args));
+            }
+            else {
+                if (window.hasOwnProperty('MONO')) {
+                    return (...args) => handler.handlerReference.invokeMethod(handler.methodName, stringifyArgs(args)); // only works on client side
+                }
+                else {
+                    console.warn("Using C# delegates that return values in chart.js callbacks is not supported on " +
+                        "server side blazor because the server side dispatcher doesn't support synchronous interop calls. Falling back to default value.");
+                    return defaultFunc;
+                }
+            }
+        }
+        else {
+            const handler = iMethodHandler;
+            try {
+                const namespaceAndFunc = handler.methodName.split(".");
+                const func = window[namespaceAndFunc[0]][namespaceAndFunc[1]];
+                if (typeof func === "function") {
+                    return func;
+                }
+                else {
+                    return defaultFunc;
+                }
+            }
+            catch (_a) {
+                return defaultFunc;
+            }
+        }
+    }
+    stringifyObjectIgnoreCircular(object) {
+        const seen = new WeakSet();
+        const replacer = (name, value) => {
+            if (typeof value === "object"
+                && value !== null
+                && !(value instanceof Boolean)
+                && !(value instanceof Date)
+                && !(value instanceof Number)
+                && !(value instanceof RegExp)
+                && !(value instanceof String)) {
+                if (seen.has(value))
+                    return undefined;
+                seen.add(value);
+            }
+            return value;
+        };
+        return JSON.stringify(object, replacer);
     }
 }
 /* Set up all the momentjs interop stuff */

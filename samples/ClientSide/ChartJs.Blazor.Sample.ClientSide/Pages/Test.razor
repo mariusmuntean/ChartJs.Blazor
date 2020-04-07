@@ -11,7 +11,7 @@
 @using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
 @using ChartJs.Blazor.ChartJS.Common.Handlers
 @using ChartJs.Blazor.Interop
-@using System.Text.Json
+@using Newtonsoft.Json.Linq;
 
 <ChartJsBarChart @ref="barChartJs" Config="@_config" Height="250"/>
 
@@ -58,7 +58,7 @@
                         }
                     }
                 },
-                OnClick = new DelegateHandler<ChartMouseEvent>((e, elems) => Console.WriteLine(e.GetRawText())),
+                OnClick = new DelegateHandler<ChartMouseEvent>((e, elems) => Console.WriteLine(e.ToString())),
                 Legend = new Legend
                 {
                     OnClick = new DelegateHandler<LegendItemMouseEvent>(StaticInterop.TestInterop)
@@ -95,7 +95,7 @@
     {
         private static int s_eventCount = 0;
 
-        public static void TestInterop(JsonElement @event, LegendItem args)
+        public static void TestInterop(JObject @event, LegendItem args)
         {
             Console.WriteLine($"{System.Threading.Interlocked.Increment(ref s_eventCount)}. event");
         }

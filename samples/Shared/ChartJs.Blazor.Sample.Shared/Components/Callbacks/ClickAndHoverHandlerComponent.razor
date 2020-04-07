@@ -6,7 +6,7 @@
 @using ChartJs.Blazor.ChartJS.PieChart
 @using ChartJs.Blazor.ChartJS.Common.Properties
 @using ChartJs.Blazor.Util
-@using System.Text.Json
+@using Newtonsoft.Json.Linq;
 
 <h1>Click and Hover Handlers</h1>
 <h4>Hover over the chart. It has a C# lambda-method attached which prints the received event in the dotnet-console.</h4>
@@ -60,7 +60,7 @@
                     OnHover = new JavascriptHandler<LegendItemMouseEvent>("SampleInterop.PrintEventAndArgs")
                 },
                 OnClick = new DelegateHandler<ChartMouseEvent>(StaticInterop.ClickCounter),
-                OnHover = new DelegateHandler<ChartMouseEvent>((@event, elems) => Console.WriteLine($"Event: {@event.GetRawText()}")),
+                OnHover = new DelegateHandler<ChartMouseEvent>((@event, elems) => Console.WriteLine($"Event: {@event.ToString()}")),
             }
         };
 
@@ -82,7 +82,7 @@
         _config.Data.Datasets.Add(doughnutSet);
     }
 
-    public void ShowEventAndArgs(JsonElement @event, LegendItem args)
+    public void ShowEventAndArgs(JObject @event, LegendItem args)
     {
         EventArgs = $"Index: {args.Index}, Hidden: {args.Hidden}, Text: '{args.Text}'" + Environment.NewLine + EventArgs;
         Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
@@ -113,7 +113,7 @@
     {
         private static int s_eventCount = 0;
 
-        public static void ClickCounter(JsonElement mouseEvent, object[] activeElements)
+        public static void ClickCounter(JObject mouseEvent, JArray activeElements)
         {
             Console.WriteLine($"The chart has been clicked {System.Threading.Interlocked.Increment(ref s_eventCount)} times.");
         }
