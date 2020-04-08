@@ -142,7 +142,7 @@
         Console.WriteLine($"Index: {args.Index}, Hidden: {args.Hidden}, Text: '{args.Text}'");
     }
 
-    private bool LabelsFilter(LegendItem item, JObject chart)
+    private bool LabelsFilter(LegendItem item, [IgnoreCallbackValue] JObject chart)
     {
         int index = item.Index.Value;
         bool shown = index % 3 != 0;

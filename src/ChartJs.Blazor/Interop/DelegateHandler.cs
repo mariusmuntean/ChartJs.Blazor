@@ -20,6 +20,7 @@ namespace ChartJs.Blazor.Interop
         private static readonly bool s_delegateHasReturnValue;
 
         private readonly T _function;
+        private readonly ICollection<int> _ignoredIndices;
 
         /// <summary>
         /// The name of the method which should be called from Javascript. In this case it's always the name of the <see cref="Invoke"/>-method.
@@ -30,7 +31,7 @@ namespace ChartJs.Blazor.Interop
         /// Keeps a reference to this object which is used to invoke the stored delegate from Javascript.
         /// </summary>
         // This property only has to be serialized by the JSRuntime where a custom converter will be used.
-        [Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public DotNetObjectReference<DelegateHandler<T>> HandlerReference { get; }
 
         /// <summary>
@@ -54,6 +55,16 @@ namespace ChartJs.Blazor.Interop
         public DelegateHandler(T function)
         {
             _function = function ?? throw new ArgumentNullException(nameof(function));
+            ParameterInfo[] parameters = _function.GetMethodInfo().GetParameters();
+            _ignoredIndices = new List<int>();
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                if (parameters[i].GetCustomAttribute<IgnoreCallbackValueAttribute>(false) != null)
+                {
+                    _ignoredIndices.Add(i);
+                }
+            }
+
             HandlerReference = DotNetObjectReference.Create(this);
         }
 
@@ -61,11 +72,11 @@ namespace ChartJs.Blazor.Interop
         /// Invokes the delegate dynamically. This method should only be called from Javascript.
         /// </summary>
         /// <param name="jsonArgs">
-        /// All the arguments for the method as array. These are not deserialized yet because the types are unknown.
+        /// All the arguments for the method as array of json-strings.
         /// This array can contain ANYTHING, do not trust its values.
         /// </param>
         [JSInvokable]
-        public virtual object Invoke(params string[] jsonArgs)
+        public object Invoke(params string[] jsonArgs)
         {
             if (s_delegateParameters.Length != jsonArgs.Length)
                 throw new ArgumentException($"The function expects {s_delegateParameters.Length} arguments but found {jsonArgs.Length}.");
@@ -76,6 +87,9 @@ namespace ChartJs.Blazor.Interop
             object[] invokationArgs = new object[s_delegateParameters.Length];
             for (int i = 0; i < s_delegateParameters.Length; i++)
             {
+                if (_ignoredIndices.Contains(i))
+                    continue;
+
                 Type deserializeType = s_delegateParameters[i].ParameterType;
                 if (deserializeType == typeof(object) ||
                     typeof(JToken).IsAssignableFrom(deserializeType))
