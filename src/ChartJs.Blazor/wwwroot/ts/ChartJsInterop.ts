@@ -221,11 +221,22 @@ class ChartJsInterop {
         }
 
         if (iMethodHandler.hasOwnProperty('handlerReference')) {
-            const handler: { handlerReference: DotNetObjectReference, methodName: string, returnsValue: boolean } = <any>iMethodHandler;
+            const handler: { handlerReference: DotNetObjectReference, methodName: string, returnsValue: boolean, ignoredIndices: number[] } = <any>iMethodHandler;
             // stringify args and ignore all circular references. This means that objects of type DotNetObject will not be
             // deserialized correctly (since it's already a string when it reaches JSON.stringify in the blazor interop layer)
             // but the values passed to chart callbacks should never contain such objects anyway.
-            const stringifyArgs = (args: any[]) => args.map(element => this.stringifyObjectIgnoreCircular(element));
+            // Also if we don't care about the value, don't bother to stringify.
+            const stringifyArgs = (args: any[]) => {
+                for (var i = 0; i < args.length; i++) {
+                    if (handler.ignoredIndices.includes(i)) {
+                        args[i] = '';
+                    } else {
+                        args[i] = this.stringifyObjectIgnoreCircular(args[i]);
+                    }
+                }
+
+                return args;
+            }
 
             if (!handler.returnsValue) {
                 // https://stackoverflow.com/questions/59543973/use-async-function-when-consumer-doesnt-expect-a-promise

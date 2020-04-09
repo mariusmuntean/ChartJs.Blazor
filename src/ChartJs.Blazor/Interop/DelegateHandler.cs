@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 
@@ -20,7 +21,7 @@ namespace ChartJs.Blazor.Interop
         private static readonly bool s_delegateHasReturnValue;
 
         private readonly T _function;
-        private readonly ICollection<int> _ignoredIndices;
+        private readonly IList<int> _ignoredIndices;
 
         /// <summary>
         /// The name of the method which should be called from Javascript. In this case it's always the name of the <see cref="Invoke"/>-method.
@@ -38,6 +39,14 @@ namespace ChartJs.Blazor.Interop
         /// Gets a value indicating whether or not this delegate will return a value.
         /// </summary>
         public bool ReturnsValue => s_delegateHasReturnValue;
+
+        /// <summary>
+        /// Gets the indices of the ignored callback parameters. The parameters at these indices won't
+        /// be sent to C# and won't be deserialized. These indices are defined by the
+        /// <see cref="IgnoreCallbackValueAttribute"/>s on the delegate passed to this instance.
+        /// </summary>
+        // Since this instance will be serialized by System.Text.Json in the end, we need a public property.
+        public IReadOnlyCollection<int> IgnoredIndices { get; }
 
         static DelegateHandler()
         {
@@ -57,6 +66,7 @@ namespace ChartJs.Blazor.Interop
             _function = function ?? throw new ArgumentNullException(nameof(function));
             ParameterInfo[] parameters = _function.GetMethodInfo().GetParameters();
             _ignoredIndices = new List<int>();
+            IgnoredIndices = new ReadOnlyCollection<int>(_ignoredIndices);
             for (int i = 0; i < parameters.Length; i++)
             {
                 if (parameters[i].GetCustomAttribute<IgnoreCallbackValueAttribute>(false) != null)
