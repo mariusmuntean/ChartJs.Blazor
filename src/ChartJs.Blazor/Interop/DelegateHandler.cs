@@ -11,9 +11,11 @@ using System.Reflection;
 namespace ChartJs.Blazor.Interop
 {
     /// <summary>
-    /// Wraps a C#-delegate to make it callable by Javascript.
+    /// Represents a C#-delegate which can be called by JavaScript.
     /// </summary>
-    /// <typeparam name="T">The type of the delegate you want to invoke from Javascript.</typeparam>
+    /// <typeparam name="T">The type of the delegate you want to invoke from JavaScript.</typeparam>
+    // This class will be serialized by System.Text.Json in the end since we restore the objects
+    // before passing them to IJsRuntime. Therefore fields to serialize have to be public properties.
     public class DelegateHandler<T> : IMethodHandler<T>, IDisposable
         where T : Delegate
     {
@@ -24,15 +26,15 @@ namespace ChartJs.Blazor.Interop
         private readonly IList<int> _ignoredIndices;
 
         /// <summary>
-        /// The name of the method which should be called from Javascript. In this case it's always the name of the <see cref="Invoke"/>-method.
+        /// Gets the name of the method which should be called from JavaScript.
+        /// In this case it's always the name of the <see cref="Invoke"/>-method.
         /// </summary>
         public string MethodName => nameof(Invoke);
 
         /// <summary>
-        /// Keeps a reference to this object which is used to invoke the stored delegate from Javascript.
+        /// Gets a reference to this object which is used to invoke the stored delegate from JavaScript.
         /// </summary>
-        // This property only has to be serialized by the JSRuntime where a custom converter will be used.
-        [JsonIgnore]
+        [JsonIgnore] // This property only has to be serialized by the JSRuntime where a custom converter will be used.
         public DotNetObjectReference<DelegateHandler<T>> HandlerReference { get; }
 
         /// <summary>
@@ -45,7 +47,6 @@ namespace ChartJs.Blazor.Interop
         /// be sent to C# and won't be deserialized. These indices are defined by the
         /// <see cref="IgnoreCallbackValueAttribute"/>s on the delegate passed to this instance.
         /// </summary>
-        // Since this instance will be serialized by System.Text.Json in the end, we need a public property.
         public IReadOnlyCollection<int> IgnoredIndices { get; }
 
         static DelegateHandler()
@@ -60,7 +61,7 @@ namespace ChartJs.Blazor.Interop
         /// <summary>
         /// Creates a new instance of <see cref="DelegateHandler{T}"/>.
         /// </summary>
-        /// <param name="function">The delegate you want to invoke from Javascript.</param>
+        /// <param name="function">The delegate you want to invoke from JavaScript.</param>
         public DelegateHandler(T function)
         {
             _function = function ?? throw new ArgumentNullException(nameof(function));
@@ -79,7 +80,7 @@ namespace ChartJs.Blazor.Interop
         }
 
         /// <summary>
-        /// Invokes the delegate dynamically. This method should only be called from Javascript.
+        /// Invokes the delegate dynamically. This method should only be called from JavaScript.
         /// </summary>
         /// <param name="jsonArgs">
         /// All the arguments for the method as array of json-strings.
@@ -128,7 +129,7 @@ namespace ChartJs.Blazor.Interop
         /// <summary>
         /// The <see cref="Dispose"/> method doesn't have any unmanaged resources to free BUT once this object is finalized
         /// we need to prevent any further use of the <see cref="DotNetObjectReference"/> to this object. Since the <see cref="HandlerReference"/>
-        /// will only be disposed if this <see cref="DelegateHandler{T}"/> instance is disposed or when <c>dispose</c> is called from Javascript
+        /// will only be disposed if this <see cref="DelegateHandler{T}"/> instance is disposed or when <c>dispose</c> is called from JavaScript
         /// (which shouldn't happen) we HAVE to dispose the reference when this instance is finalized.
         /// </summary>
         ~DelegateHandler()

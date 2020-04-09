@@ -10,7 +10,7 @@
 
 <h1>Click and Hover Handlers</h1>
 <h4>Hover over the chart. It has a C# lambda-method attached which prints the received event in the dotnet-console.</h4>
-<h4>Hover over the legend items. It has a Javascript-handler attached which will print the received event and args in the browser-console.</h4>
+<h4>Hover over the legend items. It has a JavaScript-handler attached which will print the received event and args in the browser-console.</h4>
 <h4>Click on the chart. It has a C# static-method attached which prints how many times you've clicked the chart in the dotnet-console.</h4>
 <h4>Click on the legend items. It has a C# instance-method attached which adds the received event to the textarea below.</h4>
 <h5>Browse the code to see how to register a .Net/Js click/hover handler.</h5>
@@ -57,7 +57,7 @@
                 Legend = new Legend
                 {
                     OnClick = new DelegateHandler<LegendItemMouseEvent>(ShowEventAndArgs),
-                    OnHover = new JavascriptHandler<LegendItemMouseEvent>("SampleInterop.PrintEventAndArgs")
+                    OnHover = new JavaScriptHandler<LegendItemMouseEvent>("SampleInterop.PrintEventAndArgs")
                 },
                 OnClick = new DelegateHandler<ChartMouseEvent>(StaticInterop.ClickCounter),
                 OnHover = new DelegateHandler<ChartMouseEvent>((@event, elems) => Console.WriteLine($"Event: {@event.ToString()}")),

@@ -57,14 +57,18 @@ namespace ChartJs.Blazor.ChartJS.Common
         public BrowserEvent[] Events { get; set; }
 
         /// <summary>
-        /// Called if the event is of type <see cref="BrowserEvent.MouseUp"/> or <see cref="BrowserEvent.Click"/>.
+        /// Gets or sets the callback to call when an event of type <see cref="BrowserEvent.MouseUp"/> or
+        /// <see cref="BrowserEvent.Click"/> fires on the chart.
         /// Called in the context of the chart and passed the event and an array of active elements.
+        /// <para>See <see cref="JavaScriptHandler{T}"/> and <see cref="DelegateHandler{T}"/>.</para>
         /// </summary>
         public IMethodHandler<ChartMouseEvent> OnClick { get; set; }
 
         /// <summary>
-        /// Called when any of the <see cref="Events"/> fire. Called in the context of the chart and passed the
-        /// event and an array of active elements (bars, points, etc).
+        /// Gets or sets the callback to call when any of the <see cref="Events"/> fire on the chart.
+        /// Called in the context of the chart and passed the event and an array of
+        /// active elements (bars, points, etc).
+        /// <para>See <see cref="JavaScriptHandler{T}"/> and <see cref="DelegateHandler{T}"/>.</para>
         /// </summary>
         public IMethodHandler<ChartMouseEvent> OnHover { get; set; }
 

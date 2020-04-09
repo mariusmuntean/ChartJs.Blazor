@@ -4,7 +4,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
 {
     /// <summary>
     /// A delegate used for customizing tick marks on an axis.
-    /// If this callback returns <see langword="null"/> (or undefined),the associated grid line will be hidden.
+    /// If this callback returns <see langword="null"/> (or undefined), the associated grid line will be hidden.
     /// </summary>
     /// <param name="value">The value. It's usually a <see cref="double"/>
     /// but can also be other types like <see cref="string"/> (e.g. in a category axis).</param>

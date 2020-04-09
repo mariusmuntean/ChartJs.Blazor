@@ -7,9 +7,10 @@ namespace ChartJs.Blazor.Interop
 #pragma warning disable CS0618 // Type or member is obsolete
 
     /// <summary>
-    /// Defines that a type is able to handle method calls coming from Javascript.
+    /// Represents a type that's able to handle method calls coming from JavaScript.
     /// </summary>
-    /// <typeparam name="T">The signature of the method this instance represents. It may be an actual object or just a convention for the programmer.</typeparam>
+    /// <typeparam name="T">The signature of the method this instance represents.
+    /// It may be an actual object or just a convention for the programmer.</typeparam>
     public interface IMethodHandler<T> : IMethodHandler
         where T : Delegate
     {
@@ -18,13 +19,15 @@ namespace ChartJs.Blazor.Interop
 #pragma warning restore CS0618 // Type or member is obsolete
 
     /// <summary>
-    /// Defines that a type is able to handle method calls coming from Javascript. In order to maintain the strongly typed nature of C#, please prefer using <see cref="IMethodHandler{T}"/>.
+    /// Represents a type that's able to handle method calls coming from JavaScript.
+    /// In order to maintain the strongly typed nature of C#, please prefer using <see cref="IMethodHandler{T}"/>.
     /// </summary>
     [Obsolete("Use " + nameof(IMethodHandler) + "<T> instead.")]
     public interface IMethodHandler
     {
         /// <summary>
-        /// The name of the method which should be called from Javascript. The method name can be a reference to C# or Javascript.
+        /// The name of the method which should be called from JavaScript.
+        /// The method name can be a reference to C# or JavaScript.
         /// </summary>
         public string MethodName { get; }
     }

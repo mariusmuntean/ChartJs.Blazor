@@ -205,7 +205,7 @@ class ChartJsInterop {
 
     /**
      * Given an IMethodHandler (see C# code), it tries to resolve the referenced method.
-     * It currently supports Javascript functions, which are expected to be attached to the window object, and .Net delegates which can be
+     * It currently supports JavaScript functions, which are expected to be attached to the window object, and .Net delegates which can be
      * bound to .Net static functions, .Net object instance methods and more.
      *
      * When failing to recover a method from the IMethodHandler, it returns the default handler.

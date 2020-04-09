@@ -43,8 +43,9 @@ namespace ChartJs.Blazor.ChartJS.Common.Axes.Ticks
         public int Z { get; set; }
 
         /// <summary>
-        /// Returns the string representation of the tick value as it should be displayed on the chart.
-        /// <para>More on https://www.chartjs.org/docs/latest/axes/labelling.html#creating-custom-tick-formats </para>
+        /// Gets or sets the callback to customize the string representation of the tick value as it should be displayed on the chart.
+        /// <para>More on <a href="https://www.chartjs.org/docs/latest/axes/labelling.html#creating-custom-tick-formats"/></para>
+        /// <para>See <see cref="JavaScriptHandler{T}"/> and <see cref="DelegateHandler{T}"/>.</para>
         /// </summary>
         public IMethodHandler<AxisTickCallback> Callback { get; set; }
     }

@@ -37,12 +37,17 @@ namespace ChartJs.Blazor.ChartJS.Common.Properties
         public int Padding { get; set; } = 10;
 
         /// <summary>
-        /// Generates legend items for each thing in the legend. Default implementation returns the text + styling for the color box.
+        /// Gets or sets the callback to generate legend items for a chart.
+        /// Default implementation returns the text + styling for the color box.
+        /// <para>See <see cref="JavaScriptHandler{T}"/> and <see cref="DelegateHandler{T}"/>.</para>
         /// </summary>
         public IMethodHandler<LegendLabelsGenerator> GenerateLabels { get; set; }
 
         /// <summary>
-        /// Filters legend items out of the legend. Receives 2 parameters, a Legend Item and the chart data.
+        /// Gets or sets the callback to filter legend items out of the legend.
+        /// Receives 2 parameters, a <see cref="LegendItem"/> and the chart data. The chart data large so
+        /// consider applying a <see cref="IgnoreCallbackValueAttribute"/> if you don't use the value.
+        /// <para>See <see cref="JavaScriptHandler{T}"/> and <see cref="DelegateHandler{T}"/>.</para>
         /// </summary>
         public IMethodHandler<LegendLabelFilter> Filter { get; set; }
 

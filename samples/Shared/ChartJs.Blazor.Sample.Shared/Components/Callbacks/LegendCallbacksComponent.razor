@@ -58,8 +58,8 @@
                     Labels = new LegendLabels
                     {
                         UsePointStyle = true,
-                        GenerateLabels = new JavascriptHandler<LegendLabelsGenerator>("SampleInterop.CreateLabels"),
-                        Filter = new DelegateHandler<LegendLabelFilter>(LabelsFilter) // new JavascriptHandler<LegendLabelFilter>("SampleInterop.Filter") // 
+                        GenerateLabels = new JavaScriptHandler<LegendLabelsGenerator>("SampleInterop.CreateLabels"),
+                        Filter = new DelegateHandler<LegendLabelFilter>(LabelsFilter) // new JavaScriptHandler<LegendLabelFilter>("SampleInterop.Filter") // 
                     }
                 }
             }

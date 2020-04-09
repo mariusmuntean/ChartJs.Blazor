@@ -14,7 +14,7 @@ using ChartJs.Blazor.Util;
 namespace ChartJs.Blazor.Interop
 {
     /// <summary>
-    /// Interop layer from C# to Javascript.
+    /// Interop layer from C# to JavaScript.
     /// </summary>
     internal static class ChartJsInterop
     {

@@ -65,8 +65,8 @@
                 {
                     Labels = new LegendLabels
                     {
-                        GenerateLabels = new JavascriptHandler<LegendLabelsGenerator>("SampleInterop.CreateLabels"),
-                        Filter = new JavascriptHandler<LegendLabelFilter>("SampleInterop.AsyncFilter") // new DelegateHandler<LegendLabelFilter>(LabelsFilter) //
+                        GenerateLabels = new JavaScriptHandler<LegendLabelsGenerator>("SampleInterop.CreateLabels"),
+                        Filter = new JavaScriptHandler<LegendLabelFilter>("SampleInterop.AsyncFilter") // new DelegateHandler<LegendLabelFilter>(LabelsFilter) //
                     }
                 }
             }

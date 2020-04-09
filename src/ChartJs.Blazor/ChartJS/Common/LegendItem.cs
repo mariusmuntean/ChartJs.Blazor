@@ -86,7 +86,7 @@ namespace ChartJs.Blazor.ChartJS.Common
         public string StrokeStyle { get; set; }
 
         /// <summary>
-        /// Gets or sets the <see cref="PointStyle"/> of the legend box
+        /// Gets or sets the <see cref="Enums.PointStyle"/> of the legend box
         /// (only used if <see cref="LegendLabels.UsePointStyle"/> is <see langword="true"/>).
         /// </summary>
         public PointStyle PointStyle { get; set; }

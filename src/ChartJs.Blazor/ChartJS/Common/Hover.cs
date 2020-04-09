@@ -14,9 +14,10 @@ namespace ChartJs.Blazor.ChartJS.Common
         public InteractionMode Mode { get; set; }
 
         /// <summary>
-        /// If true, the hover mode only applies when the mouse position intersects an item on the chart.
+        /// Gets or sets a value indicating whether or not the hover mode only applies
+        /// when the mouse position intersects an item on the chart.
         /// </summary>
-        public bool? Intersect { get; set; } = true;
+        public bool? Intersect { get; set; }
 
         /// <summary>
         /// Gets or sets which directions are used in calculating distances. Can be set to 'x', 'y', or 'xy'.
@@ -28,6 +29,6 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// <summary>
         /// Gets or sets the duration in milliseconds it takes to animate hover style changes.
         /// </summary>
-        public long? AnimationDuration { get; set; } = 400;
+        public long? AnimationDuration { get; set; }
     }
 }

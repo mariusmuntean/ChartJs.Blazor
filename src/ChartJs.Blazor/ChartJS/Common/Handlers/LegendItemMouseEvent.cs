@@ -6,6 +6,6 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
     /// A delegate for all sorts of mouse events on a legend item.
     /// </summary>
     /// <param name="mouseEvent">The mouse event.</param>
-    /// <param name="legendItem">The legend item which was clicked.</param>
+    /// <param name="legendItem">The affected legend item.</param>
     public delegate void LegendItemMouseEvent(JObject mouseEvent, LegendItem legendItem);
 }

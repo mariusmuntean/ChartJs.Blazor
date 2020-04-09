@@ -21,19 +21,20 @@ namespace ChartJs.Blazor.ChartJS.Common.Properties
         public Position Position { get; set; } = Position.Top;
 
         /// <summary>
-        /// Marks that this box should take the full width of the canvas (pushing down other boxes). This is unlikely to need to be changed in day-to-day use.
+        /// Marks that this box should take the full width of the canvas (pushing down other boxes).
+        /// This is unlikely to need to be changed in day-to-day use.
         /// </summary>
         public bool FullWidth { get; set; } = true;
 
         /// <summary>
-        /// The callback that is called when a click event is registered on a label item.
-        /// <para>See <see cref="JavascriptHandler{T}"></see> and <see cref="DelegateHandler{T}"></see>.</para>
+        /// Gets or sets the callback to call when a click event is registered on a label item.
+        /// <para>See <see cref="JavaScriptHandler{T}"/> and <see cref="DelegateHandler{T}"/>.</para>
         /// </summary>
         public IMethodHandler<LegendItemMouseEvent> OnClick { get; set; }
 
         /// <summary>
-        /// The callback that is called when a 'mousemove' event is registered on top of a label item
-        /// <para>See <see cref="JavascriptHandler{T}"></see> and <see cref="DelegateHandler{T}"></see>.</para>
+        /// Gets or sets the callback to call when a <see cref="BrowserEvent.MouseMove"/> event is registered on top of a label item.
+        /// <para>See <see cref="JavaScriptHandler{T}"/> and <see cref="DelegateHandler{T}"/>.</para>
         /// </summary>
         public IMethodHandler<LegendItemMouseEvent> OnHover { get; set; }
 
