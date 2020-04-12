@@ -27,7 +27,7 @@ namespace ChartJs.Blazor.ChartJS.BubbleChart
         /// </summary>
         public int BorderWidth { get; set; } = 3;
 
-        public List<BubbleDataPoint> Data { get; set; } = new List<BubbleDataPoint> {new BubbleDataPoint {X = 1, Y = 2, r = 3}};
+        public List<BubblePoint> Data { get; set; } = new List<BubblePoint>();
 
         /// <summary>
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>

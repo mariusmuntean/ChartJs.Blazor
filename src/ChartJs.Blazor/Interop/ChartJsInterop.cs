@@ -23,9 +23,13 @@ namespace ChartJs.Blazor.Interop
         internal static JsonSerializerSettings JsonSerializerSettings { get; } = new JsonSerializerSettings
         {
             NullValueHandling = NullValueHandling.Ignore,
-            ContractResolver = new DefaultContractResolver
+            ContractResolver = new IgnoreDatasetCountContractResolver
             {
                 NamingStrategy = new CamelCaseNamingStrategy(true, false)
+            },
+            Converters =
+            {
+                new IsoDateTimeConverter()
             }
         };
 
