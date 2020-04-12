@@ -149,7 +149,7 @@ When your page's `OnInitialized()` method is executed you're setting the chart's
 * Client-side Blazor projects are currently affected by a bug in `JSON.NET` tracked by this [issue](https://github.com/JamesNK/Newtonsoft.Json/issues/2020).
 
     There are two known workarounds:
-    
+
     * **Prefered Option** - add a file named [Linker.xml](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/blazor/configure-linker?view=aspnetcore-3.0) to the root of your client-side project to instruct the Mono linker to keep a certain constructor that `JSON.NET` invokes via reflection.
     Make sure to select `BlazorLinkerDescription` as the build action of the `Linker.xml` file. In case that your IDE doesn't offer that option, simply edit the `.csproj` file and add this to it:
         ```xml
@@ -167,7 +167,7 @@ When your page's `OnInitialized()` method is executed you're setting the chart's
             <linker>
                 <assembly fullname="mscorlib">
                     <!--
-                        Preserve the methods in WasmRuntime because its methods are called by 
+                        Preserve the methods in WasmRuntime because its methods are called by
                         JavaScript client-side code to implement timers.
                         Fixes: https://github.com/aspnet/Blazor/issues/239
                         -->
@@ -175,7 +175,7 @@ When your page's `OnInitialized()` method is executed you're setting the chart's
                 </assembly>
                 <assembly fullname="System.Core">
                     <!--
-                        System.Linq.Expressions* is required by Json.NET and any 
+                        System.Linq.Expressions* is required by Json.NET and any
                         expression.Compile caller. The assembly isn't stripped.
                         -->
                     <type fullname="System.Linq.Expressions*" />
@@ -240,7 +240,7 @@ When your page's `OnInitialized()` method is executed you're setting the chart's
 ```
 
 ### Dig deeper
-For detailed instructions read the [Chart.Js](https://www.chartjs.org/docs/latest/charts/) documentation to understand how each chart works. 
+For detailed instructions read the [Chart.Js](https://www.chartjs.org/docs/latest/charts/) documentation to understand how each chart works.
 
 ## A word on the samples
 The **samples** folder contains three projects, one for a client-side Blazor app, another one for a server-side Blazor app and a shared project. The shared project is not really necessary but that is how I chose to avoid code duplication.
@@ -264,8 +264,9 @@ This projects slowly develops a community which started to give back.
 * [Lars](https://github.com/larshg)
 * [Jan](https://github.com/mashbrno)
 
- I'm very gratefull for your contributions!
+We're very grateful for your contributions!
 
 # Contributing
-We really like people helping us with the project. Nevertheless, take your time to read our contributing guidelines [here](CONTRIBUTING.md).  
+We really like people helping us with the project. Nevertheless, take your time to read our contributing guidelines [here](CONTRIBUTING.md).
+
 Also keep in mind that this library is just a bridge from Blazor (C#) to Chart.js (JavaScript) so if you have a question on how to achieve something or experience unexpected behaviour, research how to do/fix it with JavaScript and only when you know how to get the correct behaviour in JavaScript open an issue here with all that information. It will greatly help us to give feedback and prevents us from wasting our limited time on issues that aren't really connected to this library. Thank you!
