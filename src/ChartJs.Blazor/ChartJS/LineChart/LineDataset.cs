@@ -217,7 +217,8 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 
         /// <summary>
         /// Gets or sets a value indicating whether or not the line is shown as a stepped line.
-        /// <para>If this value is set to anything other than <see cref="SteppedLine.False"/>, <see cref="LineTension"/> will be ignored.</para>
+        /// <para>If this value is set to anything other than <see cref="SteppedLine.False"/>,
+        /// <see cref="LineTension"/> will be ignored.</para>
         /// </summary>
         public SteppedLine SteppedLine { get; set; }
 

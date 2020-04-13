@@ -11,7 +11,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 {
     /// <summary>
     /// Represents how lines are clipped relative to the chart area.
-    /// <para>For any given field: 
+    /// <para>For any given edge: 
     /// <list type="bullet">
     /// <item>0 means clipping at the chart area.</item>
     /// <item>negative values mean clipping inside the chart area.</item>
@@ -23,27 +23,27 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     [JsonConverter(typeof(ClippingJsonConverter))]
     public readonly struct Clipping : IEquatable<Clipping>
     {
-        internal readonly int? All;
+        internal readonly bool _equalSides;
 
         /// <summary>
-        /// The clipping for the bottom edge.
+        /// Gets the clipping for the bottom edge.
         /// </summary>
-        public readonly int? Bottom;
+        public int? Bottom { get; }
 
         /// <summary>
-        /// The clipping for the left edge.
+        /// Gets the clipping for the left edge.
         /// </summary>
-        public readonly int? Left;
+        public int? Left { get; }
 
         /// <summary>
-        /// The clipping for the top edge.
+        /// Gets the clipping for the top edge.
         /// </summary>
-        public readonly int? Top;
+        public int? Top { get; }
 
         /// <summary>
-        /// The clipping for the right edge.
+        /// Gets the clipping for the right edge.
         /// </summary>
-        public readonly int? Right;
+        public int? Right { get; }
 
         /// <summary>
         /// Creates a new instance of <see cref="Clipping"/>
@@ -52,8 +52,8 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// <param name="all">The clipping value for all edges.</param>
         public Clipping(int all)
         {
-            All = all;
             Bottom = Left = Top = Right = all;
+            _equalSides = true;
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
             Left = left;
             Top = top;
             Right = right;
-            All = null;
+            _equalSides = false;
         }
 
         /// <summary>
@@ -95,8 +95,8 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public override bool Equals(object obj) => obj is Clipping clipping && Equals(clipping);
         public bool Equals(Clipping other)
         {
-            if (All.HasValue && other.All.HasValue)
-                return All.Value == other.All.Value;
+            if (_equalSides && other._equalSides)
+                return Bottom.Value == other.Bottom.Value;
 
             return Bottom == other.Bottom &&
                    Left == other.Left &&
@@ -146,9 +146,9 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 
         public override void WriteJson(JsonWriter writer, [AllowNull] Clipping value, JsonSerializer serializer)
         {
-            if (value.All.HasValue)
+            if (value._equalSides)
             {
-                writer.WriteValue(value.All.Value);
+                writer.WriteValue(value.Bottom.Value);
                 return;
             }
 
