@@ -11,6 +11,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 {
     /// <summary>
     /// Represents how lines are clipped relative to the chart area.
+    /// As per documentation <a href="https://www.chartjs.org/docs/latest/charts/line.html#line-styling">here (Chart.js)</a>.
     /// <para>For any given edge: 
     /// <list type="bullet">
     /// <item>0 means clipping at the chart area.</item>
@@ -77,7 +78,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// Converts an <see cref="int"/> value to a <see cref="Clipping"/> implicitly.
         /// The supplied value will be used for all edges.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">The clipping value for all edges.</param>
         public static implicit operator Clipping(int value) => new Clipping(value);
 
         /// <inheritdoc />

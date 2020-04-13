@@ -4,11 +4,13 @@ using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Enums;
 using ChartJs.Blazor.ChartJS.MixedChart;
 using ChartJs.Blazor.Util;
+using Newtonsoft.Json;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
     /// <summary>
     /// Represents a dataset for a line chart.
+    /// As per documentation <a href="https://www.chartjs.org/docs/latest/charts/line.html#dataset-properties">here (Chart.js)</a>.
     /// </summary>
     /// <typeparam name="T">The type of data this <see cref="LineDataset{T}"/> contains.</typeparam>
     public class LineDataset<T> : Dataset<T>
@@ -149,60 +151,60 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// Gets or sets the fill color for points.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public string PointBackgroundColor { get; set; }
+        public IndexableOption<string> PointBackgroundColor { get; set; }
 
         /// <summary>
         /// Gets or sets the border color for points.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public string PointBorderColor { get; set; }
+        public IndexableOption<string> PointBorderColor { get; set; }
 
         /// <summary>
         /// Gets or sets the width of the point border in pixels.
         /// </summary>
-        public int? PointBorderWidth { get; set; }
+        public IndexableOption<int> PointBorderWidth { get; set; }
 
         /// <summary>
         /// Gets or sets the radius of the non-displayed point that reacts to mouse events in pixels.
         /// </summary>
-        public int? PointHitRadius { get; set; }
+        public IndexableOption<int> PointHitRadius { get; set; }
 
         /// <summary>
         /// Gets or sets the fill color for points when hovering.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public string PointHoverBackgroundColor { get; set; }
+        public IndexableOption<string> PointHoverBackgroundColor { get; set; }
 
         /// <summary>
         /// Gets or sets the border color for points when hovering.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public string PointHoverBorderColor { get; set; }
+        public IndexableOption<string> PointHoverBorderColor { get; set; }
 
         /// <summary>
         /// Gets or sets the width of the point border in pixels when hovered.
         /// </summary>
-        public int? PointHoverBorderWidth { get; set; }
+        public IndexableOption<int> PointHoverBorderWidth { get; set; }
 
         /// <summary>
         /// Gets or sets the radius of the point when hovered.
         /// </summary>
-        public int? PointHoverRadius { get; set; }
+        public IndexableOption<int> PointHoverRadius { get; set; }
 
         /// <summary>
         /// Gets or sets the radius of the point shape. If set to 0, the point is not rendered.
         /// </summary>
-        public int? PointRadius { get; set; }
+        public IndexableOption<int> PointRadius { get; set; }
 
         /// <summary>
         /// Gets or sets the rotation of the point in degrees.
         /// </summary>
-        public double? PointRotation { get; set; }
+        public IndexableOption<double> PointRotation { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="Common.Enums.PointStyle"/> for this dataset.
         /// </summary>
-        public PointStyle PointStyle { get; set; }
+        public IndexableOption<PointStyle> PointStyle { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether or not the line is drawn for this dataset.
@@ -226,12 +228,14 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// Gets or sets the ID of the x axis to plot this dataset on. If not specified,
         /// this defaults to the ID of the first found x axis.
         /// </summary>
-        public string XAxisID { get; set; }
+        [JsonProperty("xAxisID")]
+        public string XAxisId { get; set; }
 
         /// <summary>
         /// Gets or sets the ID of the y axis to plot this dataset on. If not specified,
         /// this defaults to the ID of the first found y axis.
         /// </summary>
-        public string YAxisID { get; set; }
+        [JsonProperty("yAxisID")]
+        public string YAxisId { get; set; }
     }
 }

@@ -8,35 +8,32 @@ using System.Collections.Generic;
 namespace ChartJs.Blazor.ChartJS.BarChart
 {
     /// <summary>
-    /// A dataset for a <see cref="Charts.ChartJsBarChart"/>.
+    /// Represents a dataset for a bar chart.
+    /// As per documentation <a href="https://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties">here (Chart.js)</a>.
     /// </summary>
-    /// <para>As per documentation here: http://www.chartjs.org/docs/latest/charts/bar.html#dataset-properties. </para>
-    /// <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="Common.Wrappers"/> for value types.</typeparam>
-    public class BarDataset<TData> : BaseMixableDataset<TData> where TData : class
+    /// <typeparam name="T">The type of data this <see cref="BarDataset{T}"/> contains.</typeparam>
+    public class BarDataset<T> : Dataset<T>
     {
         /// <summary>
-        /// Creates a new instance of the <see cref="BarDataset{TData}"/> class.
+        /// Creates a new instance of <see cref="BarDataset{T}"/>.
         /// </summary>
-        /// <param name="data">The data to initialize the dataset with.</param>
-        /// <param name="chartType">An optional <see cref="ChartType"/>, either <see cref="ChartType.Bar"/> or <see cref="ChartType.HorizontalBar"/></param>
-        public BarDataset(IEnumerable<TData> data, ChartType? chartType = null) : this(chartType)
+        public BarDataset() : base(ChartType.Bar) { }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="BarDataset{T}"/> with initial data.
+        /// </summary>
+        public BarDataset(IEnumerable<T> data) : this()
         {
-            this.AddRange(data);
+            AddRange(data);
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="BarDataset{TData}"/> class.
+        /// Creates a new instance of <see cref="BarDataset{T}"/> with
+        /// a custom <see cref="ChartType"/>. Use this constructor when
+        /// you implement a bar-like chart.
         /// </summary>
-        public BarDataset(ChartType? chartType = null)
-        {
-            Type = chartType ?? ChartType.Bar;
-        }
-
-        /// <summary>
-        /// Gets the chart type (<see cref="ChartType.Bar"/> in this case). This is needed for mixed datasets only.
-        /// </summary>
-        //public override ChartType Type => ChartType.Bar;
-        public override ChartType Type { get; }
+        /// <param name="type">The <see cref="ChartType"/> to use instead of <see cref="ChartType.Bar"/>.</param>
+        protected BarDataset(ChartType type) : base(type) { }
 
         /// <summary>
         /// Gets or sets a value to avoid drawing the bar stroke at the base of the fill.
@@ -50,13 +47,15 @@ namespace ChartJs.Blazor.ChartJS.BarChart
         public string Label { get; set; }
 
         /// <summary>
-        /// Gets or sets the ID of the x axis to plot this dataset on. If not specified, this defaults to the ID of the first found x axis.
+        /// Gets or sets the ID of the x axis to plot this dataset on. If not specified,
+        /// this defaults to the ID of the first found x axis.
         /// </summary>
         [JsonProperty("xAxisID")]
         public string XAxisId { get; set; }
 
         /// <summary>
-        /// Gets or sets the ID of the y axis to plot this dataset on. If not specified, this defaults to the ID of the first found y axis.
+        /// Gets or sets the ID of the y axis to plot this dataset on. If not specified,
+        /// this defaults to the ID of the first found y axis.
         /// </summary>
         [JsonProperty("yAxisID")]
         public string YAxisId { get; set; }
