@@ -7,7 +7,7 @@ using System.Collections.Specialized;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
-namespace ChartJs.Blazor.ChartJS.LineChart
+namespace ChartJs.Blazor.ChartJS.Common
 {
     /// <summary>
     /// Represents how lines are clipped relative to the chart area.

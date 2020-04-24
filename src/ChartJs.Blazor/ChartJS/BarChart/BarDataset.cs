@@ -36,39 +36,6 @@ namespace ChartJs.Blazor.ChartJS.BarChart
         protected BarDataset(ChartType type) : base(type) { }
 
         /// <summary>
-        /// Gets or sets a value to avoid drawing the bar stroke at the base of the fill.
-        /// In general, this does not need to be changed except when creating chart types that derive from a bar chart.
-        /// </summary>
-        public IndexableOption<BorderSkipped> BorderSkipped { get; set; }
-
-        /// <summary>
-        /// Gets or sets the label for the dataset which appears in the legend and tooltips.
-        /// </summary>
-        public string Label { get; set; }
-
-        /// <summary>
-        /// Gets or sets the ID of the x axis to plot this dataset on. If not specified,
-        /// this defaults to the ID of the first found x axis.
-        /// </summary>
-        [JsonProperty("xAxisID")]
-        public string XAxisId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the ID of the y axis to plot this dataset on. If not specified,
-        /// this defaults to the ID of the first found y axis.
-        /// </summary>
-        [JsonProperty("yAxisID")]
-        public string YAxisId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the id of the group to which this dataset belongs to (when stacked, each group will be a separate stack).
-        /// <para>
-        /// Specific for stacked bar charts.
-        /// </para>
-        /// </summary>
-        public string Stack { get; set; }
-
-        /// <summary>
         /// Gets or sets the fill color of the bars in the dataset.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
@@ -81,9 +48,41 @@ namespace ChartJs.Blazor.ChartJS.BarChart
         public IndexableOption<string> BorderColor { get; set; }
 
         /// <summary>
+        /// Gets or sets a value to avoid drawing the bar stroke at the base of the fill.
+        /// In general, this does not need to be changed except when creating chart types that derive from a bar chart.
+        /// </summary>
+        public IndexableOption<BorderSkipped> BorderSkipped { get; set; }
+
+        /// <summary>
         /// Gets or sets the border width of the bars in the dataset.
         /// </summary>
         public IndexableOption<int> BorderWidth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the percentage (0-1) of the available width each bar should be within the category
+        /// width. 1.0 will take the whole category width and put the bars right next to each other.
+        /// As per documentation <a href="https://www.chartjs.org/docs/latest/charts/bar.html#barpercentage-vs-categorypercentage">here (Chart.js)</a>.
+        /// </summary>
+        public double? BarPercentage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the percentage (0-1) of the available width each category should be within the sample width.
+        /// As per documentation <a href="https://www.chartjs.org/docs/latest/charts/bar.html#barpercentage-vs-categorypercentage">here (Chart.js)</a>.
+        /// </summary>
+        public double? CategoryPercentage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the width of each bar in pixels.
+        /// If set to <see cref="BarThickness.Flex"/>, it computes "optimal" sample widths that globally
+        /// arrange bars side by side. If not set (default), bars are equally sized based on the smallest interval.
+        /// </summary>
+        public BarThickness BarThickness { get; set; }
+
+        /// <summary>
+        /// Gets or sets how to clip relative to the chart area. Positive values allow overflow,
+        /// negative values clip that many pixels inside the chart area.
+        /// </summary>
+        public Clipping Clip { get; set; }
 
         /// <summary>
         /// Gets or sets the fill color of the bars when hovered.
@@ -101,5 +100,51 @@ namespace ChartJs.Blazor.ChartJS.BarChart
         /// Gets or sets the stroke width of the bars when hovered.
         /// </summary>
         public IndexableOption<int> HoverBorderWidth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the label for the dataset which appears in the legend and tooltips.
+        /// </summary>
+        public string Label { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum thickness of the bars in pixels.
+        /// </summary>
+        public double? MaxBarThickness { get; set; }
+
+        /// <summary>
+        /// Gets or sets the minimum length of the bars in pixels.
+        /// </summary>
+        public double? MinBarLength { get; set; }
+
+        /// <summary>
+        /// Gets or sets the id of the group to which this dataset belongs to
+        /// (when stacked, each group will be a separate stack).
+        /// <para>
+        /// In order to use this, the 'Stacked' property of the corresponding
+        /// axis has to be set to <see langword="true"/>. The 'Stacked' property
+        /// is only available in axes from the <see cref="Axes"/> namespace.
+        /// </para>
+        /// </summary>
+        public string Stack { get; set; }
+
+        /// <summary>
+        /// Gets or sets the drawing order of dataset.
+        /// Also affects order for stacking, tooltip, and legend.
+        /// </summary>
+        public int Order { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ID of the x axis to plot this dataset on. If not specified,
+        /// this defaults to the ID of the first found x axis.
+        /// </summary>
+        [JsonProperty("xAxisID")]
+        public string XAxisId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ID of the y axis to plot this dataset on. If not specified,
+        /// this defaults to the ID of the first found y axis.
+        /// </summary>
+        [JsonProperty("yAxisID")]
+        public string YAxisId { get; set; }
     }
 }
