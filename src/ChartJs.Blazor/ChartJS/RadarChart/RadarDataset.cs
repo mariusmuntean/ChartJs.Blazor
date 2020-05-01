@@ -125,6 +125,6 @@ namespace ChartJs.Blazor.ChartJS.RadarChart
         /// </summary>
         public IndexableOption<int> PointHoverRadius { get; set; }
 
-        public List<double> Data { get; set; }
+        public List<int> Data { get; set; }
     }
 }
