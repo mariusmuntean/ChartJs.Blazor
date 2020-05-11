@@ -27,16 +27,6 @@ namespace ChartJs.Blazor.ChartJS.Common
         internal readonly bool _equalSides;
 
         /// <summary>
-        /// Gets the clipping for the bottom edge.
-        /// </summary>
-        public int? Bottom { get; }
-
-        /// <summary>
-        /// Gets the clipping for the left edge.
-        /// </summary>
-        public int? Left { get; }
-
-        /// <summary>
         /// Gets the clipping for the top edge.
         /// </summary>
         public int? Top { get; }
@@ -47,13 +37,23 @@ namespace ChartJs.Blazor.ChartJS.Common
         public int? Right { get; }
 
         /// <summary>
+        /// Gets the clipping for the bottom edge.
+        /// </summary>
+        public int? Bottom { get; }
+
+        /// <summary>
+        /// Gets the clipping for the left edge.
+        /// </summary>
+        public int? Left { get; }
+
+        /// <summary>
         /// Creates a new instance of <see cref="Clipping"/>
         /// using the supplied value for all edges.
         /// </summary>
         /// <param name="all">The clipping value for all edges.</param>
         public Clipping(int all)
         {
-            Bottom = Left = Top = Right = all;
+            Top = Right = Bottom = Left = all;
             _equalSides = true;
         }
 
@@ -65,12 +65,12 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// <param name="left">The clipping value for the left edge.</param>
         /// <param name="top">The clipping value for the top edge.</param>
         /// <param name="right">The clipping value for the right edge.</param>
-        public Clipping(int? bottom, int? left, int? top, int? right)
+        public Clipping(int? top = null, int? right = null, int? bottom = null, int? left = null)
         {
-            Bottom = bottom;
-            Left = left;
             Top = top;
             Right = right;
+            Bottom = bottom;
+            Left = left;
             _equalSides = false;
         }
 
@@ -84,10 +84,10 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// <inheritdoc />
         public override string ToString()
         {
-            return $"{nameof(Bottom)}: {ValOrNull(Bottom)}, " +
-                   $"{nameof(Left)}: {ValOrNull(Left)}, " +
-                   $"{nameof(Top)}: {ValOrNull(Top)}, " +
-                   $"{nameof(Right)}: {ValOrNull(Right)}";
+            return $"{nameof(Top)}: {ValOrNull(Top)}, " +
+                   $"{nameof(Right)}: {ValOrNull(Right)}, " +
+                   $"{nameof(Bottom)}: {ValOrNull(Bottom)}, " +
+                   $"{nameof(Left)}: {ValOrNull(Left)}";
 
             static string ValOrNull(int? value) => value.HasValue ? value.Value.ToString() : "null";
         }
@@ -97,12 +97,12 @@ namespace ChartJs.Blazor.ChartJS.Common
         public bool Equals(Clipping other)
         {
             if (_equalSides && other._equalSides)
-                return Bottom.Value == other.Bottom.Value;
+                return Top.Value == other.Top.Value;
 
-            return Bottom == other.Bottom &&
-                   Left == other.Left &&
-                   Top == other.Top &&
-                   Right == other.Right;
+            return Top == other.Top &&
+                   Right == other.Right &&
+                   Bottom == other.Bottom &&
+                   Left == other.Left;
         }
 
         public override int GetHashCode() => HashCode.Combine(Bottom, Left, Top, Right);
@@ -123,12 +123,12 @@ namespace ChartJs.Blazor.ChartJS.Common
                 throw new JsonSerializationException();
 
             JObject obj = JObject.Load(reader);
-            int? bottom = GetClippingValue(obj, nameof(Clipping.Bottom));
-            int? left = GetClippingValue(obj, nameof(Clipping.Left));
             int? top = GetClippingValue(obj, nameof(Clipping.Top));
             int? right = GetClippingValue(obj, nameof(Clipping.Right));
+            int? bottom = GetClippingValue(obj, nameof(Clipping.Bottom));
+            int? left = GetClippingValue(obj, nameof(Clipping.Left));
 
-            return new Clipping(bottom, left, top, right);
+            return new Clipping(top, right, bottom, left);
         }
 
         private static int? GetClippingValue(JObject obj, string name)
@@ -157,17 +157,17 @@ namespace ChartJs.Blazor.ChartJS.Common
 
             writer.WriteStartObject();
 
-            WriteAdjustedName(writer, naming, nameof(Clipping.Bottom));
-            WriteValueOrFalse(writer, value.Bottom);
-
-            WriteAdjustedName(writer, naming, nameof(Clipping.Left));
-            WriteValueOrFalse(writer, value.Left);
-
             WriteAdjustedName(writer, naming, nameof(Clipping.Top));
             WriteValueOrFalse(writer, value.Top);
 
             WriteAdjustedName(writer, naming, nameof(Clipping.Right));
             WriteValueOrFalse(writer, value.Right);
+
+            WriteAdjustedName(writer, naming, nameof(Clipping.Bottom));
+            WriteValueOrFalse(writer, value.Bottom);
+
+            WriteAdjustedName(writer, naming, nameof(Clipping.Left));
+            WriteValueOrFalse(writer, value.Left);
 
             writer.WriteEndObject();
         }

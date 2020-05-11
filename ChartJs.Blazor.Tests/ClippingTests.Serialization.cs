@@ -1,4 +1,5 @@
-﻿using ChartJs.Blazor.ChartJS.LineChart;
+﻿using ChartJs.Blazor.ChartJS.Common;
+using ChartJs.Blazor.ChartJS.LineChart;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -33,8 +34,8 @@ namespace ChartJs.Blazor.Tests
         public void Serialize_DifferentEdges_AsRoot()
         {
             // Arrange
-            const string Expected = "{\"Bottom\":10,\"Left\":-100,\"Top\":0,\"Right\":false}";
-            Clipping clipping = new Clipping(10, -100, 0, null);
+            const string Expected = "{\"Top\":0,\"Right\":false,\"Bottom\":10,\"Left\":-100}";
+            Clipping clipping = new Clipping(top: 0, right: null, bottom: 10, left: -100);
 
             // Act
             string serialized = JsonConvert.SerializeObject(clipping);

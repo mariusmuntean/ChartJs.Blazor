@@ -1,4 +1,5 @@
-﻿using ChartJs.Blazor.ChartJS.LineChart;
+﻿using ChartJs.Blazor.ChartJS.Common;
+using ChartJs.Blazor.ChartJS.LineChart;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -33,8 +34,8 @@ namespace ChartJs.Blazor.Tests
         public void Deserialize_DifferentEdges_FromRoot()
         {
             // Arrange
-            const string json = "{\"Bottom\":10,\"Left\":-100,\"Top\":0,\"Right\":false}";
-            Clipping expected = new Clipping(10, -100, 0, null);
+            const string json = "{\"Bottom\":0,\"Left\":false,\"Top\":10,\"Right\":-100}";
+            Clipping expected = new Clipping(top: 10, right: -100, bottom: 0, left: null);
 
             // Act
             Clipping deserialized = JsonConvert.DeserializeObject<Clipping>(json);
@@ -47,8 +48,8 @@ namespace ChartJs.Blazor.Tests
         public void Deserialize_DifferentEdges_MissingMembers_FromRoot()
         {
             // Arrange
-            const string json = "{\"Bottom\":-123,\"Right\":false}";
-            Clipping expected = new Clipping(-123, null, null, null);
+            const string json = "{\"Top\":-123,\"Right\":false}";
+            Clipping expected = new Clipping(top: -123);
 
             // Act
             Clipping deserialized = JsonConvert.DeserializeObject<Clipping>(json);
@@ -62,7 +63,7 @@ namespace ChartJs.Blazor.Tests
         {
             // Arrange
             const string json = "{\"Left\":500,\"Top\":false,\"ABC\":19.2}";
-            Clipping expected = new Clipping(null, 500, null, null);
+            Clipping expected = new Clipping(left: 500);
 
             // Act
             Clipping deserialized = JsonConvert.DeserializeObject<Clipping>(json);
