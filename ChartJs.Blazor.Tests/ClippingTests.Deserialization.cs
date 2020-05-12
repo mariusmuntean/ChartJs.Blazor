@@ -73,33 +73,33 @@ namespace ChartJs.Blazor.Tests
         }
 
         [Fact]
-        public void Deserialize_Double_ThrowsJsonSerializationException()
+        public void Deserialize_Double_ThrowsJsonReaderException()
         {
             // Arrange
             const string json = "19.2";
 
             // Act & Assert
-            Assert.Throws<JsonSerializationException>(() => JsonConvert.DeserializeObject<Clipping>(json));
+            Assert.Throws<JsonReaderException>(() => JsonConvert.DeserializeObject<Clipping>(json));
         }
 
         [Fact]
-        public void Deserialize_Array_ThrowsJsonSerializationException()
+        public void Deserialize_Array_ThrowsJsonReaderException()
         {
             // Arrange
             const string json = "[]";
 
             // Act & Assert
-            Assert.Throws<JsonSerializationException>(() => JsonConvert.DeserializeObject<Clipping>(json));
+            Assert.Throws<JsonReaderException>(() => JsonConvert.DeserializeObject<Clipping>(json));
         }
 
         [Fact]
-        public void Deserialize_String_ThrowsJsonSerializationException()
+        public void Deserialize_String_ThrowsJsonReaderException()
         {
             // Arrange
             const string json = "\"asdf\"";
 
             // Act & Assert
-            Assert.Throws<JsonSerializationException>(() => JsonConvert.DeserializeObject<Clipping>(json));
+            Assert.Throws<JsonReaderException>(() => JsonConvert.DeserializeObject<Clipping>(json));
         }
     }
 }

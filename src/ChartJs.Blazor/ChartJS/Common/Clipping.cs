@@ -120,7 +120,7 @@ namespace ChartJs.Blazor.ChartJS.Common
                 return new Clipping((int)(long)reader.Value);
 
             if (reader.TokenType != JsonToken.StartObject)
-                throw new JsonSerializationException();
+                throw new JsonReaderException();
 
             JObject obj = JObject.Load(reader);
             int? top = GetClippingValue(obj, nameof(Clipping.Top));
@@ -142,7 +142,7 @@ namespace ChartJs.Blazor.ChartJS.Common
             if (token.Type == JTokenType.Integer)
                 return (int)token;
 
-            throw new JsonSerializationException();
+            throw new JsonWriterException();
         }
 
         public override void WriteJson(JsonWriter writer, [AllowNull] Clipping value, JsonSerializer serializer)
