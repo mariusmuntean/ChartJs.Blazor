@@ -1,8 +1,6 @@
-﻿using ChartJs.Blazor.ChartJS.Common;
-using ChartJs.Blazor.ChartJS.MixedChart;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using ChartJs.Blazor.ChartJS.Common;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
@@ -12,7 +10,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     public class LineData
     {
         /// <summary>
-        /// Creates a new instance of <see cref="LineData"/>
+        /// Creates a new instance of <see cref="LineData"/>.
         /// </summary>
         public LineData()
         {
@@ -24,19 +22,28 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 
         /// <summary>
         /// Gets the labels the chart will use.
-        /// <para>If defined (1 or more labels) the corresponding axis has to be of type <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.</para>
+        /// <para>
+        /// If defined (1 or more labels) the corresponding axis has to be of type
+        /// <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.
+        /// </para>
         /// </summary>
         public List<string> Labels { get; }
 
         /// <summary>
         /// Gets the labels the horizontal axes will use.
-        /// <para>If defined (1 or more labels) the x-axis has to be of type <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.</para>
+        /// <para>
+        /// If defined (1 or more labels) the x-axis has to be of type
+        /// <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.
+        /// </para>
         /// </summary>
         public List<string> XLabels { get; }
 
         /// <summary>
         /// Gets the labels the vertical axes will use.
-        /// <para>If defined (1 or more labels) the y-axis has to be of type <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.</para>
+        /// <para>
+        /// If defined (1 or more labels) the y-axis has to be of type
+        /// <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.
+        /// </para>
         /// </summary>
         public List<string> YLabels { get; }
 
