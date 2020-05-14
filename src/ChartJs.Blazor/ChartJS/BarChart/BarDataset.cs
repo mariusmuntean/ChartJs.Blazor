@@ -128,10 +128,10 @@ namespace ChartJs.Blazor.ChartJS.BarChart
         public string Stack { get; set; }
 
         /// <summary>
-        /// Gets or sets the drawing order of dataset.
-        /// Also affects order for stacking, tooltip, and legend.
+        /// Gets or sets the drawing order of this dataset.
+        /// Also affects the order for stacking, tooltips, and the legend.
         /// </summary>
-        public int Order { get; set; }
+        public int? Order { get; set; }
 
         /// <summary>
         /// Gets or sets the ID of the x axis to plot this dataset on. If not specified,

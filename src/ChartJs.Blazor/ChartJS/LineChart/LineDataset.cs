@@ -143,7 +143,8 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public double? LineTension { get; set; }
 
         /// <summary>
-        /// Gets or sets the drawing order of the dataset. Also affects order for stacking, tooltips, and the legend.
+        /// Gets or sets the drawing order of this dataset.
+        /// Also affects the order for stacking, tooltips, and the legend.
         /// </summary>
         public int? Order { get; set; }
 
