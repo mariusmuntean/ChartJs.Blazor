@@ -82,7 +82,7 @@ namespace ChartJs.Blazor.ChartJS.BarChart
         /// Gets or sets how to clip relative to the chart area. Positive values allow overflow,
         /// negative values clip that many pixels inside the chart area.
         /// </summary>
-        public Clipping Clip { get; set; }
+        public Clipping? Clip { get; set; }
 
         /// <summary>
         /// Gets or sets the fill color of the bars when hovered.

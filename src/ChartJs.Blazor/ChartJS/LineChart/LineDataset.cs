@@ -84,7 +84,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// Gets or sets how to clip relative to the chart area. Positive values allow overflow,
         /// negative values clip that many pixels inside the chart area.
         /// </summary>
-        public Clipping Clip { get; set; }
+        public Clipping? Clip { get; set; }
 
         /// <summary>
         /// Gets or sets how to fill the area under the line.
