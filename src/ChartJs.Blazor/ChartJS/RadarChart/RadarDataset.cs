@@ -56,9 +56,8 @@ namespace ChartJs.Blazor.ChartJS.RadarChart
         /// <inheritdoc cref="LineDataset{T}.BorderWidth"/>
         public int? BorderWidth { get; set; }
 
-        // TODO create class for that Issue#56
         /// <inheritdoc cref="LineDataset{T}.Fill"/>
-        public bool? Fill { get; set; }
+        public FillingMode Fill { get; set; }
 
         /// <inheritdoc cref="LineDataset{T}.HoverBackgroundColor"/>
         public string HoverBackgroundColor { get; set; }

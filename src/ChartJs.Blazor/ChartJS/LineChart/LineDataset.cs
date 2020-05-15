@@ -89,8 +89,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// <summary>
         /// Gets or sets how to fill the area under the line.
         /// </summary>
-        // TODO create class for that Issue#56
-        public bool? Fill { get; set; }
+        public FillingMode Fill { get; set; }
 
         /// <summary>
         /// Gets or sets the fill color under the line when hovered.
