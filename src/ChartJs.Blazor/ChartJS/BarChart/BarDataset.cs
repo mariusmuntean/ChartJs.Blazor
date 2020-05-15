@@ -1,6 +1,5 @@
 ﻿using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Enums;
-using ChartJs.Blazor.ChartJS.MixedChart;
 using ChartJs.Blazor.Util;
 using Newtonsoft.Json;
 using System.Collections.Generic;
