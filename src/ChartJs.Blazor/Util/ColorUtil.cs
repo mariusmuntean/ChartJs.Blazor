@@ -44,7 +44,7 @@ namespace ChartJs.Blazor.Util
         /// <returns></returns>
         public static string ColorString(byte r, byte g, byte b, double alpha)
         {
-            return $"rgba({r}, {g}, {b}, {alpha})";
+            return $"rgba({r}, {g}, {b}, {alpha.ToString(CultureInfo.InvariantCulture)})";
         }
 
         /// <summary>
