@@ -54,24 +54,24 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public string BorderColor { get; set; }
 
         /// <summary>
-        /// Gets or sets the length and spacing of dashes.
+        /// Gets or sets the length and spacing of the line dashes.
         /// As per documentation <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash">here (MDN)</a>.
         /// </summary>
         public int[] BorderDash { get; set; }
 
         /// <summary>
-        /// Gets or sets the offset for line dashes.
+        /// Gets or sets the offset for the line dashes.
         /// As per documentation <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset">here (MDN)</a>.
         /// </summary>
         public int? BorderDashOffset { get; set; }
 
         /// <summary>
-        /// Gets or sets the <see cref="BorderJoinStyle"/> for the lines.
+        /// Gets or sets the <see cref="Common.Enums.BorderJoinStyle"/> for the lines.
         /// </summary>
         public BorderJoinStyle BorderJoinStyle { get; set; }
 
         /// <summary>
-        /// Gets or sets the width of the line in pixels.
+        /// Gets or sets the width of the line (in pixels).
         /// </summary>
         public int? BorderWidth { get; set; }
 
@@ -110,29 +110,29 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public string HoverBorderColor { get; set; }
 
         /// <summary>
-        /// Gets or sets the length and spacing of dashes when hovered.
+        /// Gets or sets the length and spacing of the line dashes when hovered.
         /// As per documentation <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash">here (MDN)</a>.
         /// </summary>
         public int[] HoverBorderDash { get; set; }
 
         /// <summary>
-        /// Gets or sets the offset for line dashes when hovered.
+        /// Gets or sets the offset for the line dashes when hovered.
         /// As per documentation <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset">here (MDN)</a>.
         /// </summary>
         public int? HoverBorderDashOffset { get; set; }
 
         /// <summary>
-        /// Gets or sets the <see cref="BorderJoinStyle"/> for the lines when hovered.
+        /// Gets or sets the <see cref="Common.Enums.BorderJoinStyle"/> for the lines when hovered.
         /// </summary>
         public BorderJoinStyle HoverBorderJoinStyle { get; set; }
 
         /// <summary>
-        /// Gets or sets the width of the line when hovered in pixels.
+        /// Gets or sets the width of the line when hovered (in pixels).
         /// </summary>
         public int? HoverBorderWidth { get; set; }
 
         /// <summary>
-        /// Gets or sets the label for the dataset which appears in the legend and tooltips.
+        /// Gets or sets the label for the dataset which appears in the legend and the tooltips.
         /// </summary>
         public string Label { get; set; }
 
@@ -149,41 +149,41 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public int? Order { get; set; }
 
         /// <summary>
-        /// Gets or sets the fill color for points.
+        /// Gets or sets the fill color for the points.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public IndexableOption<string> PointBackgroundColor { get; set; }
 
         /// <summary>
-        /// Gets or sets the border color for points.
+        /// Gets or sets the border color for the points.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public IndexableOption<string> PointBorderColor { get; set; }
 
         /// <summary>
-        /// Gets or sets the width of the point border in pixels.
+        /// Gets or sets the width of the point border (in pixels).
         /// </summary>
         public IndexableOption<int> PointBorderWidth { get; set; }
 
         /// <summary>
-        /// Gets or sets the radius of the non-displayed point that reacts to mouse events in pixels.
+        /// Gets or sets the radius of the non-displayed point that reacts to mouse events (in pixels).
         /// </summary>
         public IndexableOption<int> PointHitRadius { get; set; }
 
         /// <summary>
-        /// Gets or sets the fill color for points when hovering.
+        /// Gets or sets the fill color for the points when hovering.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public IndexableOption<string> PointHoverBackgroundColor { get; set; }
 
         /// <summary>
-        /// Gets or sets the border color for points when hovering.
+        /// Gets or sets the border color for the points when hovering.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
         public IndexableOption<string> PointHoverBorderColor { get; set; }
 
         /// <summary>
-        /// Gets or sets the width of the point border in pixels when hovered.
+        /// Gets or sets the width of the point border when hovered (in pixels).
         /// </summary>
         public IndexableOption<int> PointHoverBorderWidth { get; set; }
 
@@ -198,7 +198,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public IndexableOption<int> PointRadius { get; set; }
 
         /// <summary>
-        /// Gets or sets the rotation of the point in degrees.
+        /// Gets or sets the rotation of the points in degrees.
         /// </summary>
         public IndexableOption<double> PointRotation { get; set; }
 
@@ -220,8 +220,10 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 
         /// <summary>
         /// Gets or sets a value indicating whether or not the line is shown as a stepped line.
-        /// <para>If this value is set to anything other than <see cref="SteppedLine.False"/>,
-        /// <see cref="LineTension"/> will be ignored.</para>
+        /// <para>
+        /// If this value is set to anything other than <see cref="SteppedLine.False"/>,
+        /// <see cref="LineTension"/> will be ignored.
+        /// </para>
         /// </summary>
         public SteppedLine SteppedLine { get; set; }
 
