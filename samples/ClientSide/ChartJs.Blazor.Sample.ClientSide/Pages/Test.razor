@@ -7,7 +7,6 @@
 @using ChartJs.Blazor.ChartJS.BarChart.Axes
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Axes
-@using ChartJs.Blazor.ChartJS.Common.Wrappers
 @using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
 @using ChartJs.Blazor.ChartJS.Common.Handlers
 @using ChartJs.Blazor.Interop
@@ -22,7 +21,7 @@
     private ChartJsBarChart barChartJs;
     private BarConfig _config;
     public int Rows { get; set; } = 3;
-    private BarDataset<DoubleWrapper> _barDataSet;
+    private BarDataset<double> _barDataSet;
 
     public string EventArgs { get; set; } = "";
 
@@ -70,7 +69,7 @@
 
         _config.Data.Labels.AddRange(new[] {"A", "B", "C", "D"});
 
-        _barDataSet = new BarDataset<DoubleWrapper>
+        _barDataSet = new BarDataset<double>
         {
             Label = "My double dataset",
             BackgroundColor = new[] {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
@@ -81,7 +80,7 @@
             BorderColor = "#ffffff"
         };
 
-        _barDataSet.AddRange(new double[] {8, 5, 3, 7}.Wrap());
+        _barDataSet.AddRange(new double[] { 8, 5, 3, 7 });
         _config.Data.Datasets.Add(_barDataSet);
     }
 

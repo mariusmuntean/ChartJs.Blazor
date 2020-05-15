@@ -33,7 +33,7 @@
 
         _config.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
 
-        var polarAreaSet = new PolarAreaDataset
+        PolarAreaDataset polarAreaSet = new PolarAreaDataset
         {
             BackgroundColor = new[] { ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString() },
             BorderWidth = 0,
@@ -43,7 +43,7 @@
             BorderColor = "#ffffff",
         };
 
-        polarAreaSet.Data.AddRange(new double[] { 4, 5, 6, 7 });
+        polarAreaSet.AddRange(new double[] { 4, 5, 6, 7 });
         _config.Data.Datasets.Add(polarAreaSet);
     }
 

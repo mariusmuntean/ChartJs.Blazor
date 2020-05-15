@@ -78,7 +78,7 @@
             BorderColor = "#ffffff"
         };
 
-        doughnutSet.Data.AddRange(new double[] { 4, 5, 6, 7 });
+        doughnutSet.AddRange(new double[] { 4, 5, 6, 7 });
         _config.Data.Datasets.Add(doughnutSet);
     }
 
@@ -103,7 +103,7 @@
         var rand = new Random();
         var newVal = 1 + rand.NextDouble() * 10;
         _config.Data.Labels.Add(newVal.ToString(CultureInfo.InvariantCulture));
-        dataset.Data.Add(newVal);
+        dataset.Add(newVal);
         dataset.BackgroundColor = dataset.BackgroundColor.IndexedValues.Append(ColorUtil.RandomColorString()).ToArray();
 
         await _doughnutChartJs.Update();

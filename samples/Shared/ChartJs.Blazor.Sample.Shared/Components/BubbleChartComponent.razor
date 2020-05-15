@@ -29,74 +29,35 @@
             }
         };
 
-        _config.Data.Datasets = new List<BubbleDataset>
+        for (int i = 1; i <= 3; i++)
         {
-            new BubbleDataset
+            _config.Data.Datasets.Add(new BubbleDataset(GetRandomData())
             {
-                Label = "1'st dataset",
-                BackgroundColor = ColorUtil.RandomColorString(),
-                Data = new List<BubbleDataPoint>
-                {
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10)
-                }
-            },
-            new BubbleDataset
-            {
-                Label = "2'nd dataset",
-                BackgroundColor = ColorUtil.RandomColorString(),
-                Data = new List<BubbleDataPoint>
-                {
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10)
-                }
-            },
-            new BubbleDataset
-            {
-                Label = "3'rd dataset",
-                BackgroundColor = ColorUtil.RandomColorString(),
-                Data = new List<BubbleDataPoint>
-                {
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                    new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10)
-                }
-            },
-        };
+                Label = $"Dataset {i}",
+                BackgroundColor = ColorUtil.RandomColorString()
+            });
+        }
     }
 
     private async Task OnClick()
     {
-        _config.Data.Datasets.Add(new BubbleDataset
+        _config.Data.Datasets.Add(new BubbleDataset(GetRandomData())
         {
-            Label = $"{_config.Data.Datasets.Count + 1}'th dataset",
-            BackgroundColor = ColorUtil.RandomColorString(),
-            Data = new List<BubbleDataPoint>
-            {
-                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
-                new BubbleDataPoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10)
-            }
+            Label = $"Dataset {_config.Data.Datasets.Count + 1}",
+            BackgroundColor = ColorUtil.RandomColorString()
         });
 
         await _bubbleChartJs.Update();
     }
+
+    private IEnumerable<BubblePoint> GetRandomData() => new[]
+    {
+        new BubblePoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+        new BubblePoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+        new BubblePoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+        new BubblePoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+        new BubblePoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+        new BubblePoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10),
+        new BubblePoint(_rand.NextDouble(), _rand.NextDouble(), 5 + _rand.NextDouble() * 10)
+    };
 }
