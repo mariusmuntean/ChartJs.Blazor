@@ -2,8 +2,14 @@
 
 namespace ChartJs.Blazor.ChartJS.ScatterChart
 {
+    /// <summary>
+    /// Represents the data-subconfig of a <see cref="ScatterConfig"/>.
+    /// </summary>
     public class ScatterData
     {
-        public List<ScatterDataset> Datasets { get; set; } = new List<ScatterDataset>();
+        /// <summary>
+        /// Gets the datasets displayed in this chart.
+        /// </summary>
+        public List<ScatterDataset> Datasets { get; } = new List<ScatterDataset>();
     }
 }
