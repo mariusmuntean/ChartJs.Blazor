@@ -1,6 +1,7 @@
 ﻿using System;
 using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Enums;
+using ChartJs.Blazor.ChartJS.PieChart;
 using ChartJs.Blazor.Charts;
 using ChartJs.Blazor.Util;
 using System.Collections.Generic;
@@ -8,60 +9,52 @@ using System.Collections.Generic;
 namespace ChartJs.Blazor.ChartJS.PolarAreaChart
 {
     /// <summary>
-    /// A dataset for a <see cref="ChartJsPolarAreaChart"/>
+    /// Represents a dataset for a pie or doughnut chart.
+    /// As per documentation <a href="https://www.chartjs.org/docs/latest/charts/polar.html#dataset-properties">here (Chart.js)</a>.
     /// </summary>
-    public class PolarAreaDataset : IDataset
+    // Very similar to PieDataset, so the summaries are inherited.
+    public class PolarAreaDataset : Dataset<double>
     {
-        public string Id { get; } = Guid.NewGuid().ToString();
+        /// <summary>
+        /// Creates a new instance of <see cref="PolarAreaDataset"/>.
+        /// </summary>
+        public PolarAreaDataset() : base(ChartType.PolarArea) { }
 
         /// <summary>
-        /// Gets the chart type. <see cref="ChartType.PolarArea"/> in this case. This is needed for mixed datasets only.
+        /// Creates a new instance of <see cref="PolarAreaDataset"/> with initial data.
         /// </summary>
-        public ChartType Type { get; } = ChartType.PolarArea;
+        public PolarAreaDataset(IEnumerable<double> data) : this()
+        {
+            AddRange(data);
+        }
 
         /// <summary>
-        /// Gets or sets the fill color of the arcs in the dataset.
-        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
+        /// Creates a new instance of <see cref="PolarAreaDataset"/> with
+        /// a custom <see cref="ChartType"/>. Use this constructor when
+        /// you implement a polar-area-like chart.
         /// </summary>
+        /// <param name="type">The <see cref="ChartType"/> to use instead of <see cref="ChartType.PolarArea"/>.</param>
+        protected PolarAreaDataset(ChartType type) : base(type) { }
+
+        /// <inheritdoc cref="PieDataset.BackgroundColor"/>
         public IndexableOption<string> BackgroundColor { get; set; }
 
-        /// <summary>
-        /// Gets or sets the border align. When <see cref="BorderAlign.Center" /> is set, the borders of arcs next to each other will overlap.
-        /// When <see cref="BorderAlign.Inner" /> is set, it is guaranteed that all the borders are not overlap.
-        /// </summary>
+        /// <inheritdoc cref="PieDataset.BorderAlign"/>
         public IndexableOption<BorderAlign> BorderAlign { get; set; }
 
-        /// <summary>
-        /// Gets or sets the border color of the arcs in the dataset.
-        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
-        /// </summary>
+        /// <inheritdoc cref="PieDataset.BorderColor"/>
         public IndexableOption<string> BorderColor { get; set; }
 
-        /// <summary>
-        /// Gets or sets the border width of the arcs in the dataset.
-        /// </summary>
+        /// <inheritdoc cref="PieDataset.BorderWidth"/>
         public IndexableOption<int> BorderWidth { get; set; }
 
-        /// <summary>
-        /// Gets or sets the fill colour of the arcs when hovered.
-        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
-        /// </summary>
+        /// <inheritdoc cref="PieDataset.HoverBackgroundColor"/>
         public IndexableOption<string> HoverBackgroundColor { get; set; }
 
-        /// <summary>
-        /// Gets or sets the stroke colour of the arcs when hovered.
-        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
-        /// </summary>
+        /// <inheritdoc cref="PieDataset.HoverBorderColor"/>
         public IndexableOption<string> HoverBorderColor { get; set; }
 
-        /// <summary>
-        /// Gets or sets the stroke width of the arcs when hovered.
-        /// </summary>
+        /// <inheritdoc cref="PieDataset.HoverBorderWidth"/>
         public IndexableOption<int> HoverBorderWidth { get; set; }
-
-        /// <summary>
-        /// Gets the data in the dataset.
-        /// </summary>
-        public List<double> Data { get; } = new List<double>();
     }
 }
