@@ -17,12 +17,18 @@ namespace ChartJs.Blazor.ChartJS.BarChart
         /// <summary>
         /// Creates a new instance of <see cref="BarDataset{T}"/>.
         /// </summary>
-        public BarDataset() : base(ChartType.Bar) { }
+        /// <param name="horizontal">
+        /// If <see langword="true"/>, the dataset-type will be set to <see cref="ChartType.HorizontalBar"/>
+        /// instead of <see cref="ChartType.Bar"/>. Set this to <see langword="true"/> when using a horizontal
+        /// bar chart. If this is set to <see langword="false"/> in a horizontal bar chart, the bars won't be displayed.
+         /// </param>
+        public BarDataset(bool horizontal = false) : base(horizontal ? ChartType.HorizontalBar : ChartType.Bar) { }
 
         /// <summary>
         /// Creates a new instance of <see cref="BarDataset{T}"/> with initial data.
         /// </summary>
-        public BarDataset(IEnumerable<T> data) : this()
+        /// <inheritdoc cref="BarDataset(bool)"/>
+        public BarDataset(IEnumerable<T> data, bool horizontal = false) : this(horizontal)
         {
             AddRange(data);
         }
