@@ -63,6 +63,10 @@ declare class Chart {
     };
 
     static helpers: {
+        merge: (target: any, source: any, options?: {
+            merger?: Function;
+        }) => any;
+        extend: (target: any, ...args: any[]) => any;
         [key: string]: any;
     };
 
@@ -220,6 +224,8 @@ declare namespace Chart {
 
     interface ChartData {
         labels?: Array<string | string[]>;
+        xLabels?: Array<string | string[]>;
+        yLabels?: Array<string | string[]>;
         datasets?: ChartDataSets[];
     }
 
@@ -239,8 +245,8 @@ declare namespace Chart {
         maintainAspectRatio?: boolean;
         events?: string[];
         legendCallback?(chart: Chart): string;
-        onHover?(this: Chart, event: MouseEvent, activeElements: Array<{}>): any;
-        onClick?(event?: MouseEvent, activeElements?: Array<{}>): any;
+        onHover?: IMethodHandler | Function;
+        onClick?: IMethodHandler | Function;
         onResize?(this: Chart, newSize: ChartSize): void;
         title?: ChartTitleOptions;
         legend?: ChartLegendOptions;
@@ -283,8 +289,8 @@ declare namespace Chart {
         display?: boolean;
         position?: PositionType;
         fullWidth?: boolean;
-        onClick?(event: MouseEvent, legendItem: ChartLegendLabelItem): void;
-        onHover?(event: MouseEvent, legendItem: ChartLegendLabelItem): void;
+        onClick?: IMethodHandler | Function;
+        onHover?: IMethodHandler | Function;
         labels?: ChartLegendLabelOptions;
         reverse?: boolean;
     }
@@ -296,8 +302,8 @@ declare namespace Chart {
         fontColor?: ChartColor;
         fontFamily?: string;
         padding?: number;
-        generateLabels?(chart: Chart): ChartLegendLabelItem[];
-        filter?(legendItem: ChartLegendLabelItem, data: ChartData): any;
+        generateLabels?: IMethodHandler | Function;
+        filter?: IMethodHandler | Function;
         usePointStyle?: boolean;
     }
 
@@ -518,7 +524,7 @@ declare namespace Chart {
         backdropPaddingX?: number;
         backdropPaddingY?: number;
         beginAtZero?: boolean;
-        callback?(value: any, index: any, values: any): string | number;
+        callback?: IMethodHandler | Function;
         display?: boolean;
         fontColor?: ChartColor;
         fontFamily?: string;

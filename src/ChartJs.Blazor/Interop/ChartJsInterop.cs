@@ -41,7 +41,7 @@ namespace ChartJs.Blazor.Interop
             {
                 dynamic dynParam = StripNulls(chartConfig);
                 Dictionary<string, object> param = ConvertExpandoObjectToDictionary(dynParam);
-                return jsRuntime.InvokeAsync<bool>($"{ChartJsInteropName}.SetupChart", param);
+                return jsRuntime.InvokeAsync<bool>($"{ChartJsInteropName}.setupChart", param);
             }
             catch (Exception exp)
             {
@@ -105,7 +105,7 @@ namespace ChartJs.Blazor.Interop
             {
                 dynamic dynParam = StripNulls(chartConfig);
                 Dictionary<string, object> param = ConvertExpandoObjectToDictionary(dynParam);
-                return jsRuntime.InvokeAsync<bool>($"{ChartJsInteropName}.UpdateChart", param);
+                return jsRuntime.InvokeAsync<bool>($"{ChartJsInteropName}.updateChart", param);
             }
             catch (Exception exp)
             {
