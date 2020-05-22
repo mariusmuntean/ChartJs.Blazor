@@ -48,12 +48,8 @@ class ChartJsInterop {
 
         // Update datasets while keeping array references intact. Everything is done in-place here.
         this.mergeDatasets(myChart.config.data.datasets, config.data.datasets);
-
         // Update labels while keeping array references intact.
-        // If it was null/undefined before it can't be done in-place so assignment is required.
-        myChart.config.data.labels = this.mergeLabels(myChart.config.data.labels, config.data.labels);
-        myChart.config.data.xLabels = this.mergeLabels(myChart.config.data.xLabels, config.data.xLabels);
-        myChart.config.data.yLabels = this.mergeLabels(myChart.config.data.yLabels, config.data.yLabels);
+        this.mergeLabels(myChart.config.data, config.data);
         // Currently we only merge the datasets and the labels of the data subconfig but that
         // could be expanded in a similar fashion as the dataset's data (if there's a use-case).
 
@@ -97,28 +93,36 @@ class ChartJsInterop {
         // won't do anything. You'd have to remove and readd them. Maybe this could be implemented later.
     }
 
-    private mergeLabels(oldLabels: Array<string | string[]>, newLabels: Array<string | string[]>): Array<string | string[]> {
-        if (newLabels == null || newLabels.length === 0) {
-            if (oldLabels) {
-                oldLabels.length = 0;
+    private mergeLabels(oldChartData: Chart.ChartData, newChartData: Chart.ChartData): void {
+        const innerFunc = (oldLabels: Array<string | string[] | number | number[] | Date | Date[]>,
+                           newLabels: Array<string | string[] | number | number[] | Date | Date[]>) => {
+            if (newLabels == null || newLabels.length === 0) {
+                if (oldLabels) {
+                    oldLabels.length = 0;
+                }
+
+                return oldLabels;
+            }
+
+            if (oldLabels == null) {
+                return newLabels;
+            }
+
+            // clear existing labels
+            oldLabels.length = 0;
+
+            // add all the new labels
+            for (var i = 0; i < newLabels.length; i++) {
+                oldLabels.push(newLabels[i]);
             }
 
             return oldLabels;
         }
 
-        if (oldLabels == null) {
-            return newLabels;
-        }
-
-        // clear existing labels
-        oldLabels.length = 0;
-
-        // add all the new labels
-        for (var i = 0; i < newLabels.length; i++) {
-            oldLabels.push(newLabels[i]);
-        }
-
-        return oldLabels;
+        // If it was null/undefined before it can't be done in-place so assignment is required.
+        oldChartData.labels = innerFunc(oldChartData.labels, newChartData.labels);
+        oldChartData.xLabels = innerFunc(oldChartData.xLabels, newChartData.xLabels);
+        oldChartData.yLabels = innerFunc(oldChartData.yLabels, newChartData.yLabels);
     }
 
     private wireUpCallbacks(config: ChartConfiguration) {
