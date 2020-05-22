@@ -27,7 +27,9 @@ namespace ChartJs.Blazor.Interop
     {
         /// <summary>
         /// The name of the method which should be called from JavaScript.
-        /// The method name can be a reference to C# or JavaScript.
+        /// In the case of <see cref="JavaScriptHandler{T}"/>, this is a reference
+        /// to a JavaScript namespace + function. In the case of <see cref="DelegateHandler{T}"/>,
+        /// this is the name of the delegate to be invoked by blazor.
         /// </summary>
         public string MethodName { get; }
     }

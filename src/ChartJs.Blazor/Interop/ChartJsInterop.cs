@@ -143,38 +143,32 @@ namespace ChartJs.Blazor.Interop
             dynamic dynamicChartConfig = (dynamic)chartConfig;
             if (dynamicChartConfig?.Options?.OnClick is IMethodHandler chartOnClick)
             {
-                const string path = "options.onClick";
-                cleanChartConfig.SetValue(path, chartOnClick);
+                cleanChartConfig.SetValue(path: "options.onClick", chartOnClick);
             }
 
             if (dynamicChartConfig?.Options?.OnHover is IMethodHandler chartOnHover)
             {
-                const string path = "options.onHover";
-                cleanChartConfig.SetValue(path, chartOnHover);
+                cleanChartConfig.SetValue(path: "options.onHover", chartOnHover);
             }
 
             if (dynamicChartConfig?.Options?.Legend?.OnClick is IMethodHandler legendOnClick)
             {
-                const string path = "options.legend.onClick";
-                cleanChartConfig.SetValue(path, legendOnClick);
+                cleanChartConfig.SetValue(path: "options.legend.onClick", legendOnClick);
             }
 
             if (dynamicChartConfig?.Options?.Legend?.OnHover is IMethodHandler legendOnHover)
             {
-                const string path = "options.legend.onHover";
-                cleanChartConfig.SetValue(path, legendOnHover);
+                cleanChartConfig.SetValue(path: "options.legend.onHover", legendOnHover);
             }
 
             if (dynamicChartConfig?.Options?.Legend?.Labels?.GenerateLabels is IMethodHandler generateLabels)
             {
-                const string path = "options.legend.labels.generateLabels";
-                cleanChartConfig.SetValue(path, generateLabels);
+                cleanChartConfig.SetValue(path: "options.legend.labels.generateLabels", generateLabels);
             }
 
             if (dynamicChartConfig?.Options?.Legend?.Labels?.Filter is IMethodHandler filter)
             {
-                const string path = "options.legend.labels.filter";
-                cleanChartConfig.SetValue(path, filter);
+                cleanChartConfig.SetValue(path: "options.legend.labels.filter", filter);
             }
 
             // Ticks callback need special handling because it can be either a single scale or two arrays of scales (xAxes and yAxes)
@@ -183,8 +177,7 @@ namespace ChartJs.Blazor.Interop
             {
                 if (dynamicChartConfig?.Options?.Scale?.Callback is IMethodHandler singleScaleTickCallback)
                 {
-                    const string path = "options.scale.callback";
-                    cleanChartConfig.SetValue(path, singleScaleTickCallback);
+                    cleanChartConfig.SetValue(path: "options.scale.callback", singleScaleTickCallback);
                 }
             }
             catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException) // happens when the options don't have a Scale property
