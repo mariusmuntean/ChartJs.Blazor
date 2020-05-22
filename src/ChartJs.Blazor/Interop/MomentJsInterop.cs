@@ -1,7 +1,7 @@
 ﻿using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace ChartJs.Blazor.ChartJS
+namespace ChartJs.Blazor.Interop
 {
     /// <summary>
     /// Interop layer with the included/referenced moment.js

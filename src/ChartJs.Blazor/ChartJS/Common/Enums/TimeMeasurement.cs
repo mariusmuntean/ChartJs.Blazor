@@ -3,9 +3,9 @@
     /// <summary>
     /// As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html#time-units
     /// </summary>
-    /// 
     public sealed class TimeMeasurement : StringEnum
     {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static TimeMeasurement Millisecond => new TimeMeasurement("millisecond");
         public static TimeMeasurement Second => new TimeMeasurement("second");
         public static TimeMeasurement Minute => new TimeMeasurement("minute");
@@ -15,6 +15,7 @@
         public static TimeMeasurement Month => new TimeMeasurement("month");
         public static TimeMeasurement Quarter => new TimeMeasurement("quarter");
         public static TimeMeasurement Year => new TimeMeasurement("year");
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
         private TimeMeasurement(string stringRep) : base(stringRep) { }
     }

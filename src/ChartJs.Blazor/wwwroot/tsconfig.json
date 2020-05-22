@@ -1,17 +1,12 @@
 ﻿{
   "compilerOptions": {
-    "allowJs": true,
-    "module": "none",
-    "target": "es2018",
-    "lib": [ "dom", "es2018" ],
-    "outDir": "",
+    "alwaysStrict": true,
+    "removeComments": true,
+    "target": "ES2018",
+    "lib": [ "dom", "ES2018" ],
     "outFile": "ChartJsBlazorInterop.js",
     "sourceMap": true,
-    "sourceRoot": "ts/",
-    "typeRoots": ["ts/types/"]
+    "sourceRoot": "ts/"
   },
-  "include": [
-    "ts/*.ts"
-  ],
   "compileOnSave": true
 }

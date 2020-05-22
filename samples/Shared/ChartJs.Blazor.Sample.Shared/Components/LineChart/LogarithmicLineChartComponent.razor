@@ -6,6 +6,7 @@
 @using ChartJs.Blazor.ChartJS.Common.Axes
 @using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
 @using ChartJs.Blazor.ChartJS.Common.Handlers
+@using ChartJs.Blazor.Interop
 @using ChartJs.Blazor.Sample.Shared.Services
 @using ChartJs.Blazor.Util
 
@@ -34,7 +35,7 @@
                 Legend = new Legend
                 {
                     Position = Position.Right,
-                    Labels = new LegendLabelConfiguration
+                    Labels = new LegendLabels
                     {
                         UsePointStyle = true
                     }
@@ -46,7 +47,7 @@
                 },
                 Scales = new Scales
                 {
-                    xAxes = new List<CartesianAxis>
+                    XAxes = new List<CartesianAxis>
                     {
                         new LinearCartesianAxis
                         {
@@ -64,7 +65,7 @@
                             }
                         }
                     },
-                    yAxes = new List<CartesianAxis>
+                    YAxes = new List<CartesianAxis>
                     {
                         new LogarithmicAxis
                         {
@@ -75,7 +76,7 @@
                         }
                     }
                 },
-                Hover = new LineOptionsHover
+                Hover = new Hover
                 {
                     Intersect = true,
                     Mode = InteractionMode.Y

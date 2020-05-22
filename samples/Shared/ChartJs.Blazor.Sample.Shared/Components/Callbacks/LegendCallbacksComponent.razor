@@ -1,20 +1,12 @@
-@page "/test"
-
-@using System.Globalization
+﻿@using System.Globalization
 @using ChartJs.Blazor.Charts
 @using ChartJs.Blazor.ChartJS.PieChart
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Properties
-@using ChartJs.Blazor.Util
-@using ChartJs.Blazor.ChartJS.BarChart
-@using ChartJs.Blazor.ChartJS.BarChart.Axes
-@using ChartJs.Blazor.ChartJS.Common.Enums
-@using ChartJs.Blazor.ChartJS.Common.Axes
-@using ChartJs.Blazor.ChartJS.Common.Wrappers
-@using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
 @using ChartJs.Blazor.ChartJS.Common.Handlers
 @using ChartJs.Blazor.Interop
-@using System.Text.Json
+@using ChartJs.Blazor.Util
+@using Newtonsoft.Json.Linq;
 
 <h1>Pie Chart with legend callbacks</h1>
 
@@ -52,8 +44,7 @@
                 Title = new OptionsTitle
                 {
                     Display = true,
-                    Text = new[] { "Simple Bar Chart", "with two lines of title" },
-                    FontStyle = FontStyle.Italic
+                    Text = "Sample chart with legend callbacks"
                 },
                 Responsive = true,
                 Animation = new ArcAnimation
@@ -63,10 +54,12 @@
                 },
                 Legend = new Legend
                 {
+                    OnHover = new DelegateHandler<LegendItemMouseEvent>(ShowEventAndArgs),
                     Labels = new LegendLabels
                     {
+                        UsePointStyle = true,
                         GenerateLabels = new JavaScriptHandler<LegendLabelsGenerator>("SampleInterop.CreateLabels"),
-                        Filter = new JavaScriptHandler<LegendLabelFilter>("SampleInterop.AsyncFilter") // new DelegateHandler<LegendLabelFilter>(LabelsFilter) //
+                        Filter = new DelegateHandler<LegendLabelFilter>(LabelsFilter) // new JavaScriptHandler<LegendLabelFilter>("SampleInterop.Filter") // 
                     }
                 }
             }
@@ -144,9 +137,14 @@
         }
     }
 
-    private bool LabelsFilter(JsonElement item, JsonElement chart)
+    public void ShowEventAndArgs(JObject @event, LegendItem args)
     {
-        int index = item.GetProperty("index").GetInt32();
+        Console.WriteLine($"Index: {args.Index}, Hidden: {args.Hidden}, Text: '{args.Text}'");
+    }
+
+    private bool LabelsFilter(LegendItem item, [IgnoreCallbackValue] JObject chart)
+    {
+        int index = item.Index.Value;
         bool shown = index % 3 != 0;
         Console.WriteLine($"Index: {index} -> {(shown ? "shown" : "hidden")}");
 

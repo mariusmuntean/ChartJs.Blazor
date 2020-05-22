@@ -1,12 +1,14 @@
 ﻿using ChartJs.Blazor.ChartJS.Common.Enums;
+using ChartJs.Blazor.ChartJS.Common.Handlers;
 using ChartJs.Blazor.Util;
+using ChartJs.Blazor.Interop;
 
-namespace ChartJs.Blazor.ChartJS.Common.Handlers
+namespace ChartJs.Blazor.ChartJS.Common.Properties
 {
     /// <summary>
     /// The legend label configuration is nested below the legend configuration
     /// </summary>
-    public class LegendLabelConfiguration
+    public class LegendLabels
     {
         /// <summary>
         /// width of colored box
@@ -35,15 +37,19 @@ namespace ChartJs.Blazor.ChartJS.Common.Handlers
         public int Padding { get; set; } = 10;
 
         /// <summary>
-        /// Generates legend items for each thing in the legend. Default implementation returns the text + styling for the color box. See Legend Item for details.
-        /// <para> See Legend Item: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-item-interface </para>
+        /// Gets or sets the callback to generate legend items for a chart.
+        /// Default implementation returns the text + styling for the color box.
+        /// <para>See <see cref="JavaScriptHandler{T}"/> and <see cref="DelegateHandler{T}"/>.</para>
         /// </summary>
-        public string GenerateLabels { get; set; }
+        public IMethodHandler<LegendLabelsGenerator> GenerateLabels { get; set; }
 
         /// <summary>
-        /// Filters legend items out of the legend. Receives 2 parameters, a Legend Item and the chart data.
+        /// Gets or sets the callback to filter legend items out of the legend.
+        /// Receives 2 parameters, a <see cref="LegendItem"/> and the chart data. The chart data large so
+        /// consider applying a <see cref="IgnoreCallbackValueAttribute"/> if you don't use the value.
+        /// <para>See <see cref="JavaScriptHandler{T}"/> and <see cref="DelegateHandler{T}"/>.</para>
         /// </summary>
-        public string Filter { get; set; }
+        public IMethodHandler<LegendLabelFilter> Filter { get; set; }
 
         /// <summary>
         /// Label style will match corresponding point style (size is based on <see cref="FontSize"/>, <see cref="BoxWidth"/> is not used in this case).

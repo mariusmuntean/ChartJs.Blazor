@@ -5,11 +5,13 @@
 @using ChartJs.Blazor.Util
 @using ChartJs.Blazor.ChartJS.BarChart
 @using ChartJs.Blazor.ChartJS.BarChart.Axes
+@using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Axes
 @using ChartJs.Blazor.ChartJS.Common.Wrappers
 @using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
-@using ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler
-@using Newtonsoft.Json
+@using ChartJs.Blazor.ChartJS.Common.Handlers
+@using ChartJs.Blazor.Interop
+@using Newtonsoft.Json.Linq;
 
 <ChartJsBarChart @ref="barChartJs" Config="@_config" Height="250"/>
 
@@ -56,7 +58,11 @@
                         }
                     }
                 },
-                OnClick = new DotNetInstanceClickHandler(OnClickHandler),
+                OnClick = new DelegateHandler<ChartMouseEvent>((e, elems) => Console.WriteLine(e.ToString())),
+                Legend = new Legend
+                {
+                    OnClick = new DelegateHandler<LegendItemMouseEvent>(StaticInterop.TestInterop)
+                },
                 MaintainAspectRatio = false,
                 Responsive = true
             }
@@ -79,18 +85,19 @@
         _config.Data.Datasets.Add(_barDataSet);
     }
 
-    [JSInvokable]
-    public void OnClickHandler(object sender, object args)
-    {
-        EventArgs += JsonConvert.SerializeObject(JsonConvert.DeserializeObject($"{Environment.NewLine}{args}"), Formatting.Indented);
-        Rows = Math.Max(3, EventArgs.Split(new[] {Environment.NewLine}, StringSplitOptions.None).Length + 1);
-        StateHasChanged();
-    }
-
     private void OnClear()
     {
         EventArgs = string.Empty;
         StateHasChanged();
     }
 
+    private static class StaticInterop
+    {
+        private static int s_eventCount = 0;
+
+        public static void TestInterop(JObject @event, LegendItem args)
+        {
+            Console.WriteLine($"{System.Threading.Interlocked.Increment(ref s_eventCount)}. event");
+        }
+    }
 }

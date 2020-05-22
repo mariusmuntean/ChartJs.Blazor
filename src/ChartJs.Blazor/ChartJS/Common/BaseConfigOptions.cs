@@ -1,45 +1,46 @@
-﻿using ChartJs.Blazor.ChartJS.Common.Handlers;
-using ChartJs.Blazor.ChartJS.Common.Handlers.OnClickHandler;
+﻿using ChartJs.Blazor.ChartJS.Common.Enums;
+using ChartJs.Blazor.ChartJS.Common.Handlers;
 using ChartJs.Blazor.ChartJS.Common.Properties;
 using System;
 using System.Collections.Generic;
+using ChartJs.Blazor.Interop;
 
 namespace ChartJs.Blazor.ChartJS.Common
 {
     /// <summary>
-    /// The base config for the options-subconfig of a chart
+    /// The base config for the options-subconfig of a chart.
     /// </summary>
     public class BaseConfigOptions
     {
         /// <summary>
-        /// Represents the title of this chart
+        /// Gets or sets the title of this chart.
         /// </summary>
         public OptionsTitle Title { get; set; }
 
         /// <summary>
-        /// Resizes the chart canvas when its container does.
+        /// Gets or sets a value indicating whether the chart canvas should be resized when its container is.
         /// <para>See important note: https://www.chartjs.org/docs/latest/general/responsive.html#important-note </para>
         /// </summary>
         public bool Responsive { get; set; } = true;
 
         /// <summary>
-        /// Canvas aspect ratio (i.e. width / height, a value of 1 representing a square canvas). 
+        /// Gets or sets the canvas aspect ratio (i.e. width / height, a value of 1 representing a square canvas). 
         /// <para>Note that this option is ignored if the height is explicitly defined either as attribute (of the canvas) or via the style.</para>
         /// </summary>
         public double AspectRatio { get; set; } = 2;
 
         /// <summary>
-        /// Maintain the original canvas aspect ratio (width / height) when resizing.
+        /// Gets or sets a value indicating whether to maintain the original canvas aspect ratio (width / height) when resizing.
         /// </summary>
         public bool MaintainAspectRatio { get; set; } = true;
 
         /// <summary>
-        /// Duration in milliseconds it takes to animate to new size after a resize event.
+        /// Gets or sets the duration in milliseconds it takes to animate to new size after a resize event.
         /// </summary>
         public int ResponsiveAnimationDuration { get; set; }
 
         /// <summary>
-        /// The legend for this chart
+        /// Gets or sets the legend for this chart.
         /// </summary>
         public Legend Legend { get; set; } = new Legend();
 
@@ -63,8 +64,33 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// </summary>
         public Dictionary<string, object> Plugins { get; } = new Dictionary<string, object>();
 
-        public IClickHandler OnClick { get; set; }
+        /// Gets or sets the browser events that the chart should listen to for tooltips and hovering.
+        /// <para>
+        /// If <see langword="null"/>, this includes <see cref="BrowserEvent.MouseMove"/>, <see cref="BrowserEvent.MouseOut"/>,
+        /// <see cref="BrowserEvent.Click"/>, <see cref="BrowserEvent.TouchStart"/> and <see cref="BrowserEvent.TouchMove"/>.
+        /// </para>
+        /// </summary>
+        public BrowserEvent[] Events { get; set; }
 
+        /// <summary>
+        /// Gets or sets the callback to call when an event of type <see cref="BrowserEvent.MouseUp"/> or
+        /// <see cref="BrowserEvent.Click"/> fires on the chart.
+        /// Called in the context of the chart and passed the event and an array of active elements.
+        /// <para>See <see cref="JavaScriptHandler{T}"/> and <see cref="DelegateHandler{T}"/>.</para>
+        /// </summary>
+        public IMethodHandler<ChartMouseEvent> OnClick { get; set; }
+
+        /// <summary>
+        /// Gets or sets the callback to call when any of the <see cref="Events"/> fire on the chart.
+        /// Called in the context of the chart and passed the event and an array of
+        /// active elements (bars, points, etc).
+        /// <para>See <see cref="JavaScriptHandler{T}"/> and <see cref="DelegateHandler{T}"/>.</para>
+        /// </summary>
+        public IMethodHandler<ChartMouseEvent> OnHover { get; set; }
+
+        /// <summary>
+        /// Gets or sets the hover configuration for this chart.
+        /// </summary>
         public Hover Hover { get; set; }
 
         /// <summary>

@@ -6,282 +6,325 @@ interface ChartConfiguration extends Chart.ChartConfiguration {
     canvasId: string;
 }
 
-interface DotNetType {
-    invokeMethodAsync(assemblyName, methodName, sender, args): Promise<any>;
-}
-
 interface DotNetObjectReference {
-    invokeMethodAsync(methodName, sender, args): Promise<any>;
+    invokeMethod(methodName: string, ...args): any;
+    invokeMethodAsync(methodName: string, ...args): Promise<any>;
 }
 
-declare var DotNet: DotNetType;
+// maybe the interop could be improved somehow by using generic similar to how it's done in C#
+// but since we don't need typesafety in JavaScript and can't rely on it anyway (just like we
+// have to invoke the C# delegate dynamically) we're not using generics.
+interface IMethodHandler {
+    methodName: string;
+}
+
+interface DelegateHandler extends IMethodHandler {
+    handlerReference: DotNetObjectReference;
+    returnsValue: boolean;
+    ignoredIndices: number[];
+}
 
 class ChartJsInterop {
-
     BlazorCharts = new Map<string, Chart>();
 
-    public SetupChart(config: ChartConfiguration): boolean {
+    public setupChart(config: ChartConfiguration): boolean {
         if (!this.BlazorCharts.has(config.canvasId)) {
-            if (!config.options.legend)
-                config.options.legend = {};
-            let thisChart = this.initializeChartjsChart(config);
-            this.BlazorCharts.set(config.canvasId, thisChart);
+            this.wireUpCallbacks(config);
+
+            let chart = new Chart(config.canvasId, config)
+            this.BlazorCharts.set(config.canvasId, chart);
+
             return true;
         } else {
-            return this.UpdateChart(config);
+            return this.updateChart(config);
         }
     }
 
-    public UpdateChart(config: ChartConfiguration): boolean {
+    public updateChart(config: ChartConfiguration): boolean {
         if (!this.BlazorCharts.has(config.canvasId))
             throw `Could not find a chart with the given id. ${config.canvasId}`;
 
         let myChart = this.BlazorCharts.get(config.canvasId);
 
-        /// Handle datasets
-        this.HandleDatasets(myChart, config);
+        // Update datasets. This breaks the data-array-references; more in the function.
+        this.mergeDatasets(myChart.config.data.datasets, config.data.datasets);
+        // Update labels while keeping array references intact.
+        this.mergeLabels(myChart.config.data, config.data);
+        // Currently we only merge the datasets and the labels of the data subconfig but that
+        // could be expanded in a similar fashion as the dataset's data (if there's a use-case).
 
-        /// Handle labels
-        this.MergeLabels(myChart, config);
+        this.wireUpCallbacks(config);
 
-        // Redo any wiring up
-        this.WireUpFunctions(config);
-
-        // Handle options - mutating the Options seems better because the rest of the computed options members are preserved
-        Object.entries(config.options).forEach(e => {
-            myChart.config.options[e[0]] = e[1];
-        });
+        // This will add new options and update existing ones. Nothing is deleted.
+        // Calling extend instead of merge avoids the unnecessary deep copy as
+        // config.options is a brand new object (deserialized by blazor).
+        Chart.helpers.extend(myChart.config.options, config.options);
 
         myChart.update();
         return true;
     }
 
-    private HandleDatasets(myChart: Chart, config: ChartConfiguration) {
-        // Remove any datasets the aren't in the new config
-        let dataSetsToRemove = myChart.config.data.datasets.filter(d => config.data.datasets.find(newD => newD.id === d.id) === undefined);
-        for (const d of dataSetsToRemove) {
-            const indexToRemoveAt = myChart.config.data.datasets.indexOf(d);
-            if (indexToRemoveAt != -1) {
-                myChart.config.data.datasets.splice(indexToRemoveAt, 1);
+    private mergeDatasets(oldDatasets: Array<Chart.ChartDataSets>, newDatasets: Array<Chart.ChartDataSets>) {
+        // iterate backwards so we can remove datasets as we go
+        for (let i = oldDatasets.length - 1; i >= 0; i--) {
+            let sameDatasetInNewConfig = newDatasets.find(newD => newD.id === oldDatasets[i].id);
+            if (sameDatasetInNewConfig === undefined) {
+                // Remove dataset if it's not in the new config
+                oldDatasets.splice(i, 1);
+            } else {
+                // This comment below would be the 'correct' way of updating the data while retaining the same reference.
+                // However, there's quite a big issue with this. Chart.js actually listenes for modifications on
+                // the data array and will decide on the update-animation by looking at the latest modifications.
+                // Since this would clear the whole array and then add all the new data, Chart.js thinks every data
+                // point is fresh and plays the same animation it plays when initially creating the chart.
+                // To prevent Chart.js from doing that, we replace the reference which doesn't record any modifications.
+
+                //oldDatasets[i].data.length = 0; // Remove old data
+                //for (let j = 0; j < sameDatasetInNewConfig.data.length; j++) {
+                //    // Add current data. Of course it won't be a number _and_ a ChartPoint but I don't how else to make ts happy
+                //    oldDatasets[i].data.push(<number & Chart.ChartPoint>sameDatasetInNewConfig.data[j]);
+                //}
+                //delete sameDatasetInNewConfig.data; // Remove the array from the new dataset so it doesn't get copied in the next line
+
+                // Merge everything, including the data-array reference.
+                // As with the labels, deep copying(with helper.merge) is simply a waste here.
+                Chart.helpers.extend(oldDatasets[i], sameDatasetInNewConfig);
             }
         }
 
-        // Add new datasets
-        let dataSetsToAdd = config.data.datasets.filter(newD => myChart.config.data.datasets.find(d => newD.id === d.id) === undefined);
-        dataSetsToAdd.forEach(d => myChart.config.data.datasets.push(d));
+        let currentIds = oldDatasets.map(dataset => dataset.id);
+        newDatasets.filter(newDataset => !currentIds.includes(newDataset.id))
+                    .forEach(newDataset => oldDatasets.push(newDataset));
 
-        // Update any existing datasets
-        let datasetsToUpdate = myChart.config.data.datasets
-            .filter(d => config.data.datasets.find(newD => newD.id === d.id) !== undefined)
-            .map(d => ({oldD: d, newD: config.data.datasets.find(val => val.id === d.id)}));
-        datasetsToUpdate.forEach(pair => {
-            // pair.oldD.data.slice(0, pair.oldD.data.length);
-            // pair.newD.data.forEach(newEntry => pair.oldD.data.push(newEntry));
-            Object.entries(pair.newD).forEach(entry => pair.oldD[entry[0]] = entry[1]);
-        });
+        // Currently the order isn't respected so simply reordering the datasets and calling update
+        // won't do anything. You'd have to remove and readd them. Maybe this could be implemented later.
     }
 
-    private MergeLabels(myChart: Chart, config: ChartConfiguration) {
-        if (config.data.labels === undefined || config.data.labels.length === 0) {
-            myChart.config.data.labels = new Array<string | string[]>();
-            return;
-        }
-        if (!myChart.config.data.labels) {
-            myChart.config.data.labels = new Array<string | string[]>();
-        }
-        // clear existing labels
-        myChart.config.data.labels.splice(0, myChart.config.data.labels.length);
+    private mergeLabels(oldChartData: Chart.ChartData, newChartData: Chart.ChartData): void {
+        const innerFunc = (oldLabels: Array<string | string[] | number | number[] | Date | Date[]>,
+                           newLabels: Array<string | string[] | number | number[] | Date | Date[]>) => {
+            if (newLabels == null || newLabels.length === 0) {
+                if (oldLabels) {
+                    oldLabels.length = 0;
+                }
 
-        // add all the new labels
-        config.data.labels.forEach(l => myChart.config.data.labels.push(l));
-    }
-
-    private initializeChartjsChart(config: ChartConfiguration): Chart {
-        let ctx = <HTMLCanvasElement>document.getElementById(config.canvasId);
-
-        this.WireUpFunctions(config);
-
-        let myChart = new Chart(ctx, config);
-        return myChart;
-    }
-
-    private WireUpFunctions(config: ChartConfiguration) {
-
-        // replace the Legend's OnHover function name with the actual function (if present)
-        this.WireUpLegendOnHover(config);
-
-        // replace the Options' OnClick function name with the actual function (if present)
-        this.WireUpOptionsOnClickFunc(config);
-
-        // replace the Options.Hover.OnHover func name with the actual function (if present)
-        this.WireUpOptionsOnHoverFunc(config);
-
-        // replace the Legend's OnClick function name with the actual function (if present)
-        this.WireUpLegendOnClick(config);
-
-        // replace the Label's GenerateLabels function name with the actual function (if present)
-        this.WireUpGenerateLabelsFunc(config);
-
-        // replace the Label's Filter function name with the actual function (if present)
-        // see details here: http://www.chartjs.org/docs/latest/configuration/legend.html#legend-label-configuration
-        this.WireUpLegendItemFilterFunc(config);
-    }
-
-    private WireUpLegendItemFilterFunc(config) {
-        if (config.options.legend.labels === undefined)
-            config.options.legend.labels = {};
-        if (config.options.legend.labels.filter &&
-            typeof config.options.legend.labels.filter === "string" &&
-            config.options.legend.labels.filter.includes(".")) {
-            const filtersNamespaceAndFunc = config.options.legend.labels.filter.split(".");
-            const filterFunc = window[filtersNamespaceAndFunc[0]][filtersNamespaceAndFunc[1]];
-            if (typeof filterFunc === "function") {
-                config.options.legend.labels.filter = filterFunc;
-            } else { // fallback to the default, which is null
-                config.options.legend.labels.filter = null;
+                return oldLabels;
             }
-        } else { // fallback to the default, which is null
-            config.options.legend.labels.filter = null;
+
+            if (oldLabels == null) {
+                return newLabels;
+            }
+
+            // clear existing labels
+            oldLabels.length = 0;
+
+            // add all the new labels
+            for (var i = 0; i < newLabels.length; i++) {
+                oldLabels.push(newLabels[i]);
+            }
+
+            return oldLabels;
         }
+
+        // If it was null/undefined before it can't be done in-place so assignment is required.
+        oldChartData.labels = innerFunc(oldChartData.labels, newChartData.labels);
+        oldChartData.xLabels = innerFunc(oldChartData.xLabels, newChartData.xLabels);
+        oldChartData.yLabels = innerFunc(oldChartData.yLabels, newChartData.yLabels);
     }
 
-    private WireUpGenerateLabelsFunc(config) {
-        let getDefaultFunc = function (type) {
+    private wireUpCallbacks(config: ChartConfiguration) {
+        // Replace IMethodHandler objects with actual function (if present)
+        // This should be "automated" in some way. We shouldn't have to add
+        // (much) new code for a new callback.
+        this.wireUpOptionsOnClick(config);
+        this.wireUpOptionsOnHover(config);
+        this.wireUpLegendOnClick(config);
+        this.wireUpLegendOnHover(config);
+        this.wireUpLegendItemFilter(config);
+        this.wireUpGenerateLabels(config);
+        this.wireUpTickCallback(config);
+    }
+
+    private wireUpOptionsOnClick(config: ChartConfiguration) {
+        let getDefaultFunc = type => {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
-            if (defaults.legend &&
-                defaults.legend.labels &&
-                defaults.legend.labels.generateLabels) {
-                return defaults.legend.labels.generateLabels;
-            }
-            return Chart.defaults.global.legend.labels.generateLabels;
+            return defaults?.onClick || Chart.defaults.global.onClick;
         };
 
-        if (config.options.legend.labels === undefined)
-            config.options.legend.labels = {};
-        if (config.options.legend.labels.generateLabels &&
-            typeof config.options.legend.labels.generateLabels === "string" &&
-            config.options.legend.labels.generateLabels.includes(".")) {
-            const generateLabelsNamespaceAndFunc = config.options.legend.labels.generateLabels.split(".");
-            const generateLabelsFunc = window[generateLabelsNamespaceAndFunc[0]][generateLabelsNamespaceAndFunc[1]];
-            if (typeof generateLabelsFunc === "function") {
-                config.options.legend.labels.generateLabels = generateLabelsFunc;
-            } else { // fallback to the default
-                config.options.legend.labels.generateLabels = getDefaultFunc(config.type);
-            }
-        } else { // fallback to the default
-            config.options.legend.labels.generateLabels = getDefaultFunc(config.type);
-        }
+        config.options.onClick = this.getMethodHandler(<IMethodHandler>config.options.onClick, getDefaultFunc(config.type));
     }
 
-    private WireUpOptionsOnClickFunc(config: ChartConfiguration) {
-        let getDefaultFunc = function (type) {
+    private wireUpOptionsOnHover(config: ChartConfiguration) {
+        let getDefaultFunc = type => {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
-            return defaults?.onClick || undefined;
+            return defaults?.onHover || Chart.defaults.global.onHover;
         };
 
-        config.options.onClick = this.GetHandler(config.options.onClick, getDefaultFunc(config.type));
+        config.options.onHover = this.getMethodHandler(<IMethodHandler>config.options.onHover, getDefaultFunc(config.type));
     }
 
-    private WireUpOptionsOnHoverFunc(config: ChartConfiguration) {
-        let getDefaultFunc = function (type) {
-            let defaults = Chart.defaults[type] || Chart.defaults.global;
-            return defaults?.hover?.onHover || undefined;
-        };
-
-        if (config.options.hover) {
-            config.options.hover.onHover = this.GetHandler(config.options.hover.onHover, getDefaultFunc(config.type));
-        }
-    }
-
-    private WireUpLegendOnClick(config) {
+    private wireUpLegendOnClick(config: ChartConfiguration) {
         let getDefaultHandler = type => {
-            let chartDefaults = Chart.defaults[type];
-            return chartDefaults?.legend?.onClick || Chart.defaults.global?.legend?.onClick || undefined;
+            let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
+            return chartDefaults?.legend?.onClick || Chart.defaults.global.legend.onClick;
         };
 
-        config.options.legend.onClick = this.GetHandler(config.options.legend.onClick, getDefaultHandler(config.type));
+        config.options.legend.onClick = this.getMethodHandler(<IMethodHandler>config.options.legend.onClick, getDefaultHandler(config.type));
     }
 
-    private WireUpLegendOnHover(config) {
-        let getDefaultFunc = function (type) {
-            let chartDefaults = Chart.defaults[type];
-            return chartDefaults?.legend?.onHover || Chart.defaults.global?.legend?.onHover || undefined;
+    private wireUpLegendOnHover(config: ChartConfiguration) {
+        let getDefaultFunc = type => {
+            let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
+            return chartDefaults?.legend?.onHover || Chart.defaults.global.legend.onHover;
         };
 
-        config.options.legend.onHover = this.GetHandler(config.options.legend.onHover, getDefaultFunc(config.type));
+        config.options.legend.onHover = this.getMethodHandler(<IMethodHandler>config.options.legend.onHover, getDefaultFunc(config.type));
+    }
+
+    private wireUpLegendItemFilter(config: ChartConfiguration) {
+        let getDefaultFunc = type => {
+            let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
+            return chartDefaults?.legend?.labels?.filter || Chart.defaults.global.legend.labels.filter;
+        };
+
+        config.options.legend.labels.filter = this.getMethodHandler(<IMethodHandler>config.options.legend.labels.filter, getDefaultFunc(config.type));
+    }
+
+    private wireUpGenerateLabels(config: ChartConfiguration) {
+        let getDefaultFunc = type => {
+            let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
+            return chartDefaults?.legend?.labels?.generateLabels || Chart.defaults.global.legend.labels.generateLabels;
+        };
+
+        config.options.legend.labels.generateLabels = this.getMethodHandler(<IMethodHandler>config.options.legend.labels.generateLabels, getDefaultFunc(config.type));
+    }
+
+    private wireUpTickCallback(config: ChartConfiguration) {
+        /* Defaults table (found out by checking Chart.defaults in console) -> everything undefined
+         * Bar (scales): undefined
+         * Bubble (scales): undefined
+         * Pie & Doughnut: don't even have scale(s) field
+         * HorizontalBar (scales): undefined
+         * Line (scales): undefined
+         * PolarArea (scale): undefined
+         * Radar (scale): undefined
+         * Scatter (scales): undefined
+         */
+
+        const assignCallbacks = axes => {
+            if (axes) {
+                for (var i = 0; i < axes.length; i++) {
+                    if (!axes[i].ticks) continue;
+                    axes[i].ticks.callback = this.getMethodHandler(axes[i].ticks.callback, undefined);
+                    if (!axes[i].ticks.callback) {
+                        delete axes[i].ticks.callback; // undefined != deleted, chartJs throws an error if it's undefined so we have to delete it
+                    }
+                }
+            }
+        }
+
+        assignCallbacks(config.options.scales?.xAxes);
+        assignCallbacks(config.options.scales?.yAxes);
+
+        if (config.options.scale?.ticks) {
+            config.options.scale.ticks.callback = this.getMethodHandler(<IMethodHandler>config.options.scale.ticks.callback, undefined);
+        }
     }
 
     /**
-     * Given an IClickHandler (see the C# code), it tries to recover the referenced handler.
-     * It currently supports Javascript functions, which are expected to be attached to the window object; .Net static functions and .Net object instance methods
+     * Given an IMethodHandler (see C# code), it tries to resolve the referenced method.
+     * It currently supports JavaScript functions, which are expected to be attached to the window object, and .Net delegates which can be
+     * bound to .Net static functions, .Net object instance methods and more.
      *
-     * Failing to recover any handler from the IClickHandler, it returns the default handler.
+     * When failing to recover a method from the IMethodHandler, it returns the default handler.
      *
-     * @param iClickHandler
-     * @param chartJsDefaultHandler
-     * @constructor
+     * @param handler the serialized IMethodHandler (see C# code)
+     * @param defaultFunc the fallback value to use in case the method can't be resolved
      */
-    private GetHandler = (iClickHandler, chartJsDefaultHandler: Function) => {
-        if (iClickHandler) {
-            // Js function
-            if (typeof iClickHandler === "object" &&
-                iClickHandler.hasOwnProperty('fullFunctionName')) {
-                let onClickStringName: { fullFunctionName: string } = <any>iClickHandler;
-                const onClickNamespaceAndFunc = onClickStringName.fullFunctionName.split(".");
-                const onClickFunc = window[onClickNamespaceAndFunc[0]][onClickNamespaceAndFunc[1]];
-                if (typeof onClickFunc === "function") {
-                    return onClickFunc;
-                } else { // fallback to the default
-                    return chartJsDefaultHandler;
-                }
-            }
-            // .Net static method
-            else if (typeof iClickHandler === "object" &&
-                iClickHandler.hasOwnProperty('assemblyName') &&
-                iClickHandler.hasOwnProperty('methodName')) {
-                return (() => {
-                    const onClickStatickHandler: { assemblyName: string, methodName: string } = <any>iClickHandler;
-                    const assemblyName = onClickStatickHandler.assemblyName;
-                    const methodName = onClickStatickHandler.methodName;
-                    return async (sender, args) => {
-
-                        // This is sometimes necessary in order to avoid circular reference errors during JSON serialization
-                        args = this.GetCleanArgs(args);
-
-                        await DotNet.invokeMethodAsync(assemblyName, methodName, sender, args);
-                    };
-                })();
-            }
-            // .Net instance method
-            else if (typeof iClickHandler === "object" &&
-                iClickHandler.hasOwnProperty('instanceRef') &&
-                iClickHandler.hasOwnProperty('methodName')) {
-                return (() => {
-                    const onClickInstanceHandler: { instanceRef: DotNetObjectReference, methodName: string } = <any>iClickHandler;
-                    const instanceRef = onClickInstanceHandler.instanceRef;
-                    const methodName = onClickInstanceHandler.methodName;
-
-                    return async (sender, args) => {
-
-                        // This is sometimes necessary in order to avoid circular reference errors during JSON serialization
-                        args = this.GetCleanArgs(args);
-
-                        await instanceRef.invokeMethodAsync(methodName, sender, args);
-                    };
-                })();
-            }
-        } else { // fallback to the default
-            return chartJsDefaultHandler;
+    private getMethodHandler(handler: IMethodHandler, defaultFunc: Function) {
+        if (handler == null) {
+            return defaultFunc;
         }
-    };
 
-    private GetCleanArgs = (args) => {
-        // ToDo: refactor the function to clean up the args of each chart type 
-        return typeof args['map'] === 'function' ?
-            args.map(e => {
-                    const newE = Object.assign({}, e, {_chart: undefined}, {_xScale: undefined}, {_yScale: undefined});
-                    return newE;
+        if (this.isDelegateHandler(handler)) {
+            // stringify args and ignore all circular references. This means that objects of type DotNetObject will not be
+            // deserialized correctly (since it's already a string when it reaches JSON.stringify in the blazor interop layer)
+            // but the values passed to chart callbacks should never contain such objects anyway.
+            // Also if we don't care about the value, don't bother to stringify.
+            const stringifyArgs = (args: any[]) => {
+                for (var i = 0; i < args.length; i++) {
+                    if (handler.ignoredIndices.includes(i)) {
+                        args[i] = '';
+                    } else {
+                        args[i] = this.stringifyObjectIgnoreCircular(args[i]);
+                    }
                 }
-            ) : args;
-    };
+
+                return args;
+            }
+
+            if (!handler.returnsValue) {
+                // https://stackoverflow.com/questions/59543973/use-async-function-when-consumer-doesnt-expect-a-promise
+                return (...args) => handler.handlerReference.invokeMethodAsync(handler.methodName, stringifyArgs(args));
+            } else {
+                if (window.hasOwnProperty('MONO')) {
+                    return (...args) => handler.handlerReference.invokeMethod(handler.methodName, stringifyArgs(args)); // only works on client side
+                } else {
+                    console.warn('Using C# delegates that return values in chart.js callbacks is not supported on ' +
+                        "server side blazor because the server side dispatcher doesn't support synchronous interop calls. Falling back to default value.");
+
+                    return defaultFunc;
+                }
+            }
+        } else {
+            if (handler.methodName == null) {
+                return defaultFunc;
+            }
+
+            const namespaceAndFunc = handler.methodName.split('.');
+            if (namespaceAndFunc.length !== 2) {
+                return defaultFunc;
+            }
+
+            const namespace = window[namespaceAndFunc[0]];
+            if (namespace == null) {
+                return defaultFunc;
+            }
+
+            const func = namespace[namespaceAndFunc[1]];
+            if (typeof func === 'function') {
+                return func;
+            } else {
+                return defaultFunc;
+            }
+        }
+    }
+
+    private isDelegateHandler(handler: IMethodHandler): handler is DelegateHandler {
+        return 'handlerReference' in handler;
+    }
+
+    private stringifyObjectIgnoreCircular(object: any) {
+        const seen = new WeakSet();
+        const replacer = (name, value) => {
+            if (
+                typeof value === 'object' &&
+                value !== null &&
+                !(value instanceof Boolean) &&
+                !(value instanceof Date) &&
+                !(value instanceof Number) &&
+                !(value instanceof RegExp) &&
+                !(value instanceof String)
+            ) {
+                if (seen.has(value))
+                    return undefined;
+
+                seen.add(value);
+            }
+
+            return value;
+        }
+
+        return JSON.stringify(object, replacer);
+    }
 }
