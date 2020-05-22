@@ -46,7 +46,7 @@ class ChartJsInterop {
 
         let myChart = this.BlazorCharts.get(config.canvasId);
 
-        // Update datasets while keeping array references intact. Everything is done in-place here.
+        // Update datasets. This breaks the data-array-references; more in the function.
         this.mergeDatasets(myChart.config.data.datasets, config.data.datasets);
         // Update labels while keeping array references intact.
         this.mergeLabels(myChart.config.data, config.data);
@@ -72,15 +72,22 @@ class ChartJsInterop {
                 // Remove dataset if it's not in the new config
                 oldDatasets.splice(i, 1);
             } else {
-                oldDatasets[i].data.length = 0; // Remove old data
+                // This comment below would be the 'correct' way of updating the data while retaining the same reference.
+                // However, there's quite a big issue with this. Chart.js actually listenes for modifications on
+                // the data array and will decide on the update-animation by looking at the latest modifications.
+                // Since this would clear the whole array and then add all the new data, Chart.js thinks every data
+                // point is fresh and plays the same animation it plays when initially creating the chart.
+                // To prevent Chart.js from doing that, we replace the reference which doesn't record any modifications.
 
-                for (let j = 0; j < sameDatasetInNewConfig.data.length; j++) {
-                    // Add current data. Of course it won't be a number _and_ a ChartPoint but I don't how else to make ts happy
-                    oldDatasets[i].data.push(<number & Chart.ChartPoint>sameDatasetInNewConfig.data[j]);
-                }
+                //oldDatasets[i].data.length = 0; // Remove old data
+                //for (let j = 0; j < sameDatasetInNewConfig.data.length; j++) {
+                //    // Add current data. Of course it won't be a number _and_ a ChartPoint but I don't how else to make ts happy
+                //    oldDatasets[i].data.push(<number & Chart.ChartPoint>sameDatasetInNewConfig.data[j]);
+                //}
+                //delete sameDatasetInNewConfig.data; // Remove the array from the new dataset so it doesn't get copied in the next line
 
-                delete sameDatasetInNewConfig.data; // Remove the array from the new dataset so it doesn't get copied in the next line
-                // Merge everything except the data. As with the labels, deep copying (with helper.merge) is simply a waste here.
+                // Merge everything, including the data-array reference.
+                // As with the labels, deep copying(with helper.merge) is simply a waste here.
                 Chart.helpers.extend(oldDatasets[i], sameDatasetInNewConfig);
             }
         }
