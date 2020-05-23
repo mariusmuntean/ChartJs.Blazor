@@ -1,130 +1,130 @@
 ﻿using System;
 using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Enums;
+using ChartJs.Blazor.ChartJS.LineChart;
 using ChartJs.Blazor.Util;
 using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.RadarChart
 {
-    public class RadarDataset
+    /// <summary>
+    /// Represents a dataset for a radar chart.
+    /// As per documentation <a href="https://www.chartjs.org/docs/latest/charts/radar.html#dataset-properties">here (Chart.js)</a>.
+    /// </summary>
+    // Very similar to LineDataset, so the summaries are inherited.
+    public class RadarDataset : Dataset<double>
     {
-        public string Id { get; } = Guid.NewGuid().ToString();
-
-        public ChartType Type { get; } = ChartType.Radar;
+        /// <summary>
+        /// Creates a new instance of <see cref="RadarDataset"/>.
+        /// </summary>
+        public RadarDataset() : base(ChartType.Radar) { }
 
         /// <summary>
-        /// The label for the dataset which appears in the legend and tooltips.
+        /// Creates a new instance of <see cref="RadarDataset"/> with initial data.
         /// </summary>
-        public string Label { get; set; } = "";
+        public RadarDataset(IEnumerable<double> data) : this()
+        {
+            AddRange(data);
+        }
 
         /// <summary>
-        /// The fill color under the line.
-        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
+        /// Creates a new instance of <see cref="RadarDataset"/> with
+        /// a custom <see cref="ChartType"/>. Use this constructor when
+        /// you implement a radar-like chart.
         /// </summary>
+        /// <param name="type">The <see cref="ChartType"/> to use instead of <see cref="ChartType.Radar"/>.</param>
+        protected RadarDataset(ChartType type) : base(type) { }
+
+        /// <inheritdoc cref="LineDataset{T}.BackgroundColor"/>
         public string BackgroundColor { get; set; }
 
-        /// <summary>
-        /// The color of the line.
-        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
-        /// </summary>
-        public string BorderColor { get; set; }
-
-        /// <summary>
-        /// The width of the line in pixels.
-        /// </summary>
-        public int BorderWidth { get; set; } = 3;
-
-        /// <summary>
-        /// Offset for line dashes.
-        /// </summary>
-        public double BorderDashOffset { get; set; }
-
-        /// <summary>
-        /// Gets or sets the cap style of the line.
-        /// </summary>
+        /// <inheritdoc cref="LineDataset{T}.BorderCapStyle"/>
         public BorderCapStyle BorderCapStyle { get; set; }
 
-        /// <summary>
-        /// Gets or sets the line join style.
-        /// </summary>
+        /// <inheritdoc cref="LineDataset{T}.BorderColor"/>
+        public string BorderColor { get; set; }
+
+        /// <inheritdoc cref="LineDataset{T}.BorderDash"/>
+        public int[] BorderDash { get; set; }
+
+        /// <inheritdoc cref="LineDataset{T}.BorderDashOffset"/>
+        public int? BorderDashOffset { get; set; }
+
+        /// <inheritdoc cref="LineDataset{T}.BorderJoinStyle"/>
         public BorderJoinStyle BorderJoinStyle { get; set; }
 
-        /// <summary>
-        /// Both line and radar charts support a fill option on the dataset object which can be used to create area between two datasets or a dataset and a boundary, i.e. the scale origin, start or end
-        ///<para>Source: http://www.chartjs.org/docs/latest/charts/area.html#filling-modes</para>
-        ///
-        /// <para>Absolute dataset index    Number      1, 2, 3, ...</para>
-        /// <para>Relative dataset index    String      '-1', '-2', '+1', ...</para>
-        /// <para>Boundary                  String      'start', 'end', 'origin'</para>
-        /// <para>Disabled                  Boolean     false</para>
-        ///
-        /// </summary>
-        public object Fill { get; set; }
+        /// <inheritdoc cref="LineDataset{T}.BorderWidth"/>
+        public int? BorderWidth { get; set; }
+
+        /// <inheritdoc cref="LineDataset{T}.Fill"/>
+        public FillingMode Fill { get; set; }
+
+        /// <inheritdoc cref="LineDataset{T}.HoverBackgroundColor"/>
+        public string HoverBackgroundColor { get; set; }
+
+        /// <inheritdoc cref="LineDataset{T}.HoverBorderCapStyle"/>
+        public BorderCapStyle HoverBorderCapStyle { get; set; }
+
+        /// <inheritdoc cref="LineDataset{T}.HoverBorderColor"/>
+        public string HoverBorderColor { get; set; }
+
+        /// <inheritdoc cref="LineDataset{T}.HoverBorderDash"/>
+        public int[] HoverBorderDash { get; set; }
+
+        /// <inheritdoc cref="LineDataset{T}.HoverBorderDashOffset"/>
+        public int? HoverBorderDashOffset { get; set; }
+
+        /// <inheritdoc cref="LineDataset{T}.HoverBorderJoinStyle"/>
+        public BorderJoinStyle HoverBorderJoinStyle { get; set; }
+
+        /// <inheritdoc cref="LineDataset{T}.HoverBorderWidth"/>
+        public int? HoverBorderWidth { get; set; }
+
+        /// <inheritdoc cref="LineDataset{T}.Label"/>
+        public string Label { get; set; }
 
         /// <summary>
-        /// Bezier curve tension of the line. Set to 0 to draw straight lines.
+        /// Gets or sets the bezier curve tension of the line. Set to 0 to draw straight lines.
         /// </summary>
-        public double LineTension { get; set; } = 0.4;
+        public double? LineTension { get; set; }
 
-        /// <summary>
-        /// The fill color for points.
-        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
-        /// </summary>
+        /// <inheritdoc cref="LineDataset{T}.Order"/>
+        public int? Order { get; set; }
+
+        /// <inheritdoc cref="LineDataset{T}.PointBackgroundColor"/>
         public IndexableOption<string> PointBackgroundColor { get; set; }
 
-        /// <summary>
-        /// The border color for points.
-        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
-        /// </summary>
+        /// <inheritdoc cref="LineDataset{T}.PointBorderColor"/>
         public IndexableOption<string> PointBorderColor { get; set; }
 
-        /// <summary>
-        /// The width of the point border in pixels.
-        /// </summary>
+        /// <inheritdoc cref="LineDataset{T}.PointBorderWidth"/>
         public IndexableOption<int> PointBorderWidth { get; set; }
 
-        /// <summary>
-        /// The radius of the point shape. If set to 0, the point is not rendered.
-        /// </summary>
-        public IndexableOption<int> PointRadius { get; set; }
-
-        /// <summary>
-        /// The rotation of the point in degrees
-        /// </summary>
-        public IndexableOption<int> PointRotation { get; set; }
-
-        /// <summary>
-        /// Gets or sets the point style.
-        /// </summary>
-        public IndexableOption<PointStyle> PointStyle { get; set; }
-
-        /// <summary>
-        /// The pixel size of the non-displayed point that reacts to mouse events.
-        /// </summary>
+        /// <inheritdoc cref="LineDataset{T}.PointHitRadius"/>
         public IndexableOption<int> PointHitRadius { get; set; }
 
-        /// <summary>
-        /// Point background color when hovered.
-        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
-        /// </summary>
+        /// <inheritdoc cref="LineDataset{T}.PointHoverBackgroundColor"/>
         public IndexableOption<string> PointHoverBackgroundColor { get; set; }
 
-        /// <summary>
-        /// Point border color when hovered.
-        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
-        /// </summary>
+        /// <inheritdoc cref="LineDataset{T}.PointHoverBorderColor"/>
         public IndexableOption<string> PointHoverBorderColor { get; set; }
 
-        /// <summary>
-        /// Border width of point when hovered.
-        /// </summary>
+        /// <inheritdoc cref="LineDataset{T}.PointHoverBorderWidth"/>
         public IndexableOption<int> PointHoverBorderWidth { get; set; }
 
-        /// <summary>
-        /// The radius of the point when hovered
-        /// </summary>
+        /// <inheritdoc cref="LineDataset{T}.PointHoverRadius"/>
         public IndexableOption<int> PointHoverRadius { get; set; }
 
-        public List<double> Data { get; set; }
+        /// <inheritdoc cref="LineDataset{T}.PointRadius"/>
+        public IndexableOption<int> PointRadius { get; set; }
+
+        /// <inheritdoc cref="LineDataset{T}.PointRotation"/>
+        public IndexableOption<double> PointRotation { get; set; }
+
+        /// <inheritdoc cref="LineDataset{T}.PointStyle"/>
+        public IndexableOption<PointStyle> PointStyle { get; set; }
+
+        /// <inheritdoc cref="LineDataset{T}.SpanGaps"/>
+        public bool? SpanGaps { get; set; }
     }
 }

@@ -37,43 +37,31 @@
             }
         };
 
-        _config.Data.Datasets.Add(new ScatterDataset
-        {
-            Data = PointUtil.GetRandomPoints(),
-            BackgroundColor = ColorUtil.RandomColorString(),
-            BorderColor = ColorUtil.RandomColorString(),
-            ShowLine = false,
-            PointRadius = 5,
-            PointHitRadius = 5,
-            PointHoverRadius = 8
-        });
-
-        _config.Data.Datasets.Add(new ScatterDataset
-        {
-            Data = PointUtil.GetRandomPoints(),
-            BackgroundColor = ColorUtil.RandomColorString(),
-            BorderColor = ColorUtil.RandomColorString(),
-            ShowLine = false,
-            PointRadius = 5,
-            PointHitRadius = 5,
-            PointHoverRadius = 8
-        });
+        _config.Data.Datasets.Add(GetNewDataset());
+        _config.Data.Datasets.Add(GetNewDataset());
     }
 
     public async Task OnClick()
     {
-        _config.Data.Datasets.Add(new ScatterDataset
+        _config.Data.Datasets.Add(GetNewDataset());
+        await _scatterChartJs.Update();
+    }
+
+    private ScatterDataset GetNewDataset()
+    {
+        ScatterDataset dataset = new ScatterDataset
         {
-            Data = PointUtil.GetRandomPoints(),
+            Label = $"Dataset {_config.Data.Datasets.Count + 1}",
             BackgroundColor = ColorUtil.RandomColorString(),
             BorderColor = ColorUtil.RandomColorString(),
             ShowLine = false,
             PointRadius = 5,
             PointHitRadius = 5,
             PointHoverRadius = 8
-        });
+        };
 
-        await _scatterChartJs.Update();
+        dataset.AddRange(PointUtil.GetRandomPoints());
+
+        return dataset;
     }
-
 }

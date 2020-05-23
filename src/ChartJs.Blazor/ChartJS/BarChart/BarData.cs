@@ -1,29 +1,39 @@
-﻿using System.Collections.Generic;
-using ChartJs.Blazor.ChartJS.MixedChart;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.BarChart
 {
     /// <summary>
-    /// The data-subconfig of a <see cref="BarConfig"/>.
+    /// Represents the data-subconfig of a <see cref="BarConfig"/>.
     /// </summary>
     public class BarData
     {
         /// <summary>
-        /// Creates a new instance of <see cref="BarData"/>
+        /// Creates a new instance of <see cref="BarData"/>.
         /// </summary>
         public BarData()
         {
-            Datasets = new List<IMixableDataset<object>>();
+            Labels = new List<string>();
+            Datasets = new BarDatasetCollection();
         }
 
         /// <summary>
-        /// The datasets displayed in this chart.
+        /// Gets the labels the chart will use.
+        /// <para>
+        /// If defined (1 or more labels) the corresponding axis has to be of type
+        /// <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.
+        /// </para>
         /// </summary>
-        public List<IMixableDataset<object>> Datasets { get; }
+        public List<string> Labels { get; }
 
         /// <summary>
-        /// Gets or sets the labels.
+        /// Gets the datasets displayed in this chart.
         /// </summary>
-        public List<string> Labels { get; set; } = new List<string>();
+        public BarDatasetCollection Datasets { get; }
+
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+        [Obsolete("json.net", true)]
+        public bool ShouldSerializeLabels() => Labels.Count > 0;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

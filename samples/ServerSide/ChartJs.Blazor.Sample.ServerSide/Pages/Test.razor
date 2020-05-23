@@ -10,7 +10,6 @@
 @using ChartJs.Blazor.ChartJS.BarChart.Axes
 @using ChartJs.Blazor.ChartJS.Common.Enums
 @using ChartJs.Blazor.ChartJS.Common.Axes
-@using ChartJs.Blazor.ChartJS.Common.Wrappers
 @using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
 @using ChartJs.Blazor.ChartJS.Common.Handlers
 @using ChartJs.Blazor.Interop
@@ -84,7 +83,7 @@
             BorderColor = "#ffffff",
         };
 
-        pieSet.Data.AddRange(new double[] { 4, 5, 6, 7, 8 });
+        pieSet.AddRange(new double[] { 4, 5, 6, 7, 8 });
         _config.Data.Datasets.Add(pieSet);
     }
 
@@ -96,7 +95,7 @@
         var rand = new Random();
         var newVal = 1 + rand.NextDouble() * 10;
         _config.Data.Labels.Add(newVal.ToString(CultureInfo.InvariantCulture));
-        dataset.Data.Add(newVal);
+        dataset.Add(newVal);
         dataset.BackgroundColor = dataset.BackgroundColor.IndexedValues.Append(ColorUtil.RandomColorString()).ToArray();
 
         await _pieChartJs.Update();
@@ -108,7 +107,7 @@
         if (dataset == null || dataset.Data.Count < 1) return;
 
         _config.Data.Labels.RemoveAt(_config.Data.Labels.Count - 1);
-        dataset.Data.RemoveAt(dataset.Data.Count - 1);
+        dataset.RemoveAt(dataset.Data.Count - 1);
 
         await _pieChartJs.Update();
     }
@@ -128,7 +127,7 @@
         int count = _config.Data.Labels.Count;
 
         var rand = new Random();
-        pieSet.Data.AddRange(Enumerable.Range(0, count).Select(i => Convert.ToDouble(rand.Next(0, 10))));
+        pieSet.AddRange(Enumerable.Range(0, count).Select(i => Convert.ToDouble(rand.Next(0, 10))));
         pieSet.BackgroundColor = Enumerable.Range(0, count).Select(i => ColorUtil.RandomColorString()).ToArray();
 
         _config.Data.Datasets.Add(pieSet);

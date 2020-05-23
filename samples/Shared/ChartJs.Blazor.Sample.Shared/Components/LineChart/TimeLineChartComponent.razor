@@ -24,8 +24,9 @@
     LineConfig _lineConfig;
     ChartJsLineChart _lineChartJs;
     const string DeCh = "de-ch";
-    LineDataset<TimeTuple<int>> _tempDataSet;
+    LineDataset<TimePoint> _tempDataSet;
     private bool _localeChangeWasAttempted = false;
+    private bool _filled;
 
     readonly WeatherForecastService _forecastService = new WeatherForecastService();
 
@@ -104,19 +105,19 @@
 
         var forecasts = await _forecastService.GetForecastAsync(DateTime.Now, 2);
 
-        _tempDataSet = new LineDataset<TimeTuple<int>>
+        _tempDataSet = new LineDataset<TimePoint>
         {
             BackgroundColor = ColorUtil.RandomColorString(),
             BorderColor = ColorUtil.RandomColorString(),
             Label = "Temperature in C°",
-            Fill = false,
+            Fill = FillingMode.Disabled,
             BorderWidth = 2,
             PointRadius = 3,
             PointBorderWidth = 1,
             SteppedLine = SteppedLine.False
         };
 
-        _tempDataSet.AddRange(forecasts.Select(p => new TimeTuple<int>(new Moment(p.Date), p.TemperatureC)));
+        _tempDataSet.AddRange(forecasts.Select(p => new TimePoint(p.Date, p.TemperatureC)));
         _lineConfig.Data.Datasets.Add(_tempDataSet);
     }
 
@@ -127,7 +128,7 @@
 
     private async Task OnClick()
     {
-        _tempDataSet.Fill = !_tempDataSet.Fill;
+        _tempDataSet.Fill = (_filled = !_filled);
         await _lineChartJs.Update();
     }
 }

@@ -3,7 +3,6 @@
 @using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
 @using ChartJs.Blazor.ChartJS.Common.Enums
 @using ChartJs.Blazor.ChartJS.Common.Properties
-@using ChartJs.Blazor.ChartJS.Common.Wrappers
 @using ChartJs.Blazor.Charts
 @using ChartJs.Blazor.Util
 <h2>Horizontal Bar Chart</h2>
@@ -20,7 +19,7 @@
 {
     private BarConfig _barChartConfig;
     private ChartJsBarChart _barChart;
-    private BarDataset<DoubleWrapper> _barDataSet;
+    private BarDataset<double> _barDataSet;
 
     protected override Task OnInitializedAsync()
     {
@@ -55,7 +54,7 @@
         _barChartConfig.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
 
         //Note the constructor argument
-        _barDataSet = new BarDataset<DoubleWrapper>(ChartType.HorizontalBar)
+        _barDataSet = new BarDataset<double>(horizontal: true)
         {
             Label = "My double dataset",
             BackgroundColor = new[] { ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString() },
@@ -63,7 +62,7 @@
             BorderWidth = 1
         };
 
-        _barDataSet.AddRange(new double[] { 8, 5, 3, 7 }.Wrap());
+        _barDataSet.AddRange(new double[] { 8, 5, 3, 7 });
         _barChartConfig.Data.Datasets.Add(_barDataSet);
 
         return Task.CompletedTask;
@@ -73,7 +72,7 @@
     {
         var nowSecond = DateTime.Now.Second;
         _barChartConfig.Data.Labels.Add(nowSecond.ToString());
-        _barDataSet.Add(new DoubleWrapper(nowSecond));
+        _barDataSet.Add(nowSecond);
         _barDataSet.BackgroundColor = _barChartConfig.Data.Labels.Select(l => ColorUtil.RandomColorString()).ToArray();
 
         _barChartConfig.Options.Title.Text += DateTime.Now.Second.ToString();

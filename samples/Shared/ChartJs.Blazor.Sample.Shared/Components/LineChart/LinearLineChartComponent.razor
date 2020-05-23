@@ -117,8 +117,7 @@
             BorderWidth = 1,
             PointRadius = 2,
             PointBorderWidth = 1,
-            SteppedLine = SteppedLine.False,
-            Hidden = true
+            SteppedLine = SteppedLine.False
         };
 
         var forecasts = await _forecastService.GetStaticForecastAsync(DateTime.Now, 5);

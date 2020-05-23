@@ -3,7 +3,6 @@
 @using ChartJs.Blazor.ChartJS.Common.Axes
 @using ChartJs.Blazor.Charts
 @using ChartJs.Blazor.ChartJS.Common.Properties
-@using ChartJs.Blazor.ChartJS.Common.Wrappers
 @using ChartJs.Blazor.Util
 
 <h1>Stacked Bar Chart</h1>
@@ -42,7 +41,7 @@
 
         _config.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
 
-        var barSet1 = new BarDataset<DoubleWrapper>
+        var barSet1 = new BarDataset<double>
         {
             Label = "Red",
             BackgroundColor = ColorUtil.RandomColorString(),
@@ -53,10 +52,10 @@
             BorderColor = "#ffffff",
         };
 
-        barSet1.AddRange(new double[] { 4, 3, 2, 1 }.Wrap());
+        barSet1.AddRange(new double[] { 4, 3, 2, 1 });
         _config.Data.Datasets.Add(barSet1);
 
-        var barSet2 = new BarDataset<DoubleWrapper>
+        var barSet2 = new BarDataset<double>
         {
             Label = "Green",
             BackgroundColor = ColorUtil.RandomColorString(),
@@ -67,10 +66,10 @@
             BorderColor = "#ffffff",
         };
 
-        barSet2.AddRange(new double[] { 1, 5, 10, 15 }.Wrap());
+        barSet2.AddRange(new double[] { 1, 5, 10, 15 });
         _config.Data.Datasets.Add(barSet2);
 
-        var barSet3 = new BarDataset<DoubleWrapper>
+        var barSet3 = new BarDataset<double>
         {
             Label = "Blue",
             BackgroundColor = ColorUtil.RandomColorString(),
@@ -81,7 +80,7 @@
             BorderColor = "#ffffff",
         };
 
-        barSet3.AddRange(new double[] { 5, 6, 7, 8 }.Wrap());
+        barSet3.AddRange(new double[] { 5, 6, 7, 8 });
         _config.Data.Datasets.Add(barSet3);
     }
 }

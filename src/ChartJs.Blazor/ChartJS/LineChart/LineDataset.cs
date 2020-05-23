@@ -1,53 +1,45 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Enums;
-using ChartJs.Blazor.ChartJS.MixedChart;
 using ChartJs.Blazor.Util;
+using Newtonsoft.Json;
 
 namespace ChartJs.Blazor.ChartJS.LineChart
 {
     /// <summary>
-    /// A dataset for a <see cref="Charts.ChartJsLineChart"/>
+    /// Represents a dataset for a line chart.
+    /// As per documentation <a href="https://www.chartjs.org/docs/latest/charts/line.html#dataset-properties">here (Chart.js)</a>.
     /// </summary>
-    /// <typeparam name="TData">Defines the type of data in this dataset. Use Wrappers from <see cref="Common.Wrappers"/> for value types.</typeparam>
-    public class LineDataset<TData> : BaseMixableDataset<TData> where TData : class
+    /// <typeparam name="T">The type of data this <see cref="LineDataset{T}"/> contains.</typeparam>
+    public class LineDataset<T> : Dataset<T>
     {
         /// <summary>
-        /// Creates a new instance of <see cref="LineDataset{TData}"/> with some data
+        /// Creates a new instance of <see cref="LineDataset{T}"/>.
         /// </summary>
-        public LineDataset(IEnumerable<TData> data) : this()
+        public LineDataset() : base(ChartType.Line) { }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="LineDataset{T}"/> with initial data.
+        /// </summary>
+        public LineDataset(IEnumerable<T> data) : this()
         {
-            this.AddRange(data);
+            AddRange(data);
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="LineDataset{TData}"/>
+        /// Creates a new instance of <see cref="LineDataset{T}"/> with
+        /// a custom <see cref="ChartType"/>. Use this constructor when
+        /// you implement a line-like chart.
         /// </summary>
-        public LineDataset() { }
+        /// <param name="type">The <see cref="ChartType"/> to use instead of <see cref="ChartType.Line"/>.</param>
+        protected LineDataset(ChartType type) : base(type) { }
 
         /// <summary>
-        /// The type of chart this dataset is for.
+        /// Gets or sets the fill color under the line.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public override ChartType Type => ChartType.Line;
-
-        /// <summary>
-        /// The label for the dataset which appears in the legend and tooltips.
-        /// </summary>
-        public string Label { get; set; } = "";
-
-        /// <summary>
-        /// The ID of the x axis to plot this dataset on. If not specified, this defaults to the ID of the first found x axis
-        /// </summary>
-        public string XAxisID { get; set; }
-
-        /// <summary>
-        /// The ID of the y axis to plot this dataset on. If not specified, this defaults to the ID of the first found y axis.
-        /// </summary>
-        public string YAxisID { get; set; }
-
-        /// <summary>
-        /// The width of the line in pixels.
-        /// </summary>
-        public int BorderWidth { get; set; } = 1;
+        public string BackgroundColor { get; set; }
 
         /// <summary>
         /// Gets or sets the cap style of the line.
@@ -55,9 +47,32 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public BorderCapStyle BorderCapStyle { get; set; }
 
         /// <summary>
-        /// Gets or sets the line join style.
+        /// Gets or sets the color of the line. 
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
+        /// </summary>
+        public string BorderColor { get; set; }
+
+        /// <summary>
+        /// Gets or sets the length and spacing of the line dashes.
+        /// As per documentation <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash">here (MDN)</a>.
+        /// </summary>
+        public int[] BorderDash { get; set; }
+
+        /// <summary>
+        /// Gets or sets the offset for the line dashes.
+        /// As per documentation <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset">here (MDN)</a>.
+        /// </summary>
+        public int? BorderDashOffset { get; set; }
+
+        /// <summary>
+        /// Gets or sets the <see cref="Common.Enums.BorderJoinStyle"/> for the lines.
         /// </summary>
         public BorderJoinStyle BorderJoinStyle { get; set; }
+
+        /// <summary>
+        /// Gets or sets the width of the line (in pixels).
+        /// </summary>
+        public int? BorderWidth { get; set; }
 
         /// <summary>
         /// Gets or sets the algorithm used to interpolate a smooth curve from the discrete data points.
@@ -65,83 +80,163 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         public CubicInterpolationMode CubicInterpolationMode { get; set; }
 
         /// <summary>
-        /// Length and spacing of dashes. It's an int array. Whatever JS!
+        /// Gets or sets how to clip relative to the chart area. Positive values allow overflow,
+        /// negative values clip that many pixels inside the chart area.
         /// </summary>
-        public int[] BorderDash { get; set; } = { 0, 0 };
+        public Clipping? Clip { get; set; }
 
         /// <summary>
-        /// Offset for line dashes.
+        /// Gets or sets how to fill the area under the line.
         /// </summary>
-        public int BorderDashOffset { get; set; }
+        public FillingMode Fill { get; set; }
 
         /// <summary>
-        /// The width of the point border in pixels.
-        /// </summary>
-        public int PointBorderWidth { get; set; }
-
-        /// <summary>
-        /// The radius of the point shape. If set to 0, the point is not rendered.
-        /// </summary>
-        public int PointRadius { get; set; }
-
-        /// <summary>
-        /// The pixel size of the non-displayed point that reacts to mouse events.
-        /// </summary>
-        public int PointHitRadius { get; set; }
-
-        /// <summary>
-        /// Border width of point when hovered.
-        /// </summary>
-        public int PointHoverBorderWidth { get; set; }
-
-        /// <summary>
-        /// The radius of the point when hovered.
-        /// </summary>
-        public int PointHoverRadius { get; set; }
-
-        /// <summary>
-        /// How to fill the area under the line.
-        /// </summary>
-        public bool Fill { get; set; }
-
-        /// <summary>
-        /// Bezier curve tension of the line. Set to 0 to draw straight lines. This option is ignored if monotone cubic interpolation is used.
-        /// </summary>
-        public double LineTension { get; set; } = 0.4;
-
-        /// <summary>
-        /// If false, the line is not drawn for this dataset.
-        /// Default is true. If you are filling and don't want to show the line, then change to false.
-        /// </summary>
-        public bool ShowLine { get; set; } = true;
-
-        /// <summary>
-        /// If true, lines will be drawn between points with no or null data. If false, points with NaN data will create a break in the line
-        /// </summary>
-        public bool SpanGaps { get; set; }
-
-        /// <summary>
-        /// If the line is shown as a stepped line. Use <see cref="Common.Enums.SteppedLine"></see> for available options.
-        /// <para>If the steppedLine value is set to anything other than <see cref="SteppedLine.False"></see>, <see cref="LineTension"></see> will be ignored.</para>
-        /// </summary>
-        public SteppedLine SteppedLine { get; set; } = SteppedLine.False;
-
-        /// <summary>
-        /// The fill color under the line.
+        /// Gets or sets the fill color under the line when hovered.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public string BackgroundColor { get; set; }
+        public string HoverBackgroundColor { get; set; }
 
         /// <summary>
-        /// The fill color of a point.
-        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
+        /// Gets or sets the cap style of the line when hovered.
         /// </summary>
-        public string PointBackgroundColor { get; set; }
+        public BorderCapStyle HoverBorderCapStyle { get; set; }
 
         /// <summary>
-        /// The color of the line. 
+        /// Gets or sets the color of the line when hovered. 
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public string BorderColor { get; set; }
+        public string HoverBorderColor { get; set; }
+
+        /// <summary>
+        /// Gets or sets the length and spacing of the line dashes when hovered.
+        /// As per documentation <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash">here (MDN)</a>.
+        /// </summary>
+        public int[] HoverBorderDash { get; set; }
+
+        /// <summary>
+        /// Gets or sets the offset for the line dashes when hovered.
+        /// As per documentation <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset">here (MDN)</a>.
+        /// </summary>
+        public int? HoverBorderDashOffset { get; set; }
+
+        /// <summary>
+        /// Gets or sets the <see cref="Common.Enums.BorderJoinStyle"/> for the lines when hovered.
+        /// </summary>
+        public BorderJoinStyle HoverBorderJoinStyle { get; set; }
+
+        /// <summary>
+        /// Gets or sets the width of the line when hovered (in pixels).
+        /// </summary>
+        public int? HoverBorderWidth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the label for the dataset which appears in the legend and the tooltips.
+        /// </summary>
+        public string Label { get; set; }
+
+        /// <summary>
+        /// Gets or sets the bezier curve tension of the line. Set to 0 to draw straight lines.
+        /// This option is ignored if <see cref="CubicInterpolationMode.Monotone"/> is used.
+        /// </summary>
+        public double? LineTension { get; set; }
+
+        /// <summary>
+        /// Gets or sets the drawing order of this dataset.
+        /// Also affects the order for stacking, tooltips, and the legend.
+        /// </summary>
+        public int? Order { get; set; }
+
+        /// <summary>
+        /// Gets or sets the fill color for the points.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
+        /// </summary>
+        public IndexableOption<string> PointBackgroundColor { get; set; }
+
+        /// <summary>
+        /// Gets or sets the border color for the points.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
+        /// </summary>
+        public IndexableOption<string> PointBorderColor { get; set; }
+
+        /// <summary>
+        /// Gets or sets the width of the point border (in pixels).
+        /// </summary>
+        public IndexableOption<int> PointBorderWidth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the radius of the non-displayed point that reacts to mouse events (in pixels).
+        /// </summary>
+        public IndexableOption<int> PointHitRadius { get; set; }
+
+        /// <summary>
+        /// Gets or sets the fill color for the points when hovering.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
+        /// </summary>
+        public IndexableOption<string> PointHoverBackgroundColor { get; set; }
+
+        /// <summary>
+        /// Gets or sets the border color for the points when hovering.
+        /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
+        /// </summary>
+        public IndexableOption<string> PointHoverBorderColor { get; set; }
+
+        /// <summary>
+        /// Gets or sets the width of the point border when hovered (in pixels).
+        /// </summary>
+        public IndexableOption<int> PointHoverBorderWidth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the radius of the point when hovered.
+        /// </summary>
+        public IndexableOption<int> PointHoverRadius { get; set; }
+
+        /// <summary>
+        /// Gets or sets the radius of the point shape. If set to 0, the point is not rendered.
+        /// </summary>
+        public IndexableOption<int> PointRadius { get; set; }
+
+        /// <summary>
+        /// Gets or sets the rotation of the points in degrees.
+        /// </summary>
+        public IndexableOption<double> PointRotation { get; set; }
+
+        /// <summary>
+        /// Gets or sets the <see cref="Common.Enums.PointStyle"/> for this dataset.
+        /// </summary>
+        public IndexableOption<PointStyle> PointStyle { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether or not the line is drawn for this dataset.
+        /// </summary>
+        public bool? ShowLine { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether or not lines will be drawn between points with no or null data.
+        /// If <see langword="false"/>, points with NaN data will create a break in the line.
+        /// </summary>
+        public bool? SpanGaps { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether or not the line is shown as a stepped line.
+        /// <para>
+        /// If this value is set to anything other than <see cref="SteppedLine.False"/>,
+        /// <see cref="LineTension"/> will be ignored.
+        /// </para>
+        /// </summary>
+        public SteppedLine SteppedLine { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ID of the x axis to plot this dataset on. If not specified,
+        /// this defaults to the ID of the first found x axis.
+        /// </summary>
+        [JsonProperty("xAxisID")]
+        public string XAxisId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ID of the y axis to plot this dataset on. If not specified,
+        /// this defaults to the ID of the first found y axis.
+        /// </summary>
+        [JsonProperty("yAxisID")]
+        public string YAxisId { get; set; }
     }
 }

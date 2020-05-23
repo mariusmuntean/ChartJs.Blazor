@@ -29,25 +29,27 @@
             }
         };
 
-        _config.Data.Labels = new List<string> { "Extraversion", "Agreeableness", "Conscientiousness", "Neuroticism", "Openness/Intellect" };
-        _config.Data.Datasets.Add(new RadarDataset
-        {
-            Data = new List<double> { _rand.NextDouble(), _rand.NextDouble(), _rand.NextDouble(), _rand.NextDouble(), _rand.NextDouble() },
-            Label = $"Participant {_config.Data.Datasets.Count + 1}",
-            BorderColor = ColorUtil.RandomColorString()
-        });
+        _config.Data.Labels.AddRange(new[] { "Extraversion", "Agreeableness", "Conscientiousness", "Neuroticism", "Openness/Intellect" });
+        _config.Data.Datasets.Add(GetNewDataset());
     }
 
     public async Task OnClick()
     {
-        _config.Data.Datasets.Add(new RadarDataset
+        _config.Data.Datasets.Add(GetNewDataset());
+        await _radarChartJs.Update();
+    }
+
+    private RadarDataset GetNewDataset()
+    {
+        RadarDataset dataset = new RadarDataset
         {
-            Data = new List<double> { _rand.NextDouble(), _rand.NextDouble(), _rand.NextDouble(), _rand.NextDouble(), _rand.NextDouble() },
             Label = $"Participant {_config.Data.Datasets.Count + 1}",
             BorderColor = ColorUtil.RandomColorString()
-        });
+        };
 
-        await _radarChartJs.Update();
+        dataset.AddRange(_rand.NextDouble(), _rand.NextDouble(), _rand.NextDouble(), _rand.NextDouble(), _rand.NextDouble());
+
+        return dataset;
     }
 
 }
