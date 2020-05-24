@@ -14,14 +14,19 @@
 @implements IDisposable
 
 <h2>Sine Line Chart</h2>
-<ChartJsLineChart @ref="_lineChartJs" Config="@_lineConfig" Width="600" Height="300" />
-<button @onclick="Start">Start</button>
-<button @onclick="Stop">Stop</button>
+<Chart @ref="_lineChartJs"
+        Config="@_lineConfig"
+        TConfig="LineConfig"
+        Width="600"
+        Height="300"/>
+
+<button class="btn btn-primary" @onclick="Start">Start</button>
+<button class="btn btn-primary" @onclick="Stop">Stop</button>
 
 @code
 {
     LineConfig _lineConfig;
-    ChartJsLineChart _lineChartJs;
+    Chart<LineConfig> _lineChartJs;
 
     private LineDataset<Point> _sineSet;
 

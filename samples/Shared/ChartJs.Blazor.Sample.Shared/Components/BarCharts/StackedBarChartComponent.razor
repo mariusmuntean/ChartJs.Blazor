@@ -7,11 +7,15 @@
 
 <h1>Stacked Bar Chart</h1>
 
-<ChartJsBarChart @ref="_barChartJs" Config="@_config" Width="600" Height="300" />
+<Chart @ref="_barChartJs"
+           Config="@_config"
+           TConfig="ChartJs.Blazor.ChartJS.BarChart.BarConfig"
+           Width="600"
+           Height="300" />
 
 @code {
     private BarConfig _config;
-    private ChartJsBarChart _barChartJs;
+    private Chart<BarConfig> _barChartJs;
 
     protected override void OnInitialized()
     {

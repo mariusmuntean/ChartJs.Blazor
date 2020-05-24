@@ -3,21 +3,20 @@
 @using System.Globalization
 @using ChartJs.Blazor.Charts
 @using ChartJs.Blazor.ChartJS.PieChart
-@using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Properties
 @using ChartJs.Blazor.Util
-@using ChartJs.Blazor.ChartJS.BarChart
-@using ChartJs.Blazor.ChartJS.BarChart.Axes
 @using ChartJs.Blazor.ChartJS.Common.Enums
-@using ChartJs.Blazor.ChartJS.Common.Axes
-@using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
 @using ChartJs.Blazor.ChartJS.Common.Handlers
 @using ChartJs.Blazor.Interop
 @using System.Text.Json
 
 <h1>Pie Chart with legend callbacks</h1>
 
-<ChartJsPieChart @ref="_pieChartJs" Config="@_config" Width="600" Height="300" />
+<Chart @ref="_pieChartJs"
+       Config="@_config"
+       TConfig="PieConfig"
+       Width="600"
+       Height="300" />
 
 <div class="container">
     <div class="row">
@@ -40,7 +39,7 @@
 
 @code {
     private PieConfig _config;
-    private ChartJsPieChart _pieChartJs;
+    private Chart<PieConfig> _pieChartJs;
 
     protected override void OnInitialized()
     {

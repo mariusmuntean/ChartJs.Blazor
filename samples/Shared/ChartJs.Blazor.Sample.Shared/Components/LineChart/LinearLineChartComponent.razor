@@ -12,14 +12,18 @@
 @using Newtonsoft.Json.Linq;
 
 <h2>Linear Line Chart</h2>
-<ChartJsLineChart @ref="_lineChartJs" Config="@_lineConfig" Width="600" Height="300" />
-<Button @onclick="UpdateChart">Add random point</Button>
+<Chart @ref="_lineChartJs"
+       Config="@_lineConfig"
+       TConfig="LineConfig"
+       Width="600"
+       Height="300" />
+<Button class="btn btn-primary" @onclick="UpdateChart">Add random point</Button>
 
 @code
 {
     readonly WeatherForecastService _forecastService = new WeatherForecastService();
     LineConfig _lineConfig;
-    ChartJsLineChart _lineChartJs;
+    Chart<LineConfig> _lineChartJs;
 
     private LineDataset<Point> _tempPerHourSet;
 

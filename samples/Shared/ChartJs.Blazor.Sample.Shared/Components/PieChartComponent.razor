@@ -6,7 +6,11 @@
 
 <h1>Pie Chart</h1>
 
-<ChartJsPieChart @ref="_pieChartJs" Config="@_config" Width="600" Height="300" />
+<Chart @ref="_pieChartJs"
+        Config="@_config"
+        TConfig="PieConfig"
+        Width="600"
+        Height="300"/>
 
 <div class="container">
     <div class="row">
@@ -29,7 +33,7 @@
 
 @code {
     private PieConfig _config;
-    private ChartJsPieChart _pieChartJs;
+    private Chart<PieConfig> _pieChartJs;
 
     protected override void OnInitialized()
     {

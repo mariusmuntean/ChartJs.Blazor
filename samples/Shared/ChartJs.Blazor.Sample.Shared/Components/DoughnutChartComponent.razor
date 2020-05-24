@@ -5,11 +5,15 @@
 
 <h1>Doughnut Chart</h1>
 
-<ChartJsPieChart @ref="_doughnutChartJs" Config="@_config" Width="600" Height="300" />
+<Chart @ref="_doughnutChartJs"
+        Config="@_config"
+        TConfig="PieConfig"
+        Width="600"
+        Height="300"/>
 
 @code {
     private PieConfig _config;
-    private ChartJsPieChart _doughnutChartJs;
+    private Chart<PieConfig> _doughnutChartJs;
 
     protected override void OnInitialized()
     {

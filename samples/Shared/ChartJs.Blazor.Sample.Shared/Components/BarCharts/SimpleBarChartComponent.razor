@@ -15,16 +15,16 @@
         Remove Data
     </button>
 </div>
-<ChartJsBarChart @ref="_barChart"
-                 Config="@_barChartConfig"
-                 Width="600"
-                 Height="300" />
+<Chart @ref="_barChart"
+        Config="@_barChartConfig"
+        TConfig="ChartJs.Blazor.ChartJS.BarChart.BarConfig"
+        Width="600"
+        Height="300"/>
 
 @code
 {
-
     private BarConfig _barChartConfig;
-    private ChartJsBarChart _barChart;
+    private Chart<BarConfig> _barChart;
     private BarDataset<double> _barDataSet;
 
     protected override void OnInitialized()

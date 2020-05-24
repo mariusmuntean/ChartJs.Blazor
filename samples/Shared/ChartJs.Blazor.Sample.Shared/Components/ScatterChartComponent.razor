@@ -7,11 +7,15 @@
 <div class="row">
     <button class="btn btn-primary" @onclick="OnClick">Add Dataset</button>
 </div>
-<ChartJsScatterChart @ref="_scatterChartJs" Config="@_config" Width="600" Height="300" />
+<Chart @ref="_scatterChartJs"
+        Config="@_config"
+        TConfig="ScatterConfig"
+        Width="600"
+        Height="300"/>
 
 @code {
     private ScatterConfig _config;
-    private ChartJsScatterChart _scatterChartJs;
+    private Chart<ScatterConfig> _scatterChartJs;
 
     protected override void OnInitialized()
     {
@@ -27,7 +31,7 @@
                 Scales = new ScatterScales
                 {
                     XAxes = new List<ScatterAxis>
-{
+                    {
                         new ScatterAxis
                         {
                             Type = "linear"

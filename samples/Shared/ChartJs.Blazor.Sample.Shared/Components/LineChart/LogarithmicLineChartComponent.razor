@@ -5,18 +5,20 @@
 @using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.ChartJS.Common.Axes
 @using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
-@using ChartJs.Blazor.ChartJS.Common.Handlers
-@using ChartJs.Blazor.Interop
 @using ChartJs.Blazor.Sample.Shared.Services
 @using ChartJs.Blazor.Util
 
 <h2>Logarithmic Line Chart</h2>
-<ChartJsLineChart @ref="_lineChartJs" Config="@_lineConfig" Width="600" Height="300" />
+<Chart @ref="_lineChartJs"
+        Config="@_lineConfig"
+        TConfig="LineConfig"
+        Width="600"
+        Height="300"/>
 
 @code
 {
     LineConfig _lineConfig;
-    ChartJsLineChart _lineChartJs;
+    Chart<LineConfig> _lineChartJs;
 
     WeatherForecastService _forecastService = new WeatherForecastService();
 
