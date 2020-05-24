@@ -12,13 +12,19 @@
 @using ChartJs.Blazor.Interop
 @using Newtonsoft.Json.Linq;
 
-<ChartJsBarChart @ref="barChartJs" Config="@_config" Height="250"/>
+<Chart @ref="barChartJs"
+        Config="@_config"
+        TConfig="ChartJs.Blazor.ChartJS.BarChart.BarConfig"
+        Height="250"/>
 
-<textarea rows="@Rows" @bind-value="@EventArgs" @bind-value:event="oninput" style="width: 100%; resize: both; height:auto "></textarea>
+<textarea rows="@Rows"
+          @bind-value="@EventArgs"
+          @bind-value:event="oninput"
+          style="width: 100%; resize: both; height:auto "></textarea>
 
 @code {
 
-    private ChartJsBarChart barChartJs;
+    private Chart<BarConfig> barChartJs;
     private BarConfig _config;
     public int Rows { get; set; } = 3;
     private BarDataset<double> _barDataSet;

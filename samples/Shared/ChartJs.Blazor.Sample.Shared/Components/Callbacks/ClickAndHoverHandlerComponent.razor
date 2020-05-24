@@ -17,7 +17,11 @@
 
 <button class="btn btn-primary" @onclick="AddData">Add data</button>
 
-<ChartJsPieChart @ref="_doughnutChartJs" Config="@_config" Width="600" Height="300" />
+<Chart @ref="_doughnutChartJs"
+       Config="@_config"
+       TConfig="PieConfig"
+       Width="600"
+       Height="300" />
 
 <text>In each entry, the property "index" refers to the data index in that dataset</text>
 <br />
@@ -32,7 +36,7 @@
 
 @code {
     private PieConfig _config;
-    private ChartJsPieChart _doughnutChartJs;
+    private Chart<PieConfig> _doughnutChartJs;
 
     public string EventArgs { get; set; } = "";
     public int Rows { get; set; } = 3;

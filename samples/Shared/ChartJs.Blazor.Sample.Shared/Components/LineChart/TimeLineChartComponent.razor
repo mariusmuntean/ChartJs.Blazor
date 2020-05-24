@@ -1,5 +1,4 @@
 ﻿@using ChartJs.Blazor.Charts
-@using ChartJs.Blazor.ChartJS
 @using ChartJs.Blazor.ChartJS.Common.Properties
 @using ChartJs.Blazor.ChartJS.Common.Enums
 @using ChartJs.Blazor.ChartJS.Common.Axes
@@ -13,7 +12,11 @@
 @inject IJSRuntime JsRuntime
 
 <h2>Time Line Chart</h2>
-<ChartJsLineChart @ref="_lineChartJs" Config="@_lineConfig" Width="600" Height="300" />
+<Chart @ref="_lineChartJs"
+       Config="@_lineConfig"
+       TConfig="LineConfig"
+       Width="600"
+       Height="300" />
 
 <div class="row">
     <button class="btn btn-primary" @onclick="OnClick">Fill On/Off</button>
@@ -22,7 +25,7 @@
 @code
 {
     LineConfig _lineConfig;
-    ChartJsLineChart _lineChartJs;
+    Chart<LineConfig> _lineChartJs;
     const string DeCh = "de-ch";
     LineDataset<TimePoint> _tempDataSet;
     private bool _localeChangeWasAttempted = false;

@@ -7,11 +7,15 @@
 <div class="row">
     <button class="btn btn-primary" @onclick="OnClick">Add Dataset</button>
 </div>
-<ChartJsRadarChart @ref="_radarChartJs" Config="@_config" Width="600" Height="300" />
+<Chart @ref="_radarChartJs"
+        Config="@_config"
+        TConfig="RadarConfig"
+        Width="600"
+        Height="300"/>
 
 @code {
     private RadarConfig _config;
-    private ChartJsRadarChart _radarChartJs;
+    private Chart<RadarConfig> _radarChartJs;
 
     private Random _rand = new Random();
 

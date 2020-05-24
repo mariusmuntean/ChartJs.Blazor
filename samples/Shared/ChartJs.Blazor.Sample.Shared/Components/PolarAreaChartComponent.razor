@@ -5,11 +5,15 @@
 
 <h1>Polar Area Chart</h1>
 
-<ChartJsPolarAreaChart @ref="_polarChartJs" Config="@_config" Width="600" Height="300" />
+<Chart @ref="_polarChartJs"
+        Config="@_config"
+        TConfig="PolarAreaConfig"
+        Width="600"
+        Height="300"/>
 
 @code {
     private PolarAreaConfig _config;
-    private ChartJsPolarAreaChart _polarChartJs;
+    private Chart<PolarAreaConfig> _polarChartJs;
 
     protected override void OnInitialized()
     {
