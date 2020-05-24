@@ -27,7 +27,7 @@ Don't know what Blazor is? Read [here](https://dotnet.microsoft.com/apps/aspnet/
 You need an IDE that supports Blazor and .Net Core SDK 3.x+
 
 1. [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) (Community Edition is fine) or [VisualStudio for Mac](https://visualstudio.microsoft.com/vs/mac/) or [Jetbrains Rider](https://www.jetbrains.com/rider/)
-2. [.NET Core 3.0](https://dotnet.microsoft.com/download/dotnet-core/3.0)
+2. [.NET Core 3.0](https://dotnet.microsoft.com/download/dotnet-core/3.0) or newer
 
 
 ## Installation
@@ -84,15 +84,19 @@ Then add a few `@using` statements
 @using ChartJs.Blazor.Util
 ```
 
-Below the `@using` statements add a `ChartJsPieChart` component
+Below the `@using` statements add a `Chart` component
 ```html
-<ChartJsPieChart @ref="_pieChartJs" Config="@_config" Width="600" Height="300"/>
+<Chart @ref="_pieChartJs"
+        Config="@_config"
+        TConfig="PieConfig"
+        Width="600"
+        Height="300"/>
 ```
-The last step is to make the `ChartJsPieChart` from above, reachable from your code to configure it and to give it some data to display. In the `@code` section of your .razor file create matching variables to reference the chart and its configuration. Finally, give your chart a title and some data. The finished code should look like this:
+The last step is to make the `Chart` from above, reachable from your code to configure it and to give it some data to display. In the `@code` section of your .razor file create matching variables to reference the chart and its configuration. Finally, give your chart a title and some data. The finished code should look like this:
 
 ```csharp
     private PieConfig _config;
-    private ChartJsPieChart _pieChartJs;
+    private Chart<PieConfig> _pieChartJs;
 
     protected override void OnInitialized()
     {
@@ -137,7 +141,9 @@ First, in your  `Index.html`/`_Host.cshtml` you've added references to static as
 
 Then, you've imported `ChartJs.Blazor` in your `_Imports.razor`. The Blazor Team mentioned that this shouldn't be necessary in the future.
 
-In your .razor file you added the `ChartJsPieChart` component and gave it some width and height. You specified that the component should use the variable `_config`` as the chart's configuration object. You also told Blazor that you want a direct reference to the chart and that the reference should be saved in your `_pieChartJs`` variable.
+In your .razor file you added the `Chart` component and gave it some width and height. You specified that the component should use the variable `_config` as the chart's configuration object. You also told Blazor that you want a direct reference to the chart and that the reference should be saved in your `_pieChartJs` variable.
+
+Note: for the moment you need to explicitly specify the type of the configuration object `TConfig="PieConfig"`. That won't be necessary in the future.
 
 When your page's `OnInitialized()` method is executed you're setting the chart's configuration and dataset to be displayed.
 
