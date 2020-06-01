@@ -35,6 +35,19 @@ namespace ChartJs.Blazor.Util
         }
 
         /// <summary>
+        /// Produces a string of the form '#aabbcd' with the provided rgb values
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="g"></param>
+        /// <param name="b"></param>
+        /// <param name="alpha"></param>
+        /// <returns></returns>
+        public static string ColorHexString(byte r, byte g, byte b, double alpha)
+        {
+            return $"#{r:X2}{g:X2}{b:X2}{(byte)(alpha * 255):X2}";
+        }
+
+        /// <summary>
         /// Produces a string of the form 'rgba(r, g, b, alpha)' with the provided rgb and alpha values
         /// </summary>
         /// <param name="r"></param>
@@ -69,9 +82,9 @@ namespace ChartJs.Blazor.Util
         /// Generates the corresponding string representation (as hex) of a <see cref="System.Drawing.Color"></see> object.
         /// </summary>
         /// <returns>The string representation as a hex color string</returns>
-        public static string FromDrawingColor(System.Drawing.Color color)
+        public static string FromDrawingColor(System.Drawing.Color color, byte alpha = 0)
         {
-            return ColorHexString(color.R, color.G, color.B);
+            return ColorString(color.R, color.G, color.B, (double)color.A / byte.MaxValue);
         }
     }
 }
