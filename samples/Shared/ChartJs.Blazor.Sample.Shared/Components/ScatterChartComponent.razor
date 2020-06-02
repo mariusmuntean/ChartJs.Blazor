@@ -1,6 +1,7 @@
 ﻿@using ChartJs.Blazor.ChartJS.Common.Properties
 @using ChartJs.Blazor.Charts
 @using ChartJs.Blazor.ChartJS.ScatterChart
+@using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.Util
 
 <h1>Scatter Chart</h1>
@@ -21,22 +22,12 @@
     {
         _config = new ScatterConfig
         {
-            Options = new ScatterOptions
+            Options = new LineOptions
             {
                 Title = new OptionsTitle
                 {
                     Text = "My Random points",
                     Display = true
-                },
-                Scales = new ScatterScales
-                {
-                    XAxes = new List<ScatterAxis>
-                    {
-                        new ScatterAxis
-                        {
-                            Type = "linear"
-                        }
-                    }
                 }
             }
         };
