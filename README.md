@@ -84,55 +84,51 @@ Then add a few `@using` statements
 @using ChartJs.Blazor.Util
 ```
 
-Below the `@using` statements add a `Chart` component
+Below the `@using` statements add a `ChartJsPieChart` component
 ```html
-<Chart @ref="_pieChartJs"
-        Config="@_config"
-        TConfig="PieConfig"
-        Width="600"
-        Height="300"/>
+<ChartJsPieChart @ref="_pieChartJs" Config="@_config" Width="600" Height="300"/>
 ```
-The last step is to make the `Chart` from above, reachable from your code to configure it and to give it some data to display. In the `@code` section of your .razor file create matching variables to reference the chart and its configuration. Finally, give your chart a title and some data. The finished code should look like this:
+The last step is to make the `ChartJsPieChart` from above, reachable from your code to configure it and to give it some data to display. In the `@code` section of your .razor file create matching variables to reference the chart and its configuration. Finally, give your chart a title and some data. The finished code should look like this:
 
 ```csharp
-    private PieConfig _config;
-    private Chart<PieConfig> _pieChartJs;
+private PieConfig _config;
+private ChartJsPieChart _pieChartJs;
 
-    protected override void OnInitialized()
+protected override void OnInitialized()
+{
+    _config = new PieConfig
     {
-        _config = new PieConfig
+        Options = new PieOptions
         {
-            Options = new PieOptions
+            Title = new OptionsTitle
             {
-                Title = new OptionsTitle
-                {
-                    Display = true,
-                    Text = "Sample chart from Blazor"
-                },
-                Responsive = true,
-                Animation = new ArcAnimation
-                {
-                    AnimateRotate = true,
-                    AnimateScale = true
-                }
+                Display = true,
+                Text = "Sample chart from Blazor"
+            },
+            Responsive = true,
+            Animation = new ArcAnimation
+            {
+                AnimateRotate = true,
+                AnimateScale = true
             }
-        };
+        }
+    };
 
-        _config.Data.Labels.AddRange(new[] {"A", "B", "C", "D"});
+    _config.Data.Labels.AddRange(new[] { "A", "B", "C", "D" });
 
-        var pieSet = new PieDataset
-        {
-            BackgroundColor = new[] { ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString() },
-            BorderWidth = 0,
-            HoverBackgroundColor = ColorUtil.RandomColorString(),
-            HoverBorderColor = ColorUtil.RandomColorString(),
-            HoverBorderWidth = 1,
-            BorderColor = "#ffffff",
-        };
+    var pieSet = new PieDataset
+    {
+        BackgroundColor = new[] { ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString() },
+        BorderWidth = 0,
+        HoverBackgroundColor = ColorUtil.RandomColorString(),
+        HoverBorderColor = ColorUtil.RandomColorString(),
+        HoverBorderWidth = 1,
+        BorderColor = "#ffffff",
+    };
 
-        pieSet.Data.AddRange(new double[] {4, 5, 6, 7});
-        _config.Data.Datasets.Add(pieSet);
-    }
+    pieSet.Data.AddRange(new double[] { 4, 5, 6, 7 });
+    _config.Data.Datasets.Add(pieSet);
+}
 ```
 
 **Breakdown**
@@ -141,9 +137,7 @@ First, in your  `Index.html`/`_Host.cshtml` you've added references to static as
 
 Then, you've imported `ChartJs.Blazor` in your `_Imports.razor`. The Blazor Team mentioned that this shouldn't be necessary in the future.
 
-In your .razor file you added the `Chart` component and gave it some width and height. You specified that the component should use the variable `_config` as the chart's configuration object. You also told Blazor that you want a direct reference to the chart and that the reference should be saved in your `_pieChartJs` variable.
-
-Note: for the moment you need to explicitly specify the type of the configuration object `TConfig="PieConfig"`. That won't be necessary in the future.
+In your .razor file you added the `ChartJsPieChart` component and gave it some width and height. You specified that the component should use the variable `_config` as the chart's configuration object. You also told Blazor that you want a direct reference to the chart and that the reference should be saved in your `_pieChartJs` variable.
 
 When your page's `OnInitialized()` method is executed you're setting the chart's configuration and dataset to be displayed.
 
@@ -246,17 +240,21 @@ When your page's `OnInitialized()` method is executed you're setting the chart's
 ```
 
 ### Dig deeper
-For detailed instructions read the [Chart.Js](https://www.chartjs.org/docs/latest/charts/) documentation to understand how each chart works.
+For detailed instructions read the [Chart.js](https://www.chartjs.org/docs/latest/charts/) documentation to understand how each chart works.
 
 ## A word on the samples
-The **samples** folder contains three projects, one for a client-side Blazor app, another one for a server-side Blazor app and a shared project. The shared project is not really necessary but that is how I chose to avoid code duplication.
 
-The documentation might lag the actual development state (who likes to write documentation, am I right?) but the samples will probably never lag the actual state of the library. This is due to the way in which I develop where I constantly run the samples to play with new features of ChartJs.
+#### The current samples are flawed in many ways. If you would like to help improving them, please see [this issue](https://github.com/mariusmuntean/ChartJs.Blazor/issues/122).
 
-To make it easier for you to see what ChartJs.Blazor can do I host the client-side samples with [Netlify](https://www.netlify.com) on [www.iheartblazor.com](https://www.iheartblazor.com) (and a few other domains 😁)
+The **samples** folder contains three projects, one for a client-side Blazor app, another one for a server-side Blazor app and a shared project. The shared project is not really necessary but that is how we chose to avoid code duplication.
 
+Unlike the documentation, the samples should always be up to date with the current development on master. That means, that the code you see in the samples folder on master might not actually compile on the current nuget version.
+To browse the samples for the latest nuget version, see the [samples on the releases branch](https://github.com/mariusmuntean/ChartJs.Blazor/tree/releases/samples).
 
-If you go there you should see something like this:
+To make it easier for you to see what ChartJs.Blazor can do, we host the client-side samples with [Netlify](https://www.netlify.com) on [www.iheartblazor.com](https://www.iheartblazor.com) (and a few other domains 😁).
+However, the demo page might lag behind a bit too so if you want to be sure, compile the [samples on the releases branch](https://github.com/mariusmuntean/ChartJs.Blazor/tree/releases/samples).
+
+If you go to the demo page, you should see something like this:
 ![Charts](media/samples.gif)
 
 # Contributors
