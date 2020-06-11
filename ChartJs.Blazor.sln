@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{08E01108-AF6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{5474F748-8E27-4FD6-AD9D-1087578ED4D7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartJs.Blazor", "src\ChartJs.Blazor\ChartJs.Blazor.csproj", "{1990A3D7-7B00-469F-BC97-F614393F7A52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartJs.Blazor", "src\ChartJs.Blazor\ChartJs.Blazor.csproj", "{1990A3D7-7B00-469F-BC97-F614393F7A52}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientSide", "ClientSide", "{474E0BD0-B8C0-4A00-9B05-B1B33F3B7C94}"
 EndProject
@@ -15,11 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServerSide", "ServerSide", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{99703BE7-7A02-454D-8066-87BBEBA039BD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartJs.Blazor.Sample.Shared", "samples\Shared\ChartJs.Blazor.Sample.Shared\ChartJs.Blazor.Sample.Shared.csproj", "{3FB87C6F-5C21-4095-AC64-35AE6299B88F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartJs.Blazor.Sample.Shared", "samples\Shared\ChartJs.Blazor.Sample.Shared\ChartJs.Blazor.Sample.Shared.csproj", "{3FB87C6F-5C21-4095-AC64-35AE6299B88F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartJs.Blazor.Sample.ServerSide", "samples\ServerSide\ChartJs.Blazor.Sample.ServerSide\ChartJs.Blazor.Sample.ServerSide.csproj", "{D547792A-5B2C-4FAF-93AA-71BAA9BF845C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartJs.Blazor.Sample.ServerSide", "samples\ServerSide\ChartJs.Blazor.Sample.ServerSide\ChartJs.Blazor.Sample.ServerSide.csproj", "{D547792A-5B2C-4FAF-93AA-71BAA9BF845C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartJs.Blazor.Sample.ClientSide", "samples\ClientSide\ChartJs.Blazor.Sample.ClientSide\ChartJs.Blazor.Sample.ClientSide.csproj", "{153F4719-305A-4AD0-975A-91ABD9935F87}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartJs.Blazor.Sample.ClientSide", "samples\ClientSide\ChartJs.Blazor.Sample.ClientSide\ChartJs.Blazor.Sample.ClientSide.csproj", "{153F4719-305A-4AD0-975A-91ABD9935F87}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartJs.Blazor.Tests", "ChartJs.Blazor.Tests\ChartJs.Blazor.Tests.csproj", "{135A9451-FC82-48B4-89F6-3CBF5312B2C2}"
 EndProject
