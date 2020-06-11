@@ -15,10 +15,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\src\ChartJs.Blazor\ChartJs.Blazor.csproj" />
+    <PackageReference Include="ChartJs.Blazor" Version="2.0.0-preview13" />
   </ItemGroup>
 
 </Project>
