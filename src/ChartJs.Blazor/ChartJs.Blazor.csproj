@@ -16,7 +16,14 @@
     <PackageProjectUrl>https://github.com/mariusmuntean/ChartJs.Blazor</PackageProjectUrl>
     <PackageTags>ChartJS Blazor ASP.Net Core wasm</PackageTags>
     <PackageSummary></PackageSummary>
-    <PackageReleaseNotes>Updated tick, animation and chart title configurations, allow custom ChartType (for your own charts), respect AspectRatio.</PackageReleaseNotes>
+    <PackageReleaseNotes>First preview of the upcoming 2.0 release.
+Changes:
+* Improved JavaScript interop layer and API.
+* Datasets were reworked.
+* Unified all charts into one Blazor component.
+* Bugfixes and performance improvements.
+
+Attention: this release includes breaking changes and it represents a work in progress.</PackageReleaseNotes>
     <AssemblyName>ChartJs.Blazor</AssemblyName>
     <RootNamespace>ChartJs.Blazor</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
