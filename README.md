@@ -1,4 +1,4 @@
-# ChartJs interop with Blazor
+# Chart.js interop with Blazor
 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](/LICENSE.md)
@@ -15,7 +15,7 @@
 
 # Introduction
 
-This is a Blazor library that wraps [ChartJs](https://github.com/chartjs/Chart.js). You can use the library in both client- and server-side projects. See the *Getting Started*, browse the samples or reach out on Twitter if you need help.
+This is a Blazor library that wraps [Chart.js](https://github.com/chartjs/Chart.js). You can use the library in both client- and server-side projects. See the *Getting Started*, browse the samples or reach out on Twitter if you need help.
 
 Don't know what Blazor is? Read [here](https://dotnet.microsoft.com/apps/aspnet/web-apps/client).
 
