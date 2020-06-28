@@ -51,10 +51,6 @@ Attention: this release includes breaking changes and it represents a work in pr
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </TypeScriptCompile>
-    <Content Include="tsbuild/ts/**/*">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -87,5 +83,9 @@ Attention: this release includes breaking changes and it represents a work in pr
     <Compile Update="ChartJS\BarChart\Axes\ExtendedCartesianAxes.cs">
       <DependentUpon>ExtendedCartesianAxes.tt</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="obj" />
   </ItemGroup>
 </Project>

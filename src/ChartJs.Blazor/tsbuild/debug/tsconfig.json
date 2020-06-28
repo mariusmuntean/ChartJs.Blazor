@@ -8,11 +8,12 @@
             "es2018"
         ],
         "outFile": "../../wwwroot/ChartJsBlazorInterop.js",
-        "sourceMap": true,
         "typeRoots": [
             "../ts/types/"
         ],
-        "alwaysStrict": true
+        "alwaysStrict": true,
+        "inlineSources": true,
+        "inlineSourceMap": true
     },
     "include": [
         "../ts/*.ts"
