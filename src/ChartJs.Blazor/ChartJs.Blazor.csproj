@@ -31,21 +31,39 @@ Attention: this release includes breaking changes and it represents a work in pr
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <FileVersion>2.0.0.0</FileVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageVersion>2.0.0-preview1</PackageVersion>
+    <PackageVersion>2.0.0-preview2</PackageVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>.\ChartJs.Blazor.xml</DocumentationFile>
   </PropertyGroup>
-  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <Content Remove="tsbuild/debug/tsconfig.json" />
+
+  <!-- The tsconfig files shouldn't be treated as content-->
+  <ItemGroup>
+    <Content Remove="tsbuild\release\tsconfig.json" />
+    <Content Remove="tsbuild\debug\tsconfig.json" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <Content Remove="tsbuild/release/tsconfig.json" />
-    <Content Include="wwwroot/ts/**/*">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    <TypeScriptCompile Remove="tsbuild\release\tsconfig.json" />
+    <TypeScriptCompile Include="tsbuild\debug\tsconfig.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </TypeScriptCompile>
+    <Content Include="tsbuild/ts/**/*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TypeScriptCompile Remove="tsbuild\debug\tsconfig.json" />
+    <TypeScriptCompile Include="tsbuild\release\tsconfig.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </TypeScriptCompile>
   </ItemGroup>
 
   <ItemGroup>

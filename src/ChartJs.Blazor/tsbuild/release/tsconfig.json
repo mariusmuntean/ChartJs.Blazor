@@ -10,12 +10,12 @@
         "outFile": "../../wwwroot/ChartJsBlazorInterop.js",
         "sourceMap": false,
         "typeRoots": [
-            "../../wwwroot/ts/types/"
+            "../ts/types/"
         ],
         "alwaysStrict": true
     },
     "include": [
-        "../../wwwroot/ts/*.ts"
+        "../ts/*.ts"
     ],
     "compileOnSave": true
 }
