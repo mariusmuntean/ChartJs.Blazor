@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ChartJs.Blazor.ChartJS.Common;
 
 namespace ChartJs.Blazor.ChartJS.ScatterChart
 {
@@ -10,6 +11,6 @@ namespace ChartJs.Blazor.ChartJS.ScatterChart
         /// <summary>
         /// Gets the datasets displayed in this chart.
         /// </summary>
-        public List<ScatterDataset> Datasets { get; } = new List<ScatterDataset>();
+        public IList<IDataset> Datasets { get; } = new List<IDataset>();
     }
 }

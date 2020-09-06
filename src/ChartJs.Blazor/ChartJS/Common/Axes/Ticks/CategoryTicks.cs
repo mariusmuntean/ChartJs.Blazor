@@ -10,7 +10,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Axes.Ticks
         /// <summary>
         /// Gets or sets an array of labels to display.
         /// </summary>
-        public List<string> Labels { get; set; }
+        public IList<string> Labels { get; set; }
 
         /// <summary>
         /// Gets or sets the minimum item to display. The item has to be present in <see cref="Labels"/>.

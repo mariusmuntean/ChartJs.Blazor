@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ChartJs.Blazor.ChartJS.Common;
 
 namespace ChartJs.Blazor.ChartJS.BarChart
 {
@@ -14,7 +15,7 @@ namespace ChartJs.Blazor.ChartJS.BarChart
         public BarData()
         {
             Labels = new List<string>();
-            Datasets = new BarDatasetCollection();
+            Datasets = new List<IDataset>();
         }
 
         /// <summary>
@@ -24,12 +25,12 @@ namespace ChartJs.Blazor.ChartJS.BarChart
         /// <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.
         /// </para>
         /// </summary>
-        public List<string> Labels { get; }
+        public IList<string> Labels { get; }
 
         /// <summary>
         /// Gets the datasets displayed in this chart.
         /// </summary>
-        public BarDatasetCollection Datasets { get; }
+        public IList<IDataset> Datasets { get; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         [Obsolete("json.net", true)]

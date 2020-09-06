@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Properties;
 
 namespace ChartJs.Blazor.ChartJS.BubbleChart
@@ -11,6 +12,6 @@ namespace ChartJs.Blazor.ChartJS.BubbleChart
         /// <summary>
         /// Gets the datasets displayed in this chart.
         /// </summary>
-        public List<BubbleDataset> Datasets { get; } = new List<BubbleDataset>();
+        public IList<IDataset> Datasets { get; } = new List<IDataset>();
     }
 }

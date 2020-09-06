@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ChartJs.Blazor.ChartJS.Common;
 
 namespace ChartJs.Blazor.ChartJS.RadarChart
 {
@@ -10,11 +11,11 @@ namespace ChartJs.Blazor.ChartJS.RadarChart
         /// <summary>
         /// Gets the labels the chart will use.
         /// </summary>
-        public List<string> Labels { get; } = new List<string>();
+        public IList<string> Labels { get; } = new List<string>();
 
         /// <summary>
         /// Gets the datasets displayed in this chart.
         /// </summary>
-        public List<RadarDataset> Datasets { get; } = new List<RadarDataset>();
+        public IList<IDataset> Datasets { get; } = new List<IDataset>();
     }
 }

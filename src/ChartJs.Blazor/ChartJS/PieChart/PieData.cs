@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ChartJs.Blazor.ChartJS.Common;
 
 namespace ChartJs.Blazor.ChartJS.PieChart
 {
@@ -10,11 +11,11 @@ namespace ChartJs.Blazor.ChartJS.PieChart
         /// <summary>
         /// Gets the labels the chart will use.
         /// </summary>
-        public List<string> Labels { get; } = new List<string>();
+        public IList<string> Labels { get; } = new List<string>();
 
         /// <summary>
         /// Gets the datasets displayed in this chart.
         /// </summary>
-        public List<PieDataset> Datasets { get; } = new List<PieDataset>();
+        public IList<IDataset> Datasets { get; } = new List<IDataset>();
     }
 }

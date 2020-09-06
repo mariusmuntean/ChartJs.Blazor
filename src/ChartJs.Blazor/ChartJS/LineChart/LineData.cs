@@ -17,7 +17,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
             Labels = new List<string>();
             XLabels = new List<string>();
             YLabels = new List<string>();
-            Datasets = new NumberPointDatasetCollection();
+            Datasets = new List<IDataset>();
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.
         /// </para>
         /// </summary>
-        public List<string> Labels { get; }
+        public IList<string> Labels { get; }
 
         /// <summary>
         /// Gets the labels the horizontal axes will use.
@@ -36,7 +36,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.
         /// </para>
         /// </summary>
-        public List<string> XLabels { get; }
+        public IList<string> XLabels { get; }
 
         /// <summary>
         /// Gets the labels the vertical axes will use.
@@ -45,12 +45,12 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.
         /// </para>
         /// </summary>
-        public List<string> YLabels { get; }
+        public IList<string> YLabels { get; }
 
         /// <summary>
         /// Gets the datasets displayed in this chart.
         /// </summary>
-        public NumberPointDatasetCollection Datasets { get; }
+        public IList<IDataset> Datasets { get; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         [Obsolete("json.net", true)]

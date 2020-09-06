@@ -45,7 +45,7 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// <see cref="BaseConfigOptions.Plugins"/> instead.
         /// </para>
         /// </summary>
-        public List<object> Plugins { get; } = new List<object>();
+        public IList<object> Plugins { get; } = new List<object>();
         
         /// <summary>
         /// This method tells json.net to only serialize the plugins when there

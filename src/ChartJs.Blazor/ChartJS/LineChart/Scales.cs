@@ -13,12 +13,12 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// Gets or sets the configurations for the x-axes.
         /// </summary>
         [JsonProperty("xAxes")]
-        public List<CartesianAxis> XAxes { get; set; }
+        public IList<CartesianAxis> XAxes { get; set; }
 
         /// <summary>
         /// Gets or sets the configurations for the y-axes.
         /// </summary>
         [JsonProperty("yAxes")]
-        public List<CartesianAxis> YAxes { get; set; }
+        public IList<CartesianAxis> YAxes { get; set; }
     }
 }
