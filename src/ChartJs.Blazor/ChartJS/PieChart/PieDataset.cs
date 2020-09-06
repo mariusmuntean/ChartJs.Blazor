@@ -6,14 +6,27 @@ using ChartJs.Blazor.Util;
 
 namespace ChartJs.Blazor.ChartJS.PieChart
 {
+    /// <inheritdoc/>
+    public class PieDataset : PieDataset<double>
+    {
+        /// <inheritdoc/>
+        public PieDataset(bool useDoughnutDefaults = false) : base(useDoughnutDefaults) { }
+
+        /// <inheritdoc/>
+        public PieDataset(IEnumerable<double> data, bool useDoughnutDefaults = false) : base(data, useDoughnutDefaults) { }
+
+        /// <inheritdoc/>
+        protected PieDataset(ChartType type) : base(type) { }
+    }
+
     /// <summary>
     /// Represents a dataset for a pie or doughnut chart.
     /// As per documentation <a href="https://www.chartjs.org/docs/latest/charts/doughnut.html#dataset-properties">here (Chart.js)</a>.
     /// </summary>
-    public class PieDataset : Dataset<double>
+    public class PieDataset<T> : Dataset<T>
     {
         /// <summary>
-        /// Creates a new instance of <see cref="PieDataset"/>.
+        /// Creates a new instance of <see cref="PieDataset{T}"/>.
         /// </summary>
         /// <param name="useDoughnutDefaults">
         /// If <see langword="true"/>, the dataset-type will be set to <see cref="ChartType.Doughnut"/>
@@ -25,16 +38,16 @@ namespace ChartJs.Blazor.ChartJS.PieChart
         public PieDataset(bool useDoughnutDefaults = false) : base(useDoughnutDefaults ? ChartType.Doughnut : ChartType.Pie) { }
 
         /// <summary>
-        /// Creates a new instance of <see cref="PieDataset"/> with initial data.
+        /// Creates a new instance of <see cref="PieDataset{T}"/> with initial data.
         /// </summary>
         /// <inheritdoc cref="PieDataset(bool)"/>
-        public PieDataset(IEnumerable<double> data, bool useDoughnutDefaults = false) : this(useDoughnutDefaults)
+        public PieDataset(IEnumerable<T> data, bool useDoughnutDefaults = false) : this(useDoughnutDefaults)
         {
             AddRange(data);
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="PieDataset"/> with
+        /// Creates a new instance of <see cref="PieDataset{T}"/> with
         /// a custom <see cref="ChartType"/>. Use this constructor when
         /// you implement a pie-like chart.
         /// </summary>

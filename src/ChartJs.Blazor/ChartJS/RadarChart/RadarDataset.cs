@@ -7,28 +7,41 @@ using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.RadarChart
 {
+    /// <inheritdoc/>
+    public class RadarDataset : RadarDataset<double>
+    {
+        /// <inheritdoc/>
+        public RadarDataset() { }
+
+        /// <inheritdoc/>
+        public RadarDataset(IEnumerable<double> data) : base(data) { }
+
+        /// <inheritdoc/>
+        protected RadarDataset(ChartType type) : base(type) { }
+    }
+
     /// <summary>
     /// Represents a dataset for a radar chart.
     /// As per documentation <a href="https://www.chartjs.org/docs/latest/charts/radar.html#dataset-properties">here (Chart.js)</a>.
     /// </summary>
     // Very similar to LineDataset, so the summaries are inherited.
-    public class RadarDataset : Dataset<double>
+    public class RadarDataset<T> : Dataset<T>
     {
         /// <summary>
-        /// Creates a new instance of <see cref="RadarDataset"/>.
+        /// Creates a new instance of <see cref="RadarDataset{T}"/>.
         /// </summary>
         public RadarDataset() : base(ChartType.Radar) { }
 
         /// <summary>
-        /// Creates a new instance of <see cref="RadarDataset"/> with initial data.
+        /// Creates a new instance of <see cref="RadarDataset{T}"/> with initial data.
         /// </summary>
-        public RadarDataset(IEnumerable<double> data) : this()
+        public RadarDataset(IEnumerable<T> data) : this()
         {
             AddRange(data);
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="RadarDataset"/> with
+        /// Creates a new instance of <see cref="RadarDataset{T}"/> with
         /// a custom <see cref="ChartType"/>. Use this constructor when
         /// you implement a radar-like chart.
         /// </summary>

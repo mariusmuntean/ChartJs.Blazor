@@ -8,28 +8,41 @@ using System.Collections.Generic;
 
 namespace ChartJs.Blazor.ChartJS.PolarAreaChart
 {
+    /// <inheritdoc/>
+    public class PolarAreaDataset : PolarAreaDataset<double>
+    {
+        /// <inheritdoc/>
+        public PolarAreaDataset() { }
+
+        /// <inheritdoc/>
+        public PolarAreaDataset(IEnumerable<double> data) : base(data) { }
+
+        /// <inheritdoc/>
+        protected PolarAreaDataset(ChartType type) : base(type) { }
+    }
+
     /// <summary>
-    /// Represents a dataset for a pie or doughnut chart.
+    /// Represents a dataset for a polar area chart.
     /// As per documentation <a href="https://www.chartjs.org/docs/latest/charts/polar.html#dataset-properties">here (Chart.js)</a>.
     /// </summary>
     // Very similar to PieDataset, so the summaries are inherited.
-    public class PolarAreaDataset : Dataset<double>
+    public class PolarAreaDataset<T> : Dataset<T>
     {
         /// <summary>
-        /// Creates a new instance of <see cref="PolarAreaDataset"/>.
+        /// Creates a new instance of <see cref="PolarAreaDataset{T}"/>.
         /// </summary>
         public PolarAreaDataset() : base(ChartType.PolarArea) { }
 
         /// <summary>
-        /// Creates a new instance of <see cref="PolarAreaDataset"/> with initial data.
+        /// Creates a new instance of <see cref="PolarAreaDataset{T}"/> with initial data.
         /// </summary>
-        public PolarAreaDataset(IEnumerable<double> data) : this()
+        public PolarAreaDataset(IEnumerable<T> data) : this()
         {
             AddRange(data);
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="PolarAreaDataset"/> with
+        /// Creates a new instance of <see cref="PolarAreaDataset{T}"/> with
         /// a custom <see cref="ChartType"/>. Use this constructor when
         /// you implement a polar-area-like chart.
         /// </summary>
