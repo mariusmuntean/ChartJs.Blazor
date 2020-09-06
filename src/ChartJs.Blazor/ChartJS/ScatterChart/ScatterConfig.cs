@@ -11,7 +11,7 @@ namespace ChartJs.Blazor.ChartJS.ScatterChart
     /// Therefore, many configuration options are from the line chart.
     /// </para>
     /// </summary>
-    public class ScatterConfig : ConfigBase<LineChart.LineOptions, ScatterData>
+    public class ScatterConfig : ConfigBase<LineChart.LineOptions>
     {
         /// <summary>
         /// Creates a new instance of <see cref="ScatterConfig"/>.

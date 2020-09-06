@@ -62,7 +62,7 @@ namespace ChartJs.Blazor.ChartJS.Common
     /// <typeparam name="TData">The type of the data subconfig.</typeparam>
     public abstract class ConfigBase<TOptions, TData> : ConfigBase
         where TOptions : BaseConfigOptions
-        where TData : class, new()      // TODO: restrict to some interface
+        where TData : ChartData, new()
     {
         /// <summary>
         /// Creates a new instance of <see cref="ConfigBase"/>.
@@ -82,5 +82,13 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// Gets the data subconfig for this chart.
         /// </summary>
         public TData Data { get; }
+    }
+
+    /// <inheritdoc cref="ConfigBase{TOptions, TData}"/>
+    public abstract class ConfigBase<TOptions> : ConfigBase<TOptions, ChartData>
+        where TOptions : BaseConfigOptions
+    {
+        /// <inheritdoc/>
+        protected ConfigBase(ChartType chartType) : base(chartType) { }
     }
 }

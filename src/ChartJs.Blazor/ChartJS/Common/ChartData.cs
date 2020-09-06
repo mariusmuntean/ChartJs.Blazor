@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using ChartJs.Blazor.ChartJS.Common;
 
-namespace ChartJs.Blazor.ChartJS.LineChart
+namespace ChartJs.Blazor.ChartJS.Common
 {
     /// <summary>
-    /// Represents the data-subconfig of a <see cref="LineConfig"/>.
+    /// Represents the data-subconfig of any <see cref="ConfigBase"/>.
     /// </summary>
-    public class LineData
+    public class ChartData
     {
         /// <summary>
-        /// Creates a new instance of <see cref="LineData"/>.
+        /// Creates a new instance of <see cref="ChartData"/>.
         /// </summary>
-        public LineData()
+        public ChartData()
         {
             Labels = new List<string>();
             XLabels = new List<string>();
@@ -24,29 +24,29 @@ namespace ChartJs.Blazor.ChartJS.LineChart
         /// Gets the labels the chart will use.
         /// <para>
         /// If defined (1 or more labels) the corresponding axis has to be of type
-        /// <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.
+        /// <see cref="Enums.AxisType.Category"/> for the chart to work correctly.
         /// </para>
         /// </summary>
-        public IList<string> Labels { get; }
+        public virtual IList<string> Labels { get; }
 
         /// <summary>
         /// Gets the labels the horizontal axes will use.
         /// <para>
         /// If defined (1 or more labels) the x-axis has to be of type
-        /// <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.
+        /// <see cref="Enums.AxisType.Category"/> for the chart to work correctly.
         /// </para>
         /// </summary>
-        public IList<string> XLabels { get; }
+        public virtual IList<string> XLabels { get; }
 
         /// <summary>
         /// Gets the labels the vertical axes will use.
         /// <para>
         /// If defined (1 or more labels) the y-axis has to be of type
-        /// <see cref="Common.Enums.AxisType.Category"/> for the chart to work correctly.
+        /// <see cref="Enums.AxisType.Category"/> for the chart to work correctly.
         /// </para>
         /// </summary>
-        public IList<string> YLabels { get; }
-
+        public virtual IList<string> YLabels { get; }
+        
         /// <summary>
         /// Gets the datasets displayed in this chart.
         /// </summary>
@@ -54,11 +54,11 @@ namespace ChartJs.Blazor.ChartJS.LineChart
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         [Obsolete("json.net", true)]
-        public bool ShouldSerializeLabels() => Labels.Count > 0;
+        public bool ShouldSerializeLabels() => Labels?.Count > 0;
         [Obsolete("json.net", true)]
-        public bool ShouldSerializeXLabels() => XLabels.Count > 0;
+        public bool ShouldSerializeXLabels() => XLabels?.Count > 0;
         [Obsolete("json.net", true)]
-        public bool ShouldSerializeYLabels() => YLabels.Count > 0;
+        public bool ShouldSerializeYLabels() => YLabels?.Count > 0;
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

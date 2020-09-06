@@ -3,7 +3,7 @@ using ChartJs.Blazor.ChartJS.Common.Enums;
 
 namespace ChartJs.Blazor.ChartJS.BubbleChart
 {
-    public class BubbleConfig : ConfigBase<BubbleOptions, BubbleData>
+    public class BubbleConfig : ConfigBase<BubbleOptions>
     {
         public BubbleConfig() : base(ChartType.Bubble) { }
     }

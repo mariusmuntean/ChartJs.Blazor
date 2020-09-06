@@ -6,7 +6,7 @@ namespace ChartJs.Blazor.ChartJS.RadarChart
     /// <summary>
     /// Represents the config for a radar chart.
     /// </summary>
-    public class RadarConfig : ConfigBase<RadarOptions, RadarData>
+    public class RadarConfig : ConfigBase<RadarOptions>
     {
         /// <summary>
         /// Creates a new instance of <see cref="RadarConfig"/>.

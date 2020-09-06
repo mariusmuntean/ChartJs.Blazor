@@ -36,25 +36,25 @@ namespace ChartJs.Blazor.ChartJS.PolarAreaChart
         /// <param name="type">The <see cref="ChartType"/> to use instead of <see cref="ChartType.PolarArea"/>.</param>
         protected PolarAreaDataset(ChartType type) : base(type) { }
 
-        /// <inheritdoc cref="PieDataset.BackgroundColor"/>
+        /// <inheritdoc cref="PieDataset{T}.BackgroundColor"/>
         public IndexableOption<string> BackgroundColor { get; set; }
 
-        /// <inheritdoc cref="PieDataset.BorderAlign"/>
+        /// <inheritdoc cref="PieDataset{T}.BorderAlign"/>
         public IndexableOption<BorderAlign> BorderAlign { get; set; }
 
-        /// <inheritdoc cref="PieDataset.BorderColor"/>
+        /// <inheritdoc cref="PieDataset{T}.BorderColor"/>
         public IndexableOption<string> BorderColor { get; set; }
 
-        /// <inheritdoc cref="PieDataset.BorderWidth"/>
+        /// <inheritdoc cref="PieDataset{T}.BorderWidth"/>
         public IndexableOption<int> BorderWidth { get; set; }
 
-        /// <inheritdoc cref="PieDataset.HoverBackgroundColor"/>
+        /// <inheritdoc cref="PieDataset{T}.HoverBackgroundColor"/>
         public IndexableOption<string> HoverBackgroundColor { get; set; }
 
-        /// <inheritdoc cref="PieDataset.HoverBorderColor"/>
+        /// <inheritdoc cref="PieDataset{T}.HoverBorderColor"/>
         public IndexableOption<string> HoverBorderColor { get; set; }
 
-        /// <inheritdoc cref="PieDataset.HoverBorderWidth"/>
+        /// <inheritdoc cref="PieDataset{T}.HoverBorderWidth"/>
         public IndexableOption<int> HoverBorderWidth { get; set; }
     }
 }

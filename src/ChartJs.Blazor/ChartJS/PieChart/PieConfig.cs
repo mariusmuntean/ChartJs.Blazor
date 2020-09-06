@@ -6,7 +6,7 @@ namespace ChartJs.Blazor.ChartJS.PieChart
     /// <summary>
     /// Config for a <see cref="PieConfig"/>.
     /// </summary>
-    public class PieConfig : ConfigBase<PieOptions, PieData>
+    public class PieConfig : ConfigBase<PieOptions>
     {
         /// <summary>
         /// Creates a new instance of <see cref="PieConfig"/>.

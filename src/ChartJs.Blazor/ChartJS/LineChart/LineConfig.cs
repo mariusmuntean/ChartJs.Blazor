@@ -6,7 +6,7 @@ namespace ChartJs.Blazor.ChartJS.LineChart
     /// <summary>
     /// Config for a <see cref="Charts.ChartJsLineChart"/>
     /// </summary>
-    public class LineConfig : ConfigBase<LineOptions, LineData>
+    public class LineConfig : ConfigBase<LineOptions, ChartData>
     {
         /// <summary>
         /// Creates a new instance of <see cref="LineConfig"/>

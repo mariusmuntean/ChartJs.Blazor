@@ -101,7 +101,7 @@
 
     private async Task AddData()
     {
-        var dataset = _config.Data.Datasets.LastOrDefault();
+        var dataset = _config.Data.Datasets.LastOrDefault() as PieDataset;
         if (dataset == null) return;
 
         var rand = new Random();
