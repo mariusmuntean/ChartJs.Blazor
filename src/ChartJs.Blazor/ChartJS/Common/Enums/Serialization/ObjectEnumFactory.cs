@@ -14,7 +14,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
      */
     internal class ObjectEnumFactory
     {
-        private static readonly ConcurrentDictionary<Type, ObjectEnumFactory> s_factorySingletons = new ConcurrentDictionary<Type, ObjectEnumFactory>();
+        private static readonly ConcurrentDictionary<Type, ObjectEnumFactory> _factorySingletons = new ConcurrentDictionary<Type, ObjectEnumFactory>();
         
         private readonly Dictionary<Type, ConstructorInfo> _constructorCache;
         private readonly Type _enumType;
@@ -31,7 +31,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
             if (!typeof(ObjectEnum).IsAssignableFrom(enumType))
                 throw new ArgumentException($"The type '{enumType.FullName}' doesn't inherit from '{typeof(ObjectEnum).FullName}'");
 
-            return s_factorySingletons.GetOrAdd(enumType, type => new ObjectEnumFactory(type));
+            return _factorySingletons.GetOrAdd(enumType, type => new ObjectEnumFactory(type));
         }
 
         private ObjectEnumFactory(Type enumType)

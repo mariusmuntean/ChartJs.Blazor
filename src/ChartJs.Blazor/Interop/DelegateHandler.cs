@@ -19,8 +19,8 @@ namespace ChartJs.Blazor.Interop
     public class DelegateHandler<T> : IMethodHandler<T>, IDisposable
         where T : Delegate
     {
-        private static readonly ParameterInfo[] s_delegateParameters;
-        private static readonly bool s_delegateHasReturnValue;
+        private static readonly ParameterInfo[] _delegateParameters;
+        private static readonly bool _delegateHasReturnValue;
 
         private readonly T _function;
         private readonly IList<int> _ignoredIndices;
@@ -40,7 +40,7 @@ namespace ChartJs.Blazor.Interop
         /// <summary>
         /// Gets a value indicating whether or not this delegate will return a value.
         /// </summary>
-        public bool ReturnsValue => s_delegateHasReturnValue;
+        public bool ReturnsValue => _delegateHasReturnValue;
 
         /// <summary>
         /// Gets the indices of the ignored callback parameters. The parameters at these indices won't
@@ -54,8 +54,8 @@ namespace ChartJs.Blazor.Interop
             // https://stackoverflow.com/a/429564/10883465
             MethodInfo internalDelegateMethod = typeof(T).GetMethod("Invoke");
 
-            s_delegateParameters = internalDelegateMethod.GetParameters();
-            s_delegateHasReturnValue = internalDelegateMethod.ReturnType != typeof(void);
+            _delegateParameters = internalDelegateMethod.GetParameters();
+            _delegateHasReturnValue = internalDelegateMethod.ReturnType != typeof(void);
         }
 
         /// <summary>
@@ -89,19 +89,19 @@ namespace ChartJs.Blazor.Interop
         [JSInvokable]
         public object Invoke(params string[] jsonArgs)
         {
-            if (s_delegateParameters.Length != jsonArgs.Length)
-                throw new ArgumentException($"The function expects {s_delegateParameters.Length} arguments but found {jsonArgs.Length}.");
+            if (_delegateParameters.Length != jsonArgs.Length)
+                throw new ArgumentException($"The function expects {_delegateParameters.Length} arguments but found {jsonArgs.Length}.");
 
-            if (s_delegateParameters.Length == 0)
+            if (_delegateParameters.Length == 0)
                 return _function.DynamicInvoke(null);
 
-            object[] invokationArgs = new object[s_delegateParameters.Length];
-            for (int i = 0; i < s_delegateParameters.Length; i++)
+            object[] invokationArgs = new object[_delegateParameters.Length];
+            for (int i = 0; i < _delegateParameters.Length; i++)
             {
                 if (_ignoredIndices.Contains(i))
                     continue;
 
-                Type deserializeType = s_delegateParameters[i].ParameterType;
+                Type deserializeType = _delegateParameters[i].ParameterType;
                 if (deserializeType == typeof(object) ||
                     typeof(JToken).IsAssignableFrom(deserializeType))
                 {

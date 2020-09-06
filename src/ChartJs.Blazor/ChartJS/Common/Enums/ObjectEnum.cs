@@ -35,7 +35,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
         /// <see cref="NotSupportedException"/> once you try to serialize (or deserialize) that
         /// <see cref="ObjectEnum"/>.
         /// </summary>
-        private static readonly Type[] SupportedSerializationTypes = new[]
+        private static readonly Type[] _supportedSerializationTypes = new[]
         {
             typeof(int), typeof(double), typeof(string), typeof(bool)
         };
@@ -66,7 +66,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums
         /// </summary>
         /// <param name="type">The <see cref="Type"/> to check.</param>
         internal static bool IsSupportedSerializationType(Type type) =>
-            SupportedSerializationTypes.Contains(type);
+            _supportedSerializationTypes.Contains(type);
 
         /// <summary>
         /// Determines whether the specified object is considered equal to the current object.

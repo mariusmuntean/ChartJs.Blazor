@@ -38,7 +38,7 @@ namespace ChartJs.Blazor.ChartJS.Common
         /// <param name="type">The <see cref="ChartType"/> this dataset is for.</param>
         /// <param name="id">The id for this dataset. If <see langword="null"/>,
         /// a random GUID string will be used.</param>
-        public Dataset(ChartType type, string id = null) : base(new List<T>())
+        protected Dataset(ChartType type, string id = null) : base(new List<T>())
         {
             Data = new ReadOnlyCollection<T>(Items);
             Id = id ?? Guid.NewGuid().ToString();

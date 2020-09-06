@@ -8,8 +8,8 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
 {
     internal class JsonStringEnumConverter : JsonConverter<StringEnum>
     {
-        private static readonly Type[] s_stringParameterArray = new[] { typeof(string) };
-        private static readonly ConcurrentDictionary<Type, ConstructorInfo> s_constructorCache = new ConcurrentDictionary<Type, ConstructorInfo>();
+        private static readonly Type[] _stringParameterArray = new[] { typeof(string) };
+        private static readonly ConcurrentDictionary<Type, ConstructorInfo> _constructorCache = new ConcurrentDictionary<Type, ConstructorInfo>();
 
         public override StringEnum ReadJson(JsonReader reader, Type objectType, [AllowNull] StringEnum existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
@@ -19,7 +19,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
                 case JsonToken.Undefined:
                     return null;
                 case JsonToken.String:
-                    ConstructorInfo constructor = s_constructorCache.GetOrAdd(objectType, GetStringConstructor);
+                    ConstructorInfo constructor = _constructorCache.GetOrAdd(objectType, GetStringConstructor);
 
                     return (StringEnum)constructor.Invoke(new[] { reader.Value });
                 default:
@@ -35,6 +35,6 @@ namespace ChartJs.Blazor.ChartJS.Common.Enums.Serialization
         }
 
         private ConstructorInfo GetStringConstructor(Type type) =>
-            type.GetConstructor(BindingFlags.Instance | BindingFlags.NonPublic, null, s_stringParameterArray, null);
+            type.GetConstructor(BindingFlags.Instance | BindingFlags.NonPublic, null, _stringParameterArray, null);
     }
 }

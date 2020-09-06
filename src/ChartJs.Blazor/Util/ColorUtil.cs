@@ -8,7 +8,7 @@ namespace ChartJs.Blazor.Util
     /// </summary>
     public static class ColorUtil
     {
-        private static readonly Random s_rand = new Random();
+        private static readonly Random _rand = new Random();
 
         /// <summary>
         /// Produces a string of the form 'rgba(r, g, b, 1)' with the provided rgb values where the alpha is fixed at 1
@@ -56,10 +56,10 @@ namespace ChartJs.Blazor.Util
             byte[] rgb = new byte[3];
             double alpha;
 
-            lock (s_rand)
+            lock (_rand)
             {
-                s_rand.NextBytes(rgb);
-                alpha = s_rand.NextDouble();
+                _rand.NextBytes(rgb);
+                alpha = _rand.NextDouble();
             }
 
             return ColorString(rgb[0], rgb[1], rgb[2], alpha);
