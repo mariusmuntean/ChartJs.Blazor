@@ -1,0 +1,28 @@
+﻿@page "/"
+@namespace ChartJs.Blazor.Samples.Server.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>ChartJs.Blazor Samples</title>
+    <base href="/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+</head>
+
+<body>
+    <app>
+        @(await Html.RenderComponentAsync<Client.App>(RenderMode.ServerPrerendered))
+    </app>
+
+    <script id="blazorMode"></script>
+    <script>
+        document.getElementById("blazorMode").src = window.location.search.includes("mode=server") ? "_framework/blazor.server.js" : "_framework/blazor.webassembly.js";
+    </script>
+</body>
+
+</html>

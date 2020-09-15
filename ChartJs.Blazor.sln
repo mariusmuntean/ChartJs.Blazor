@@ -5,29 +5,23 @@ VisualStudioVersion = 16.0.28714.193
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{08E01108-AF62-4E37-824D-0A22DA1988C3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{5474F748-8E27-4FD6-AD9D-1087578ED4D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartJs.Blazor", "src\ChartJs.Blazor\ChartJs.Blazor.csproj", "{1990A3D7-7B00-469F-BC97-F614393F7A52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartJs.Blazor", "src\ChartJs.Blazor\ChartJs.Blazor.csproj", "{1990A3D7-7B00-469F-BC97-F614393F7A52}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientSide", "ClientSide", "{474E0BD0-B8C0-4A00-9B05-B1B33F3B7C94}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServerSide", "ServerSide", "{A9B59800-FB77-43FE-BF42-BE991D9FDBF5}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{99703BE7-7A02-454D-8066-87BBEBA039BD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartJs.Blazor.Sample.Shared", "samples\Shared\ChartJs.Blazor.Sample.Shared\ChartJs.Blazor.Sample.Shared.csproj", "{3FB87C6F-5C21-4095-AC64-35AE6299B88F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartJs.Blazor.Sample.ServerSide", "samples\ServerSide\ChartJs.Blazor.Sample.ServerSide\ChartJs.Blazor.Sample.ServerSide.csproj", "{D547792A-5B2C-4FAF-93AA-71BAA9BF845C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartJs.Blazor.Sample.ClientSide", "samples\ClientSide\ChartJs.Blazor.Sample.ClientSide\ChartJs.Blazor.Sample.ClientSide.csproj", "{153F4719-305A-4AD0-975A-91ABD9935F87}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartJs.Blazor.Tests", "ChartJs.Blazor.Tests\ChartJs.Blazor.Tests.csproj", "{135A9451-FC82-48B4-89F6-3CBF5312B2C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartJs.Blazor.Tests", "ChartJs.Blazor.Tests\ChartJs.Blazor.Tests.csproj", "{135A9451-FC82-48B4-89F6-3CBF5312B2C2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C7972762-AA87-47E5-85EC-EEF73CA4D4D7}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		global.json = global.json
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{60CCA21D-3DE7-4EA0-B095-DC2A2BC48A9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartJs.Blazor.Samples.Server", "ChartJs.Blazor.Samples\Server\ChartJs.Blazor.Samples.Server.csproj", "{76D83391-3B19-4BAC-B236-BD00586EEE1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartJs.Blazor.Samples.Client", "ChartJs.Blazor.Samples\Client\ChartJs.Blazor.Samples.Client.csproj", "{E8D6D7F6-6AD1-4A70-80D3-CDF1D715DC93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartJs.Blazor.Samples.Shared", "ChartJs.Blazor.Samples\Shared\ChartJs.Blazor.Samples.Shared.csproj", "{07F92C1D-1457-4990-ABB1-01214AC617B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,35 +33,32 @@ Global
 		{1990A3D7-7B00-469F-BC97-F614393F7A52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1990A3D7-7B00-469F-BC97-F614393F7A52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1990A3D7-7B00-469F-BC97-F614393F7A52}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3FB87C6F-5C21-4095-AC64-35AE6299B88F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FB87C6F-5C21-4095-AC64-35AE6299B88F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FB87C6F-5C21-4095-AC64-35AE6299B88F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FB87C6F-5C21-4095-AC64-35AE6299B88F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D547792A-5B2C-4FAF-93AA-71BAA9BF845C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D547792A-5B2C-4FAF-93AA-71BAA9BF845C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D547792A-5B2C-4FAF-93AA-71BAA9BF845C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D547792A-5B2C-4FAF-93AA-71BAA9BF845C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{153F4719-305A-4AD0-975A-91ABD9935F87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{153F4719-305A-4AD0-975A-91ABD9935F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{153F4719-305A-4AD0-975A-91ABD9935F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{153F4719-305A-4AD0-975A-91ABD9935F87}.Release|Any CPU.Build.0 = Release|Any CPU
 		{135A9451-FC82-48B4-89F6-3CBF5312B2C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{135A9451-FC82-48B4-89F6-3CBF5312B2C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{135A9451-FC82-48B4-89F6-3CBF5312B2C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{135A9451-FC82-48B4-89F6-3CBF5312B2C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76D83391-3B19-4BAC-B236-BD00586EEE1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76D83391-3B19-4BAC-B236-BD00586EEE1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76D83391-3B19-4BAC-B236-BD00586EEE1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76D83391-3B19-4BAC-B236-BD00586EEE1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8D6D7F6-6AD1-4A70-80D3-CDF1D715DC93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8D6D7F6-6AD1-4A70-80D3-CDF1D715DC93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8D6D7F6-6AD1-4A70-80D3-CDF1D715DC93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8D6D7F6-6AD1-4A70-80D3-CDF1D715DC93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07F92C1D-1457-4990-ABB1-01214AC617B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07F92C1D-1457-4990-ABB1-01214AC617B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07F92C1D-1457-4990-ABB1-01214AC617B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07F92C1D-1457-4990-ABB1-01214AC617B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1990A3D7-7B00-469F-BC97-F614393F7A52} = {08E01108-AF62-4E37-824D-0A22DA1988C3}
-		{474E0BD0-B8C0-4A00-9B05-B1B33F3B7C94} = {5474F748-8E27-4FD6-AD9D-1087578ED4D7}
-		{A9B59800-FB77-43FE-BF42-BE991D9FDBF5} = {5474F748-8E27-4FD6-AD9D-1087578ED4D7}
-		{99703BE7-7A02-454D-8066-87BBEBA039BD} = {5474F748-8E27-4FD6-AD9D-1087578ED4D7}
-		{3FB87C6F-5C21-4095-AC64-35AE6299B88F} = {99703BE7-7A02-454D-8066-87BBEBA039BD}
-		{D547792A-5B2C-4FAF-93AA-71BAA9BF845C} = {A9B59800-FB77-43FE-BF42-BE991D9FDBF5}
-		{153F4719-305A-4AD0-975A-91ABD9935F87} = {474E0BD0-B8C0-4A00-9B05-B1B33F3B7C94}
 		{135A9451-FC82-48B4-89F6-3CBF5312B2C2} = {08E01108-AF62-4E37-824D-0A22DA1988C3}
+		{76D83391-3B19-4BAC-B236-BD00586EEE1C} = {60CCA21D-3DE7-4EA0-B095-DC2A2BC48A9A}
+		{E8D6D7F6-6AD1-4A70-80D3-CDF1D715DC93} = {60CCA21D-3DE7-4EA0-B095-DC2A2BC48A9A}
+		{07F92C1D-1457-4990-ABB1-01214AC617B5} = {60CCA21D-3DE7-4EA0-B095-DC2A2BC48A9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B9B5C87-8AF0-4846-81C5-798F5C654FB6}
