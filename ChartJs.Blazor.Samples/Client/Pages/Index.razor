@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using ChartJs.Blazor.Samples.Shared
 
 <div class="content">
     <div class="header">
@@ -9,9 +10,24 @@
         </div>
     </div>
 
-    <div @ref="_categoriesRef" id="categories" class="samples-categories"></div>
+    <div id="categories" class="samples-categories">
+        @foreach (SampleCategory category in _sampleCategories)
+        {
+            <div class="samples-categories">
+                <div class="title">@category.Title</div>
+                <div class="items">
+                    @foreach (Sample sample in category.Samples)
+                    {
+                        <div class="samples-entry">
+                            <a class="title" href="@sample.Path">@sample.Title</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
 </div>
 
 @code {
-    private ElementReference _categoriesRef;
+    private IEnumerable<SampleCategory> _sampleCategories;
 }
