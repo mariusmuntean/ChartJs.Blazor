@@ -3,23 +3,14 @@
 @inject NavigationManager navigationManager
 @using System.Web;
 
-<div class="sidebar">
-    <NavMenu />
-</div>
+<svg @onclick="SwitchMode" style="position:absolute;top:0;right:0;" width="100" height="100" version="1.1" viewBox="0 0 312 312" xmlns="http://www.w3.org/2000/svg">
+    <path class="btn-switchMode" d="m0 0c135 131 202 202 312 312v-312z" fill="#f27173" stroke-width="1.25" />
+    <text transform="rotate(45)" x="220.63438" y="-109.42586" fill="#000000" font-family="sans-serif" letter-spacing="0px" stroke-width="3.12" text-align="center" text-anchor="middle" word-spacing="0px" style="line-height:0; -webkit-touch-callout: none;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;pointer-events: none;" xml:space="preserve"><tspan x="220.63438" y="-109.42586" font-size="41.7px" text-align="center" style="line-height:0.95">Switch</tspan><tspan x="220.63438" y="-69.842491" font-size="41.7px" text-align="center" style="line-height:0.95">to</tspan><tspan x="220.63438" y="-20.730005" font-size="54.2px" text-align="center" style="line-height:0.95">@(_serverMode ? "Client" : "Server")</tspan></text>
+</svg>
 
-<div class="main">
-    <div class="top-row px-4">
-        <button @onclick="SwitchMode" class="btn btn-light">@_buttonText</button>
-        <a href="https://github.com/mariusmuntean/ChartJs.Blazor" target="_blank" class="ml-md-auto">Star us on GitHub!</a>
-    </div>
-
-    <div class="content px-4">
-        @Body
-    </div>
-</div>
+@Body
 
 @code {
-    private string _buttonText;
     private bool _serverMode;
 
     protected override void OnInitialized()
@@ -27,7 +18,6 @@
         Uri uri = new Uri(navigationManager.Uri);
         var qs = HttpUtility.ParseQueryString(uri.Query);
         _serverMode = qs.Get("mode") == "server";
-        _buttonText = "Switch to " + (_serverMode ? "client" : "server") + " mode.";
     }
 
     private void SwitchMode()
