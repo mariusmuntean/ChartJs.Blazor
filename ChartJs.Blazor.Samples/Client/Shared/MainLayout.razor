@@ -1,4 +1,7 @@
 ﻿@inherits LayoutComponentBase
+@inject IJSRuntime jsRuntime
+@inject NavigationManager navigationManager
+@using System.Web;
 
 <div class="sidebar">
     <NavMenu />
@@ -6,10 +9,42 @@
 
 <div class="main">
     <div class="top-row px-4">
-        <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
+        <button @onclick="SwitchMode" class="btn btn-light">@_buttonText</button>
+        <a href="https://github.com/mariusmuntean/ChartJs.Blazor" target="_blank" class="ml-md-auto">Star us on GitHub!</a>
     </div>
 
     <div class="content px-4">
         @Body
     </div>
 </div>
+
+@code {
+    private string _buttonText;
+    private bool _serverMode;
+
+    protected override void OnInitialized()
+    {
+        Uri uri = new Uri(navigationManager.Uri);
+        var qs = HttpUtility.ParseQueryString(uri.Query);
+        _serverMode = qs.Get("mode") == "server";
+        _buttonText = "Switch to " + (_serverMode ? "client" : "server") + " mode.";
+    }
+
+    private void SwitchMode()
+    {
+        Uri uri = new Uri(navigationManager.Uri);
+        var qs = HttpUtility.ParseQueryString(uri.Query);
+        if (_serverMode)
+        {
+            qs.Remove("mode");
+        }
+        else
+        {
+            qs.Set("mode", "server");
+        }
+
+        UriBuilder uriBuilder = new UriBuilder(uri);
+        uriBuilder.Query = qs.ToString();
+        navigationManager.NavigateTo(uriBuilder.Uri.ToString(), forceLoad: true);
+    }
+}
