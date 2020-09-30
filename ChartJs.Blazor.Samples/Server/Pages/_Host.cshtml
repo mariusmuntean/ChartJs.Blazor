@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/app.css" rel="stylesheet" />
+    <link href="~/css/app.css" rel="stylesheet" />
     <link rel="icon" href="favicon.ico">
     <base href="/" />
     <title>ChartJs.Blazor Samples</title>
@@ -17,7 +17,7 @@
 
 <body>
     <app>
-        @(await Html.RenderComponentAsync<Client.App>(RenderMode.ServerPrerendered))
+        @(await Html.RenderComponentAsync<Client.App>(RenderMode.Server))
     </app>
 
     <script id="blazorMode"></script>
