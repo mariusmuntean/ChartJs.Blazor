@@ -1,0 +1,9 @@
+﻿@inject NavigationManager navigationManager
+
+@code {
+    // I'm not so sure about the correct way of doing this
+    protected override void OnInitialized()
+    {
+        navigationManager.NavigateTo("/");
+    }
+}
