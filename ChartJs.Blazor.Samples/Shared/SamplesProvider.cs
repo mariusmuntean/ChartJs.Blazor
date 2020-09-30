@@ -4,9 +4,8 @@ using System.Text;
 
 namespace ChartJs.Blazor.Samples.Shared
 {
-    public class SampleCategory
+    public static class SamplesProvider
     {
-        public string Title { get; set; }
-        public IList<Sample> Samples { get; set; }
+        public static readonly string SamplesFileName = "samples.json";
     }
 }

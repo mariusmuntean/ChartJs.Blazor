@@ -13,5 +13,14 @@
     <ProjectReference Include="..\Shared\ChartJs.Blazor.Samples.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="samples.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <Target Name="CopySamplesToWebRoot" AfterTargets="AfterBuild">
+    <Copy SourceFiles="samples.json" DestinationFolder="wwwroot" />
+  </Target>
 
 </Project>

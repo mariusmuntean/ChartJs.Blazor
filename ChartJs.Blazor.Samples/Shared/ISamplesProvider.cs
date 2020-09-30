@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ChartJs.Blazor.Samples.Shared
 {
@@ -9,6 +10,6 @@ namespace ChartJs.Blazor.Samples.Shared
         /// <summary>
         /// Returns an enumeration of sample categories each containing their respective samples.
         /// </summary>
-        IEnumerable<SampleCategory> GetSamples();
+        Task<IEnumerable<SampleCategory>> GetSamples();
     }
 }

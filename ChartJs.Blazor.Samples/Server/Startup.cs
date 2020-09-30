@@ -1,3 +1,4 @@
+using ChartJs.Blazor.Samples.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -39,6 +40,8 @@ namespace ChartJs.Blazor.Samples.Server
                     };
                 });
             }
+
+            services.AddScoped<ISamplesProvider, JsonFileSamplesProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

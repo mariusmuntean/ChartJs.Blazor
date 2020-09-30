@@ -1,0 +1,24 @@
+[
+  {
+    "Title": "Bar charts",
+    "Samples": [
+      {
+        "Title": "Vertical",
+        "Path": "charts/bar/vertical"
+      },
+      {
+        "Title": "Horizontal",
+        "Path": "charts/bar/horizontal"
+      }
+    ]
+  },
+  {
+    "Title": "Line charts",
+    "Samples": [
+      {
+        "Title": "Basic",
+        "Path": "charts/line/basic"
+      }
+    ]
+  }
+]

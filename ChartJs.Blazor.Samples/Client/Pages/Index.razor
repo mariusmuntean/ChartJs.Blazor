@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using ChartJs.Blazor.Samples.Shared
+@inject ISamplesProvider samplesProvider
 
 <div class="content">
     <div class="header">
@@ -11,23 +12,38 @@
     </div>
 
     <div id="categories" class="samples-categories">
-        @foreach (SampleCategory category in _sampleCategories)
+        @if (_sampleCategories == null)
         {
-            <div class="samples-categories">
-                <div class="title">@category.Title</div>
-                <div class="items">
-                    @foreach (Sample sample in category.Samples)
-                    {
-                        <div class="samples-entry">
-                            <a class="title" href="@sample.Path">@sample.Title</a>
-                        </div>
-                    }
+            <p>Loading..</p>
+        }
+        else
+        {
+            @foreach (SampleCategory category in _sampleCategories)
+            {
+                <div class="samples-category">
+                    <div class="title">@category.Title</div>
+                    <div class="items">
+                        @foreach (Sample sample in category.Samples)
+                        {
+                            <div class="samples-entry">
+                                <a class="title" href="@sample.Path">@sample.Title</a>
+                            </div>
+                        }
+                    </div>
                 </div>
-            </div>
+            }
         }
     </div>
 </div>
 
 @code {
     private IEnumerable<SampleCategory> _sampleCategories;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // In Server-Mode, the file will be read directly from disk
+        // In Client-Mode, the file will be requested as static asset from the server over the network
+        // Pre-rendering is disabled, otherwise both mode variants would be called
+        _sampleCategories = await samplesProvider.GetSamples();
+    }
 }
