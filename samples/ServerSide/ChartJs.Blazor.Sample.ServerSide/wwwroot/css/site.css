@@ -146,5 +146,7 @@ app {
     .sidebar .collapse {
         /* Never collapse the sidebar for wide screens */
         display: block;
+        height: 100vh;
+        overflow-y: auto;
     }
 }
