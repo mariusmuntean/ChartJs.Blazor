@@ -11,46 +11,40 @@ namespace ChartJs.Blazor.Util
         private static readonly Random _rand = new Random();
 
         /// <summary>
-        /// Produces a string of the form 'rgba(r, g, b, 1)' with the provided rgb values where the alpha is fixed at 1
+        /// Produces a string in the form '#rrggbb' with the provided rgb values.
         /// </summary>
         /// <param name="r"></param>
         /// <param name="g"></param>
         /// <param name="b"></param>
-        /// <returns></returns>
-        public static string ColorString(byte r, byte g, byte b)
-        {
-            return $"rgba({r}, {g}, {b}, 1)";
-        }
-
-        /// <summary>
-        /// Produces a string of the form '#aabbc' with the provided rgb values
-        /// </summary>
-        /// <param name="r"></param>
-        /// <param name="g"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
         public static string ColorHexString(byte r, byte g, byte b)
         {
             return $"#{r:X2}{g:X2}{b:X2}";
         }
 
         /// <summary>
-        /// Produces a string of the form 'rgba(r, g, b, alpha)' with the provided rgb and alpha values
+        /// Produces a string in the form 'rgba(r, g, b, 1)' with the provided rgb values where the alpha is fixed at 1.
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="g"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static string ColorString(byte r, byte g, byte b) => ColorString(r, g, b, 1);
+
+        /// <summary>
+        /// Produces a string in the form 'rgba(r, g, b, alpha)' with the provided rgb and alpha values.
         /// </summary>
         /// <param name="r"></param>
         /// <param name="g"></param>
         /// <param name="b"></param>
         /// <param name="alpha"></param>
-        /// <returns></returns>
         public static string ColorString(byte r, byte g, byte b, double alpha)
         {
             return $"rgba({r}, {g}, {b}, {alpha.ToString(CultureInfo.InvariantCulture)})";
         }
 
         /// <summary>
-        /// Produces a string of the form 'rgba(r, g, b, alpha)' with random values for rgb and alpha
+        /// Produces a string of the form 'rgba(r, g, b, alpha)' with random values for rgb and alpha.
         /// </summary>
-        /// <returns></returns>
         public static string RandomColorString()
         {
             byte[] rgb = new byte[3];
@@ -66,12 +60,19 @@ namespace ChartJs.Blazor.Util
         }
 
         /// <summary>
-        /// Generates the corresponding string representation (as hex) of a <see cref="System.Drawing.Color"></see> object.
+        /// Generates the corresponding string representation of a <see cref="System.Drawing.Color" /> object.
+        /// Depending on the <see cref="System.Drawing.Color.A"/> value, it's returned as hex string or as rgba string.
         /// </summary>
-        /// <returns>The string representation as a hex color string</returns>
         public static string FromDrawingColor(System.Drawing.Color color)
         {
-            return ColorHexString(color.R, color.G, color.B);
+            if (color.A != byte.MaxValue)
+            {
+                return ColorString(color.R, color.G, color.B, (double)color.A / byte.MaxValue);
+            }
+            else
+            {
+                return ColorHexString(color.R, color.G, color.B);
+            }
         }
     }
 }
