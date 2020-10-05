@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\ChartJs.Blazor\ChartJs.Blazor.csproj" />
     <ProjectReference Include="..\Shared\ChartJs.Blazor.Samples.Shared.csproj" />
   </ItemGroup>
 

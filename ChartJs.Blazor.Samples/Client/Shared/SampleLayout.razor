@@ -1,0 +1,16 @@
+﻿@inherits LayoutComponentBase
+@layout MainLayout
+@inject NavigationManager navigationManager
+
+<button @onclick="NavigateToOverview" style="margin-bottom: 5px;">Back to the overview</button>
+<div style="width:75%;">
+    @Body
+</div>
+
+@code {
+    private void NavigateToOverview()
+    {
+        // This will use client navigation to retain the current mode (server/client)
+        navigationManager.NavigateTo("/");
+    }
+}
