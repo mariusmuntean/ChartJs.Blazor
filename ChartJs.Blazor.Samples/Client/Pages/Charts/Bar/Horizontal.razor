@@ -1,0 +1,137 @@
+﻿@page "/charts/bar/horizontal"
+@using ChartJS.BarChart
+@using System.Drawing
+@layout SampleLayout
+
+<Chart TConfig="BarConfig" Config="_config" @ref="_chart"></Chart>
+
+<button @onclick="RandomizeData">Randomize Data</button>
+<button @onclick="AddDataset">Add Dataset</button>
+<button @onclick="RemoveDataset">Remove Dataset</button>
+<button @onclick="AddData">Add Data</button>
+<button @onclick="RemoveData">Remove Data</button>
+
+@code {
+    private const int InitalCount = 7;
+    private BarConfig _config;
+    private Random _rng = new Random();
+    private Chart<BarConfig> _chart;
+
+    protected override void OnInitialized()
+    {
+        _config = new BarConfig(ChartType.HorizontalBar)
+        {
+            Options = new BarOptions
+            {
+                Responsive = true,
+                Legend = new Legend
+                {
+                    Position = Position.Right
+                },
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "ChartJs.Blazor Horizontal Bar Chart"
+                }
+            }
+        };
+
+        IDataset<int> dataset1 = new BarDataset<int>(RandomScalingFactor(InitalCount), horizontal: true)
+        {
+            Label = "My first dataset",
+            BackgroundColor = ColorUtil.FromDrawingColor(Color.FromArgb(128, ChartColors.Red)),
+            BorderColor = ColorUtil.FromDrawingColor(ChartColors.Red),
+            BorderWidth = 1
+        };
+
+        IDataset<int> dataset2 = new BarDataset<int>(RandomScalingFactor(InitalCount), horizontal: true)
+        {
+            Label = "My second dataset",
+            BackgroundColor = ColorUtil.FromDrawingColor(Color.FromArgb(128, ChartColors.Blue)),
+            BorderColor = ColorUtil.FromDrawingColor(ChartColors.Blue),
+            BorderWidth = 1
+        };
+
+        _config.Data.Labels.AddRange(Months.Take(InitalCount));
+        _config.Data.Datasets.Add(dataset1);
+        _config.Data.Datasets.Add(dataset2);
+    }
+
+    private void RandomizeData()
+    {
+        foreach (IDataset<int> dataset in _config.Data.Datasets)
+        {
+            int count = dataset.Count;
+            dataset.Clear();
+            for (int i = 0; i < count; i++)
+            {
+                if (_rng.NextDouble() < 0.2)
+                {
+                    dataset.Add(0);
+                }
+                else
+                {
+                    dataset.Add(RandomScalingFactor());
+                }
+            }
+        }
+
+        _chart.Update();
+    }
+
+    private void AddDataset()
+    {
+        Color color = ChartColors.All[_config.Data.Datasets.Count % ChartColors.All.Count];
+        IDataset<int> dataset = new BarDataset<int>(RandomScalingFactor(_config.Data.Labels.Count), horizontal: true)
+        {
+            Label = $"Dataset {_config.Data.Datasets.Count}",
+            BackgroundColor = ColorUtil.FromDrawingColor(Color.FromArgb(128, color)),
+            BorderColor = ColorUtil.FromDrawingColor(color),
+            BorderWidth = 1
+        };
+
+        _config.Data.Datasets.Add(dataset);
+        _chart.Update();
+    }
+
+    private void RemoveDataset()
+    {
+        IList<IDataset> datasets = _config.Data.Datasets;
+        if (datasets.Count == 0)
+            return;
+
+        datasets.RemoveAt(datasets.Count - 1);
+        _chart.Update();
+    }
+
+    private void AddData()
+    {
+        if (_config.Data.Datasets.Count == 0)
+            return;
+
+        string month = Months[_config.Data.Labels.Count % Months.Count];
+        _config.Data.Labels.Add(month);
+
+        foreach (IDataset<int> dataset in _config.Data.Datasets)
+        {
+            dataset.Add(RandomScalingFactor());
+        }
+
+        _chart.Update();
+    }
+
+    private void RemoveData()
+    {
+        if (_config.Data.Datasets.Count == 0)
+            return;
+
+        _config.Data.Labels.RemoveAt(_config.Data.Labels.Count - 1);
+
+        foreach (IDataset<int> dataset in _config.Data.Datasets)
+        {
+            dataset.RemoveAt(dataset.Count - 1);
+        }
+
+        _chart.Update();
+    }
+}
