@@ -1,0 +1,88 @@
+﻿@page "/charts/bar/stacked"
+@using ChartJS.BarChart
+@using ChartJs.Blazor.ChartJS.BarChart.Axes
+@layout SampleLayout
+
+<Chart TConfig="BarConfig" Config="_config" @ref="_chart"></Chart>
+
+<button @onclick="RandomizeData">Randomize Data</button>
+
+@code {
+    private const int InitalCount = 7;
+    private BarConfig _config;
+    private Random _rng = new Random();
+    private Chart<BarConfig> _chart;
+
+    protected override void OnInitialized()
+    {
+        _config = new BarConfig
+        {
+            Options = new BarOptions
+            {
+                Responsive = true,
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "Chart.js Bar Chart - Stacked"
+                },
+                Tooltips = new Tooltips
+                {
+                    Mode = InteractionMode.Index,
+                    Intersect = false
+                },
+                Scales = new BarScales
+                {
+                    XAxes = new List<CartesianAxis>
+                    {
+                        new BarCategoryAxis
+                        {
+                            Stacked = true
+                        }
+                    },
+                    YAxes = new List<CartesianAxis>
+                    {
+                        new BarLinearCartesianAxis
+                        {
+                            Stacked = true
+                        }
+                    }
+                }
+            }
+        };
+
+        IDataset<int> dataset1 = new BarDataset<int>(RandomScalingFactor(InitalCount))
+        {
+            Label = "Dataset 1",
+            BackgroundColor = ColorUtil.FromDrawingColor(ChartColors.Red)
+        };
+
+        IDataset<int> dataset2 = new BarDataset<int>(RandomScalingFactor(InitalCount))
+        {
+            Label = "Dataset 2",
+            BackgroundColor = ColorUtil.FromDrawingColor(ChartColors.Blue)
+        };
+
+        IDataset<int> dataset3 = new BarDataset<int>(RandomScalingFactor(InitalCount))
+        {
+            Label = "Dataset 3",
+            BackgroundColor = ColorUtil.FromDrawingColor(ChartColors.Green)
+        };
+
+        _config.Data.Labels.AddRange(Months.Take(InitalCount));
+        _config.Data.Datasets.Add(dataset1);
+        _config.Data.Datasets.Add(dataset2);
+        _config.Data.Datasets.Add(dataset3);
+    }
+
+    private void RandomizeData()
+    {
+        foreach (IDataset<int> dataset in _config.Data.Datasets)
+        {
+            int count = dataset.Count;
+            dataset.Clear();
+            dataset.AddRange(RandomScalingFactor(count));
+        }
+
+        _chart.Update();
+    }
+}

@@ -9,6 +9,10 @@
       {
         "Title": "Horizontal",
         "Path": "charts/bar/horizontal"
+      },
+      {
+        "Title": "Stacked",
+        "Path": "charts/bar/stacked"
       }
     ]
   },
