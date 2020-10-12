@@ -1,6 +1,4 @@
-/* Set up all the chartjs interop stuff */
-
-/// <reference path="types/Chart.min.d.ts" />   
+/// <reference path="types/Chartjs.d.ts" />   
 
 interface ChartConfiguration extends Chart.ChartConfiguration {
     canvasId: string;
@@ -217,7 +215,7 @@ class ChartJsInterop {
                     if (!axes[i].ticks) continue;
                     axes[i].ticks.callback = this.getMethodHandler(axes[i].ticks.callback, undefined);
                     if (!axes[i].ticks.callback) {
-                        delete axes[i].ticks.callback; // undefined != deleted, chartJs throws an error if it's undefined so we have to delete it
+                        delete axes[i].ticks.callback; // undefined != deleted, Chart.js throws an error if it's undefined so we have to delete it
                     }
                 }
             }
@@ -306,7 +304,7 @@ class ChartJsInterop {
 
     private stringifyObjectIgnoreCircular(object: any) {
         const seen = new WeakSet();
-        const replacer = (name, value) => {
+        const replacer = (_name, value) => {
             if (
                 typeof value === 'object' &&
                 value !== null &&
@@ -328,3 +326,5 @@ class ChartJsInterop {
         return JSON.stringify(object, replacer);
     }
 }
+
+window[ChartJsInterop.name] = new ChartJsInterop();

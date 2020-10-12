@@ -1,4 +1,5 @@
 // Type definitions for Chart.js 2.9
+// Modified for use in ChartJs.Blazor (removed currently unsupported moment.js references)
 // Project: https://github.com/nnnick/Chart.js, https://www.chartjs.org
 // Definitions by: Alberto Nuti <https://github.com/anuti>
 //                 Fabien Lavocat <https://github.com/FabienLavocat>
@@ -14,9 +15,9 @@
 //                 Alexandros Dorodoulis <https://github.com/alexdor>
 //                 Manuel Heidrich <https://github.com/mahnuh>
 //                 Conrad Holtzhausen <https://github.com/Conrad777>
-//                 Adri√°n Caballero <https://github.com/adripanico>
+//                 Adri·n Caballero <https://github.com/adripanico>
 //                 wertzui <https://github.com/wertzui>
-//                 Martin Trob√§ck <https://github.com/lekoaf>
+//                 Martin Trob‰ck <https://github.com/lekoaf>
 //                 Elian Cordoba <https://github.com/ElianCordoba>
 //                 Takuya Uehara <https://github.com/indigolain>
 //                 Ricardo Mello <https://github.com/ricardo-mello>
@@ -26,6 +27,7 @@
 //                 Nobuhiko Futagami <https://github.com/nobu222>
 //                 Marco Ru <https://github.com/Marcoru97>
 //                 Tony Liu <https://github.com/tonybadguy>
+//                 Mathias Helminger <https://github.com/Ilmarinen100>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 2.3
 
@@ -50,6 +52,9 @@ declare class Chart {
     getElementsAtXAxis: (e: any) => Array<{}>;
     getDatasetAtEvent: (e: any) => Array<{}>;
     getDatasetMeta: (index: number) => Meta;
+    getVisibleDatasetCount: () => number;
+    isDatasetVisible: (datasetIndex: number) => boolean;
+    setDatasetVisibility: (datasetIndex: number, visible: boolean) => void;
     ctx: CanvasRenderingContext2D | null;
     canvas: HTMLCanvasElement | null;
     width: number | null;
@@ -81,6 +86,10 @@ declare class Chart {
 
     static platform: {
         disableCSSInjection: boolean
+    };
+
+    static scaleService: {
+        updateScaleDefaults: (type: Chart.ScaleType, updates: Chart.ChartScales) => void;
     };
 
     // Tooltip Static Options
@@ -284,8 +293,8 @@ declare namespace Chart {
         maintainAspectRatio?: boolean;
         events?: string[];
         legendCallback?(chart: Chart): string;
-        onHover?: IMethodHandler | Function;
-        onClick?: IMethodHandler | Function;
+        onHover?: IMethodHandler | ((this: Chart, event: MouseEvent, activeElements: Array<{}>) => any);
+        onClick?: IMethodHandler | ((event?: MouseEvent, activeElements?: Array<{}>) => any);
         onResize?(this: Chart, newSize: ChartSize): void;
         title?: ChartTitleOptions;
         legend?: ChartLegendOptions;
@@ -329,8 +338,8 @@ declare namespace Chart {
         display?: boolean;
         position?: PositionType;
         fullWidth?: boolean;
-        onClick?: IMethodHandler | Function;
-        onHover?: IMethodHandler | Function;
+        onClick?: IMethodHandler | ((event: MouseEvent, legendItem: ChartLegendLabelItem) => void);
+        onHover?: IMethodHandler | ((event: MouseEvent, legendItem: ChartLegendLabelItem) => void);
         onLeave?(event: MouseEvent, legendItem: ChartLegendLabelItem): void;
         labels?: ChartLegendLabelOptions;
         reverse?: boolean;
@@ -343,12 +352,13 @@ declare namespace Chart {
         fontColor?: ChartColor;
         fontFamily?: string;
         padding?: number;
-        generateLabels?: IMethodHandler | Function;
-        filter?: IMethodHandler | Function;
+        generateLabels?: IMethodHandler | ((chart: Chart) => ChartLegendLabelItem[]);
+        filter?: IMethodHandler | ((legendItem: ChartLegendLabelItem, data: ChartData) => any);
         usePointStyle?: boolean;
     }
 
     interface ChartTooltipOptions {
+        axis?: 'x' | 'y' | 'xy';
         enabled?: boolean;
         custom?: (tooltipModel: ChartTooltipModel) => void;
         mode?: InteractionMode;
@@ -585,7 +595,7 @@ declare namespace Chart {
         /**
          * If the callback returns null or undefined the associated grid line will be hidden.
          */
-        callback?: IMethodHandler | Function;
+        callback?: IMethodHandler | ((value: number | string, index: number, values: number[] | string[]) => string | number | null | undefined);
         display?: boolean;
         fontColor?: ChartColor;
         fontFamily?: string;
@@ -776,7 +786,12 @@ declare namespace Chart {
         year?: string;
     }
 
+    interface DateAdapterOptions {
+        date?: object;
+    }
+
     interface TimeScale extends ChartScales {
+        adapters?: DateAdapterOptions;
         displayFormats?: TimeDisplayFormat;
         isoWeekday?: boolean;
         max?: string;
@@ -855,7 +870,7 @@ declare namespace Chart {
         resize?(chartInstance: Chart, newChartSize: ChartSize, options?: any): void;
         destroy?(chartInstance: Chart): void;
 
-        /** @deprecated since version 2.5.0. Use `afterLayout` instead. */
+        /** Deprecated since version 2.5.0. Use `afterLayout` instead. */
         afterScaleUpdate?(chartInstance: Chart, options?: any): void;
     }
 
