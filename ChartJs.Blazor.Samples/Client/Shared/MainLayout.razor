@@ -8,11 +8,3 @@
 </svg>
 
 @Body
-
-@code {
-    protected override void OnInitialized()
-    {
-        // Passing in the scoped NavigationManager is a workaround, see SetCurrentMode for more
-        dualModeSerivce.SetCurrentMode(navigationManager);
-    }
-}

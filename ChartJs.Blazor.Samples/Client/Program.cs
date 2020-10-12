@@ -20,7 +20,7 @@ namespace ChartJs.Blazor.Samples.Client
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddScoped<ISamplesProvider, ApiSamplesProvider>();
-            builder.Services.AddSingleton<DualModeSerivce>();
+            builder.Services.AddSingleton(new DualModeSerivce(serverMode: false));
 
             await builder.Build().RunAsync();
         }

@@ -42,7 +42,7 @@ namespace ChartJs.Blazor.Samples.Server
             }
 
             services.AddScoped<ISamplesProvider, JsonFileSamplesProvider>();
-            services.AddSingleton<DualModeSerivce>();
+            services.AddSingleton(new DualModeSerivce(serverMode: true));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
