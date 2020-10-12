@@ -1,4 +1,4 @@
-﻿using ChartJs.Blazor.ChartJS.Common.Enums;
+﻿using ChartJs.Blazor.Common.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Globalization;

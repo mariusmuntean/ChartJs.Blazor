@@ -1,5 +1,5 @@
-﻿using ChartJs.Blazor.ChartJS.Common;
-using ChartJs.Blazor.ChartJS.LineChart;
+﻿using ChartJs.Blazor.Common;
+using ChartJs.Blazor.LineChart;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

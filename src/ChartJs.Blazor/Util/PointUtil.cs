@@ -1,4 +1,4 @@
-﻿using ChartJs.Blazor.ChartJS.Common;
+﻿using ChartJs.Blazor.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;

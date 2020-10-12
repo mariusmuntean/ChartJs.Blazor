@@ -1,4 +1,4 @@
-﻿using ChartJs.Blazor.ChartJS.Common;
+﻿using ChartJs.Blazor.Common;
 using Microsoft.JSInterop;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
-using ChartJs.Blazor.ChartJS.Common.Handlers;
+using ChartJs.Blazor.Common.Handlers;
 using ChartJs.Blazor.Util;
 
 namespace ChartJs.Blazor.Interop
