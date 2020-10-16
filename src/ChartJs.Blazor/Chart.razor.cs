@@ -38,17 +38,16 @@ namespace ChartJs.Blazor
         public int? Height { get; set; }
 
         /// <inheritdoc />
-        protected override Task OnAfterRenderAsync(bool firstRender)
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            try
+            if (firstRender)
             {
-                return firstRender ? JsRuntime.SetupChart(Config).AsTask() : JsRuntime.UpdateChart(Config).AsTask();
+                await JsRuntime.SetupChart(Config);
             }
-            catch (Exception e)
+            else
             {
-                Console.Error.WriteLine($"Error while {(firstRender ? "setting up" : "updating")} the chart. Message: {e.StackTrace}");
-                return Task.CompletedTask;
-            } // https://github.com/aspnet/AspNetCore/issues/8327
+                await JsRuntime.UpdateChart(Config);
+            }
         }
 
         /// <summary>
