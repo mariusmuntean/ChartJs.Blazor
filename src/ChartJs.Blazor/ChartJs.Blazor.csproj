@@ -36,6 +36,18 @@ Attention: this release includes breaking changes and it represents a work in pr
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="BarChart\Axes\ExtendedCartesianAxes.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="BarChart\Axes\ExtendedCartesianAxes.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ExtendedCartesianAxes.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.8" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.0.3">
@@ -46,16 +58,14 @@ Attention: this release includes breaking changes and it represents a work in pr
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="ChartJS\BarChart\Axes\ExtendedCartesianAxes.tt">
+    <None Update="BarChart\Axes\ExtendedCartesianAxes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ExtendedCartesianAxes.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ChartJS\BarChart\Axes\ExtendedCartesianAxes.cs">
-      <DependentUpon>ExtendedCartesianAxes.tt</DependentUpon>
-    </Compile>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
   <PropertyGroup>
