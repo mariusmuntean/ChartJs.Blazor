@@ -14,13 +14,13 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
 
         /// <summary>
         /// Gets or sets the minimum item to display. The item has to be present in <see cref="Labels"/>.
-        /// <para>Read more https://www.chartjs.org/docs/latest/axes/cartesian/category.html#min-max-configuration </para>
+        /// <para>Read more <a href="https://www.chartjs.org/docs/latest/axes/cartesian/category.html#min-max-configuration"/>.</para>
         /// </summary>
         public string Min { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum item to display. The item has to be present in <see cref="Labels"/>.
-        /// <para>Read more https://www.chartjs.org/docs/latest/axes/cartesian/category.html#min-max-configuration </para>
+        /// <para>Read more <a href="https://www.chartjs.org/docs/latest/axes/cartesian/category.html#min-max-configuration"/>.</para>
         /// </summary>
         public string Max { get; set; }
     }

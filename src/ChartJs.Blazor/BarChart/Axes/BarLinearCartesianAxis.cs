@@ -5,7 +5,7 @@ namespace ChartJs.Blazor.BarChart.Axes
 {
     /// <summary>
     /// Extended version of <see cref="LinearCartesianAxis"/> for use in a bar chart.
-    /// <para>As per documentation here https://www.chartjs.org/docs/latest/charts/bar.html#scale-configuration </para>
+    /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/charts/bar.html#scale-configuration">here (Chart.js)</a>.</para>
     /// </summary>
     public class BarLinearCartesianAxis : LinearCartesianAxis
     {
@@ -15,10 +15,10 @@ namespace ChartJs.Blazor.BarChart.Axes
         public BarLinearCartesianAxis()
         {
             GridLines = new GridLines()
-			{
-				OffsetGridLines = false
-			};
-			Offset = false;
+            {
+                OffsetGridLines = false
+            };
+            Offset = false;
         }
 
         /// <summary>
@@ -52,9 +52,9 @@ namespace ChartJs.Blazor.BarChart.Axes
 
         /// <summary>
         /// Gets or sets a value indicating whether grid lines will be shifted to be between labels or not.
-        /// If <c>true</c>, the bars for a particular data point fall between the grid lines.
+        /// If <see langword="true"/>, the bars for a particular data point fall between the grid lines.
         /// The grid line will move to the left by one half of the tick interval.
-        /// If <c>false</c>, the grid line will go right down the middle of the bars.
+        /// If <see langword="false"/>, the grid line will go right down the middle of the bars.
         /// <para>Changing this value will directly affect <see cref="GridLines.OffsetGridLines"/> of the property <see cref="CartesianAxis.GridLines"/> in this instance.</para>
         /// </summary>
         public bool OffsetGridLines
@@ -67,7 +67,7 @@ namespace ChartJs.Blazor.BarChart.Axes
         /// Gets or sets a value indicating whether the bar chart is stacked or not.
         /// Bar charts can be configured into stacked bar charts by changing the settings on the X and Y axes to enable stacking.
         /// Stacked bar charts can be used to show how one data series is made up of a number of smaller pieces.
-        /// <para>As per documentation here https://www.chartjs.org/docs/latest/charts/bar.html#stacked-bar-chart </para>
+        /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/charts/bar.html#stacked-bar-chart">here (Chart.js)</a>.</para>
         /// </summary>
         public bool Stacked { get; set; } = false;
     }

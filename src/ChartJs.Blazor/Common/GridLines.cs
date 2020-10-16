@@ -3,7 +3,7 @@ using ChartJs.Blazor.Util;
 namespace ChartJs.Blazor.Common
 {
     /// <summary>
-    /// The grid lines sub-config of the axis-configuration (see <see cref="Axis"/>).
+    /// The grid lines sub-config of the axis-configuration (see <see cref="Axes.Axis"/>).
     /// </summary>
     public class GridLines
     {
@@ -26,7 +26,7 @@ namespace ChartJs.Blazor.Common
 
         /// <summary>
         /// Length and spacing of dashes on grid lines
-        /// <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash for patterns and details</para>
+        /// <para>See <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash"/> for patterns and details</para>
         /// </summary>
         public double[] BorderDash { get; set; }
 
@@ -69,13 +69,13 @@ namespace ChartJs.Blazor.Common
 
         /// <summary>
         /// Length and spacing of dashes of the grid line for the first index (index 0).
-        /// <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash for details</para>
+        /// <para>See <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash"/> for details.</para>
         /// </summary>
         public int[] ZeroLineBorderDash { get; set; }
 
         /// <summary>
         /// Offset for line dashes of the grid line for the first index (index 0).
-        /// <para>See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset for details</para>
+        /// <para>See <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset"/> for details.</para>
         /// </summary>
         public double ZeroLineBorderDashOffset { get; set; }
 

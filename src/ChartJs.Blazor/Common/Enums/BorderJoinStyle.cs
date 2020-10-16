@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// Specifies the border join style.
-    /// <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin </para>
+    /// <para>As per documentation <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin">here (MDN)</a>.</para>
     /// </summary>
     public sealed class BorderJoinStyle : StringEnum
     {

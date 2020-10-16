@@ -8,7 +8,7 @@ namespace ChartJs.Blazor.Common.Enums
     /// Represents an easing function supported by chart.js. Details about the different
     /// functions can be found here: <a href="https://easings.net"/>
     /// <para>
-    /// As per documentation here: <a href="https://www.chartjs.org/docs/latest/configuration/animations.html#easing"/>
+    /// As per documentation <a href="https://www.chartjs.org/docs/latest/configuration/animations.html#easing">here (Chart.js)</a>.
     /// </para>
     /// </summary>
     public sealed class Easing : StringEnum

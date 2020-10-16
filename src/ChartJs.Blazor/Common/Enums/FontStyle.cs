@@ -2,7 +2,7 @@ namespace ChartJs.Blazor.Common.Enums
 {
     /// <summary>
     /// Specifies the css font style of text.
-    /// <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/CSS/font-style </para>
+    /// <para>As per documentation <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-style">here (MDN)</a>.</para>
     /// </summary>
     public sealed class FontStyle : StringEnum
     {

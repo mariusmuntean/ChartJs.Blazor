@@ -8,7 +8,7 @@ namespace ChartJs.Blazor.BarChart
     public class BarOptions : BaseConfigOptions
     {
         /// <summary>
-        /// Gets or sets the scales for the <see cref="ChartJsBarChart"/>.
+        /// Gets or sets the scales for this chart.
         /// </summary>
         public BarScales Scales { get; set; }
     }

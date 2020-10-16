@@ -6,7 +6,7 @@ namespace ChartJs.Blazor.Common.Axes
 {
     /// <summary>
     /// The point labels sub-config of the linear-radial-axis-configuration (see <see cref="LinearRadialAxis"/>).
-    /// <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options </para>
+    /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options">here (Chart.js)</a>.</para>
     /// </summary>
     public class PointLabels
     {
@@ -28,7 +28,7 @@ namespace ChartJs.Blazor.Common.Axes
 
         /// <summary>
         /// Gets or sets the height of an individual line of text.
-        /// <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/CSS/line-height </para>
+        /// <para>As per documentation <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/line-height">here (MDN)</a>.</para>
         /// </summary>
         public double LineHeight { get; set; } = 1.2;
     }

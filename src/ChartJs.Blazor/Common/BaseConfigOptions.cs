@@ -18,7 +18,7 @@ namespace ChartJs.Blazor.Common
 
         /// <summary>
         /// Gets or sets a value indicating whether the chart canvas should be resized when its container is.
-        /// <para>See important note: https://www.chartjs.org/docs/latest/general/responsive.html#important-note </para>
+        /// <para>See important note: <a href="https://www.chartjs.org/docs/latest/general/responsive.html#important-note">here (Chart.js)</a>.</para>
         /// </summary>
         public bool Responsive { get; set; } = true;
 
@@ -63,10 +63,11 @@ namespace ChartJs.Blazor.Common
         /// </summary>
         public Dictionary<string, object> Plugins { get; } = new Dictionary<string, object>();
 
+        /// <summary>
         /// Gets or sets the browser events that the chart should listen to for tooltips and hovering.
         /// <para>
         /// If <see langword="null"/>, this includes <see cref="BrowserEvent.MouseMove"/>, <see cref="BrowserEvent.MouseOut"/>,
-        /// <see cref="BrowserEvent.Click"/>, <see cref="BrowserEvent.TouchStart"/> and <see cref="BrowserEvent.TouchMove"/>.
+        /// <see cref="BrowserEvent.Click"/>, <see cref="BrowserEvent.TouchStart"/> and <see cref="BrowserEvent.TouchMove"/> (by default).
         /// </para>
         /// </summary>
         public BrowserEvent[] Events { get; set; }

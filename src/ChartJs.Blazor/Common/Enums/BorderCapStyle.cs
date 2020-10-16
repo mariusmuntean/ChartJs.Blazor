@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// Specifies the border cap style.
-    /// <para>As per documentation here https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap </para>
+    /// <para>As per documentation <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap">here (MDN)</a>.</para>
     /// </summary>
     public sealed class BorderCapStyle : StringEnum
     {

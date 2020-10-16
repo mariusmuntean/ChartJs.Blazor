@@ -4,7 +4,7 @@ namespace ChartJs.Blazor.Common
 {
     /// <summary>
     /// The tooltips-subconfig of the common options (applies to all charts).
-    /// <para>As per documentation here https://www.chartjs.org/docs/latest/configuration/tooltip.html#tooltip-configuration </para>
+    /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/configuration/tooltip.html#tooltip-configuration">here (Chart.js)</a>.</para>
     /// </summary>
     public class Tooltips
     {

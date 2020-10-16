@@ -7,7 +7,7 @@ namespace ChartJs.Blazor.Common.Axes
     /// <summary>
     /// The time scale is used to display times and dates.
     /// When building its ticks, it will automatically calculate the most comfortable unit base on the size of the scale.
-    /// <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html </para>
+    /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/axes/cartesian/time.html">here (Chart.js)</a>.</para>
     /// </summary>
     public class TimeAxis : CartesianAxis<TimeTicks>
     {

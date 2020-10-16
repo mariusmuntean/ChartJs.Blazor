@@ -3,7 +3,7 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
 {
     /// <summary>
     /// The ticks-subconfig of <see cref="LinearCartesianAxis"/>.
-    /// https://www.chartjs.org/docs/latest/axes/cartesian/linear.html#tick-configuration-options
+    /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/axes/cartesian/linear.html#tick-configuration-options">here (Chart.js)</a>.</para>
     /// </summary>
     public class LinearCartesianTicks : CartesianTicks
     {
@@ -24,7 +24,7 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
 
         /// <summary>
         /// Gets or sets the user defined fixed step size for the scale.
-        /// <para>See https://www.chartjs.org/docs/latest/axes/cartesian/linear.html#step-size for details</para>
+        /// <para>See <a href="https://www.chartjs.org/docs/latest/axes/cartesian/linear.html#step-size"/> for details.</para>
         /// </summary>
         public double? StepSize { get; set; }
 

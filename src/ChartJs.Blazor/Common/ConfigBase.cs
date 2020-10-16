@@ -38,7 +38,7 @@ namespace ChartJs.Blazor.Common
         /// can't be serialized. It could be supported, but just isn't yet.
         /// <para>
         /// Reference for chart.js inline plugins:
-        /// <a href="https://www.chartjs.org/docs/latest/developers/plugins.html#using-plugins"/>
+        /// <a href="https://www.chartjs.org/docs/latest/developers/plugins.html#using-plugins"/>.
         /// </para>
         /// <para>
         /// For configuring plugins (plugin options), you need to use

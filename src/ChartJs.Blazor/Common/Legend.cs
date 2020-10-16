@@ -6,7 +6,7 @@ namespace ChartJs.Blazor.Common
 {
     /// <summary>
     /// The chart legend displays data about the datasets that are appearing on the chart.
-    /// <para>Link: http://www.chartjs.org/docs/latest/configuration/legend.html </para>
+    /// <para>As per documentation <a href="http://www.chartjs.org/docs/latest/configuration/legend.html">here (Chart.js)</a>.</para>
     /// </summary>
     public class Legend
     {

@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// Specifies where the tooltip will be displayed.
-    /// <para>As per documentation here https://www.chartjs.org/docs/latest/configuration/tooltip.html#position-modes </para>
+    /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/configuration/tooltip.html#position-modes">here (Chart.js)</a>.</para>
     /// </summary>
     public sealed class TooltipPosition : StringEnum
     {

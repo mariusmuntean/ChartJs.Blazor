@@ -8,28 +8,31 @@ using System.Threading.Tasks;
 namespace ChartJs.Blazor
 {
     /// <summary>
-    /// Represents a ChartJs chart
+    /// Represents a Chart.js chart.
     /// </summary>
-    /// <typeparam name="TConfig"></typeparam>
+    /// <typeparam name="TConfig">The type of config to pass to Chart.js.</typeparam>
     public partial class Chart<TConfig> where TConfig : ConfigBase
     {
+        /// <summary>
+        /// Gets the injected <see cref="IJSRuntime"/> for the current Blazor application.
+        /// </summary>
         [Inject]
         protected IJSRuntime JsRuntime { get; set; }
 
         /// <summary>
-        /// The configuration of the chart to be drawn.
+        /// Gets or sets the configuration of the chart.
         /// </summary>
         [Parameter]
         public TConfig Config { get; set; }
 
         /// <summary>
-        /// The width of the canvas HTML element used to draw the chart.
+        /// Gets or sets the width of the canvas HTML element.
         /// </summary>
         [Parameter]
         public int? Width { get; set; }
 
         /// <summary>
-        /// The height of the canvas HTML element used to draw the chart. Use null value when using AspectRatio.
+        /// Gets or sets the height of the canvas HTML element. Use <see langword="null"/> when using <see cref="BaseConfigOptions.AspectRatio"/>.
         /// </summary>
         [Parameter]
         public int? Height { get; set; }
@@ -50,10 +53,10 @@ namespace ChartJs.Blazor
 
         /// <summary>
         /// Updates the chart.
-        ///
-        /// <para>Call this method after you've changed something in the chart#s configuration</para>
+        /// <para>
+        /// Call this method after you've updated the <see cref="Config"/>.
+        /// </para>
         /// </summary>
-        /// <returns></returns>
         public Task Update()
         {
             return JsRuntime.UpdateChart(Config).AsTask();

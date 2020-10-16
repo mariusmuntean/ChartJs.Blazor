@@ -72,7 +72,7 @@ namespace ChartJs.Blazor.BarChart
 
         /// <summary>
         /// Gets or sets the percentage (0-1) of the available width each category should be within the sample width.
-        /// As per documentation <a href="https://www.chartjs.org/docs/latest/charts/bar.html#barpercentage-vs-categorypercentage">here (Chart.js)</a>.
+        /// As per documentation <a href="https://www.chartjs.org/docs/latest/charts/bar.html#barpercentage-vs-categorypercentage">here (Chart.js).</a>.
         /// </summary>
         public double? CategoryPercentage { get; set; }
 

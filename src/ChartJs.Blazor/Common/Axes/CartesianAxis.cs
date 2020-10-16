@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 namespace ChartJs.Blazor.Common.Axes
 {
     /// <summary>
-    /// As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/#common-configuration
+    /// As per documentation <a href="https://www.chartjs.org/docs/latest/axes/cartesian/#common-configuration">here (Chart.js)</a>.
     /// </summary>
     public abstract class CartesianAxis : Axis
     {
@@ -17,7 +17,8 @@ namespace ChartJs.Blazor.Common.Axes
         public abstract AxisType Type { get; }
 
         /// <summary>
-        /// The ID is used to link <see cref="LineDataset{TData}"></see> and <see cref="CartesianAxis"></see> together. Referenced in <see cref="LineDataset{TData}.XAxisID"></see> and <seealso cref="LineDataset{TData}.YAxisID"/>
+        /// The ID is used to link <see cref="LineDataset{TData}"/> and <see cref="CartesianAxis"/> together.
+        /// Referenced in <see cref="LineDataset{TData}.XAxisId"/> and <seealso cref="LineDataset{TData}.YAxisId"/>
         /// </summary>
         [JsonProperty("id")]
         public string ID { get; set; }

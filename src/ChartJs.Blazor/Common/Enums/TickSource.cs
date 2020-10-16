@@ -1,7 +1,7 @@
 ﻿namespace ChartJs.Blazor.Common.Enums
 {
     /// <summary>
-    /// As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html#ticks-source
+    /// As per documentation <a href="https://www.chartjs.org/docs/latest/axes/cartesian/time.html#ticks-source">here (Chart.js)</a>..
     /// </summary>
     public sealed class TickSource : StringEnum
     {

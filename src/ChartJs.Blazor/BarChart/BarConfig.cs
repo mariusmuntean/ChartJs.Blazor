@@ -4,7 +4,7 @@ using ChartJs.Blazor.Common.Enums;
 namespace ChartJs.Blazor.BarChart
 {
     /// <summary>
-    /// Config for a <see cref="Charts.ChartJsBarChart"/>.
+    /// Represents the config for a bar chart.
     /// </summary>
     public class BarConfig : ConfigBase<BarOptions>
     {

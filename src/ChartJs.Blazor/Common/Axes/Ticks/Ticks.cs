@@ -7,7 +7,7 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
 {
     /// <summary>
     /// The base class for all tick mark configurations. Ticks-subconfig of the common <see cref="Axis"/>.
-    /// <para>As per documentation here https://www.chartjs.org/docs/latest/axes/styling.html#tick-configuration </para>
+    /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/axes/styling.html#tick-configuration">here (Chart.js)</a>.</para>
     /// </summary>
     public abstract class Ticks : SubTicks
     {
@@ -44,7 +44,7 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
 
         /// <summary>
         /// Gets or sets the callback to customize the string representation of the tick value as it should be displayed on the chart.
-        /// <para>More on <a href="https://www.chartjs.org/docs/latest/axes/labelling.html#creating-custom-tick-formats"/></para>
+        /// <para>More on <a href="https://www.chartjs.org/docs/latest/axes/labelling.html#creating-custom-tick-formats"/>.</para>
         /// <para>See <see cref="JavaScriptHandler{T}"/> and <see cref="DelegateHandler{T}"/>.</para>
         /// </summary>
         public IMethodHandler<AxisTickCallback> Callback { get; set; }

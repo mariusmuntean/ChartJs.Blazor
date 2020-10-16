@@ -1,8 +1,8 @@
 ﻿namespace ChartJs.Blazor.Common.Enums
 {
     /// <summary>
-    /// Specifies the border alignment of a <see cref="PieChart"/> and a <see cref="PolarAreaChart"/>.
-    /// <para>As per documentation here https://www.chartjs.org/docs/latest/charts/doughnut.html#border-alignment </para>
+    /// Specifies the border alignment of a pie chart and a polar area chart.
+    /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/charts/doughnut.html#border-alignment">here (Chart.js)</a>.</para>
     /// </summary>
     public sealed class BorderAlign : StringEnum
     {

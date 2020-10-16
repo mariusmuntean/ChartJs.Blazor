@@ -3,7 +3,7 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
 {
     /// <summary>
     /// The major ticks sub-config of the tick-configuration (see <see cref="Ticks"/>).
-    /// <para>As per documentation here https://www.chartjs.org/docs/latest/axes/styling.html#major-tick-configuration </para>
+    /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/axes/styling.html#major-tick-configuration">here (Chart.js)</a>.</para>
     /// </summary>
     public class MajorTicks : SubTicks
     {

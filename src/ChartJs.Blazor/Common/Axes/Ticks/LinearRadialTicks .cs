@@ -5,7 +5,7 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
 {
     /// <summary>
     /// The ticks sub-config of the <see cref="LinearRadialAxis"/>.
-    /// <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options </para>
+    /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/axes/radial/linear.html#point-label-options">here (Chart.js)</a>.</para>
     /// </summary>
     public class LinearRadialTicks : Ticks
     {
@@ -32,13 +32,13 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
 
         /// <summary>
         /// Gets or sets the user defined minimum number for the scale, overrides minimum value from data.
-        /// <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
+        /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings">here (Chart.js)</a>.</para>
         /// </summary>
         public double? Min { get; set; }
 
         /// <summary>
         /// Gets or sets the user defined maximum number for the scale, overrides minimum value from data.
-        /// <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
+        /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings">here (Chart.js)</a>.</para>
         /// </summary>
         public double? Max { get; set; }
 
@@ -54,19 +54,19 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
 
         /// <summary>
         /// Gets or sets the user defined fixed step size for the scale.
-        /// <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
+        /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings">here (Chart.js)</a>.</para>
         /// </summary>
         public double? StepSize { get; set; }
 
         /// <summary>
         /// Gets or sets the adjustment used when calculating the maximum data value.
-        /// <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
+        /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings">here (Chart.js)</a>.</para>
         /// </summary>
         public double? SuggestedMax { get; set; }
 
         /// <summary>
         /// Gets or sets the adjustment used when calculating the minimum data value.
-        /// <para>As per documentation here https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings </para>
+        /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/axes/radial/linear.html#axis-range-settings">here (Chart.js)</a>.</para>
         /// </summary>
         public double? SuggestedMin { get; set; }
 

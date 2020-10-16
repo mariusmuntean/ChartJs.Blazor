@@ -8,7 +8,7 @@ namespace ChartJs.Blazor.BubbleChart
 {
     /// <summary>
     /// Represents a dataset for a bubble chart.
-    /// As per documentation <a href="https://www.chartjs.org/docs/latest/charts/bubble.html#dataset-properties">here (Chart.js)</a>.
+    /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/charts/bubble.html#dataset-properties">here (Chart.js)</a>.</para>
     /// </summary>
     public class BubbleDataset : Dataset<BubblePoint>
     {

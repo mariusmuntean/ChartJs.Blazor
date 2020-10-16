@@ -3,7 +3,7 @@
 namespace ChartJs.Blazor.Common.Axes
 {
     /// <summary>
-    /// As per documentation here https://www.chartjs.org/docs/latest/axes/#common-configuration.
+    /// As per documentation <a href="https://www.chartjs.org/docs/latest/axes/#common-configuration">here (Chart.js)</a>.
     /// </summary>
     public abstract class Axis
     {

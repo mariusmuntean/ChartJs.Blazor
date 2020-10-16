@@ -27,7 +27,6 @@ namespace ChartJs.Blazor.Util
         /// <param name="r"></param>
         /// <param name="g"></param>
         /// <param name="b"></param>
-        /// <returns></returns>
         public static string ColorString(byte r, byte g, byte b) => ColorString(r, g, b, 1);
 
         /// <summary>

@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// Specifies the cubic interpolation mode.
-    /// <para>As per documentation here https://www.chartjs.org/docs/latest/charts/line.html#cubicinterpolationmode </para>
+    /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/charts/line.html#cubicinterpolationmode">here (Chart.js)</a>.</para>
     /// </summary>
     public sealed class CubicInterpolationMode : StringEnum
     {

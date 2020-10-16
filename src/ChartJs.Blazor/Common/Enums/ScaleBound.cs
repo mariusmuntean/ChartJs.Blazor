@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// Specifies the scale boundary strategy.
-    /// <para>As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html#scale-bounds </para>
+    /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/axes/cartesian/time.html#scale-bounds">here (Chart.js)</a>.</para>
     /// </summary>
     public sealed class ScaleBound : StringEnum
     {

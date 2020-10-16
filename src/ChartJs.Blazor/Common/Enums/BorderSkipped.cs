@@ -5,7 +5,7 @@
     ///     In general, this does not need to be changed except when creating chart types that derive from a bar chart.
     ///     Note: For negative bars in vertical chart, top and bottom are flipped. Same goes for left and right in horizontal
     ///     chart.
-    ///     <para>As per documentation here https://www.chartjs.org/docs/latest/charts/bar.html#borderskipped</para>
+    ///     <para>As per documentation <a href="https://www.chartjs.org/docs/latest/charts/bar.html#borderskipped">here (Chart.js)</a>.</para>
     /// </summary>
     public class BorderSkipped : ObjectEnum
     {

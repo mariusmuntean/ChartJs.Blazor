@@ -1,7 +1,7 @@
 ﻿namespace ChartJs.Blazor.Common.Enums
 {
     /// <summary>
-    /// As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/
+    /// As per documentation <a href="https://www.chartjs.org/docs/latest/axes/cartesian/">here (Chart.js)</a>.
     /// </summary>
     public sealed class AxisType : StringEnum
     {
@@ -30,7 +30,7 @@
         /// Specifying any of the settings above defines the x axis as type: <see cref="AxisType.Category" /> if not defined otherwise.
         /// For more fine-grained control of category labels it is also possible to add labels as part of the category axis definition.
         /// Doing so does not apply the global defaults.
-        /// <para>See https://www.chartjs.org/docs/latest/axes/cartesian/category.html </para>
+        /// <para>See <a href="https://www.chartjs.org/docs/latest/axes/cartesian/category.html">here (Chart.js)</a>.</para>
         /// </summary>
         public static AxisType Category => new AxisType("category");
 

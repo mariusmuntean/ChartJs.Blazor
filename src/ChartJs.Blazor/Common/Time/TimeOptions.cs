@@ -1,10 +1,11 @@
-﻿using ChartJs.Blazor.Common.Enums;
+﻿using System;
 using System.Collections.Generic;
+using ChartJs.Blazor.Common.Enums;
 
 namespace ChartJs.Blazor.Common.Time
 {
     /// <summary>
-    /// As per documentation here https://www.chartjs.org/docs/latest/axes/cartesian/time.html#configuration-options
+    /// As per documentation <a href="https://www.chartjs.org/docs/latest/axes/cartesian/time.html#configuration-options">here (Chart.js)</a>.
     /// </summary>
     public class TimeOptions
     {
@@ -14,7 +15,7 @@ namespace ChartJs.Blazor.Common.Time
         public Dictionary<TimeMeasurement, string> DisplayFormats { get; set; }
 
         /// <summary>
-        /// If true and the <see cref="Unit"></see> is set to <see cref="TimeMeasurement.Week"></see>, then the first day of the week will be Monday. Otherwise, it will be Sunday.
+        /// If true and the <see cref="Unit"/> is set to <see cref="TimeMeasurement.Week"/>, then the first day of the week will be Monday. Otherwise, it will be Sunday.
         /// </summary>
         public bool IsoWeek { get; set; }
 
@@ -35,7 +36,7 @@ namespace ChartJs.Blazor.Common.Time
 
         /// <summary>
         /// The Moment.js format string to use for the tooltip.
-        /// <para>See https://momentjs.com/docs/#/displaying/format/ for possible formats</para>
+        /// <para>See <a href="https://momentjs.com/docs/#/displaying/format/"/> for possible formats</para>
         /// </summary>
         public string TooltipFormat { get; set; }
 
