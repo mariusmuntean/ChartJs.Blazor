@@ -16,7 +16,7 @@ namespace ChartJs.Blazor.Interop
     /// <typeparam name="T">The type of the delegate you want to invoke from JavaScript.</typeparam>
     // This class will be serialized by System.Text.Json in the end since we restore the objects
     // before passing them to IJsRuntime. Therefore fields to serialize have to be public properties.
-    public class DelegateHandler<T> : IMethodHandler<T>, IDisposable
+    public sealed class DelegateHandler<T> : IMethodHandler<T>, IDisposable
         where T : Delegate
     {
         private static readonly ParameterInfo[] _delegateParameters;
