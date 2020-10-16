@@ -9,8 +9,7 @@ namespace ChartJs.Blazor.Common.Time
     public class TimeOptions
     {
         /// <summary>
-        /// Sets how different time units are displayed. See https://www.chartjs.org/docs/latest/axes/cartesian/time.html#data-sets for more details.
-        /// <para>See <see cref="TimeDisplayFormats"/> for pre-made formats for certain locales.</para>
+        /// Sets how different time units are displayed. See <a href="https://www.chartjs.org/docs/latest/axes/cartesian/time.html#data-sets"/> for more details.
         /// </summary>
         public Dictionary<TimeMeasurement, string> DisplayFormats { get; set; }
 
@@ -22,12 +21,12 @@ namespace ChartJs.Blazor.Common.Time
         /// <summary>
         /// If defined, this will override the data maximum.
         /// </summary>
-        public Moment Max { get; set; }
+        public DateTime Max { get; set; }
 
         /// <summary>
         /// If defined, this will override the data minimum.
         /// </summary>
-        public Moment Min { get; set; }
+        public DateTime Min { get; set; }
 
         /// <summary>
         /// If defined, dates will be rounded to the start of this unit.
