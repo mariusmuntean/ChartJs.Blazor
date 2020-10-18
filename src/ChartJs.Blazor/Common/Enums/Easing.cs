@@ -5,7 +5,7 @@ using System.Text;
 namespace ChartJs.Blazor.Common.Enums
 {
     /// <summary>
-    /// Represents an easing function supported by chart.js. Details about the different
+    /// Represents an easing function supported by Chart.js. Details about the different
     /// functions can be found here: <a href="https://easings.net"/>
     /// <para>
     /// As per documentation <a href="https://www.chartjs.org/docs/latest/configuration/animations.html#easing">here (Chart.js)</a>.

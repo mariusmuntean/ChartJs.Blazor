@@ -57,7 +57,7 @@ namespace ChartJs.Blazor.Common
         /// Gets the plugin options. The key has to be the unique
         /// identification of the plugin.
         /// <para>
-        /// Reference for chart.js plugin options:
+        /// Reference for Chart.js plugin options:
         /// <a href="https://www.chartjs.org/docs/latest/developers/plugins.html#plugin-options"/>
         /// </para>
         /// </summary>

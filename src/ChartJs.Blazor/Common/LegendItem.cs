@@ -13,7 +13,7 @@ namespace ChartJs.Blazor.Common
     {
         /// <summary>
         /// Gets or sets the index of the dataset this legend item corresponds to.
-        /// DO NOT set this value when returning an instance of this class to chart.js.
+        /// DO NOT set this value when returning an instance of this class to Chart.js.
         /// Only use this property when retrieving the index in a legend-event.
         /// This value might not be set in charts that have legend labels per value
         /// (instead of per dataset) like pie-chart.
@@ -22,7 +22,7 @@ namespace ChartJs.Blazor.Common
 
         /// <summary>
         /// Gets or sets the index of the value this legend item corresponds to.
-        /// DO NOT set this value when returning an instance of this class to chart.js.
+        /// DO NOT set this value when returning an instance of this class to Chart.js.
         /// Only use this property when retrieving the index in a legend-event.
         /// This value is only set in charts that have legend labels per value
         /// (instead of per dataset) like pie-chart.

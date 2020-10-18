@@ -6,7 +6,7 @@ namespace ChartJs.Blazor.Interop
 {
     /// <summary>
     /// Defines that a callback parameter will be set to its default value instead of the deserialized
-    /// chart.js value. Can be applied to parameters of methods passed to a <see cref="DelegateHandler{T}"/>.
+    /// Chart.js value. Can be applied to parameters of methods passed to a <see cref="DelegateHandler{T}"/>.
     /// Use this attribute to improve performance by applying it to parameters that are expected to have
     /// a large size like the 'chartData' parameter of <see cref="Common.Handlers.LegendLabelFilter"/>.
     /// </summary>

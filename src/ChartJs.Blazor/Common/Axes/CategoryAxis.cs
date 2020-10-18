@@ -11,10 +11,7 @@ namespace ChartJs.Blazor.Common.Axes
     /// </summary>
     public class CategoryAxis : CartesianAxis<CategoryTicks>
     {
-        /// <summary>
-        /// The type of axis this instance represents.
-        /// <para>For js-interop/serialization purposes so chart.js knows what axis to use.</para>
-        /// </summary>
+        /// <inheritdoc/>
         public override AxisType Type => AxisType.Category;
     }
 }
