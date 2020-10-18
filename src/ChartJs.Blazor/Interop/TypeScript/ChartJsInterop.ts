@@ -149,6 +149,9 @@ class ChartJsInterop {
             return defaults?.onClick || Chart.defaults.global.onClick;
         };
 
+        if (!config.options)
+            return;
+
         config.options.onClick = this.getMethodHandler(<IMethodHandler>config.options.onClick, getDefaultFunc(config.type));
     }
 
@@ -157,6 +160,9 @@ class ChartJsInterop {
             let defaults = Chart.defaults[type] || Chart.defaults.global;
             return defaults?.onHover || Chart.defaults.global.onHover;
         };
+
+        if (!config.options)
+            return;
 
         config.options.onHover = this.getMethodHandler(<IMethodHandler>config.options.onHover, getDefaultFunc(config.type));
     }
@@ -167,6 +173,9 @@ class ChartJsInterop {
             return chartDefaults?.legend?.onClick || Chart.defaults.global.legend.onClick;
         };
 
+        if (!config.options?.legend)
+            return;
+
         config.options.legend.onClick = this.getMethodHandler(<IMethodHandler>config.options.legend.onClick, getDefaultHandler(config.type));
     }
 
@@ -175,6 +184,9 @@ class ChartJsInterop {
             let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
             return chartDefaults?.legend?.onHover || Chart.defaults.global.legend.onHover;
         };
+
+        if (!config.options?.legend)
+            return;
 
         config.options.legend.onHover = this.getMethodHandler(<IMethodHandler>config.options.legend.onHover, getDefaultFunc(config.type));
     }
@@ -185,6 +197,9 @@ class ChartJsInterop {
             return chartDefaults?.legend?.labels?.filter || Chart.defaults.global.legend.labels.filter;
         };
 
+        if (!config.options?.legend?.labels)
+            return;
+
         config.options.legend.labels.filter = this.getMethodHandler(<IMethodHandler>config.options.legend.labels.filter, getDefaultFunc(config.type));
     }
 
@@ -193,6 +208,9 @@ class ChartJsInterop {
             let chartDefaults = Chart.defaults[type] || Chart.defaults.global;
             return chartDefaults?.legend?.labels?.generateLabels || Chart.defaults.global.legend.labels.generateLabels;
         };
+
+        if (!config.options?.legend?.labels)
+            return;
 
         config.options.legend.labels.generateLabels = this.getMethodHandler(<IMethodHandler>config.options.legend.labels.generateLabels, getDefaultFunc(config.type));
     }
@@ -221,10 +239,12 @@ class ChartJsInterop {
             }
         }
 
-        assignCallbacks(config.options.scales?.xAxes);
-        assignCallbacks(config.options.scales?.yAxes);
+        if (config.options?.scales) {
+            assignCallbacks(config.options.scales.xAxes);
+            assignCallbacks(config.options.scales.yAxes);
+        }
 
-        if (config.options.scale?.ticks) {
+        if (config.options?.scale?.ticks) {
             config.options.scale.ticks.callback = this.getMethodHandler(<IMethodHandler>config.options.scale.ticks.callback, undefined);
         }
     }
