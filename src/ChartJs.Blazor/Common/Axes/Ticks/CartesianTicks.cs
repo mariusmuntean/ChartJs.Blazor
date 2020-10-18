@@ -26,18 +26,18 @@
         /// If true, automatically calculates how many labels can be shown and hides labels accordingly.
         /// Labels will be rotated up to maxRotation before skipping any. Turn <see cref="AutoSkip" /> off to show all labels no matter what.
         /// </summary>
-        public bool AutoSkip { get; set; } = true;
+        public bool? AutoSkip { get; set; }
 
         /// <summary>
         /// Gets or sets the padding between the ticks on the horizontal axis when <see cref="AutoSkip" /> is enabled.
         /// </summary>
-        public int AutoSkipPadding { get; set; }
+        public int? AutoSkipPadding { get; set; }
 
         /// <summary>
         /// Gets or sets the distance in pixels to offset the label from the centre point of the tick (in the x direction for the x axis, and the y direction for the y axis).
         /// <para>Note: this can cause labels at the edges to be cropped by the edge of the canvas.</para>
         /// </summary>
-        public int LabelOffset { get; set; }
+        public int? LabelOffset { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum rotation for tick labels when rotating to condense labels.

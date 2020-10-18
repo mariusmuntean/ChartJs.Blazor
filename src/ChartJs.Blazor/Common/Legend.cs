@@ -13,18 +13,18 @@ namespace ChartJs.Blazor.Common
         /// <summary>
         /// Determines if the legend is displayed
         /// </summary>
-        public bool Display { get; set; } = true;
+        public bool? Display { get; set; }
 
         /// <summary>
         /// Position of the legend
         /// </summary>
-        public Position Position { get; set; } = Position.Top;
+        public Position Position { get; set; }
 
         /// <summary>
         /// Marks that this box should take the full width of the canvas (pushing down other boxes).
         /// This is unlikely to need to be changed in day-to-day use.
         /// </summary>
-        public bool FullWidth { get; set; } = true;
+        public bool? FullWidth { get; set; }
 
         /// <summary>
         /// Gets or sets the callback to call when a click event is registered on a label item.
@@ -41,11 +41,11 @@ namespace ChartJs.Blazor.Common
         /// <summary>
         /// Legend will show datasets in reverse order.
         /// </summary>
-        public bool Reverse { get; set; } = false;
+        public bool? Reverse { get; set; }
 
         /// <summary>
         /// Configuration options for the legend-labels
         /// </summary>
-        public LegendLabels Labels { get; set; } = new LegendLabels();
+        public LegendLabels Labels { get; set; }
     }
 }

@@ -11,24 +11,21 @@ namespace ChartJs.Blazor.Common.Axes
     /// </summary>
     public class TimeAxis : CartesianAxis<TimeTicks>
     {
-        /// <summary>
-        /// The type of axis this instance represents.
-        /// <para>For js-interop/serialization purposes so chart.js knows what axis to use.</para>
-        /// </summary>
+        /// <inheritdoc/>
         public override AxisType Type => AxisType.Time;
 
         /// <summary>
-        /// The distribution property controls the data distribution along the scale
+        /// Gets or sets the distribution which controls the data distribution along the scale.
         /// </summary>
         public TimeDistribution Distribution { get; set; }
 
         /// <summary>
-        /// The bounds property controls the scale boundary strategy (bypassed by min/max time options).
+        /// Gets or sets the bounds which control the scale boundary strategy (bypassed by min/max time options).
         /// </summary>
         public ScaleBound Bounds { get; set; }
 
         /// <summary>
-        /// Configuration for time related stuff
+        /// Gets or sets the configuration for time related options.
         /// </summary>
         public TimeOptions Time { get; set; }
     }

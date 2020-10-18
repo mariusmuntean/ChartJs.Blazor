@@ -33,6 +33,6 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
         /// Gets or sets the height of an individual line of text.
         /// <para>As per documentation <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/line-height">here (MDN)</a>.</para>
         /// </summary>
-        public double LineHeight { get; set; } = 1.2;
+        public double? LineHeight { get; set; }
     }
 }

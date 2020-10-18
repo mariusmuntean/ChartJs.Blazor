@@ -19,7 +19,7 @@ namespace ChartJs.Blazor.Common.Axes
         /// <summary>
         /// Gets or sets the font size in pixels.
         /// </summary>
-        public int FontSize { get; set; } = 10;
+        public int? FontSize { get; set; }
 
         /// <summary>
         /// Gets or sets the font style to use when rendering a point label.
@@ -30,6 +30,6 @@ namespace ChartJs.Blazor.Common.Axes
         /// Gets or sets the height of an individual line of text.
         /// <para>As per documentation <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/line-height">here (MDN)</a>.</para>
         /// </summary>
-        public double LineHeight { get; set; } = 1.2;
+        public double? LineHeight { get; set; }
     }
 }

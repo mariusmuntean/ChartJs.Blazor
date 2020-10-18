@@ -10,27 +10,15 @@ namespace ChartJs.Blazor.BarChart.Axes
     public class BarLinearCartesianAxis : LinearCartesianAxis
     {
         /// <summary>
-        /// Creates a new instance of the <see cref="BarLinearCartesianAxis"/> class.
-        /// </summary>
-        public BarLinearCartesianAxis()
-        {
-            GridLines = new GridLines()
-            {
-                OffsetGridLines = false
-            };
-            Offset = false;
-        }
-
-        /// <summary>
         /// Gets or sets the percentage (0-1) of the available width each bar should be within the category width.
         /// 1.0 will take the whole category width and put the bars right next to each other.
         /// </summary>
-        public double BarPercentage { get; set; } = 0.9;
+        public double? BarPercentage { get; set; }
 
         /// <summary>
         /// Gets or sets the percentage (0-1) of the available width each category should be within the sample width.
         /// </summary>
-        public double CategoryPercentage { get; set; } = 0.8;
+        public double? CategoryPercentage { get; set; }
 
         /// <summary>
         /// Gets or sets the width of each bar in pixels.
@@ -57,10 +45,25 @@ namespace ChartJs.Blazor.BarChart.Axes
         /// If <see langword="false"/>, the grid line will go right down the middle of the bars.
         /// <para>Changing this value will directly affect <see cref="GridLines.OffsetGridLines"/> of the property <see cref="CartesianAxis.GridLines"/> in this instance.</para>
         /// </summary>
-        public bool OffsetGridLines
+        public bool? OffsetGridLines
         {
-            get => GridLines.OffsetGridLines;
-            set => GridLines.OffsetGridLines = value;
+            get => GridLines?.OffsetGridLines;
+            set
+            {
+                if (GridLines == null)
+                {
+                    if (value == null)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        GridLines = new GridLines();
+                    }
+                }
+
+                GridLines.OffsetGridLines = value;
+            }
         }
 
         /// <summary>
@@ -69,7 +72,7 @@ namespace ChartJs.Blazor.BarChart.Axes
         /// Stacked bar charts can be used to show how one data series is made up of a number of smaller pieces.
         /// <para>As per documentation <a href="https://www.chartjs.org/docs/latest/charts/bar.html#stacked-bar-chart">here (Chart.js)</a>.</para>
         /// </summary>
-        public bool Stacked { get; set; } = false;
+        public bool? Stacked { get; set; }
     }
 }
 

@@ -16,11 +16,11 @@ namespace ChartJs.Blazor.LineChart
         /// <summary>
         /// If false, the lines between points are not drawn.
         /// </summary>
-        public bool ShowLines { get; set; } = true;
+        public bool? ShowLines { get; set; }
 
         /// <summary>
         /// If false, NaN data causes a break in the line.
         /// </summary>
-        public bool SpanGaps { get; set; } = true;
+        public bool? SpanGaps { get; set; }
     }
 }

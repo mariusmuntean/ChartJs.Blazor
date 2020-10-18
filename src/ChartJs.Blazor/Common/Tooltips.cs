@@ -16,12 +16,12 @@ namespace ChartJs.Blazor.Common
         /// <summary>
         /// Gets or sets the value indicating if the hover mode only applies when the mouse position intersects an item on the chart.
         /// </summary>
-        public bool Intersect { get; set; } = true;
+        public bool? Intersect { get; set; }
 
         /// <summary>
         /// Gets or sets the value indicating if the tooltips are enabled.
         /// </summary>
-        public bool Enabled { get; set; } = true;
+        public bool? Enabled { get; set; }
 
         /// <summary>
         /// Gets or sets the mode for positioning the tooltip.
@@ -42,7 +42,7 @@ namespace ChartJs.Blazor.Common
         /// <summary>
         /// Gets or sets the title font size.
         /// </summary>
-        public double TitleFontSize { get; set; } = 12;
+        public double? TitleFontSize { get; set; }
 
         /// <summary>
         /// Gets or sets the title font style.
@@ -58,12 +58,12 @@ namespace ChartJs.Blazor.Common
         /// <summary>
         /// Gets or sets the spacing to add to top and bottom of each title line.
         /// </summary>
-        public double TitleSpacing { get; set; } = 2;
+        public double? TitleSpacing { get; set; }
 
         /// <summary>
         /// Gets or sets the spacing to add to top and bottom of each title line.
         /// </summary>
-        public double TitleMarginBottom { get; set; } = 6;
+        public double? TitleMarginBottom { get; set; }
 
         /// <summary>
         /// Gets or sets the body line font.
@@ -73,7 +73,7 @@ namespace ChartJs.Blazor.Common
         /// <summary>
         /// Gets or sets the body font size.
         /// </summary>
-        public double BodyFontSize { get; set; } = 12;
+        public double? BodyFontSize { get; set; }
 
         /// <summary>
         /// Gets or sets the body font style.
@@ -89,7 +89,7 @@ namespace ChartJs.Blazor.Common
         /// <summary>
         /// Gets or sets the spacing to add to top and bottom of each tooltip item.
         /// </summary>
-        public double BodySpacing { get; set; } = 2;
+        public double? BodySpacing { get; set; }
 
         /// <summary>
         /// Gets or sets the footer font.
@@ -99,7 +99,7 @@ namespace ChartJs.Blazor.Common
         /// <summary>
         /// Gets or sets the footer font size.
         /// </summary>
-        public double FooterFontSize { get; set; } = 12;
+        public double? FooterFontSize { get; set; }
 
         /// <summary>
         /// Gets or sets the footer font style.
@@ -115,37 +115,37 @@ namespace ChartJs.Blazor.Common
         /// <summary>
         /// Gets or sets the spacing to add to top and bottom of each footer line.
         /// </summary>
-        public double FooterSpacing { get; set; } = 2;
+        public double? FooterSpacing { get; set; }
 
         /// <summary>
         /// Gets or sets the margin to add before drawing the footer.
         /// </summary>
-        public double FooterMarginTop { get; set; } = 6;
+        public double? FooterMarginTop { get; set; }
 
         /// <summary>
         /// Gets or sets the padding to add on left and right of tooltip.
         /// </summary>
-        public double XPadding { get; set; } = 6;
+        public double? XPadding { get; set; }
 
         /// <summary>
         /// Gets or sets the padding to add on top and bottom of tooltip.
         /// </summary>
-        public double YPadding { get; set; } = 6;
+        public double? YPadding { get; set; }
 
         /// <summary>
         /// Gets or sets the extra distance to move the end of the tooltip arrow away from the tooltip point.
         /// </summary>
-        public double CaretPadding { get; set; } = 2;
+        public double? CaretPadding { get; set; }
 
         /// <summary>
         /// Gets or sets the size, in px, of the tooltip arrow.
         /// </summary>
-        public double CaretSize { get; set; } = 5;
+        public double? CaretSize { get; set; }
 
         /// <summary>
         /// Gets or sets the radius of tooltip corner curves.
         /// </summary>
-        public double CornerRadius { get; set; } = 6;
+        public double? CornerRadius { get; set; }
 
         /// <summary>
         /// Gets or sets the color to draw behind the colored boxes when multiple items are in the tooltip.
@@ -156,7 +156,7 @@ namespace ChartJs.Blazor.Common
         /// <summary>
         /// Gets or sets the value indicating if color boxes are shown in the tooltip.
         /// </summary>
-        public bool DisplayColors { get; set; } = true;
+        public bool? DisplayColors { get; set; }
 
         /// <summary>
         /// Gets or sets the color of the border.
@@ -167,6 +167,6 @@ namespace ChartJs.Blazor.Common
         /// <summary>
         /// Gets or sets the size of the border.
         /// </summary>
-        public double BorderWidth { get; set; } = 0;
+        public double? BorderWidth { get; set; }
     }
 }

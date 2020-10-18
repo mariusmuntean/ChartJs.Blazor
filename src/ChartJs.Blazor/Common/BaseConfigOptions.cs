@@ -20,28 +20,28 @@ namespace ChartJs.Blazor.Common
         /// Gets or sets a value indicating whether the chart canvas should be resized when its container is.
         /// <para>See important note: <a href="https://www.chartjs.org/docs/latest/general/responsive.html#important-note">here (Chart.js)</a>.</para>
         /// </summary>
-        public bool Responsive { get; set; } = true;
+        public bool? Responsive { get; set; }
 
         /// <summary>
         /// Gets or sets the canvas aspect ratio (i.e. width / height, a value of 1 representing a square canvas).
         /// <para>Note that this option is ignored if the height is explicitly defined either as attribute (of the canvas) or via the style.</para>
         /// </summary>
-        public double AspectRatio { get; set; } = 2;
+        public double? AspectRatio { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to maintain the original canvas aspect ratio (width / height) when resizing.
         /// </summary>
-        public bool MaintainAspectRatio { get; set; } = true;
+        public bool? MaintainAspectRatio { get; set; }
 
         /// <summary>
         /// Gets or sets the duration in milliseconds it takes to animate to new size after a resize event.
         /// </summary>
-        public int ResponsiveAnimationDuration { get; set; }
+        public int? ResponsiveAnimationDuration { get; set; }
 
         /// <summary>
         /// Gets or sets the legend for this chart.
         /// </summary>
-        public Legend Legend { get; set; } = new Legend();
+        public Legend Legend { get; set; }
 
         /// <summary>
         /// Gets or sets the tooltip options for this chart.

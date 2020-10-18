@@ -1,5 +1,4 @@
-﻿using System;
-using ChartJs.Blazor.Common;
+﻿using ChartJs.Blazor.Common;
 
 namespace ChartJs.Blazor.PieChart
 {
@@ -9,19 +8,10 @@ namespace ChartJs.Blazor.PieChart
     public class PieOptions : BaseConfigOptions
     {
         /// <summary>
-        /// Creates a new instance of <see cref="PieOptions"/>
-        /// </summary>
-        /// <param name="doughnutCutout">If true, the start-value for <see cref="CutoutPercentage"/> will be 50 (default for Doughnut) instead of 0 (default for Pie).</param>
-        public PieOptions(bool doughnutCutout = false)
-        {
-            if (doughnutCutout) CutoutPercentage = 50;
-        }
-
-        /// <summary>
         /// Gets or sets the percentage of the chart that is cut out of the middle.
-        /// <para>Default for Pie is 0, Default for Doughnut is 50. See constructor-parameter.</para>
+        /// <para>Default for Pie is 0, Default for Doughnut is 50. This will be filled in by Chart.js unless you specify a non-null value.</para>
         /// </summary>
-        public int CutoutPercentage { get; set; } = 0;
+        public int? CutoutPercentage { get; set; }
 
         /// <summary>
         /// Gets or sets the animation-configuration for this chart.
@@ -31,11 +21,11 @@ namespace ChartJs.Blazor.PieChart
         /// <summary>
         /// Gets or sets the starting angle to draw arcs from.
         /// </summary>
-        public double Rotation { get; set; } = -0.5 * Math.PI;
+        public double? Rotation { get; set; }
 
         /// <summary>
         /// Gets or sets the sweep to allow arcs to cover.
         /// </summary>
-        public double Circumference { get; set; } = 2 * Math.PI;
+        public double? Circumference { get; set; }
     }
 }

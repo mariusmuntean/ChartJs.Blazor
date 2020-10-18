@@ -17,17 +17,17 @@ namespace ChartJs.Blazor.Common.Time
         /// <summary>
         /// If true and the <see cref="Unit"/> is set to <see cref="TimeMeasurement.Week"/>, then the first day of the week will be Monday. Otherwise, it will be Sunday.
         /// </summary>
-        public bool IsoWeek { get; set; }
+        public bool? IsoWeek { get; set; }
 
         /// <summary>
         /// If defined, this will override the data maximum.
         /// </summary>
-        public DateTime Max { get; set; }
+        public DateTime? Max { get; set; }
 
         /// <summary>
         /// If defined, this will override the data minimum.
         /// </summary>
-        public DateTime Min { get; set; }
+        public DateTime? Min { get; set; }
 
         /// <summary>
         /// If defined, dates will be rounded to the start of this unit.
@@ -48,7 +48,7 @@ namespace ChartJs.Blazor.Common.Time
         /// <summary>
         /// The number of units between grid lines.
         /// </summary>
-        public int StepSize { get; set; }
+        public int? StepSize { get; set; }
 
         /// <summary>
         /// The minimum display format to be used for a time unit.

@@ -10,6 +10,6 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
         /// <summary>
         /// Gets or sets the value indicating whether these options are used to show major ticks.
         /// </summary>
-        public bool Enabled { get; set; } = false;
+        public bool? Enabled { get; set; }
     }
 }

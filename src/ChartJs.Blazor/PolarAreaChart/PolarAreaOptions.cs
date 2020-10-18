@@ -12,7 +12,7 @@ namespace ChartJs.Blazor.PolarAreaChart
         /// <summary>
         /// Gets or sets the starting angle to draw arcs for the first item in a dataset.
         /// </summary>
-        public double StartAngle { get; set; } = -0.5 * Math.PI;
+        public double? StartAngle { get; set; }
 
         /// <summary>
         /// Gets or sets the animation-configuration for this chart.

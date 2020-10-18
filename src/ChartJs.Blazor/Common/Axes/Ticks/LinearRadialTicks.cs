@@ -18,17 +18,17 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
         /// <summary>
         /// Gets or sets the horizontal padding of label backdrop.
         /// </summary>
-        public int BackdropPaddingX { get; set; } = 2;
+        public int? BackdropPaddingX { get; set; }
 
         /// <summary>
         /// Gets or sets the vertical padding of label backdrop.
         /// </summary>
-        public int BackdropPaddingY { get; set; } = 2;
+        public int? BackdropPaddingY { get; set; }
 
         /// <summary>
         /// Gets or sets the value indicating whether the scale will include 0 if it is not already included.
         /// </summary>
-        public bool BeginAtZero { get; set; } = false;
+        public bool? BeginAtZero { get; set; }
 
         /// <summary>
         /// Gets or sets the user defined minimum number for the scale, overrides minimum value from data.
@@ -45,7 +45,7 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
         /// <summary>
         /// Gets or sets the maximum number of ticks and gridlines to show.
         /// </summary>
-        public int MaxTicksLimit { get; set; } = 11;
+        public int? MaxTicksLimit { get; set; }
 
         /// <summary>
         /// If defined and <see cref="StepSize"/> is not specified, the step size will be rounded to this many decimal places.
@@ -73,6 +73,6 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
         /// <summary>
         /// Gets or sets the value indicating whether a background is drawn behind the tick labels.
         /// </summary>
-        public bool ShowLabelBackdrop { get; set; } = true;
+        public bool? ShowLabelBackdrop { get; set; }
     }
 }

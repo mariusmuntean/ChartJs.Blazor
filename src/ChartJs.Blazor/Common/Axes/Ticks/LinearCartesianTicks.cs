@@ -15,7 +15,7 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
         /// <summary>
         /// Gets or sets the maximum number of ticks and gridlines to show.
         /// </summary>
-        public int MaxTicksLimit { get; set; } = 11;
+        public int? MaxTicksLimit { get; set; }
 
         /// <summary>
         /// If defined and <see cref="StepSize"/> is not specified, the step size will be rounded to this many decimal places.

@@ -14,12 +14,12 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
         /// <summary>
         /// Gets or sets the value indicating whether this axis displays tick marks.
         /// </summary>
-        public bool Display { get; set; } = true;
+        public bool? Display { get; set; }
 
         /// <summary>
         /// Gets or sets the value indicating whether the order of the tick labels is reversed.
         /// </summary>
-        public bool Reverse { get; set; } = false;
+        public bool? Reverse { get; set; }
 
         /// <summary>
         /// Gets or sets the minor ticks configuration. Omitted options are inherited.
@@ -35,12 +35,12 @@ namespace ChartJs.Blazor.Common.Axes.Ticks
         /// Gets or sets the offset of the tick labels from the axis. When set on a vertical axis, this applies in the horizontal (X) direction.
         /// When set on a horizontal axis, this applies in the vertical (Y) direction.
         /// </summary>
-        public int Padding { get; set; } = 0;
+        public int? Padding { get; set; }
 
         /// <summary>
         /// Gets or sets the Z-index of the tick layer. Useful when ticks are drawn on chart area. Values &lt;= 0 are drawn under datasets, &gt; 0 on top.
         /// </summary>
-        public int Z { get; set; }
+        public int? Z { get; set; }
 
         /// <summary>
         /// Gets or sets the callback to customize the string representation of the tick value as it should be displayed on the chart.

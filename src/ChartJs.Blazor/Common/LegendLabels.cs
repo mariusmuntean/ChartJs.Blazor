@@ -11,14 +11,14 @@ namespace ChartJs.Blazor.Common
     public class LegendLabels
     {
         /// <summary>
-        /// width of colored box
+        /// Gets or sets the width of the colored box.
         /// </summary>
-        public int BoxWidth { get; set; } = 40;
+        public int? BoxWidth { get; set; }
 
         /// <summary>
-        /// Font size of text
+        /// Gets or sets the font size for the labels text.
         /// </summary>
-        public int FontSize { get; set; } = 12;
+        public int? FontSize { get; set; }
 
         /// <summary>
         /// Gets or sets the font style for the labels text.
@@ -26,15 +26,15 @@ namespace ChartJs.Blazor.Common
         public FontStyle FontStyle { get; set; }
 
         /// <summary>
-        /// Color of text.
+        /// Gets or sets the color of the text.
         /// <para>See <see cref="ColorUtil"/> for working with colors.</para>
         /// </summary>
-        public string FontColor { get; set; } = ColorUtil.ColorHexString(102, 102, 102);
+        public string FontColor { get; set; }
 
         /// <summary>
-        /// Padding between rows of colored boxes.
+        /// Gets or sets the padding between rows of colored boxes.
         /// </summary>
-        public int Padding { get; set; } = 10;
+        public int? Padding { get; set; }
 
         /// <summary>
         /// Gets or sets the callback to generate legend items for a chart.
@@ -54,6 +54,6 @@ namespace ChartJs.Blazor.Common
         /// <summary>
         /// Label style will match corresponding point style (size is based on <see cref="FontSize"/>, <see cref="BoxWidth"/> is not used in this case).
         /// </summary>
-        public bool UsePointStyle { get; set; } = false;
+        public bool? UsePointStyle { get; set; }
     }
 }
