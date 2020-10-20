@@ -20,11 +20,11 @@ namespace ChartJs.Blazor.Common
         public bool? Intersect { get; set; }
 
         /// <summary>
-        /// Gets or sets which directions are used in calculating distances. Can be set to 'x', 'y', or 'xy'.
-        /// Defaults to 'x' for <see cref="Mode"/> == <see cref="InteractionMode.Index"/> and 'xy' for <see cref="Mode"/> == <see cref="InteractionMode.Dataset"/> or <see cref="InteractionMode.Nearest"/>.
+        /// Gets or sets which directions are used in calculating distances.
+        /// Defaults to <see cref="AxisDirection.X"/> for <see cref="Mode"/> == <see cref="InteractionMode.Index"/>
+        /// and <see cref="AxisDirection.XY"/> for <see cref="Mode"/> == <see cref="InteractionMode.Dataset"/> or <see cref="InteractionMode.Nearest"/>.
         /// </summary>
-        // TODO Make string enum
-        public string Axis { get; set; }
+        public AxisDirection Axis { get; set; }
 
         /// <summary>
         /// Gets or sets the duration in milliseconds it takes to animate hover style changes.
