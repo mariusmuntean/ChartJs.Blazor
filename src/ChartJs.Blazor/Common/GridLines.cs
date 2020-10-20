@@ -29,11 +29,10 @@ namespace ChartJs.Blazor.Common
         /// </summary>
         public double[] BorderDash { get; set; }
 
-        // TODO: Maybe make int[] possible
         /// <summary>
         /// Stroke width of grid lines.
         /// </summary>
-        public double? LineWidth { get; set; }
+        public IndexableOption<double> LineWidth { get; set; }
 
         /// <summary>
         /// If true, draw border at the edge between the axis and the chart area.
@@ -70,7 +69,7 @@ namespace ChartJs.Blazor.Common
         /// Length and spacing of dashes of the grid line for the first index (index 0).
         /// <para>See <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash"/> for details.</para>
         /// </summary>
-        public int[] ZeroLineBorderDash { get; set; }
+        public double[] ZeroLineBorderDash { get; set; }
 
         /// <summary>
         /// Offset for line dashes of the grid line for the first index (index 0).
