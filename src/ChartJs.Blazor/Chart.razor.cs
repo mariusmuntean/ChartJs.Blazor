@@ -14,6 +14,14 @@ namespace ChartJs.Blazor
     public partial class Chart<TConfig> where TConfig : ConfigBase
     {
         /// <summary>
+        /// This event is fired when the chart has been setup through interop and
+        /// the JavaScript chart object is available. Use this callback if you need to setup
+        /// custom JavaScript options or register plugins.
+        /// </summary>
+        [Parameter]
+        public EventCallback SetupCompletedCallback { get; set; }
+
+        /// <summary>
         /// Gets the injected <see cref="IJSRuntime"/> for the current Blazor application.
         /// </summary>
         [Inject]
@@ -43,6 +51,7 @@ namespace ChartJs.Blazor
             if (firstRender)
             {
                 await JsRuntime.SetupChart(Config);
+                await SetupCompletedCallback.InvokeAsync(this);
             }
             else
             {
