@@ -1,0 +1,96 @@
+﻿@page "/charts/line/stepped"
+@using ChartJs.Blazor.LineChart
+@layout SampleLayout
+
+<div class="container">
+    @foreach (Variant variant in _variants)
+    {
+    <div class="chart-container">
+        <Chart TConfig="LineConfig" Config="GetConfig(variant)"></Chart>
+    </div>
+    }
+</div>
+
+@code {
+    private const int InitalCount = 7;
+    private int[] _data = RandomScalingFactor(InitalCount).ToArray();
+    private string[] _labels = new string[InitalCount];
+    private Variant[] _variants = new[]
+    {
+        new Variant
+        {
+            SteppedLine = SteppedLine.False,
+            Title = "No Step Interpolation",
+            Color = ChartColors.Red
+        },
+        new Variant
+        {
+            SteppedLine = SteppedLine.True,
+            Title = "Step Before Interpolation",
+            Color = ChartColors.Green
+        },
+        new Variant
+        {
+            SteppedLine = SteppedLine.Before,
+            Title = "Step Before Interpolation",
+            Color = ChartColors.Green
+        },
+        new Variant
+        {
+            SteppedLine = SteppedLine.After,
+            Title = "Step After Interpolation",
+            Color = ChartColors.Purple
+        },
+        new Variant
+        {
+            SteppedLine = SteppedLine.Middle,
+            Title = "Step Middle Interpolation",
+            Color = ChartColors.Blue
+        }
+    };
+
+    protected override void OnInitialized()
+    {
+        for (int i = 0; i < _labels.Length; i++)
+        {
+            _labels[i] = $"Day {i + 1}";
+        }
+    }
+
+    private LineConfig GetConfig(Variant variant)
+    {
+        LineConfig config = new LineConfig
+        {
+            Options = new LineOptions
+            {
+                Responsive = true,
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = variant.Title
+                }
+            }
+        };
+
+        string steppedLineCamel = variant.SteppedLine.ToString();
+        steppedLineCamel = char.ToUpperInvariant(steppedLineCamel[0]) + steppedLineCamel.Substring(1);
+
+        config.Data.Labels.AddRange(_labels);
+        config.Data.Datasets.Add(new LineDataset<int>(_data)
+        {
+            Label = $"SteppedLine: SteppedLine.{steppedLineCamel}",
+            SteppedLine = variant.SteppedLine,
+            BorderColor = ColorUtil.FromDrawingColor(variant.Color),
+            Fill = FillingMode.Disabled
+        });
+
+        return config;
+    }
+
+    private class Variant
+    {
+        public SteppedLine SteppedLine { get; set; }
+        public string Title { get; set; }
+        public System.Drawing.Color Color { get; set; }
+    }
+}
