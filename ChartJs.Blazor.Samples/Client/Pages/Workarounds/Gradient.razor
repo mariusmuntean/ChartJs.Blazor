@@ -1,0 +1,65 @@
+﻿@page "/workarounds/gradient"
+@using ChartJs.Blazor.LineChart
+@layout SampleLayout
+@inject IJSRuntime jsRuntime
+
+<Chart TConfig="LineConfig" Config="_config" SetupCompletedCallback="@SetupCompletedCallback"></Chart>
+
+@code {
+    private const int InitalCount = 7;
+    private LineConfig _config;
+    private Random _rng = new Random();
+
+    protected override void OnInitialized()
+    {
+        _config = new LineConfig
+        {
+            Options = new LineOptions
+            {
+                Responsive = true,
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "ChartJs.Blazor Line Chart with Gradient"
+                },
+                Scales = new Scales
+                {
+                    XAxes = new List<CartesianAxis>
+                    {
+                        new CategoryAxis
+                        {
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "Month"
+                            }
+                        }
+                    },
+                    YAxes = new List<CartesianAxis>
+                    {
+                        new LinearCartesianAxis
+                        {
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "Value"
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        IDataset<int> dataset1 = new LineDataset<int>(RandomScalingFactor(InitalCount).Select(i => i + 100))
+        {
+            Label = "My first dataset",
+            // Do not set BackgroundColor in C#, otherwise it will override the js value on Setup/Update
+            BorderColor = "#ff6c23",
+            Fill = FillingMode.Origin
+        };
+
+        _config.Data.Labels.AddRange(Months.Take(InitalCount));
+        _config.Data.Datasets.Add(dataset1);
+    }
+
+    private async Task SetupCompletedCallback() =>
+        await jsRuntime.InvokeVoidAsync("workaroundGradient", _config.CanvasId);
+}

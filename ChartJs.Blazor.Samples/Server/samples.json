@@ -24,5 +24,14 @@
         "Path": "charts/line/basic"
       }
     ]
+  },
+  {
+    "Title": "Workarounds",
+    "Samples": [
+      {
+        "Title": "Gradient",
+        "Path": "workarounds/gradient"
+      }
+    ]
   }
 ]
