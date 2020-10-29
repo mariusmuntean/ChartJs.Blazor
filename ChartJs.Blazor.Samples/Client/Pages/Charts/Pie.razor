@@ -1,0 +1,75 @@
+﻿@page "/charts/pie"
+@using ChartJs.Blazor.PieChart
+@using System.Drawing
+@layout SampleLayout
+
+<Chart TConfig="PieConfig" Config="_config" @ref="_chart"></Chart>
+
+<button @onclick="RandomizeData">Randomize Data</button>
+<button @onclick="AddDataset">Add Dataset</button>
+<button @onclick="RemoveDataset">Remove Dataset</button>
+
+@code {
+    private const int InitalCount = 5;
+    private PieConfig _config;
+    private Random _rng = new Random();
+    private Chart<PieConfig> _chart;
+
+    protected override void OnInitialized()
+    {
+        _config = new PieConfig
+        {
+            Options = new PieOptions
+            {
+                Responsive = true,
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "ChartJs.Blazor Pie Chart"
+                }
+            }
+        };
+
+        PieDataset<int> dataset = new PieDataset<int>(RandomScalingFactor(InitalCount))
+        {
+            BackgroundColor = ChartColors.All.Take(InitalCount).Select(ColorUtil.FromDrawingColor).ToArray()
+        };
+
+        _config.Data.Datasets.Add(dataset);
+        _config.Data.Labels.AddRange(new string[InitalCount] { "Red", "Orange", "Yellow", "Green", "Blue" });
+    }
+
+    private void RandomizeData()
+    {
+        foreach (IDataset<int> dataset in _config.Data.Datasets)
+        {
+            int count = dataset.Count;
+            dataset.Clear();
+            dataset.AddRange(RandomScalingFactor(count));
+        }
+
+        _chart.Update();
+    }
+
+    private void AddDataset()
+    {
+        int count = _config.Data.Labels.Count;
+        PieDataset<int> dataset = new PieDataset<int>(RandomScalingFactor(count))
+        {
+            BackgroundColor = ChartColors.All.Take(count).Select(ColorUtil.FromDrawingColor).ToArray()
+        };
+
+        _config.Data.Datasets.Add(dataset);
+        _chart.Update();
+    }
+
+    private void RemoveDataset()
+    {
+        IList<IDataset> datasets = _config.Data.Datasets;
+        if (datasets.Count == 0)
+            return;
+
+        datasets.RemoveAt(0);
+        _chart.Update();
+    }
+}
