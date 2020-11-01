@@ -13,14 +13,13 @@
     <PackageProjectUrl>https://github.com/mariusmuntean/ChartJs.Blazor</PackageProjectUrl>
     <PackageTags>Chart.js Blazor ASP.NET-Core wasm</PackageTags>
     <PackageSummary></PackageSummary>
-    <PackageReleaseNotes>Second preview of the upcoming 2.0 release.
-Changes:
-* Improved JavaScript interop layer and API.
-* Datasets were reworked.
-* Unified all charts into one Blazor component.
-* Bugfixes and performance improvements.
-
-Attention: this release includes breaking changes and it represents a work in progress.</PackageReleaseNotes>
+    <PackageReleaseNotes>Biggest changes:
+* Unified all charts into one Blazor component
+* Entirely reworked datasets
+* Improved JavaScript interop layer and API (callbacks)
+* Simplified namespaces
+* Library no longer contains copy of Chart.js and moment.js builds
+* Lots of bugfixes and other improvements</PackageReleaseNotes>
     <AssemblyName>ChartJs.Blazor</AssemblyName>
     <RootNamespace>ChartJs.Blazor</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -28,7 +27,7 @@ Attention: this release includes breaking changes and it represents a work in pr
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <FileVersion>2.0.0.0</FileVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageVersion>2.0.0-preview2</PackageVersion>
+    <PackageVersion>2.0.0</PackageVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
