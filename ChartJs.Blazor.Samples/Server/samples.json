@@ -30,21 +30,21 @@
     ]
   },
   {
-    "Title": "Workarounds",
-    "Samples": [
-      {
-        "Title": "Gradient",
-        "Path": "workarounds/gradient"
-      }
-    ]
-  },
-  {
     "Title": "Other charts",
     "Samples": [
         {
             "Title": "Pie",
             "Path": "charts/pie"
         }
+    ]
+  },
+  {
+    "Title": "Workarounds",
+    "Samples": [
+      {
+        "Title": "Gradient",
+        "Path": "workarounds/gradient"
+      }
     ]
   }
 ]
