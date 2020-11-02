@@ -10,8 +10,7 @@ namespace ChartJs.Blazor
     /// <summary>
     /// Represents a Chart.js chart.
     /// </summary>
-    /// <typeparam name="TConfig">The type of config to pass to Chart.js.</typeparam>
-    public partial class Chart<TConfig> where TConfig : ConfigBase
+    public partial class Chart
     {
         /// <summary>
         /// This event is fired when the chart has been setup through interop and
@@ -31,7 +30,7 @@ namespace ChartJs.Blazor
         /// Gets or sets the configuration of the chart.
         /// </summary>
         [Parameter]
-        public TConfig Config { get; set; }
+        public ConfigBase Config { get; set; }
 
         /// <summary>
         /// Gets or sets the width of the canvas HTML element.

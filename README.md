@@ -83,7 +83,7 @@ In order to use the classes for a pie chart, we need to add `@using ChartJs.Blaz
 Then we can add a `Chart` component anywhere in the markup like so:
 
 ```html
-<Chart TConfig="PieConfig" Config="_config"></Chart>
+<Chart Config="_config"></Chart>
 ```
 
 The only thing left to do now is to provide the data and chart configuration by declaring an instance variable which we reference in the `Chart` component.
@@ -202,7 +202,7 @@ If you run into an issue, we recommend you to do the following steps:
   * ***Alternative Option*** - manually invoke the `ReferenceConverter` constructor to avoid the linker optimizing it away. Example:
 
     ```csharp
-    private ReferenceConverter ReferenceConverter = new ReferenceConverter(typeof(Chart<PieConfig>));
+    private ReferenceConverter ReferenceConverter = new ReferenceConverter(typeof(Chart));
     ```
 
 # Contributors

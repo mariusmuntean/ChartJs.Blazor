@@ -3,7 +3,7 @@
 @using System.Drawing
 @layout SampleLayout
 
-<Chart TConfig="BarConfig" Config="_config" @ref="_chart"></Chart>
+<Chart Config="_config" @ref="_chart"></Chart>
 
 <button @onclick="RandomizeData">Randomize Data</button>
 <button @onclick="AddDataset">Add Dataset</button>
@@ -15,7 +15,7 @@
     private const int InitalCount = 7;
     private BarConfig _config;
     private Random _rng = new Random();
-    private Chart<BarConfig> _chart;
+    private Chart _chart;
 
     protected override void OnInitialized()
     {

@@ -2,7 +2,7 @@
 @using ChartJs.Blazor.LineChart
 @layout SampleLayout
 
-<Chart TConfig="LineConfig" Config="_config" @ref="_chart"></Chart>
+<Chart Config="_config" @ref="_chart"></Chart>
 
 <button @onclick="RandomizeData">Randomize Data</button>
 <button @onclick="AddDataset">Add Dataset</button>
@@ -14,7 +14,7 @@
     private const int InitalCount = 7;
     private LineConfig _config;
     private Random _rng = new Random();
-    private Chart<LineConfig> _chart;
+    private Chart _chart;
 
     protected override void OnInitialized()
     {
