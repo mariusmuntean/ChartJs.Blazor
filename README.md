@@ -5,7 +5,8 @@
 
 [![Join the chat at https://gitter.im/ChartJs-Blazor/community](https://badges.gitter.im/ChartJs-Blazor/community.svg)](https://gitter.im/ChartJs-Blazor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[![NuGet Downloads](https://img.shields.io/nuget/dt/ChartJs.Blazor?label=NuGet%20Downloads)](https://www.nuget.org/packages/ChartJs.Blazor/)
+[![NuGet Downloads (official NuGet)](https://img.shields.io/nuget/dt/ChartJs.Blazor?label=NuGet%20Downloads)](https://www.nuget.org/packages/ChartJs.Blazor/)  
+[![NuGet Downloads (2.0 NuGet)](https://img.shields.io/nuget/dt/ChartJs.Blazor.Fork?label=NuGet%20Downloads)](https://www.nuget.org/packages/ChartJs.Blazor.Fork/)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4edc0972-1674-4ff7-8fdc-41e643b33738/deploy-status)](https://app.netlify.com/sites/chartjs-blazor-samples/deploys)
 
@@ -24,12 +25,15 @@ You need an IDE that supports Blazor and .NET Core SDK 3.x+
 
 ## Installation
 
-There's a NuGet package available: [ChartJs.Blazor](https://www.nuget.org/packages/ChartJs.Blazor/)
+**Due to an [unfortunate situation](https://github.com/mariusmuntean/ChartJs.Blazor/issues/160), the new 2.0 release is only available in an [alternative NuGet package](https://www.nuget.org/packages/ChartJs.Blazor.Fork/) for the time being.**  
+The original NuGet is [ChartJs.Blazor](https://www.nuget.org/packages/ChartJs.Blazor/).
+
+Install our NuGet package: [ChartJs.Blazor.Fork](https://www.nuget.org/packages/ChartJs.Blazor.Fork/)
 
 You can install it with the Package Manager in your IDE or alternatively using the command line:
 
 ```bash
-dotnet add package ChartJs.Blazor
+dotnet add package ChartJs.Blazor.Fork
 ```
 
 ## Usage
@@ -40,10 +44,10 @@ Before you can start creating a chart, you have to add some static assets to you
 In your `_Host.cshtml` (server-side) or in your `index.html` (client-side) add the following lines to the `body` tag **after** the `_framework` reference.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 
 <!-- This is the glue between Blazor and Chart.js -->
-<script src="_content/ChartJs.Blazor/ChartJsBlazorInterop.js"></script>
+<script src="_content/ChartJs.Blazor.Fork/ChartJsBlazorInterop.js"></script>
 ```
 
 If you are using a time scale (`TimeAxis`), you also need to include Moment.js.
@@ -135,7 +139,7 @@ Unfortunately, we're not up to date yet and many samples are missing. If you'd l
 The [ChartJs.Blazor.Samples folder](./ChartJs.Blazor.Samples) contains the projects to showcase the samples. It's based on [Suchiman/BlazorDualMode](https://github.com/Suchiman/BlazorDualMode) and allows you to switch between the server- and the client-side Blazor mode.
 
 The samples should always be up to date with the current development on master. That means that the code you see on master might not work for your version.
-To browse the samples for the latest nuget version, see the [samples on the releases branch](https://github.com/mariusmuntean/ChartJs.Blazor/tree/releases/ChartJs.Blazor.Samples/Client/Pages) or select a specific tag.
+To browse the samples for the latest NuGet version, see the [samples on the releases branch](https://github.com/mariusmuntean/ChartJs.Blazor/tree/releases/ChartJs.Blazor.Samples/Client/Pages) or select a specific tag.
 If there's not a sample for your use-case on the releases branch, check out the master one. Maybe someone already contributed what you're looking for and if not, why not do it yourself :wink:
 
 We would usually host the samples on https://www.iheartblazor.com but unfortunately, the version shown there is really old and we highly recommend downloading and running our samples on your machine.

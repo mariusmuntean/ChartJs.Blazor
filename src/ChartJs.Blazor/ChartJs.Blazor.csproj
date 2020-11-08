@@ -19,7 +19,9 @@
 * Improved JavaScript interop layer and API (callbacks)
 * Simplified namespaces
 * Library no longer contains copy of Chart.js and moment.js builds
-* Lots of bugfixes and other improvements</PackageReleaseNotes>
+* Lots of bugfixes and other improvements
+
+More on https://github.com/mariusmuntean/ChartJs.Blazor/releases/tag/v2.0.0</PackageReleaseNotes>
     <AssemblyName>ChartJs.Blazor</AssemblyName>
     <RootNamespace>ChartJs.Blazor</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
