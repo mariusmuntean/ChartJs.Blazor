@@ -111,7 +111,7 @@ protected override void OnInitialized()
         }
     };
 
-    foreach (string color in new string[] { "Red", "Yellow", "Green", "Blue" })
+    foreach (string color in new[] { "Red", "Yellow", "Green", "Blue" })
     {
         _config.Data.Labels.Add(color);
     }
