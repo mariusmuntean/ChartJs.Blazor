@@ -111,7 +111,10 @@ protected override void OnInitialized()
         }
     };
 
-    _config.Data.Labels.AddRange(new string[] { "Red", "Yellow", "Green", "Blue" });
+    foreach (string color in new string[] { "Red", "Yellow", "Green", "Blue" })
+    {
+        _config.Data.Labels.Add(color);
+    }
 
     PieDataset<int> dataset = new PieDataset<int>(new[] { 6, 5, 3, 7 })
     {
