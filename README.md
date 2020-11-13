@@ -50,7 +50,7 @@ In your `_Host.cshtml` (server-side) or in your `index.html` (client-side) add t
 <script src="_content/ChartJs.Blazor.Fork/ChartJsBlazorInterop.js"></script>
 ```
 
-If you are using a time scale (`TimeAxis`), you also need to include Moment.js.
+If you are using a time scale (`TimeAxis`), you also need to include Moment.js **before** including Chart.js.
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
