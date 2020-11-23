@@ -1,59 +1,59 @@
 [
-    {
-        "Title": "Bar charts",
-        "Samples": [
-            {
-                "Title": "Vertical",
-                "Path": "charts/bar/vertical"
-            },
-            {
-                "Title": "Horizontal",
-                "Path": "charts/bar/horizontal"
-            },
-            {
-                "Title": "Stacked",
-                "Path": "charts/bar/stacked"
-            }
-        ]
-    },
-    {
-        "Title": "Line charts",
-        "Samples": [
-            {
-                "Title": "Basic",
-                "Path": "charts/line/basic"
-            },
-            {
-                "Title": "Stepped",
-                "Path": "charts/line/stepped"
-            }
-        ]
-    },
-    {
-        "Title": "Other charts",
-        "Samples": [
-            {
-                "Title": "Pie",
-                "Path": "charts/pie"
-            }
-        ]
-    },
-    {
-        "Title": "Time scale",
-        "Samples": [
-            {
-                "Title": "Line",
-                "Path": "charts/time/line"
-            }
-        ]
-    },
-    {
-        "Title": "Workarounds",
-        "Samples": [
-            {
-                "Title": "Gradient",
-                "Path": "workarounds/gradient"
-            }
-        ]
-    }
+  {
+    "Title": "Bar charts",
+    "Samples": [
+      {
+        "Title": "Vertical",
+        "Path": "charts/bar/vertical"
+      },
+      {
+        "Title": "Horizontal",
+        "Path": "charts/bar/horizontal"
+      },
+      {
+        "Title": "Stacked",
+        "Path": "charts/bar/stacked"
+      }
+    ]
+  },
+  {
+    "Title": "Line charts",
+    "Samples": [
+      {
+        "Title": "Basic",
+        "Path": "charts/line/basic"
+      },
+      {
+        "Title": "Stepped",
+        "Path": "charts/line/stepped"
+      }
+    ]
+  },
+  {
+    "Title": "Other charts",
+    "Samples": [
+        {
+            "Title": "Pie",
+            "Path": "charts/pie"
+        }
+    ]
+  },
+  {
+    "Title": "Time scale",
+    "Samples": [
+        {
+            "Title": "Line",
+            "Path": "charts/time/line"
+        }
+    ]
+  },
+  {
+    "Title": "Workarounds",
+    "Samples": [
+      {
+        "Title": "Gradient",
+        "Path": "workarounds/gradient"
+      }
+    ]
+  }
 ]
