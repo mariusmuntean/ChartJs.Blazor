@@ -57,5 +57,31 @@ namespace ChartJs.Blazor.Samples.Shared
 
             return factors;
         }
+
+        private static int RandomDateScalingFactorThreadUnsafe() => _rng.Next(1, 7);
+
+        public static DateTime RandomDateScalingFactor()
+        {
+            lock (_rng)
+            {
+                return DateTime.Now.AddDays(RandomDateScalingFactorThreadUnsafe());
+            }
+        }
+
+        public static IEnumerable<DateTime> RandomDateScalingFactor(int count)
+        {
+            DateTime[] factors = new DateTime[count];
+            lock (_rng)
+            {
+                factors[0] = DateTime.Now.AddDays(RandomDateScalingFactorThreadUnsafe());
+
+                for (int i = 1; i < count; i++)
+                {
+                    factors[i] = factors[i - 1].AddDays(RandomDateScalingFactorThreadUnsafe());
+                }
+            }
+
+            return factors;
+        }
     }
 }
