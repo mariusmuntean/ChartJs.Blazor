@@ -41,7 +41,7 @@
                 Scales = new Scales
                 {
                     XAxes = new List<CartesianAxis>
-                {
+                    {
                         new TimeAxis
                         {
                             ScaleLabel = new ScaleLabel
@@ -50,12 +50,13 @@
                             },
                             Time = new TimeOptions
                             {
-                                Unit = TimeMeasurement.Day
-                            }
+                                MinUnit = TimeMeasurement.Hour
+                            },
+                            
                         }
                     },
                     YAxes = new List<CartesianAxis>
-                {
+                    {
                         new LinearCartesianAxis
                         {
                             ScaleLabel = new ScaleLabel
@@ -76,7 +77,7 @@
             Fill = FillingMode.Disabled
         };
 
-        dataset1.AddRange(RandomDateScalingFactor(InitalCount)
+        dataset1.AddRange(LinearDateScalingFactor(InitalCount)
             .Select(date => new TimePoint(date, RandomScalingFactor())));
 
         IDataset<TimePoint> dataset2 = new LineDataset<TimePoint>()
@@ -87,7 +88,7 @@
             Fill = FillingMode.Disabled
         };
 
-        dataset2.AddRange(RandomDateScalingFactor(InitalCount)
+        dataset2.AddRange(LinearDateScalingFactor(InitalCount)
             .Select(date => new TimePoint(date, RandomScalingFactor())));
 
         _config.Data.Datasets.Add(dataset1);
@@ -100,7 +101,7 @@
         {
             int count = dataset.Count;
             dataset.Clear();
-            dataset.AddRange(RandomDateScalingFactor(InitalCount)
+            dataset.AddRange(LinearDateScalingFactor(InitalCount)
                 .Select(date => new TimePoint(date, RandomScalingFactor())));
         }
 
@@ -124,7 +125,7 @@
             timePointCount = (_config.Data.Datasets.First() as LineDataset<TimePoint>).Data.Count;
         }
 
-        dataset.AddRange(RandomDateScalingFactor(timePointCount)
+        dataset.AddRange(LinearDateScalingFactor(timePointCount)
             .Select(date => new TimePoint(date, RandomScalingFactor())));
 
         _config.Data.Datasets.Add(dataset);
@@ -148,8 +149,7 @@
 
         foreach (IDataset<TimePoint> dataset in _config.Data.Datasets)
         {
-            TimeSpan RandomDelay = RandomDateScalingFactor() - DateTime.Now;
-            dataset.Add(new TimePoint(dataset[dataset.Count - 1].Time.Add(RandomDelay), RandomScalingFactor()));
+            dataset.Add(new TimePoint(DateTime.Now.AddDays(dataset.Count), RandomScalingFactor()));
         }
 
         _chart.Update();
@@ -162,7 +162,10 @@
 
         foreach (IDataset<TimePoint> dataset in _config.Data.Datasets)
         {
-            dataset.RemoveAt(dataset.Count - 1);
+            if (dataset.Any())
+            {
+                dataset.RemoveAt(dataset.Count - 1);
+            }
         }
 
         _chart.Update();
