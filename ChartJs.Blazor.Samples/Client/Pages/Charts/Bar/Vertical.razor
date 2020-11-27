@@ -125,11 +125,17 @@
         if (_config.Data.Datasets.Count == 0)
             return;
 
-        _config.Data.Labels.RemoveAt(_config.Data.Labels.Count - 1);
+        if (_config.Data.Labels.Any())
+        {
+            _config.Data.Labels.RemoveAt(_config.Data.Labels.Count - 1);
+        }
 
         foreach (IDataset<int> dataset in _config.Data.Datasets)
         {
-            dataset.RemoveAt(dataset.Count - 1);
+            if (dataset.Any())
+            {
+                dataset.RemoveAt(dataset.Count - 1);
+            }
         }
 
         _chart.Update();
