@@ -1,0 +1,202 @@
+﻿@page "/scales/time/line"
+@using ChartJs.Blazor.LineChart
+@layout SampleLayout
+
+<Chart Config="_config" @ref="_chart"></Chart>
+
+<button @onclick="RandomizeData">Randomize Data</button>
+<button @onclick="AddDataset">Add Dataset</button>
+<button @onclick="RemoveDataset">Remove Dataset</button>
+<button @onclick="AddData">Add Data</button>
+<button @onclick="RemoveData">Remove Data</button>
+
+@code {
+    private const int InitalCount = 7;
+    private LineConfig _config;
+    private Chart _chart;
+
+    protected override void OnInitialized()
+    {
+        _config = new LineConfig
+        {
+            Options = new LineOptions
+            {
+                Responsive = true,
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "ChartJs.Blazor Time Scale Chart"
+                },
+                Tooltips = new Tooltips
+                {
+                    Mode = InteractionMode.Nearest,
+                    Intersect = true
+                },
+                Hover = new Hover
+                {
+                    Mode = InteractionMode.Nearest,
+                    Intersect = true
+                },
+                Scales = new Scales
+                {
+                    XAxes = new List<CartesianAxis>
+                    {
+                        new TimeAxis
+                        {
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "Date"
+                            },
+                            Time = new TimeOptions
+                            {
+                                TooltipFormat = "ll HH:mm"
+                            },
+                        }
+                    },
+                    YAxes = new List<CartesianAxis>
+                    {
+                        new LinearCartesianAxis
+                        {
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "Value"
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        _config.Data.Labels.AddRange(GetNextDays(InitalCount).Select(d => d.ToString("o")));
+
+        IDataset<int> dataset1 = new LineDataset<int>(RandomScalingFactor(InitalCount))
+        {
+            Label = "My first dataset",
+            BackgroundColor = ColorUtil.FromDrawingColor(ChartColors.Red),
+            BorderColor = ColorUtil.FromDrawingColor(ChartColors.Red),
+            Fill = FillingMode.Disabled
+        };
+
+        IDataset<int> dataset2 = new LineDataset<int>(RandomScalingFactor(InitalCount))
+        {
+            Label = "My second dataset",
+            BackgroundColor = ColorUtil.FromDrawingColor(ChartColors.Blue),
+            BorderColor = ColorUtil.FromDrawingColor(ChartColors.Blue),
+            Fill = FillingMode.Disabled
+        };
+
+        IDataset<TimePoint> dataset3 = new LineDataset<TimePoint>()
+        {
+            Label = "Dataset with point data",
+            BackgroundColor = ColorUtil.FromDrawingColor(ChartColors.Green),
+            BorderColor = ColorUtil.FromDrawingColor(ChartColors.Green),
+            Fill = FillingMode.Disabled
+        };
+
+        DateTime now = DateTime.Now;
+        dataset3.Add(new TimePoint(now, RandomScalingFactor()));
+        dataset3.Add(new TimePoint(now.AddDays(5), RandomScalingFactor()));
+        dataset3.Add(new TimePoint(now.AddDays(7), RandomScalingFactor()));
+        dataset3.Add(new TimePoint(now.AddDays(15), RandomScalingFactor()));
+
+        _config.Data.Datasets.Add(dataset1);
+        _config.Data.Datasets.Add(dataset2);
+        _config.Data.Datasets.Add(dataset3);
+    }
+
+    private void RandomizeData()
+    {
+        foreach (IDataset dataset in _config.Data.Datasets)
+        {
+            if (dataset is IDataset<TimePoint> pointDataset)
+            {
+                for (int i = 0; i < pointDataset.Count; i++)
+                {
+                    pointDataset[i] = new TimePoint(pointDataset[i].Time, RandomScalingFactor());
+                }
+            }
+            else if (dataset is IDataset<int> intDataset)
+            {
+                int count = intDataset.Count;
+                intDataset.Clear();
+                intDataset.AddRange(RandomScalingFactor(count));
+            }
+        }
+
+        _chart.Update();
+    }
+
+    private void AddDataset()
+    {
+        string color = ColorUtil.FromDrawingColor(ChartColors.All[_config.Data.Datasets.Count % ChartColors.All.Count]);
+        IDataset<int> dataset = new LineDataset<int>(RandomScalingFactor(_config.Data.Labels.Count))
+        {
+            Label = $"Dataset {_config.Data.Datasets.Count}",
+            BackgroundColor = color,
+            BorderColor = color,
+            Fill = FillingMode.Disabled
+        };
+
+        _config.Data.Datasets.Add(dataset);
+        _chart.Update();
+    }
+
+    private void RemoveDataset()
+    {
+        IList<IDataset> datasets = _config.Data.Datasets;
+        if (datasets.Count == 0)
+            return;
+
+        datasets.RemoveAt(datasets.Count - 1);
+        _chart.Update();
+    }
+
+    private void AddData()
+    {
+        if (_config.Data.Datasets.Count == 0)
+            return;
+
+        DateTime now = DateTime.Now;
+        _config.Data.Labels.Add(now.AddDays(_config.Data.Labels.Count).ToString("o"));
+
+        foreach (IDataset dataset in _config.Data.Datasets)
+        {
+            if (dataset is IDataset<TimePoint> pointDataset)
+            {
+                pointDataset.Add(new TimePoint(now.AddDays(pointDataset.Count), RandomScalingFactor()));
+            }
+            else if (dataset is IDataset<int> intDataset)
+            {
+                intDataset.Add(RandomScalingFactor());
+            }
+        }
+
+        _chart.Update();
+    }
+
+    private void RemoveData()
+    {
+        if (_config.Data.Datasets.Count == 0)
+            return;
+
+        IList<string> labels = _config.Data.Labels;
+        if (labels.Count > 0)
+            labels.RemoveAt(labels.Count - 1);
+
+        foreach (IDataset dataset in _config.Data.Datasets)
+        {
+            if (dataset is IDataset<TimePoint> pointDataset &&
+                pointDataset.Count > 0)
+            {
+                pointDataset.RemoveAt(pointDataset.Count - 1);
+            }
+            else if (dataset is IDataset<int> intDataset &&
+                     intDataset.Count > 0)
+            {
+                intDataset.RemoveAt(intDataset.Count - 1);
+            }
+        }
+
+        _chart.Update();
+    }
+}

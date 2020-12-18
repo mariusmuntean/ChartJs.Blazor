@@ -57,5 +57,17 @@ namespace ChartJs.Blazor.Samples.Shared
 
             return factors;
         }
+
+        public static IEnumerable<DateTime> GetNextDays(int count)
+        {
+            DateTime now = DateTime.Now;
+            DateTime[] factors = new DateTime[count];
+            for (int i = 0; i < factors.Length; i++)
+            {
+                factors[i] = now.AddDays(i);
+            }
+
+            return factors;
+        }
     }
 }

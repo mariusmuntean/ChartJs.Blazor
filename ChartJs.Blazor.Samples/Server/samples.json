@@ -32,10 +32,19 @@
   {
     "Title": "Other charts",
     "Samples": [
-        {
-            "Title": "Pie",
-            "Path": "charts/pie"
-        }
+      {
+        "Title": "Pie",
+        "Path": "charts/pie"
+      }
+    ]
+  },
+  {
+    "Title": "Time scale",
+    "Samples": [
+      {
+        "Title": "Line",
+        "Path": "scales/time/line"
+      }
     ]
   },
   {
