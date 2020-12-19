@@ -246,7 +246,7 @@ class ChartJsInterop {
 
         if (config.options?.scale?.ticks) {
             config.options.scale.ticks.callback = this.getMethodHandler(<IMethodHandler>config.options.scale.ticks.callback, undefined);
-			
+
             if (!config.options.scale.ticks.callback) {
                 delete config.options.scale.ticks.callback; // undefined != deleted, Chart.js throws an error if it's undefined so we have to delete it
             }
