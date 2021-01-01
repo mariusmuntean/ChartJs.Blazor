@@ -13,23 +13,14 @@
     <PackageProjectUrl>https://github.com/mariusmuntean/ChartJs.Blazor</PackageProjectUrl>
     <PackageTags>Chart.js Blazor ASP.NET-Core wasm</PackageTags>
     <PackageSummary></PackageSummary>
-    <PackageReleaseNotes>Biggest changes:
-* Unified all charts into one Blazor component
-* Entirely reworked datasets
-* Improved JavaScript interop layer and API (callbacks)
-* Simplified namespaces
-* Library no longer contains copy of Chart.js and moment.js builds
-* Lots of bugfixes and other improvements
-
-More on https://github.com/mariusmuntean/ChartJs.Blazor/releases/tag/v2.0.0</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix bug related to the ticks-callback in single-scale charts.</PackageReleaseNotes>
     <AssemblyName>ChartJs.Blazor</AssemblyName>
     <RootNamespace>ChartJs.Blazor</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>2.0.0</Version>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
+    <Version>2.0.1</Version>
+    <AssemblyVersion>2.0.1.0</AssemblyVersion>
+    <FileVersion>2.0.1.0</FileVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageVersion>2.0.0</PackageVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
