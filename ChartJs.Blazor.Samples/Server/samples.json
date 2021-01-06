@@ -23,10 +23,14 @@
         "Title": "Basic",
         "Path": "charts/line/basic"
       },
-      {
-        "Title": "Stepped",
-        "Path": "charts/line/stepped"
-      }
+        {
+            "Title": "Stepped",
+            "Path": "charts/line/stepped"
+        },
+        {
+            "Title": "Interpolation",
+            "Path": "charts/line/interpolation"
+        }
     ]
   },
   {

@@ -1,0 +1,125 @@
+﻿@page "/charts/line/interpolation"
+@using ChartJs.Blazor.LineChart
+@layout SampleLayout
+
+<Chart Config="_config" @ref="_chart"></Chart>
+
+<button @onclick="RandomizeData">Randomize Data</button>
+
+@code {
+    private const int InitalCount = 7;
+    private int?[] datapoints;
+    Random rand = new Random();
+    private LineConfig _config;
+    private Chart _chart;
+
+    protected override void OnInitialized()
+    {
+        datapoints = new int?[] { 0, 20, 20, 60, 60, 120, null, 180, 120, 125, 105, 110, 170 };
+
+        IEnumerable<string> labels = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
+
+        _config = new LineConfig
+        {
+            Options = new LineOptions
+            {
+                Responsive = true,
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "ChartJs.Blazor Line Chart - Cubic interpolation mode"
+                },
+                Tooltips = new Tooltips
+                {
+                    Mode = InteractionMode.Nearest,
+                    Intersect = true
+                },
+                Hover = new Hover
+                {
+                    Mode = InteractionMode.Nearest,
+                    Intersect = true
+                },
+                Scales = new Scales
+                {
+
+                    XAxes = new List<CartesianAxis>
+                {
+                        new CategoryAxis
+                        {
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "Month"
+                            }
+                        }
+                    },
+                    YAxes = new List<CartesianAxis>
+                {
+                        new LinearCartesianAxis
+                        {
+                            ScaleLabel = new ScaleLabel
+                            {
+                                LabelString = "Value",
+                                Display = true
+                            },
+                            Ticks = new LinearCartesianTicks
+                            {
+                                SuggestedMin = -10,
+                                SuggestedMax = 200
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        IDataset<int?> dataset1 = new LineDataset<int?>(datapoints)
+        {
+            Label = "Cubic interpolation (monotone)",
+            BackgroundColor = ColorUtil.FromDrawingColor(ChartColors.Red),
+            BorderColor = ColorUtil.FromDrawingColor(ChartColors.Red),
+            Fill = FillingMode.Disabled,
+            CubicInterpolationMode = CubicInterpolationMode.Monotone,
+            LineTension = 0.4
+        };
+        IDataset<int?> dataset2 = new LineDataset<int?>(datapoints)
+        {
+            Label = "Cubic interpolation",
+            BackgroundColor = ColorUtil.FromDrawingColor(ChartColors.Blue),
+            BorderColor = ColorUtil.FromDrawingColor(ChartColors.Blue),
+            Fill = FillingMode.Disabled,
+            LineTension = 0.4
+        };
+
+        IDataset<int?> dataset3 = new LineDataset<int?>(datapoints)
+        {
+            Label = "Linear interpolation (default)",
+            BackgroundColor = ColorUtil.FromDrawingColor(ChartColors.Green),
+            BorderColor = ColorUtil.FromDrawingColor(ChartColors.Green),
+            Fill = FillingMode.Disabled,
+            LineTension = 0
+
+        };
+
+        _config.Data.Labels.AddRange(labels);
+        _config.Data.Datasets.Add(dataset1);
+        _config.Data.Datasets.Add(dataset2);
+        _config.Data.Datasets.Add(dataset3);
+    }
+
+    private void RandomizeData()
+    {
+
+        for(int i = 0; i < datapoints.Count(); i++)
+        {
+            datapoints[i] = rand.NextDouble() < 0.05 ? null : (int?)RandomScalingFactor();
+        }
+
+        foreach (IDataset<int?> dataset in _config.Data.Datasets)
+        {
+            dataset.Clear();
+            dataset.AddRange(datapoints);
+        }
+
+        _chart.Update();
+    }
+}
