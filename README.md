@@ -217,8 +217,8 @@ We thank everyone who has taken their time to open detailed issues, discuss prob
 
 Check out the [list of contributors](https://github.com/mariusmuntean/ChartJs.Blazor/graphs/contributors).
 
+* This project is currently unmaintained.
 * Owner of the project is [Marius Muntean](https://github.com/mariusmuntean).
-* Current maintainer is [Joel Liechti](https://github.com/Joelius300).
 
 # Contributing
 We really like people helping us with the project. Nevertheless, take your time to read our contributing guidelines [here](CONTRIBUTING.md).
