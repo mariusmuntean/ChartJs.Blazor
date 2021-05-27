@@ -44,6 +44,12 @@ namespace ChartJs.Blazor
         [Parameter]
         public int? Height { get; set; }
 
+        /// <summary>
+        /// Gets the id for the html canvas element associated with this chart.
+        /// This property is initialized to a random GUID-string upon creation.
+        /// </summary>
+        public string ChartId { get; } = $"ChartJS_{Guid.NewGuid()}";
+
         /// <inheritdoc />
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {

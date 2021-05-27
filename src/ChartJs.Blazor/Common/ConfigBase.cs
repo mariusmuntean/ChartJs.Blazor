@@ -25,12 +25,6 @@ namespace ChartJs.Blazor.Common
         public ChartType Type { get; }
 
         /// <summary>
-        /// Gets the id for the html canvas element associated with this chart.
-        /// This property is initialized to a random GUID-string upon creation.
-        /// </summary>
-        public string CanvasId { get; } = Guid.NewGuid().ToString();
-
-        /// <summary>
         /// Gets the list of inline plugins for this chart. Consider
         /// registering global plugins (through JavaScript) or assigning the
         /// plugins through JavaScript instead of using this property
