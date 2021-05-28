@@ -20,6 +20,12 @@ namespace ChartJs.Blazor.Common
         }
 
         /// <summary>
+        /// Gets or sets the id for the html canvas element associated with this chart.
+        /// This property must be set to the ChartId of the chart.
+        /// </summary>
+        public string CanvasId { get; internal set;  }
+
+        /// <summary>
         /// Gets the type of chart this config is for.
         /// </summary>
         public ChartType Type { get; }
