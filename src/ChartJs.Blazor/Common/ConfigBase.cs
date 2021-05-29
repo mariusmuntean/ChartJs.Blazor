@@ -26,6 +26,16 @@ namespace ChartJs.Blazor.Common
         public string CanvasId { get; internal set;  }
 
         /// <summary>
+        /// Gets a value indicating whether debug messages should be written to the console
+        /// in the Javascript code.
+        /// </summary>
+#if DEBUG
+        public bool Debug => System.Diagnostics.Debugger.IsAttached;
+#else
+        public bool Debug => false;
+#endif
+
+        /// <summary>
         /// Gets the type of chart this config is for.
         /// </summary>
         public ChartType Type { get; }
