@@ -26,6 +26,7 @@ class ChartJsInterop {
     BlazorCharts = new Map<string, Chart>();
 
     public setupChart(config: ChartConfiguration): boolean {
+        console.debug("ChartJS.Blazor.ChartJSInterop", config);
         if (!this.BlazorCharts.has(config.canvasId)) {
             this.wireUpCallbacks(config);
 
