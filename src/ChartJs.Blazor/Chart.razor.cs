@@ -12,6 +12,8 @@ namespace ChartJs.Blazor
     /// </summary>
     public partial class Chart
     {
+        private ConfigBase _config;
+
         /// <summary>
         /// This event is fired when the chart has been setup through interop and
         /// the JavaScript chart object is available. Use this callback if you need to setup
@@ -30,7 +32,17 @@ namespace ChartJs.Blazor
         /// Gets or sets the configuration of the chart.
         /// </summary>
         [Parameter]
-        public ConfigBase Config { get; set; }
+        public ConfigBase Config
+        {
+            get => _config;
+            set
+            {
+                // Need to synchronize the Config.CanvasId with Chart.ChartId
+                if (_config != null) _config.CanvasId = null;
+                _config = value;
+                if (_config != null) _config.CanvasId = ChartId;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the width of the canvas HTML element.
@@ -43,6 +55,12 @@ namespace ChartJs.Blazor
         /// </summary>
         [Parameter]
         public int? Height { get; set; }
+
+        /// <summary>
+        /// Gets the id for the html canvas element associated with this chart.
+        /// This property is initialized to a random GUID-string upon creation.
+        /// </summary>
+        public string ChartId { get; } = Guid.NewGuid().ToString();
 
         /// <inheritdoc />
         protected override async Task OnAfterRenderAsync(bool firstRender)
