@@ -1,0 +1,59 @@
+name: NuGet Package - tags
+
+env:
+  BUILD_CONFIGURATION: Release
+  NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  
+on:
+  push:
+    tags:
+    - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Automatic Releases
+    - uses: marvinpinto/action-automatic-releases@v1.2.1
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        prerelease: false 
+    
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+        source-url: https://nuget.pkg.github.com/verent/index.json
+    
+    - name: Set outputs
+      id: vars
+      run: echo "::set-output name=tag_version::$CI_COMMIT_TAG
+
+    - name: Install TagToVersion
+      working-directory: ./src/ChartJs.Blazor
+      run: dotnet tool install dotnetCampus.TagToVersion  
+
+    - name: TagToVersion
+      working-directory: ./src/ChartJs.Blazor
+      run: dotnet tool run dotnet-TagToVersion -t ${{ steps.vars.outputs.tag_version }}
+
+    - name: Restore dependencies
+      working-directory: ./src/ChartJs.Blazor
+      run: dotnet restore
+    
+    - name: Build
+      working-directory: ./src/ChartJs.Blazor
+      run: dotnet build --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
+    
+    - name: Test
+      working-directory: ./src/ChartJs.Blazor
+      run: dotnet test --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --verbosity normal
+    
+    - name: Pack
+      working-directory: ./src/ChartJs.Blazor
+      run: dotnet pack --configuration ${{ env.BUILD_CONFIGURATION }}
+  
+    - name: Publish
+      working-directory: ./src/ChartJs.Blazor
+      run: dotnet nuget push ./bin/Release/*.nupkg --skip-duplicate --no-symbols true
