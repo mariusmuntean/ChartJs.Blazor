@@ -28,7 +28,7 @@ jobs:
     
     - name: Set outputs
       id: vars
-      run: echo "::set-output name=tag_version::$CI_COMMIT_TAG
+      run: echo "::set-output name=tag_version::$CI_COMMIT_TAG"
 
     - name: Install TagToVersion
       working-directory: ./src/ChartJs.Blazor
@@ -54,6 +54,6 @@ jobs:
       working-directory: ./src/ChartJs.Blazor
       run: dotnet pack --configuration ${{ env.BUILD_CONFIGURATION }}
   
-    - name: Publish
-      working-directory: ./src/ChartJs.Blazor
-      run: dotnet nuget push ./bin/Release/*.nupkg --skip-duplicate --no-symbols true
+#    - name: Publish
+#      working-directory: ./src/ChartJs.Blazor
+#      run: dotnet nuget push ./bin/Release/*.nupkg --skip-duplicate --no-symbols true
