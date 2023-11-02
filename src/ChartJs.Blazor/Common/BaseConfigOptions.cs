@@ -54,6 +54,12 @@ namespace ChartJs.Blazor.Common
         public Animation Animation { get; set; }
 
         /// <summary>
+        /// Gets or sets the layout options for this chart.
+        /// <para>Link: https://www.chartjs.org/docs/latest/configuration/layout.html</para>
+        /// </summary>
+        public Layout Layout { get; set; }
+
+        /// <summary>
         /// Gets the plugin options. The key has to be the unique
         /// identification of the plugin.
         /// <para>
