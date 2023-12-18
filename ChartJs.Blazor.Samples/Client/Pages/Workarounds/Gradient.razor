@@ -3,12 +3,13 @@
 @layout SampleLayout
 @inject IJSRuntime jsRuntime
 
-<Chart Config="_config" SetupCompletedCallback="@SetupCompletedCallback"></Chart>
+<Chart @ref="_chart" Config="_config" SetupCompletedCallback="@SetupCompletedCallback"></Chart>
 
 @code {
     private const int InitalCount = 7;
     private LineConfig _config;
     private Random _rng = new Random();
+    private Chart _chart;
 
     protected override void OnInitialized()
     {
@@ -61,5 +62,5 @@
     }
 
     private async Task SetupCompletedCallback() =>
-        await jsRuntime.InvokeVoidAsync("workaroundGradient", _config.CanvasId);
+        await jsRuntime.InvokeVoidAsync("workaroundGradient", _chart.ChartId);
 }

@@ -20,15 +20,25 @@ namespace ChartJs.Blazor.Common
         }
 
         /// <summary>
+        /// Gets or sets the id for the html canvas element associated with this chart.
+        /// This property must be set to the ChartId of the chart.
+        /// </summary>
+        public string CanvasId { get; internal set;  }
+
+        /// <summary>
+        /// Gets a value indicating whether debug messages should be written to the console
+        /// in the Javascript code.
+        /// </summary>
+#if DEBUG
+        public bool Debug => System.Diagnostics.Debugger.IsAttached;
+#else
+        public bool Debug => false;
+#endif
+
+        /// <summary>
         /// Gets the type of chart this config is for.
         /// </summary>
         public ChartType Type { get; }
-
-        /// <summary>
-        /// Gets the id for the html canvas element associated with this chart.
-        /// This property is initialized to a random GUID-string upon creation.
-        /// </summary>
-        public string CanvasId { get; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Gets the list of inline plugins for this chart. Consider

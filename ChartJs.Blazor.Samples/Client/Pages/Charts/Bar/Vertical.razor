@@ -6,7 +6,8 @@
 <Chart Config="_config" @ref="_chart"></Chart>
 
 <button @onclick="RandomizeData">Randomize Data</button>
-<button @onclick="AddDataset">Add Dataset</button>
+<button @onclick="() => AddDataset()">Add Dataset</button>
+<button @onclick="() => AddDataset(true)">Add Hidden Dataset</button>
 <button @onclick="RemoveDataset">Remove Dataset</button>
 <button @onclick="AddData">Add Data</button>
 <button @onclick="RemoveData">Remove Data</button>
@@ -79,7 +80,7 @@
         _chart.Update();
     }
 
-    private void AddDataset()
+    private void AddDataset(bool? hidden = null)
     {
         Color color = ChartColors.All[_config.Data.Datasets.Count % ChartColors.All.Count];
         IDataset<int> dataset = new BarDataset<int>(RandomScalingFactor(_config.Data.Labels.Count))
@@ -87,12 +88,15 @@
             Label = $"Dataset {_config.Data.Datasets.Count}",
             BackgroundColor = ColorUtil.FromDrawingColor(Color.FromArgb(128, color)),
             BorderColor = ColorUtil.FromDrawingColor(color),
-            BorderWidth = 1
+            BorderWidth = 1,
+            Hidden = hidden
         };
+
 
         _config.Data.Datasets.Add(dataset);
         _chart.Update();
     }
+
 
     private void RemoveDataset()
     {

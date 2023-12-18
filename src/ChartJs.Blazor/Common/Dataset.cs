@@ -46,6 +46,12 @@ namespace ChartJs.Blazor.Common
         }
 
         /// <summary>
+        /// Sets the dataset to be hidden when rendered. The label will still show in the Legend so
+        /// that the user can click on it and show the data.
+        /// </summary>
+        public bool? Hidden { get; set; }
+
+        /// <summary>
         /// Adds the elements of the specified collection to the end of the <see cref="Dataset{T}"/>.
         /// </summary>
         /// <param name="items">
